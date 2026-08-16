@@ -2844,7 +2844,15 @@ function saveNotification(){
             )
 
         );
-
+if (typeof savePublicHealthNotification === "function") {
+    savePublicHealthNotification(notification)
+        .catch(function(error) {
+            console.error(
+                "SPHP Data Layer save error:",
+                error
+            );
+        });
+}
 
         /* =====================================
            التأكد من الحفظ
