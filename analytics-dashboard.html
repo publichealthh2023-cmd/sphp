@@ -1,0 +1,6879 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>التقارير والإحصائيات - الصحة العامة</title>
+
+<link rel="stylesheet" href="Style.css">
+
+<style>
+
+.page{
+    max-width:1400px;
+    margin:30px auto;
+    padding:0 20px 60px;
+}
+
+.intro,
+.filters-card,
+.section-card,
+.report-request-card,
+.baseline-card{
+    background:#fff;
+    border:1px solid #dfe8f2;
+    border-radius:16px;
+    padding:22px;
+    margin-bottom:20px;
+    box-shadow:0 4px 14px rgba(0,0,0,.05);
+}
+
+.intro{
+    text-align:center;
+}
+
+.intro h2,
+.section-card h3,
+.report-request-card h3,
+.baseline-card h3{
+    color:#064c92;
+}
+
+.intro p{
+    color:#607387;
+    line-height:1.8;
+}
+
+
+/* =====================================================
+   Baseline
+===================================================== */
+
+.baseline-card{
+    border-top:5px solid #ef8d22;
+}
+
+.baseline-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.baseline-header h3{
+    margin:0;
+}
+
+.baseline-help{
+    color:#607387;
+    line-height:1.8;
+    font-size:13px;
+    margin-top:7px;
+}
+
+.baseline-note{
+    margin-top:15px;
+    background:#fff8e1;
+    border-right:5px solid #d89a00;
+    border-radius:10px;
+    padding:14px;
+    color:#66531b;
+    line-height:1.8;
+}
+
+.baseline-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-top:20px;
+}
+
+.baseline-grid .full{
+    grid-column:1/-1;
+}
+
+.baseline-summary{
+    display:none;
+    margin-top:20px;
+    background:#f8fbfd;
+    border:1px solid #dce7ef;
+    border-radius:12px;
+    padding:18px;
+}
+
+.baseline-summary.active{
+    display:block;
+}
+
+.baseline-summary-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.baseline-summary-item{
+    background:white;
+    border:1px solid #dfe8f2;
+    border-radius:10px;
+    padding:15px;
+    text-align:center;
+}
+
+.baseline-summary-item strong{
+    display:block;
+    font-size:24px;
+    color:#c16800;
+}
+
+.baseline-summary-item span{
+    display:block;
+    margin-top:5px;
+    color:#607387;
+    font-size:12px;
+    line-height:1.5;
+}
+
+.baseline-method{
+    margin-top:15px;
+    background:#fff;
+    border-right:5px solid #ef8d22;
+    padding:14px;
+    border-radius:9px;
+    color:#5d6670;
+    line-height:1.8;
+}
+
+
+/* =====================================================
+   Report Request
+===================================================== */
+
+.report-request-card{
+    border-top:5px solid #187b43;
+}
+
+.report-request-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.report-request-header h3{
+    margin:0;
+}
+
+.report-help{
+    color:#607387;
+    font-size:13px;
+    margin:7px 0 0;
+}
+
+.request-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-top:20px;
+}
+
+.group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.group.full{
+    grid-column:1/-1;
+}
+
+.group label{
+    font-weight:bold;
+    color:#294b6a;
+}
+
+.group select,
+.group input,
+.group textarea{
+    padding:11px;
+    border:1px solid #ccd9e5;
+    border-radius:8px;
+    background:#fff;
+    font-size:14px;
+    box-sizing:border-box;
+    width:100%;
+}
+
+.group textarea{
+    min-height:95px;
+    resize:vertical;
+}
+
+.custom-report-range{
+    display:none;
+    grid-column:1/-1;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.approval-box{
+    margin-top:20px;
+    background:#f8fbfd;
+    border:1px solid #dce7ef;
+    border-radius:12px;
+    padding:18px;
+}
+
+.approval-box h4{
+    color:#064c92;
+    margin:0 0 15px;
+}
+
+.approval-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.future-signature{
+    margin-top:15px;
+    background:#eef7ff;
+    border-right:5px solid #0759a6;
+    border-radius:9px;
+    padding:13px;
+    color:#31556f;
+    line-height:1.8;
+    font-size:13px;
+}
+
+.request-actions,
+.baseline-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:18px;
+}
+
+.create-report-btn,
+.save-approval-btn,
+.save-baseline-btn,
+.apply-btn,
+.reset-btn,
+.print-btn,
+.back-btn{
+    border:none;
+    border-radius:9px;
+    padding:12px 18px;
+    font-weight:bold;
+    cursor:pointer;
+    text-decoration:none;
+    display:inline-block;
+}
+
+.create-report-btn{
+    background:#187b43;
+    color:#fff;
+}
+
+.save-approval-btn{
+    background:#7457a6;
+    color:#fff;
+}
+
+.save-baseline-btn{
+    background:#ef8d22;
+    color:#fff;
+}
+
+.apply-btn{
+    background:#0759a6;
+    color:#fff;
+}
+
+.reset-btn{
+    background:#eaf1f7;
+    color:#064c92;
+}
+
+.print-btn{
+    background:#687984;
+    color:#fff;
+}
+
+.back-btn{
+    background:#eaf1f7;
+    color:#064c92;
+}
+
+
+/* =====================================================
+   Report Preview
+===================================================== */
+
+.report-preview{
+    margin-top:25px;
+    background:#f8fbfd;
+    border:1px solid #dce7ef;
+    border-radius:14px;
+    padding:20px;
+}
+
+.report-preview-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.report-preview-header h3{
+    margin:0;
+    color:#064c92;
+}
+
+.preview-badge{
+    background:#eaf1f7;
+    color:#064c92;
+    padding:6px 11px;
+    border-radius:16px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.report-preview-subtitle{
+    color:#607387;
+    line-height:1.8;
+    margin-top:10px;
+}
+
+.report-preview-grid,
+.preview-extra-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-top:18px;
+}
+
+.preview-card{
+    background:#fff;
+    border:1px solid #dfe8f2;
+    border-radius:12px;
+    padding:17px;
+    text-align:center;
+}
+
+.preview-card strong{
+    display:block;
+    color:#064c92;
+    font-size:27px;
+}
+
+.preview-card span{
+    display:block;
+    color:#607387;
+    font-size:12px;
+    margin-top:6px;
+    line-height:1.5;
+}
+
+.preview-card.purple strong{
+    color:#5f3dc4;
+}
+
+.preview-card.orange strong{
+    color:#c87000;
+}
+
+.preview-card.green strong{
+    color:#187b43;
+}
+
+.preview-card.red strong{
+    color:#c62828;
+}
+
+.preview-note{
+    margin-top:15px;
+    background:#f4efff;
+    border-right:5px solid #5f3dc4;
+    border-radius:10px;
+    padding:14px;
+    color:#514568;
+    line-height:1.8;
+}
+
+
+/* =====================================================
+   Filters
+===================================================== */
+
+.filters-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+}
+
+.custom-period{
+    display:none;
+    grid-column:1/-1;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+}
+
+.filter-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:15px;
+}
+
+.period-title{
+    background:#edf6fd;
+    border-right:5px solid #0759a6;
+    color:#064c92;
+    padding:14px 18px;
+    border-radius:10px;
+    margin-bottom:18px;
+    font-weight:bold;
+}
+
+
+/* =====================================================
+   Tabs
+===================================================== */
+
+.tabs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.tab-btn{
+    border:none;
+    border-radius:9px;
+    padding:12px 18px;
+    background:#eaf1f7;
+    color:#064c92;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.tab-btn.active{
+    background:#0759a6;
+    color:#fff;
+}
+
+.tab-btn.smart-tab.active{
+    background:#5f3dc4;
+}
+
+.tab-content{
+    display:none;
+}
+
+.tab-content.active{
+    display:block;
+}
+
+
+/* =====================================================
+   Stats
+===================================================== */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:22px;
+}
+
+.smart-stats{
+    grid-template-columns:repeat(4,1fr);
+}
+
+.stat{
+    background:#fff;
+    border:1px solid #dfe8f2;
+    border-radius:14px;
+    padding:20px;
+    text-align:center;
+}
+
+.stat .number{
+    font-size:32px;
+    font-weight:bold;
+    color:#064c92;
+}
+
+.stat .label{
+    margin-top:7px;
+    color:#607387;
+    line-height:1.5;
+}
+
+.blue{
+    border-top:4px solid #0759a6;
+}
+
+.red{
+    border-top:4px solid #c62828;
+}
+
+.green{
+    border-top:4px solid #2e7d32;
+}
+
+.orange{
+    border-top:4px solid #d88900;
+}
+
+.purple{
+    border-top:4px solid #5f3dc4;
+}
+
+.purple .number{
+    color:#5f3dc4;
+}
+
+
+/* =====================================================
+   Dashboard
+===================================================== */
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+
+/* =====================================================
+   Bars
+===================================================== */
+
+.bar-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.bar-row{
+    display:grid;
+    grid-template-columns:210px 1fr 65px;
+    gap:10px;
+    align-items:center;
+}
+
+.bar-label{
+    color:#40566b;
+    font-size:13px;
+}
+
+.bar-track{
+    height:18px;
+    background:#edf2f6;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.bar-fill{
+    height:100%;
+    background:#0759a6;
+    border-radius:20px;
+}
+
+.smart-bars .bar-fill{
+    background:#5f3dc4;
+}
+
+.bar-value{
+    text-align:center;
+    font-weight:bold;
+    color:#29465f;
+}
+
+
+/* =====================================================
+   Mini Stats
+===================================================== */
+
+.mini-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.mini{
+    background:#f8fbfd;
+    border-radius:10px;
+    padding:16px;
+    text-align:center;
+}
+
+.mini strong{
+    display:block;
+    font-size:27px;
+    color:#064c92;
+}
+
+.mini span{
+    color:#607387;
+    font-size:12px;
+}
+
+
+/* =====================================================
+   Progress
+===================================================== */
+
+.progress-box{
+    background:#f8fbfd;
+    border-radius:12px;
+    padding:20px;
+}
+
+.progress-number{
+    font-size:38px;
+    font-weight:bold;
+    color:#187b43;
+}
+
+.progress-track{
+    margin-top:12px;
+    height:22px;
+    background:#e4ebef;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-fill{
+    height:100%;
+    background:#187b43;
+}
+
+.smart-progress .progress-number{
+    color:#5f3dc4;
+}
+
+.smart-progress .progress-fill{
+    background:#5f3dc4;
+}
+
+
+/* =====================================================
+   Improvement
+===================================================== */
+
+.improvement-box{
+    background:#f4efff;
+    border-right:6px solid #5f3dc4;
+    border-radius:12px;
+    padding:18px;
+    line-height:1.9;
+    color:#514568;
+    margin-bottom:20px;
+}
+
+.improvement-box strong{
+    color:#4d2fa9;
+}
+
+.smart-highlight{
+    background:#fff4e5;
+    border-right:6px solid #ef8d22;
+    border-radius:12px;
+    padding:18px;
+    line-height:1.9;
+    color:#75470f;
+}
+
+.smart-highlight h3{
+    color:#b66200;
+    margin-top:0;
+}
+
+
+/* =====================================================
+   Tables
+===================================================== */
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+.report-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:900px;
+}
+
+.report-table th{
+    background:#064c92;
+    color:#fff;
+    padding:11px;
+}
+
+.smart-table th{
+    background:#5f3dc4;
+}
+
+.report-table td{
+    padding:10px;
+    text-align:center;
+    border-bottom:1px solid #e7edf2;
+}
+
+.report-table tr:nth-child(even){
+    background:#f9fbfd;
+}
+
+.outbreak-box{
+    background:#fff8e1;
+    border-right:5px solid #d88900;
+    padding:17px;
+    border-radius:10px;
+    line-height:1.9;
+}
+
+.actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:25px;
+}
+
+
+/* =====================================================
+   Responsive
+===================================================== */
+
+@media(max-width:1100px){
+
+    .smart-stats,
+    .report-preview-grid,
+    .preview-extra-grid,
+    .baseline-summary-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:950px){
+
+    .request-grid,
+    .filters-grid,
+    .stats,
+    .mini-grid,
+    .baseline-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:700px){
+
+    .request-grid,
+    .filters-grid,
+    .stats,
+    .mini-grid,
+    .dashboard-grid,
+    .custom-period,
+    .custom-report-range,
+    .approval-grid,
+    .smart-stats,
+    .report-preview-grid,
+    .preview-extra-grid,
+    .baseline-grid,
+    .baseline-summary-grid{
+        grid-template-columns:1fr;
+    }
+
+    .full,
+    .baseline-grid .full{
+        grid-column:auto;
+    }
+
+    .bar-row{
+        grid-template-columns:115px 1fr 45px;
+    }
+
+}
+
+@media print{
+
+    .baseline-card,
+    .report-request-card,
+    .filters-card,
+    .tabs,
+    .actions{
+        display:none !important;
+    }
+
+    .tab-content{
+        display:block !important;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="hero-header">
+
+<div class="hero-grid">
+
+<div class="side-logo left-logo">
+<img src="images/cluster-logo.png">
+</div>
+
+<div class="hero-center">
+
+<h1>
+التقارير والإحصائيات
+</h1>
+
+<h2>
+Public Health Analytics & Reports
+</h2>
+
+<p>
+الصحة العامة
+</p>
+
+</div>
+
+<div class="side-logo right-logo">
+<img src="images/hospital-logo.png">
+</div>
+
+</div>
+
+</header>
+
+
+<main class="page">
+
+
+<section class="intro">
+
+<h2>
+لوحة المؤشرات المركزية للصحة العامة
+</h2>
+
+<p>
+متابعة مؤشرات البلاغات والفحص الدوري والفرز الذكي،
+وقياس أثر مشروع التحسين، وإنشاء التقارير الدورية.
+</p>
+
+</section>
+
+
+<!-- =====================================================
+     BASELINE
+===================================================== -->
+
+<section class="baseline-card">
+
+<div class="baseline-header">
+
+<div>
+
+<h3>
+📌 خط الأساس قبل تطبيق الفرز الذكي
+</h3>
+
+<p class="baseline-help">
+
+يتم إدخال بيانات الفترة السابقة للتطبيق مرة واحدة فقط
+حتى يستخدمها النظام لاحقًا في المقارنة قبل / بعد.
+
+</p>
+
+</div>
+
+</div>
+
+
+<div class="baseline-note">
+
+<strong>
+⚠️ مهم:
+</strong>
+
+إذا لم يكن أحد المؤشرات مقاسًا سابقًا،
+اترك الحقل فارغًا.
+
+لن يعتبره النظام صفرًا، بل سيظهر لاحقًا
+<strong>«غير مقاس قبل التطبيق»</strong>.
+
+</div>
+
+
+<div class="baseline-grid">
+
+
+<div class="group">
+
+<label>
+بداية فترة خط الأساس
+</label>
+
+<input
+    id="baselineFromDate"
+    type="date">
+
+</div>
+
+
+<div class="group">
+
+<label>
+نهاية فترة خط الأساس
+</label>
+
+<input
+    id="baselineToDate"
+    type="date">
+
+</div>
+
+
+<div class="group">
+
+<label>
+عدد مراجعي الطوارئ خلال الفترة
+</label>
+
+<input
+    id="baselineEmergencyVisits"
+    type="number"
+    min="0"
+    placeholder="اتركه فارغًا إذا غير متوفر">
+
+</div>
+
+
+<div class="group">
+
+<label>
+عدد بلاغات الأمراض المعدية
+</label>
+
+<input
+    id="baselineNotifications"
+    type="number"
+    min="0"
+    placeholder="إن كان متوفرًا">
+
+</div>
+
+
+<div class="group">
+
+<label>
+حالات اكتُشف الاشتباه فيها متأخرًا
+</label>
+
+<input
+    id="baselineDelayedDetection"
+    type="number"
+    min="0"
+    placeholder="إن كان هذا المؤشر مقاسًا سابقًا">
+
+</div>
+
+
+<div class="group">
+
+<label>
+متوسط زمن فرز مخاطر العدوى - بالثواني
+</label>
+
+<input
+    id="baselineScreeningTime"
+    type="number"
+    min="0"
+    placeholder="اتركه فارغًا إذا لم يكن مقاسًا">
+
+</div>
+
+
+<div class="group">
+
+<label>
+هل كان تقييم الأعراض المعدية منظمًا؟
+</label>
+
+<select id="baselineStructuredSymptoms">
+
+<option value="">
+غير محدد
+</option>
+
+<option value="no">
+لا
+</option>
+
+<option value="partial">
+جزئي / غير موحد
+</option>
+
+<option value="yes">
+نعم
+</option>
+
+</select>
+
+</div>
+
+
+<div class="group">
+
+<label>
+هل كانت عوامل التعرض الوبائي تُقيّم بشكل منظم؟
+</label>
+
+<select id="baselineStructuredEpi">
+
+<option value="">
+غير محدد
+</option>
+
+<option value="no">
+لا
+</option>
+
+<option value="partial">
+جزئي / غير موحد
+</option>
+
+<option value="yes">
+نعم
+</option>
+
+</select>
+
+</div>
+
+
+<div class="group">
+
+<label>
+هل كانت محدودية التاريخ بسبب الحالة النفسية تُقاس؟
+</label>
+
+<select id="baselinePsychHistory">
+
+<option value="">
+غير محدد
+</option>
+
+<option value="no">
+لا
+</option>
+
+<option value="yes">
+نعم
+</option>
+
+</select>
+
+</div>
+
+
+<div class="group full">
+
+<label>
+وصف آلية الفرز قبل المشروع
+</label>
+
+<textarea
+    id="baselineMethod"
+    placeholder="مثال: كان الفرز في الطوارئ يعتمد على العلامات الحيوية والتقييم السريري المعتاد دون أداة موحدة لفرز مخاطر الأمراض المعدية أو عوامل التعرض الوبائي."></textarea>
+
+</div>
+
+
+<div class="group full">
+
+<label>
+مصدر بيانات خط الأساس / ملاحظة
+</label>
+
+<textarea
+    id="baselineSource"
+    placeholder="مثال: إحصائيات قسم الطوارئ، سجلات الصحة العامة، مراجعة يدوية للبلاغات..."></textarea>
+
+</div>
+
+
+</div>
+
+
+<div class="baseline-actions">
+
+<button
+    class="save-baseline-btn"
+    onclick="saveBaseline()">
+
+💾 حفظ خط الأساس
+
+</button>
+
+<button
+    class="reset-btn"
+    onclick="clearBaselineForm()">
+
+↻ مسح الحقول
+
+</button>
+
+</div>
+
+
+<div
+    id="baselineSummary"
+    class="baseline-summary">
+
+<h3 style="color:#c16800;margin-top:0;">
+✅ خط الأساس المحفوظ
+</h3>
+
+<div
+    id="baselineSummaryGrid"
+    class="baseline-summary-grid">
+</div>
+
+<div
+    id="baselineMethodSummary"
+    class="baseline-method">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     REPORT REQUEST
+===================================================== -->
+
+<section class="report-request-card">
+
+<div class="report-request-header">
+
+<div>
+
+<h3>
+📄 طلب تقرير رسمي
+</h3>
+
+<p class="report-help">
+
+اختر نوع التقرير والفترة المطلوبة،
+وستظهر المعاينة مباشرة قبل إنشاء التقرير الرسمي.
+
+</p>
+
+</div>
+
+</div>
+
+
+<div class="request-grid">
+
+
+<div class="group">
+
+<label>
+نوع التقرير
+</label>
+
+<select
+    id="requestedReportType"
+    onchange="updateReportPreview()">
+
+<option value="full">
+تقرير الصحة العامة الشامل
+</option>
+
+<option value="notifications">
+تقرير الأمراض المعدية والبلاغات
+</option>
+
+<option value="screening">
+تقرير الفحص الدوري للموظفين
+</option>
+
+<option value="smartScreening">
+تقرير الفرز الذكي للأمراض المعدية
+</option>
+
+</select>
+
+</div>
+
+
+<div class="group">
+
+<label>
+الفترة
+</label>
+
+<select
+    id="requestedReportPeriod"
+    onchange="requestedPeriodChanged(); updateReportPreview();">
+
+<option value="currentMonth">
+الشهر الحالي
+</option>
+
+<option value="previousMonth">
+الشهر السابق
+</option>
+
+<option value="quarter">
+الربع الحالي
+</option>
+
+<option value="halfYear">
+النصف الحالي
+</option>
+
+<option value="currentYear">
+السنة الحالية
+</option>
+
+<option value="previousYear">
+السنة السابقة
+</option>
+
+<option value="custom">
+فترة مخصصة
+</option>
+
+</select>
+
+</div>
+
+
+<div class="group">
+
+<label>
+حالة التقرير
+</label>
+
+<select id="reportWorkflowStatus">
+
+<option value="draft">
+مسودة
+</option>
+
+<option value="pendingApproval">
+بانتظار الاعتماد
+</option>
+
+<option value="approved">
+معتمد
+</option>
+
+</select>
+
+</div>
+
+
+<div
+    id="customReportRange"
+    class="custom-report-range">
+
+<div class="group">
+
+<label>
+من تاريخ
+</label>
+
+<input
+    id="requestedFromDate"
+    type="date"
+    onchange="updateReportPreview()">
+
+</div>
+
+<div class="group">
+
+<label>
+إلى تاريخ
+</label>
+
+<input
+    id="requestedToDate"
+    type="date"
+    onchange="updateReportPreview()">
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="approval-box">
+
+<h4>
+بيانات إعداد واعتماد التقرير
+</h4>
+
+
+<div class="approval-grid">
+
+
+<div class="group">
+
+<label>
+اسم مُعد التقرير
+</label>
+
+<input
+    id="preparedByName"
+    placeholder="اسم مُعد التقرير">
+
+</div>
+
+
+<div class="group">
+
+<label>
+المسمى الوظيفي
+</label>
+
+<input
+    id="preparedByTitle"
+    placeholder="المسمى الوظيفي">
+
+</div>
+
+
+<div class="group">
+
+<label>
+اسم المعتمد
+</label>
+
+<input
+    id="approvedByName"
+    placeholder="اسم المعتمد">
+
+</div>
+
+
+<div class="group">
+
+<label>
+المسمى الوظيفي للمعتمد
+</label>
+
+<input
+    id="approvedByTitle"
+    placeholder="المسمى الوظيفي">
+
+</div>
+
+
+</div>
+
+
+<div class="future-signature">
+
+<strong>
+🔐 التوقيع الإلكتروني:
+</strong>
+
+تم تجهيز بنية التقرير لاستقبال الاعتماد الإلكتروني
+عند نقل النظام إلى البيئة الداخلية للمستشفى.
+
+</div>
+
+</div>
+
+
+<div class="request-actions">
+
+<button
+    class="save-approval-btn"
+    onclick="saveReportSettings()">
+
+💾 حفظ بيانات المُعد والمعتمد
+
+</button>
+
+
+<button
+    class="create-report-btn"
+    onclick="createRequestedReport()">
+
+📄 إنشاء التقرير الرسمي
+
+</button>
+
+</div>
+
+
+<div
+    id="reportPreview"
+    class="report-preview">
+
+<div class="report-preview-header">
+
+<h3>
+👁️ معاينة التقرير
+</h3>
+
+<span class="preview-badge">
+معاينة فورية
+</span>
+
+</div>
+
+
+<div
+    id="reportPreviewSubtitle"
+    class="report-preview-subtitle">
+
+اختر نوع التقرير والفترة لعرض المؤشرات.
+
+</div>
+
+
+<div
+    id="reportPreviewStats"
+    class="report-preview-grid">
+</div>
+
+
+<div id="reportPreviewExtra">
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     FILTERS
+===================================================== -->
+
+<section class="filters-card">
+
+<div class="filters-grid">
+
+
+<div class="group">
+
+<label>
+الفترة
+</label>
+
+<select
+    id="periodType"
+    onchange="periodChanged()">
+
+<option value="all">
+جميع البيانات
+</option>
+
+<option value="currentMonth">
+الشهر الحالي
+</option>
+
+<option value="previousMonth">
+الشهر السابق
+</option>
+
+<option value="quarter">
+الربع الحالي
+</option>
+
+<option value="halfYear">
+النصف الحالي
+</option>
+
+<option value="currentYear">
+السنة الحالية
+</option>
+
+<option value="previousYear">
+السنة السابقة
+</option>
+
+<option value="custom">
+فترة مخصصة
+</option>
+
+</select>
+
+</div>
+
+
+<div class="group">
+
+<label>
+المرض
+</label>
+
+<select id="diseaseFilter">
+
+<option value="">
+جميع الأمراض
+</option>
+
+</select>
+
+</div>
+
+
+<div class="group">
+
+<label>
+القسم
+</label>
+
+<select id="departmentFilter">
+
+<option value="">
+جميع الأقسام
+</option>
+
+</select>
+
+</div>
+
+
+<div class="group">
+
+<label>
+حالة البلاغ
+</label>
+
+<select id="notificationStatusFilter">
+
+<option value="">
+جميع الحالات
+</option>
+
+<option value="new">
+جديد
+</option>
+
+<option value="progress">
+تحت المتابعة
+</option>
+
+<option value="closed">
+مغلق
+</option>
+
+</select>
+
+</div>
+
+
+<div
+    id="customPeriod"
+    class="custom-period">
+
+<div class="group">
+
+<label>
+من تاريخ
+</label>
+
+<input
+    id="fromDate"
+    type="date">
+
+</div>
+
+
+<div class="group">
+
+<label>
+إلى تاريخ
+</label>
+
+<input
+    id="toDate"
+    type="date">
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<div class="filter-buttons">
+
+<button
+    class="apply-btn"
+    onclick="refreshAll()">
+
+🔍 تطبيق
+
+</button>
+
+
+<button
+    class="reset-btn"
+    onclick="resetFilters()">
+
+↻ إعادة تعيين
+
+</button>
+
+</div>
+
+</section>
+
+
+<div
+    id="periodTitle"
+    class="period-title">
+
+جميع البيانات المسجلة
+
+</div>
+
+
+<!-- =====================================================
+     TABS
+===================================================== -->
+
+<div class="tabs">
+
+<button
+    class="tab-btn active"
+    onclick="openTab('overview',this)">
+
+📊 الملخص العام
+
+</button>
+
+
+<button
+    class="tab-btn smart-tab"
+    onclick="openTab('smartScreening',this)">
+
+🧠 مؤشرات الفرز الذكي
+
+</button>
+
+
+<button
+    class="tab-btn"
+    onclick="openTab('notifications',this)">
+
+🦠 الأمراض المعدية والبلاغات
+
+</button>
+
+
+<button
+    class="tab-btn"
+    onclick="openTab('screening',this)">
+
+🧪 الفحص الدوري للموظفين
+
+</button>
+
+</div>
+
+
+<!-- =====================================================
+     OVERVIEW
+===================================================== -->
+
+<section
+    id="overview"
+    class="tab-content active">
+
+
+<section class="stats">
+
+
+<div class="stat blue">
+
+<div
+    id="overviewNotifications"
+    class="number">
+0
+</div>
+
+<div class="label">
+بلاغات الأمراض المعدية
+</div>
+
+</div>
+
+
+<div class="stat purple">
+
+<div
+    id="overviewSmartScreenings"
+    class="number">
+0
+</div>
+
+<div class="label">
+عمليات الفرز الذكي
+</div>
+
+</div>
+
+
+<div class="stat orange">
+
+<div
+    id="overviewHiddenRisk"
+    class="number">
+0
+</div>
+
+<div class="label">
+مخاطر معدية خفية
+</div>
+
+</div>
+
+
+<div class="stat red">
+
+<div
+    id="overviewUrgent"
+    class="number">
+0
+</div>
+
+<div class="label">
+البلاغات العاجلة
+</div>
+
+</div>
+
+
+</section>
+
+
+<div class="dashboard-grid">
+
+
+<div class="section-card">
+
+<h3>
+🦠 أكثر الأمراض المبلّغ عنها
+</h3>
+
+<div
+    id="overviewDiseaseBars"
+    class="bar-list">
+</div>
+
+</div>
+
+
+<div class="section-card">
+
+<h3>
+🧠 أكثر نتائج الفرز ظهورًا
+</h3>
+
+<div
+    id="overviewSmartDiseaseBars"
+    class="bar-list smart-bars">
+</div>
+
+</div>
+
+
+<div class="section-card full">
+
+<h3>
+📅 النشاط الشهري
+</h3>
+
+<div
+    id="overviewMonthlyBars"
+    class="bar-list">
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     SMART SCREENING
+===================================================== -->
+
+<section
+    id="smartScreening"
+    class="tab-content">
+
+
+<div class="improvement-box">
+
+<strong>
+🧠 مؤشرات مشروع التحسين:
+</strong>
+
+تقيس هذه الصفحة استخدام الفرز الذكي للأمراض المعدية،
+والاكتشاف المبكر، والخطر المعدي الخفي،
+وصعوبة الحصول على التاريخ المرضي في طوارئ الصحة النفسية،
+والتحويل إلى البلاغ، بالإضافة إلى قياس زمن الفرز تلقائيًا.
+
+</div>
+
+
+<section class="stats smart-stats">
+
+
+<div class="stat purple">
+
+<div id="smartTotal" class="number">
+0
+</div>
+
+<div class="label">
+إجمالي عمليات الفرز
+</div>
+
+</div>
+
+
+<div class="stat green">
+
+<div id="smartNoIndicators" class="number">
+0
+</div>
+
+<div class="label">
+لا توجد مؤشرات معدية
+</div>
+
+</div>
+
+
+<div class="stat red">
+
+<div id="smartHighSuspicion" class="number">
+0
+</div>
+
+<div class="label">
+اشتباه مرتفع
+</div>
+
+</div>
+
+
+<div class="stat orange">
+
+<div id="smartHiddenRisk" class="number">
+0
+</div>
+
+<div class="label">
+الخطر المعدي الخفي
+</div>
+
+</div>
+
+
+<div class="stat blue">
+
+<div id="smartLimitedHistory" class="number">
+0
+</div>
+
+<div class="label">
+تاريخ مرضي محدود بسبب حالة المريض
+</div>
+
+</div>
+
+
+<div class="stat purple">
+
+<div id="smartNotificationStarted" class="number">
+0
+</div>
+
+<div class="label">
+تم بدء بلاغ
+</div>
+
+</div>
+
+
+<div class="stat green">
+
+<div id="smartNotificationSent" class="number">
+0
+</div>
+
+<div class="label">
+بلاغات أرسلت فعليًا
+</div>
+
+</div>
+
+
+<div class="stat blue">
+
+<div id="smartConversionRate" class="number">
+0%
+</div>
+
+<div class="label">
+نسبة التحويل إلى بلاغ
+</div>
+
+</div>
+
+
+<div class="stat purple">
+
+<div id="smartAverageTime" class="number">
+0 ث
+</div>
+
+<div class="label">
+متوسط زمن الفرز
+</div>
+
+</div>
+
+
+<div class="stat green">
+
+<div id="smartFastestTime" class="number">
+0 ث
+</div>
+
+<div class="label">
+أسرع عملية فرز
+</div>
+
+</div>
+
+
+<div class="stat orange">
+
+<div id="smartLongestTime" class="number">
+0 ث
+</div>
+
+<div class="label">
+أطول عملية فرز
+</div>
+
+</div>
+
+
+<div class="stat blue">
+
+<div id="smartUnderTwoMinutes" class="number">
+0%
+</div>
+
+<div class="label">
+الفرز المكتمل خلال دقيقتين
+</div>
+
+</div>
+
+
+</section>
+
+
+<div class="dashboard-grid">
+
+
+<div class="section-card">
+
+<h3>
+🎯 نسبة التحويل من الفرز إلى البلاغ
+</h3>
+
+<div class="progress-box smart-progress">
+
+<div
+    id="smartConversionPercent"
+    class="progress-number">
+0%
+</div>
+
+
+<div class="progress-track">
+
+<div
+    id="smartConversionFill"
+    class="progress-fill"
+    style="width:0%">
+</div>
+
+</div>
+
+
+<p style="color:#607387;line-height:1.7">
+
+النسبة = البلاغات التي أُرسلت فعليًا ÷ عمليات الفرز
+التي نتج عنها اشتباه مرتفع.
+
+</p>
+
+</div>
+
+</div>
+
+
+<div class="section-card">
+
+<h3>
+⏱️ كفاءة زمن الفرز
+</h3>
+
+<div class="progress-box smart-progress">
+
+<div
+    id="smartTimeTargetPercent"
+    class="progress-number">
+0%
+</div>
+
+<div class="progress-track">
+
+<div
+    id="smartTimeTargetFill"
+    class="progress-fill"
+    style="width:0%">
+</div>
+
+</div>
+
+<p style="color:#607387;line-height:1.7">
+
+نسبة عمليات الفرز الذكي المكتملة خلال
+<strong>دقيقتين أو أقل</strong>.
+
+</p>
+
+</div>
+
+</div>
+
+
+<div class="section-card">
+
+<h3>
+🚩 قيمة الفرز مقارنة بالعلامات الحيوية
+</h3>
+
+<div class="smart-highlight">
+
+<h3>
+الخطر المعدي الخفي
+</h3>
+
+<strong id="hiddenRiskPercent">
+0%
+</strong>
+
+من عمليات الفرز اكتشفت فيها أعراض أو عوامل وبائية
+رغم عدم وجود علامة حيوية ملفتة في الفرز التقليدي.
+
+</div>
+
+</div>
+
+
+<div class="section-card">
+
+<h3>
+🦠 الأمراض / المسارات التي اكتشفها الفرز
+</h3>
+
+<div
+    id="smartDiseaseBars"
+    class="bar-list smart-bars">
+</div>
+
+</div>
+
+
+<div class="section-card">
+
+<h3>
+⚡ مسارات الدخول للفرز
+</h3>
+
+<div
+    id="smartQuickBars"
+    class="bar-list smart-bars">
+</div>
+
+</div>
+
+
+<div class="section-card">
+
+<h3>
+🌍 عوامل التعرض الوبائي
+</h3>
+
+<div
+    id="smartEpiBars"
+    class="bar-list smart-bars">
+</div>
+
+</div>
+
+
+<div class="section-card">
+
+<h3>
+🩺 حالة العلامات الحيوية
+</h3>
+
+<div class="mini-grid">
+
+<div class="mini">
+<strong id="smartVitalNormal">0</strong>
+<span>لا توجد علامة ملفتة</span>
+</div>
+
+<div class="mini">
+<strong id="smartVitalAbnormal">0</strong>
+<span>علامات غير طبيعية</span>
+</div>
+
+<div class="mini">
+<strong id="smartVitalUnknown">0</strong>
+<span>غير محدد</span>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="section-card full">
+
+<h3>
+📅 استخدام الفرز الذكي حسب الشهر
+</h3>
+
+<div
+    id="smartMonthlyBars"
+    class="bar-list smart-bars">
+</div>
+
+</div>
+
+
+<div class="section-card full">
+
+<h3>
+📋 سجل عمليات الفرز الذكي
+</h3>
+
+<div class="table-wrap">
+
+<table class="report-table smart-table">
+
+<thead>
+
+<tr>
+
+<th>رقم الفرز</th>
+<th>التاريخ</th>
+<th>النتيجة</th>
+<th>اشتباه مرتفع</th>
+<th>خطر معدي خفي</th>
+<th>تاريخ محدود</th>
+<th>زمن الفرز</th>
+<th>بدء بلاغ</th>
+<th>تم الإرسال</th>
+<th>رقم البلاغ</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="smartScreeningTableBody">
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     NOTIFICATIONS
+===================================================== -->
+
+<section
+    id="notifications"
+    class="tab-content">
+
+
+<section class="stats">
+
+<div class="stat blue">
+<div id="totalNotifications" class="number">0</div>
+<div class="label">إجمالي البلاغات</div>
+</div>
+
+<div class="stat red">
+<div id="urgentNotifications" class="number">0</div>
+<div class="label">عاجلة</div>
+</div>
+
+<div class="stat orange">
+<div id="activeNotifications" class="number">0</div>
+<div class="label">مفتوحة</div>
+</div>
+
+<div class="stat green">
+<div id="closedNotifications" class="number">0</div>
+<div class="label">مغلقة</div>
+</div>
+
+</section>
+
+
+<div class="dashboard-grid">
+
+
+<div class="section-card">
+
+<h3>
+البلاغات حسب المرض
+</h3>
+
+<div id="diseaseBars" class="bar-list"></div>
+
+</div>
+
+
+<div class="section-card">
+
+<h3>
+البلاغات حسب القسم
+</h3>
+
+<div id="notificationDepartmentBars" class="bar-list"></div>
+
+</div>
+
+
+<div class="section-card">
+
+<h3>
+حالة حصن بلس
+</h3>
+
+<div class="mini-grid">
+
+<div class="mini">
+<strong id="hesnEntered">0</strong>
+<span>تم الإدخال</span>
+</div>
+
+<div class="mini">
+<strong id="hesnPending">0</strong>
+<span>لم يتم</span>
+</div>
+
+<div class="mini">
+<strong id="hesnNotRequired">0</strong>
+<span>لا ينطبق</span>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="section-card">
+
+<h3>
+حالة البلاغات
+</h3>
+
+<div class="mini-grid">
+
+<div class="mini">
+<strong id="newCases">0</strong>
+<span>جديد</span>
+</div>
+
+<div class="mini">
+<strong id="progressCases">0</strong>
+<span>متابعة</span>
+</div>
+
+<div class="mini">
+<strong id="closedCases">0</strong>
+<span>مغلق</span>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="section-card full">
+
+<h3>
+الاتجاه الشهري للبلاغات
+</h3>
+
+<div
+    id="notificationMonthlyBars"
+    class="bar-list">
+</div>
+
+</div>
+
+
+<div class="section-card full">
+
+<h3>
+🍽️ الفاشيات الغذائية
+</h3>
+
+<div
+    id="outbreakSummary"
+    class="outbreak-box">
+لا توجد بيانات.
+</div>
+
+</div>
+
+
+<div class="section-card full">
+
+<h3>
+تفاصيل البلاغات
+</h3>
+
+<div class="table-wrap">
+
+<table class="report-table">
+
+<thead>
+
+<tr>
+<th>رقم البلاغ</th>
+<th>التاريخ</th>
+<th>المرض</th>
+<th>القسم</th>
+<th>الأولوية</th>
+<th>الحالة</th>
+<th>حصن بلس</th>
+</tr>
+
+</thead>
+
+<tbody id="notificationTableBody"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     SCREENING
+===================================================== -->
+
+<section
+    id="screening"
+    class="tab-content">
+
+
+<section class="stats">
+
+<div class="stat blue">
+<div id="totalScreenings" class="number">0</div>
+<div class="label">إجمالي سجلات الفحص</div>
+</div>
+
+<div class="stat green">
+<div id="completedScreenings" class="number">0</div>
+<div class="label">مكتمل</div>
+</div>
+
+<div class="stat orange">
+<div id="followupScreenings" class="number">0</div>
+<div class="label">يحتاج متابعة</div>
+</div>
+
+<div class="stat red">
+<div id="incompleteScreenings" class="number">0</div>
+<div class="label">غير مكتمل / انتظار</div>
+</div>
+
+</section>
+
+
+<div class="dashboard-grid">
+
+
+<div class="section-card">
+
+<h3>
+نسبة اكتمال الفحص
+</h3>
+
+<div class="progress-box">
+
+<div
+    id="screeningPercent"
+    class="progress-number">
+0%
+</div>
+
+<div class="progress-track">
+
+<div
+    id="screeningProgressFill"
+    class="progress-fill"
+    style="width:0%">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="section-card">
+
+<h3>
+حالة المناعة
+</h3>
+
+<div class="mini-grid">
+
+<div class="mini">
+<strong id="immuneCount">0</strong>
+<span>محصن / مكتمل</span>
+</div>
+
+<div class="mini">
+<strong id="notImmuneCount">0</strong>
+<span>غير محصن</span>
+</div>
+
+<div class="mini">
+<strong id="partialImmunityCount">0</strong>
+<span>غير مكتمل</span>
+</div>
+
+<div class="mini">
+<strong id="pendingImmunityCount">0</strong>
+<span>انتظار النتيجة</span>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="section-card">
+
+<h3>
+الفحوص حسب القسم
+</h3>
+
+<div id="screeningDepartmentBars" class="bar-list"></div>
+
+</div>
+
+
+<div class="section-card">
+
+<h3>
+أنواع الفحوص المسجلة
+</h3>
+
+<div id="testBars" class="bar-list"></div>
+
+</div>
+
+
+<div class="section-card full">
+
+<h3>
+الفحوص حسب الشهر
+</h3>
+
+<div id="screeningMonthlyBars" class="bar-list"></div>
+
+</div>
+
+
+<div class="section-card full">
+
+<h3>
+قائمة سجلات الفحص
+</h3>
+
+<div class="table-wrap">
+
+<table class="report-table">
+
+<thead>
+
+<tr>
+<th>اسم الموظف</th>
+<th>الرقم الوظيفي</th>
+<th>القسم</th>
+<th>تاريخ الفحص</th>
+<th>نوع المتابعة</th>
+<th>حالة المناعة</th>
+<th>حالة الفحص</th>
+</tr>
+
+</thead>
+
+<tbody id="screeningTableBody"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<div class="actions">
+
+<button
+    class="print-btn"
+    onclick="window.print()">
+
+🖨️ طباعة لوحة المؤشرات
+
+</button>
+
+
+<a
+    class="back-btn"
+    href="public-health-inbox.html">
+
+← العودة إلى الصحة العامة
+
+</a>
+
+</div>
+
+
+</main>
+
+
+<script>
+
+
+/* =====================================================
+   DATA
+===================================================== */
+
+let notifications = [];
+let screeningRecords = [];
+let outbreaks = [];
+let smartScreeningRecords = [];
+
+let filteredNotifications = [];
+let filteredScreenings = [];
+let filteredSmartScreenings = [];
+
+
+/* =====================================================
+   LOAD
+===================================================== */
+
+function loadData(){
+
+    try{
+
+        notifications =
+            JSON.parse(
+                localStorage.getItem(
+                    "publicHealthNotifications"
+                )
+            ) || [];
+
+        if(!Array.isArray(notifications)){
+            notifications = [];
+        }
+
+    }catch(error){
+
+        notifications = [];
+
+    }
+
+
+    try{
+
+        screeningRecords =
+            JSON.parse(
+                localStorage.getItem(
+                    "employeeScreeningRecords"
+                )
+            ) || [];
+
+        if(!Array.isArray(screeningRecords)){
+            screeningRecords = [];
+        }
+
+    }catch(error){
+
+        screeningRecords = [];
+
+    }
+
+
+    try{
+
+        outbreaks =
+            JSON.parse(
+                localStorage.getItem(
+                    "foodborneOutbreaks"
+                )
+            ) || [];
+
+        if(!Array.isArray(outbreaks)){
+            outbreaks = [];
+        }
+
+    }catch(error){
+
+        outbreaks = [];
+
+    }
+
+
+    try{
+
+        smartScreeningRecords =
+            JSON.parse(
+                localStorage.getItem(
+                    "smartScreeningRecords"
+                )
+            ) || [];
+
+        if(!Array.isArray(smartScreeningRecords)){
+            smartScreeningRecords = [];
+        }
+
+    }catch(error){
+
+        smartScreeningRecords = [];
+
+    }
+
+}
+
+
+/* =====================================================
+   BASELINE
+===================================================== */
+
+function getBaseline(){
+
+    try{
+
+        const data =
+            JSON.parse(
+                localStorage.getItem(
+                    "smartScreeningBaseline"
+                )
+            ) || {};
+
+        return data;
+
+    }catch(error){
+
+        return {};
+
+    }
+
+}
+
+
+function nullableNumber(
+    id
+){
+
+    const value =
+        document.getElementById(
+            id
+        ).value.trim();
+
+
+    if(value === ""){
+
+        return null;
+
+    }
+
+
+    const number =
+        Number(value);
+
+
+    return isNaN(number)
+        ? null
+        : number;
+
+}
+
+
+function saveBaseline(){
+
+    const from =
+        document.getElementById(
+            "baselineFromDate"
+        ).value;
+
+
+    const to =
+        document.getElementById(
+            "baselineToDate"
+        ).value;
+
+
+    if(
+        from &&
+        to &&
+        new Date(from) >
+        new Date(to)
+    ){
+
+        alert(
+            "تاريخ بداية خط الأساس يجب أن يسبق تاريخ النهاية."
+        );
+
+        return;
+
+    }
+
+
+    const baseline = {
+
+        fromDate:
+            from,
+
+        toDate:
+            to,
+
+        emergencyVisits:
+            nullableNumber(
+                "baselineEmergencyVisits"
+            ),
+
+        notifications:
+            nullableNumber(
+                "baselineNotifications"
+            ),
+
+        delayedDetection:
+            nullableNumber(
+                "baselineDelayedDetection"
+            ),
+
+        screeningTimeSeconds:
+            nullableNumber(
+                "baselineScreeningTime"
+            ),
+
+        structuredSymptoms:
+            document.getElementById(
+                "baselineStructuredSymptoms"
+            ).value,
+
+        structuredEpi:
+            document.getElementById(
+                "baselineStructuredEpi"
+            ).value,
+
+        psychHistoryMeasured:
+            document.getElementById(
+                "baselinePsychHistory"
+            ).value,
+
+        previousMethod:
+            document.getElementById(
+                "baselineMethod"
+            ).value.trim(),
+
+        source:
+            document.getElementById(
+                "baselineSource"
+            ).value.trim(),
+
+        savedAt:
+            new Date()
+            .toISOString()
+
+    };
+
+
+    localStorage.setItem(
+
+        "smartScreeningBaseline",
+
+        JSON.stringify(
+            baseline
+        )
+
+    );
+
+
+    renderBaselineSummary();
+
+
+    alert(
+        "✅ تم حفظ خط الأساس قبل تطبيق الفرز الذكي."
+    );
+
+}
+
+
+function loadBaselineForm(){
+
+    const baseline =
+        getBaseline();
+
+
+    document.getElementById(
+        "baselineFromDate"
+    ).value =
+        baseline.fromDate || "";
+
+
+    document.getElementById(
+        "baselineToDate"
+    ).value =
+        baseline.toDate || "";
+
+
+    document.getElementById(
+        "baselineEmergencyVisits"
+    ).value =
+        baseline.emergencyVisits ??
+        "";
+
+
+    document.getElementById(
+        "baselineNotifications"
+    ).value =
+        baseline.notifications ??
+        "";
+
+
+    document.getElementById(
+        "baselineDelayedDetection"
+    ).value =
+        baseline.delayedDetection ??
+        "";
+
+
+    document.getElementById(
+        "baselineScreeningTime"
+    ).value =
+        baseline.screeningTimeSeconds ??
+        "";
+
+
+    document.getElementById(
+        "baselineStructuredSymptoms"
+    ).value =
+        baseline.structuredSymptoms ||
+        "";
+
+
+    document.getElementById(
+        "baselineStructuredEpi"
+    ).value =
+        baseline.structuredEpi ||
+        "";
+
+
+    document.getElementById(
+        "baselinePsychHistory"
+    ).value =
+        baseline.psychHistoryMeasured ||
+        "";
+
+
+    document.getElementById(
+        "baselineMethod"
+    ).value =
+        baseline.previousMethod ||
+        "";
+
+
+    document.getElementById(
+        "baselineSource"
+    ).value =
+        baseline.source ||
+        "";
+
+
+    renderBaselineSummary();
+
+}
+
+
+function clearBaselineForm(){
+
+    if(
+        !confirm(
+            "هل تريد مسح حقول خط الأساس من النموذج؟ لن يتم حذف البيانات المحفوظة إلا إذا ضغطت حفظ بعد المسح."
+        )
+    ){
+
+        return;
+
+    }
+
+
+    [
+
+        "baselineFromDate",
+        "baselineToDate",
+        "baselineEmergencyVisits",
+        "baselineNotifications",
+        "baselineDelayedDetection",
+        "baselineScreeningTime",
+        "baselineMethod",
+        "baselineSource"
+
+    ]
+    .forEach(
+        function(id){
+
+            document.getElementById(
+                id
+            ).value =
+                "";
+
+        }
+    );
+
+
+    document.getElementById(
+        "baselineStructuredSymptoms"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "baselineStructuredEpi"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "baselinePsychHistory"
+    ).value =
+        "";
+
+}
+
+
+function baselineValue(
+    value,
+    suffix
+){
+
+    if(
+        value === null ||
+        value === undefined ||
+        value === ""
+    ){
+
+        return "غير مقاس";
+
+    }
+
+
+    return (
+        value +
+        (suffix || "")
+    );
+
+}
+
+
+function baselineSelectName(
+    value
+){
+
+    const map = {
+
+        no:
+            "لا",
+
+        partial:
+            "جزئي / غير موحد",
+
+        yes:
+            "نعم"
+
+    };
+
+
+    return (
+        map[value] ||
+        "غير محدد"
+    );
+
+}
+
+
+function renderBaselineSummary(){
+
+    const baseline =
+        getBaseline();
+
+
+    const box =
+        document.getElementById(
+            "baselineSummary"
+        );
+
+
+    if(
+        !baseline.savedAt
+    ){
+
+        box.classList.remove(
+            "active"
+        );
+
+        return;
+
+    }
+
+
+    box.classList.add(
+        "active"
+    );
+
+
+    let period =
+        "غير محددة";
+
+
+    if(
+        baseline.fromDate ||
+        baseline.toDate
+    ){
+
+        period =
+            (
+                baseline.fromDate ||
+                "—"
+            ) +
+            " إلى " +
+            (
+                baseline.toDate ||
+                "—"
+            );
+
+    }
+
+
+    document.getElementById(
+        "baselineSummaryGrid"
+    ).innerHTML = `
+
+    <div class="baseline-summary-item">
+
+    <strong>
+    ${period}
+    </strong>
+
+    <span>
+    فترة خط الأساس
+    </span>
+
+    </div>
+
+
+    <div class="baseline-summary-item">
+
+    <strong>
+    ${
+        baselineValue(
+            baseline.emergencyVisits
+        )
+    }
+    </strong>
+
+    <span>
+    مراجعي الطوارئ
+    </span>
+
+    </div>
+
+
+    <div class="baseline-summary-item">
+
+    <strong>
+    ${
+        baselineValue(
+            baseline.notifications
+        )
+    }
+    </strong>
+
+    <span>
+    بلاغات الأمراض المعدية
+    </span>
+
+    </div>
+
+
+    <div class="baseline-summary-item">
+
+    <strong>
+    ${
+        baseline.screeningTimeSeconds ===
+        null
+
+        ||
+
+        baseline.screeningTimeSeconds ===
+        undefined
+
+        ? "غير مقاس"
+
+        : formatDashboardDuration(
+            baseline.screeningTimeSeconds
+        )
+    }
+    </strong>
+
+    <span>
+    متوسط زمن الفرز السابق
+    </span>
+
+    </div>
+
+    `;
+
+
+    document.getElementById(
+        "baselineMethodSummary"
+    ).innerHTML = `
+
+    <strong>
+    آلية الفرز قبل المشروع:
+    </strong>
+
+    ${
+        baseline.previousMethod ||
+        "لم يتم إدخال وصف لآلية الفرز السابقة."
+    }
+
+    <br><br>
+
+    <strong>
+    تقييم الأعراض المعدية:
+    </strong>
+
+    ${
+        baselineSelectName(
+            baseline.structuredSymptoms
+        )
+    }
+
+    &nbsp; | &nbsp;
+
+    <strong>
+    تقييم عوامل التعرض الوبائي:
+    </strong>
+
+    ${
+        baselineSelectName(
+            baseline.structuredEpi
+        )
+    }
+
+    &nbsp; | &nbsp;
+
+    <strong>
+    قياس محدودية التاريخ النفسي:
+    </strong>
+
+    ${
+        baselineSelectName(
+            baseline.psychHistoryMeasured
+        )
+    }
+
+    `;
+
+}
+
+
+/* =====================================================
+   TABS
+===================================================== */
+
+function openTab(
+    id,
+    button
+){
+
+    document
+    .querySelectorAll(
+        ".tab-content"
+    )
+    .forEach(
+        function(tab){
+
+            tab.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    document
+    .querySelectorAll(
+        ".tab-btn"
+    )
+    .forEach(
+        function(btn){
+
+            btn.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    document
+    .getElementById(
+        id
+    )
+    .classList
+    .add(
+        "active"
+    );
+
+
+    button.classList.add(
+        "active"
+    );
+
+}
+
+
+/* =====================================================
+   DATES
+===================================================== */
+
+function notificationDate(item){
+
+    const values = [
+
+        item.createdAt,
+        item.reportDateTime,
+        item.detectionDateTime
+
+    ];
+
+
+    for(
+        let i=0;
+        i<values.length;
+        i++
+    ){
+
+        if(values[i]){
+
+            const d =
+                new Date(
+                    values[i]
+                );
+
+
+            if(
+                !isNaN(
+                    d.getTime()
+                )
+            ){
+
+                return d;
+
+            }
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+function screeningDate(item){
+
+    if(item.sampleDate){
+
+        const d =
+            new Date(
+                item.sampleDate +
+                "T12:00:00"
+            );
+
+
+        if(
+            !isNaN(
+                d.getTime()
+            )
+        ){
+
+            return d;
+
+        }
+
+    }
+
+
+    if(item.createdAt){
+
+        const d =
+            new Date(
+                item.createdAt
+            );
+
+
+        if(
+            !isNaN(
+                d.getTime()
+            )
+        ){
+
+            return d;
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+function smartScreeningDate(item){
+
+    if(!item.createdAt){
+
+        return null;
+
+    }
+
+
+    const d =
+        new Date(
+            item.createdAt
+        );
+
+
+    return isNaN(
+        d.getTime()
+    )
+    ? null
+    : d;
+
+}
+
+
+/* =====================================================
+   DROPDOWNS
+===================================================== */
+
+function populateFilters(){
+
+    const diseaseSelect =
+        document.getElementById(
+            "diseaseFilter"
+        );
+
+
+    diseaseSelect.innerHTML =
+        '<option value="">جميع الأمراض</option>';
+
+
+    const diseases =
+        Array.from(
+            new Set(
+                notifications
+                .map(
+                    function(item){
+
+                        return (
+                            item.disease ||
+                            ""
+                        );
+
+                    }
+                )
+                .filter(Boolean)
+            )
+        )
+        .sort();
+
+
+    diseases.forEach(
+        function(item){
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                item;
+
+
+            option.textContent =
+                item;
+
+
+            diseaseSelect.appendChild(
+                option
+            );
+
+        }
+    );
+
+
+    const departmentSelect =
+        document.getElementById(
+            "departmentFilter"
+        );
+
+
+    departmentSelect.innerHTML =
+        '<option value="">جميع الأقسام</option>';
+
+
+    const departments =
+        Array.from(
+            new Set(
+
+                notifications
+                .map(
+                    function(item){
+
+                        return (
+                            item.reporterDepartment ||
+                            ""
+                        );
+
+                    }
+                )
+
+                .concat(
+
+                    screeningRecords
+                    .map(
+                        function(item){
+
+                            return (
+                                item.department ||
+                                ""
+                            );
+
+                        }
+                    )
+
+                )
+
+                .filter(Boolean)
+
+            )
+        )
+        .sort();
+
+
+    departments.forEach(
+        function(item){
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                item;
+
+
+            option.textContent =
+                item;
+
+
+            departmentSelect.appendChild(
+                option
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   REPORT SETTINGS
+===================================================== */
+
+function requestedPeriodChanged(){
+
+    document.getElementById(
+        "customReportRange"
+    ).style.display =
+
+        document.getElementById(
+            "requestedReportPeriod"
+        ).value ===
+        "custom"
+
+        ? "grid"
+        : "none";
+
+}
+
+
+function saveReportSettings(){
+
+    const settings = {
+
+        preparedByName:
+            document.getElementById(
+                "preparedByName"
+            ).value.trim(),
+
+        preparedByTitle:
+            document.getElementById(
+                "preparedByTitle"
+            ).value.trim(),
+
+        approvedByName:
+            document.getElementById(
+                "approvedByName"
+            ).value.trim(),
+
+        approvedByTitle:
+            document.getElementById(
+                "approvedByTitle"
+            ).value.trim(),
+
+        workflowStatus:
+            document.getElementById(
+                "reportWorkflowStatus"
+            ).value,
+
+        updatedAt:
+            new Date()
+            .toISOString()
+
+    };
+
+
+    localStorage.setItem(
+
+        "publicHealthReportSettings",
+
+        JSON.stringify(
+            settings
+        )
+
+    );
+
+
+    alert(
+        "✅ تم حفظ بيانات إعداد واعتماد التقرير."
+    );
+
+}
+
+
+function loadReportSettings(){
+
+    let settings =
+        {};
+
+
+    try{
+
+        settings =
+            JSON.parse(
+                localStorage.getItem(
+                    "publicHealthReportSettings"
+                )
+            ) || {};
+
+    }catch(error){
+
+        settings =
+            {};
+
+    }
+
+
+    document.getElementById(
+        "preparedByName"
+    ).value =
+        settings.preparedByName ||
+        "";
+
+
+    document.getElementById(
+        "preparedByTitle"
+    ).value =
+        settings.preparedByTitle ||
+        "";
+
+
+    document.getElementById(
+        "approvedByName"
+    ).value =
+        settings.approvedByName ||
+        "";
+
+
+    document.getElementById(
+        "approvedByTitle"
+    ).value =
+        settings.approvedByTitle ||
+        "";
+
+
+    document.getElementById(
+        "reportWorkflowStatus"
+    ).value =
+        settings.workflowStatus ||
+        "draft";
+
+}
+
+
+/* =====================================================
+   REQUEST RANGE
+===================================================== */
+
+function getRequestedReportRange(){
+
+    const period =
+        document.getElementById(
+            "requestedReportPeriod"
+        ).value;
+
+
+    const now =
+        new Date();
+
+
+    let start =
+        null;
+
+    let end =
+        null;
+
+    let text =
+        "جميع البيانات";
+
+
+    if(period === "currentMonth"){
+
+        start =
+            new Date(
+                now.getFullYear(),
+                now.getMonth(),
+                1
+            );
+
+        end =
+            new Date(
+                now.getFullYear(),
+                now.getMonth()+1,
+                0,
+                23,59,59
+            );
+
+        text =
+            "الشهر الحالي";
+
+    }
+
+
+    else if(period === "previousMonth"){
+
+        start =
+            new Date(
+                now.getFullYear(),
+                now.getMonth()-1,
+                1
+            );
+
+        end =
+            new Date(
+                now.getFullYear(),
+                now.getMonth(),
+                0,
+                23,59,59
+            );
+
+        text =
+            "الشهر السابق";
+
+    }
+
+
+    else if(period === "quarter"){
+
+        const startMonth =
+            Math.floor(
+                now.getMonth()/3
+            ) * 3;
+
+
+        start =
+            new Date(
+                now.getFullYear(),
+                startMonth,
+                1
+            );
+
+
+        end =
+            new Date(
+                now.getFullYear(),
+                startMonth+3,
+                0,
+                23,59,59
+            );
+
+
+        text =
+            "الربع الحالي";
+
+    }
+
+
+    else if(period === "halfYear"){
+
+        const startMonth =
+            now.getMonth() < 6
+            ? 0
+            : 6;
+
+
+        start =
+            new Date(
+                now.getFullYear(),
+                startMonth,
+                1
+            );
+
+
+        end =
+            new Date(
+                now.getFullYear(),
+                startMonth+6,
+                0,
+                23,59,59
+            );
+
+
+        text =
+            "النصف الحالي";
+
+    }
+
+
+    else if(period === "currentYear"){
+
+        start =
+            new Date(
+                now.getFullYear(),
+                0,
+                1
+            );
+
+
+        end =
+            new Date(
+                now.getFullYear(),
+                11,
+                31,
+                23,59,59
+            );
+
+
+        text =
+            "السنة الحالية " +
+            now.getFullYear();
+
+    }
+
+
+    else if(period === "previousYear"){
+
+        const year =
+            now.getFullYear()-1;
+
+
+        start =
+            new Date(
+                year,
+                0,
+                1
+            );
+
+
+        end =
+            new Date(
+                year,
+                11,
+                31,
+                23,59,59
+            );
+
+
+        text =
+            "السنة السابقة " +
+            year;
+
+    }
+
+
+    else if(period === "custom"){
+
+        const from =
+            document.getElementById(
+                "requestedFromDate"
+            ).value;
+
+
+        const to =
+            document.getElementById(
+                "requestedToDate"
+            ).value;
+
+
+        if(from){
+
+            start =
+                new Date(
+                    from +
+                    "T00:00:00"
+                );
+
+        }
+
+
+        if(to){
+
+            end =
+                new Date(
+                    to +
+                    "T23:59:59"
+                );
+
+        }
+
+
+        text =
+            from && to
+
+            ? (
+                from +
+                " إلى " +
+                to
+            )
+
+            : "فترة مخصصة";
+
+    }
+
+
+    return {
+
+        start:
+            start,
+
+        end:
+            end,
+
+        text:
+            text
+
+    };
+
+}
+
+
+function requestedWithinRange(
+    date,
+    range
+){
+
+    if(!date){
+
+        return false;
+
+    }
+
+
+    if(
+        range.start &&
+        date < range.start
+    ){
+
+        return false;
+
+    }
+
+
+    if(
+        range.end &&
+        date > range.end
+    ){
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function percent(
+    value,
+    total
+){
+
+    if(!total){
+
+        return 0;
+
+    }
+
+
+    return Math.round(
+        value /
+        total *
+        100
+    );
+
+}
+
+
+function formatDashboardDuration(
+    seconds
+){
+
+    seconds =
+        Number(
+            seconds
+        ) || 0;
+
+
+    if(seconds <= 0){
+
+        return "0 ث";
+
+    }
+
+
+    const minutes =
+        Math.floor(
+            seconds / 60
+        );
+
+
+    const remaining =
+        Math.round(
+            seconds % 60
+        );
+
+
+    if(minutes === 0){
+
+        return (
+            remaining +
+            " ث"
+        );
+
+    }
+
+
+    if(remaining === 0){
+
+        return (
+            minutes +
+            " د"
+        );
+
+    }
+
+
+    return (
+        minutes +
+        " د " +
+        remaining +
+        " ث"
+    );
+
+}
+
+
+function calculateTimingMetrics(
+    records
+){
+
+    const durations =
+        records
+        .filter(
+            function(item){
+
+                return (
+
+                    item.screeningDurationSeconds !==
+                    undefined
+
+                    &&
+
+                    item.screeningDurationSeconds !==
+                    null
+
+                    &&
+
+                    !isNaN(
+                        Number(
+                            item.screeningDurationSeconds
+                        )
+                    )
+
+                    &&
+
+                    Number(
+                        item.screeningDurationSeconds
+                    ) > 0
+
+                );
+
+            }
+        )
+        .map(
+            function(item){
+
+                return Number(
+                    item.screeningDurationSeconds
+                );
+
+            }
+        );
+
+
+    if(!durations.length){
+
+        return {
+
+            count:0,
+            average:0,
+            fastest:0,
+            longest:0,
+            underTwoMinutesCount:0,
+            underTwoMinutesPercent:0
+
+        };
+
+    }
+
+
+    const totalSeconds =
+        durations.reduce(
+            function(sum,value){
+
+                return sum + value;
+
+            },
+            0
+        );
+
+
+    const underTwoMinutesCount =
+        durations.filter(
+            function(seconds){
+
+                return seconds <= 120;
+
+            }
+        ).length;
+
+
+    return {
+
+        count:
+            durations.length,
+
+        average:
+            Math.round(
+                totalSeconds /
+                durations.length
+            ),
+
+        fastest:
+            Math.min(
+                ...durations
+            ),
+
+        longest:
+            Math.max(
+                ...durations
+            ),
+
+        underTwoMinutesCount:
+            underTwoMinutesCount,
+
+        underTwoMinutesPercent:
+            percent(
+                underTwoMinutesCount,
+                durations.length
+            )
+
+    };
+
+}
+
+
+function previewCard(
+    value,
+    label,
+    extraClass
+){
+
+    return `
+
+    <div class="preview-card ${extraClass || ""}">
+
+    <strong>
+    ${value}
+    </strong>
+
+    <span>
+    ${label}
+    </span>
+
+    </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   REPORT PREVIEW
+===================================================== */
+
+function updateReportPreview(){
+
+    loadData();
+
+
+    const type =
+        document.getElementById(
+            "requestedReportType"
+        ).value;
+
+
+    const range =
+        getRequestedReportRange();
+
+
+    const subtitle =
+        document.getElementById(
+            "reportPreviewSubtitle"
+        );
+
+
+    const stats =
+        document.getElementById(
+            "reportPreviewStats"
+        );
+
+
+    const extra =
+        document.getElementById(
+            "reportPreviewExtra"
+        );
+
+
+    const reportNotifications =
+        notifications.filter(
+            function(item){
+
+                return requestedWithinRange(
+                    notificationDate(item),
+                    range
+                );
+
+            }
+        );
+
+
+    const reportScreenings =
+        screeningRecords.filter(
+            function(item){
+
+                return requestedWithinRange(
+                    screeningDate(item),
+                    range
+                );
+
+            }
+        );
+
+
+    const reportSmart =
+        smartScreeningRecords.filter(
+            function(item){
+
+                return requestedWithinRange(
+                    smartScreeningDate(item),
+                    range
+                );
+
+            }
+        );
+
+
+    if(type === "notifications"){
+
+        const total =
+            reportNotifications.length;
+
+
+        const urgent =
+            reportNotifications.filter(
+                function(item){
+
+                    return (
+                        item.priority ===
+                        "urgent"
+                    );
+
+                }
+            ).length;
+
+
+        const open =
+            reportNotifications.filter(
+                function(item){
+
+                    return (
+                        item.status !==
+                        "closed"
+                    );
+
+                }
+            ).length;
+
+
+        const closed =
+            reportNotifications.filter(
+                function(item){
+
+                    return (
+                        item.status ===
+                        "closed"
+                    );
+
+                }
+            ).length;
+
+
+        subtitle.innerHTML =
+
+            "<strong>تقرير الأمراض المعدية والبلاغات</strong> — " +
+            range.text;
+
+
+        stats.innerHTML =
+
+            previewCard(
+                total,
+                "إجمالي البلاغات"
+            ) +
+
+            previewCard(
+                urgent,
+                "بلاغات عاجلة",
+                "red"
+            ) +
+
+            previewCard(
+                open,
+                "بلاغات مفتوحة",
+                "orange"
+            ) +
+
+            previewCard(
+                closed,
+                "بلاغات مغلقة",
+                "green"
+            );
+
+
+        extra.innerHTML =
+            "";
+
+
+        return;
+
+    }
+
+
+    if(type === "screening"){
+
+        const total =
+            reportScreenings.length;
+
+
+        const completed =
+            reportScreenings.filter(
+                function(item){
+
+                    return (
+                        item.screeningStatus ===
+                        "completed"
+                    );
+
+                }
+            ).length;
+
+
+        const followUp =
+            reportScreenings.filter(
+                function(item){
+
+                    return (
+                        item.screeningStatus ===
+                        "followUp"
+                    );
+
+                }
+            ).length;
+
+
+        subtitle.innerHTML =
+
+            "<strong>تقرير الفحص الدوري للموظفين</strong> — " +
+            range.text;
+
+
+        stats.innerHTML =
+
+            previewCard(
+                total,
+                "إجمالي سجلات الفحص"
+            ) +
+
+            previewCard(
+                completed,
+                "فحوص مكتملة",
+                "green"
+            ) +
+
+            previewCard(
+                percent(
+                    completed,
+                    total
+                ) +
+                "%",
+                "نسبة الاكتمال"
+            ) +
+
+            previewCard(
+                followUp,
+                "تحتاج متابعة",
+                "orange"
+            );
+
+
+        extra.innerHTML =
+            "";
+
+
+        return;
+
+    }
+
+
+    if(type === "smartScreening"){
+
+        const total =
+            reportSmart.length;
+
+
+        const high =
+            reportSmart.filter(
+                function(item){
+
+                    return (
+                        item.highSuspicion ===
+                        true
+                    );
+
+                }
+            ).length;
+
+
+        const hidden =
+            reportSmart.filter(
+                function(item){
+
+                    return (
+                        item.hiddenInfectionFlag ===
+                        true
+                    );
+
+                }
+            ).length;
+
+
+        const sent =
+            reportSmart.filter(
+                function(item){
+
+                    return (
+                        item.notificationSent ===
+                        true
+                    );
+
+                }
+            ).length;
+
+
+        const limited =
+            reportSmart.filter(
+                function(item){
+
+                    return (
+                        item.limitedHistory ===
+                        true
+                    );
+
+                }
+            ).length;
+
+
+        const timing =
+            calculateTimingMetrics(
+                reportSmart
+            );
+
+
+        subtitle.innerHTML =
+
+            "<strong>تقرير الفرز الذكي للأمراض المعدية</strong> — " +
+            range.text;
+
+
+        stats.innerHTML =
+
+            previewCard(
+                total,
+                "إجمالي عمليات الفرز",
+                "purple"
+            ) +
+
+            previewCard(
+                hidden,
+                "خطر معدٍ خفي",
+                "orange"
+            ) +
+
+            previewCard(
+                sent,
+                "حالات انتقلت لمسار البلاغ",
+                "green"
+            ) +
+
+            previewCard(
+                formatDashboardDuration(
+                    timing.average
+                ),
+                "متوسط زمن الفرز"
+            );
+
+
+        extra.innerHTML = `
+
+        <div class="preview-extra-grid">
+
+        ${previewCard(
+            high,
+            "اشتباه مرتفع",
+            "red"
+        )}
+
+        ${previewCard(
+            limited,
+            "تاريخ مرضي محدود"
+        )}
+
+        ${previewCard(
+            timing.underTwoMinutesPercent +
+            "%",
+            "اكتمل خلال دقيقتين",
+            "green"
+        )}
+
+        ${previewCard(
+            percent(
+                sent,
+                high
+            ) +
+            "%",
+            "التحويل إلى بلاغ",
+            "purple"
+        )}
+
+        </div>
+
+        `;
+
+
+        return;
+
+    }
+
+
+    const totalNotifications =
+        reportNotifications.length;
+
+
+    const totalSmart =
+        reportSmart.length;
+
+
+    const smartHidden =
+        reportSmart.filter(
+            function(item){
+
+                return (
+                    item.hiddenInfectionFlag ===
+                    true
+                );
+
+            }
+        ).length;
+
+
+    const completed =
+        reportScreenings.filter(
+            function(item){
+
+                return (
+                    item.screeningStatus ===
+                    "completed"
+                );
+
+            }
+        ).length;
+
+
+    subtitle.innerHTML =
+
+        "<strong>تقرير الصحة العامة الشامل</strong> — " +
+        range.text;
+
+
+    stats.innerHTML =
+
+        previewCard(
+            totalNotifications,
+            "بلاغات الأمراض المعدية"
+        ) +
+
+        previewCard(
+            totalSmart,
+            "عمليات الفرز الذكي",
+            "purple"
+        ) +
+
+        previewCard(
+            smartHidden,
+            "خطر معدٍ خفي",
+            "orange"
+        ) +
+
+        previewCard(
+            completed,
+            "فحوص موظفين مكتملة",
+            "green"
+        );
+
+
+    extra.innerHTML =
+        "";
+
+}
+
+
+/* =====================================================
+   CREATE REPORT
+===================================================== */
+
+function createRequestedReport(){
+
+    saveReportSettings();
+
+
+    const type =
+        document.getElementById(
+            "requestedReportType"
+        ).value;
+
+
+    const period =
+        document.getElementById(
+            "requestedReportPeriod"
+        ).value;
+
+
+    let url =
+        "public-health-report.html" +
+        "?reportType=" +
+        encodeURIComponent(type) +
+        "&period=" +
+        encodeURIComponent(period);
+
+
+    if(period === "custom"){
+
+        const from =
+            document.getElementById(
+                "requestedFromDate"
+            ).value;
+
+
+        const to =
+            document.getElementById(
+                "requestedToDate"
+            ).value;
+
+
+        if(!from || !to){
+
+            alert(
+                "يرجى تحديد تاريخ البداية والنهاية."
+            );
+
+            return;
+
+        }
+
+
+        if(
+            new Date(from) >
+            new Date(to)
+        ){
+
+            alert(
+                "تاريخ البداية يجب أن يسبق تاريخ النهاية."
+            );
+
+            return;
+
+        }
+
+
+        url +=
+            "&from=" +
+            encodeURIComponent(from) +
+            "&to=" +
+            encodeURIComponent(to);
+
+    }
+
+
+    window.location.href =
+        url;
+
+}
+
+
+/* =====================================================
+   DASHBOARD PERIOD
+===================================================== */
+
+function periodChanged(){
+
+    document.getElementById(
+        "customPeriod"
+    ).style.display =
+
+        document.getElementById(
+            "periodType"
+        ).value ===
+        "custom"
+
+        ? "grid"
+        : "none";
+
+}
+
+
+function getPeriodRange(){
+
+    const type =
+        document.getElementById(
+            "periodType"
+        ).value;
+
+
+    const now =
+        new Date();
+
+
+    let start =
+        null;
+
+    let end =
+        null;
+
+    let title =
+        "جميع البيانات المسجلة";
+
+
+    if(type === "currentMonth"){
+
+        start =
+            new Date(
+                now.getFullYear(),
+                now.getMonth(),
+                1
+            );
+
+        end =
+            new Date(
+                now.getFullYear(),
+                now.getMonth()+1,
+                0,
+                23,59,59
+            );
+
+        title =
+            "تقرير الشهر الحالي";
+
+    }
+
+
+    else if(type === "previousMonth"){
+
+        start =
+            new Date(
+                now.getFullYear(),
+                now.getMonth()-1,
+                1
+            );
+
+        end =
+            new Date(
+                now.getFullYear(),
+                now.getMonth(),
+                0,
+                23,59,59
+            );
+
+        title =
+            "تقرير الشهر السابق";
+
+    }
+
+
+    else if(type === "quarter"){
+
+        const startMonth =
+            Math.floor(
+                now.getMonth()/3
+            ) * 3;
+
+
+        start =
+            new Date(
+                now.getFullYear(),
+                startMonth,
+                1
+            );
+
+
+        end =
+            new Date(
+                now.getFullYear(),
+                startMonth+3,
+                0,
+                23,59,59
+            );
+
+
+        title =
+            "تقرير الربع الحالي";
+
+    }
+
+
+    else if(type === "halfYear"){
+
+        const startMonth =
+            now.getMonth() < 6
+            ? 0
+            : 6;
+
+
+        start =
+            new Date(
+                now.getFullYear(),
+                startMonth,
+                1
+            );
+
+
+        end =
+            new Date(
+                now.getFullYear(),
+                startMonth+6,
+                0,
+                23,59,59
+            );
+
+
+        title =
+            "تقرير النصف الحالي";
+
+    }
+
+
+    else if(type === "currentYear"){
+
+        start =
+            new Date(
+                now.getFullYear(),
+                0,
+                1
+            );
+
+
+        end =
+            new Date(
+                now.getFullYear(),
+                11,
+                31,
+                23,59,59
+            );
+
+
+        title =
+            "التقرير السنوي " +
+            now.getFullYear();
+
+    }
+
+
+    else if(type === "previousYear"){
+
+        const year =
+            now.getFullYear()-1;
+
+
+        start =
+            new Date(
+                year,
+                0,
+                1
+            );
+
+
+        end =
+            new Date(
+                year,
+                11,
+                31,
+                23,59,59
+            );
+
+
+        title =
+            "التقرير السنوي " +
+            year;
+
+    }
+
+
+    else if(type === "custom"){
+
+        const from =
+            document.getElementById(
+                "fromDate"
+            ).value;
+
+
+        const to =
+            document.getElementById(
+                "toDate"
+            ).value;
+
+
+        if(from){
+
+            start =
+                new Date(
+                    from +
+                    "T00:00:00"
+                );
+
+        }
+
+
+        if(to){
+
+            end =
+                new Date(
+                    to +
+                    "T23:59:59"
+                );
+
+        }
+
+
+        title =
+            "تقرير الفترة المخصصة";
+
+    }
+
+
+    return {
+
+        start:start,
+        end:end,
+        title:title
+
+    };
+
+}
+
+
+function withinRange(
+    date,
+    range
+){
+
+    if(
+        range.start &&
+        (
+            !date ||
+            date < range.start
+        )
+    ){
+
+        return false;
+
+    }
+
+
+    if(
+        range.end &&
+        (
+            !date ||
+            date > range.end
+        )
+    ){
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+/* =====================================================
+   FILTERS
+===================================================== */
+
+function applyFilters(){
+
+    const range =
+        getPeriodRange();
+
+
+    const disease =
+        document.getElementById(
+            "diseaseFilter"
+        ).value;
+
+
+    const department =
+        document.getElementById(
+            "departmentFilter"
+        ).value;
+
+
+    const status =
+        document.getElementById(
+            "notificationStatusFilter"
+        ).value;
+
+
+    filteredNotifications =
+        notifications.filter(
+            function(item){
+
+                if(
+                    !withinRange(
+                        notificationDate(item),
+                        range
+                    )
+                ){
+
+                    return false;
+
+                }
+
+
+                if(
+                    disease &&
+                    item.disease !==
+                    disease
+                ){
+
+                    return false;
+
+                }
+
+
+                if(
+                    department &&
+                    item.reporterDepartment !==
+                    department
+                ){
+
+                    return false;
+
+                }
+
+
+                if(
+                    status &&
+                    item.status !==
+                    status
+                ){
+
+                    return false;
+
+                }
+
+
+                return true;
+
+            }
+        );
+
+
+    filteredScreenings =
+        screeningRecords.filter(
+            function(item){
+
+                if(
+                    !withinRange(
+                        screeningDate(item),
+                        range
+                    )
+                ){
+
+                    return false;
+
+                }
+
+
+                if(
+                    department &&
+                    item.department !==
+                    department
+                ){
+
+                    return false;
+
+                }
+
+
+                return true;
+
+            }
+        );
+
+
+    filteredSmartScreenings =
+        smartScreeningRecords.filter(
+            function(item){
+
+                return withinRange(
+                    smartScreeningDate(item),
+                    range
+                );
+
+            }
+        );
+
+
+    document.getElementById(
+        "periodTitle"
+    ).textContent =
+        range.title;
+
+}
+
+
+/* =====================================================
+   GENERAL HELPERS
+===================================================== */
+
+function countBy(
+    list,
+    field
+){
+
+    const result =
+        {};
+
+
+    list.forEach(
+        function(item){
+
+            const value =
+                item[field] ||
+                "غير محدد";
+
+
+            result[value] =
+                (
+                    result[value] ||
+                    0
+                ) + 1;
+
+        }
+    );
+
+
+    return result;
+
+}
+
+
+function renderBars(
+    id,
+    data
+){
+
+    const container =
+        document.getElementById(
+            id
+        );
+
+
+    const entries =
+        Object.entries(
+            data
+        )
+        .sort(
+            function(a,b){
+
+                return b[1] - a[1];
+
+            }
+        );
+
+
+    if(!entries.length){
+
+        container.innerHTML =
+            "<p>لا توجد بيانات.</p>";
+
+        return;
+
+    }
+
+
+    const max =
+        Math.max(
+            ...entries.map(
+                function(item){
+
+                    return item[1];
+
+                }
+            )
+        );
+
+
+    container.innerHTML =
+        entries.map(
+            function(item){
+
+                const p =
+                    max
+                    ? item[1] /
+                      max *
+                      100
+                    : 0;
+
+
+                return `
+
+                <div class="bar-row">
+
+                <div class="bar-label">
+                ${item[0]}
+                </div>
+
+                <div class="bar-track">
+
+                <div
+                    class="bar-fill"
+                    style="width:${p}%">
+                </div>
+
+                </div>
+
+                <div class="bar-value">
+                ${item[1]}
+                </div>
+
+                </div>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+function monthlyCounts(
+    list,
+    dateFunction
+){
+
+    const result =
+        {};
+
+
+    list.forEach(
+        function(item){
+
+            const date =
+                dateFunction(
+                    item
+                );
+
+
+            if(!date){
+
+                return;
+
+            }
+
+
+            const key =
+                date.getFullYear() +
+                "-" +
+                String(
+                    date.getMonth()+1
+                )
+                .padStart(
+                    2,
+                    "0"
+                );
+
+
+            result[key] =
+                (
+                    result[key] ||
+                    0
+                ) + 1;
+
+        }
+    );
+
+
+    const ordered =
+        {};
+
+
+    Object.keys(
+        result
+    )
+    .sort()
+    .forEach(
+        function(key){
+
+            ordered[key] =
+                result[key];
+
+        }
+    );
+
+
+    return ordered;
+
+}
+
+
+/* =====================================================
+   SMART SCREENING
+===================================================== */
+
+const quickNames = {
+
+    general:"حرارة / أعراض عامة",
+    respiratory:"أعراض تنفسية",
+    rash:"طفح جلدي",
+    gastro:"أعراض هضمية",
+    neuro:"أعراض عصبية",
+    epi:"عامل وبائي"
+
+};
+
+
+const epiNames = {
+
+    contact:"مخالطة حالة",
+    travel:"سفر / منطقة تفشٍ",
+    cluster:"تجمع حالات",
+    healthcareExposure:"تعرض صحي",
+    animalExposure:"تعرض حيواني",
+    camelExposure:"مخالطة الإبل",
+    batExposure:"تعرض للخفافيش",
+    rodentExposure:"تعرض للقوارض",
+    foodExposure:"مصدر غذائي مشتبه",
+    bodyFluidExposure:"تعرض لدم / سوائل جسم"
+
+};
+
+
+function renderSmartScreening(){
+
+    const total =
+        filteredSmartScreenings.length;
+
+
+    const noIndicators =
+        filteredSmartScreenings.filter(
+            item =>
+                item.noIndicators === true
+        ).length;
+
+
+    const highSuspicion =
+        filteredSmartScreenings.filter(
+            item =>
+                item.highSuspicion === true
+        ).length;
+
+
+    const hiddenRisk =
+        filteredSmartScreenings.filter(
+            item =>
+                item.hiddenInfectionFlag === true
+        ).length;
+
+
+    const limitedHistory =
+        filteredSmartScreenings.filter(
+            item =>
+                item.limitedHistory === true
+        ).length;
+
+
+    const notificationStarted =
+        filteredSmartScreenings.filter(
+            item =>
+                item.notificationStarted === true
+        ).length;
+
+
+    const notificationSent =
+        filteredSmartScreenings.filter(
+            item =>
+                item.notificationSent === true
+        ).length;
+
+
+    const conversionRate =
+        percent(
+            notificationSent,
+            highSuspicion
+        );
+
+
+    const timing =
+        calculateTimingMetrics(
+            filteredSmartScreenings
+        );
+
+
+    document.getElementById(
+        "smartTotal"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "smartNoIndicators"
+    ).textContent =
+        noIndicators;
+
+
+    document.getElementById(
+        "smartHighSuspicion"
+    ).textContent =
+        highSuspicion;
+
+
+    document.getElementById(
+        "smartHiddenRisk"
+    ).textContent =
+        hiddenRisk;
+
+
+    document.getElementById(
+        "smartLimitedHistory"
+    ).textContent =
+        limitedHistory;
+
+
+    document.getElementById(
+        "smartNotificationStarted"
+    ).textContent =
+        notificationStarted;
+
+
+    document.getElementById(
+        "smartNotificationSent"
+    ).textContent =
+        notificationSent;
+
+
+    document.getElementById(
+        "smartConversionRate"
+    ).textContent =
+        conversionRate +
+        "%";
+
+
+    document.getElementById(
+        "smartAverageTime"
+    ).textContent =
+        formatDashboardDuration(
+            timing.average
+        );
+
+
+    document.getElementById(
+        "smartFastestTime"
+    ).textContent =
+        formatDashboardDuration(
+            timing.fastest
+        );
+
+
+    document.getElementById(
+        "smartLongestTime"
+    ).textContent =
+        formatDashboardDuration(
+            timing.longest
+        );
+
+
+    document.getElementById(
+        "smartUnderTwoMinutes"
+    ).textContent =
+        timing.underTwoMinutesPercent +
+        "%";
+
+
+    document.getElementById(
+        "smartConversionPercent"
+    ).textContent =
+        conversionRate +
+        "%";
+
+
+    document.getElementById(
+        "smartConversionFill"
+    ).style.width =
+        Math.min(
+            conversionRate,
+            100
+        ) +
+        "%";
+
+
+    document.getElementById(
+        "smartTimeTargetPercent"
+    ).textContent =
+        timing.underTwoMinutesPercent +
+        "%";
+
+
+    document.getElementById(
+        "smartTimeTargetFill"
+    ).style.width =
+        Math.min(
+            timing.underTwoMinutesPercent,
+            100
+        ) +
+        "%";
+
+
+    document.getElementById(
+        "hiddenRiskPercent"
+    ).textContent =
+        percent(
+            hiddenRisk,
+            total
+        ) +
+        "%";
+
+
+    const diseaseCounts =
+        {};
+
+
+    filteredSmartScreenings
+    .forEach(
+        function(record){
+
+            const results =
+                Array.isArray(
+                    record.results
+                )
+                ? record.results
+                : [];
+
+
+            results.forEach(
+                function(result){
+
+                    const name =
+                        result.disease ||
+                        result.key ||
+                        "غير محدد";
+
+
+                    diseaseCounts[name] =
+                        (
+                            diseaseCounts[name] ||
+                            0
+                        ) + 1;
+
+                }
+            );
+
+        }
+    );
+
+
+    renderBars(
+        "smartDiseaseBars",
+        diseaseCounts
+    );
+
+
+    const quickCounts =
+        {};
+
+
+    filteredSmartScreenings
+    .forEach(
+        function(record){
+
+            const list =
+                Array.isArray(
+                    record.quickIndicators
+                )
+                ? record.quickIndicators
+                : [];
+
+
+            list.forEach(
+                function(item){
+
+                    const name =
+                        quickNames[item] ||
+                        item;
+
+
+                    quickCounts[name] =
+                        (
+                            quickCounts[name] ||
+                            0
+                        ) + 1;
+
+                }
+            );
+
+        }
+    );
+
+
+    renderBars(
+        "smartQuickBars",
+        quickCounts
+    );
+
+
+    const epiCounts =
+        {};
+
+
+    filteredSmartScreenings
+    .forEach(
+        function(record){
+
+            const list =
+                Array.isArray(
+                    record.epidemiologicalFactors
+                )
+                ? record.epidemiologicalFactors
+                : [];
+
+
+            list.forEach(
+                function(item){
+
+                    const name =
+                        epiNames[item] ||
+                        item;
+
+
+                    epiCounts[name] =
+                        (
+                            epiCounts[name] ||
+                            0
+                        ) + 1;
+
+                }
+            );
+
+        }
+    );
+
+
+    renderBars(
+        "smartEpiBars",
+        epiCounts
+    );
+
+
+    const vitalNormal =
+        filteredSmartScreenings.filter(
+            item =>
+                item.vitalStatus ===
+                "normal"
+        ).length;
+
+
+    const vitalAbnormal =
+        filteredSmartScreenings.filter(
+            item =>
+                item.vitalStatus ===
+                "abnormal"
+        ).length;
+
+
+    const vitalUnknown =
+        total -
+        vitalNormal -
+        vitalAbnormal;
+
+
+    document.getElementById(
+        "smartVitalNormal"
+    ).textContent =
+        vitalNormal;
+
+
+    document.getElementById(
+        "smartVitalAbnormal"
+    ).textContent =
+        vitalAbnormal;
+
+
+    document.getElementById(
+        "smartVitalUnknown"
+    ).textContent =
+        vitalUnknown;
+
+
+    renderBars(
+        "smartMonthlyBars",
+        monthlyCounts(
+            filteredSmartScreenings,
+            smartScreeningDate
+        )
+    );
+
+
+    renderSmartScreeningTable();
+
+}
+
+
+/* =====================================================
+   SMART TABLE
+===================================================== */
+
+function renderSmartScreeningTable(){
+
+    const body =
+        document.getElementById(
+            "smartScreeningTableBody"
+        );
+
+
+    if(!filteredSmartScreenings.length){
+
+        body.innerHTML = `
+
+        <tr>
+
+        <td colspan="10">
+        لا توجد عمليات فرز مسجلة خلال الفترة المحددة.
+        </td>
+
+        </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    body.innerHTML =
+        filteredSmartScreenings
+        .map(
+            function(item){
+
+                const results =
+                    Array.isArray(
+                        item.results
+                    )
+                    ? item.results
+                    : [];
+
+
+                let resultText =
+                    "لا توجد مطابقة";
+
+
+                if(item.noIndicators){
+
+                    resultText =
+                        "لا توجد مؤشرات";
+
+                }
+                else if(results.length){
+
+                    resultText =
+                        results
+                        .map(
+                            result =>
+                                result.disease ||
+                                result.key
+                        )
+                        .join("، ");
+
+                }
+
+
+                const date =
+                    smartScreeningDate(
+                        item
+                    );
+
+
+                const timeText =
+                    item.screeningDurationSeconds !==
+                    undefined
+
+                    &&
+
+                    item.screeningDurationSeconds !==
+                    null
+
+                    ? formatDashboardDuration(
+                        item.screeningDurationSeconds
+                    )
+
+                    : "—";
+
+
+                return `
+
+                <tr>
+
+                <td>
+                ${item.id || "—"}
+                </td>
+
+                <td>
+                ${
+                    date
+                    ? date.toLocaleString(
+                        "ar-SA"
+                    )
+                    : "—"
+                }
+                </td>
+
+                <td>
+                ${resultText}
+                </td>
+
+                <td>
+                ${
+                    item.highSuspicion
+                    ? "🔴 نعم"
+                    : "لا"
+                }
+                </td>
+
+                <td>
+                ${
+                    item.hiddenInfectionFlag
+                    ? "🚩 نعم"
+                    : "لا"
+                }
+                </td>
+
+                <td>
+                ${
+                    item.limitedHistory
+                    ? "🧠 نعم"
+                    : "لا"
+                }
+                </td>
+
+                <td>
+                ${timeText}
+                </td>
+
+                <td>
+                ${
+                    item.notificationStarted
+                    ? "نعم"
+                    : "لا"
+                }
+                </td>
+
+                <td>
+                ${
+                    item.notificationSent
+                    ? "✅ نعم"
+                    : "لا"
+                }
+                </td>
+
+                <td>
+                ${item.notificationId || "—"}
+                </td>
+
+                </tr>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+/* =====================================================
+   NOTIFICATIONS
+===================================================== */
+
+function renderNotifications(){
+
+    const total =
+        filteredNotifications.length;
+
+
+    document.getElementById(
+        "totalNotifications"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "urgentNotifications"
+    ).textContent =
+        filteredNotifications.filter(
+            item =>
+                item.priority ===
+                "urgent"
+        ).length;
+
+
+    document.getElementById(
+        "activeNotifications"
+    ).textContent =
+        filteredNotifications.filter(
+            item =>
+                item.status !==
+                "closed"
+        ).length;
+
+
+    document.getElementById(
+        "closedNotifications"
+    ).textContent =
+        filteredNotifications.filter(
+            item =>
+                item.status ===
+                "closed"
+        ).length;
+
+
+    renderBars(
+        "diseaseBars",
+        countBy(
+            filteredNotifications,
+            "disease"
+        )
+    );
+
+
+    renderBars(
+        "notificationDepartmentBars",
+        countBy(
+            filteredNotifications,
+            "reporterDepartment"
+        )
+    );
+
+
+    document.getElementById(
+        "hesnEntered"
+    ).textContent =
+        filteredNotifications.filter(
+            item =>
+                item.hesnStatus ===
+                "entered"
+        ).length;
+
+
+    document.getElementById(
+        "hesnNotRequired"
+    ).textContent =
+        filteredNotifications.filter(
+            item =>
+                item.hesnStatus ===
+                "notRequired"
+        ).length;
+
+
+    document.getElementById(
+        "hesnPending"
+    ).textContent =
+        filteredNotifications.filter(
+            item =>
+                !item.hesnStatus ||
+                item.hesnStatus ===
+                "pending"
+        ).length;
+
+
+    document.getElementById(
+        "newCases"
+    ).textContent =
+        filteredNotifications.filter(
+            item =>
+                !item.status ||
+                item.status ===
+                "new"
+        ).length;
+
+
+    document.getElementById(
+        "progressCases"
+    ).textContent =
+        filteredNotifications.filter(
+            item =>
+                item.status ===
+                "progress"
+        ).length;
+
+
+    document.getElementById(
+        "closedCases"
+    ).textContent =
+        filteredNotifications.filter(
+            item =>
+                item.status ===
+                "closed"
+        ).length;
+
+
+    renderBars(
+        "notificationMonthlyBars",
+        monthlyCounts(
+            filteredNotifications,
+            notificationDate
+        )
+    );
+
+
+    renderNotificationTable();
+
+    renderOutbreaks();
+
+}
+
+
+/* =====================================================
+   NOTIFICATION TABLE
+===================================================== */
+
+function statusName(status){
+
+    if(status === "closed"){
+        return "مغلق";
+    }
+
+    if(status === "progress"){
+        return "تحت المتابعة";
+    }
+
+    return "جديد";
+
+}
+
+
+function hesnName(status){
+
+    if(status === "entered"){
+        return "تم الإدخال";
+    }
+
+    if(status === "notRequired"){
+        return "لا ينطبق";
+    }
+
+    return "لم يتم";
+
+}
+
+
+function renderNotificationTable(){
+
+    const body =
+        document.getElementById(
+            "notificationTableBody"
+        );
+
+
+    if(!filteredNotifications.length){
+
+        body.innerHTML =
+            '<tr><td colspan="7">لا توجد بيانات.</td></tr>';
+
+        return;
+
+    }
+
+
+    body.innerHTML =
+        filteredNotifications
+        .map(
+            function(item){
+
+                return `
+
+                <tr>
+
+                <td>${item.id || "—"}</td>
+
+                <td>${item.date || "—"}</td>
+
+                <td>${item.disease || "—"}</td>
+
+                <td>${item.reporterDepartment || "—"}</td>
+
+                <td>
+                ${
+                    item.priority ===
+                    "urgent"
+                    ? "عاجل"
+                    : "عادي"
+                }
+                </td>
+
+                <td>
+                ${statusName(item.status)}
+                </td>
+
+                <td>
+                ${hesnName(item.hesnStatus)}
+                </td>
+
+                </tr>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+/* =====================================================
+   OUTBREAKS
+===================================================== */
+
+function renderOutbreaks(){
+
+    const box =
+        document.getElementById(
+            "outbreakSummary"
+        );
+
+
+    if(!outbreaks.length){
+
+        box.innerHTML =
+            "لا توجد بيانات فاشيات غذائية تفصيلية محفوظة.";
+
+        return;
+
+    }
+
+
+    const cases =
+        outbreaks.reduce(
+            function(sum,item){
+
+                return (
+                    sum +
+                    (
+                        Number(
+                            item.totalCases
+                        ) ||
+                        0
+                    )
+                );
+
+            },
+            0
+        );
+
+
+    box.innerHTML = `
+
+    <strong>
+    عدد الفاشيات:
+    </strong>
+
+    ${outbreaks.length}
+
+    <br>
+
+    <strong>
+    إجمالي الحالات المرتبطة:
+    </strong>
+
+    ${cases}
+
+    `;
+
+}
+
+
+/* =====================================================
+   SCREENING
+===================================================== */
+
+function screeningStatusName(status){
+
+    const map = {
+
+        completed:"مكتمل",
+        incomplete:"غير مكتمل",
+        followUp:"يحتاج متابعة",
+        pending:"قيد الانتظار"
+
+    };
+
+
+    return (
+        map[status] ||
+        status ||
+        "—"
+    );
+
+}
+
+
+function immunityName(status){
+
+    const map = {
+
+        immune:"محصن / مكتمل",
+        notImmune:"غير محصن",
+        partial:"غير مكتمل",
+        pending:"انتظار النتيجة",
+        notApplicable:"لا ينطبق"
+
+    };
+
+
+    return (
+        map[status] ||
+        status ||
+        "—"
+    );
+
+}
+
+
+function screeningTypeName(type){
+
+    const map = {
+
+        annual:"فحص سنوي",
+        immunity:"تحديث حالة المناعة",
+        preEmployment:"قبل المباشرة",
+        followUp:"متابعة",
+        other:"أخرى"
+
+    };
+
+
+    return (
+        map[type] ||
+        type ||
+        "—"
+    );
+
+}
+
+
+function renderScreenings(){
+
+    const total =
+        filteredScreenings.length;
+
+
+    const completed =
+        filteredScreenings.filter(
+            item =>
+                item.screeningStatus ===
+                "completed"
+        ).length;
+
+
+    const followUp =
+        filteredScreenings.filter(
+            item =>
+                item.screeningStatus ===
+                "followUp"
+        ).length;
+
+
+    const incomplete =
+        filteredScreenings.filter(
+            item =>
+                item.screeningStatus ===
+                "incomplete"
+
+                ||
+
+                item.screeningStatus ===
+                "pending"
+        ).length;
+
+
+    document.getElementById(
+        "totalScreenings"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "completedScreenings"
+    ).textContent =
+        completed;
+
+
+    document.getElementById(
+        "followupScreenings"
+    ).textContent =
+        followUp;
+
+
+    document.getElementById(
+        "incompleteScreenings"
+    ).textContent =
+        incomplete;
+
+
+    const percentage =
+        percent(
+            completed,
+            total
+        );
+
+
+    document.getElementById(
+        "screeningPercent"
+    ).textContent =
+        percentage +
+        "%";
+
+
+    document.getElementById(
+        "screeningProgressFill"
+    ).style.width =
+        percentage +
+        "%";
+
+
+    document.getElementById(
+        "immuneCount"
+    ).textContent =
+        filteredScreenings.filter(
+            item =>
+                item.immunityStatus ===
+                "immune"
+        ).length;
+
+
+    document.getElementById(
+        "notImmuneCount"
+    ).textContent =
+        filteredScreenings.filter(
+            item =>
+                item.immunityStatus ===
+                "notImmune"
+        ).length;
+
+
+    document.getElementById(
+        "partialImmunityCount"
+    ).textContent =
+        filteredScreenings.filter(
+            item =>
+                item.immunityStatus ===
+                "partial"
+        ).length;
+
+
+    document.getElementById(
+        "pendingImmunityCount"
+    ).textContent =
+        filteredScreenings.filter(
+            item =>
+                item.immunityStatus ===
+                "pending"
+        ).length;
+
+
+    renderBars(
+        "screeningDepartmentBars",
+        countBy(
+            filteredScreenings,
+            "department"
+        )
+    );
+
+
+    const tests =
+        {};
+
+
+    filteredScreenings
+    .forEach(
+        function(record){
+
+            const list =
+                Array.isArray(
+                    record.tests
+                )
+                ? record.tests
+                : [];
+
+
+            list.forEach(
+                function(test){
+
+                    tests[test] =
+                        (
+                            tests[test] ||
+                            0
+                        ) + 1;
+
+                }
+            );
+
+        }
+    );
+
+
+    renderBars(
+        "testBars",
+        tests
+    );
+
+
+    renderBars(
+        "screeningMonthlyBars",
+        monthlyCounts(
+            filteredScreenings,
+            screeningDate
+        )
+    );
+
+
+    renderScreeningTable();
+
+}
+
+
+function renderScreeningTable(){
+
+    const body =
+        document.getElementById(
+            "screeningTableBody"
+        );
+
+
+    if(!filteredScreenings.length){
+
+        body.innerHTML =
+            '<tr><td colspan="7">لا توجد سجلات فحص.</td></tr>';
+
+        return;
+
+    }
+
+
+    body.innerHTML =
+        filteredScreenings
+        .map(
+            function(item){
+
+                return `
+
+                <tr>
+
+                <td>${item.employeeName || "—"}</td>
+
+                <td>${item.employeeId || "—"}</td>
+
+                <td>${item.department || "—"}</td>
+
+                <td>${item.sampleDate || "—"}</td>
+
+                <td>
+                ${screeningTypeName(item.screeningType)}
+                </td>
+
+                <td>
+                ${immunityName(item.immunityStatus)}
+                </td>
+
+                <td>
+                ${screeningStatusName(item.screeningStatus)}
+                </td>
+
+                </tr>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+/* =====================================================
+   OVERVIEW
+===================================================== */
+
+function renderOverview(){
+
+    const hiddenRisk =
+        filteredSmartScreenings.filter(
+            item =>
+                item.hiddenInfectionFlag ===
+                true
+        ).length;
+
+
+    document.getElementById(
+        "overviewNotifications"
+    ).textContent =
+        filteredNotifications.length;
+
+
+    document.getElementById(
+        "overviewSmartScreenings"
+    ).textContent =
+        filteredSmartScreenings.length;
+
+
+    document.getElementById(
+        "overviewHiddenRisk"
+    ).textContent =
+        hiddenRisk;
+
+
+    document.getElementById(
+        "overviewUrgent"
+    ).textContent =
+        filteredNotifications.filter(
+            item =>
+                item.priority ===
+                "urgent"
+        ).length;
+
+
+    renderBars(
+        "overviewDiseaseBars",
+        countBy(
+            filteredNotifications,
+            "disease"
+        )
+    );
+
+
+    const smartDiseases =
+        {};
+
+
+    filteredSmartScreenings
+    .forEach(
+        function(record){
+
+            const results =
+                Array.isArray(
+                    record.results
+                )
+                ? record.results
+                : [];
+
+
+            results.forEach(
+                function(result){
+
+                    const name =
+                        result.disease ||
+                        result.key ||
+                        "غير محدد";
+
+
+                    smartDiseases[name] =
+                        (
+                            smartDiseases[name] ||
+                            0
+                        ) + 1;
+
+                }
+            );
+
+        }
+    );
+
+
+    renderBars(
+        "overviewSmartDiseaseBars",
+        smartDiseases
+    );
+
+
+    const months =
+        {};
+
+
+    function addMonth(date){
+
+        if(!date){
+
+            return;
+
+        }
+
+
+        const key =
+            date.getFullYear() +
+            "-" +
+            String(
+                date.getMonth()+1
+            )
+            .padStart(
+                2,
+                "0"
+            );
+
+
+        months[key] =
+            (
+                months[key] ||
+                0
+            ) + 1;
+
+    }
+
+
+    filteredNotifications
+    .forEach(
+        item =>
+            addMonth(
+                notificationDate(item)
+            )
+    );
+
+
+    filteredScreenings
+    .forEach(
+        item =>
+            addMonth(
+                screeningDate(item)
+            )
+    );
+
+
+    filteredSmartScreenings
+    .forEach(
+        item =>
+            addMonth(
+                smartScreeningDate(item)
+            )
+    );
+
+
+    const ordered =
+        {};
+
+
+    Object.keys(
+        months
+    )
+    .sort()
+    .forEach(
+        function(key){
+
+            ordered[key] =
+                months[key];
+
+        }
+    );
+
+
+    renderBars(
+        "overviewMonthlyBars",
+        ordered
+    );
+
+}
+
+
+/* =====================================================
+   REFRESH
+===================================================== */
+
+function refreshAll(){
+
+    loadData();
+
+    applyFilters();
+
+    renderNotifications();
+
+    renderScreenings();
+
+    renderSmartScreening();
+
+    renderOverview();
+
+    updateReportPreview();
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+function resetFilters(){
+
+    document.getElementById(
+        "periodType"
+    ).value =
+        "all";
+
+
+    document.getElementById(
+        "diseaseFilter"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "departmentFilter"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "notificationStatusFilter"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "fromDate"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "toDate"
+    ).value =
+        "";
+
+
+    periodChanged();
+
+    refreshAll();
+
+}
+
+
+/* =====================================================
+   STARTUP
+===================================================== */
+
+document.addEventListener(
+
+    "DOMContentLoaded",
+
+    function(){
+
+        loadData();
+
+        populateFilters();
+
+        periodChanged();
+
+        requestedPeriodChanged();
+
+        loadReportSettings();
+
+        loadBaselineForm();
+
+        refreshAll();
+
+        updateReportPreview();
+
+    }
+
+);
+
+</script>
+
+
+</body>
+
+</html>

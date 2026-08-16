@@ -1,0 +1,3544 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>لوحة متابعة الفحص الدوري</title>
+
+<link rel="stylesheet" href="Style.css">
+
+<style>
+
+body{
+    margin:0;
+}
+
+.dashboard-page{
+    max-width:1400px;
+    margin:30px auto;
+    padding:0 20px 70px;
+}
+
+.hero-box,
+.section-card{
+    background:white;
+    border:1px solid #dfe8f2;
+    border-radius:14px;
+    padding:22px;
+    margin-bottom:22px;
+    box-shadow:0 4px 13px rgba(0,0,0,.05);
+}
+
+.hero-box{
+    text-align:center;
+}
+
+.hero-box h1{
+    color:#064c92;
+    margin:5px 0;
+}
+
+.hero-box h2{
+    color:#718293;
+    font-size:17px;
+    margin:0;
+}
+
+.note{
+    background:#eef7ff;
+    border-right:5px solid #0759a6;
+    border-radius:10px;
+    padding:15px;
+    line-height:1.8;
+    color:#31556f;
+    margin-bottom:20px;
+}
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.stat-card{
+    background:white;
+    border-radius:13px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 4px 12px rgba(0,0,0,.06);
+}
+
+.stat-card .number{
+    font-size:32px;
+    font-weight:bold;
+    color:#064c92;
+}
+
+.stat-card .label{
+    color:#65798b;
+    margin-top:6px;
+}
+
+.section-card h2{
+    color:#064c92;
+    margin-top:0;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+label{
+    font-weight:bold;
+    color:#294b6a;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    box-sizing:border-box;
+    padding:11px;
+    border:1px solid #ccd9e5;
+    border-radius:8px;
+    background:white;
+}
+
+textarea{
+    min-height:85px;
+    resize:vertical;
+}
+
+button,
+.link-btn{
+    border:none;
+    border-radius:8px;
+    padding:11px 16px;
+    font-weight:bold;
+    cursor:pointer;
+    text-decoration:none;
+    display:inline-block;
+}
+
+.primary-btn{
+    background:#0759a6;
+    color:white;
+}
+
+.green-btn{
+    background:#187b43;
+    color:white;
+}
+
+.gray-btn{
+    background:#687984;
+    color:white;
+}
+
+.red-btn{
+    background:#c62828;
+    color:white;
+}
+
+.light-btn{
+    background:#eaf1f7;
+    color:#064c92;
+}
+
+.action-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:18px;
+}
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:1000px;
+}
+
+th,
+td{
+    border:1px solid #d4dee6;
+    padding:10px;
+    text-align:center;
+}
+
+th{
+    background:#edf3f8;
+    color:#284a68;
+}
+
+.group-row{
+    background:#dde6ed;
+    font-weight:bold;
+    color:#27435d;
+}
+
+.target-input{
+    max-width:80px;
+    text-align:center;
+}
+
+.percent-good{
+    background:#c8e6c9;
+    font-weight:bold;
+}
+
+.percent-warning{
+    background:#fff3bf;
+    font-weight:bold;
+}
+
+.percent-bad{
+    background:#ef5350;
+    color:white;
+    font-weight:bold;
+}
+
+.number-link{
+    border:none;
+    background:transparent;
+    color:#0759a6;
+    font-weight:bold;
+    text-decoration:underline;
+    padding:3px;
+}
+
+.not-screened-link{
+    color:#c62828;
+}
+
+.source-badge{
+    display:inline-block;
+    border-radius:12px;
+    padding:4px 8px;
+    font-size:10px;
+}
+
+.source-directory{
+    background:#e8f5e9;
+    color:#256b35;
+}
+
+.source-manual{
+    background:#fff3cd;
+    color:#745d00;
+}
+
+
+/* المعتمدون */
+
+.approvers-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.approver-card{
+    background:#f8fbfd;
+    border:1px solid #dfe8f2;
+    border-radius:12px;
+    padding:18px;
+}
+
+.approver-card h3{
+    color:#064c92;
+}
+
+.signature-area{
+    margin-top:12px;
+    border:2px dashed #aebfce;
+    border-radius:10px;
+    padding:8px;
+    background:white;
+}
+
+.signature-canvas{
+    width:100%;
+    height:145px;
+    display:block;
+    background:white;
+    touch-action:none;
+}
+
+
+/* التقرير */
+
+.report-box{
+    display:none;
+    background:white;
+    border:1px solid #dfe8f2;
+    border-radius:15px;
+    padding:28px;
+    margin-top:24px;
+}
+
+.report-box.active{
+    display:block;
+}
+
+.report-header{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.report-header h1{
+    color:#064c92;
+}
+
+.report-logos{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.report-logos img{
+    max-height:75px;
+    max-width:180px;
+}
+
+.report-summary{
+    background:#f7fafc;
+    border-radius:10px;
+    padding:15px;
+    margin-top:20px;
+    line-height:2;
+}
+
+.report-footer{
+    margin-top:35px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:30px;
+}
+
+.report-signature{
+    text-align:center;
+    padding:15px;
+}
+
+.report-signature img{
+    max-width:210px;
+    max-height:85px;
+    margin:10px auto;
+    display:block;
+}
+
+.non-screened-section{
+    margin-top:30px;
+}
+
+.non-screened-section h2{
+    color:#c62828;
+}
+
+
+/* Modal */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.48);
+    z-index:9999;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal.active{
+    display:flex;
+}
+
+.modal-box{
+    background:white;
+    width:100%;
+    max-width:1100px;
+    max-height:88vh;
+    overflow:auto;
+    border-radius:16px;
+    padding:25px;
+}
+
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.modal-header h2{
+    color:#064c92;
+}
+
+.employee-summary{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin:18px 0;
+}
+
+.summary-box{
+    background:#f7fafc;
+    border-radius:10px;
+    padding:15px;
+    text-align:center;
+}
+
+.summary-box strong{
+    display:block;
+    color:#064c92;
+    font-size:24px;
+}
+
+.tabs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:18px;
+}
+
+.tab-btn{
+    background:#edf3f8;
+    color:#064c92;
+}
+
+.tab-btn.active{
+    background:#0759a6;
+    color:white;
+}
+
+
+/* Archive */
+
+.archive-empty{
+    padding:25px;
+    text-align:center;
+    color:#718293;
+    background:#f8fbfd;
+    border-radius:10px;
+}
+
+.status-approved{
+    display:inline-block;
+    padding:5px 10px;
+    border-radius:15px;
+    background:#e8f5e9;
+    color:#187b43;
+    font-weight:bold;
+    font-size:11px;
+}
+
+
+/* print */
+
+@media(max-width:900px){
+
+    .stats-grid,
+    .form-grid,
+    .approvers-grid,
+    .employee-summary,
+    .report-footer{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
+    }
+
+}
+
+@media print{
+
+    body *{
+        visibility:hidden;
+    }
+
+    #reportBox,
+    #reportBox *{
+        visibility:visible;
+    }
+
+    #reportBox{
+        display:block !important;
+        position:absolute;
+        right:0;
+        top:0;
+        width:100%;
+        border:none;
+        box-shadow:none;
+        padding:10px;
+    }
+
+    .no-print{
+        display:none !important;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="hero-header">
+
+<div class="hero-grid">
+
+    <div class="side-logo left-logo">
+        <img src="images/cluster-logo.png">
+    </div>
+
+    <div class="hero-center">
+
+        <h1>
+            لوحة متابعة الفحص الدوري للموظفين
+        </h1>
+
+        <h2>
+            Employee Screening Dashboard
+        </h2>
+
+        <p>
+            الصحة المهنية
+        </p>
+
+    </div>
+
+    <div class="side-logo right-logo">
+        <img src="images/hospital-logo.png">
+    </div>
+
+</div>
+
+</header>
+
+
+<main class="dashboard-page">
+
+
+<section class="hero-box">
+
+<h1>
+    مؤشر تحديث الحالة المناعية للموظفين
+</h1>
+
+<h2>
+    Employee Immunity Status Completion Indicator
+</h2>
+
+</section>
+
+
+<div class="note">
+
+يتم ربط بيانات الموظفين من
+<strong>دليل موظفي المستشفى</strong>
+مع سجلات
+<strong>الفحص الدوري</strong>
+تلقائيًا.
+
+ويمكن إنشاء تقرير لفترة محددة، اعتماده إلكترونيًا،
+ثم حفظه داخل أرشيف التقارير وإعادة طباعته لاحقًا.
+
+</div>
+
+
+<section class="stats-grid">
+
+<div class="stat-card">
+    <div id="totalTarget" class="number">0</div>
+    <div class="label">إجمالي المستهدفين</div>
+</div>
+
+<div class="stat-card">
+    <div id="totalScreened" class="number">0</div>
+    <div class="label">تم الفحص</div>
+</div>
+
+<div class="stat-card">
+    <div id="totalNotScreened" class="number">0</div>
+    <div class="label">لم يتم الفحص</div>
+</div>
+
+<div class="stat-card">
+    <div id="overallPercent" class="number">0%</div>
+    <div class="label">نسبة الإنجاز</div>
+</div>
+
+</section>
+
+
+
+<!-- إعداد التقرير -->
+
+<section class="section-card no-print">
+
+<h2>
+    ⚙️ إعداد التقرير
+</h2>
+
+<div class="form-grid">
+
+
+<div class="form-group full">
+
+<label>
+    عنوان التقرير
+</label>
+
+<input
+    id="reportTitle"
+    value="مؤشر الإدارات ونسبة الموظفين الذين أكملوا تحديث الحالة المناعية">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    نوع الفترة
+</label>
+
+<select
+    id="periodType"
+    onchange="updatePeriodType()">
+
+<option value="custom">
+    فترة مخصصة
+</option>
+
+<option value="monthly">
+    تقرير شهري
+</option>
+
+<option value="quarter1">
+    الربع الأول
+</option>
+
+<option value="quarter2">
+    الربع الثاني
+</option>
+
+<option value="quarter3">
+    الربع الثالث
+</option>
+
+<option value="quarter4">
+    الربع الرابع
+</option>
+
+<option value="annual">
+    تقرير سنوي
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    السنة
+</label>
+
+<input
+    id="reportYear"
+    type="number">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    من تاريخ
+</label>
+
+<input
+    id="periodFrom"
+    type="date">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    إلى تاريخ
+</label>
+
+<input
+    id="periodTo"
+    type="date">
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+    ملاحظات التقرير
+</label>
+
+<textarea
+    id="reportNotes"
+    placeholder="مثال: تم التواصل مع الأقسام غير المكتملة لاستكمال تحديث الحالة المناعية."></textarea>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+
+<input
+    id="includeNotScreened"
+    type="checkbox"
+    style="width:auto;">
+
+إظهار قائمة الموظفين الذين لم يتم فحصهم داخل التقرير
+
+</label>
+
+</div>
+
+
+</div>
+
+
+<div class="action-row">
+
+<button
+    class="primary-btn"
+    onclick="saveDepartmentTargets()">
+
+💾 حفظ أعداد الأقسام
+
+</button>
+
+<button
+    class="green-btn"
+    onclick="generateReport()">
+
+📊 معاينة التقرير
+
+</button>
+
+<a
+    href="employee-directory.html"
+    class="link-btn primary-btn">
+
+👥 دليل الموظفين
+
+</a>
+
+<a
+    href="employee-screening.html"
+    class="link-btn green-btn">
+
+🧪 تسجيل فحص جديد
+
+</a>
+
+</div>
+
+</section>
+
+
+
+<!-- الأقسام -->
+
+<section class="section-card">
+
+<h2>
+    🏢 الأقسام ونسب الإنجاز
+</h2>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+<th>م</th>
+<th>الإدارة / القسم</th>
+<th>العدد المستهدف</th>
+<th>تم الفحص</th>
+<th>لم يتم الفحص</th>
+<th>النسبة</th>
+<th>مصدر العدد</th>
+<th class="no-print">التفاصيل</th>
+</tr>
+
+</thead>
+
+<tbody id="departmentsBody"></tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+
+<!-- المعتمدون -->
+
+<section class="section-card no-print">
+
+<h2>
+    ✍️ المعتمدون والتوقيعات
+</h2>
+
+<p>
+يمكن تعديل الاسم أو المسمى مباشرة قبل اعتماد التقرير.
+</p>
+
+
+<div class="approvers-grid">
+
+
+<div class="approver-card">
+
+<h3>
+المعتمد الأول
+</h3>
+
+<label>المسمى</label>
+
+<input
+    id="approver1Title"
+    value="منسق الفحص الدوري للموظفين">
+
+<br><br>
+
+<label>الاسم</label>
+
+<input
+    id="approver1Name"
+    value="عوض الحديدي">
+
+
+<div class="signature-area">
+
+<canvas
+    id="signature1"
+    class="signature-canvas">
+</canvas>
+
+</div>
+
+
+<button
+    class="light-btn"
+    onclick="clearSignature('signature1')">
+
+مسح التوقيع
+
+</button>
+
+</div>
+
+
+
+<div class="approver-card">
+
+<h3>
+المعتمد الثاني
+</h3>
+
+<label>المسمى</label>
+
+<input
+    id="approver2Title"
+    value="مدير مكافحة العدوى">
+
+<br><br>
+
+<label>الاسم</label>
+
+<input
+    id="approver2Name"
+    value="فارس فاضل الشمري">
+
+
+<div class="signature-area">
+
+<canvas
+    id="signature2"
+    class="signature-canvas">
+</canvas>
+
+</div>
+
+
+<button
+    class="light-btn"
+    onclick="clearSignature('signature2')">
+
+مسح التوقيع
+
+</button>
+
+</div>
+
+
+</div>
+
+
+<div class="action-row">
+
+<button
+    class="primary-btn"
+    onclick="saveApprovers()">
+
+💾 حفظ بيانات المعتمدين
+
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- التقرير الحالي -->
+
+<section
+    id="reportBox"
+    class="report-box">
+</section>
+
+
+
+<!-- أرشيف -->
+
+<section class="section-card no-print">
+
+<h2>
+    🗂️ أرشيف التقارير المعتمدة
+</h2>
+
+<p>
+يتم حفظ نسخة من بيانات التقرير والتوقيعات بحيث يمكن فتح التقرير وطباعته لاحقًا.
+</p>
+
+
+<div
+    id="archiveContainer">
+</div>
+
+</section>
+
+
+<div class="action-row no-print">
+
+<a
+    href="occupational-health.html"
+    class="link-btn light-btn">
+
+← العودة للصحة المهنية
+
+</a>
+
+</div>
+
+
+</main>
+
+
+
+<!-- نافذة تفاصيل الموظفين -->
+
+<div
+    id="employeeModal"
+    class="modal">
+
+<div class="modal-box">
+
+
+<div class="modal-header">
+
+<h2 id="modalDepartmentName">
+تفاصيل القسم
+</h2>
+
+<button
+    class="gray-btn"
+    onclick="closeEmployeeModal()">
+
+✕ إغلاق
+
+</button>
+
+</div>
+
+
+<div
+    id="employeeSummary"
+    class="employee-summary">
+</div>
+
+
+<div class="tabs">
+
+<button
+    id="allTab"
+    class="tab-btn active"
+    onclick="showEmployeeTab('all')">
+
+👥 جميع الموظفين
+
+</button>
+
+<button
+    id="screenedTab"
+    class="tab-btn"
+    onclick="showEmployeeTab('screened')">
+
+✅ تم الفحص
+
+</button>
+
+<button
+    id="notScreenedTab"
+    class="tab-btn"
+    onclick="showEmployeeTab('notScreened')">
+
+❌ لم يتم الفحص
+
+</button>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+<th>م</th>
+<th>اسم الموظف</th>
+<th>الرقم الوظيفي</th>
+<th>المسمى الوظيفي</th>
+<th>حالة الفحص</th>
+<th>تاريخ الفحص</th>
+<th>الاستحقاق القادم</th>
+</tr>
+
+</thead>
+
+<tbody id="employeeModalBody"></tbody>
+
+</table>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<script>
+
+
+/* =====================================================
+   الأقسام
+===================================================== */
+
+const departmentGroups = [
+
+{
+group:"الإدارات التابعة لمدير المستشفى",
+
+departments:[
+["مكتب المدير",6],
+["التغيير والتواصل المؤسسي",3],
+["التخطيط والاستعداد",10],
+["الصحة الإلكترونية",3],
+["المراجعة الداخلية",2],
+["المدير التنفيذي",1],
+["مكافحة العدوى",6],
+["الجودة الصحية",10],
+["تجربة المستفيد",7],
+["خدمات التمريض",65],
+["القانونية",1],
+["تنمية الإيرادات",10]
+]
+},
+
+{
+group:"مساعد مدير المستشفى للخدمات العلاجية",
+
+departments:[
+["التغذية",9],
+["العيادات الخارجية",5],
+["التنسيق الطبي",4],
+["الخدمة الاجتماعية",5],
+["اضطرابات النمو",6],
+["الرعاية المنزلية",9],
+["النقل الإسعافي",11],
+["الصيدلية",13],
+["المختبر",7],
+["الإدمان",1],
+["الصحة العامة",5],
+["التأهيل الطبي والعلاج بالعمل",1],
+["الإسعاف",9],
+["الخدمة النفسية",4],
+["السجلات الطبية",7],
+["شؤون المرضى",8],
+["الإحصاء الطبي",4],
+["الأشعة",4],
+["الطاقة الاستيعابية",4],
+["التعقيم",5],
+["الخدمات العلاجية",16],
+["التقارير",7]
+]
+},
+
+{
+group:"مساعد مدير المستشفى للموارد البشرية",
+
+departments:[
+["خدمات الموارد",19],
+["التدريب والتعليم المستمر",5],
+["المبتعثين والإيفاد",16]
+]
+},
+
+{
+group:"مساعد مدير المستشفى المالي والإداري",
+
+departments:[
+["السلامة",2],
+["الصيانة العامة",2],
+["الشؤون المالية",1],
+["الأمن الصحي",13],
+["مراقبة المخزون",3],
+["الأصول الثابتة",3],
+["الاتصالات الإدارية",4],
+["التموين الطبي",7],
+["التوعية الدينية",1],
+["الخدمات العامة",2],
+["المشتريات",1],
+["الصيانة الطبية",1],
+["إدارة الالتزام",1],
+["الزائر السري",2]
+]
+}
+
+];
+
+
+
+/* =====================================================
+   Storage
+===================================================== */
+
+function getEmployeeDirectory(){
+
+try{
+
+return JSON.parse(
+localStorage.getItem(
+"hospitalEmployeeDirectory"
+)
+) || [];
+
+}catch(error){
+
+return [];
+
+}
+
+}
+
+
+function getScreeningRecords(){
+
+try{
+
+return JSON.parse(
+localStorage.getItem(
+"employeeScreeningRecords"
+)
+) || [];
+
+}catch(error){
+
+return [];
+
+}
+
+}
+
+
+function getSavedTargets(){
+
+try{
+
+return JSON.parse(
+localStorage.getItem(
+"occupationalDepartmentTargets"
+)
+) || {};
+
+}catch(error){
+
+return {};
+
+}
+
+}
+
+
+function getReportsArchive(){
+
+try{
+
+return JSON.parse(
+localStorage.getItem(
+"occupationalReportsArchive"
+)
+) || [];
+
+}catch(error){
+
+return [];
+
+}
+
+}
+
+
+
+/* =====================================================
+   Employees
+===================================================== */
+
+function getDepartmentEmployees(department){
+
+return getEmployeeDirectory()
+.filter(
+
+function(employee){
+
+return (
+employee.department === department &&
+employee.employmentStatus === "active"
+);
+
+}
+
+);
+
+}
+
+
+function getEmployeeScreening(employeeId){
+
+const records =
+getScreeningRecords()
+.filter(
+
+function(record){
+
+return String(record.employeeId) ===
+String(employeeId);
+
+}
+
+)
+.sort(
+
+function(a,b){
+
+return new Date(
+b.createdAt || 0
+) -
+new Date(
+a.createdAt || 0
+);
+
+}
+
+);
+
+
+return records.length
+? records[0]
+: null;
+
+}
+
+
+function employeeIsScreened(employeeId){
+
+const record =
+getEmployeeScreening(
+employeeId
+);
+
+
+return !!(
+record &&
+record.screeningStatus === "completed"
+);
+
+}
+
+
+
+/* =====================================================
+   Department stats
+===================================================== */
+
+function getDepartmentStats(
+department,
+defaultTarget
+){
+
+const employees =
+getDepartmentEmployees(
+department
+);
+
+
+const savedTargets =
+getSavedTargets();
+
+
+let target;
+let source;
+
+
+if(employees.length > 0){
+
+target =
+employees.length;
+
+source =
+"directory";
+
+}else{
+
+target =
+savedTargets[department] !== undefined
+? Number(savedTargets[department])
+: Number(defaultTarget || 0);
+
+source =
+"manual";
+
+}
+
+
+let screened;
+
+
+if(employees.length > 0){
+
+screened =
+employees.filter(
+
+employee =>
+employeeIsScreened(
+employee.employeeId
+)
+
+).length;
+
+}else{
+
+const ids =
+new Set();
+
+
+getScreeningRecords()
+.forEach(
+
+function(record){
+
+if(
+record.department === department &&
+record.screeningStatus === "completed"
+){
+
+ids.add(
+String(record.employeeId)
+);
+
+}
+
+}
+
+);
+
+
+screened =
+ids.size;
+
+}
+
+
+const notScreened =
+Math.max(
+target-screened,
+0
+);
+
+
+const percent =
+target > 0
+? Math.round(
+screened/target*100
+)
+: 0;
+
+
+return{
+target,
+screened,
+notScreened,
+percent,
+source,
+employees
+};
+
+}
+
+
+
+/* =====================================================
+   Main table
+===================================================== */
+
+function renderDepartments(){
+
+const body =
+document.getElementById(
+"departmentsBody"
+);
+
+
+let html = "";
+let number = 1;
+let totalTarget = 0;
+let totalScreened = 0;
+
+
+departmentGroups.forEach(
+
+function(group){
+
+
+html += `
+
+<tr class="group-row">
+
+<td colspan="8">
+${group.group}
+</td>
+
+</tr>
+
+`;
+
+
+group.departments.forEach(
+
+function(item){
+
+const department =
+item[0];
+
+
+const stats =
+getDepartmentStats(
+department,
+item[1]
+);
+
+
+totalTarget +=
+stats.target;
+
+
+totalScreened +=
+stats.screened;
+
+
+let cls =
+"percent-good";
+
+
+if(stats.percent < 90){
+
+cls =
+"percent-bad";
+
+}else if(
+stats.percent < 100
+){
+
+cls =
+"percent-warning";
+
+}
+
+
+const sourceText =
+stats.source === "directory"
+? "دليل الموظفين"
+: "عدد يدوي";
+
+
+const sourceClass =
+stats.source === "directory"
+? "source-directory"
+: "source-manual";
+
+
+html += `
+
+<tr>
+
+<td>
+${number++}
+</td>
+
+<td>
+<strong>
+${department}
+</strong>
+</td>
+
+<td>
+
+<input
+class="target-input"
+data-department="${department}"
+type="number"
+min="0"
+value="${stats.target}"
+${stats.source==="directory"
+?"disabled"
+:""}>
+
+</td>
+
+<td>
+
+<button
+class="number-link"
+onclick="openEmployeeModal(
+'${department}',
+'screened'
+)">
+
+${stats.screened}
+
+</button>
+
+</td>
+
+<td>
+
+<button
+class="number-link not-screened-link"
+onclick="openEmployeeModal(
+'${department}',
+'notScreened'
+)">
+
+${stats.notScreened}
+
+</button>
+
+</td>
+
+<td class="${cls}">
+${stats.percent}%
+</td>
+
+<td>
+
+<span
+class="source-badge ${sourceClass}">
+
+${sourceText}
+
+</span>
+
+</td>
+
+<td class="no-print">
+
+<button
+class="light-btn"
+onclick="openEmployeeModal(
+'${department}',
+'all'
+)">
+
+👥 عرض
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+}
+
+);
+
+}
+
+);
+
+
+body.innerHTML =
+html;
+
+
+const totalNot =
+Math.max(
+totalTarget-totalScreened,
+0
+);
+
+
+const overall =
+totalTarget>0
+? Math.round(
+totalScreened/totalTarget*100
+)
+:0;
+
+
+document.getElementById(
+"totalTarget"
+).textContent =
+totalTarget;
+
+
+document.getElementById(
+"totalScreened"
+).textContent =
+totalScreened;
+
+
+document.getElementById(
+"totalNotScreened"
+).textContent =
+totalNot;
+
+
+document.getElementById(
+"overallPercent"
+).textContent =
+overall+"%";
+
+}
+
+
+
+/* =====================================================
+   Manual targets
+===================================================== */
+
+function saveDepartmentTargets(){
+
+let saved =
+getSavedTargets();
+
+
+document
+.querySelectorAll(
+".target-input"
+)
+.forEach(
+
+function(input){
+
+if(!input.disabled){
+
+saved[
+input.dataset.department
+] =
+Number(
+input.value || 0
+);
+
+}
+
+}
+
+);
+
+
+localStorage.setItem(
+
+"occupationalDepartmentTargets",
+
+JSON.stringify(saved)
+
+);
+
+
+renderDepartments();
+
+}
+
+
+
+/* =====================================================
+   Period
+===================================================== */
+
+function formatDateInput(date){
+
+return new Date(
+date.getTime() -
+date.getTimezoneOffset()*60000
+)
+.toISOString()
+.slice(0,10);
+
+}
+
+
+function updatePeriodType(){
+
+const type =
+document.getElementById(
+"periodType"
+).value;
+
+
+const year =
+Number(
+document.getElementById(
+"reportYear"
+).value
+);
+
+
+if(!year){
+
+return;
+
+}
+
+
+let from;
+let to;
+
+
+if(type==="quarter1"){
+
+from =
+new Date(year,0,1);
+
+to =
+new Date(year,2,31);
+
+}
+
+
+if(type==="quarter2"){
+
+from =
+new Date(year,3,1);
+
+to =
+new Date(year,5,30);
+
+}
+
+
+if(type==="quarter3"){
+
+from =
+new Date(year,6,1);
+
+to =
+new Date(year,8,30);
+
+}
+
+
+if(type==="quarter4"){
+
+from =
+new Date(year,9,1);
+
+to =
+new Date(year,11,31);
+
+}
+
+
+if(type==="annual"){
+
+from =
+new Date(year,0,1);
+
+to =
+new Date(year,11,31);
+
+}
+
+
+if(
+from &&
+to
+){
+
+document.getElementById(
+"periodFrom"
+).value =
+formatDateInput(from);
+
+
+document.getElementById(
+"periodTo"
+).value =
+formatDateInput(to);
+
+}
+
+}
+
+
+
+/* =====================================================
+   Employee modal
+===================================================== */
+
+let currentDepartment="";
+let currentEmployeeTab="all";
+
+
+function openEmployeeModal(
+department,
+tab
+){
+
+currentDepartment =
+department;
+
+currentEmployeeTab =
+tab || "all";
+
+
+document.getElementById(
+"modalDepartmentName"
+).textContent =
+"موظفو قسم: "+department;
+
+
+document.getElementById(
+"employeeModal"
+)
+.classList.add(
+"active"
+);
+
+
+showEmployeeTab(
+currentEmployeeTab
+);
+
+}
+
+
+function closeEmployeeModal(){
+
+document.getElementById(
+"employeeModal"
+)
+.classList.remove(
+"active"
+);
+
+}
+
+
+function showEmployeeTab(tab){
+
+currentEmployeeTab =
+tab;
+
+
+document
+.querySelectorAll(
+".tab-btn"
+)
+.forEach(
+
+button =>
+button.classList.remove(
+"active"
+)
+
+);
+
+
+if(tab==="all"){
+document.getElementById(
+"allTab"
+).classList.add(
+"active"
+);
+}
+
+if(tab==="screened"){
+document.getElementById(
+"screenedTab"
+).classList.add(
+"active"
+);
+}
+
+if(tab==="notScreened"){
+document.getElementById(
+"notScreenedTab"
+).classList.add(
+"active"
+);
+}
+
+
+renderDepartmentEmployees();
+
+}
+
+
+function renderDepartmentEmployees(){
+
+let employees =
+getDepartmentEmployees(
+currentDepartment
+);
+
+
+const screened =
+employees.filter(
+
+employee =>
+employeeIsScreened(
+employee.employeeId
+)
+
+);
+
+
+const notScreened =
+employees.filter(
+
+employee =>
+!employeeIsScreened(
+employee.employeeId
+)
+
+);
+
+
+document.getElementById(
+"employeeSummary"
+).innerHTML = `
+
+<div class="summary-box">
+
+<strong>
+${employees.length}
+</strong>
+
+المسجلون
+
+</div>
+
+<div class="summary-box">
+
+<strong>
+${screened.length}
+</strong>
+
+تم الفحص
+
+</div>
+
+<div class="summary-box">
+
+<strong>
+${notScreened.length}
+</strong>
+
+لم يتم الفحص
+
+</div>
+
+`;
+
+
+if(currentEmployeeTab==="screened"){
+
+employees =
+screened;
+
+}
+
+
+if(currentEmployeeTab==="notScreened"){
+
+employees =
+notScreened;
+
+}
+
+
+const body =
+document.getElementById(
+"employeeModalBody"
+);
+
+
+if(
+getDepartmentEmployees(
+currentDepartment
+).length===0
+){
+
+body.innerHTML = `
+
+<tr>
+
+<td colspan="7">
+
+لم تتم إضافة أسماء موظفي هذا القسم حتى الآن.
+
+<br><br>
+
+<a
+href="employee-directory.html"
+class="link-btn primary-btn">
+
+👥 إضافة الموظفين
+
+</a>
+
+</td>
+
+</tr>
+
+`;
+
+return;
+
+}
+
+
+if(employees.length===0){
+
+body.innerHTML = `
+
+<tr>
+
+<td colspan="7">
+لا توجد نتائج.
+</td>
+
+</tr>
+
+`;
+
+return;
+
+}
+
+
+body.innerHTML =
+employees.map(
+
+function(employee,index){
+
+const record =
+getEmployeeScreening(
+employee.employeeId
+);
+
+
+const isScreened =
+record &&
+record.screeningStatus==="completed";
+
+
+return `
+
+<tr>
+
+<td>
+${index+1}
+</td>
+
+<td>
+${employee.employeeName}
+</td>
+
+<td>
+${employee.employeeId}
+</td>
+
+<td>
+${employee.jobTitle || "—"}
+</td>
+
+<td>
+${isScreened
+?"✅ تم الفحص"
+:"❌ لم يتم الفحص"}
+</td>
+
+<td>
+${record
+?record.sampleDate || "—"
+:"—"}
+</td>
+
+<td>
+${record
+?record.nextDueDate || "—"
+:"—"}
+</td>
+
+</tr>
+
+`;
+
+}
+
+).join("");
+
+}
+
+
+
+/* =====================================================
+   Approvers
+===================================================== */
+
+function getApprovers(){
+
+try{
+
+return JSON.parse(
+localStorage.getItem(
+"occupationalApprovers"
+)
+) || {};
+
+}catch(error){
+
+return {};
+
+}
+
+}
+
+
+function saveApprovers(){
+
+const data = {
+
+approver1Title:
+document.getElementById(
+"approver1Title"
+).value.trim(),
+
+approver1Name:
+document.getElementById(
+"approver1Name"
+).value.trim(),
+
+approver2Title:
+document.getElementById(
+"approver2Title"
+).value.trim(),
+
+approver2Name:
+document.getElementById(
+"approver2Name"
+).value.trim()
+
+};
+
+
+localStorage.setItem(
+
+"occupationalApprovers",
+
+JSON.stringify(data)
+
+);
+
+}
+
+
+function loadApprovers(){
+
+const saved =
+getApprovers();
+
+
+if(saved.approver1Title){
+
+document.getElementById(
+"approver1Title"
+).value =
+saved.approver1Title;
+
+}
+
+
+if(saved.approver1Name){
+
+document.getElementById(
+"approver1Name"
+).value =
+saved.approver1Name;
+
+}
+
+
+if(saved.approver2Title){
+
+document.getElementById(
+"approver2Title"
+).value =
+saved.approver2Title;
+
+}
+
+
+if(saved.approver2Name){
+
+document.getElementById(
+"approver2Name"
+).value =
+saved.approver2Name;
+
+}
+
+}
+
+
+
+/* =====================================================
+   Signatures
+===================================================== */
+
+function setupSignature(canvasId){
+
+const canvas =
+document.getElementById(
+canvasId
+);
+
+
+const ctx =
+canvas.getContext("2d");
+
+
+const rect =
+canvas.getBoundingClientRect();
+
+
+const ratio =
+window.devicePixelRatio || 1;
+
+
+canvas.width =
+rect.width*ratio;
+
+
+canvas.height =
+145*ratio;
+
+
+ctx.setTransform(
+ratio,0,0,ratio,0,0
+);
+
+
+ctx.lineWidth=2;
+
+ctx.lineCap="round";
+
+ctx.strokeStyle="#172a3a";
+
+
+let drawing=false;
+
+
+function position(event){
+
+const rect =
+canvas.getBoundingClientRect();
+
+
+const point =
+event.touches
+?event.touches[0]
+:event;
+
+
+return{
+
+x:
+point.clientX-
+rect.left,
+
+y:
+point.clientY-
+rect.top
+
+};
+
+}
+
+
+function start(event){
+
+event.preventDefault();
+
+drawing=true;
+
+const p=
+position(event);
+
+ctx.beginPath();
+
+ctx.moveTo(
+p.x,
+p.y
+);
+
+}
+
+
+function move(event){
+
+if(!drawing){
+return;
+}
+
+event.preventDefault();
+
+const p=
+position(event);
+
+ctx.lineTo(
+p.x,
+p.y
+);
+
+ctx.stroke();
+
+}
+
+
+function end(){
+
+drawing=false;
+
+}
+
+
+canvas.addEventListener(
+"mousedown",
+start
+);
+
+canvas.addEventListener(
+"mousemove",
+move
+);
+
+window.addEventListener(
+"mouseup",
+end
+);
+
+canvas.addEventListener(
+"touchstart",
+start,
+{passive:false}
+);
+
+canvas.addEventListener(
+"touchmove",
+move,
+{passive:false}
+);
+
+canvas.addEventListener(
+"touchend",
+end
+);
+
+}
+
+
+function clearSignature(id){
+
+const canvas =
+document.getElementById(id);
+
+
+canvas
+.getContext("2d")
+.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+}
+
+
+
+/* =====================================================
+   Snapshot report
+===================================================== */
+
+let currentReportData=null;
+
+
+function buildReportData(){
+
+saveDepartmentTargets();
+
+saveApprovers();
+
+
+let departmentData=[];
+
+let totalTarget=0;
+
+let totalScreened=0;
+
+
+departmentGroups.forEach(
+
+function(group){
+
+group.departments.forEach(
+
+function(item){
+
+const stats =
+getDepartmentStats(
+item[0],
+item[1]
+);
+
+
+totalTarget +=
+stats.target;
+
+
+totalScreened +=
+stats.screened;
+
+
+departmentData.push({
+
+group:
+group.group,
+
+department:
+item[0],
+
+target:
+stats.target,
+
+screened:
+stats.screened,
+
+notScreened:
+stats.notScreened,
+
+percent:
+stats.percent
+
+});
+
+}
+
+);
+
+}
+
+);
+
+
+const totalNot =
+Math.max(
+totalTarget-totalScreened,
+0
+);
+
+
+const overall =
+totalTarget>0
+?Math.round(
+totalScreened/
+totalTarget*100
+)
+:0;
+
+
+const signature1 =
+document.getElementById(
+"signature1"
+)
+.toDataURL(
+"image/png"
+);
+
+
+const signature2 =
+document.getElementById(
+"signature2"
+)
+.toDataURL(
+"image/png"
+);
+
+
+return{
+
+id:
+"OH-RPT-"+
+new Date()
+.getFullYear()+
+"-"+
+Math.floor(
+1000+
+Math.random()*9000
+),
+
+createdAt:
+new Date()
+.toISOString(),
+
+createdDisplay:
+new Date()
+.toLocaleString(
+"ar-SA"
+),
+
+title:
+document.getElementById(
+"reportTitle"
+).value.trim(),
+
+periodType:
+document.getElementById(
+"periodType"
+).value,
+
+periodFrom:
+document.getElementById(
+"periodFrom"
+).value,
+
+periodTo:
+document.getElementById(
+"periodTo"
+).value,
+
+year:
+document.getElementById(
+"reportYear"
+).value,
+
+notes:
+document.getElementById(
+"reportNotes"
+).value.trim(),
+
+includeNotScreened:
+document.getElementById(
+"includeNotScreened"
+).checked,
+
+totalTarget,
+totalScreened,
+totalNot,
+overall,
+
+departments:
+departmentData,
+
+approver1:{
+
+title:
+document.getElementById(
+"approver1Title"
+).value.trim(),
+
+name:
+document.getElementById(
+"approver1Name"
+).value.trim(),
+
+signature:
+signature1
+
+},
+
+approver2:{
+
+title:
+document.getElementById(
+"approver2Title"
+).value.trim(),
+
+name:
+document.getElementById(
+"approver2Name"
+).value.trim(),
+
+signature:
+signature2
+
+}
+
+};
+
+}
+
+
+
+/* =====================================================
+   Render report
+===================================================== */
+
+function renderReport(report){
+
+let rows="";
+
+let lastGroup="";
+
+
+report.departments.forEach(
+
+function(item,index){
+
+if(
+item.group !==
+lastGroup
+){
+
+rows += `
+
+<tr class="group-row">
+
+<td colspan="6">
+${item.group}
+</td>
+
+</tr>
+
+`;
+
+lastGroup =
+item.group;
+
+}
+
+
+let cls =
+"percent-good";
+
+
+if(item.percent<90){
+
+cls =
+"percent-bad";
+
+}else if(
+item.percent<100
+){
+
+cls =
+"percent-warning";
+
+}
+
+
+rows += `
+
+<tr>
+
+<td>
+${index+1}
+</td>
+
+<td>
+${item.department}
+</td>
+
+<td>
+${item.target}
+</td>
+
+<td>
+${item.screened}
+</td>
+
+<td>
+${item.notScreened}
+</td>
+
+<td class="${cls}">
+${item.percent}%
+</td>
+
+</tr>
+
+`;
+
+}
+
+);
+
+
+let nonScreenedHtml="";
+
+
+if(
+report.includeNotScreened
+){
+
+let employeeRows="";
+
+
+departmentGroups.forEach(
+
+function(group){
+
+group.departments.forEach(
+
+function(item){
+
+const department =
+item[0];
+
+
+const employees =
+getDepartmentEmployees(
+department
+)
+.filter(
+
+employee =>
+!employeeIsScreened(
+employee.employeeId
+)
+
+);
+
+
+employees.forEach(
+
+function(employee){
+
+employeeRows += `
+
+<tr>
+
+<td>
+${department}
+</td>
+
+<td>
+${employee.employeeName}
+</td>
+
+<td>
+${employee.employeeId}
+</td>
+
+<td>
+${employee.jobTitle || "—"}
+</td>
+
+</tr>
+
+`;
+
+}
+
+);
+
+}
+
+);
+
+}
+
+);
+
+
+nonScreenedHtml = `
+
+<div class="non-screened-section">
+
+<h2>
+قائمة الموظفين الذين لم يتم فحصهم
+</h2>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+القسم
+</th>
+
+<th>
+اسم الموظف
+</th>
+
+<th>
+الرقم الوظيفي
+</th>
+
+<th>
+المسمى الوظيفي
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+${employeeRows ||
+`
+<tr>
+<td colspan="4">
+لا توجد أسماء غير مكتملة في دليل الموظفين.
+</td>
+</tr>
+`}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+const box =
+document.getElementById(
+"reportBox"
+);
+
+
+box.innerHTML = `
+
+
+<div class="report-logos">
+
+<img src="images/cluster-logo.png">
+
+<img src="images/hospital-logo.png">
+
+</div>
+
+
+<div class="report-header">
+
+<h1>
+${report.title}
+</h1>
+
+<p>
+مستشفى إرادة والصحة النفسية
+</p>
+
+<p>
+
+<strong>
+الفترة:
+</strong>
+
+${report.periodFrom || "—"}
+
+إلى
+
+${report.periodTo || "—"}
+
+</p>
+
+<p>
+
+<strong>
+رقم التقرير:
+</strong>
+
+${report.id}
+
+</p>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>م</th>
+<th>الإدارة / القسم</th>
+<th>المستهدف</th>
+<th>تم الفحص</th>
+<th>لم يتم الفحص</th>
+<th>النسبة</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+${rows}
+
+
+<tr class="group-row">
+
+<td colspan="2">
+الإجمالي العام
+</td>
+
+<td>
+${report.totalTarget}
+</td>
+
+<td>
+${report.totalScreened}
+</td>
+
+<td>
+${report.totalNot}
+</td>
+
+<td>
+${report.overall}%
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<div class="report-summary">
+
+<strong>
+إجمالي المستهدفين:
+</strong>
+
+${report.totalTarget}
+
+<br>
+
+<strong>
+تم الفحص:
+</strong>
+
+${report.totalScreened}
+
+<br>
+
+<strong>
+لم يتم الفحص:
+</strong>
+
+${report.totalNot}
+
+<br>
+
+<strong>
+نسبة الإنجاز:
+</strong>
+
+${report.overall}%
+
+${
+report.notes
+?`
+<br><br>
+
+<strong>
+الملاحظات:
+</strong>
+
+${report.notes}
+`
+:""
+}
+
+</div>
+
+
+${nonScreenedHtml}
+
+
+<div class="report-footer">
+
+
+<div class="report-signature">
+
+<strong>
+${report.approver1.title}
+</strong>
+
+<br><br>
+
+${report.approver1.name}
+
+<img
+src="${report.approver1.signature}">
+
+<small>
+التوقيع الإلكتروني
+</small>
+
+</div>
+
+
+<div class="report-signature">
+
+<strong>
+${report.approver2.title}
+</strong>
+
+<br><br>
+
+${report.approver2.name}
+
+<img
+src="${report.approver2.signature}">
+
+<small>
+التوقيع الإلكتروني
+</small>
+
+</div>
+
+
+</div>
+
+
+<div
+style="
+margin-top:25px;
+text-align:center;
+font-size:12px;
+color:#65798b;
+">
+
+تم اعتماد هذا التقرير إلكترونيًا
+داخل نظام متابعة الصحة المهنية.
+
+<br>
+
+تاريخ إنشاء التقرير:
+
+${report.createdDisplay}
+
+</div>
+
+
+<div
+class="action-row no-print"
+style="
+justify-content:center;
+margin-top:25px;
+">
+
+<button
+class="green-btn"
+onclick="saveCurrentReportToArchive()">
+
+✅ اعتماد وحفظ التقرير
+
+</button>
+
+
+<button
+class="gray-btn"
+onclick="window.print()">
+
+🖨️ طباعة / حفظ PDF
+
+</button>
+
+</div>
+
+`;
+
+
+box.classList.add(
+"active"
+);
+
+
+box.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+
+function generateReport(){
+
+currentReportData =
+buildReportData();
+
+
+renderReport(
+currentReportData
+);
+
+}
+
+
+
+/* =====================================================
+   Save archive
+===================================================== */
+
+function saveCurrentReportToArchive(){
+
+if(!currentReportData){
+
+alert(
+"أنشئ التقرير أولًا."
+);
+
+return;
+
+}
+
+
+let archive =
+getReportsArchive();
+
+
+const exists =
+archive.some(
+
+report =>
+report.id ===
+currentReportData.id
+
+);
+
+
+if(!exists){
+
+archive.unshift(
+currentReportData
+);
+
+
+localStorage.setItem(
+
+"occupationalReportsArchive",
+
+JSON.stringify(
+archive
+)
+
+);
+
+}
+
+
+alert(
+"✅ تم اعتماد التقرير وحفظه في الأرشيف."
+);
+
+
+renderArchive();
+
+}
+
+
+
+/* =====================================================
+   Archive
+===================================================== */
+
+function renderArchive(){
+
+const archive =
+getReportsArchive();
+
+
+const container =
+document.getElementById(
+"archiveContainer"
+);
+
+
+if(archive.length===0){
+
+container.innerHTML = `
+
+<div class="archive-empty">
+
+لا توجد تقارير محفوظة حتى الآن.
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+container.innerHTML = `
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+رقم التقرير
+</th>
+
+<th>
+الفترة
+</th>
+
+<th>
+المستهدف
+</th>
+
+<th>
+تم الفحص
+</th>
+
+<th>
+النسبة
+</th>
+
+<th>
+الحالة
+</th>
+
+<th>
+الإجراءات
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+${archive.map(
+
+report => `
+
+<tr>
+
+<td>
+${report.id}
+</td>
+
+<td>
+${report.periodFrom || "—"}
+<br>
+إلى
+<br>
+${report.periodTo || "—"}
+</td>
+
+<td>
+${report.totalTarget}
+</td>
+
+<td>
+${report.totalScreened}
+</td>
+
+<td>
+${report.overall}%
+</td>
+
+<td>
+
+<span class="status-approved">
+
+معتمد
+
+</span>
+
+</td>
+
+<td>
+
+<button
+class="primary-btn"
+onclick="openArchivedReport(
+'${report.id}'
+)">
+
+📄 فتح
+
+</button>
+
+<button
+class="red-btn"
+onclick="deleteArchivedReport(
+'${report.id}'
+)">
+
+حذف
+
+</button>
+
+</td>
+
+</tr>
+
+`
+
+).join("")}
+
+</tbody>
+
+</table>
+
+</div>
+
+`;
+
+}
+
+
+
+function openArchivedReport(id){
+
+const report =
+getReportsArchive()
+.find(
+
+item =>
+item.id === id
+
+);
+
+
+if(!report){
+
+return;
+
+}
+
+
+currentReportData =
+report;
+
+
+renderReport(
+report
+);
+
+}
+
+
+
+function deleteArchivedReport(id){
+
+if(
+!confirm(
+"هل تريد حذف هذا التقرير من الأرشيف؟"
+)
+){
+
+return;
+
+}
+
+
+const archive =
+getReportsArchive()
+.filter(
+
+report =>
+report.id !== id
+
+);
+
+
+localStorage.setItem(
+
+"occupationalReportsArchive",
+
+JSON.stringify(
+archive
+)
+
+);
+
+
+renderArchive();
+
+}
+
+
+
+/* =====================================================
+   Startup
+===================================================== */
+
+document.addEventListener(
+
+"DOMContentLoaded",
+
+function(){
+
+
+const now =
+new Date();
+
+
+document.getElementById(
+"reportYear"
+).value =
+now.getFullYear();
+
+
+document.getElementById(
+"periodFrom"
+).value =
+formatDateInput(
+new Date(
+now.getFullYear(),
+0,
+1
+)
+);
+
+
+document.getElementById(
+"periodTo"
+).value =
+formatDateInput(
+now
+);
+
+
+loadApprovers();
+
+renderDepartments();
+
+renderArchive();
+
+
+setTimeout(
+
+function(){
+
+setupSignature(
+"signature1"
+);
+
+setupSignature(
+"signature2"
+);
+
+},
+100
+
+);
+
+}
+
+);
+
+
+</script>
+
+
+</body>
+
+</html>

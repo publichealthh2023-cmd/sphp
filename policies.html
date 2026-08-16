@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>السياسات والإجراءات</title>
+
+<link rel="stylesheet" href="Style.css">
+
+<style>
+
+.policies-page{
+    max-width:1250px;
+    margin:30px auto;
+    padding:0 20px 60px;
+}
+
+.page-intro{
+    background:white;
+    border:1px solid #dfe8f2;
+    border-radius:15px;
+    box-shadow:0 4px 14px rgba(0,0,0,.06);
+    text-align:center;
+    padding:28px;
+    margin-bottom:22px;
+}
+
+.page-intro .icon{
+    font-size:46px;
+}
+
+.page-intro h1{
+    color:#064c92;
+    margin:8px 0 4px;
+}
+
+.page-intro h2{
+    color:#687b8d;
+    font-size:17px;
+    margin:0;
+}
+
+.source-note{
+    background:#eef7ff;
+    border-right:5px solid #0759a6;
+    border-radius:10px;
+    padding:16px;
+    margin-bottom:22px;
+    color:#31556f;
+    line-height:1.8;
+}
+
+.search-box{
+    display:flex;
+    max-width:900px;
+    margin:20px auto 30px;
+    background:white;
+    border-radius:11px;
+    overflow:hidden;
+    box-shadow:0 4px 14px rgba(0,0,0,.08);
+    border:1px solid #dfe8f2;
+}
+
+.search-box input{
+    flex:1;
+    border:none;
+    outline:none;
+    padding:15px;
+    font-size:15px;
+}
+
+.search-box button{
+    border:none;
+    background:#0759a6;
+    color:white;
+    padding:0 25px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.section-heading{
+    margin:30px 0 15px;
+}
+
+.section-heading h2{
+    color:#064c92;
+    margin:0;
+}
+
+.section-heading p{
+    color:#718293;
+    margin:5px 0 0;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.policy-card{
+    background:white;
+    border:1px solid #dfe8f2;
+    border-radius:14px;
+    padding:20px;
+    box-shadow:0 4px 14px rgba(0,0,0,.06);
+    transition:.2s;
+}
+
+.policy-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(0,0,0,.10);
+}
+
+.policy-icon{
+    font-size:36px;
+}
+
+.policy-card h3{
+    color:#064c92;
+    margin:9px 0 4px;
+}
+
+.policy-card h4{
+    color:#738391;
+    font-size:12px;
+    margin:0 0 10px;
+}
+
+.policy-card p{
+    color:#607387;
+    line-height:1.7;
+    font-size:13px;
+}
+
+.meta{
+    margin-top:12px;
+    border-top:1px solid #e5ebef;
+    padding-top:10px;
+    color:#65798b;
+    font-size:12px;
+    line-height:1.8;
+}
+
+.status{
+    display:inline-block;
+    margin-top:10px;
+    padding:5px 10px;
+    border-radius:15px;
+    background:#e7f6eb;
+    color:#26733a;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:14px;
+}
+
+.actions button{
+    border:none;
+    border-radius:8px;
+    padding:9px 13px;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:12px;
+}
+
+.details-btn{
+    background:#eaf1f7;
+    color:#064c92;
+}
+
+.open-file-btn{
+    background:#0759a6;
+    color:white;
+}
+
+.download-btn{
+    background:#187b43;
+    color:white;
+}
+
+.empty{
+    grid-column:1/-1;
+    background:white;
+    border:1px dashed #ccd9e5;
+    border-radius:12px;
+    padding:25px;
+    text-align:center;
+    color:#718293;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.48);
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+    padding:20px;
+}
+
+.modal.active{
+    display:flex;
+}
+
+.modal-box{
+    background:white;
+    width:100%;
+    max-width:850px;
+    max-height:88vh;
+    overflow:auto;
+    border-radius:16px;
+    padding:28px;
+}
+
+.modal-close{
+    float:left;
+    border:none;
+    padding:8px 12px;
+    border-radius:7px;
+    cursor:pointer;
+    background:#edf3f8;
+}
+
+.modal-title{
+    color:#064c92;
+}
+
+.content-section{
+    background:#f8fbfd;
+    border-right:4px solid #0759a6;
+    border-radius:10px;
+    padding:15px 18px;
+    margin-bottom:14px;
+    line-height:1.8;
+}
+
+.reference-box{
+    background:#eef7ff;
+    border-radius:10px;
+    padding:15px;
+    margin-top:18px;
+    line-height:1.8;
+}
+
+.modal-actions{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:18px;
+}
+
+.modal-actions button{
+    border:none;
+    border-radius:8px;
+    padding:10px 15px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.back-btn{
+    display:inline-block;
+    margin-top:30px;
+    background:#eaf1f7;
+    color:#064c92;
+    padding:11px 18px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+@media(max-width:900px){
+
+    .grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:650px){
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .search-box{
+        flex-direction:column;
+    }
+
+    .search-box button{
+        padding:13px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="hero-header">
+
+<div class="hero-grid">
+
+<div class="side-logo left-logo">
+    <img src="images/cluster-logo.png">
+</div>
+
+<div class="hero-center">
+
+<h1>
+السياسات والإجراءات
+</h1>
+
+<h2>
+Policies & Procedures
+</h2>
+
+<p>
+الصحة العامة
+</p>
+
+</div>
+
+<div class="side-logo right-logo">
+    <img src="images/hospital-logo.png">
+</div>
+
+</div>
+
+</header>
+
+
+<main class="policies-page">
+
+
+<section class="page-intro">
+
+<div class="icon">
+📘
+</div>
+
+<h1>
+مكتبة السياسات والإجراءات
+</h1>
+
+<h2>
+Policies & Procedures Library
+</h2>
+
+</section>
+
+
+<div class="source-note">
+
+<strong>
+📚 ملاحظة:
+</strong>
+
+تعرض هذه الصفحة السياسات والإجراءات المنشورة والمعتمدة
+من إدارة الصحة العامة فقط.
+
+لا يمكن لطاقم الطوارئ إضافة أو تعديل أو حذف المحتوى من هذه الصفحة.
+
+</div>
+
+
+<div class="search-box">
+
+<input
+    id="searchInput"
+    placeholder="ابحث عن سياسة أو إجراء..."
+    oninput="renderPolicies()">
+
+<button
+    onclick="renderPolicies()">
+
+🔍 بحث
+
+</button>
+
+</div>
+
+
+<div class="section-heading">
+
+<h2>
+🏥 السياسات والإجراءات المنشورة
+</h2>
+
+<p>
+الوثائق النشطة والمحدثة والمتاحة للاستخدام
+</p>
+
+</div>
+
+
+<section
+    id="policiesGrid"
+    class="grid">
+</section>
+
+
+<a
+    href="index.html"
+    class="back-btn">
+
+← العودة لبوابة الطوارئ
+
+</a>
+
+
+</main>
+
+
+<div
+    id="modal"
+    class="modal">
+
+<div class="modal-box">
+
+<button
+    class="modal-close"
+    onclick="closeModal()">
+
+✕ إغلاق
+
+</button>
+
+<div id="modalContent"></div>
+
+</div>
+
+</div>
+
+
+<script>
+
+
+/* =====================================
+   IndexedDB Settings
+===================================== */
+
+const DB_NAME =
+    "PublicHealthPortalFilesDB";
+
+const DB_VERSION =
+    1;
+
+const FILE_STORE =
+    "files";
+
+
+let policies = [];
+
+
+/* =====================================
+   IndexedDB
+===================================== */
+
+function openFileDatabase(){
+
+    return new Promise(
+        function(resolve,reject){
+
+            const request =
+                indexedDB.open(
+                    DB_NAME,
+                    DB_VERSION
+                );
+
+
+            request.onupgradeneeded =
+                function(event){
+
+                    const db =
+                        event.target.result;
+
+
+                    if(
+                        !db.objectStoreNames.contains(
+                            FILE_STORE
+                        )
+                    ){
+
+                        db.createObjectStore(
+                            FILE_STORE,
+                            {
+                                keyPath:"id"
+                            }
+                        );
+
+                    }
+
+                };
+
+
+            request.onsuccess =
+                function(){
+
+                    resolve(
+                        request.result
+                    );
+
+                };
+
+
+            request.onerror =
+                function(){
+
+                    reject(
+                        request.error
+                    );
+
+                };
+
+        }
+    );
+
+}
+
+
+async function getFileFromDB(
+    fileId
+){
+
+    if(!fileId){
+        return null;
+    }
+
+
+    const db =
+        await openFileDatabase();
+
+
+    return new Promise(
+        function(resolve,reject){
+
+            const transaction =
+                db.transaction(
+                    FILE_STORE,
+                    "readonly"
+                );
+
+
+            const store =
+                transaction.objectStore(
+                    FILE_STORE
+                );
+
+
+            const request =
+                store.get(
+                    fileId
+                );
+
+
+            request.onsuccess =
+                function(){
+
+                    resolve(
+                        request.result ||
+                        null
+                    );
+
+                };
+
+
+            request.onerror =
+                function(){
+
+                    reject(
+                        request.error
+                    );
+
+                };
+
+        }
+    );
+
+}
+
+
+/* =====================================
+   Open Stored File
+===================================== */
+
+async function openStoredFile(
+    fileId
+){
+
+    try{
+
+        const record =
+            await getFileFromDB(
+                fileId
+            );
+
+
+        if(!record){
+
+            alert(
+                "تعذر العثور على الوثيقة المعتمدة."
+            );
+
+            return;
+
+        }
+
+
+        const url =
+            URL.createObjectURL(
+                record.blob
+            );
+
+
+        window.open(
+            url,
+            "_blank"
+        );
+
+
+        setTimeout(
+            function(){
+
+                URL.revokeObjectURL(
+                    url
+                );
+
+            },
+            60000
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "تعذر فتح الوثيقة."
+        );
+
+    }
+
+}
+
+
+/* =====================================
+   Download Stored File
+===================================== */
+
+async function downloadStoredFile(
+    fileId
+){
+
+    try{
+
+        const record =
+            await getFileFromDB(
+                fileId
+            );
+
+
+        if(!record){
+
+            alert(
+                "تعذر العثور على الوثيقة المعتمدة."
+            );
+
+            return;
+
+        }
+
+
+        const url =
+            URL.createObjectURL(
+                record.blob
+            );
+
+
+        const link =
+            document.createElement(
+                "a"
+            );
+
+
+        link.href =
+            url;
+
+
+        link.download =
+            record.name ||
+            "policy-document";
+
+
+        document.body.appendChild(
+            link
+        );
+
+
+        link.click();
+
+        link.remove();
+
+
+        setTimeout(
+            function(){
+
+                URL.revokeObjectURL(
+                    url
+                );
+
+            },
+            10000
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "تعذر تحميل الوثيقة."
+        );
+
+    }
+
+}
+
+
+/* =====================================
+   Load Policies
+===================================== */
+
+function loadPolicies(){
+
+    try{
+
+        policies =
+            JSON.parse(
+                localStorage.getItem(
+                    "publicHealthPolicies"
+                )
+            ) || [];
+
+
+        if(
+            !Array.isArray(
+                policies
+            )
+        ){
+
+            policies = [];
+
+        }
+
+    }catch(error){
+
+        policies = [];
+
+    }
+
+
+    /*
+      بوابة الطوارئ تعرض فقط:
+      1- السياسات النشطة
+      2- التي لديها ملف معتمد
+    */
+
+    policies =
+        policies.filter(
+            function(item){
+
+                return (
+                    item.status ===
+                    "active"
+
+                    &&
+
+                    item.fileId
+                );
+
+            }
+        );
+
+
+    renderPolicies();
+
+}
+
+
+/* =====================================
+   Category
+===================================== */
+
+function categoryName(
+    category
+){
+
+    const map = {
+
+        infectious:
+            "الأمراض المعدية",
+
+        isolation:
+            "العزل والاحتياطات",
+
+        notification:
+            "الإبلاغ والتقصي",
+
+        specimens:
+            "العينات والمختبر",
+
+        general:
+            "عام"
+
+    };
+
+
+    return (
+        map[category] ||
+        "عام"
+    );
+
+}
+
+
+function categoryIcon(
+    category
+){
+
+    const map = {
+
+        infectious:
+            "🦠",
+
+        isolation:
+            "🛡️",
+
+        notification:
+            "🚨",
+
+        specimens:
+            "🧪",
+
+        general:
+            "📘"
+
+    };
+
+
+    return (
+        map[category] ||
+        "📘"
+    );
+
+}
+
+
+/* =====================================
+   File Size
+===================================== */
+
+function formatFileSize(
+    bytes
+){
+
+    if(!bytes){
+        return "—";
+    }
+
+
+    const mb =
+        bytes /
+        1024 /
+        1024;
+
+
+    if(mb >= 1){
+
+        return (
+            mb.toFixed(2) +
+            " MB"
+        );
+
+    }
+
+
+    return (
+        (
+            bytes /
+            1024
+        )
+        .toFixed(1) +
+        " KB"
+    );
+
+}
+
+
+/* =====================================
+   Card
+===================================== */
+
+function policyCard(
+    policy
+){
+
+    return `
+
+    <article class="policy-card">
+
+        <div class="policy-icon">
+
+        ${categoryIcon(
+            policy.category
+        )}
+
+        </div>
+
+
+        <h3>
+
+        ${policy.titleAr || "—"}
+
+        </h3>
+
+
+        <h4>
+
+        ${policy.titleEn || ""}
+
+        </h4>
+
+
+        <p>
+
+        ${policy.description || ""}
+
+        </p>
+
+
+        <div class="meta">
+
+        <strong>
+        التصنيف:
+        </strong>
+
+        ${categoryName(
+            policy.category
+        )}
+
+        <br>
+
+        <strong>
+        الإصدار / الرقم:
+        </strong>
+
+        ${policy.version || "—"}
+
+        <br>
+
+        <strong>
+        تاريخ التحديث:
+        </strong>
+
+        ${policy.updatedDate || "—"}
+
+        <br>
+
+        <strong>
+        الملف:
+        </strong>
+
+        ${policy.fileName || "—"}
+
+        <br>
+
+        <strong>
+        حجم الملف:
+        </strong>
+
+        ${formatFileSize(
+            policy.fileSize
+        )}
+
+        </div>
+
+
+        <span class="status">
+
+        وثيقة منشورة
+
+        </span>
+
+
+        <div class="actions">
+
+        <button
+            class="details-btn"
+            onclick="openPolicyDetails('${policy.id}')">
+
+        ℹ️ التفاصيل
+
+        </button>
+
+
+        <button
+            class="open-file-btn"
+            onclick="openStoredFile('${policy.fileId}')">
+
+        👁️ فتح الوثيقة
+
+        </button>
+
+
+        <button
+            class="download-btn"
+            onclick="downloadStoredFile('${policy.fileId}')">
+
+        ⬇️ تحميل
+
+        </button>
+
+        </div>
+
+    </article>
+
+    `;
+
+}
+
+
+/* =====================================
+   Render
+===================================== */
+
+function renderPolicies(){
+
+    const grid =
+        document.getElementById(
+            "policiesGrid"
+        );
+
+
+    const query =
+        document.getElementById(
+            "searchInput"
+        )
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    const filtered =
+        policies.filter(
+            function(item){
+
+                const text =
+                    (
+                        (item.titleAr || "") +
+                        " " +
+                        (item.titleEn || "") +
+                        " " +
+                        (item.description || "") +
+                        " " +
+                        (item.version || "") +
+                        " " +
+                        categoryName(
+                            item.category
+                        )
+                    )
+                    .toLowerCase();
+
+
+                return (
+                    !query ||
+                    text.includes(
+                        query
+                    )
+                );
+
+            }
+        );
+
+
+    if(
+        filtered.length ===
+        0
+    ){
+
+        grid.innerHTML = `
+
+        <div class="empty">
+
+        لا توجد سياسات أو إجراءات منشورة حاليًا.
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    grid.innerHTML =
+        filtered.map(
+            function(item){
+
+                return policyCard(
+                    item
+                );
+
+            }
+        )
+        .join("");
+
+}
+
+
+/* =====================================
+   Details
+===================================== */
+
+function openPolicyDetails(
+    id
+){
+
+    const policy =
+        policies.find(
+            function(item){
+
+                return (
+                    item.id ===
+                    id
+                );
+
+            }
+        );
+
+
+    if(!policy){
+        return;
+    }
+
+
+    document.getElementById(
+        "modalContent"
+    ).innerHTML = `
+
+    <h2 class="modal-title">
+
+    ${policy.titleAr || "—"}
+
+    </h2>
+
+
+    ${
+        policy.titleEn
+
+        ? `
+
+        <h3>
+
+        ${policy.titleEn}
+
+        </h3>
+
+        `
+
+        : ""
+    }
+
+
+    <div class="content-section">
+
+        <strong>
+        وصف السياسة / الإجراء:
+        </strong>
+
+        <br><br>
+
+        ${policy.description || "—"}
+
+    </div>
+
+
+    <div class="reference-box">
+
+        <strong>
+        التصنيف:
+        </strong>
+
+        ${categoryName(
+            policy.category
+        )}
+
+        <br>
+
+        <strong>
+        الإصدار / الرقم:
+        </strong>
+
+        ${policy.version || "—"}
+
+        <br>
+
+        <strong>
+        تاريخ التحديث:
+        </strong>
+
+        ${policy.updatedDate || "—"}
+
+        <br>
+
+        <strong>
+        اسم الملف:
+        </strong>
+
+        ${policy.fileName || "—"}
+
+        <br>
+
+        <strong>
+        حجم الملف:
+        </strong>
+
+        ${formatFileSize(
+            policy.fileSize
+        )}
+
+    </div>
+
+
+    <div class="modal-actions">
+
+        <button
+            class="open-file-btn"
+            onclick="openStoredFile('${policy.fileId}')">
+
+        👁️ فتح الوثيقة المعتمدة
+
+        </button>
+
+
+        <button
+            class="download-btn"
+            onclick="downloadStoredFile('${policy.fileId}')">
+
+        ⬇️ تحميل الوثيقة
+
+        </button>
+
+    </div>
+
+    `;
+
+
+    document.getElementById(
+        "modal"
+    )
+    .classList.add(
+        "active"
+    );
+
+}
+
+
+/* =====================================
+   Close Modal
+===================================== */
+
+function closeModal(){
+
+    document.getElementById(
+        "modal"
+    )
+    .classList.remove(
+        "active"
+    );
+
+}
+
+
+/* =====================================
+   Startup
+===================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    loadPolicies
+);
+
+
+</script>
+
+
+</body>
+
+</html>

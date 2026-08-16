@@ -1,0 +1,3323 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>إدارة محتوى البوابة</title>
+
+<link rel="stylesheet" href="Style.css">
+
+<style>
+
+.page{
+    max-width:1250px;
+    margin:30px auto;
+    padding:0 20px 60px;
+}
+
+.intro,
+.section-card{
+    background:#fff;
+    border:1px solid #dfe8f2;
+    border-radius:16px;
+    padding:22px;
+    margin-bottom:20px;
+    box-shadow:0 4px 14px rgba(0,0,0,.05);
+}
+
+.intro{
+    text-align:center;
+}
+
+.intro h2,
+.section-card h3{
+    color:#064c92;
+}
+
+.intro p{
+    color:#607387;
+    line-height:1.8;
+}
+
+.storage-note{
+    margin-top:15px;
+    background:#eef7ff;
+    border-right:5px solid #0759a6;
+    border-radius:10px;
+    padding:14px;
+    color:#31556f;
+    line-height:1.8;
+    font-size:13px;
+}
+
+.tabs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.tab-btn{
+    border:none;
+    border-radius:9px;
+    padding:12px 18px;
+    background:#eaf1f7;
+    color:#064c92;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.tab-btn.active{
+    background:#0759a6;
+    color:white;
+}
+
+.tab-content{
+    display:none;
+}
+
+.tab-content.active{
+    display:block;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.group.full{
+    grid-column:1/-1;
+}
+
+label{
+    font-weight:bold;
+    color:#294b6a;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    box-sizing:border-box;
+    padding:11px;
+    border:1px solid #ccd9e5;
+    border-radius:8px;
+    background:white;
+    font-size:14px;
+}
+
+textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.file-upload-box{
+    border:2px dashed #aebfce;
+    border-radius:12px;
+    padding:22px;
+    background:#f8fbfd;
+}
+
+.file-upload-box input{
+    border:none;
+    padding:8px 0;
+    background:transparent;
+}
+
+.file-info{
+    margin-top:10px;
+    color:#53697c;
+    font-size:13px;
+    line-height:1.7;
+}
+
+.file-current{
+    margin-top:10px;
+    background:#eaf7ee;
+    border-radius:8px;
+    padding:10px 12px;
+    color:#285b33;
+    font-size:13px;
+    display:none;
+}
+
+.required-file{
+    color:#b71c1c;
+    font-size:12px;
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:18px;
+}
+
+.actions button,
+.actions a{
+    border:none;
+    border-radius:9px;
+    padding:12px 18px;
+    font-weight:bold;
+    cursor:pointer;
+    text-decoration:none;
+}
+
+.save-btn{
+    background:#187b43;
+    color:white;
+}
+
+.reset-btn{
+    background:#eaf1f7;
+    color:#064c92;
+}
+
+.back-btn{
+    background:#eaf1f7;
+    color:#064c92;
+}
+
+.list-card{
+    background:#fff;
+    border:1px solid #dfe8f2;
+    border-radius:14px;
+    padding:18px;
+    margin-top:18px;
+}
+
+.list-card h3{
+    color:#064c92;
+    margin-top:0;
+}
+
+.item-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.item{
+    border:1px solid #dfe8f2;
+    background:#f9fbfd;
+    border-radius:10px;
+    padding:14px;
+}
+
+.item-top{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    align-items:flex-start;
+    flex-wrap:wrap;
+}
+
+.item h4{
+    color:#064c92;
+    margin:0 0 5px;
+}
+
+.item p{
+    color:#607387;
+    margin:4px 0;
+    line-height:1.6;
+    font-size:13px;
+}
+
+.item-actions{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+}
+
+.item-actions button{
+    border:none;
+    border-radius:7px;
+    padding:8px 12px;
+    cursor:pointer;
+    font-weight:bold;
+    font-size:12px;
+}
+
+.edit-btn{
+    background:#eaf1f7;
+    color:#064c92;
+}
+
+.open-btn{
+    background:#e7f6eb;
+    color:#277438;
+}
+
+.download-btn{
+    background:#e9f3ff;
+    color:#0759a6;
+}
+
+.delete-btn{
+    background:#ffe9e9;
+    color:#b71c1c;
+}
+
+.status-active{
+    display:inline-block;
+    background:#e7f6eb;
+    color:#277438;
+    border-radius:15px;
+    padding:4px 9px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.status-hidden{
+    display:inline-block;
+    background:#eef2f5;
+    color:#526270;
+    border-radius:15px;
+    padding:4px 9px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.file-badge{
+    display:inline-block;
+    background:#eef7ff;
+    color:#0759a6;
+    border-radius:15px;
+    padding:4px 9px;
+    font-size:11px;
+    margin-right:5px;
+}
+
+.no-file-badge{
+    display:inline-block;
+    background:#fff1f1;
+    color:#b71c1c;
+    border-radius:15px;
+    padding:4px 9px;
+    font-size:11px;
+}
+
+.message{
+    display:none;
+    margin-top:15px;
+    padding:14px;
+    border-radius:9px;
+    background:#eaf7ee;
+    border-right:5px solid #2e7d32;
+    color:#285b33;
+}
+
+.message.error{
+    background:#fff0f0;
+    border-right-color:#c62828;
+    color:#7d2525;
+}
+
+.empty{
+    text-align:center;
+    padding:25px;
+    color:#718293;
+}
+
+@media(max-width:750px){
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .group.full{
+        grid-column:auto;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="hero-header">
+
+<div class="hero-grid">
+
+<div class="side-logo left-logo">
+    <img src="images/cluster-logo.png">
+</div>
+
+<div class="hero-center">
+
+<h1>
+إدارة محتوى البوابة
+</h1>
+
+<h2>
+Portal Content Management
+</h2>
+
+<p>
+الصحة العامة
+</p>
+
+</div>
+
+<div class="side-logo right-logo">
+    <img src="images/hospital-logo.png">
+</div>
+
+</div>
+
+</header>
+
+
+<main class="page">
+
+
+<section class="intro">
+
+<h2>
+إدارة محتوى بوابة الطوارئ
+</h2>
+
+<p>
+إضافة وتحديث السياسات والإجراءات والنماذج الرسمية
+وربطها بالملفات المعتمدة قبل نشرها للطاقم الطبي.
+</p>
+
+<div class="storage-note">
+
+<strong>📁 تخزين الملفات:</strong>
+
+النسخة التجريبية تحفظ الملفات الكبيرة داخل المتصفح باستخدام
+IndexedDB، وليس Local Storage.
+
+<br>
+
+الحد الحالي هو
+<strong>200 MB لكل ملف</strong>.
+وعند نقل النظام إلى بيئة المستشفى سيتم ربط الملفات
+بمستودع داخلي مركزي.
+
+</div>
+
+</section>
+
+
+<div class="tabs">
+
+<button
+    class="tab-btn active"
+    onclick="openTab('policiesTab',this)">
+
+📘 السياسات والإجراءات
+
+</button>
+
+<button
+    class="tab-btn"
+    onclick="openTab('formsTab',this)">
+
+📋 النماذج الرسمية
+
+</button>
+
+</div>
+
+
+<!-- ===================================================
+     POLICIES
+=================================================== -->
+
+<section
+    id="policiesTab"
+    class="tab-content active">
+
+
+<section class="section-card">
+
+<h3>
+➕ إضافة / تعديل سياسة أو إجراء
+</h3>
+
+
+<div class="form-grid">
+
+
+<div class="group">
+
+<label>
+عنوان السياسة بالعربي
+</label>
+
+<input id="policyTitleAr">
+
+</div>
+
+
+<div class="group">
+
+<label>
+العنوان بالإنجليزي
+</label>
+
+<input id="policyTitleEn">
+
+</div>
+
+
+<div class="group">
+
+<label>
+التصنيف
+</label>
+
+<select id="policyCategory">
+
+<option value="infectious">
+الأمراض المعدية
+</option>
+
+<option value="isolation">
+العزل والاحتياطات
+</option>
+
+<option value="notification">
+الإبلاغ والتقصي
+</option>
+
+<option value="specimens">
+العينات والمختبر
+</option>
+
+<option value="general">
+عام
+</option>
+
+</select>
+
+</div>
+
+
+<div class="group">
+
+<label>
+الحالة
+</label>
+
+<select id="policyStatus">
+
+<option value="hidden">
+مخفي - مسودة
+</option>
+
+<option value="active">
+نشط - يظهر في بوابة الطوارئ
+</option>
+
+</select>
+
+</div>
+
+
+<div class="group full">
+
+<label>
+وصف مختصر
+</label>
+
+<textarea id="policyDescription"></textarea>
+
+</div>
+
+
+<div class="group">
+
+<label>
+تاريخ التحديث
+</label>
+
+<input
+    id="policyDate"
+    type="date">
+
+</div>
+
+
+<div class="group">
+
+<label>
+رقم / إصدار السياسة
+</label>
+
+<input
+    id="policyVersion"
+    placeholder="مثال: PH-01 / Version 2">
+
+</div>
+
+
+<div class="group full">
+
+<label>
+الملف المعتمد
+<span class="required-file">
+* مطلوب قبل النشر
+</span>
+</label>
+
+<div class="file-upload-box">
+
+<input
+    id="policyFile"
+    type="file"
+    accept=".pdf,.doc,.docx,.xls,.xlsx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+
+<div
+    id="policySelectedFile"
+    class="file-info">
+
+يمكن رفع PDF أو Word أو Excel حتى 200 MB.
+
+</div>
+
+<div
+    id="policyCurrentFile"
+    class="file-current">
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="actions">
+
+<button
+    class="save-btn"
+    onclick="savePolicy()">
+
+💾 حفظ السياسة
+
+</button>
+
+<button
+    class="reset-btn"
+    onclick="resetPolicyForm()">
+
+↻ مسح الحقول
+
+</button>
+
+</div>
+
+
+<div
+    id="policyMessage"
+    class="message">
+</div>
+
+</section>
+
+
+<section class="list-card">
+
+<h3>
+السياسات المسجلة
+</h3>
+
+<div
+    id="policiesList"
+    class="item-list">
+</div>
+
+</section>
+
+
+</section>
+
+
+<!-- ===================================================
+     FORMS
+=================================================== -->
+
+<section
+    id="formsTab"
+    class="tab-content">
+
+
+<section class="section-card">
+
+<h3>
+➕ إضافة / تعديل نموذج رسمي
+</h3>
+
+
+<div class="form-grid">
+
+
+<div class="group">
+
+<label>
+اسم النموذج بالعربي
+</label>
+
+<input id="formTitleAr">
+
+</div>
+
+
+<div class="group">
+
+<label>
+اسم النموذج بالإنجليزي
+</label>
+
+<input id="formTitleEn">
+
+</div>
+
+
+<div class="group">
+
+<label>
+نوع النموذج
+</label>
+
+<select id="formCategory">
+
+<option value="notification">
+نموذج بلاغ
+</option>
+
+<option value="investigation">
+نموذج تقصي
+</option>
+
+<option value="outbreak">
+نموذج فاشية
+</option>
+
+<option value="occupational">
+صحة مهنية
+</option>
+
+<option value="other">
+أخرى
+</option>
+
+</select>
+
+</div>
+
+
+<div class="group">
+
+<label>
+الحالة
+</label>
+
+<select id="formStatus">
+
+<option value="hidden">
+مخفي - مسودة
+</option>
+
+<option value="active">
+نشط - يظهر في بوابة الطوارئ
+</option>
+
+</select>
+
+</div>
+
+
+<div class="group full">
+
+<label>
+وصف النموذج
+</label>
+
+<textarea id="formDescription"></textarea>
+
+</div>
+
+
+<div class="group">
+
+<label>
+تاريخ التحديث
+</label>
+
+<input
+    id="formDate"
+    type="date">
+
+</div>
+
+
+<div class="group">
+
+<label>
+رقم / إصدار النموذج
+</label>
+
+<input
+    id="formVersion"
+    placeholder="مثال: FORM-01 / Version 3">
+
+</div>
+
+
+<div class="group full">
+
+<label>
+الملف المعتمد
+<span class="required-file">
+* مطلوب قبل النشر
+</span>
+</label>
+
+<div class="file-upload-box">
+
+<input
+    id="formFile"
+    type="file"
+    accept=".pdf,.doc,.docx,.xls,.xlsx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+
+<div
+    id="formSelectedFile"
+    class="file-info">
+
+يمكن رفع PDF أو Word أو Excel حتى 200 MB.
+
+</div>
+
+<div
+    id="formCurrentFile"
+    class="file-current">
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="actions">
+
+<button
+    class="save-btn"
+    onclick="saveForm()">
+
+💾 حفظ النموذج
+
+</button>
+
+<button
+    class="reset-btn"
+    onclick="resetFormFields()">
+
+↻ مسح الحقول
+
+</button>
+
+</div>
+
+
+<div
+    id="formMessage"
+    class="message">
+</div>
+
+</section>
+
+
+<section class="list-card">
+
+<h3>
+النماذج المسجلة
+</h3>
+
+<div
+    id="formsList"
+    class="item-list">
+</div>
+
+</section>
+
+
+</section>
+
+
+<div class="actions">
+
+<a
+    class="back-btn"
+    href="public-health-inbox.html">
+
+← العودة إلى إدارة الصحة العامة
+
+</a>
+
+</div>
+
+
+</main>
+
+
+<script>
+
+/* ===================================================
+   SETTINGS
+=================================================== */
+
+const MAX_FILE_SIZE =
+    200 * 1024 * 1024;
+
+
+const DB_NAME =
+    "PublicHealthPortalFilesDB";
+
+
+const DB_VERSION =
+    1;
+
+
+const FILE_STORE =
+    "files";
+
+
+let policies = [];
+
+let forms = [];
+
+let editingPolicyId = null;
+
+let editingFormId = null;
+
+
+/* ===================================================
+   IndexedDB
+=================================================== */
+
+function openFileDatabase(){
+
+    return new Promise(
+        function(resolve,reject){
+
+            const request =
+                indexedDB.open(
+                    DB_NAME,
+                    DB_VERSION
+                );
+
+
+            request.onupgradeneeded =
+                function(event){
+
+                    const db =
+                        event.target.result;
+
+
+                    if(
+                        !db.objectStoreNames.contains(
+                            FILE_STORE
+                        )
+                    ){
+
+                        db.createObjectStore(
+                            FILE_STORE,
+                            {
+                                keyPath:"id"
+                            }
+                        );
+
+                    }
+
+                };
+
+
+            request.onsuccess =
+                function(){
+
+                    resolve(
+                        request.result
+                    );
+
+                };
+
+
+            request.onerror =
+                function(){
+
+                    reject(
+                        request.error
+                    );
+
+                };
+
+        }
+    );
+
+}
+
+
+async function saveFileToDB(
+    fileId,
+    file
+){
+
+    const db =
+        await openFileDatabase();
+
+
+    return new Promise(
+        function(resolve,reject){
+
+            const transaction =
+                db.transaction(
+                    FILE_STORE,
+                    "readwrite"
+                );
+
+
+            const store =
+                transaction.objectStore(
+                    FILE_STORE
+                );
+
+
+            const record = {
+
+                id:fileId,
+
+                name:file.name,
+
+                type:
+                    file.type ||
+                    "application/octet-stream",
+
+                size:file.size,
+
+                lastModified:
+                    file.lastModified,
+
+                blob:file,
+
+                savedAt:
+                    new Date()
+                    .toISOString()
+
+            };
+
+
+            const request =
+                store.put(
+                    record
+                );
+
+
+            request.onsuccess =
+                function(){
+
+                    resolve(
+                        record
+                    );
+
+                };
+
+
+            request.onerror =
+                function(){
+
+                    reject(
+                        request.error
+                    );
+
+                };
+
+        }
+    );
+
+}
+
+
+async function getFileFromDB(
+    fileId
+){
+
+    if(!fileId){
+        return null;
+    }
+
+
+    const db =
+        await openFileDatabase();
+
+
+    return new Promise(
+        function(resolve,reject){
+
+            const transaction =
+                db.transaction(
+                    FILE_STORE,
+                    "readonly"
+                );
+
+
+            const store =
+                transaction.objectStore(
+                    FILE_STORE
+                );
+
+
+            const request =
+                store.get(
+                    fileId
+                );
+
+
+            request.onsuccess =
+                function(){
+
+                    resolve(
+                        request.result ||
+                        null
+                    );
+
+                };
+
+
+            request.onerror =
+                function(){
+
+                    reject(
+                        request.error
+                    );
+
+                };
+
+        }
+    );
+
+}
+
+
+async function deleteFileFromDB(
+    fileId
+){
+
+    if(!fileId){
+        return;
+    }
+
+
+    const db =
+        await openFileDatabase();
+
+
+    return new Promise(
+        function(resolve,reject){
+
+            const transaction =
+                db.transaction(
+                    FILE_STORE,
+                    "readwrite"
+                );
+
+
+            const store =
+                transaction.objectStore(
+                    FILE_STORE
+                );
+
+
+            const request =
+                store.delete(
+                    fileId
+                );
+
+
+            request.onsuccess =
+                function(){
+
+                    resolve();
+
+                };
+
+
+            request.onerror =
+                function(){
+
+                    reject(
+                        request.error
+                    );
+
+                };
+
+        }
+    );
+
+}
+
+
+/* ===================================================
+   Open / Download File
+=================================================== */
+
+async function openStoredFile(
+    fileId
+){
+
+    try{
+
+        const record =
+            await getFileFromDB(
+                fileId
+            );
+
+
+        if(!record){
+
+            alert(
+                "لم يتم العثور على الملف المحفوظ."
+            );
+
+            return;
+
+        }
+
+
+        const url =
+            URL.createObjectURL(
+                record.blob
+            );
+
+
+        window.open(
+            url,
+            "_blank"
+        );
+
+
+        setTimeout(
+            function(){
+
+                URL.revokeObjectURL(
+                    url
+                );
+
+            },
+            60000
+        );
+
+    }catch(error){
+
+        alert(
+            "تعذر فتح الملف."
+        );
+
+    }
+
+}
+
+
+async function downloadStoredFile(
+    fileId
+){
+
+    try{
+
+        const record =
+            await getFileFromDB(
+                fileId
+            );
+
+
+        if(!record){
+
+            alert(
+                "لم يتم العثور على الملف."
+            );
+
+            return;
+
+        }
+
+
+        const url =
+            URL.createObjectURL(
+                record.blob
+            );
+
+
+        const link =
+            document.createElement(
+                "a"
+            );
+
+
+        link.href =
+            url;
+
+
+        link.download =
+            record.name;
+
+
+        document.body
+        .appendChild(
+            link
+        );
+
+
+        link.click();
+
+
+        link.remove();
+
+
+        setTimeout(
+            function(){
+
+                URL.revokeObjectURL(
+                    url
+                );
+
+            },
+            10000
+        );
+
+    }catch(error){
+
+        alert(
+            "تعذر تحميل الملف."
+        );
+
+    }
+
+}
+
+
+/* ===================================================
+   Helpers
+=================================================== */
+
+function generateId(
+    prefix
+){
+
+    return (
+        prefix +
+        "-" +
+        Date.now() +
+        "-" +
+        Math.floor(
+            1000 +
+            Math.random() *
+            9000
+        )
+    );
+
+}
+
+
+function formatFileSize(
+    bytes
+){
+
+    if(!bytes){
+        return "0 KB";
+    }
+
+
+    const mb =
+        bytes /
+        1024 /
+        1024;
+
+
+    if(mb >= 1){
+
+        return (
+            mb.toFixed(2) +
+            " MB"
+        );
+
+    }
+
+
+    return (
+        (
+            bytes /
+            1024
+        ).toFixed(1) +
+        " KB"
+    );
+
+}
+
+
+function validateFile(
+    file
+){
+
+    if(!file){
+
+        return true;
+
+    }
+
+
+    if(
+        file.size >
+        MAX_FILE_SIZE
+    ){
+
+        alert(
+            "حجم الملف أكبر من 200 MB."
+        );
+
+        return false;
+
+    }
+
+
+    const allowedExtensions =
+        [
+            "pdf",
+            "doc",
+            "docx",
+            "xls",
+            "xlsx"
+        ];
+
+
+    const extension =
+        (
+            file.name
+            .split(".")
+            .pop() ||
+            ""
+        )
+        .toLowerCase();
+
+
+    if(
+        !allowedExtensions.includes(
+            extension
+        )
+    ){
+
+        alert(
+            "نوع الملف غير مسموح. الأنواع المسموحة: PDF, Word, Excel."
+        );
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+/* ===================================================
+   Storage capacity check
+=================================================== */
+
+async function hasEnoughStorage(
+    fileSize
+){
+
+    if(
+        !navigator.storage ||
+        !navigator.storage.estimate
+    ){
+
+        return true;
+
+    }
+
+
+    try{
+
+        const estimate =
+            await navigator.storage
+            .estimate();
+
+
+        const quota =
+            estimate.quota || 0;
+
+
+        const usage =
+            estimate.usage || 0;
+
+
+        if(!quota){
+
+            return true;
+
+        }
+
+
+        const available =
+            quota -
+            usage;
+
+
+        return (
+            available >
+            fileSize *
+            1.15
+        );
+
+    }catch(error){
+
+        return true;
+
+    }
+
+}
+
+
+/* ===================================================
+   File selectors
+=================================================== */
+
+document.getElementById(
+    "policyFile"
+)
+.addEventListener(
+    "change",
+    function(){
+
+        const file =
+            this.files[0];
+
+
+        const box =
+            document.getElementById(
+                "policySelectedFile"
+            );
+
+
+        if(!file){
+
+            box.textContent =
+                "يمكن رفع PDF أو Word أو Excel حتى 200 MB.";
+
+            return;
+
+        }
+
+
+        if(!validateFile(file)){
+
+            this.value =
+                "";
+
+            return;
+
+        }
+
+
+        box.innerHTML =
+
+            "📎 <strong>" +
+            file.name +
+            "</strong>" +
+
+            "<br>الحجم: " +
+            formatFileSize(
+                file.size
+            );
+
+    }
+);
+
+
+document.getElementById(
+    "formFile"
+)
+.addEventListener(
+    "change",
+    function(){
+
+        const file =
+            this.files[0];
+
+
+        const box =
+            document.getElementById(
+                "formSelectedFile"
+            );
+
+
+        if(!file){
+
+            box.textContent =
+                "يمكن رفع PDF أو Word أو Excel حتى 200 MB.";
+
+            return;
+
+        }
+
+
+        if(!validateFile(file)){
+
+            this.value =
+                "";
+
+            return;
+
+        }
+
+
+        box.innerHTML =
+
+            "📎 <strong>" +
+            file.name +
+            "</strong>" +
+
+            "<br>الحجم: " +
+            formatFileSize(
+                file.size
+            );
+
+    }
+);
+
+
+/* ===================================================
+   Tabs
+=================================================== */
+
+function openTab(
+    id,
+    button
+){
+
+    document
+    .querySelectorAll(
+        ".tab-content"
+    )
+    .forEach(
+        function(tab){
+
+            tab.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    document
+    .querySelectorAll(
+        ".tab-btn"
+    )
+    .forEach(
+        function(btn){
+
+            btn.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    document.getElementById(
+        id
+    )
+    .classList.add(
+        "active"
+    );
+
+
+    button.classList.add(
+        "active"
+    );
+
+}
+
+
+/* ===================================================
+   Load
+=================================================== */
+
+function loadData(){
+
+    try{
+
+        policies =
+            JSON.parse(
+                localStorage.getItem(
+                    "publicHealthPolicies"
+                )
+            ) || [];
+
+
+        if(
+            !Array.isArray(
+                policies
+            )
+        ){
+
+            policies = [];
+
+        }
+
+    }catch(error){
+
+        policies = [];
+
+    }
+
+
+    try{
+
+        forms =
+            JSON.parse(
+                localStorage.getItem(
+                    "publicHealthForms"
+                )
+            ) || [];
+
+
+        if(
+            !Array.isArray(
+                forms
+            )
+        ){
+
+            forms = [];
+
+        }
+
+    }catch(error){
+
+        forms = [];
+
+    }
+
+
+    renderPolicies();
+
+    renderForms();
+
+}
+
+
+/* ===================================================
+   POLICY SAVE
+=================================================== */
+
+async function savePolicy(){
+
+    const titleAr =
+        document.getElementById(
+            "policyTitleAr"
+        )
+        .value
+        .trim();
+
+
+    if(!titleAr){
+
+        alert(
+            "يرجى إدخال عنوان السياسة."
+        );
+
+        return;
+
+    }
+
+
+    const status =
+        document.getElementById(
+            "policyStatus"
+        ).value;
+
+
+    const selectedFile =
+        document.getElementById(
+            "policyFile"
+        ).files[0];
+
+
+    if(
+        selectedFile &&
+        !validateFile(
+            selectedFile
+        )
+    ){
+
+        return;
+
+    }
+
+
+    let oldRecord =
+        null;
+
+
+    if(editingPolicyId){
+
+        oldRecord =
+            policies.find(
+                function(item){
+
+                    return (
+                        item.id ===
+                        editingPolicyId
+                    );
+
+                }
+            ) || null;
+
+    }
+
+
+    /*
+      إذا كانت السياسة نشطة يجب أن يوجد ملف:
+      إما ملف سابق أو ملف جديد.
+    */
+
+    const hasExistingFile =
+        oldRecord &&
+        oldRecord.fileId;
+
+
+    if(
+        status ===
+        "active"
+
+        &&
+
+        !selectedFile
+
+        &&
+
+        !hasExistingFile
+    ){
+
+        alert(
+            "لا يمكن نشر السياسة بدون إرفاق الملف المعتمد."
+        );
+
+        return;
+
+    }
+
+
+    if(selectedFile){
+
+        const enough =
+            await hasEnoughStorage(
+                selectedFile.size
+            );
+
+
+        if(!enough){
+
+            alert(
+                "المساحة المتاحة في المتصفح غير كافية لحفظ هذا الملف."
+            );
+
+            return;
+
+        }
+
+    }
+
+
+    const id =
+        editingPolicyId ||
+        generateId(
+            "POL"
+        );
+
+
+    const fileId =
+        "POLICY-FILE-" +
+        id;
+
+
+    let fileName =
+        oldRecord
+        ? oldRecord.fileName || ""
+        : "";
+
+
+    let fileSize =
+        oldRecord
+        ? oldRecord.fileSize || 0
+        : 0;
+
+
+    let fileType =
+        oldRecord
+        ? oldRecord.fileType || ""
+        : "";
+
+
+    let finalFileId =
+        oldRecord
+        ? oldRecord.fileId || ""
+        : "";
+
+
+    if(selectedFile){
+
+        try{
+
+            await saveFileToDB(
+                fileId,
+                selectedFile
+            );
+
+
+            finalFileId =
+                fileId;
+
+
+            fileName =
+                selectedFile.name;
+
+
+            fileSize =
+                selectedFile.size;
+
+
+            fileType =
+                selectedFile.type;
+
+        }catch(error){
+
+            console.error(
+                error
+            );
+
+
+            alert(
+                "تعذر حفظ الملف. قد تكون مساحة التخزين غير كافية."
+            );
+
+            return;
+
+        }
+
+    }
+
+
+    const record = {
+
+        id:id,
+
+        titleAr:
+            titleAr,
+
+        titleEn:
+            document.getElementById(
+                "policyTitleEn"
+            )
+            .value
+            .trim(),
+
+        category:
+            document.getElementById(
+                "policyCategory"
+            ).value,
+
+        status:
+            status,
+
+        description:
+            document.getElementById(
+                "policyDescription"
+            )
+            .value
+            .trim(),
+
+        version:
+            document.getElementById(
+                "policyVersion"
+            )
+            .value
+            .trim(),
+
+        updatedDate:
+            document.getElementById(
+                "policyDate"
+            ).value,
+
+        fileId:
+            finalFileId,
+
+        fileName:
+            fileName,
+
+        fileSize:
+            fileSize,
+
+        fileType:
+            fileType,
+
+        updatedAt:
+            new Date()
+            .toISOString()
+
+    };
+
+
+    const index =
+        policies.findIndex(
+            function(item){
+
+                return (
+                    item.id ===
+                    id
+                );
+
+            }
+        );
+
+
+    if(index >= 0){
+
+        policies[index] =
+            record;
+
+    }else{
+
+        policies.unshift(
+            record
+        );
+
+    }
+
+
+    localStorage.setItem(
+        "publicHealthPolicies",
+        JSON.stringify(
+            policies
+        )
+    );
+
+
+    resetPolicyForm();
+
+    renderPolicies();
+
+
+    showMessage(
+        "policyMessage",
+        "✅ تم حفظ السياسة والملف المعتمد بنجاح.",
+        false
+    );
+
+}
+
+
+/* ===================================================
+   POLICY EDIT
+=================================================== */
+
+function editPolicy(
+    id
+){
+
+    const item =
+        policies.find(
+            function(policy){
+
+                return (
+                    policy.id ===
+                    id
+                );
+
+            }
+        );
+
+
+    if(!item){
+        return;
+    }
+
+
+    editingPolicyId =
+        item.id;
+
+
+    document.getElementById(
+        "policyTitleAr"
+    ).value =
+        item.titleAr || "";
+
+
+    document.getElementById(
+        "policyTitleEn"
+    ).value =
+        item.titleEn || "";
+
+
+    document.getElementById(
+        "policyCategory"
+    ).value =
+        item.category ||
+        "general";
+
+
+    document.getElementById(
+        "policyStatus"
+    ).value =
+        item.status ||
+        "hidden";
+
+
+    document.getElementById(
+        "policyDescription"
+    ).value =
+        item.description || "";
+
+
+    document.getElementById(
+        "policyVersion"
+    ).value =
+        item.version || "";
+
+
+    document.getElementById(
+        "policyDate"
+    ).value =
+        item.updatedDate || "";
+
+
+    document.getElementById(
+        "policyFile"
+    ).value =
+        "";
+
+
+    const current =
+        document.getElementById(
+            "policyCurrentFile"
+        );
+
+
+    if(item.fileId){
+
+        current.style.display =
+            "block";
+
+
+        current.innerHTML =
+
+            "📎 الملف الحالي: <strong>" +
+            (
+                item.fileName ||
+                "ملف محفوظ"
+            ) +
+            "</strong>" +
+
+            "<br>الحجم: " +
+            formatFileSize(
+                item.fileSize
+            ) +
+
+            "<br>اختر ملفًا جديدًا فقط إذا أردت استبداله.";
+
+    }else{
+
+        current.style.display =
+            "none";
+
+        current.innerHTML =
+            "";
+
+    }
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* ===================================================
+   POLICY DELETE
+=================================================== */
+
+async function deletePolicy(
+    id
+){
+
+    if(
+        !confirm(
+            "هل تريد حذف هذه السياسة والملف المرتبط بها؟"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    const item =
+        policies.find(
+            function(record){
+
+                return (
+                    record.id ===
+                    id
+                );
+
+            }
+        );
+
+
+    if(
+        item &&
+        item.fileId
+    ){
+
+        try{
+
+            await deleteFileFromDB(
+                item.fileId
+            );
+
+        }catch(error){
+
+            console.error(
+                error
+            );
+
+        }
+
+    }
+
+
+    policies =
+        policies.filter(
+            function(item){
+
+                return (
+                    item.id !==
+                    id
+                );
+
+            }
+        );
+
+
+    localStorage.setItem(
+        "publicHealthPolicies",
+        JSON.stringify(
+            policies
+        )
+    );
+
+
+    renderPolicies();
+
+}
+
+
+/* ===================================================
+   POLICY RESET
+=================================================== */
+
+function resetPolicyForm(){
+
+    editingPolicyId =
+        null;
+
+
+    document.getElementById(
+        "policyTitleAr"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "policyTitleEn"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "policyCategory"
+    ).value =
+        "infectious";
+
+
+    document.getElementById(
+        "policyStatus"
+    ).value =
+        "hidden";
+
+
+    document.getElementById(
+        "policyDescription"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "policyVersion"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "policyDate"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "policyFile"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "policySelectedFile"
+    ).textContent =
+        "يمكن رفع PDF أو Word أو Excel حتى 200 MB.";
+
+
+    const current =
+        document.getElementById(
+            "policyCurrentFile"
+        );
+
+
+    current.style.display =
+        "none";
+
+
+    current.innerHTML =
+        "";
+
+}
+
+
+/* ===================================================
+   POLICY RENDER
+=================================================== */
+
+function renderPolicies(){
+
+    const container =
+        document.getElementById(
+            "policiesList"
+        );
+
+
+    if(
+        policies.length ===
+        0
+    ){
+
+        container.innerHTML =
+            '<div class="empty">لا توجد سياسات مسجلة.</div>';
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        policies.map(
+            function(item){
+
+                const fileArea =
+                    item.fileId
+
+                    ? `
+
+                    <span class="file-badge">
+
+                    📎 ${item.fileName || "ملف معتمد"}
+
+                    · ${formatFileSize(item.fileSize)}
+
+                    </span>
+
+                    `
+
+                    : `
+
+                    <span class="no-file-badge">
+
+                    بدون ملف
+
+                    </span>
+
+                    `;
+
+
+                const fileButtons =
+                    item.fileId
+
+                    ? `
+
+                    <button
+                        class="open-btn"
+                        onclick="openStoredFile('${item.fileId}')">
+
+                    👁️ فتح الملف
+
+                    </button>
+
+                    <button
+                        class="download-btn"
+                        onclick="downloadStoredFile('${item.fileId}')">
+
+                    ⬇️ تحميل
+
+                    </button>
+
+                    `
+
+                    : "";
+
+
+                return `
+
+                <div class="item">
+
+                    <div class="item-top">
+
+                        <div>
+
+                            <h4>
+                            ${item.titleAr || "—"}
+                            </h4>
+
+                            <p>
+                            ${item.titleEn || ""}
+                            </p>
+
+                            <p>
+                            ${item.description || ""}
+                            </p>
+
+                            <p>
+
+                            <strong>
+                            الإصدار:
+                            </strong>
+
+                            ${item.version || "—"}
+
+                            </p>
+
+                            ${
+                                item.status ===
+                                "active"
+
+                                ? '<span class="status-active">نشط / منشور</span>'
+
+                                : '<span class="status-hidden">مخفي / مسودة</span>'
+                            }
+
+                            ${fileArea}
+
+                        </div>
+
+
+                        <div class="item-actions">
+
+                            ${fileButtons}
+
+                            <button
+                                class="edit-btn"
+                                onclick="editPolicy('${item.id}')">
+
+                            ✏️ تعديل
+
+                            </button>
+
+                            <button
+                                class="delete-btn"
+                                onclick="deletePolicy('${item.id}')">
+
+                            🗑️ حذف
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+/* ===================================================
+   FORM SAVE
+=================================================== */
+
+async function saveForm(){
+
+    const titleAr =
+        document.getElementById(
+            "formTitleAr"
+        )
+        .value
+        .trim();
+
+
+    if(!titleAr){
+
+        alert(
+            "يرجى إدخال اسم النموذج."
+        );
+
+        return;
+
+    }
+
+
+    const status =
+        document.getElementById(
+            "formStatus"
+        ).value;
+
+
+    const selectedFile =
+        document.getElementById(
+            "formFile"
+        ).files[0];
+
+
+    if(
+        selectedFile &&
+        !validateFile(
+            selectedFile
+        )
+    ){
+
+        return;
+
+    }
+
+
+    let oldRecord =
+        null;
+
+
+    if(editingFormId){
+
+        oldRecord =
+            forms.find(
+                function(item){
+
+                    return (
+                        item.id ===
+                        editingFormId
+                    );
+
+                }
+            ) || null;
+
+    }
+
+
+    const hasExistingFile =
+        oldRecord &&
+        oldRecord.fileId;
+
+
+    if(
+        status ===
+        "active"
+
+        &&
+
+        !selectedFile
+
+        &&
+
+        !hasExistingFile
+    ){
+
+        alert(
+            "لا يمكن نشر النموذج بدون إرفاق الملف المعتمد."
+        );
+
+        return;
+
+    }
+
+
+    if(selectedFile){
+
+        const enough =
+            await hasEnoughStorage(
+                selectedFile.size
+            );
+
+
+        if(!enough){
+
+            alert(
+                "المساحة المتاحة في المتصفح غير كافية لحفظ هذا الملف."
+            );
+
+            return;
+
+        }
+
+    }
+
+
+    const id =
+        editingFormId ||
+        generateId(
+            "FORM"
+        );
+
+
+    const fileId =
+        "FORM-FILE-" +
+        id;
+
+
+    let fileName =
+        oldRecord
+        ? oldRecord.fileName || ""
+        : "";
+
+
+    let fileSize =
+        oldRecord
+        ? oldRecord.fileSize || 0
+        : 0;
+
+
+    let fileType =
+        oldRecord
+        ? oldRecord.fileType || ""
+        : "";
+
+
+    let finalFileId =
+        oldRecord
+        ? oldRecord.fileId || ""
+        : "";
+
+
+    if(selectedFile){
+
+        try{
+
+            await saveFileToDB(
+                fileId,
+                selectedFile
+            );
+
+
+            finalFileId =
+                fileId;
+
+
+            fileName =
+                selectedFile.name;
+
+
+            fileSize =
+                selectedFile.size;
+
+
+            fileType =
+                selectedFile.type;
+
+        }catch(error){
+
+            console.error(
+                error
+            );
+
+
+            alert(
+                "تعذر حفظ الملف. قد تكون مساحة التخزين غير كافية."
+            );
+
+            return;
+
+        }
+
+    }
+
+
+    const record = {
+
+        id:id,
+
+        titleAr:
+            titleAr,
+
+        titleEn:
+            document.getElementById(
+                "formTitleEn"
+            )
+            .value
+            .trim(),
+
+        category:
+            document.getElementById(
+                "formCategory"
+            ).value,
+
+        status:
+            status,
+
+        description:
+            document.getElementById(
+                "formDescription"
+            )
+            .value
+            .trim(),
+
+        version:
+            document.getElementById(
+                "formVersion"
+            )
+            .value
+            .trim(),
+
+        updatedDate:
+            document.getElementById(
+                "formDate"
+            ).value,
+
+        fileId:
+            finalFileId,
+
+        fileName:
+            fileName,
+
+        fileSize:
+            fileSize,
+
+        fileType:
+            fileType,
+
+        updatedAt:
+            new Date()
+            .toISOString()
+
+    };
+
+
+    const index =
+        forms.findIndex(
+            function(item){
+
+                return (
+                    item.id ===
+                    id
+                );
+
+            }
+        );
+
+
+    if(index >= 0){
+
+        forms[index] =
+            record;
+
+    }else{
+
+        forms.unshift(
+            record
+        );
+
+    }
+
+
+    localStorage.setItem(
+        "publicHealthForms",
+        JSON.stringify(
+            forms
+        )
+    );
+
+
+    resetFormFields();
+
+    renderForms();
+
+
+    showMessage(
+        "formMessage",
+        "✅ تم حفظ النموذج والملف المعتمد بنجاح.",
+        false
+    );
+
+}
+
+
+/* ===================================================
+   FORM EDIT
+=================================================== */
+
+function editForm(
+    id
+){
+
+    const item =
+        forms.find(
+            function(form){
+
+                return (
+                    form.id ===
+                    id
+                );
+
+            }
+        );
+
+
+    if(!item){
+        return;
+    }
+
+
+    editingFormId =
+        item.id;
+
+
+    document.getElementById(
+        "formTitleAr"
+    ).value =
+        item.titleAr || "";
+
+
+    document.getElementById(
+        "formTitleEn"
+    ).value =
+        item.titleEn || "";
+
+
+    document.getElementById(
+        "formCategory"
+    ).value =
+        item.category ||
+        "other";
+
+
+    document.getElementById(
+        "formStatus"
+    ).value =
+        item.status ||
+        "hidden";
+
+
+    document.getElementById(
+        "formDescription"
+    ).value =
+        item.description || "";
+
+
+    document.getElementById(
+        "formVersion"
+    ).value =
+        item.version || "";
+
+
+    document.getElementById(
+        "formDate"
+    ).value =
+        item.updatedDate || "";
+
+
+    document.getElementById(
+        "formFile"
+    ).value =
+        "";
+
+
+    const current =
+        document.getElementById(
+            "formCurrentFile"
+        );
+
+
+    if(item.fileId){
+
+        current.style.display =
+            "block";
+
+
+        current.innerHTML =
+
+            "📎 الملف الحالي: <strong>" +
+            (
+                item.fileName ||
+                "ملف محفوظ"
+            ) +
+            "</strong>" +
+
+            "<br>الحجم: " +
+            formatFileSize(
+                item.fileSize
+            ) +
+
+            "<br>اختر ملفًا جديدًا فقط إذا أردت استبداله.";
+
+    }else{
+
+        current.style.display =
+            "none";
+
+        current.innerHTML =
+            "";
+
+    }
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* ===================================================
+   FORM DELETE
+=================================================== */
+
+async function deleteForm(
+    id
+){
+
+    if(
+        !confirm(
+            "هل تريد حذف هذا النموذج والملف المرتبط به؟"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    const item =
+        forms.find(
+            function(record){
+
+                return (
+                    record.id ===
+                    id
+                );
+
+            }
+        );
+
+
+    if(
+        item &&
+        item.fileId
+    ){
+
+        try{
+
+            await deleteFileFromDB(
+                item.fileId
+            );
+
+        }catch(error){
+
+            console.error(
+                error
+            );
+
+        }
+
+    }
+
+
+    forms =
+        forms.filter(
+            function(item){
+
+                return (
+                    item.id !==
+                    id
+                );
+
+            }
+        );
+
+
+    localStorage.setItem(
+        "publicHealthForms",
+        JSON.stringify(
+            forms
+        )
+    );
+
+
+    renderForms();
+
+}
+
+
+/* ===================================================
+   FORM RESET
+=================================================== */
+
+function resetFormFields(){
+
+    editingFormId =
+        null;
+
+
+    document.getElementById(
+        "formTitleAr"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "formTitleEn"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "formCategory"
+    ).value =
+        "notification";
+
+
+    document.getElementById(
+        "formStatus"
+    ).value =
+        "hidden";
+
+
+    document.getElementById(
+        "formDescription"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "formVersion"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "formDate"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "formFile"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "formSelectedFile"
+    ).textContent =
+        "يمكن رفع PDF أو Word أو Excel حتى 200 MB.";
+
+
+    const current =
+        document.getElementById(
+            "formCurrentFile"
+        );
+
+
+    current.style.display =
+        "none";
+
+
+    current.innerHTML =
+        "";
+
+}
+
+
+/* ===================================================
+   FORM RENDER
+=================================================== */
+
+function renderForms(){
+
+    const container =
+        document.getElementById(
+            "formsList"
+        );
+
+
+    if(
+        forms.length ===
+        0
+    ){
+
+        container.innerHTML =
+            '<div class="empty">لا توجد نماذج مسجلة.</div>';
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        forms.map(
+            function(item){
+
+                const fileArea =
+                    item.fileId
+
+                    ? `
+
+                    <span class="file-badge">
+
+                    📎 ${item.fileName || "ملف معتمد"}
+
+                    · ${formatFileSize(item.fileSize)}
+
+                    </span>
+
+                    `
+
+                    : `
+
+                    <span class="no-file-badge">
+
+                    بدون ملف
+
+                    </span>
+
+                    `;
+
+
+                const fileButtons =
+                    item.fileId
+
+                    ? `
+
+                    <button
+                        class="open-btn"
+                        onclick="openStoredFile('${item.fileId}')">
+
+                    👁️ فتح الملف
+
+                    </button>
+
+                    <button
+                        class="download-btn"
+                        onclick="downloadStoredFile('${item.fileId}')">
+
+                    ⬇️ تحميل
+
+                    </button>
+
+                    `
+
+                    : "";
+
+
+                return `
+
+                <div class="item">
+
+                    <div class="item-top">
+
+                        <div>
+
+                            <h4>
+                            ${item.titleAr || "—"}
+                            </h4>
+
+                            <p>
+                            ${item.titleEn || ""}
+                            </p>
+
+                            <p>
+                            ${item.description || ""}
+                            </p>
+
+                            <p>
+
+                            <strong>
+                            الإصدار:
+                            </strong>
+
+                            ${item.version || "—"}
+
+                            </p>
+
+                            ${
+                                item.status ===
+                                "active"
+
+                                ? '<span class="status-active">نشط / منشور</span>'
+
+                                : '<span class="status-hidden">مخفي / مسودة</span>'
+                            }
+
+                            ${fileArea}
+
+                        </div>
+
+
+                        <div class="item-actions">
+
+                            ${fileButtons}
+
+                            <button
+                                class="edit-btn"
+                                onclick="editForm('${item.id}')">
+
+                            ✏️ تعديل
+
+                            </button>
+
+                            <button
+                                class="delete-btn"
+                                onclick="deleteForm('${item.id}')">
+
+                            🗑️ حذف
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+/* ===================================================
+   Message
+=================================================== */
+
+function showMessage(
+    id,
+    text,
+    error
+){
+
+    const box =
+        document.getElementById(
+            id
+        );
+
+
+    box.style.display =
+        "block";
+
+
+    box.classList.toggle(
+        "error",
+        !!error
+    );
+
+
+    box.textContent =
+        text;
+
+
+    setTimeout(
+        function(){
+
+            box.style.display =
+                "none";
+
+        },
+        3000
+    );
+
+}
+
+
+/* ===================================================
+   Startup
+=================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        loadData();
+
+        /*
+          طلب persistent storage من المتصفح
+          لتقليل احتمالية حذف الملفات تلقائيًا.
+        */
+
+        if(
+            navigator.storage &&
+            navigator.storage.persist
+        ){
+
+            navigator.storage
+            .persist()
+            .catch(
+                function(){}
+            );
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

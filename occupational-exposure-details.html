@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>تفاصيل بلاغ التعرض المهني</title>
+
+<link rel="stylesheet" href="Style.css">
+
+<style>
+
+.page{
+    max-width:1150px;
+    margin:30px auto;
+    padding:0 20px 60px;
+}
+
+.case-header,
+.section-card{
+    background:#fff;
+    border:1px solid #dfe8f2;
+    border-radius:15px;
+    padding:23px;
+    margin-bottom:18px;
+    box-shadow:0 4px 14px rgba(0,0,0,.05);
+}
+
+.case-header h2{
+    color:#064c92;
+    margin:0;
+}
+
+.case-top{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    align-items:center;
+    flex-wrap:wrap;
+}
+
+.case-number{
+    margin-top:7px;
+    color:#607387;
+    font-weight:bold;
+}
+
+.badge{
+    display:inline-block;
+    padding:7px 13px;
+    border-radius:18px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.badge-new{
+    background:#e9f3ff;
+    color:#0759a6;
+}
+
+.badge-follow{
+    background:#fff4d7;
+    color:#806316;
+}
+
+.badge-closed{
+    background:#e8f6ec;
+    color:#277438;
+}
+
+.section-card h3{
+    color:#064c92;
+    margin-top:0;
+    border-bottom:1px solid #e4ebf1;
+    padding-bottom:10px;
+}
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px 20px;
+}
+
+.info-item{
+    background:#f8fbfd;
+    border-radius:9px;
+    padding:12px;
+}
+
+.info-item.full{
+    grid-column:1/-1;
+}
+
+.info-label{
+    display:block;
+    font-size:12px;
+    color:#718292;
+    margin-bottom:5px;
+}
+
+.info-value{
+    color:#29465f;
+    font-weight:bold;
+    white-space:pre-wrap;
+}
+
+.tag-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+}
+
+.tag{
+    background:#eaf1f7;
+    color:#064c92;
+    padding:6px 10px;
+    border-radius:15px;
+    font-size:12px;
+}
+
+.management-card{
+    border-top:5px solid #0759a6;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+label{
+    font-weight:bold;
+    color:#294b6a;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    box-sizing:border-box;
+    padding:11px;
+    border:1px solid #ccd9e5;
+    border-radius:8px;
+    background:white;
+    font-size:14px;
+}
+
+textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:20px;
+}
+
+.actions button,
+.actions a{
+    border:none;
+    border-radius:9px;
+    padding:13px 20px;
+    font-weight:bold;
+    cursor:pointer;
+    text-decoration:none;
+}
+
+.save-btn{
+    background:#0759a6;
+    color:white;
+}
+
+.close-btn{
+    background:#26733a;
+    color:white;
+}
+
+.print-btn{
+    background:#687984;
+    color:white;
+}
+
+.back-btn{
+    background:#eaf1f7;
+    color:#064c92;
+}
+
+.message{
+    display:none;
+    margin-top:18px;
+    padding:15px;
+    border-radius:10px;
+    background:#eaf7ee;
+    border-right:5px solid #2e7d32;
+    color:#285b33;
+}
+
+.not-found{
+    background:#fff;
+    border-radius:14px;
+    text-align:center;
+    padding:40px;
+}
+
+@media(max-width:750px){
+
+    .info-grid,
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .info-item.full,
+    .form-group.full{
+        grid-column:auto;
+    }
+
+}
+
+@media print{
+
+    .management-card,
+    .actions{
+        display:none !important;
+    }
+
+    body{
+        background:white;
+    }
+
+    .case-header,
+    .section-card{
+        box-shadow:none;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<header class="hero-header">
+
+<div class="hero-grid">
+
+<div class="side-logo left-logo">
+    <img src="images/cluster-logo.png">
+</div>
+
+<div class="hero-center">
+
+<h1>
+تفاصيل بلاغ التعرض المهني
+</h1>
+
+<h2>
+Occupational Exposure Details
+</h2>
+
+<p>
+الصحة المهنية
+</p>
+
+</div>
+
+<div class="side-logo right-logo">
+    <img src="images/hospital-logo.png">
+</div>
+
+</div>
+
+</header>
+
+
+<main class="page">
+
+<div id="caseContainer"></div>
+
+</main>
+
+
+<script>
+
+let currentRecord = null;
+
+
+/* =========================
+   Helpers
+========================= */
+
+function getRecordId(){
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+    return params.get("id");
+
+}
+
+
+function getRecords(){
+
+    try{
+
+        const data =
+            JSON.parse(
+                localStorage.getItem(
+                    "occupationalExposureRecords"
+                )
+            ) || [];
+
+        return Array.isArray(data)
+            ? data
+            : [];
+
+    }catch(error){
+
+        return [];
+
+    }
+
+}
+
+
+function safeValue(value){
+
+    if(
+        value === undefined ||
+        value === null ||
+        value === ""
+    ){
+
+        return "—";
+
+    }
+
+    return value;
+
+}
+
+
+function safeInput(value){
+
+    if(
+        value === undefined ||
+        value === null
+    ){
+
+        return "";
+
+    }
+
+    return String(value)
+        .replace(/"/g,"&quot;");
+
+}
+
+
+/* =========================
+   Dictionaries
+========================= */
+
+function exposureTypeName(type){
+
+    const map = {
+
+        needle:"وخز إبرة",
+        sharp:"إصابة بأداة حادة",
+        eye:"رذاذ للعين / الأغشية المخاطية",
+        skin:"تلوث جلد غير سليم",
+        infectious:"تعرض مهني لمرض معدٍ",
+        other:"أخرى"
+
+    };
+
+    return map[type] || type || "—";
+
+}
+
+
+function yesNoName(value){
+
+    const map = {
+
+        yes:"نعم",
+        no:"لا",
+        unknown:"غير معروف",
+        pending:"قيد الانتظار",
+        notApplicable:"لا ينطبق"
+
+    };
+
+    return map[value] || value || "—";
+
+}
+
+
+function statusName(status){
+
+    const map = {
+
+        new:"جديد",
+        followUp:"تحت المتابعة",
+        closed:"مغلق"
+
+    };
+
+    return map[status] || status || "—";
+
+}
+
+
+function actionName(action){
+
+    const map = {
+
+        washed:"تم غسل موضع الإصابة",
+        irrigated:"تم غسل العين / الغشاء المخاطي",
+        supervisor:"تم إبلاغ المسؤول المباشر",
+        occupationalHealth:"تم إبلاغ الصحة المهنية / الصحة العامة"
+
+    };
+
+    return map[action] || action;
+
+}
+
+
+function statusBadge(status){
+
+    if(status === "closed"){
+
+        return `
+            <span class="badge badge-closed">
+                مغلق
+            </span>
+        `;
+
+    }
+
+    if(status === "followUp"){
+
+        return `
+            <span class="badge badge-follow">
+                تحت المتابعة
+            </span>
+        `;
+
+    }
+
+    return `
+        <span class="badge badge-new">
+            جديد
+        </span>
+    `;
+
+}
+
+
+function renderTags(values){
+
+    if(
+        !Array.isArray(values) ||
+        values.length === 0
+    ){
+
+        return "—";
+
+    }
+
+    return `
+
+    <div class="tag-list">
+
+        ${
+            values.map(
+                function(value){
+
+                    return `
+                        <span class="tag">
+                            ${actionName(value)}
+                        </span>
+                    `;
+
+                }
+            ).join("")
+        }
+
+    </div>
+
+    `;
+
+}
+
+
+/* =========================
+   Render
+========================= */
+
+function renderCase(){
+
+    const id =
+        getRecordId();
+
+    const records =
+        getRecords();
+
+    currentRecord =
+        records.find(
+            function(item){
+
+                return item.id === id;
+
+            }
+        );
+
+
+    const container =
+        document.getElementById(
+            "caseContainer"
+        );
+
+
+    if(!currentRecord){
+
+        container.innerHTML = `
+
+        <div class="not-found">
+
+            <h2>
+                لم يتم العثور على البلاغ
+            </h2>
+
+            <p>
+                تحقق من رقم البلاغ أو افتحه من سجل الإصابات المهنية.
+            </p>
+
+            <a
+                href="occupational-exposure-inbox.html"
+                class="back-btn"
+                style="display:inline-block;margin-top:10px;">
+
+                ← العودة إلى السجل
+
+            </a>
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const n =
+        currentRecord;
+
+
+    container.innerHTML = `
+
+
+    <section class="case-header">
+
+        <div class="case-top">
+
+            <div>
+
+                <h2>
+                    ${exposureTypeName(n.exposureType)}
+                </h2>
+
+                <div class="case-number">
+
+                    رقم البلاغ:
+                    ${safeValue(n.id)}
+
+                </div>
+
+            </div>
+
+            <div>
+
+                ${statusBadge(n.caseStatus)}
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="section-card">
+
+        <h3>
+            👤 بيانات الموظف
+        </h3>
+
+        <div class="info-grid">
+
+            <div class="info-item">
+
+                <span class="info-label">
+                    اسم الموظف
+                </span>
+
+                <span class="info-value">
+                    ${safeValue(n.employeeName)}
+                </span>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <span class="info-label">
+                    الرقم الوظيفي
+                </span>
+
+                <span class="info-value">
+                    ${safeValue(n.employeeId)}
+                </span>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <span class="info-label">
+                    القسم
+                </span>
+
+                <span class="info-value">
+                    ${safeValue(n.department)}
+                </span>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <span class="info-label">
+                    المسمى الوظيفي
+                </span>
+
+                <span class="info-value">
+                    ${safeValue(n.jobTitle)}
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="section-card">
+
+        <h3>
+            ⚠️ بيانات الحادث
+        </h3>
+
+        <div class="info-grid">
+
+            <div class="info-item">
+
+                <span class="info-label">
+                    تاريخ الحادث
+                </span>
+
+                <span class="info-value">
+                    ${safeValue(n.incidentDate)}
+                </span>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <span class="info-label">
+                    وقت الحادث
+                </span>
+
+                <span class="info-value">
+                    ${safeValue(n.incidentTime)}
+                </span>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <span class="info-label">
+                    مكان الحادث
+                </span>
+
+                <span class="info-value">
+                    ${safeValue(n.incidentLocation)}
+                </span>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <span class="info-label">
+                    نوع التعرض
+                </span>
+
+                <span class="info-value">
+                    ${exposureTypeName(n.exposureType)}
+                </span>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <span class="info-label">
+                    وجود دم ظاهر
+                </span>
+
+                <span class="info-value">
+                    ${yesNoName(n.visibleBlood)}
+                </span>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <span class="info-label">
+                    المصدر معروف
+                </span>
+
+                <span class="info-value">
+                    ${yesNoName(n.sourceKnown)}
+                </span>
+
+            </div>
+
+
+            <div class="info-item full">
+
+                <span class="info-label">
+                    المرض المعدي / نوع التعرض
+                </span>
+
+                <span class="info-value">
+                    ${safeValue(n.infectiousDisease)}
+                </span>
+
+            </div>
+
+
+            <div class="info-item full">
+
+                <span class="info-label">
+                    وصف الحادث
+                </span>
+
+                <span class="info-value">
+                    ${safeValue(n.incidentDescription)}
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="section-card">
+
+        <h3>
+            🩹 الإجراءات الأولية
+        </h3>
+
+        <div class="info-grid">
+
+            <div class="info-item full">
+
+                <span class="info-label">
+                    الإجراءات المتخذة
+                </span>
+
+                <div class="info-value">
+
+                    ${renderTags(n.initialActions)}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="section-card">
+
+        <h3>
+            🔬 تقييم المصدر والمتابعة
+        </h3>
+
+        <div class="info-grid">
+
+            <div class="info-item">
+
+                <span class="info-label">
+                    تم تقييم المصدر
+                </span>
+
+                <span class="info-value">
+                    ${yesNoName(n.sourceAssessed)}
+                </span>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <span class="info-label">
+                    الفحوصات الأساسية للموظف
+                </span>
+
+                <span class="info-value">
+                    ${yesNoName(n.baselineTests)}
+                </span>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <span class="info-label">
+                    يحتاج متابعة إضافية
+                </span>
+
+                <span class="info-value">
+                    ${yesNoName(n.followUpRequired)}
+                </span>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <span class="info-label">
+                    موعد المتابعة
+                </span>
+
+                <span class="info-value">
+                    ${safeValue(n.nextFollowUp)}
+                </span>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <span class="info-label">
+                    تاريخ الإغلاق
+                </span>
+
+                <span class="info-value">
+                    ${safeValue(n.closedDate)}
+                </span>
+
+            </div>
+
+
+            <div class="info-item full">
+
+                <span class="info-label">
+                    ملاحظات الصحة المهنية
+                </span>
+
+                <span class="info-value">
+                    ${safeValue(n.occupationalNotes)}
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="section-card management-card">
+
+        <h3>
+            📋 متابعة الصحة المهنية
+        </h3>
+
+        <div class="form-grid">
+
+
+            <div class="form-group">
+
+                <label>
+                    حالة البلاغ
+                </label>
+
+                <select id="caseStatus">
+
+                    <option value="new">
+                        جديد
+                    </option>
+
+                    <option value="followUp">
+                        تحت المتابعة
+                    </option>
+
+                    <option value="closed">
+                        مغلق
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    هل يحتاج متابعة إضافية؟
+                </label>
+
+                <select id="followUpRequired">
+
+                    <option value="">
+                        غير محدد
+                    </option>
+
+                    <option value="yes">
+                        نعم
+                    </option>
+
+                    <option value="no">
+                        لا
+                    </option>
+
+                    <option value="pending">
+                        لم يحدد بعد
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    موعد المتابعة القادم
+                </label>
+
+                <input
+                    id="nextFollowUp"
+                    type="date"
+                    value="${safeInput(n.nextFollowUp)}">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    تاريخ إغلاق البلاغ
+                </label>
+
+                <input
+                    id="closedDate"
+                    type="date"
+                    value="${safeInput(n.closedDate)}">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    مسؤول المتابعة
+                </label>
+
+                <input
+                    id="followupOfficer"
+                    value="${safeInput(n.followupOfficer)}">
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label>
+                    ملاحظات الصحة المهنية
+                </label>
+
+                <textarea id="occupationalNotes">${n.occupationalNotes || ""}</textarea>
+
+            </div>
+
+        </div>
+
+
+        <div class="actions">
+
+            <button
+                class="save-btn"
+                onclick="saveFollowup()">
+
+                💾 حفظ المتابعة
+
+            </button>
+
+
+            <button
+                class="close-btn"
+                onclick="closeCase()">
+
+                ✅ إغلاق البلاغ
+
+            </button>
+
+
+            <button
+                class="print-btn"
+                onclick="window.print()">
+
+                🖨️ طباعة / حفظ PDF
+
+            </button>
+
+
+            <a
+                class="back-btn"
+                href="occupational-exposure-inbox.html">
+
+                ← العودة إلى السجل
+
+            </a>
+
+        </div>
+
+
+        <div
+            id="messageBox"
+            class="message">
+        </div>
+
+    </section>
+
+    `;
+
+
+    document.getElementById(
+        "caseStatus"
+    ).value =
+        n.caseStatus ||
+        "new";
+
+
+    document.getElementById(
+        "followUpRequired"
+    ).value =
+        n.followUpRequired ||
+        "";
+
+}
+
+
+/* =========================
+   Update storage
+========================= */
+
+function updateRecord(){
+
+    if(!currentRecord){
+
+        return false;
+
+    }
+
+
+    const records =
+        getRecords();
+
+
+    const index =
+        records.findIndex(
+            function(item){
+
+                return item.id ===
+                    currentRecord.id;
+
+            }
+        );
+
+
+    if(index === -1){
+
+        return false;
+
+    }
+
+
+    records[index] =
+        currentRecord;
+
+
+    localStorage.setItem(
+
+        "occupationalExposureRecords",
+
+        JSON.stringify(
+            records
+        )
+
+    );
+
+
+    return true;
+
+}
+
+
+/* =========================
+   Save followup
+========================= */
+
+function saveFollowup(){
+
+    if(!currentRecord){
+
+        return;
+
+    }
+
+
+    currentRecord.caseStatus =
+        document.getElementById(
+            "caseStatus"
+        ).value;
+
+
+    currentRecord.followUpRequired =
+        document.getElementById(
+            "followUpRequired"
+        ).value;
+
+
+    currentRecord.nextFollowUp =
+        document.getElementById(
+            "nextFollowUp"
+        ).value;
+
+
+    currentRecord.closedDate =
+        document.getElementById(
+            "closedDate"
+        ).value;
+
+
+    currentRecord.followupOfficer =
+        document.getElementById(
+            "followupOfficer"
+        ).value.trim();
+
+
+    currentRecord.occupationalNotes =
+        document.getElementById(
+            "occupationalNotes"
+        ).value.trim();
+
+
+    currentRecord.lastUpdated =
+        new Date().toISOString();
+
+
+    updateRecord();
+
+
+    const message =
+        document.getElementById(
+            "messageBox"
+        );
+
+
+    message.style.display =
+        "block";
+
+
+    message.textContent =
+        "✅ تم حفظ متابعة الصحة المهنية بنجاح.";
+
+}
+
+
+/* =========================
+   Close
+========================= */
+
+function closeCase(){
+
+    if(!currentRecord){
+
+        return;
+
+    }
+
+
+    const confirmation =
+        confirm(
+            "هل تريد إغلاق هذا البلاغ؟"
+        );
+
+
+    if(!confirmation){
+
+        return;
+
+    }
+
+
+    currentRecord.caseStatus =
+        "closed";
+
+
+    currentRecord.followUpRequired =
+        document.getElementById(
+            "followUpRequired"
+        ).value;
+
+
+    currentRecord.nextFollowUp =
+        document.getElementById(
+            "nextFollowUp"
+        ).value;
+
+
+    currentRecord.followupOfficer =
+        document.getElementById(
+            "followupOfficer"
+        ).value.trim();
+
+
+    currentRecord.occupationalNotes =
+        document.getElementById(
+            "occupationalNotes"
+        ).value.trim();
+
+
+    if(
+        !document.getElementById(
+            "closedDate"
+        ).value
+    ){
+
+        const now =
+            new Date();
+
+
+        currentRecord.closedDate =
+            new Date(
+                now.getTime() -
+                now.getTimezoneOffset() *
+                60000
+            )
+            .toISOString()
+            .slice(0,10);
+
+    }else{
+
+        currentRecord.closedDate =
+            document.getElementById(
+                "closedDate"
+            ).value;
+
+    }
+
+
+    currentRecord.closedAt =
+        new Date().toISOString();
+
+
+    currentRecord.lastUpdated =
+        new Date().toISOString();
+
+
+    updateRecord();
+
+
+    window.location.href =
+        "occupational-exposure-inbox.html";
+
+}
+
+
+/* =========================
+   Startup
+========================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    renderCase
+);
+
+</script>
+
+</body>
+
+</html>

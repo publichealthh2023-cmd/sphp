@@ -1,0 +1,1363 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>العزل والاحتياطات</title>
+
+<link rel="stylesheet" href="Style.css">
+
+<style>
+
+.isolation-page{
+    max-width:1200px;
+    margin:30px auto;
+    padding:0 20px 60px;
+}
+
+.page-intro{
+    background:white;
+    border-radius:16px;
+    padding:28px;
+    text-align:center;
+    margin-bottom:20px;
+    box-shadow:0 4px 14px rgba(0,0,0,.07);
+}
+
+.page-intro .icon{
+    font-size:48px;
+}
+
+.page-intro h1{
+    color:#064c92;
+    margin:8px 0 4px;
+}
+
+.page-intro h2{
+    color:#718293;
+    font-size:17px;
+    margin:0;
+}
+
+.notice{
+    background:#fff8e1;
+    border-right:5px solid #f9a825;
+    border-radius:10px;
+    padding:16px;
+    margin-bottom:22px;
+    color:#66531b;
+    line-height:1.8;
+}
+
+.search-card{
+    background:white;
+    border-radius:14px;
+    padding:20px;
+    margin-bottom:22px;
+    box-shadow:0 4px 13px rgba(0,0,0,.05);
+}
+
+.search-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:12px;
+}
+
+select,
+input{
+    width:100%;
+    box-sizing:border-box;
+    padding:13px;
+    border:1px solid #ccd9e5;
+    border-radius:9px;
+    background:white;
+    font-size:14px;
+}
+
+.result-card{
+    display:none;
+    background:white;
+    border:1px solid #dfe8f2;
+    border-radius:15px;
+    padding:24px;
+    box-shadow:0 4px 13px rgba(0,0,0,.06);
+}
+
+.result-card.active{
+    display:block;
+}
+
+.disease-header{
+    text-align:center;
+    border-bottom:1px solid #e1e9ef;
+    padding-bottom:18px;
+    margin-bottom:20px;
+}
+
+.disease-header .big-icon{
+    font-size:46px;
+}
+
+.disease-header h2{
+    color:#064c92;
+    margin:8px 0 3px;
+}
+
+.disease-header h3{
+    margin:0;
+    color:#718293;
+    font-size:15px;
+}
+
+.precaution-badge{
+    display:inline-block;
+    margin-top:12px;
+    padding:8px 15px;
+    border-radius:20px;
+    background:#e8f2fb;
+    color:#0759a6;
+    font-weight:bold;
+}
+
+.high-risk{
+    background:#fff0f0;
+    color:#b71c1c;
+}
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.info-box{
+    background:#f8fbfd;
+    border-right:4px solid #0759a6;
+    border-radius:10px;
+    padding:17px;
+}
+
+.info-box.full{
+    grid-column:1/-1;
+}
+
+.info-box.warning{
+    background:#fff7f7;
+    border-right-color:#c62828;
+}
+
+.info-box h3{
+    color:#064c92;
+    margin:0 0 10px;
+}
+
+.info-box ul{
+    margin:0;
+    padding-right:21px;
+    line-height:2;
+}
+
+.reference{
+    margin-top:20px;
+    background:#eef7ff;
+    border-radius:10px;
+    padding:15px;
+    color:#385a73;
+    line-height:1.8;
+}
+
+.quick-title{
+    color:#064c92;
+    margin:35px 0 15px;
+}
+
+.quick-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.quick-card{
+    background:white;
+    border:1px solid #dfe8f2;
+    border-radius:13px;
+    padding:18px;
+    cursor:pointer;
+    box-shadow:0 4px 12px rgba(0,0,0,.05);
+}
+
+.quick-card:hover{
+    transform:translateY(-3px);
+}
+
+.quick-card .icon{
+    font-size:31px;
+}
+
+.quick-card h3{
+    color:#064c92;
+    margin:7px 0 4px;
+}
+
+.quick-card p{
+    color:#718293;
+    font-size:12px;
+    line-height:1.6;
+}
+
+.precautions-key{
+    margin-top:30px;
+    background:white;
+    border-radius:14px;
+    padding:22px;
+    border:1px solid #dfe8f2;
+}
+
+.precautions-key h2{
+    color:#064c92;
+}
+
+.key-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.key-item{
+    padding:13px;
+    border-radius:9px;
+    background:#f7fafc;
+    text-align:center;
+}
+
+.key-icon{
+    font-size:27px;
+}
+
+.back-btn{
+    display:inline-block;
+    margin-top:30px;
+    padding:11px 18px;
+    background:#eaf1f7;
+    color:#064c92;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+@media(max-width:850px){
+
+    .info-grid,
+    .quick-grid{
+        grid-template-columns:1fr;
+    }
+
+    .key-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .search-grid{
+        grid-template-columns:1fr;
+    }
+
+    .info-box.full{
+        grid-column:auto;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<header class="hero-header">
+
+<div class="hero-grid">
+
+    <div class="side-logo left-logo">
+        <img src="images/cluster-logo.png">
+    </div>
+
+    <div class="hero-center">
+
+        <h1>
+            العزل والاحتياطات
+        </h1>
+
+        <h2>
+            Isolation & Precautions
+        </h2>
+
+        <p>
+            الصحة العامة
+        </p>
+
+    </div>
+
+    <div class="side-logo right-logo">
+        <img src="images/hospital-logo.png">
+    </div>
+
+</div>
+
+</header>
+
+
+<main class="isolation-page">
+
+
+<section class="page-intro">
+
+    <div class="icon">
+        🛡️
+    </div>
+
+    <h1>
+        دليل العزل واحتياطات انتقال العدوى
+    </h1>
+
+    <h2>
+        Isolation & Transmission Precautions Guide
+    </h2>
+
+</section>
+
+
+<div class="notice">
+
+    <strong>⚠️ تنبيه:</strong>
+
+    هذه الصفحة أداة للوصول السريع للمعلومة ولا تستبدل
+    سياسة مكافحة العدوى المعتمدة بالمستشفى.
+
+    عندما لا يحدد دليل الإجراءات الوقائية نوع PPE
+    أو مدة العزل بصورة صريحة، ستظهر العبارة
+    <strong>«حسب سياسة مكافحة العدوى المعتمدة»</strong>
+    بدل إضافة معلومات غير موجودة في المرجع.
+
+</div>
+
+
+<section class="search-card">
+
+<div class="search-grid">
+
+    <select
+        id="diseaseSelect"
+        onchange="renderIsolation()">
+
+        <option value="">
+            اختر المرض
+        </option>
+
+        <option value="nipah">
+            فيروس نيباه
+        </option>
+
+        <option value="monkeypox">
+            جدري القردة
+        </option>
+
+        <option value="meningococcal">
+            التهاب السحايا النيسيري
+        </option>
+
+        <option value="pertussis">
+            السعال الديكي
+        </option>
+
+        <option value="diphtheria">
+            الدفتيريا
+        </option>
+
+        <option value="tb">
+            الدرن
+        </option>
+
+        <option value="measles">
+            الحصبة
+        </option>
+
+        <option value="plague">
+            الطاعون
+        </option>
+
+        <option value="cchf">
+            حمى القرم الكونغو النزفية
+        </option>
+
+        <option value="mers">
+            MERS
+        </option>
+
+    </select>
+
+
+    <input
+        id="searchInput"
+        placeholder="اكتب اسم المرض..."
+        oninput="searchDisease()">
+
+</div>
+
+</section>
+
+
+<section
+    id="resultCard"
+    class="result-card">
+</section>
+
+
+<h2 class="quick-title">
+    وصول سريع
+</h2>
+
+
+<section class="quick-grid">
+
+
+<div
+    class="quick-card"
+    onclick="openDisease('nipah')">
+
+    <div class="icon">🦠</div>
+
+    <h3>
+        فيروس نيباه
+    </h3>
+
+    <p>
+        عزل صارم وحجرة منفردة واحتياطات عالية
+    </p>
+
+</div>
+
+
+<div
+    class="quick-card"
+    onclick="openDisease('monkeypox')">
+
+    <div class="icon">🔴</div>
+
+    <h3>
+        جدري القردة
+    </h3>
+
+    <p>
+        عزل حتى زوال الأعراض والقشور
+    </p>
+
+</div>
+
+
+<div
+    class="quick-card"
+    onclick="openDisease('meningococcal')">
+
+    <div class="icon">🧠</div>
+
+    <h3>
+        الحمى الشوكية
+    </h3>
+
+    <p>
+        عزل تنفسي بعد بدء العلاج
+    </p>
+
+</div>
+
+
+<div
+    class="quick-card"
+    onclick="openDisease('tb')">
+
+    <div class="icon">🩻</div>
+
+    <h3>
+        الدرن
+    </h3>
+
+    <p>
+        اتباع سياسة مكافحة العدوى للدرن
+    </p>
+
+</div>
+
+
+<div
+    class="quick-card"
+    onclick="openDisease('pertussis')">
+
+    <div class="icon">😷</div>
+
+    <h3>
+        السعال الديكي
+    </h3>
+
+    <p>
+        عزل رذاذي وفق الدليل
+    </p>
+
+</div>
+
+
+<div
+    class="quick-card"
+    onclick="openDisease('cchf')">
+
+    <div class="icon">🩸</div>
+
+    <h3>
+        حمى القرم الكونغو
+    </h3>
+
+    <p>
+        احتياطات الدم والإفرازات والتلامس والرذاذ
+    </p>
+
+</div>
+
+
+</section>
+
+
+<section class="precautions-key">
+
+<h2>
+    أنواع الاحتياطات
+</h2>
+
+
+<div class="key-grid">
+
+    <div class="key-item">
+
+        <div class="key-icon">
+            🧼
+        </div>
+
+        <strong>
+            قياسية
+        </strong>
+
+        <br>
+
+        Standard
+
+    </div>
+
+
+    <div class="key-item">
+
+        <div class="key-icon">
+            💧
+        </div>
+
+        <strong>
+            رذاذية
+        </strong>
+
+        <br>
+
+        Droplet
+
+    </div>
+
+
+    <div class="key-item">
+
+        <div class="key-icon">
+            🌬️
+        </div>
+
+        <strong>
+            هوائية
+        </strong>
+
+        <br>
+
+        Airborne
+
+    </div>
+
+
+    <div class="key-item">
+
+        <div class="key-icon">
+            ✋
+        </div>
+
+        <strong>
+            تلامسية
+        </strong>
+
+        <br>
+
+        Contact
+
+    </div>
+
+</div>
+
+</section>
+
+
+<a
+    href="index.html"
+    class="back-btn">
+
+    ← العودة للبوابة الرئيسية
+
+</a>
+
+
+</main>
+
+
+<script>
+
+
+const isolationDatabase = {
+
+
+nipah:{
+
+    arName:"فيروس نيباه",
+
+    enName:"Nipah Virus",
+
+    icon:"🦠",
+
+    precaution:
+        "عزل صارم / احتياطات عالية الخطورة",
+
+    highRisk:true,
+
+    isolation:[
+        "العزل الفوري للمصاب.",
+        "وضع المريض في حجرة منفردة بالمستشفى بعيدًا عن المناطق ذات الكثافة العالية.",
+        "يستحب توفير وقاية تنفسية وتأمين غرفة ذات ضغط سلبي."
+    ],
+
+    ppe:[
+        "المرجع يشدد على الوقاية التنفسية والاحتياطات الصارمة.",
+        "تفاصيل مكونات PPE تستخدم حسب سياسة مكافحة العدوى المعتمدة بالمستشفى."
+    ],
+
+    transport:[
+        "تقليل حركة المريض إلى الحد الضروري.",
+        "أي نقل يتم بالتنسيق مع مكافحة العدوى وتطبيق الاحتياطات اللازمة."
+    ],
+
+    duration:[
+        "لم يحدد الجزء المستخدم من الدليل مدة زمنية ثابتة لإنهاء العزل.",
+        "إنهاء العزل يكون حسب تقييم الحالة وسياسة مكافحة العدوى."
+    ],
+
+    visitors:[
+        "يمنع الأشخاص غير الضروريين للرعاية أو العلاج من الدخول.",
+        "تقييد الزيارات."
+    ],
+
+    notes:[
+        "التخلص الآمن من النفايات والمواد المستخدمة في رعاية المريض.",
+        "اتباع احتياطات الاحتواء الحيوي عند التعامل مع العينات."
+    ]
+
+},
+
+
+
+monkeypox:{
+
+    arName:"جدري القردة",
+
+    enName:"Mpox / Monkeypox",
+
+    icon:"🔴",
+
+    precaution:
+        "عزل واحتياطات انتقال العدوى",
+
+    highRisk:true,
+
+    isolation:[
+        "وضع الحالة المشتبهة في منطقة منفصلة عن مناطق الرعاية الأخرى.",
+        "عزل المرضى في أقسام العزل."
+    ],
+
+    ppe:[
+        "تطبيق احتياطات مكافحة العدوى الصارمة.",
+        "معدات الوقاية الشخصية حسب سياسة مكافحة العدوى المعتمدة."
+    ],
+
+    transport:[
+        "تطبيق احتياطات مكافحة العدوى الصارمة عند نقل المرضى بين العنابر.",
+        "تقليل التنقل غير الضروري."
+    ],
+
+    duration:[
+        "يستمر العزل حتى تختفي الأعراض.",
+        "يجب أن تنفصل القشور ويبدأ الجلد في تكوين طبقة جديدة تحتها قبل إنهاء العزل."
+    ],
+
+    visitors:[
+        "يجب تجنب زيارة المريض لتقليل التعرض وانتقال العدوى.",
+        "يمكن السماح لمقدم الرعاية الضروري بعد التدريب على احتياطات العزل والوقاية."
+    ],
+
+    notes:[
+        "إبلاغ قسم مكافحة العدوى مباشرة عند الاشتباه.",
+        "التعرف المبكر والتحكم في المصدر من الإجراءات الأساسية."
+    ]
+
+},
+
+
+
+meningococcal:{
+
+    arName:"التهاب السحايا الشوكية النيسيرية",
+
+    enName:"Meningococcal Meningitis",
+
+    icon:"🧠",
+
+    precaution:
+        "عزل تنفسي",
+
+    highRisk:false,
+
+    isolation:[
+        "اتخاذ إجراءات العزل التنفسي للمريض."
+    ],
+
+    ppe:[
+        "تطبيق الاحتياطات التنفسية المناسبة.",
+        "معدات الوقاية حسب سياسة مكافحة العدوى المعتمدة."
+    ],
+
+    transport:[
+        "تقليل النقل غير الضروري.",
+        "عند النقل يتم تطبيق الاحتياطات التنفسية حسب سياسة المنشأة."
+    ],
+
+    duration:[
+        "مدة العزل لا تقل عن 24 ساعة من وقت بدء العلاج بالمضادات الحيوية."
+    ],
+
+    visitors:[
+        "تقليل المخالطة أثناء فترة العزل.",
+        "تطبيق الاحتياطات على المخالطين وفق تقييم مكافحة العدوى."
+    ],
+
+    notes:[
+        "يبدأ العلاج المناسب عند الاشتباه، ويفضل بعد أخذ العينات المناسبة دون انتظار نتائج المزرعة.",
+        "الإبلاغ الفوري عن الحالة المشتبهة."
+    ]
+
+},
+
+
+
+pertussis:{
+
+    arName:"السعال الديكي",
+
+    enName:"Pertussis",
+
+    icon:"😷",
+
+    precaution:
+        "عزل رذاذي",
+
+    highRisk:false,
+
+    isolation:[
+        "تطبيق العزل الرذاذي للحالات المؤكدة.",
+        "عزل الحالات المشتبهة التي لم تتلق العلاج المناسب."
+    ],
+
+    ppe:[
+        "تطبيق احتياطات الرذاذ.",
+        "معدات الوقاية حسب سياسة مكافحة العدوى."
+    ],
+
+    transport:[
+        "تقليل نقل المريض غير الضروري.",
+        "عند النقل تطبق احتياطات الرذاذ."
+    ],
+
+    duration:[
+        "الحالات غير المعالجة قد تبقى معدية نحو 3 أسابيع بعد بدء نوبات السعال.",
+        "عند العلاج بمضادات الماكروليد تقل فترة الإعداء عادة إلى نحو 5 أيام أو أقل بعد بدء العلاج."
+    ],
+
+    visitors:[
+        "تقليل المخالطة خلال فترة العدوى."
+    ],
+
+    notes:[
+        "جمع المسحة البلعومية الأنفية حسب البروتوكول.",
+        "إبلاغ الصحة العامة وفق تعريف الحالة."
+    ]
+
+},
+
+
+
+diphtheria:{
+
+    arName:"الدفتيريا",
+
+    enName:"Diphtheria",
+
+    icon:"🧫",
+
+    precaution:
+        "عزل تلامسي",
+
+    highRisk:false,
+
+    isolation:[
+        "يجب عزل المريض.",
+        "ينفذ العزل التلامسي لمنع انتشار العدوى."
+    ],
+
+    ppe:[
+        "تطبيق احتياطات التلامس.",
+        "معدات الوقاية حسب سياسة مكافحة العدوى."
+    ],
+
+    transport:[
+        "تقليل النقل غير الضروري.",
+        "تطبيق احتياطات مكافحة العدوى أثناء النقل."
+    ],
+
+    duration:[
+        "لا ينتهي العزل إلا بعد التأكد من التخلص من الميكروب وفق نتائج المزارع السلبية المحددة في الدليل.",
+        "إذا تعذر الفحص، يذكر الدليل إمكانية إنهاء العزل بعد 14 يومًا من استخدام العلاج المناسب."
+    ],
+
+    visitors:[
+        "تقليل المخالطة أثناء فترة العزل."
+    ],
+
+    notes:[
+        "يتم تقييم المخالطين ومراقبتهم.",
+        "الإصابة بالمرض لا تعني بالضرورة اكتساب المناعة."
+    ]
+
+},
+
+
+
+tb:{
+
+    arName:"الدرن",
+
+    enName:"Tuberculosis",
+
+    icon:"🩻",
+
+    precaution:
+        "حسب سياسة مكافحة العدوى وبرنامج الدرن",
+
+    highRisk:false,
+
+    isolation:[
+        "اتباع سياسات مكافحة العدوى في التعامل مع الحالة المشتبهة والمؤكدة.",
+        "يشمل ذلك العزل وأخذ العينات ونقل المريض داخل المنشأة أو بين المنشآت."
+    ],
+
+    ppe:[
+        "معدات الوقاية التنفسية تحدد حسب سياسة مكافحة العدوى وبرنامج الدرن المعتمد.",
+        "لم يحدد النص المرجعي المستخدم هنا تفاصيل PPE بصورة مستقلة."
+    ],
+
+    transport:[
+        "اتباع سياسة مكافحة العدوى عند نقل الحالة داخل المنشأة.",
+        "اتباع الاحتياطات نفسها عند النقل بين المنشآت."
+    ],
+
+    duration:[
+        "المرجع الحالي يحيل إلى البرنامج الوطني للدرن وسياسات مكافحة العدوى.",
+        "لم تتم إضافة مدة من خارج المصدر."
+    ],
+
+    visitors:[
+        "تطبق تعليمات مكافحة العدوى بالمستشفى."
+    ],
+
+    notes:[
+        "حصر وتقييم المخالطين جزء أساسي من إجراءات مكافحة الدرن.",
+        "يتم الرجوع لدليل البرنامج الوطني للدرن للتفاصيل العلاجية والمتابعة."
+    ]
+
+},
+
+
+
+measles:{
+
+    arName:"الحصبة",
+
+    enName:"Measles",
+
+    icon:"🔴",
+
+    precaution:
+        "عزل وتقليل التلامس",
+
+    highRisk:false,
+
+    isolation:[
+        "عزل الشخص المصاب والحد من التلامس المباشر مع الآخرين.",
+        "خصوصًا في الأماكن المزدحمة مثل المدارس أو أماكن العمل."
+    ],
+
+    ppe:[
+        "تفاصيل نوع PPE غير محددة في المقتطف المستخدم من المرجع.",
+        "يتم اتباع سياسة مكافحة العدوى المعتمدة."
+    ],
+
+    transport:[
+        "تقليل انتقال المريض غير الضروري.",
+        "التنسيق مع مكافحة العدوى عند النقل."
+    ],
+
+    duration:[
+        "يحدد إنهاء العزل وفق الدليل الإرشادي وسياسة مكافحة العدوى.",
+        "لم تتم إضافة مدة غير منصوص عليها في المرجع المستخدم."
+    ],
+
+    visitors:[
+        "الحد من التلامس مع الآخرين أثناء فترة العدوى."
+    ],
+
+    notes:[
+        "الإبلاغ عن حالات الحصبة والحصبة الألمانية فوري عبر حصن بلس والهاتف.",
+        "توجد إرشادات وطنية خاصة بمراقبة حالات الطفح الجلدي المصحوب بحمى."
+    ]
+
+},
+
+
+
+plague:{
+
+    arName:"الطاعون",
+
+    enName:"Plague",
+
+    icon:"🐀",
+
+    precaution:
+        "تلامس + قطيرات",
+
+    highRisk:true,
+
+    isolation:[
+        "عزل المريض إجباريًا.",
+        "تطبيق العزل التلامسي واحتياطات القطيرات حسب الدليل."
+    ],
+
+    ppe:[
+        "احتياطات التلامس والقطيرات.",
+        "PPE حسب سياسة مكافحة العدوى."
+    ],
+
+    transport:[
+        "تقليل النقل غير الضروري.",
+        "تطبيق احتياطات العزل أثناء النقل."
+    ],
+
+    duration:[
+        "يستمر العزل حتى شفاء المريض حسب النص الوارد في الدليل."
+    ],
+
+    visitors:[
+        "تقييد المخالطة خلال فترة العزل."
+    ],
+
+    notes:[
+        "تطهير إفرازات المريض.",
+        "التخلص الآمن من الضمادات والغيارات والمواد الملوثة حسب سياسة النفايات الطبية."
+    ]
+
+},
+
+
+
+cchf:{
+
+    arName:"حمى القرم الكونغو النزفية",
+
+    enName:"Crimean-Congo Hemorrhagic Fever",
+
+    icon:"🩸",
+
+    precaution:
+        "قياسي + تلامسي + رذاذي + احتياطات الدم والإفرازات",
+
+    highRisk:true,
+
+    isolation:[
+        "العزل إجباري في أماكن مخصصة لهذا الغرض بالمستشفى.",
+        "استخدام غرفة خاصة حسب الإمكانات والسياسة المعتمدة."
+    ],
+
+    ppe:[
+        "احتياطات الدم والإفرازات.",
+        "احتياطات قياسية وتلامسية ورذاذية حسب الدليل.",
+        "معدات الوقاية التفصيلية حسب سياسة مكافحة العدوى."
+    ],
+
+    transport:[
+        "تقليل حركة المريض.",
+        "التنسيق المسبق مع مكافحة العدوى عند الحاجة للنقل."
+    ],
+
+    duration:[
+        "لم يتم تحديد مدة موحدة في المقتطف المرجعي المستخدم.",
+        "إنهاء العزل حسب تقييم مكافحة العدوى والحالة."
+    ],
+
+    visitors:[
+        "تقييد الدخول إلى المريض حسب مستوى الخطورة."
+    ],
+
+    notes:[
+        "الإبلاغ الفوري والاتصال الهاتفي لتأكيد وصول المعلومة.",
+        "التعامل بحذر شديد مع الدم والإفرازات."
+    ]
+
+},
+
+
+
+mers:{
+
+    arName:"متلازمة الشرق الأوسط التنفسية",
+
+    enName:"MERS",
+
+    icon:"🫁",
+
+    precaution:
+        "احتياطات مكافحة العدوى حسب بروتوكول MERS",
+
+    highRisk:true,
+
+    isolation:[
+        "تطبيق سياسات العزل ومكافحة العدوى للحالات المشتبهة.",
+        "إبلاغ مكافحة العدوى والصحة العامة فور الاشتباه."
+    ],
+
+    ppe:[
+        "استخدام معدات الوقاية المطلوبة حسب بروتوكول MERS وسياسة مكافحة العدوى.",
+        "لم تتم إضافة تفاصيل غير منصوص عليها في المصدر المستخدم."
+    ],
+
+    transport:[
+        "تقليل النقل غير الضروري.",
+        "التنسيق مع مكافحة العدوى عند النقل داخل المنشأة."
+    ],
+
+    duration:[
+        "يتم تحديد مدة العزل وفق بروتوكول MERS وسياسة مكافحة العدوى المعتمدة."
+    ],
+
+    visitors:[
+        "تقليل المخالطة والزيارات حسب سياسة العزل."
+    ],
+
+    notes:[
+        "الإبلاغ الفوري عن كل حالة مشتبهة وإدخالها في حصن بلس.",
+        "التقصي والمخالطون جزء من مسار الاستجابة."
+    ]
+
+}
+
+};
+
+
+
+function createList(items){
+
+    return items
+        .map(
+            item => `<li>${item}</li>`
+        )
+        .join("");
+
+}
+
+
+
+function renderIsolation(){
+
+    const key =
+        document.getElementById(
+            "diseaseSelect"
+        ).value;
+
+
+    const card =
+        document.getElementById(
+            "resultCard"
+        );
+
+
+    if(!key){
+
+        card.classList.remove(
+            "active"
+        );
+
+        card.innerHTML = "";
+
+        return;
+
+    }
+
+
+    const disease =
+        isolationDatabase[key];
+
+
+    if(!disease){
+
+        return;
+
+    }
+
+
+    card.innerHTML = `
+
+        <div class="disease-header">
+
+            <div class="big-icon">
+                ${disease.icon}
+            </div>
+
+            <h2>
+                ${disease.arName}
+            </h2>
+
+            <h3>
+                ${disease.enName}
+            </h3>
+
+            <span
+                class="precaution-badge
+                ${disease.highRisk ? "high-risk" : ""}">
+
+                🛡️ ${disease.precaution}
+
+            </span>
+
+        </div>
+
+
+        <div class="info-grid">
+
+
+            <div class="info-box">
+
+                <h3>
+                    🏥 العزل
+                </h3>
+
+                <ul>
+                    ${createList(disease.isolation)}
+                </ul>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <h3>
+                    😷 معدات الوقاية PPE
+                </h3>
+
+                <ul>
+                    ${createList(disease.ppe)}
+                </ul>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <h3>
+                    🚑 نقل المريض
+                </h3>
+
+                <ul>
+                    ${createList(disease.transport)}
+                </ul>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <h3>
+                    ⏱️ مدة العزل
+                </h3>
+
+                <ul>
+                    ${createList(disease.duration)}
+                </ul>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <h3>
+                    👥 الزوار والمخالطون
+                </h3>
+
+                <ul>
+                    ${createList(disease.visitors)}
+                </ul>
+
+            </div>
+
+
+            <div class="info-box warning">
+
+                <h3>
+                    ⚠️ تنبيهات مهمة
+                </h3>
+
+                <ul>
+                    ${createList(disease.notes)}
+                </ul>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="reference">
+
+            <strong>
+                📚 المصدر:
+            </strong>
+
+            دليل الإجراءات الوقائية للأمراض المعدية 2024.
+
+            <br>
+
+            <strong>
+                ملاحظة:
+            </strong>
+
+            تطبق سياسة مكافحة العدوى المعتمدة بالمستشفى
+            عند وجود تعليمات أكثر تفصيلًا أو أحدث.
+
+        </div>
+
+    `;
+
+
+    card.classList.add(
+        "active"
+    );
+
+
+    card.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+
+}
+
+
+
+function openDisease(key){
+
+    document.getElementById(
+        "diseaseSelect"
+    ).value = key;
+
+    renderIsolation();
+
+}
+
+
+
+function searchDisease(){
+
+    const text =
+        document.getElementById(
+            "searchInput"
+        )
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    if(!text){
+
+        return;
+
+    }
+
+
+    const key =
+        Object.keys(
+            isolationDatabase
+        )
+        .find(
+
+            function(item){
+
+                const disease =
+                    isolationDatabase[item];
+
+
+                return (
+                    disease.arName +
+                    " " +
+                    disease.enName
+                )
+                .toLowerCase()
+                .includes(text);
+
+            }
+
+        );
+
+
+    if(key){
+
+        document.getElementById(
+            "diseaseSelect"
+        ).value = key;
+
+        renderIsolation();
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>

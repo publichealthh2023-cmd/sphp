@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>دليل موظفي المستشفى</title>
+
+<link rel="stylesheet" href="Style.css">
+
+<style>
+
+.directory-page{
+    max-width:1350px;
+    margin:30px auto;
+    padding:0 20px 70px;
+}
+
+.intro-card,
+.section-card{
+    background:white;
+    border:1px solid #dfe8f2;
+    border-radius:14px;
+    padding:22px;
+    margin-bottom:20px;
+    box-shadow:0 4px 13px rgba(0,0,0,.05);
+}
+
+.intro-card{
+    text-align:center;
+}
+
+.intro-card h1{
+    color:#064c92;
+    margin:5px 0;
+}
+
+.intro-card p{
+    color:#687b8d;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:13px;
+}
+
+label{
+    display:block;
+    margin-bottom:6px;
+    font-weight:bold;
+    color:#294b6a;
+}
+
+input,
+select{
+    width:100%;
+    box-sizing:border-box;
+    padding:11px;
+    border:1px solid #ccd9e5;
+    border-radius:8px;
+    background:white;
+}
+
+button,
+.link-btn{
+    border:none;
+    border-radius:8px;
+    padding:11px 16px;
+    font-weight:bold;
+    cursor:pointer;
+    text-decoration:none;
+    display:inline-block;
+}
+
+.primary{
+    background:#0759a6;
+    color:white;
+}
+
+.green{
+    background:#187b43;
+    color:white;
+}
+
+.red{
+    background:#c62828;
+    color:white;
+}
+
+.gray{
+    background:#687984;
+    color:white;
+}
+
+.light{
+    background:#eaf1f7;
+    color:#064c92;
+}
+
+.buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:18px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.stat{
+    background:white;
+    border-radius:13px;
+    padding:18px;
+    text-align:center;
+    box-shadow:0 4px 12px rgba(0,0,0,.05);
+}
+
+.stat strong{
+    display:block;
+    font-size:30px;
+    color:#064c92;
+}
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:900px;
+}
+
+th,
+td{
+    border:1px solid #d4dee6;
+    padding:10px;
+    text-align:center;
+}
+
+th{
+    background:#edf3f8;
+    color:#284a68;
+}
+
+.active-status{
+    color:#187b43;
+    font-weight:bold;
+}
+
+.inactive-status{
+    color:#c62828;
+    font-weight:bold;
+}
+
+.message{
+    display:none;
+    margin-top:15px;
+    padding:13px;
+    border-radius:8px;
+    background:#e8f5e9;
+    color:#256237;
+}
+
+.editing{
+    background:#fff8e1;
+    border-right:5px solid #f9a825;
+    padding:12px;
+    margin-bottom:15px;
+    display:none;
+}
+
+@media(max-width:900px){
+
+    .form-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="hero-header">
+
+<div class="hero-grid">
+
+    <div class="side-logo left-logo">
+        <img src="images/cluster-logo.png">
+    </div>
+
+    <div class="hero-center">
+
+        <h1>
+            دليل موظفي المستشفى
+        </h1>
+
+        <h2>
+            Employee Directory
+        </h2>
+
+        <p>
+            الصحة المهنية
+        </p>
+
+    </div>
+
+    <div class="side-logo right-logo">
+        <img src="images/hospital-logo.png">
+    </div>
+
+</div>
+
+</header>
+
+
+<main class="directory-page">
+
+
+<section class="intro-card">
+
+<h1>👥 سجل الموظفين الأساسي</h1>
+
+<p>
+يستخدم هذا السجل لمقارنة الموظفين المستهدفين
+مع سجلات الفحص الدوري وتحديد من تم فحصه ومن لم يتم فحصه.
+</p>
+
+</section>
+
+
+<section class="stats">
+
+<div class="stat">
+    <strong id="totalEmployees">0</strong>
+    إجمالي الموظفين
+</div>
+
+<div class="stat">
+    <strong id="activeEmployees">0</strong>
+    الموظفون النشطون
+</div>
+
+<div class="stat">
+    <strong id="departmentsCount">0</strong>
+    الأقسام المسجلة
+</div>
+
+</section>
+
+
+<section class="section-card">
+
+<h2>➕ إضافة / تعديل موظف</h2>
+
+<div id="editingNotice" class="editing">
+    ✏️ أنت الآن تقوم بتعديل سجل موظف.
+</div>
+
+
+<div class="form-grid">
+
+<div>
+
+<label>اسم الموظف *</label>
+
+<input
+    id="employeeName"
+    placeholder="الاسم الكامل">
+
+</div>
+
+
+<div>
+
+<label>الرقم الوظيفي *</label>
+
+<input
+    id="employeeId"
+    placeholder="الرقم الوظيفي">
+
+</div>
+
+
+<div>
+
+<label>القسم *</label>
+
+<select id="department">
+
+<option value="">اختر القسم</option>
+
+<optgroup label="الإدارات التابعة لمدير المستشفى">
+<option>مكتب المدير</option>
+<option>التغيير والتواصل المؤسسي</option>
+<option>التخطيط والاستعداد</option>
+<option>الصحة الإلكترونية</option>
+<option>المراجعة الداخلية</option>
+<option>المدير التنفيذي</option>
+<option>مكافحة العدوى</option>
+<option>الجودة الصحية</option>
+<option>تجربة المستفيد</option>
+<option>خدمات التمريض</option>
+<option>القانونية</option>
+<option>تنمية الإيرادات</option>
+</optgroup>
+
+<optgroup label="الخدمات العلاجية">
+<option>التغذية</option>
+<option>العيادات الخارجية</option>
+<option>التنسيق الطبي</option>
+<option>الخدمة الاجتماعية</option>
+<option>اضطرابات النمو</option>
+<option>الرعاية المنزلية</option>
+<option>النقل الإسعافي</option>
+<option>الصيدلية</option>
+<option>المختبر</option>
+<option>الإدمان</option>
+<option>الصحة العامة</option>
+<option>التأهيل الطبي والعلاج بالعمل</option>
+<option>الإسعاف</option>
+<option>الخدمة النفسية</option>
+<option>السجلات الطبية</option>
+<option>شؤون المرضى</option>
+<option>الإحصاء الطبي</option>
+<option>الأشعة</option>
+<option>الطاقة الاستيعابية</option>
+<option>التعقيم</option>
+<option>الخدمات العلاجية</option>
+<option>التقارير</option>
+</optgroup>
+
+<optgroup label="الموارد البشرية">
+<option>خدمات الموارد</option>
+<option>التدريب والتعليم المستمر</option>
+<option>المبتعثين والإيفاد</option>
+</optgroup>
+
+<optgroup label="المالي والإداري">
+<option>السلامة</option>
+<option>الصيانة العامة</option>
+<option>الشؤون المالية</option>
+<option>الأمن الصحي</option>
+<option>مراقبة المخزون</option>
+<option>الأصول الثابتة</option>
+<option>الاتصالات الإدارية</option>
+<option>التموين الطبي</option>
+<option>التوعية الدينية</option>
+<option>الخدمات العامة</option>
+<option>المشتريات</option>
+<option>الصيانة الطبية</option>
+<option>إدارة الالتزام</option>
+<option>الزائر السري</option>
+</optgroup>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>المسمى الوظيفي</label>
+
+<input
+    id="jobTitle"
+    placeholder="مثال: أخصائي تمريض">
+
+</div>
+
+
+<div>
+
+<label>حالة الموظف</label>
+
+<select id="employmentStatus">
+
+<option value="active">
+نشط
+</option>
+
+<option value="inactive">
+غير نشط
+</option>
+
+<option value="leave">
+إجازة طويلة
+</option>
+
+<option value="transferred">
+منقول
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>الجنسية / ملاحظة اختيارية</label>
+
+<input id="optionalNote">
+
+</div>
+
+</div>
+
+
+<div class="buttons">
+
+<button
+    id="saveButton"
+    class="green"
+    onclick="saveEmployee()">
+
+💾 حفظ الموظف
+
+</button>
+
+
+<button
+    class="gray"
+    onclick="clearForm()">
+
+إلغاء / تفريغ الحقول
+
+</button>
+
+</div>
+
+
+<div
+    id="message"
+    class="message">
+</div>
+
+</section>
+
+
+
+<section class="section-card">
+
+<h2>🔎 البحث والفلترة</h2>
+
+<div class="form-grid">
+
+<div>
+
+<label>بحث</label>
+
+<input
+    id="searchInput"
+    placeholder="الاسم أو الرقم الوظيفي..."
+    oninput="renderEmployees()">
+
+</div>
+
+
+<div>
+
+<label>القسم</label>
+
+<select
+    id="departmentFilter"
+    onchange="renderEmployees()">
+
+<option value="">جميع الأقسام</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>حالة الموظف</label>
+
+<select
+    id="statusFilter"
+    onchange="renderEmployees()">
+
+<option value="">الجميع</option>
+<option value="active">نشط</option>
+<option value="inactive">غير نشط</option>
+<option value="leave">إجازة طويلة</option>
+<option value="transferred">منقول</option>
+
+</select>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section class="section-card">
+
+<h2>📋 قائمة موظفي المستشفى</h2>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>م</th>
+<th>اسم الموظف</th>
+<th>الرقم الوظيفي</th>
+<th>القسم</th>
+<th>المسمى</th>
+<th>الحالة</th>
+<th>حالة الفحص</th>
+<th>الإجراءات</th>
+
+</tr>
+
+</thead>
+
+<tbody id="employeesBody">
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+<div class="buttons">
+
+<a
+    href="occupational-dashboard.html"
+    class="link-btn primary">
+
+📊 لوحة متابعة الفحص
+
+</a>
+
+<a
+    href="employee-screening.html"
+    class="link-btn green">
+
+🧪 تسجيل فحص موظف
+
+</a>
+
+<a
+    href="occupational-health.html"
+    class="link-btn light">
+
+← العودة للصحة المهنية
+
+</a>
+
+</div>
+
+
+</main>
+
+
+
+<script>
+
+
+let editingEmployeeId = null;
+
+
+
+function getEmployees(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(
+                "hospitalEmployeeDirectory"
+            )
+        ) || [];
+
+    }catch(error){
+
+        return [];
+
+    }
+
+}
+
+
+
+function saveEmployees(employees){
+
+    localStorage.setItem(
+        "hospitalEmployeeDirectory",
+        JSON.stringify(employees)
+    );
+
+}
+
+
+
+function getScreenings(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(
+                "employeeScreeningRecords"
+            )
+        ) || [];
+
+    }catch(error){
+
+        return [];
+
+    }
+
+}
+
+
+
+function getScreeningStatus(employeeId){
+
+    const records =
+        getScreenings();
+
+
+    const record =
+        records.find(
+            item =>
+            String(item.employeeId) ===
+            String(employeeId) &&
+            item.screeningStatus === "completed"
+        );
+
+
+    return record
+        ? "completed"
+        : "notCompleted";
+
+}
+
+
+
+function showMessage(text){
+
+    const box =
+        document.getElementById("message");
+
+    box.innerHTML = text;
+
+    box.style.display =
+        "block";
+
+
+    setTimeout(
+        function(){
+
+            box.style.display =
+                "none";
+
+        },
+        3000
+    );
+
+}
+
+
+
+function saveEmployee(){
+
+    const name =
+        document
+        .getElementById("employeeName")
+        .value
+        .trim();
+
+
+    const id =
+        document
+        .getElementById("employeeId")
+        .value
+        .trim();
+
+
+    const department =
+        document
+        .getElementById("department")
+        .value;
+
+
+    if(
+        !name ||
+        !id ||
+        !department
+    ){
+
+        alert(
+            "يرجى إدخال اسم الموظف والرقم الوظيفي والقسم."
+        );
+
+        return;
+
+    }
+
+
+    let employees =
+        getEmployees();
+
+
+    /*
+       عند إضافة موظف جديد:
+       يمنع تكرار الرقم الوظيفي.
+    */
+
+    if(!editingEmployeeId){
+
+        const duplicate =
+            employees.find(
+                item =>
+                String(item.employeeId) ===
+                String(id)
+            );
+
+
+        if(duplicate){
+
+            alert(
+                "⚠️ الرقم الوظيفي موجود مسبقًا."
+            );
+
+            return;
+
+        }
+
+    }
+
+
+    const employee = {
+
+        employeeName:
+            name,
+
+        employeeId:
+            id,
+
+        department:
+            department,
+
+        jobTitle:
+            document
+            .getElementById("jobTitle")
+            .value
+            .trim(),
+
+        employmentStatus:
+            document
+            .getElementById(
+                "employmentStatus"
+            )
+            .value,
+
+        optionalNote:
+            document
+            .getElementById(
+                "optionalNote"
+            )
+            .value
+            .trim(),
+
+        updatedAt:
+            new Date()
+            .toISOString()
+
+    };
+
+
+    if(editingEmployeeId){
+
+        const index =
+            employees.findIndex(
+                item =>
+                String(item.employeeId) ===
+                String(editingEmployeeId)
+            );
+
+
+        if(index >= 0){
+
+            employees[index] =
+                employee;
+
+        }
+
+    }else{
+
+        employees.push(
+            employee
+        );
+
+    }
+
+
+    saveEmployees(
+        employees
+    );
+
+
+    showMessage(
+        "✅ تم حفظ بيانات الموظف بنجاح."
+    );
+
+
+    clearForm();
+
+    renderEmployees();
+
+    updateStatistics();
+
+    buildDepartmentFilter();
+
+}
+
+
+
+function editEmployee(employeeId){
+
+    const employees =
+        getEmployees();
+
+
+    const employee =
+        employees.find(
+            item =>
+            String(item.employeeId) ===
+            String(employeeId)
+        );
+
+
+    if(!employee){
+        return;
+    }
+
+
+    editingEmployeeId =
+        employee.employeeId;
+
+
+    document.getElementById(
+        "employeeName"
+    ).value =
+        employee.employeeName;
+
+
+    document.getElementById(
+        "employeeId"
+    ).value =
+        employee.employeeId;
+
+
+    document.getElementById(
+        "department"
+    ).value =
+        employee.department;
+
+
+    document.getElementById(
+        "jobTitle"
+    ).value =
+        employee.jobTitle || "";
+
+
+    document.getElementById(
+        "employmentStatus"
+    ).value =
+        employee.employmentStatus ||
+        "active";
+
+
+    document.getElementById(
+        "optionalNote"
+    ).value =
+        employee.optionalNote || "";
+
+
+    document.getElementById(
+        "editingNotice"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "saveButton"
+    ).innerHTML =
+        "💾 حفظ التعديل";
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+
+function deleteEmployee(employeeId){
+
+    if(
+        !confirm(
+            "هل تريد حذف الموظف من دليل الموظفين؟"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    let employees =
+        getEmployees();
+
+
+    employees =
+        employees.filter(
+            item =>
+            String(item.employeeId) !==
+            String(employeeId)
+        );
+
+
+    saveEmployees(
+        employees
+    );
+
+
+    renderEmployees();
+
+    updateStatistics();
+
+    buildDepartmentFilter();
+
+}
+
+
+
+function clearForm(){
+
+    editingEmployeeId =
+        null;
+
+
+    document.getElementById(
+        "employeeName"
+    ).value = "";
+
+
+    document.getElementById(
+        "employeeId"
+    ).value = "";
+
+
+    document.getElementById(
+        "department"
+    ).value = "";
+
+
+    document.getElementById(
+        "jobTitle"
+    ).value = "";
+
+
+    document.getElementById(
+        "employmentStatus"
+    ).value =
+        "active";
+
+
+    document.getElementById(
+        "optionalNote"
+    ).value = "";
+
+
+    document.getElementById(
+        "editingNotice"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "saveButton"
+    ).innerHTML =
+        "💾 حفظ الموظف";
+
+}
+
+
+
+function statusArabic(status){
+
+    const map = {
+
+        active:
+            "نشط",
+
+        inactive:
+            "غير نشط",
+
+        leave:
+            "إجازة طويلة",
+
+        transferred:
+            "منقول"
+
+    };
+
+
+    return map[status] ||
+        status;
+
+}
+
+
+
+function renderEmployees(){
+
+    const body =
+        document.getElementById(
+            "employeesBody"
+        );
+
+
+    const search =
+        document
+        .getElementById(
+            "searchInput"
+        )
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    const department =
+        document
+        .getElementById(
+            "departmentFilter"
+        )
+        .value;
+
+
+    const status =
+        document
+        .getElementById(
+            "statusFilter"
+        )
+        .value;
+
+
+    let employees =
+        getEmployees();
+
+
+    employees =
+        employees.filter(
+
+            function(employee){
+
+                const searchMatch =
+                    !search ||
+                    (
+                        employee.employeeName +
+                        " " +
+                        employee.employeeId
+                    )
+                    .toLowerCase()
+                    .includes(search);
+
+
+                const departmentMatch =
+                    !department ||
+                    employee.department ===
+                    department;
+
+
+                const statusMatch =
+                    !status ||
+                    employee.employmentStatus ===
+                    status;
+
+
+                return (
+                    searchMatch &&
+                    departmentMatch &&
+                    statusMatch
+                );
+
+            }
+
+        );
+
+
+    if(employees.length === 0){
+
+        body.innerHTML = `
+
+            <tr>
+
+                <td colspan="8">
+
+                    لا توجد بيانات موظفين حتى الآن.
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    body.innerHTML =
+        employees
+        .map(
+
+            function(employee,index){
+
+                const screening =
+                    getScreeningStatus(
+                        employee.employeeId
+                    );
+
+
+                const screeningText =
+                    screening ===
+                    "completed"
+                    ? "✅ تم الفحص"
+                    : "❌ لم يتم الفحص";
+
+
+                const screeningClass =
+                    screening ===
+                    "completed"
+                    ? "active-status"
+                    : "inactive-status";
+
+
+                return `
+
+                <tr>
+
+                    <td>
+                        ${index + 1}
+                    </td>
+
+                    <td>
+                        ${employee.employeeName}
+                    </td>
+
+                    <td>
+                        ${employee.employeeId}
+                    </td>
+
+                    <td>
+                        ${employee.department}
+                    </td>
+
+                    <td>
+                        ${employee.jobTitle || "—"}
+                    </td>
+
+                    <td>
+                        ${statusArabic(
+                            employee.employmentStatus
+                        )}
+                    </td>
+
+                    <td class="${screeningClass}">
+                        ${screeningText}
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="primary"
+                            onclick="editEmployee('${employee.employeeId}')">
+
+                            تعديل
+
+                        </button>
+
+                        <button
+                            class="red"
+                            onclick="deleteEmployee('${employee.employeeId}')">
+
+                            حذف
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+                `;
+
+            }
+
+        )
+        .join("");
+
+}
+
+
+
+function updateStatistics(){
+
+    const employees =
+        getEmployees();
+
+
+    const active =
+        employees.filter(
+            item =>
+            item.employmentStatus ===
+            "active"
+        );
+
+
+    const departments =
+        new Set(
+            active.map(
+                item =>
+                item.department
+            )
+        );
+
+
+    document.getElementById(
+        "totalEmployees"
+    ).textContent =
+        employees.length;
+
+
+    document.getElementById(
+        "activeEmployees"
+    ).textContent =
+        active.length;
+
+
+    document.getElementById(
+        "departmentsCount"
+    ).textContent =
+        departments.size;
+
+}
+
+
+
+function buildDepartmentFilter(){
+
+    const employees =
+        getEmployees();
+
+
+    const departments =
+        [
+            ...new Set(
+                employees.map(
+                    item =>
+                    item.department
+                )
+            )
+        ]
+        .sort();
+
+
+    const select =
+        document.getElementById(
+            "departmentFilter"
+        );
+
+
+    const current =
+        select.value;
+
+
+    select.innerHTML =
+        '<option value="">جميع الأقسام</option>' +
+        departments
+        .map(
+            item =>
+            `<option>${item}</option>`
+        )
+        .join("");
+
+
+    if(
+        departments.includes(
+            current
+        )
+    ){
+
+        select.value =
+            current;
+
+    }
+
+}
+
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        buildDepartmentFilter();
+
+        renderEmployees();
+
+        updateStatistics();
+
+    }
+);
+
+
+</script>
+
+
+</body>
+
+</html>

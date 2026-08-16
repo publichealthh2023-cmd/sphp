@@ -1,0 +1,2014 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>بلاغ التهاب الكبد الفيروسي</title>
+
+<link rel="stylesheet" href="Style.css">
+
+<style>
+
+body{
+    margin:0;
+}
+
+.hepatitis-page{
+    max-width:1150px;
+    margin:30px auto;
+    padding:0 20px 60px;
+}
+
+.page-title{
+    background:#fff;
+    border-radius:16px;
+    padding:25px;
+    text-align:center;
+    margin-bottom:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,.07);
+}
+
+.page-title .icon{
+    font-size:48px;
+}
+
+.page-title h1{
+    color:#064c92;
+    margin:8px 0 4px;
+}
+
+.page-title h2{
+    color:#687b8d;
+    font-size:17px;
+    margin:0;
+}
+
+.notification-box{
+    border-radius:10px;
+    padding:16px;
+    margin-bottom:18px;
+    line-height:1.8;
+    font-weight:bold;
+    background:#eef4fa;
+    border-right:5px solid #0759a6;
+    color:#31556f;
+}
+
+.notification-box.urgent{
+    background:#fff0f0;
+    border-right-color:#c62828;
+    color:#782626;
+}
+
+.notification-box.time72{
+    background:#fff8e1;
+    border-right-color:#f9a825;
+    color:#66531b;
+}
+
+.info-box{
+    background:#eef7ff;
+    border-right:5px solid #0759a6;
+    border-radius:10px;
+    padding:16px;
+    margin-bottom:20px;
+    line-height:1.8;
+    color:#31556f;
+}
+
+.section-card{
+    background:#fff;
+    border:1px solid #dfe8f2;
+    border-radius:14px;
+    padding:23px;
+    margin-bottom:18px;
+    box-shadow:0 4px 13px rgba(0,0,0,.05);
+}
+
+.section-card h3{
+    color:#064c92;
+    margin-top:0;
+    border-bottom:1px solid #e4ebf1;
+    padding-bottom:10px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:17px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+label{
+    font-weight:bold;
+    color:#294b6a;
+}
+
+.required{
+    color:#c62828;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    box-sizing:border-box;
+    padding:11px;
+    border:1px solid #ccd9e5;
+    border-radius:8px;
+    background:#fff;
+    font-size:14px;
+}
+
+textarea{
+    min-height:95px;
+    resize:vertical;
+}
+
+.check-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.check-item{
+    background:#f7fafc;
+    border:1px solid #dfe8ef;
+    border-radius:9px;
+    padding:10px;
+}
+
+.check-item label{
+    display:flex;
+    align-items:center;
+    gap:7px;
+}
+
+.check-item input{
+    width:auto;
+}
+
+/* مهم جدًا: فحوصات النوع */
+
+.lab-panel{
+    display:none;
+    margin-top:18px;
+    background:#f4f9fd;
+    border:2px solid #d6e6f3;
+    border-radius:12px;
+    padding:20px;
+}
+
+.lab-panel.show{
+    display:block;
+}
+
+.lab-panel h4{
+    color:#064c92;
+    font-size:17px;
+    margin-top:0;
+}
+
+/* التوقيع */
+
+.signature-area{
+    border:2px dashed #aebdca;
+    border-radius:12px;
+    padding:10px;
+    background:white;
+}
+
+#signatureCanvas{
+    display:block;
+    width:100%;
+    height:180px;
+    background:white;
+    touch-action:none;
+}
+
+/* الأزرار */
+
+.buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:25px;
+    padding:20px;
+    background:#fff;
+    border-radius:14px;
+    box-shadow:0 4px 13px rgba(0,0,0,.06);
+}
+
+.buttons button,
+.buttons a{
+    border:none;
+    border-radius:9px;
+    padding:14px 22px;
+    font-weight:bold;
+    cursor:pointer;
+    text-decoration:none;
+    text-align:center;
+}
+
+.review-btn{
+    background:#0759a6;
+    color:#fff;
+}
+
+.send-btn{
+    background:#187b43;
+    color:#fff;
+}
+
+.print-btn{
+    background:#687984;
+    color:#fff;
+}
+
+.back-btn{
+    background:#eaf1f7;
+    color:#064c92;
+}
+
+.result-box{
+    display:none;
+    margin-top:18px;
+    padding:16px;
+    border-radius:10px;
+    background:#eaf7ee;
+    border-right:5px solid #2e7d32;
+    color:#285b33;
+}
+
+.result-box.error{
+    background:#fff0f0;
+    border-right-color:#c62828;
+    color:#7d2525;
+}
+
+@media(max-width:750px){
+
+    .form-grid,
+    .check-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="hero-header">
+
+<div class="hero-grid">
+
+    <div class="side-logo left-logo">
+        <img src="images/cluster-logo.png">
+    </div>
+
+    <div class="hero-center">
+
+        <h1>
+            بلاغ التهاب الكبد الفيروسي
+        </h1>
+
+        <h2>
+            Viral Hepatitis Notification
+        </h2>
+
+        <p>
+            الصحة العامة
+        </p>
+
+    </div>
+
+    <div class="side-logo right-logo">
+        <img src="images/hospital-logo.png">
+    </div>
+
+</div>
+
+</header>
+
+
+<main class="hepatitis-page">
+
+
+<section class="page-title">
+
+    <div class="icon">🧬</div>
+
+    <h1>
+        بلاغ وتقييم أولي لالتهاب الكبد الفيروسي
+    </h1>
+
+    <h2>
+        Viral Hepatitis Initial Notification
+    </h2>
+
+</section>
+
+
+<div id="notificationBox"
+     class="notification-box">
+
+    اختر نوع التهاب الكبد أولًا.
+
+</div>
+
+
+<div class="info-box">
+
+    <strong>📌 ملاحظة:</strong>
+
+    هذا البلاغ للاستخدام الداخلي بالمستشفى
+    واستكمال الإبلاغ الرسمي عبر حصن بلس حسب نوع الحالة.
+
+</div>
+
+
+<!-- نوع المرض -->
+
+<section class="section-card">
+
+<h3>🧬 نوع التهاب الكبد</h3>
+
+<div class="form-grid">
+
+    <div class="form-group">
+
+        <label>
+            النوع
+            <span class="required">*</span>
+        </label>
+
+        <select id="hepatitisType">
+
+            <option value="">
+                اختر النوع
+            </option>
+
+            <option value="hepA">
+                التهاب الكبد A
+            </option>
+
+            <option value="hepBAcute">
+                التهاب الكبد B الحاد
+            </option>
+
+            <option value="hepBChronic">
+                التهاب الكبد B المزمن
+            </option>
+
+            <option value="hepCAcute">
+                التهاب الكبد C الحاد
+            </option>
+
+            <option value="hepCChronic">
+                التهاب الكبد C المزمن
+            </option>
+
+            <option value="hepD">
+                التهاب الكبد D
+            </option>
+
+            <option value="hepE">
+                التهاب الكبد E
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            تصنيف الحالة
+            <span class="required">*</span>
+        </label>
+
+        <select id="classification">
+
+            <option value="">
+                اختر
+            </option>
+
+            <option value="suspected">
+                مشتبهة
+            </option>
+
+            <option value="probable">
+                محتملة
+            </option>
+
+            <option value="confirmed">
+                مؤكدة
+            </option>
+
+        </select>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- المريض -->
+
+<section class="section-card">
+
+<h3>👤 بيانات المريض</h3>
+
+<div class="form-grid">
+
+    <div class="form-group">
+
+        <label>
+            اسم المريض *
+        </label>
+
+        <input id="patientName">
+
+    </div>
+
+    <div class="form-group">
+
+        <label>
+            رقم الملف الطبي *
+        </label>
+
+        <input id="mrn">
+
+    </div>
+
+    <div class="form-group">
+
+        <label>
+            الهوية / الإقامة
+        </label>
+
+        <input id="nationalId">
+
+    </div>
+
+    <div class="form-group">
+
+        <label>
+            الجنسية
+        </label>
+
+        <input id="nationality">
+
+    </div>
+
+    <div class="form-group">
+
+        <label>
+            تاريخ الميلاد
+        </label>
+
+        <input id="dob"
+               type="date">
+
+    </div>
+
+    <div class="form-group">
+
+        <label>
+            الجنس
+        </label>
+
+        <select id="gender">
+
+            <option value="">
+                اختر
+            </option>
+
+            <option value="male">
+                ذكر
+            </option>
+
+            <option value="female">
+                أنثى
+            </option>
+
+        </select>
+
+    </div>
+
+    <div class="form-group">
+
+        <label>
+            رقم التواصل
+        </label>
+
+        <input id="patientPhone">
+
+    </div>
+
+    <div class="form-group">
+
+        <label>
+            مكان الإقامة
+        </label>
+
+        <input id="residence">
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- الأعراض -->
+
+<section class="section-card">
+
+<h3>🌡️ الأعراض والعلامات</h3>
+
+<div class="form-grid">
+
+    <div class="form-group">
+
+        <label>
+            بداية الأعراض
+        </label>
+
+        <input id="symptomOnset"
+               type="date">
+
+    </div>
+
+    <div class="form-group">
+
+        <label>
+            ALT
+        </label>
+
+        <input id="altResult">
+
+    </div>
+
+</div>
+
+
+<div class="check-grid"
+     style="margin-top:15px">
+
+    <div class="check-item">
+        <label><input type="checkbox" name="symptom" value="fever"> حمى</label>
+    </div>
+
+    <div class="check-item">
+        <label><input type="checkbox" name="symptom" value="fatigue"> إرهاق</label>
+    </div>
+
+    <div class="check-item">
+        <label><input type="checkbox" name="symptom" value="lossAppetite"> فقدان الشهية</label>
+    </div>
+
+    <div class="check-item">
+        <label><input type="checkbox" name="symptom" value="nausea"> غثيان</label>
+    </div>
+
+    <div class="check-item">
+        <label><input type="checkbox" name="symptom" value="vomiting"> قيء</label>
+    </div>
+
+    <div class="check-item">
+        <label><input type="checkbox" name="symptom" value="abdominalPain"> ألم بالبطن</label>
+    </div>
+
+    <div class="check-item">
+        <label><input type="checkbox" name="symptom" value="jaundice"> يرقان</label>
+    </div>
+
+    <div class="check-item">
+        <label><input type="checkbox" name="symptom" value="darkUrine"> بول داكن</label>
+    </div>
+
+    <div class="check-item">
+        <label><input type="checkbox" name="symptom" value="jointPain"> ألم مفاصل</label>
+    </div>
+
+</div>
+
+
+<div class="form-group full"
+     style="margin-top:15px">
+
+    <label>
+        أعراض أخرى
+    </label>
+
+    <textarea id="otherSymptoms"></textarea>
+
+</div>
+
+</section>
+
+
+<!-- التاريخ الوبائي -->
+
+<section class="section-card">
+
+<h3>🌍 التاريخ الوبائي وعوامل الخطورة</h3>
+
+<div class="check-grid">
+
+    <div class="check-item">
+        <label><input type="checkbox" name="risk" value="blood"> تعرض للدم</label>
+    </div>
+
+    <div class="check-item">
+        <label><input type="checkbox" name="risk" value="needlestick"> وخز إبرة</label>
+    </div>
+
+    <div class="check-item">
+        <label><input type="checkbox" name="risk" value="transfusion"> نقل دم</label>
+    </div>
+
+    <div class="check-item">
+        <label><input type="checkbox" name="risk" value="surgery"> إجراء جراحي / طبي سابق</label>
+    </div>
+
+    <div class="check-item">
+        <label><input type="checkbox" name="risk" value="household"> مخالطة منزلية</label>
+    </div>
+
+    <div class="check-item">
+        <label><input type="checkbox" name="risk" value="sexual"> مخالطة جنسية</label>
+    </div>
+
+    <div class="check-item">
+        <label><input type="checkbox" name="risk" value="foodWater"> غذاء / مياه مشتبهة</label>
+    </div>
+
+    <div class="check-item">
+        <label><input type="checkbox" name="risk" value="travel"> سفر حديث</label>
+    </div>
+
+    <div class="check-item">
+        <label><input type="checkbox" name="risk" value="knownCase"> مخالطة حالة معروفة</label>
+    </div>
+
+</div>
+
+
+<div class="form-grid"
+     style="margin-top:15px">
+
+    <div class="form-group">
+
+        <label>
+            مكان السفر / التعرض
+        </label>
+
+        <input id="exposureLocation">
+
+    </div>
+
+    <div class="form-group">
+
+        <label>
+            هل المريضة حامل؟
+        </label>
+
+        <select id="pregnancy">
+
+            <option value="">
+                لا ينطبق / غير معروف
+            </option>
+
+            <option value="yes">
+                نعم
+            </option>
+
+            <option value="no">
+                لا
+            </option>
+
+        </select>
+
+    </div>
+
+    <div class="form-group full">
+
+        <label>
+            تفاصيل التاريخ الوبائي
+        </label>
+
+        <textarea id="epidemiologicalHistory"></textarea>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- الفحوصات -->
+
+<section class="section-card">
+
+<h3>🧪 الفحوصات المخبرية</h3>
+
+<div id="labInstruction">
+
+    اختر نوع التهاب الكبد بالأعلى
+    وستظهر الفحوصات المطلوبة هنا.
+
+</div>
+
+
+<!-- A -->
+
+<div id="hepAFields"
+     class="lab-panel">
+
+    <h4>
+        التهاب الكبد A
+    </h4>
+
+    <div class="form-grid">
+
+        <div class="form-group">
+
+            <label>
+                HAV Anti-IgM
+            </label>
+
+            <select id="havIgM">
+                <option value="">غير متوفر</option>
+                <option value="positive">إيجابي</option>
+                <option value="negative">سلبي</option>
+                <option value="pending">قيد الانتظار</option>
+            </select>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+                HAV PCR
+            </label>
+
+            <select id="havPCR">
+                <option value="">غير متوفر</option>
+                <option value="positive">إيجابي</option>
+                <option value="negative">سلبي</option>
+                <option value="pending">قيد الانتظار</option>
+            </select>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- B -->
+
+<div id="hepBFields"
+     class="lab-panel">
+
+    <h4>
+        التهاب الكبد B
+    </h4>
+
+    <div class="form-grid">
+
+        <div class="form-group">
+            <label>HBsAg</label>
+            <select id="hbsAg">
+                <option value="">غير متوفر</option>
+                <option value="positive">إيجابي</option>
+                <option value="negative">سلبي</option>
+                <option value="pending">قيد الانتظار</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Anti-HBc IgM</label>
+            <select id="antiHbcIgm">
+                <option value="">غير متوفر</option>
+                <option value="positive">إيجابي</option>
+                <option value="negative">سلبي</option>
+                <option value="pending">قيد الانتظار</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>HBeAg</label>
+            <select id="hbeAg">
+                <option value="">غير متوفر</option>
+                <option value="positive">إيجابي</option>
+                <option value="negative">سلبي</option>
+                <option value="pending">قيد الانتظار</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>HBV DNA / PCR</label>
+            <select id="hbvDna">
+                <option value="">غير متوفر</option>
+                <option value="positive">إيجابي</option>
+                <option value="negative">سلبي</option>
+                <option value="pending">قيد الانتظار</option>
+            </select>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- C -->
+
+<div id="hepCFields"
+     class="lab-panel">
+
+    <h4>
+        التهاب الكبد C
+    </h4>
+
+    <div class="form-grid">
+
+        <div class="form-group">
+            <label>Anti-HCV</label>
+            <select id="antiHcv">
+                <option value="">غير متوفر</option>
+                <option value="positive">إيجابي</option>
+                <option value="negative">سلبي</option>
+                <option value="pending">قيد الانتظار</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>HCV RNA</label>
+            <select id="hcvRna">
+                <option value="">غير متوفر</option>
+                <option value="positive">إيجابي</option>
+                <option value="negative">سلبي</option>
+                <option value="pending">قيد الانتظار</option>
+            </select>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- D -->
+
+<div id="hepDFields"
+     class="lab-panel">
+
+    <h4>
+        التهاب الكبد D
+    </h4>
+
+    <div class="form-grid">
+
+        <div class="form-group">
+            <label>Anti-HDV IgM</label>
+            <select id="antiHdvIgm">
+                <option value="">غير متوفر</option>
+                <option value="positive">إيجابي</option>
+                <option value="negative">سلبي</option>
+                <option value="pending">قيد الانتظار</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Anti-HDV IgG</label>
+            <select id="antiHdvIgg">
+                <option value="">غير متوفر</option>
+                <option value="positive">إيجابي</option>
+                <option value="negative">سلبي</option>
+                <option value="pending">قيد الانتظار</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>HDV RNA</label>
+            <select id="hdvRna">
+                <option value="">غير متوفر</option>
+                <option value="positive">إيجابي</option>
+                <option value="negative">سلبي</option>
+                <option value="pending">قيد الانتظار</option>
+            </select>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- E -->
+
+<div id="hepEFields"
+     class="lab-panel">
+
+    <h4>
+        التهاب الكبد E
+    </h4>
+
+    <div class="form-grid">
+
+        <div class="form-group">
+            <label>Anti-HEV IgM</label>
+            <select id="antiHevIgm">
+                <option value="">غير متوفر</option>
+                <option value="positive">إيجابي</option>
+                <option value="negative">سلبي</option>
+                <option value="pending">قيد الانتظار</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>HEV RNA / PCR</label>
+            <select id="hevRna">
+                <option value="">غير متوفر</option>
+                <option value="positive">إيجابي</option>
+                <option value="negative">سلبي</option>
+                <option value="pending">قيد الانتظار</option>
+            </select>
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="form-group full"
+     style="margin-top:15px">
+
+    <label>
+        نتائج مخبرية أخرى
+    </label>
+
+    <textarea id="otherLabResults"></textarea>
+
+</div>
+
+</section>
+
+
+<!-- الإجراءات -->
+
+<section class="section-card">
+
+<h3>🛡️ الإجراءات الأولية بالمستشفى</h3>
+
+<div class="check-grid">
+
+    <div class="check-item">
+        <label><input type="checkbox" name="action" value="standardPrecautions"> تطبيق الاحتياطات القياسية</label>
+    </div>
+
+    <div class="check-item">
+        <label><input type="checkbox" name="action" value="physicianEvaluation"> تقييم الطبيب</label>
+    </div>
+
+    <div class="check-item">
+        <label><input type="checkbox" name="action" value="infectionControl"> إبلاغ مكافحة العدوى</label>
+    </div>
+
+    <div class="check-item">
+        <label><input type="checkbox" name="action" value="publicHealth"> إبلاغ الصحة العامة</label>
+    </div>
+
+    <div class="check-item">
+        <label><input type="checkbox" name="action" value="samples"> استكمال العينات</label>
+    </div>
+
+    <div class="check-item">
+        <label><input type="checkbox" name="action" value="contacts"> توثيق المخالطين / التعرض</label>
+    </div>
+
+</div>
+
+
+<div class="form-group full"
+     style="margin-top:15px">
+
+    <label>
+        ملاحظات الإجراءات
+    </label>
+
+    <textarea id="actionNotes"></textarea>
+
+</div>
+
+</section>
+
+
+<!-- الإبلاغ -->
+
+<section class="section-card">
+
+<h3>📡 بيانات الإبلاغ</h3>
+
+<div class="form-grid">
+
+    <div class="form-group">
+
+        <label>
+            حالة البلاغ في حصن بلس
+        </label>
+
+        <select id="hesnStatus">
+
+            <option value="pending">
+                لم يتم بعد
+            </option>
+
+            <option value="entered">
+                تم إدخال البلاغ
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            رقم بلاغ حصن بلس
+        </label>
+
+        <input id="hesnNumber">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            تاريخ ووقت البلاغ
+        </label>
+
+        <input id="notificationDateTime"
+               type="datetime-local">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            اسم المبلّغ *
+        </label>
+
+        <input id="reporterName">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            الرقم الوظيفي *
+        </label>
+
+        <input id="reporterId">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            القسم
+        </label>
+
+        <input id="reporterDepartment"
+               value="قسم الطوارئ">
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- التوقيع -->
+
+<section class="section-card">
+
+<h3>✍️ التوقيع الإلكتروني</h3>
+
+<div class="signature-area">
+    <canvas id="signatureCanvas"></canvas>
+</div>
+
+<button
+    type="button"
+    onclick="clearSignature()"
+    style="margin-top:10px">
+
+    مسح التوقيع
+
+</button>
+
+
+<label style="display:block;margin-top:15px">
+
+    <input id="declaration"
+           type="checkbox">
+
+    أقر بأن البيانات المدخلة صحيحة
+    حسب المعلومات المتاحة وقت الإبلاغ.
+
+</label>
+
+</section>
+
+
+<!-- الأزرار -->
+
+<div class="buttons">
+
+    <button
+        class="review-btn"
+        onclick="reviewNotification()">
+
+        ✅ مراجعة البلاغ
+
+    </button>
+
+
+    <button
+        class="send-btn"
+        onclick="saveNotification()">
+
+        📤 إرسال البلاغ إلى الصحة العامة
+
+    </button>
+
+
+    <button
+        class="print-btn"
+        onclick="window.print()">
+
+        🖨️ طباعة / حفظ PDF
+
+    </button>
+
+
+    <a
+        class="back-btn"
+        href="infectious-diseases.html">
+
+        ← العودة
+
+    </a>
+
+</div>
+
+
+<div id="resultBox"
+     class="result-box"></div>
+
+
+</main>
+
+
+<script>
+
+
+let signatureEmpty = true;
+
+
+const hepatitisNames = {
+
+    hepA:"التهاب الكبد A",
+    hepBAcute:"التهاب الكبد B الحاد",
+    hepBChronic:"التهاب الكبد B المزمن",
+    hepCAcute:"التهاب الكبد C الحاد",
+    hepCChronic:"التهاب الكبد C المزمن",
+    hepD:"التهاب الكبد D",
+    hepE:"التهاب الكبد E"
+
+};
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        setCurrentDateTime();
+
+        setupSignature();
+
+        document
+        .getElementById(
+            "hepatitisType"
+        )
+        .addEventListener(
+            "change",
+            updateHepatitisType
+        );
+
+    }
+);
+
+
+function setCurrentDateTime(){
+
+    const now =
+        new Date();
+
+    const local =
+        new Date(
+            now.getTime() -
+            now.getTimezoneOffset() *
+            60000
+        )
+        .toISOString()
+        .slice(0,16);
+
+    document.getElementById(
+        "notificationDateTime"
+    ).value = local;
+
+}
+
+
+function hideAllLabs(){
+
+    document
+    .querySelectorAll(
+        ".lab-panel"
+    )
+    .forEach(
+        function(panel){
+
+            panel.classList.remove(
+                "show"
+            );
+
+        }
+    );
+
+}
+
+
+function updateHepatitisType(){
+
+    const type =
+        document.getElementById(
+            "hepatitisType"
+        ).value;
+
+    const box =
+        document.getElementById(
+            "notificationBox"
+        );
+
+    const instruction =
+        document.getElementById(
+            "labInstruction"
+        );
+
+
+    hideAllLabs();
+
+
+    if(!type){
+
+        box.className =
+            "notification-box";
+
+        box.textContent =
+            "اختر نوع التهاب الكبد أولًا.";
+
+        instruction.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    instruction.style.display =
+        "none";
+
+
+    if(type === "hepA"){
+
+        box.className =
+            "notification-box urgent";
+
+        box.textContent =
+            "🚨 التهاب الكبد A: الإبلاغ فوري عبر حصن بلس.";
+
+        document.getElementById(
+            "hepAFields"
+        ).classList.add(
+            "show"
+        );
+
+    }
+
+
+    if(
+        type === "hepBAcute" ||
+        type === "hepBChronic"
+    ){
+
+        box.className =
+            "notification-box time72";
+
+        box.textContent =
+            "⏱️ التهاب الكبد B: الإبلاغ خلال 72 ساعة حسب تصنيف الحالة.";
+
+        document.getElementById(
+            "hepBFields"
+        ).classList.add(
+            "show"
+        );
+
+    }
+
+
+    if(
+        type === "hepCAcute" ||
+        type === "hepCChronic"
+    ){
+
+        box.className =
+            "notification-box time72";
+
+        box.textContent =
+            "⏱️ التهاب الكبد C: الإبلاغ خلال 72 ساعة عبر حصن بلس.";
+
+        document.getElementById(
+            "hepCFields"
+        ).classList.add(
+            "show"
+        );
+
+    }
+
+
+    if(type === "hepD"){
+
+        box.className =
+            "notification-box time72";
+
+        box.textContent =
+            "⏱️ التهاب الكبد D: الإبلاغ خلال 72 ساعة حسب تعريف الحالة.";
+
+        document.getElementById(
+            "hepDFields"
+        ).classList.add(
+            "show"
+        );
+
+    }
+
+
+    if(type === "hepE"){
+
+        box.className =
+            "notification-box time72";
+
+        box.textContent =
+            "⏱️ التهاب الكبد E: الإبلاغ خلال 72 ساعة عبر حصن بلس.";
+
+        document.getElementById(
+            "hepEFields"
+        ).classList.add(
+            "show"
+        );
+
+    }
+
+}
+
+
+function setupSignature(){
+
+    const canvas =
+        document.getElementById(
+            "signatureCanvas"
+        );
+
+    const ctx =
+        canvas.getContext("2d");
+
+    const rect =
+        canvas.getBoundingClientRect();
+
+    const ratio =
+        window.devicePixelRatio || 1;
+
+    canvas.width =
+        rect.width * ratio;
+
+    canvas.height =
+        180 * ratio;
+
+    ctx.setTransform(
+        ratio,0,0,ratio,0,0
+    );
+
+    ctx.lineWidth = 2;
+
+    ctx.lineCap =
+        "round";
+
+    ctx.strokeStyle =
+        "#152637";
+
+
+    let drawing = false;
+
+
+    function pos(event){
+
+        const r =
+            canvas.getBoundingClientRect();
+
+        const p =
+            event.touches
+            ? event.touches[0]
+            : event;
+
+        return {
+
+            x:p.clientX-r.left,
+            y:p.clientY-r.top
+
+        };
+
+    }
+
+
+    function start(event){
+
+        event.preventDefault();
+
+        drawing = true;
+
+        signatureEmpty = false;
+
+        const p = pos(event);
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            p.x,
+            p.y
+        );
+
+    }
+
+
+    function move(event){
+
+        if(!drawing){
+            return;
+        }
+
+        event.preventDefault();
+
+        const p = pos(event);
+
+        ctx.lineTo(
+            p.x,
+            p.y
+        );
+
+        ctx.stroke();
+
+    }
+
+
+    function end(){
+
+        drawing = false;
+
+    }
+
+
+    canvas.addEventListener(
+        "mousedown",
+        start
+    );
+
+    canvas.addEventListener(
+        "mousemove",
+        move
+    );
+
+    window.addEventListener(
+        "mouseup",
+        end
+    );
+
+    canvas.addEventListener(
+        "touchstart",
+        start,
+        {passive:false}
+    );
+
+    canvas.addEventListener(
+        "touchmove",
+        move,
+        {passive:false}
+    );
+
+    canvas.addEventListener(
+        "touchend",
+        end
+    );
+
+}
+
+
+function clearSignature(){
+
+    const canvas =
+        document.getElementById(
+            "signatureCanvas"
+        );
+
+    const ctx =
+        canvas.getContext("2d");
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+    signatureEmpty = true;
+
+}
+
+
+function value(id){
+
+    const el =
+        document.getElementById(id);
+
+    return el
+        ? el.value
+        : "";
+
+}
+
+
+function checked(name){
+
+    return Array.from(
+        document.querySelectorAll(
+            'input[name="' +
+            name +
+            '"]:checked'
+        )
+    )
+    .map(
+        function(item){
+
+            return item.value;
+
+        }
+    );
+
+}
+
+
+function showResult(message,error){
+
+    const box =
+        document.getElementById(
+            "resultBox"
+        );
+
+    box.style.display =
+        "block";
+
+    box.classList.toggle(
+        "error",
+        !!error
+    );
+
+    box.innerHTML =
+        message;
+
+    box.scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+function validateForm(){
+
+    if(
+        !value("hepatitisType") ||
+        !value("classification") ||
+        !value("patientName").trim() ||
+        !value("mrn").trim() ||
+        !value("reporterName").trim() ||
+        !value("reporterId").trim()
+    ){
+
+        showResult(
+            "⚠️ يرجى استكمال الحقول الإلزامية.",
+            true
+        );
+
+        return false;
+
+    }
+
+
+    if(signatureEmpty){
+
+        showResult(
+            "⚠️ يرجى إضافة التوقيع الإلكتروني.",
+            true
+        );
+
+        return false;
+
+    }
+
+
+    if(
+        !document.getElementById(
+            "declaration"
+        ).checked
+    ){
+
+        showResult(
+            "⚠️ يرجى تأكيد الإقرار.",
+            true
+        );
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+function reviewNotification(){
+
+    if(!validateForm()){
+        return false;
+    }
+
+
+    const type =
+        value("hepatitisType");
+
+
+    showResult(
+        "✅ بلاغ " +
+        hepatitisNames[type] +
+        " جاهز للإرسال إلى الصحة العامة.",
+        false
+    );
+
+
+    return true;
+
+}
+
+
+function generateId(){
+
+    const date =
+        new Date()
+        .toISOString()
+        .slice(0,10)
+        .replaceAll("-","");
+
+    const number =
+        Math.floor(
+            1000 +
+            Math.random()*9000
+        );
+
+    return "HEP-" +
+           date +
+           "-" +
+           number;
+
+}
+
+
+function saveNotification(){
+
+    if(!validateForm()){
+        return;
+    }
+
+
+    const type =
+        value(
+            "hepatitisType"
+        );
+
+
+    const canvas =
+        document.getElementById(
+            "signatureCanvas"
+        );
+
+
+    const notification = {
+
+        id:generateId(),
+
+        createdAt:
+            new Date().toISOString(),
+
+        date:
+            new Date()
+            .toLocaleString(
+                "ar-SA"
+            ),
+
+        diseaseKey:
+            "hepatitis",
+
+        hepatitisType:
+            type,
+
+        disease:
+            hepatitisNames[type],
+
+        priority:
+            type === "hepA"
+            ? "urgent"
+            : "normal",
+
+        status:"new",
+
+        classification:
+            value(
+                "classification"
+            ),
+
+        patientName:
+            value(
+                "patientName"
+            ).trim(),
+
+        mrn:
+            value(
+                "mrn"
+            ).trim(),
+
+        nationalId:
+            value(
+                "nationalId"
+            ).trim(),
+
+        nationality:
+            value(
+                "nationality"
+            ).trim(),
+
+        dob:
+            value("dob"),
+
+        gender:
+            value("gender"),
+
+        patientPhone:
+            value(
+                "patientPhone"
+            ).trim(),
+
+        residence:
+            value(
+                "residence"
+            ).trim(),
+
+        symptomOnset:
+            value(
+                "symptomOnset"
+            ),
+
+        altResult:
+            value(
+                "altResult"
+            ),
+
+        symptoms:
+            checked(
+                "symptom"
+            ),
+
+        otherSymptoms:
+            value(
+                "otherSymptoms"
+            ).trim(),
+
+        riskFactors:
+            checked(
+                "risk"
+            ),
+
+        exposureLocation:
+            value(
+                "exposureLocation"
+            ).trim(),
+
+        pregnancy:
+            value(
+                "pregnancy"
+            ),
+
+        epidemiologicalHistory:
+            value(
+                "epidemiologicalHistory"
+            ).trim(),
+
+        laboratory:{
+
+            havIgM:
+                value("havIgM"),
+
+            havPCR:
+                value("havPCR"),
+
+            hbsAg:
+                value("hbsAg"),
+
+            antiHbcIgm:
+                value("antiHbcIgm"),
+
+            hbeAg:
+                value("hbeAg"),
+
+            hbvDna:
+                value("hbvDna"),
+
+            antiHcv:
+                value("antiHcv"),
+
+            hcvRna:
+                value("hcvRna"),
+
+            antiHdvIgm:
+                value("antiHdvIgm"),
+
+            antiHdvIgg:
+                value("antiHdvIgg"),
+
+            hdvRna:
+                value("hdvRna"),
+
+            antiHevIgm:
+                value("antiHevIgm"),
+
+            hevRna:
+                value("hevRna"),
+
+            other:
+                value(
+                    "otherLabResults"
+                ).trim()
+
+        },
+
+        actions:
+            checked(
+                "action"
+            ),
+
+        actionNotes:
+            value(
+                "actionNotes"
+            ).trim(),
+
+        hesnStatus:
+            value(
+                "hesnStatus"
+            ),
+
+        hesnNumber:
+            value(
+                "hesnNumber"
+            ).trim(),
+
+        reportDateTime:
+            value(
+                "notificationDateTime"
+            ),
+
+        reporterName:
+            value(
+                "reporterName"
+            ).trim(),
+
+        reporterId:
+            value(
+                "reporterId"
+            ).trim(),
+
+        reporterDepartment:
+            value(
+                "reporterDepartment"
+            ).trim(),
+
+        signature:
+            canvas.toDataURL(
+                "image/png"
+            ),
+
+        publicHealthNotes:""
+
+    };
+
+
+    let list = [];
+
+
+    try{
+
+        list =
+            JSON.parse(
+                localStorage.getItem(
+                    "publicHealthNotifications"
+                )
+            ) || [];
+
+    }catch(error){
+
+        list = [];
+
+    }
+
+
+    list.unshift(
+        notification
+    );
+
+
+    localStorage.setItem(
+        "publicHealthNotifications",
+        JSON.stringify(list)
+    );
+
+
+    showResult(
+
+        "✅ تم إرسال البلاغ إلى الصحة العامة بنجاح." +
+
+        "<br><br>" +
+
+        "<strong>رقم البلاغ:</strong> " +
+        notification.id +
+
+        "<br><br>" +
+
+        
+
+        false
+
+    );
+
+}
+
+</script>
+
+
+</body>
+
+</html>

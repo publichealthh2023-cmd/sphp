@@ -1,0 +1,1013 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>دليل العينات</title>
+
+<link rel="stylesheet" href="Style.css">
+
+<style>
+
+.specimen-page{
+    max-width:1200px;
+    margin:30px auto;
+    padding:0 20px 60px;
+}
+
+.page-intro{
+    background:white;
+    border-radius:16px;
+    padding:28px;
+    text-align:center;
+    box-shadow:0 4px 14px rgba(0,0,0,.07);
+    margin-bottom:20px;
+}
+
+.page-intro .icon{
+    font-size:48px;
+}
+
+.page-intro h1{
+    color:#064c92;
+    margin:8px 0 4px;
+}
+
+.page-intro h2{
+    color:#718293;
+    font-size:17px;
+    margin:0;
+}
+
+.notice{
+    background:#fff8e1;
+    border-right:5px solid #f9a825;
+    border-radius:10px;
+    padding:16px;
+    margin-bottom:20px;
+    line-height:1.8;
+    color:#66531b;
+}
+
+.search-area{
+    background:white;
+    border-radius:14px;
+    padding:20px;
+    box-shadow:0 4px 13px rgba(0,0,0,.05);
+    margin-bottom:22px;
+}
+
+.search-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:12px;
+}
+
+select,
+input{
+    width:100%;
+    box-sizing:border-box;
+    padding:13px;
+    border:1px solid #ccd9e5;
+    border-radius:9px;
+    background:white;
+    font-size:14px;
+}
+
+.result-card{
+    display:none;
+    background:white;
+    border:1px solid #dfe8f2;
+    border-radius:15px;
+    padding:24px;
+    box-shadow:0 4px 13px rgba(0,0,0,.06);
+}
+
+.result-card.active{
+    display:block;
+}
+
+.disease-title{
+    text-align:center;
+    border-bottom:1px solid #e2e9ef;
+    padding-bottom:18px;
+    margin-bottom:20px;
+}
+
+.disease-title .big-icon{
+    font-size:45px;
+}
+
+.disease-title h2{
+    color:#064c92;
+    margin:7px 0 4px;
+}
+
+.disease-title h3{
+    color:#758493;
+    margin:0;
+    font-size:15px;
+}
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.info-box{
+    background:#f8fbfd;
+    border-right:4px solid #0759a6;
+    border-radius:10px;
+    padding:16px;
+}
+
+.info-box.full{
+    grid-column:1/-1;
+}
+
+.info-box h3{
+    color:#064c92;
+    margin:0 0 10px;
+}
+
+.info-box ul{
+    line-height:1.9;
+    margin:0;
+    padding-right:20px;
+}
+
+.caution{
+    background:#fff1f1;
+    border-right-color:#c62828;
+}
+
+.reference{
+    margin-top:20px;
+    background:#eef7ff;
+    border-radius:10px;
+    padding:14px;
+    color:#385a73;
+    line-height:1.7;
+}
+
+.quick-title{
+    margin:35px 0 15px;
+    color:#064c92;
+}
+
+.quick-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.quick-card{
+    background:white;
+    border:1px solid #dfe8f2;
+    border-radius:12px;
+    padding:17px;
+    cursor:pointer;
+    box-shadow:0 4px 12px rgba(0,0,0,.05);
+}
+
+.quick-card:hover{
+    transform:translateY(-2px);
+}
+
+.quick-card h3{
+    color:#064c92;
+    margin:5px 0;
+}
+
+.quick-card p{
+    color:#687b8d;
+    font-size:12px;
+    line-height:1.6;
+}
+
+.back-btn{
+    display:inline-block;
+    margin-top:30px;
+    padding:11px 18px;
+    background:#eaf1f7;
+    color:#064c92;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+@media(max-width:800px){
+
+    .info-grid,
+    .quick-grid{
+        grid-template-columns:1fr;
+    }
+
+    .search-grid{
+        grid-template-columns:1fr;
+    }
+
+    .info-box.full{
+        grid-column:auto;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="hero-header">
+
+<div class="hero-grid">
+
+    <div class="side-logo left-logo">
+        <img src="images/cluster-logo.png">
+    </div>
+
+    <div class="hero-center">
+
+        <h1>
+            دليل العينات
+        </h1>
+
+        <h2>
+            Specimen Guide
+        </h2>
+
+        <p>
+            الصحة العامة
+        </p>
+
+    </div>
+
+    <div class="side-logo right-logo">
+        <img src="images/hospital-logo.png">
+    </div>
+
+</div>
+
+</header>
+
+
+<main class="specimen-page">
+
+
+<section class="page-intro">
+
+    <div class="icon">🧪</div>
+
+    <h1>
+        دليل سريع للعينات والفحوصات
+    </h1>
+
+    <h2>
+        Infectious Disease Specimen Quick Guide
+    </h2>
+
+</section>
+
+
+<div class="notice">
+
+    <strong>⚠️ تنبيه:</strong>
+
+    هذا الدليل للمساعدة في الوصول السريع للمعلومة.
+    يجب الالتزام بسياسات المختبر ومكافحة العدوى
+    ومتطلبات النقل والحفظ المعتمدة بالمستشفى والمختبر المرجعي.
+    عند عدم وجود تفاصيل للحفظ أو الوعاء في المرجع الحالي
+    لن يتم افتراضها داخل البوابة.
+
+</div>
+
+
+<section class="search-area">
+
+    <div class="search-grid">
+
+        <select
+            id="diseaseSelect"
+            onchange="renderSpecimen()">
+
+            <option value="">
+                اختر المرض
+            </option>
+
+            <option value="covid">
+                كوفيد-19
+            </option>
+
+            <option value="pertussis">
+                السعال الديكي
+            </option>
+
+            <option value="nipah">
+                فيروس نيباه
+            </option>
+
+            <option value="tb">
+                الدرن
+            </option>
+
+            <option value="meningitis">
+                التهاب السحايا البكتيري
+            </option>
+
+            <option value="salmonella">
+                السالمونيلا غير التيفية
+            </option>
+
+            <option value="typhoid">
+                الحمى التيفية / نظيرة التيفية
+            </option>
+
+            <option value="hepatitisB">
+                التهاب الكبد B
+            </option>
+
+        </select>
+
+
+        <input
+            id="searchText"
+            placeholder="أو اكتب اسم المرض..."
+            oninput="searchDisease()">
+
+    </div>
+
+</section>
+
+
+<section
+    id="resultCard"
+    class="result-card">
+</section>
+
+
+
+<h2 class="quick-title">
+    وصول سريع
+</h2>
+
+
+<section class="quick-grid">
+
+
+    <div
+        class="quick-card"
+        onclick="openDisease('covid')">
+
+        <div style="font-size:30px">🫁</div>
+
+        <h3>
+            كوفيد-19
+        </h3>
+
+        <p>
+            عينات الجهاز التنفسي العلوي والسفلي
+        </p>
+
+    </div>
+
+
+    <div
+        class="quick-card"
+        onclick="openDisease('pertussis')">
+
+        <div style="font-size:30px">😷</div>
+
+        <h3>
+            السعال الديكي
+        </h3>
+
+        <p>
+            مسحة بلعومية أنفية وPCR
+        </p>
+
+    </div>
+
+
+    <div
+        class="quick-card"
+        onclick="openDisease('nipah')">
+
+        <div style="font-size:30px">🦠</div>
+
+        <h3>
+            فيروس نيباه
+        </h3>
+
+        <p>
+            مسحات، دم، بول، وسائل نخاعي حسب الحالة
+        </p>
+
+    </div>
+
+
+    <div
+        class="quick-card"
+        onclick="openDisease('tb')">
+
+        <div style="font-size:30px">🩻</div>
+
+        <h3>
+            الدرن
+        </h3>
+
+        <p>
+            عينات مناسبة للفحص المجهري والزراعة والفحوص الجينية
+        </p>
+
+    </div>
+
+
+    <div
+        class="quick-card"
+        onclick="openDisease('meningitis')">
+
+        <div style="font-size:30px">🧠</div>
+
+        <h3>
+            التهاب السحايا
+        </h3>
+
+        <p>
+            السائل النخاعي والدم
+        </p>
+
+    </div>
+
+
+    <div
+        class="quick-card"
+        onclick="openDisease('salmonella')">
+
+        <div style="font-size:30px">🍽️</div>
+
+        <h3>
+            السالمونيلا
+        </h3>
+
+        <p>
+            البراز وقد تشمل عينات سريرية أخرى
+        </p>
+
+    </div>
+
+
+</section>
+
+
+<a
+    href="index.html"
+    class="back-btn">
+
+    ← العودة للبوابة الرئيسية
+
+</a>
+
+
+</main>
+
+
+<script>
+
+
+const specimenDatabase = {
+
+
+covid:{
+
+    arName:"كوفيد-19",
+
+    enName:"COVID-19",
+
+    icon:"🫁",
+
+    specimen:[
+        "عينات الجهاز التنفسي السفلي: إفرازات القصبة الهوائية، سائل غسول القصبات الهوائية أو البلغم.",
+        "يفضل أخذ عينات الجهاز التنفسي السفلي عند وجود أعراض أو علامات عدوى بالجهاز التنفسي السفلي.",
+        "إذا تعذر أخذ عينات الجهاز التنفسي السفلي، يتم جمع عينات الجهاز التنفسي العلوي.",
+        "للبالغين: المسحة الأنفية البلعومية هي الخيار الأول.",
+        "إذا تعذرت المسحة الأنفية البلعومية يمكن استخدام غسول أو شفط الأنف، أو مسحة البلعوم وفق المرجع.",
+        "للأطفال أقل من 12 سنة: المسحة الفموية البلعومية هي الخيار الأول."
+    ],
+
+    tests:[
+        "RT-PCR.",
+        "الفحص السريع المعتمد بحسب البروتوكول."
+    ],
+
+    storage:[
+        "لم يحدد الجزء المستخدم من المرجع في هذه البوابة درجة حرارة أو مدة حفظ موحدة.",
+        "يجب الرجوع إلى تعليمات المختبر والبروتوكول المعتمد قبل النقل."
+    ],
+
+    safety:[
+        "استخدام احتياطات مكافحة العدوى المناسبة أثناء أخذ العينات.",
+        "التعامل مع العينات وفق متطلبات المختبر المعتمد."
+    ],
+
+    reference:
+        "دليل الإجراءات الوقائية للأمراض المعدية 2024."
+
+},
+
+
+
+pertussis:{
+
+    arName:"السعال الديكي",
+
+    enName:"Pertussis",
+
+    icon:"😷",
+
+    specimen:[
+        "مسحات بلعومية أنفية.",
+        "يفضل جمع المسحات خلال المرحلة النزلية ومبكرًا في مرحلة نوبات السعال.",
+        "يمكن أخذ عينات مصلية للكشف عن الأجسام المضادة في سياقات محددة."
+    ],
+
+    tests:[
+        "زراعة المسحة البلعومية الأنفية.",
+        "PCR.",
+        "الأجسام المضادة النوعية في المصل عند الحاجة."
+    ],
+
+    storage:[
+        "تفاصيل الوعاء ودرجة حرارة الحفظ غير مذكورة في النص المرجعي المستخدم هنا.",
+        "يتم اتباع تعليمات المختبر المعتمد."
+    ],
+
+    safety:[
+        "يجب تطبيق احتياطات العدوى المناسبة أثناء أخذ المسحة.",
+        "تجنب تأخير إرسال العينة عند طلب الزراعة."
+    ],
+
+    reference:
+        "دليل الإجراءات الوقائية للأمراض المعدية 2024."
+
+},
+
+
+
+nipah:{
+
+    arName:"فيروس نيباه",
+
+    enName:"Nipah Virus",
+
+    icon:"🦠",
+
+    specimen:[
+        "مسحات الحلق والأنف.",
+        "الدم.",
+        "البول.",
+        "السائل النخاعي حسب الحالة السريرية."
+    ],
+
+    tests:[
+        "RT-PCR على العينات المناسبة.",
+        "اختبارات الأجسام المضادة مثل ELISA قد تستخدم حسب البروتوكول."
+    ],
+
+    storage:[
+        "لم يتم إدخال درجات حرارة أو أزمنة حفظ محددة لعدم توفرها بوضوح في الجزء المرجعي المستخدم.",
+        "يجب الالتزام بتعليمات المختبر المرجعي."
+    ],
+
+    safety:[
+        "يجب تطبيق احتياطات السلامة والاحتواء الحيوي أثناء جمع ونقل وتخزين العينات.",
+        "الحالات المشتبهة تتطلب تنسيقًا مباشرًا مع الصحة العامة ومكافحة العدوى."
+    ],
+
+    reference:
+        "دليل الإجراءات الوقائية للأمراض المعدية 2024."
+
+},
+
+
+
+tb:{
+
+    arName:"الدرن",
+
+    enName:"Tuberculosis",
+
+    icon:"🩻",
+
+    specimen:[
+        "تؤخذ العينة المناسبة حسب موقع المرض، ويعد البلغم من العينات المستخدمة في الدرن الرئوي.",
+        "يمكن استخدام عينات أخرى حسب العضو المصاب في الدرن خارج الرئة."
+    ],
+
+    tests:[
+        "الفحص المجهري باستخدام صبغات Acid-Fast.",
+        "الزراعة.",
+        "Xpert MTB/RIF.",
+        "اختبارات جينية أخرى حسب البرنامج الوطني."
+    ],
+
+    storage:[
+        "متطلبات العبوة والحفظ والنقل يجب أخذها من دليل المختبر وبرنامج الدرن المعتمد.",
+        "المرجع الحالي لا يقدم في الجزء المستخدم تعليمات موحدة للحفظ."
+    ],
+
+    safety:[
+        "تطبيق احتياطات مكافحة العدوى الخاصة بالدرن.",
+        "التعامل مع العينة وفق متطلبات السلامة الحيوية."
+    ],
+
+    reference:
+        "دليل الإجراءات الوقائية للأمراض المعدية 2024."
+
+},
+
+
+
+meningitis:{
+
+    arName:"التهاب السحايا البكتيري",
+
+    enName:"Bacterial Meningitis",
+
+    icon:"🧠",
+
+    specimen:[
+        "السائل النخاعي.",
+        "الدم.",
+        "العينة من موقع معقم بطبيعته حسب المسبب."
+    ],
+
+    tests:[
+        "الزراعة.",
+        "اختبارات مخبرية مباشرة على السائل النخاعي حسب المسبب.",
+        "قد يستخدم اختبار التلزن باللاتكس في سياقات محددة."
+    ],
+
+    storage:[
+        "لم يتم إدخال درجة حرارة أو مدة حفظ لأن المرجع المستخدم هنا لا يحددها بشكل موحد.",
+        "تتبع تعليمات المختبر مباشرة خصوصًا للعينات الحساسة مثل CSF."
+    ],
+
+    safety:[
+        "يتم أخذ العينات المناسبة عند الاشتباه حسب الإجراء السريري.",
+        "تطبق احتياطات العزل ومكافحة العدوى المحددة للمرض."
+    ],
+
+    reference:
+        "دليل الإجراءات الوقائية للأمراض المعدية 2024."
+
+},
+
+
+
+salmonella:{
+
+    arName:"السالمونيلا غير التيفية",
+
+    enName:"Nontyphoidal Salmonella",
+
+    icon:"🍽️",
+
+    specimen:[
+        "عينة براز للمزرعة.",
+        "يمكن عزل الميكروب من البراز أو الدم أو القيء وفق تعريف الحالة.",
+        "في الفاشيات يمكن أن يشمل التقصي الغذاء المشتبه به."
+    ],
+
+    tests:[
+        "المزرعة البكتيرية.",
+        "التصنيف المخبري بحسب الحاجة."
+    ],
+
+    storage:[
+        "تفاصيل الوعاء والحفظ غير محددة في النص المعروض من المرجع.",
+        "يتم اتباع تعليمات مختبر الأحياء الدقيقة."
+    ],
+
+    safety:[
+        "استخدام الاحتياطات القياسية.",
+        "منع تلوث العينة أثناء الجمع."
+    ],
+
+    reference:
+        "دليل الإجراءات الوقائية للأمراض المعدية 2024."
+
+},
+
+
+
+typhoid:{
+
+    arName:"الحمى التيفية ونظيرة التيفية",
+
+    enName:"Typhoid / Paratyphoid",
+
+    icon:"🧫",
+
+    specimen:[
+        "الدم.",
+        "البراز.",
+        "البول.",
+        "قد تستخدم مزرعة نخاع العظم في ظروف تشخيصية محددة."
+    ],
+
+    tests:[
+        "المزرعة لعزل السالمونيلا التيفية أو نظيرة التيفية.",
+        "يشير الدليل إلى أن اختبار Widal لا يستخدم لتأكيد الحالة بسبب محدودية الحساسية والنوعية."
+    ],
+
+    storage:[
+        "يتم اتباع تعليمات المختبر المتعلقة بنوع العينة والمزرعة.",
+        "لم تتم إضافة تفاصيل غير مذكورة صراحة في المرجع."
+    ],
+
+    safety:[
+        "استخدام الاحتياطات القياسية.",
+        "التأكد من تعريف العينة وبيانات المريض بشكل صحيح."
+    ],
+
+    reference:
+        "دليل الإجراءات الوقائية للأمراض المعدية 2024."
+
+},
+
+
+
+hepatitisB:{
+
+    arName:"التهاب الكبد B",
+
+    enName:"Hepatitis B",
+
+    icon:"🧬",
+
+    specimen:[
+        "عينات دم للفحوصات المصلية والجزيئية."
+    ],
+
+    tests:[
+        "HBsAg.",
+        "Anti-HBc.",
+        "HBeAg.",
+        "HBV PCR."
+    ],
+
+    storage:[
+        "تفاصيل فصل المصل والحفظ والنقل غير محددة في الجزء المرجعي المستخدم.",
+        "يتم الرجوع إلى دليل المختبر المعتمد."
+    ],
+
+    safety:[
+        "التعامل مع جميع عينات الدم وفق الاحتياطات القياسية.",
+        "اتباع احتياطات التعرض للدم وسوائل الجسم."
+    ],
+
+    reference:
+        "دليل الإجراءات الوقائية للأمراض المعدية 2024."
+
+}
+
+
+};
+
+
+
+function createList(items){
+
+    return items
+        .map(
+            item => `<li>${item}</li>`
+        )
+        .join("");
+
+}
+
+
+
+function renderSpecimen(){
+
+    const key =
+        document.getElementById(
+            "diseaseSelect"
+        ).value;
+
+
+    const card =
+        document.getElementById(
+            "resultCard"
+        );
+
+
+    if(!key){
+
+        card.classList.remove(
+            "active"
+        );
+
+        card.innerHTML = "";
+
+        return;
+
+    }
+
+
+    const disease =
+        specimenDatabase[key];
+
+
+    if(!disease){
+
+        return;
+
+    }
+
+
+    card.innerHTML = `
+
+        <div class="disease-title">
+
+            <div class="big-icon">
+                ${disease.icon}
+            </div>
+
+            <h2>
+                ${disease.arName}
+            </h2>
+
+            <h3>
+                ${disease.enName}
+            </h3>
+
+        </div>
+
+
+        <div class="info-grid">
+
+
+            <div class="info-box">
+
+                <h3>
+                    🧪 نوع العينة
+                </h3>
+
+                <ul>
+                    ${createList(disease.specimen)}
+                </ul>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <h3>
+                    🔬 الفحوصات
+                </h3>
+
+                <ul>
+                    ${createList(disease.tests)}
+                </ul>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <h3>
+                    ❄️ الحفظ والنقل
+                </h3>
+
+                <ul>
+                    ${createList(disease.storage)}
+                </ul>
+
+            </div>
+
+
+            <div class="info-box caution">
+
+                <h3>
+                    ⚠️ السلامة
+                </h3>
+
+                <ul>
+                    ${createList(disease.safety)}
+                </ul>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="reference">
+
+            <strong>
+                المصدر:
+            </strong>
+
+            ${disease.reference}
+
+        </div>
+
+    `;
+
+
+    card.classList.add(
+        "active"
+    );
+
+
+    card.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+
+}
+
+
+
+function openDisease(key){
+
+    document.getElementById(
+        "diseaseSelect"
+    ).value = key;
+
+    renderSpecimen();
+
+}
+
+
+
+function searchDisease(){
+
+    const q =
+        document.getElementById(
+            "searchText"
+        )
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    if(!q){
+
+        return;
+
+    }
+
+
+    const key =
+        Object.keys(
+            specimenDatabase
+        )
+        .find(
+
+            function(k){
+
+                const d =
+                    specimenDatabase[k];
+
+                return (
+                    d.arName +
+                    " " +
+                    d.enName
+                )
+                .toLowerCase()
+                .includes(q);
+
+            }
+
+        );
+
+
+    if(key){
+
+        document.getElementById(
+            "diseaseSelect"
+        ).value = key;
+
+        renderSpecimen();
+
+    }
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>

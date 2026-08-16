@@ -1,0 +1,1106 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>الفحص الدوري للموظفين</title>
+
+<link rel="stylesheet" href="Style.css">
+
+<style>
+
+.screening-page{
+    max-width:1150px;
+    margin:30px auto;
+    padding:0 20px 60px;
+}
+
+.section-card{
+    background:white;
+    border:1px solid #dfe8f2;
+    border-radius:14px;
+    padding:23px;
+    margin-bottom:18px;
+    box-shadow:0 4px 13px rgba(0,0,0,.05);
+}
+
+.section-card h3{
+    color:#064c92;
+    margin-top:0;
+    border-bottom:1px solid #e5ebef;
+    padding-bottom:10px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+label{
+    font-weight:bold;
+    color:#294b6a;
+}
+
+.required{
+    color:#c62828;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    box-sizing:border-box;
+    padding:11px;
+    border:1px solid #ccd9e5;
+    border-radius:8px;
+    background:white;
+    font-size:14px;
+}
+
+textarea{
+    min-height:95px;
+    resize:vertical;
+}
+
+.check-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.check-item{
+    border:1px solid #dfe8ef;
+    background:#f7fafc;
+    border-radius:9px;
+    padding:10px;
+}
+
+.check-item label{
+    display:flex;
+    align-items:center;
+    gap:7px;
+}
+
+.check-item input{
+    width:auto;
+}
+
+.buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:20px;
+}
+
+.buttons button,
+.buttons a{
+    border:none;
+    border-radius:9px;
+    padding:13px 20px;
+    font-weight:bold;
+    cursor:pointer;
+    text-decoration:none;
+    text-align:center;
+}
+
+.review-btn{
+    background:#0759a6;
+    color:white;
+}
+
+.save-btn{
+    background:#187b43;
+    color:white;
+}
+
+.print-btn{
+    background:#687984;
+    color:white;
+}
+
+.back-btn{
+    background:#eaf1f7;
+    color:#064c92;
+}
+
+.result-box{
+    display:none;
+    margin-top:20px;
+    padding:18px;
+    border-radius:10px;
+    background:#eaf7ee;
+    border-right:5px solid #2e7d32;
+    color:#285b33;
+    line-height:1.9;
+}
+
+.result-box.error{
+    background:#fff0f0;
+    border-right-color:#c62828;
+    color:#7d2525;
+}
+
+.privacy-note{
+    margin-top:22px;
+    background:#eef7ff;
+    border-right:5px solid #0759a6;
+    border-radius:10px;
+    padding:15px;
+    color:#31556f;
+    line-height:1.8;
+}
+
+@media(max-width:750px){
+
+    .form-grid,
+    .check-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+}
+
+@media print{
+
+    .buttons,
+    .privacy-note{
+        display:none !important;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="hero-header">
+
+<div class="hero-grid">
+
+    <div class="side-logo left-logo">
+        <img src="images/cluster-logo.png">
+    </div>
+
+    <div class="hero-center">
+
+        <h1>
+            الفحص الدوري للموظفين
+        </h1>
+
+        <h2>
+            Routine Employee Screening
+        </h2>
+
+        <p>
+            الصحة المهنية
+        </p>
+
+    </div>
+
+    <div class="side-logo right-logo">
+        <img src="images/hospital-logo.png">
+    </div>
+
+</div>
+
+</header>
+
+
+
+<main class="screening-page">
+
+
+<section class="section-card">
+
+<h3>
+    1. بيانات الموظف
+</h3>
+
+<div class="form-grid">
+
+    <div class="form-group">
+
+        <label>
+            اسم الموظف
+            <span class="required">*</span>
+        </label>
+
+        <input id="employeeName">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            الرقم الوظيفي
+            <span class="required">*</span>
+        </label>
+
+        <input id="employeeId">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            القسم
+            <span class="required">*</span>
+        </label>
+
+        <select id="department">
+
+            <option value="">
+                اختر القسم
+            </option>
+
+            <option>مكتب المدير</option>
+            <option>التغيير والتواصل المؤسسي</option>
+            <option>التخطيط والاستعداد</option>
+            <option>الصحة الإلكترونية</option>
+            <option>المراجعة الداخلية</option>
+            <option>الممارس القانوني</option>
+            <option>مكافحة العدوى</option>
+            <option>الجودة الصحية</option>
+            <option>تجربة المستفيد</option>
+            <option>خدمات التمريض</option>
+            <option>القانونية</option>
+            <option>تنمية الإيرادات</option>
+
+            <option>التغذية</option>
+            <option>العيادات الخارجية</option>
+            <option>التنسيق الطبي</option>
+            <option>الخدمة الاجتماعية</option>
+            <option>اضطرابات النمو</option>
+            <option>الرعاية المنزلية</option>
+            <option>النقل الإسعافي</option>
+            <option>الصيدلية</option>
+            <option>المختبر</option>
+            <option>الإدمان</option>
+            <option>الصحة العامة</option>
+            <option>التأهيل الطبي والعلاج بالعمل</option>
+            <option>الإسعاف</option>
+            <option>الخدمة النفسية</option>
+            <option>السجلات الطبية</option>
+            <option>شؤون المرضى</option>
+            <option>الإحصاء الطبي</option>
+            <option>الأشعة</option>
+            <option>الطاقة الاستيعابية</option>
+            <option>التعقيم</option>
+            <option>الخدمات العلاجية</option>
+            <option>التقارير</option>
+
+            <option>خدمات الموارد</option>
+            <option>التدريب والتعليم المستمر</option>
+            <option>المبتعثين والإيفاد</option>
+
+            <option>أخرى</option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            المسمى الوظيفي
+        </label>
+
+        <input id="jobTitle">
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+<section class="section-card">
+
+<h3>
+    2. بيانات الفحص الدوري
+</h3>
+
+<div class="form-grid">
+
+    <div class="form-group">
+
+        <label>
+            تاريخ سحب العينة
+            <span class="required">*</span>
+        </label>
+
+        <input
+            id="sampleDate"
+            type="date">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            نوع المتابعة
+        </label>
+
+        <select id="screeningType">
+
+            <option value="">
+                اختر
+            </option>
+
+            <option value="annual">
+                فحص سنوي
+            </option>
+
+            <option value="immunity">
+                تحديث حالة المناعة
+            </option>
+
+            <option value="preEmployment">
+                فحص قبل المباشرة
+            </option>
+
+            <option value="followUp">
+                متابعة
+            </option>
+
+            <option value="other">
+                أخرى
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            تاريخ آخر فحص سابق
+        </label>
+
+        <input
+            id="previousScreeningDate"
+            type="date">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            موعد الاستحقاق القادم
+        </label>
+
+        <input
+            id="nextDueDate"
+            type="date">
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+<section class="section-card">
+
+<h3>
+    3. حالة الفحوصات والمناعة
+</h3>
+
+<div class="check-grid">
+
+    <div class="check-item">
+        <label>
+            <input type="checkbox"
+                   name="test"
+                   value="HBsAb">
+            Hepatitis B / HBsAb
+        </label>
+    </div>
+
+    <div class="check-item">
+        <label>
+            <input type="checkbox"
+                   name="test"
+                   value="MMR">
+            MMR
+        </label>
+    </div>
+
+    <div class="check-item">
+        <label>
+            <input type="checkbox"
+                   name="test"
+                   value="Varicella">
+            Varicella
+        </label>
+    </div>
+
+    <div class="check-item">
+        <label>
+            <input type="checkbox"
+                   name="test"
+                   value="TB">
+            TB Screening
+        </label>
+    </div>
+
+    <div class="check-item">
+        <label>
+            <input type="checkbox"
+                   name="test"
+                   value="Influenza">
+            Influenza
+        </label>
+    </div>
+
+    <div class="check-item">
+        <label>
+            <input type="checkbox"
+                   name="test"
+                   value="Other">
+            فحص / مناعة أخرى
+        </label>
+    </div>
+
+</div>
+
+
+<div class="form-grid"
+     style="margin-top:15px;">
+
+
+    <div class="form-group">
+
+        <label>
+            حالة المناعة
+        </label>
+
+        <select id="immunityStatus">
+
+            <option value="">
+                غير محددة
+            </option>
+
+            <option value="immune">
+                محصن / مكتمل
+            </option>
+
+            <option value="notImmune">
+                غير محصن
+            </option>
+
+            <option value="partial">
+                غير مكتمل
+            </option>
+
+            <option value="pending">
+                قيد انتظار النتيجة
+            </option>
+
+            <option value="notApplicable">
+                لا ينطبق
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            نتيجة الفحص
+        </label>
+
+        <select id="resultStatus">
+
+            <option value="">
+                غير محددة
+            </option>
+
+            <option value="normal">
+                مكتمل / سليم
+            </option>
+
+            <option value="followUp">
+                يحتاج متابعة
+            </option>
+
+            <option value="pending">
+                النتيجة قيد الانتظار
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group full">
+
+        <label>
+            تفاصيل النتائج / حالة المناعة
+        </label>
+
+        <textarea id="resultNotes"></textarea>
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+<section class="section-card">
+
+<h3>
+    4. خطة المتابعة
+</h3>
+
+<div class="form-grid">
+
+
+    <div class="form-group">
+
+        <label>
+            حالة الفحص
+            <span class="required">*</span>
+        </label>
+
+        <select id="screeningStatus">
+
+            <option value="">
+                اختر الحالة
+            </option>
+
+            <option value="completed">
+                مكتمل
+            </option>
+
+            <option value="incomplete">
+                غير مكتمل
+            </option>
+
+            <option value="followUp">
+                يحتاج متابعة
+            </option>
+
+            <option value="pending">
+                قيد الانتظار
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            موعد المتابعة
+        </label>
+
+        <input
+            id="followUpDate"
+            type="date">
+
+    </div>
+
+
+    <div class="form-group full">
+
+        <label>
+            ملاحظات الصحة المهنية
+        </label>
+
+        <textarea id="occupationalNotes"></textarea>
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+<div class="buttons">
+
+
+<button
+    class="review-btn"
+    onclick="reviewScreening()">
+
+    ✅ مراجعة الفحص
+
+</button>
+
+
+<button
+    class="save-btn"
+    onclick="saveScreening()">
+
+    💾 حفظ الفحص
+
+</button>
+
+
+<button
+    class="print-btn"
+    onclick="window.print()">
+
+    🖨️ طباعة
+
+</button>
+
+
+<a
+    class="back-btn"
+    href="occupational-health.html">
+
+    ← العودة للصحة المهنية
+
+</a>
+
+
+</div>
+
+
+
+<div
+    id="resultBox"
+    class="result-box">
+</div>
+
+
+
+<div class="privacy-note">
+
+    🔐 في النسخة التجريبية يتم حفظ البيانات داخل المتصفح
+    باستخدام Local Storage.
+
+    عند التشغيل الفعلي داخل بيئة العمل سيتم نقل البيانات
+    إلى قاعدة بيانات داخلية بصلاحيات محددة.
+
+</div>
+
+
+</main>
+
+
+
+<script>
+
+
+function getValue(id){
+
+    const el =
+        document.getElementById(id);
+
+    return el
+        ? el.value
+        : "";
+
+}
+
+
+
+function getCheckedTests(){
+
+    return Array.from(
+
+        document.querySelectorAll(
+            'input[name="test"]:checked'
+        )
+
+    ).map(
+
+        function(item){
+
+            return item.value;
+
+        }
+
+    );
+
+}
+
+
+
+function showResult(message,error){
+
+    const box =
+        document.getElementById(
+            "resultBox"
+        );
+
+    box.style.display =
+        "block";
+
+    box.classList.toggle(
+        "error",
+        !!error
+    );
+
+    box.innerHTML =
+        message;
+
+    box.scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+
+function validateScreening(){
+
+    if(
+        !getValue("employeeName").trim() ||
+        !getValue("employeeId").trim() ||
+        !getValue("department") ||
+        !getValue("sampleDate") ||
+        !getValue("screeningStatus")
+    ){
+
+        showResult(
+            "⚠️ يرجى استكمال الحقول الإلزامية.",
+            true
+        );
+
+        return false;
+
+    }
+
+    return true;
+
+}
+
+
+
+function reviewScreening(){
+
+    if(!validateScreening()){
+        return false;
+    }
+
+
+    showResult(
+
+        "✅ بيانات الفحص مكتملة وجاهزة للحفظ." +
+
+        "<br><strong>الموظف:</strong> " +
+        getValue("employeeName") +
+
+        "<br><strong>القسم:</strong> " +
+        getValue("department") +
+
+        "<br><strong>حالة الفحص:</strong> " +
+        getStatusArabic(
+            getValue("screeningStatus")
+        ),
+
+        false
+
+    );
+
+
+    return true;
+
+}
+
+
+
+function generateRecordId(){
+
+    const date =
+        new Date()
+        .toISOString()
+        .slice(0,10)
+        .replaceAll("-","");
+
+
+    const number =
+        Math.floor(
+            1000 +
+            Math.random() * 9000
+        );
+
+
+    return "OH-" +
+           date +
+           "-" +
+           number;
+
+}
+
+
+
+function getStatusArabic(status){
+
+    const map = {
+
+        completed:"مكتمل",
+        incomplete:"غير مكتمل",
+        followUp:"يحتاج متابعة",
+        pending:"قيد الانتظار"
+
+    };
+
+
+    return map[status] || status;
+
+}
+
+
+
+function saveScreening(){
+
+    if(!validateScreening()){
+        return;
+    }
+
+
+    const record = {
+
+        id:
+            generateRecordId(),
+
+        createdAt:
+            new Date().toISOString(),
+
+        createdDate:
+            new Date()
+            .toLocaleString("ar-SA"),
+
+        employeeName:
+            getValue(
+                "employeeName"
+            ).trim(),
+
+        employeeId:
+            getValue(
+                "employeeId"
+            ).trim(),
+
+        department:
+            getValue(
+                "department"
+            ),
+
+        jobTitle:
+            getValue(
+                "jobTitle"
+            ).trim(),
+
+        sampleDate:
+            getValue(
+                "sampleDate"
+            ),
+
+        screeningType:
+            getValue(
+                "screeningType"
+            ),
+
+        previousScreeningDate:
+            getValue(
+                "previousScreeningDate"
+            ),
+
+        nextDueDate:
+            getValue(
+                "nextDueDate"
+            ),
+
+        tests:
+            getCheckedTests(),
+
+        immunityStatus:
+            getValue(
+                "immunityStatus"
+            ),
+
+        resultStatus:
+            getValue(
+                "resultStatus"
+            ),
+
+        resultNotes:
+            getValue(
+                "resultNotes"
+            ).trim(),
+
+        screeningStatus:
+            getValue(
+                "screeningStatus"
+            ),
+
+        followUpDate:
+            getValue(
+                "followUpDate"
+            ),
+
+        occupationalNotes:
+            getValue(
+                "occupationalNotes"
+            ).trim()
+
+    };
+
+
+    let records = [];
+
+
+    try{
+
+        records =
+            JSON.parse(
+                localStorage.getItem(
+                    "employeeScreeningRecords"
+                )
+            ) || [];
+
+    }catch(error){
+
+        records = [];
+
+    }
+
+
+    /*
+       منع احتساب الموظف مرتين في نفس دورة الفحص:
+       إذا كان نفس الرقم الوظيفي موجودًا، يتم تحديث سجله
+       بدل إنشاء سجل مكرر.
+    */
+
+    const existingIndex =
+        records.findIndex(
+
+            function(item){
+
+                return item.employeeId ===
+                    record.employeeId;
+
+            }
+
+        );
+
+
+    if(existingIndex >= 0){
+
+        record.id =
+            records[existingIndex].id;
+
+        records[existingIndex] =
+            record;
+
+    }else{
+
+        records.unshift(
+            record
+        );
+
+    }
+
+
+    localStorage.setItem(
+
+        "employeeScreeningRecords",
+
+        JSON.stringify(
+            records
+        )
+
+    );
+
+
+    showResult(
+
+        "✅ تم حفظ فحص الموظف بنجاح." +
+
+        "<br><br>" +
+
+        "<strong>رقم السجل:</strong> " +
+        record.id +
+
+        "<br>" +
+
+        "<strong>الموظف:</strong> " +
+        record.employeeName +
+
+        "<br>" +
+
+        "<strong>القسم:</strong> " +
+        record.department +
+
+        "<br>" +
+
+        "<strong>الحالة:</strong> " +
+        getStatusArabic(
+            record.screeningStatus
+        ) +
+
+        "<br><br>" +
+
+        '<a href="occupational-dashboard.html">' +
+        "📊 فتح لوحة متابعة الفحص الدوري" +
+        "</a>",
+
+        false
+
+    );
+
+}
+
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        /*
+          إذا لم يوضع موعد الاستحقاق القادم،
+          يمكن للمستخدم إدخاله يدويًا الآن.
+          لاحقًا سنجعل النظام يحسبه آليًا حسب نوع الفحص.
+        */
+
+    }
+);
+
+
+</script>
+
+
+</body>
+
+</html>

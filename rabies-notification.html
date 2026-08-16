@@ -1,0 +1,2052 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>بلاغ السعار وداء الكلب</title>
+
+<link rel="stylesheet" href="Style.css">
+
+<style>
+
+.rabies-page{
+    max-width:1150px;
+    margin:30px auto;
+    padding:0 20px 50px;
+}
+
+.page-title{
+    background:white;
+    border-radius:16px;
+    padding:25px;
+    text-align:center;
+    margin-bottom:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,.07);
+}
+
+.page-title .icon{
+    font-size:48px;
+}
+
+.page-title h1{
+    color:#064c92;
+    margin:8px 0 4px;
+}
+
+.page-title h2{
+    color:#687b8d;
+    font-size:17px;
+    margin:0;
+}
+
+.urgent-box{
+    background:#fff0f0;
+    border-right:5px solid #c62828;
+    border-radius:10px;
+    padding:16px;
+    margin-bottom:18px;
+    line-height:1.8;
+    color:#782626;
+}
+
+.info-box{
+    background:#eef7ff;
+    border-right:5px solid #0759a6;
+    border-radius:10px;
+    padding:16px;
+    margin-bottom:20px;
+    line-height:1.8;
+    color:#31556f;
+}
+
+.section-card{
+    background:white;
+    border:1px solid #dfe8f2;
+    border-radius:14px;
+    padding:23px;
+    margin-bottom:18px;
+    box-shadow:0 4px 13px rgba(0,0,0,.05);
+}
+
+.section-card h3{
+    color:#064c92;
+    margin-top:0;
+    border-bottom:1px solid #e4ebf1;
+    padding-bottom:10px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:17px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+label{
+    font-weight:bold;
+    color:#294b6a;
+}
+
+.required{
+    color:#c62828;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:11px;
+    border:1px solid #ccd9e5;
+    border-radius:8px;
+    background:white;
+    font-size:14px;
+}
+
+textarea{
+    min-height:95px;
+    resize:vertical;
+}
+
+.check-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.check-item{
+    background:#f7fafc;
+    border:1px solid #dfe8ef;
+    border-radius:9px;
+    padding:10px;
+}
+
+.check-item label{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    cursor:pointer;
+}
+
+.check-item input{
+    width:auto;
+}
+
+.signature-area{
+    border:2px dashed #aebdca;
+    border-radius:12px;
+    padding:10px;
+    background:white;
+}
+
+#signatureCanvas{
+    display:block;
+    width:100%;
+    height:180px;
+    background:white;
+    touch-action:none;
+    cursor:crosshair;
+}
+
+.buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:20px;
+}
+
+.buttons button,
+.buttons a{
+    border:none;
+    border-radius:9px;
+    padding:13px 20px;
+    font-weight:bold;
+    cursor:pointer;
+    text-decoration:none;
+    text-align:center;
+}
+
+.review-btn{
+    background:#0759a6;
+    color:white;
+}
+
+.send-btn{
+    background:#187b43;
+    color:white;
+}
+
+.print-btn{
+    background:#687984;
+    color:white;
+}
+
+.back-btn{
+    background:#eaf1f7;
+    color:#064c92;
+}
+
+.result-box{
+    display:none;
+    margin-top:18px;
+    padding:15px;
+    border-radius:10px;
+    background:#eaf7ee;
+    border-right:5px solid #2e7d32;
+    color:#285b33;
+}
+
+.result-box.error{
+    background:#fff0f0;
+    border-right-color:#c62828;
+    color:#7d2525;
+}
+
+@media(max-width:750px){
+
+    .form-grid,
+    .check-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+}
+
+@media print{
+
+    .buttons,
+    .urgent-box,
+    .info-box{
+        display:none !important;
+    }
+
+    body{
+        background:white;
+    }
+
+    .section-card,
+    .page-title{
+        box-shadow:none;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="hero-header">
+
+<div class="hero-grid">
+
+    <div class="side-logo left-logo">
+
+        <img
+            src="images/cluster-logo.png"
+            alt="Hafr Al-Batin Health Cluster">
+
+    </div>
+
+
+    <div class="hero-center">
+
+        <h1>
+            بلاغ السعار / داء الكلب
+        </h1>
+
+        <h2>
+            Rabies Notification
+        </h2>
+
+        <p>
+            الصحة العامة
+        </p>
+
+    </div>
+
+
+    <div class="side-logo right-logo">
+
+        <img
+            src="images/hospital-logo.png"
+            alt="Hospital Logo">
+
+    </div>
+
+</div>
+
+</header>
+
+
+
+<main class="rabies-page">
+
+
+<section class="page-title">
+
+    <div class="icon">
+        🐕
+    </div>
+
+    <h1>
+        تقييم وبلاغ التعرض للسعار
+    </h1>
+
+    <h2>
+        Rabies Exposure & Suspected Case Notification
+    </h2>
+
+</section>
+
+
+
+<div class="urgent-box">
+
+    <strong>
+        🚨 الإبلاغ:
+    </strong>
+
+    الحالة المشتبهة بالسعار تستوجب الإبلاغ الفوري
+    وإدخالها في حصن بلس حسب تعريف الحالة المعتمد.
+
+</div>
+
+
+
+<div class="info-box">
+
+    <strong>
+        📌 ملاحظة:
+    </strong>
+
+    هذا النموذج يساعد المستشفى في توثيق
+    التعرض أو الاشتباه والإجراءات الأولية.
+    ولا يستبدل التقييم الطبي أو مسار الوقاية بعد التعرض
+    أو الإبلاغ الرسمي.
+
+</div>
+
+
+
+<section class="section-card">
+
+<h3>
+    👤 بيانات المريض / الشخص المتعرض
+</h3>
+
+<div class="form-grid">
+
+
+    <div class="form-group">
+
+        <label>
+            اسم المريض
+            <span class="required">*</span>
+        </label>
+
+        <input id="patientName">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            رقم الملف الطبي
+            <span class="required">*</span>
+        </label>
+
+        <input id="mrn">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            رقم الهوية / الإقامة
+        </label>
+
+        <input id="nationalId">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            الجنسية
+        </label>
+
+        <input id="nationality">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            تاريخ الميلاد
+        </label>
+
+        <input
+            id="dob"
+            type="date">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            الجنس
+        </label>
+
+        <select id="gender">
+
+            <option value="">
+                اختر
+            </option>
+
+            <option value="male">
+                ذكر
+            </option>
+
+            <option value="female">
+                أنثى
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            رقم التواصل
+        </label>
+
+        <input id="patientPhone">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            مكان الإقامة
+        </label>
+
+        <input id="residence">
+
+    </div>
+
+
+</div>
+
+</section>
+
+
+
+<section class="section-card">
+
+<h3>
+    🔎 نوع البلاغ
+</h3>
+
+<div class="form-grid">
+
+
+    <div class="form-group">
+
+        <label>
+            نوع الحالة
+            <span class="required">*</span>
+        </label>
+
+        <select id="rabiesCaseType">
+
+            <option value="">
+                اختر
+            </option>
+
+            <option value="exposure">
+                تعرض لعضة / خدش / لعاب حيوان
+            </option>
+
+            <option value="suspected">
+                حالة بشرية مشتبهة بالسعار
+            </option>
+
+            <option value="probable">
+                حالة محتملة
+            </option>
+
+            <option value="confirmed">
+                حالة مؤكدة
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            تاريخ ووقت التعرض / بداية الحالة
+        </label>
+
+        <input
+            id="exposureDateTime"
+            type="datetime-local">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            مكان التعرض
+        </label>
+
+        <input
+            id="exposureLocation">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            هل سبق أخذ لقاح السعار؟
+        </label>
+
+        <select id="previousRabiesVaccine">
+
+            <option value="">
+                غير معروف
+            </option>
+
+            <option value="yes">
+                نعم
+            </option>
+
+            <option value="no">
+                لا
+            </option>
+
+        </select>
+
+    </div>
+
+
+</div>
+
+</section>
+
+
+
+<section class="section-card">
+
+<h3>
+    🐾 بيانات الحيوان
+</h3>
+
+<div class="form-grid">
+
+
+    <div class="form-group">
+
+        <label>
+            نوع الحيوان
+        </label>
+
+        <select id="animalType">
+
+            <option value="">
+                اختر
+            </option>
+
+            <option value="dog">
+                كلب
+            </option>
+
+            <option value="cat">
+                قط
+            </option>
+
+            <option value="fox">
+                ثعلب
+            </option>
+
+            <option value="wolf">
+                ذئب
+            </option>
+
+            <option value="bat">
+                خفاش
+            </option>
+
+            <option value="camel">
+                جمل
+            </option>
+
+            <option value="livestock">
+                ماشية
+            </option>
+
+            <option value="other">
+                حيوان آخر
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            حالة الحيوان
+        </label>
+
+        <select id="animalOwnership">
+
+            <option value="">
+                اختر
+            </option>
+
+            <option value="owned">
+                مملوك
+            </option>
+
+            <option value="stray">
+                ضال
+            </option>
+
+            <option value="wild">
+                بري
+            </option>
+
+            <option value="unknown">
+                غير معروف
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            هل الحيوان متاح للملاحظة؟
+        </label>
+
+        <select id="animalAvailable">
+
+            <option value="">
+                اختر
+            </option>
+
+            <option value="yes">
+                نعم
+            </option>
+
+            <option value="no">
+                لا
+            </option>
+
+            <option value="unknown">
+                غير معروف
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            هل ظهرت على الحيوان تغيرات سلوكية؟
+        </label>
+
+        <select id="animalBehavior">
+
+            <option value="">
+                اختر
+            </option>
+
+            <option value="yes">
+                نعم
+            </option>
+
+            <option value="no">
+                لا
+            </option>
+
+            <option value="unknown">
+                غير معروف
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group full">
+
+        <label>
+            تفاصيل الحيوان / وصف الحالة
+        </label>
+
+        <textarea id="animalDetails"></textarea>
+
+    </div>
+
+
+</div>
+
+</section>
+
+
+
+<section class="section-card">
+
+<h3>
+    🩹 تفاصيل التعرض
+</h3>
+
+<div class="check-grid">
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="exposure"
+                value="bite">
+
+            عضة
+
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="exposure"
+                value="scratch">
+
+            خدش
+
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="exposure"
+                value="salivaBrokenSkin">
+
+            لعاب على جلد مجروح
+
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="exposure"
+                value="mucousMembrane">
+
+            لعاب على أغشية مخاطية
+
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="exposure"
+                value="other">
+
+            تعرض آخر
+
+        </label>
+    </div>
+
+
+</div>
+
+
+<div
+    class="form-grid"
+    style="margin-top:15px;">
+
+
+    <div class="form-group">
+
+        <label>
+            موقع الإصابة بالجسم
+        </label>
+
+        <input
+            id="woundSite"
+            placeholder="اليد، الساق، الوجه...">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            عدد الجروح / العضات
+        </label>
+
+        <input
+            id="woundNumber"
+            type="number"
+            min="0">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            هل يوجد نزف؟
+        </label>
+
+        <select id="bleeding">
+
+            <option value="">
+                اختر
+            </option>
+
+            <option value="yes">
+                نعم
+            </option>
+
+            <option value="no">
+                لا
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            عمق الإصابة
+        </label>
+
+        <select id="woundDepth">
+
+            <option value="">
+                غير محدد
+            </option>
+
+            <option value="superficial">
+                سطحية
+            </option>
+
+            <option value="deep">
+                عميقة
+            </option>
+
+            <option value="multiple">
+                متعددة
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group full">
+
+        <label>
+            وصف التعرض والإصابة
+        </label>
+
+        <textarea id="exposureDescription"></textarea>
+
+    </div>
+
+
+</div>
+
+</section>
+
+
+
+<section class="section-card">
+
+<h3>
+    🧠 أعراض الاشتباه بالسعار
+</h3>
+
+<div class="check-grid">
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="symptom"
+                value="acuteNeurological">
+
+            متلازمة عصبية حادة
+
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="symptom"
+                value="encephalitis">
+
+            التهاب دماغ
+
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="symptom"
+                value="hyperactivity">
+
+            فرط نشاط / استثارة
+
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="symptom"
+                value="paralysis">
+
+            أعراض شللية
+
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="symptom"
+                value="coma">
+
+            غيبوبة
+
+        </label>
+    </div>
+
+
+</div>
+
+
+<div
+    class="form-group full"
+    style="margin-top:15px;">
+
+    <label>
+        أعراض أخرى
+    </label>
+
+    <textarea id="otherSymptoms"></textarea>
+
+</div>
+
+</section>
+
+
+
+<section class="section-card">
+
+<h3>
+    🧼 الإجراءات الأولية بالمستشفى
+</h3>
+
+<div class="check-grid">
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="action"
+                value="woundCleaning">
+
+            تنظيف وغسل الجرح
+
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="action"
+                value="physicianEvaluation">
+
+            تقييم الطبيب
+
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="action"
+                value="publicHealth">
+
+            إبلاغ الصحة العامة
+
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="action"
+                value="infectionControl">
+
+            إبلاغ مكافحة العدوى عند الحاجة
+
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="action"
+                value="rabiesVaccine">
+
+            بدء لقاح السعار
+
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="action"
+                value="immunoglobulin">
+
+            إعطاء الغلوبولين المناعي حسب التقييم
+
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="action"
+                value="tetanus">
+
+            تقييم / إعطاء لقاح الكزاز
+
+        </label>
+    </div>
+
+
+</div>
+
+
+<div
+    class="form-group full"
+    style="margin-top:15px;">
+
+    <label>
+        تفاصيل الإجراءات والعلاج الأولي
+    </label>
+
+    <textarea id="actionNotes"></textarea>
+
+</div>
+
+</section>
+
+
+
+<section class="section-card">
+
+<h3>
+    📡 الإبلاغ
+</h3>
+
+<div class="form-grid">
+
+
+    <div class="form-group">
+
+        <label>
+            حالة الإبلاغ في حصن بلس
+        </label>
+
+        <select id="hesnStatus">
+
+            <option value="pending">
+                لم يتم بعد
+            </option>
+
+            <option value="entered">
+                تم إدخال البلاغ
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            رقم البلاغ في حصن بلس
+        </label>
+
+        <input id="hesnNumber">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            تاريخ ووقت الإبلاغ
+        </label>
+
+        <input
+            id="notificationDateTime"
+            type="datetime-local">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            اسم المبلّغ
+            <span class="required">*</span>
+        </label>
+
+        <input id="reporterName">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            الرقم الوظيفي
+            <span class="required">*</span>
+        </label>
+
+        <input id="reporterId">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            القسم
+        </label>
+
+        <input
+            id="reporterDepartment"
+            value="قسم الطوارئ">
+
+    </div>
+
+
+</div>
+
+</section>
+
+
+
+<section class="section-card">
+
+<h3>
+    ✍️ التوقيع الإلكتروني
+</h3>
+
+
+<div class="signature-area">
+
+    <canvas id="signatureCanvas"></canvas>
+
+</div>
+
+
+<button
+    type="button"
+    onclick="clearSignature()"
+    style="margin-top:10px;">
+
+    مسح التوقيع
+
+</button>
+
+
+<label style="display:block;margin-top:15px;">
+
+    <input
+        id="declaration"
+        type="checkbox">
+
+    أقر بأن البيانات المدخلة صحيحة حسب
+    المعلومات المتاحة وقت الإبلاغ.
+
+</label>
+
+</section>
+
+
+
+<div class="buttons">
+
+
+<button
+    class="review-btn"
+    onclick="reviewRabiesNotification()">
+
+    ✅ مراجعة البلاغ
+
+</button>
+
+
+<button
+    class="send-btn"
+    onclick="saveRabiesNotification()">
+
+    📤 إرسال للصحة العامة
+
+</button>
+
+
+<button
+    class="print-btn"
+    onclick="window.print()">
+
+    🖨️ طباعة / حفظ PDF
+
+</button>
+
+
+<a
+    class="back-btn"
+    href="disease-details.html?disease=rabies">
+
+    ← العودة لدليل السعار
+
+</a>
+
+
+</div>
+
+
+
+<div
+    id="resultBox"
+    class="result-box">
+</div>
+
+
+</main>
+
+
+
+<script>
+
+
+let signatureEmpty =
+    true;
+
+
+
+function localNow(){
+
+    const now =
+        new Date();
+
+
+    return new Date(
+
+        now.getTime() -
+        now.getTimezoneOffset() *
+        60000
+
+    )
+    .toISOString()
+    .slice(0,16);
+
+}
+
+
+
+function initializePage(){
+
+    document.getElementById(
+        "notificationDateTime"
+    ).value =
+        localNow();
+
+
+    document.getElementById(
+        "exposureDateTime"
+    ).value =
+        localNow();
+
+
+    setupSignature();
+
+}
+
+
+
+function setupSignature(){
+
+    const canvas =
+        document.getElementById(
+            "signatureCanvas"
+        );
+
+
+    const ctx =
+        canvas.getContext("2d");
+
+
+    const rect =
+        canvas.getBoundingClientRect();
+
+
+    const ratio =
+        window.devicePixelRatio || 1;
+
+
+    canvas.width =
+        rect.width * ratio;
+
+
+    canvas.height =
+        180 * ratio;
+
+
+    ctx.setTransform(
+        ratio,
+        0,
+        0,
+        ratio,
+        0,
+        0
+    );
+
+
+    ctx.lineWidth =
+        2;
+
+
+    ctx.lineCap =
+        "round";
+
+
+    ctx.strokeStyle =
+        "#152637";
+
+
+    let drawing =
+        false;
+
+
+    function getPosition(event){
+
+        const canvasRect =
+            canvas.getBoundingClientRect();
+
+
+        const point =
+            event.touches
+            ? event.touches[0]
+            : event;
+
+
+        return {
+
+            x:
+                point.clientX -
+                canvasRect.left,
+
+            y:
+                point.clientY -
+                canvasRect.top
+
+        };
+
+    }
+
+
+    function start(event){
+
+        event.preventDefault();
+
+
+        drawing =
+            true;
+
+
+        signatureEmpty =
+            false;
+
+
+        const p =
+            getPosition(event);
+
+
+        ctx.beginPath();
+
+
+        ctx.moveTo(
+            p.x,
+            p.y
+        );
+
+    }
+
+
+    function move(event){
+
+        if(!drawing){
+
+            return;
+
+        }
+
+
+        event.preventDefault();
+
+
+        const p =
+            getPosition(event);
+
+
+        ctx.lineTo(
+            p.x,
+            p.y
+        );
+
+
+        ctx.stroke();
+
+    }
+
+
+    function end(){
+
+        drawing =
+            false;
+
+    }
+
+
+    canvas.addEventListener(
+        "mousedown",
+        start
+    );
+
+
+    canvas.addEventListener(
+        "mousemove",
+        move
+    );
+
+
+    window.addEventListener(
+        "mouseup",
+        end
+    );
+
+
+    canvas.addEventListener(
+        "touchstart",
+        start,
+        {passive:false}
+    );
+
+
+    canvas.addEventListener(
+        "touchmove",
+        move,
+        {passive:false}
+    );
+
+
+    canvas.addEventListener(
+        "touchend",
+        end
+    );
+
+}
+
+
+
+function clearSignature(){
+
+    const canvas =
+        document.getElementById(
+            "signatureCanvas"
+        );
+
+
+    const ctx =
+        canvas.getContext("2d");
+
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    signatureEmpty =
+        true;
+
+}
+
+
+
+function getCheckedValues(name){
+
+    return Array.from(
+
+        document.querySelectorAll(
+            'input[name="' +
+            name +
+            '"]:checked'
+        )
+
+    ).map(
+
+        function(item){
+
+            return item.value;
+
+        }
+
+    );
+
+}
+
+
+
+function showResult(message,error){
+
+    const box =
+        document.getElementById(
+            "resultBox"
+        );
+
+
+    box.style.display =
+        "block";
+
+
+    box.classList.toggle(
+        "error",
+        !!error
+    );
+
+
+    box.innerHTML =
+        message;
+
+
+    box.scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+
+function validateForm(){
+
+    if(
+        !document.getElementById(
+            "patientName"
+        ).value.trim() ||
+
+        !document.getElementById(
+            "mrn"
+        ).value.trim() ||
+
+        !document.getElementById(
+            "rabiesCaseType"
+        ).value ||
+
+        !document.getElementById(
+            "reporterName"
+        ).value.trim() ||
+
+        !document.getElementById(
+            "reporterId"
+        ).value.trim()
+    ){
+
+        showResult(
+            "⚠️ يرجى استكمال الحقول الإلزامية.",
+            true
+        );
+
+        return false;
+
+    }
+
+
+    if(signatureEmpty){
+
+        showResult(
+            "⚠️ يرجى إضافة التوقيع الإلكتروني.",
+            true
+        );
+
+        return false;
+
+    }
+
+
+    if(
+        !document.getElementById(
+            "declaration"
+        ).checked
+    ){
+
+        showResult(
+            "⚠️ يرجى تأكيد الإقرار.",
+            true
+        );
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+
+function reviewRabiesNotification(){
+
+    if(!validateForm()){
+
+        return false;
+
+    }
+
+
+    showResult(
+
+        "✅ بلاغ السعار / التعرض جاهز للإرسال إلى الصحة العامة.",
+
+        false
+
+    );
+
+
+    return true;
+
+}
+
+
+
+function generateNotificationId(){
+
+    const date =
+        new Date()
+        .toISOString()
+        .slice(0,10)
+        .replaceAll("-","");
+
+
+    const random =
+        Math.floor(
+            1000 +
+            Math.random() * 9000
+        );
+
+
+    return "RB-" +
+           date +
+           "-" +
+           random;
+
+}
+
+
+
+function saveRabiesNotification(){
+
+    if(!reviewRabiesNotification()){
+
+        return;
+
+    }
+
+
+    const canvas =
+        document.getElementById(
+            "signatureCanvas"
+        );
+
+
+    const notification = {
+
+        id:
+            generateNotificationId(),
+
+        createdAt:
+            new Date().toISOString(),
+
+        date:
+            new Date().toLocaleString(
+                "ar-SA"
+            ),
+
+        diseaseKey:
+            "rabies",
+
+        disease:
+            "السعار / داء الكلب",
+
+        priority:
+            "urgent",
+
+        status:
+            "new",
+
+        patientName:
+            document.getElementById(
+                "patientName"
+            ).value.trim(),
+
+        mrn:
+            document.getElementById(
+                "mrn"
+            ).value.trim(),
+
+        nationalId:
+            document.getElementById(
+                "nationalId"
+            ).value.trim(),
+
+        nationality:
+            document.getElementById(
+                "nationality"
+            ).value.trim(),
+
+        dob:
+            document.getElementById(
+                "dob"
+            ).value,
+
+        gender:
+            document.getElementById(
+                "gender"
+            ).value,
+
+        patientPhone:
+            document.getElementById(
+                "patientPhone"
+            ).value.trim(),
+
+        residence:
+            document.getElementById(
+                "residence"
+            ).value.trim(),
+
+        rabiesCaseType:
+            document.getElementById(
+                "rabiesCaseType"
+            ).value,
+
+        classification:
+            document.getElementById(
+                "rabiesCaseType"
+            ).value,
+
+        exposureDateTime:
+            document.getElementById(
+                "exposureDateTime"
+            ).value,
+
+        exposureLocation:
+            document.getElementById(
+                "exposureLocation"
+            ).value.trim(),
+
+        previousRabiesVaccine:
+            document.getElementById(
+                "previousRabiesVaccine"
+            ).value,
+
+        animalType:
+            document.getElementById(
+                "animalType"
+            ).value,
+
+        animalOwnership:
+            document.getElementById(
+                "animalOwnership"
+            ).value,
+
+        animalAvailable:
+            document.getElementById(
+                "animalAvailable"
+            ).value,
+
+        animalBehavior:
+            document.getElementById(
+                "animalBehavior"
+            ).value,
+
+        animalDetails:
+            document.getElementById(
+                "animalDetails"
+            ).value.trim(),
+
+        exposureTypes:
+            getCheckedValues(
+                "exposure"
+            ),
+
+        woundSite:
+            document.getElementById(
+                "woundSite"
+            ).value.trim(),
+
+        woundNumber:
+            document.getElementById(
+                "woundNumber"
+            ).value,
+
+        bleeding:
+            document.getElementById(
+                "bleeding"
+            ).value,
+
+        woundDepth:
+            document.getElementById(
+                "woundDepth"
+            ).value,
+
+        exposureDescription:
+            document.getElementById(
+                "exposureDescription"
+            ).value.trim(),
+
+        symptoms:
+            getCheckedValues(
+                "symptom"
+            ),
+
+        otherSymptoms:
+            document.getElementById(
+                "otherSymptoms"
+            ).value.trim(),
+
+        actions:
+            getCheckedValues(
+                "action"
+            ),
+
+        actionNotes:
+            document.getElementById(
+                "actionNotes"
+            ).value.trim(),
+
+        hesnStatus:
+            document.getElementById(
+                "hesnStatus"
+            ).value,
+
+        hesnNumber:
+            document.getElementById(
+                "hesnNumber"
+            ).value.trim(),
+
+        reportDateTime:
+            document.getElementById(
+                "notificationDateTime"
+            ).value,
+
+        reporterName:
+            document.getElementById(
+                "reporterName"
+            ).value.trim(),
+
+        reporterId:
+            document.getElementById(
+                "reporterId"
+            ).value.trim(),
+
+        reporterDepartment:
+            document.getElementById(
+                "reporterDepartment"
+            ).value.trim(),
+
+        signature:
+            canvas.toDataURL(
+                "image/png"
+            ),
+
+        publicHealthNotes:
+            ""
+
+    };
+
+
+    let notifications = [];
+
+
+    try{
+
+        notifications =
+            JSON.parse(
+                localStorage.getItem(
+                    "publicHealthNotifications"
+                )
+            ) || [];
+
+    }catch(error){
+
+        notifications =
+            [];
+
+    }
+
+
+    notifications.unshift(
+        notification
+    );
+
+
+    localStorage.setItem(
+        "publicHealthNotifications",
+        JSON.stringify(
+            notifications
+        )
+    );
+
+
+    showResult(
+
+        "✅ تم إرسال بلاغ السعار / التعرض إلى صندوق الصحة العامة." +
+
+        "<br><br>" +
+
+        "<strong>رقم البلاغ:</strong> " +
+        notification.id +
+
+        "<br><br>" +
+
+        '
+
+        false
+
+    );
+
+}
+
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    initializePage
+);
+
+
+</script>
+
+
+</body>
+
+</html>

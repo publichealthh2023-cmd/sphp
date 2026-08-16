@@ -1,0 +1,1817 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>تسجيل إصابة أو تعرض مهني</title>
+
+<link rel="stylesheet" href="Style.css">
+
+<style>
+
+.exposure-page{
+    max-width:1100px;
+    margin:30px auto;
+    padding:0 20px 50px;
+}
+
+.page-card{
+    background:white;
+    border:1px solid #dfe8f2;
+    border-radius:16px;
+    padding:28px;
+    margin-bottom:22px;
+    box-shadow:0 5px 18px rgba(0,0,0,.07);
+}
+
+.page-card h2{
+    color:#064c92;
+    margin-top:0;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.form-group.full{
+    grid-column:1 / -1;
+}
+
+label{
+    font-weight:bold;
+    color:#294b6a;
+}
+
+.required{
+    color:#c62828;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    box-sizing:border-box;
+    padding:12px;
+    border:1px solid #ccd9e5;
+    border-radius:8px;
+    font-size:15px;
+    background:white;
+}
+
+textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.exposure-types{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-top:15px;
+}
+
+.exposure-option{
+    border:1px solid #d7e3ec;
+    border-radius:10px;
+    padding:14px;
+    background:#f8fbfd;
+    cursor:pointer;
+}
+
+.exposure-option:hover{
+    background:#eef6fb;
+}
+
+.section-note{
+    background:#fff8e1;
+    border-right:5px solid #f9a825;
+    border-radius:10px;
+    padding:15px;
+    margin-top:15px;
+    color:#715c18;
+    line-height:1.8;
+}
+
+.actions{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:20px;
+}
+
+.primary-btn,
+.save-btn,
+.secondary-btn{
+    border:none;
+    border-radius:9px;
+    padding:13px 25px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.primary-btn{
+    background:#0759a6;
+    color:white;
+}
+
+.save-btn{
+    background:#187b43;
+    color:white;
+}
+
+.secondary-btn{
+    background:#eaf1f7;
+    color:#064c92;
+}
+
+.result-box{
+    margin-top:25px;
+    display:none;
+}
+
+.result-alert{
+    padding:20px;
+    border-radius:11px;
+    border-right:5px solid #0759a6;
+    background:#eef7ff;
+    line-height:1.8;
+}
+
+.result-alert.success{
+    border-right-color:#2e7d32;
+    background:#eaf7ee;
+    color:#285b33;
+}
+
+.result-alert.error{
+    border-right-color:#c62828;
+    background:#fff1f1;
+    color:#7d2525;
+}
+
+.dynamic-box{
+    display:none;
+    margin-top:20px;
+}
+
+.privacy-box{
+    margin-top:25px;
+    background:#eef7ff;
+    border-right:5px solid #0879b2;
+    border-radius:10px;
+    padding:16px;
+    color:#36566f;
+    line-height:1.8;
+}
+
+.record-box{
+    background:#f4f8fb;
+    border:1px solid #dce7ef;
+    border-radius:10px;
+    padding:15px;
+    margin-bottom:20px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.record-item strong{
+    color:#064c92;
+}
+
+.check-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+@media(max-width:800px){
+
+    .form-grid,
+    .exposure-types,
+    .record-box,
+    .check-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<header class="hero-header">
+
+<div class="hero-grid">
+
+<div class="side-logo left-logo">
+
+<img
+    src="images/cluster-logo.png"
+    alt="Hafr Al-Batin Health Cluster">
+
+</div>
+
+
+<div class="hero-center">
+
+<h1>
+تسجيل إصابة أو تعرض مهني
+</h1>
+
+<h2>
+Occupational Injury / Exposure Report
+</h2>
+
+<p>
+الصحة المهنية
+</p>
+
+</div>
+
+
+<div class="side-logo right-logo">
+
+<img
+    src="images/hospital-logo.png"
+    alt="Hospital Logo">
+
+</div>
+
+</div>
+
+</header>
+
+
+<main class="exposure-page">
+
+
+<section class="page-card">
+
+<h2>
+📋 بيانات البلاغ
+</h2>
+
+<div class="record-box">
+
+<div class="record-item">
+
+<strong>
+رقم البلاغ:
+</strong>
+
+<span id="recordId">
+سيتم إنشاؤه عند الحفظ
+</span>
+
+</div>
+
+
+<div class="record-item">
+
+<strong>
+حالة البلاغ:
+</strong>
+
+<span id="recordStatusText">
+جديد
+</span>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="page-card">
+
+<h2>
+1. بيانات الموظف
+</h2>
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>
+اسم الموظف
+<span class="required">*</span>
+</label>
+
+<input
+    type="text"
+    id="employeeName">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+الرقم الوظيفي
+<span class="required">*</span>
+</label>
+
+<input
+    type="text"
+    id="employeeId">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+القسم
+<span class="required">*</span>
+</label>
+
+<select id="department">
+
+<option value="">
+-- اختر القسم --
+</option>
+
+<option>مكتب المدير</option>
+<option>التغيير والتواصل المؤسسي</option>
+<option>التخطيط والاستعداد</option>
+<option>الصحة الإلكترونية</option>
+<option>المراجعة الداخلية</option>
+<option>الممارس القانوني</option>
+<option>مكافحة العدوى</option>
+<option>الجودة الصحية</option>
+<option>تجربة المستفيد</option>
+<option>خدمات التمريض</option>
+<option>القانونية</option>
+<option>تنمية الإيرادات</option>
+
+<option>التغذية</option>
+<option>العيادات الخارجية</option>
+<option>التنسيق الطبي</option>
+<option>الخدمة الاجتماعية</option>
+<option>اضطرابات النمو</option>
+<option>الرعاية المنزلية</option>
+<option>النقل الإسعافي</option>
+<option>الصيدلية</option>
+<option>المختبر</option>
+<option>الإدمان</option>
+<option>الصحة العامة</option>
+<option>التأهيل الطبي والعلاج بالعمل</option>
+<option>الإسعاف</option>
+<option>الخدمة النفسية</option>
+<option>السجلات الطبية</option>
+<option>شؤون المرضى</option>
+<option>الإحصاء الطبي</option>
+<option>الأشعة</option>
+<option>الطاقة الاستيعابية</option>
+<option>التعقيم</option>
+<option>الخدمات العلاجية</option>
+<option>التقارير</option>
+
+<option>خدمات الموارد</option>
+<option>التدريب والتعليم المستمر</option>
+<option>المبتعثين والإيفاد</option>
+
+<option>أخرى</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+المسمى الوظيفي
+</label>
+
+<input
+    type="text"
+    id="jobTitle">
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="page-card">
+
+<h2>
+2. بيانات الحادث
+</h2>
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>
+تاريخ الحادث
+<span class="required">*</span>
+</label>
+
+<input
+    type="date"
+    id="incidentDate">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+وقت الحادث
+</label>
+
+<input
+    type="time"
+    id="incidentTime">
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+مكان الحادث
+<span class="required">*</span>
+</label>
+
+<input
+    type="text"
+    id="incidentLocation">
+
+</div>
+
+</div>
+
+
+<h3>
+نوع الإصابة أو التعرض
+<span class="required">*</span>
+</h3>
+
+
+<div class="exposure-types">
+
+
+<label class="exposure-option">
+
+<input
+    type="radio"
+    name="exposureType"
+    value="needle"
+    onchange="updateExposureType()">
+
+💉 وخز إبرة
+
+</label>
+
+
+<label class="exposure-option">
+
+<input
+    type="radio"
+    name="exposureType"
+    value="sharp"
+    onchange="updateExposureType()">
+
+✂️ إصابة بأداة حادة
+
+</label>
+
+
+<label class="exposure-option">
+
+<input
+    type="radio"
+    name="exposureType"
+    value="eye"
+    onchange="updateExposureType()">
+
+👁️ رذاذ للعين أو الأغشية المخاطية
+
+</label>
+
+
+<label class="exposure-option">
+
+<input
+    type="radio"
+    name="exposureType"
+    value="skin"
+    onchange="updateExposureType()">
+
+✋ تلوث جلد غير سليم
+
+</label>
+
+
+<label class="exposure-option">
+
+<input
+    type="radio"
+    name="exposureType"
+    value="infectious"
+    onchange="updateExposureType()">
+
+🦠 تعرض مهني لمرض معدٍ
+
+</label>
+
+
+<label class="exposure-option">
+
+<input
+    type="radio"
+    name="exposureType"
+    value="other"
+    onchange="updateExposureType()">
+
+⚠️ أخرى
+
+</label>
+
+
+</div>
+
+
+<div
+    id="bloodExposureBox"
+    class="dynamic-box">
+
+
+<div class="section-note">
+
+<strong>
+تعرض للدم أو سوائل الجسم:
+</strong>
+
+<br>
+
+توثق هذه المعلومات لدعم تقييم خطورة التعرض والمتابعة المهنية.
+
+</div>
+
+
+<div
+    class="form-grid"
+    style="margin-top:15px;">
+
+
+<div class="form-group">
+
+<label>
+هل كان هناك دم ظاهر؟
+</label>
+
+<select id="visibleBlood">
+
+<option value="">
+-- اختر --
+</option>
+
+<option value="yes">
+نعم
+</option>
+
+<option value="no">
+لا
+</option>
+
+<option value="unknown">
+غير معروف
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+هل المصدر معروف؟
+</label>
+
+<select id="sourceKnown">
+
+<option value="">
+-- اختر --
+</option>
+
+<option value="yes">
+نعم
+</option>
+
+<option value="no">
+لا
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div
+    id="infectiousExposureBox"
+    class="dynamic-box">
+
+<div class="form-grid">
+
+<div class="form-group full">
+
+<label>
+المرض المعدي أو نوع التعرض
+</label>
+
+<input
+    type="text"
+    id="infectiousDisease"
+    placeholder="مثال: حصبة، درن، MERS...">
+
+</div>
+
+</div>
+
+</div>
+
+
+<div
+    class="form-group full"
+    style="margin-top:20px;">
+
+<label>
+وصف مختصر للحادث
+</label>
+
+<textarea
+    id="incidentDescription">
+</textarea>
+
+</div>
+
+</section>
+
+
+<section class="page-card">
+
+<h2>
+3. الإجراء الأولي
+</h2>
+
+
+<div class="check-grid">
+
+
+<label class="exposure-option">
+
+<input
+    type="checkbox"
+    class="initialAction"
+    value="washed">
+
+تم غسل موضع الإصابة
+
+</label>
+
+
+<label class="exposure-option">
+
+<input
+    type="checkbox"
+    class="initialAction"
+    value="irrigated">
+
+تم غسل العين / الغشاء المخاطي
+
+</label>
+
+
+<label class="exposure-option">
+
+<input
+    type="checkbox"
+    class="initialAction"
+    value="supervisor">
+
+تم إبلاغ المسؤول المباشر
+
+</label>
+
+
+<label class="exposure-option">
+
+<input
+    type="checkbox"
+    class="initialAction"
+    value="occupationalHealth">
+
+تم إبلاغ الصحة المهنية / الصحة العامة
+
+</label>
+
+
+</div>
+
+</section>
+
+
+<section class="page-card">
+
+<h2>
+4. تقييم المصدر والمتابعة
+</h2>
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>
+هل تم تقييم المصدر؟
+</label>
+
+<select id="sourceAssessed">
+
+<option value="">
+-- اختر --
+</option>
+
+<option value="yes">
+نعم
+</option>
+
+<option value="no">
+لا
+</option>
+
+<option value="notApplicable">
+لا ينطبق
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+هل تم أخذ فحوصات أساسية للموظف؟
+</label>
+
+<select id="baselineTests">
+
+<option value="">
+-- اختر --
+</option>
+
+<option value="yes">
+نعم
+</option>
+
+<option value="no">
+لا
+</option>
+
+<option value="pending">
+قيد الانتظار
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+هل يحتاج متابعة إضافية؟
+</label>
+
+<select id="followUpRequired">
+
+<option value="">
+-- اختر --
+</option>
+
+<option value="yes">
+نعم
+</option>
+
+<option value="no">
+لا
+</option>
+
+<option value="pending">
+لم يحدد بعد
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+موعد المتابعة القادم
+</label>
+
+<input
+    type="date"
+    id="nextFollowUp">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+حالة البلاغ
+<span class="required">*</span>
+</label>
+
+<select id="caseStatus">
+
+<option value="new">
+جديد
+</option>
+
+<option value="followUp">
+تحت المتابعة
+</option>
+
+<option value="closed">
+مغلق
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+تاريخ إغلاق البلاغ
+</label>
+
+<input
+    type="date"
+    id="closedDate">
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+ملاحظات الصحة المهنية
+</label>
+
+<textarea
+    id="occupationalNotes">
+</textarea>
+
+</div>
+
+</div>
+
+</section>
+
+
+<div class="actions">
+
+
+<button
+    class="primary-btn"
+    onclick="reviewExposure()">
+
+✅ مراجعة البلاغ
+
+</button>
+
+
+<button
+    class="save-btn"
+    onclick="saveExposure()">
+
+💾 حفظ وإرسال للصحة المهنية
+
+</button>
+
+
+<button
+    class="secondary-btn"
+    onclick="clearExposureForm()">
+
+🧹 نموذج جديد
+
+</button>
+
+
+<button
+    class="secondary-btn"
+    onclick="window.print()">
+
+🖨️ طباعة
+
+</button>
+
+
+<button
+    class="secondary-btn"
+    onclick="window.location.href='occupational-health.html'">
+
+← العودة للصحة المهنية
+
+</button>
+
+
+</div>
+
+
+<div
+    id="exposureResult"
+    class="result-box">
+</div>
+
+
+<section class="privacy-box">
+
+<strong>
+🔐 ملاحظة الخصوصية:
+</strong>
+
+هذه نسخة تجريبية، ويتم حفظ البيانات محليًا داخل المتصفح باستخدام
+Local Storage. عند التشغيل الفعلي يجب نقل البيانات إلى قاعدة بيانات
+داخلية معتمدة وبصلاحيات وصول محددة.
+
+</section>
+
+
+</main>
+
+
+<script>
+
+
+let currentRecordId =
+    null;
+
+
+/* =========================
+   Helpers
+========================= */
+
+function valueOf(id){
+
+    const element =
+        document.getElementById(
+            id
+        );
+
+    return element
+        ? element.value
+        : "";
+
+}
+
+
+function getSelectedExposureType(){
+
+    const selected =
+        document.querySelector(
+            'input[name="exposureType"]:checked'
+        );
+
+    return selected
+        ? selected.value
+        : "";
+
+}
+
+
+function getInitialActions(){
+
+    return Array.from(
+
+        document.querySelectorAll(
+            ".initialAction:checked"
+        )
+
+    ).map(
+
+        function(item){
+
+            return item.value;
+
+        }
+
+    );
+
+}
+
+
+/* =========================
+   Exposure Type
+========================= */
+
+function updateExposureType(){
+
+    const selected =
+        getSelectedExposureType();
+
+
+    const bloodBox =
+        document.getElementById(
+            "bloodExposureBox"
+        );
+
+
+    const infectiousBox =
+        document.getElementById(
+            "infectiousExposureBox"
+        );
+
+
+    bloodBox.style.display =
+        "none";
+
+
+    infectiousBox.style.display =
+        "none";
+
+
+    if(
+        selected === "needle" ||
+        selected === "sharp" ||
+        selected === "eye" ||
+        selected === "skin"
+    ){
+
+        bloodBox.style.display =
+            "block";
+
+    }
+
+
+    if(
+        selected === "infectious"
+    ){
+
+        infectiousBox.style.display =
+            "block";
+
+    }
+
+}
+
+
+/* =========================
+   Validation
+========================= */
+
+function validateExposure(){
+
+    const employeeName =
+        valueOf(
+            "employeeName"
+        ).trim();
+
+
+    const employeeId =
+        valueOf(
+            "employeeId"
+        ).trim();
+
+
+    const department =
+        valueOf(
+            "department"
+        );
+
+
+    const incidentDate =
+        valueOf(
+            "incidentDate"
+        );
+
+
+    const incidentLocation =
+        valueOf(
+            "incidentLocation"
+        ).trim();
+
+
+    const exposureType =
+        getSelectedExposureType();
+
+
+    const caseStatus =
+        valueOf(
+            "caseStatus"
+        );
+
+
+    if(
+        !employeeName ||
+        !employeeId ||
+        !department ||
+        !incidentDate ||
+        !incidentLocation ||
+        !exposureType ||
+        !caseStatus
+    ){
+
+        showResult(
+            "⚠️ يرجى استكمال الحقول الإلزامية: اسم الموظف، الرقم الوظيفي، القسم، تاريخ ومكان الحادث، نوع التعرض، وحالة البلاغ.",
+            true
+        );
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+/* =========================
+   Review
+========================= */
+
+function exposureTypeName(type){
+
+    const map = {
+
+        needle:
+            "وخز إبرة",
+
+        sharp:
+            "إصابة بأداة حادة",
+
+        eye:
+            "رذاذ للعين أو الأغشية المخاطية",
+
+        skin:
+            "تلوث جلد غير سليم",
+
+        infectious:
+            "تعرض مهني لمرض معدٍ",
+
+        other:
+            "أخرى"
+
+    };
+
+
+    return map[type] ||
+        type ||
+        "—";
+
+}
+
+
+function statusName(status){
+
+    const map = {
+
+        new:
+            "جديد",
+
+        followUp:
+            "تحت المتابعة",
+
+        closed:
+            "مغلق"
+
+    };
+
+
+    return map[status] ||
+        status ||
+        "—";
+
+}
+
+
+function reviewExposure(){
+
+    if(
+        !validateExposure()
+    ){
+
+        return;
+
+    }
+
+
+    showResult(
+
+        "✅ بيانات البلاغ مكتملة وجاهزة للحفظ." +
+
+        "<br><br>" +
+
+        "<strong>الموظف:</strong> " +
+        valueOf(
+            "employeeName"
+        ) +
+
+        "<br>" +
+
+        "<strong>القسم:</strong> " +
+        valueOf(
+            "department"
+        ) +
+
+        "<br>" +
+
+        "<strong>نوع التعرض:</strong> " +
+        exposureTypeName(
+            getSelectedExposureType()
+        ) +
+
+        "<br>" +
+
+        "<strong>الحالة:</strong> " +
+        statusName(
+            valueOf(
+                "caseStatus"
+            )
+        ),
+
+        false
+
+    );
+
+}
+
+
+/* =========================
+   Generate ID
+========================= */
+
+function generateExposureId(){
+
+    const now =
+        new Date();
+
+
+    const date =
+        now
+        .toISOString()
+        .slice(
+            0,
+            10
+        )
+        .replaceAll(
+            "-",
+            ""
+        );
+
+
+    const number =
+        Math.floor(
+            1000 +
+            Math.random() *
+            9000
+        );
+
+
+    return (
+        "OE-" +
+        date +
+        "-" +
+        number
+    );
+
+}
+
+
+/* =========================
+   Storage
+========================= */
+
+function getExposureRecords(){
+
+    try{
+
+        const data =
+            JSON.parse(
+                localStorage.getItem(
+                    "occupationalExposureRecords"
+                )
+            ) || [];
+
+
+        return Array.isArray(
+            data
+        )
+        ? data
+        : [];
+
+    }catch(error){
+
+        return [];
+
+    }
+
+}
+
+
+/* =========================
+   Save
+========================= */
+
+function saveExposure(){
+
+    if(
+        !validateExposure()
+    ){
+
+        return;
+
+    }
+
+
+    const now =
+        new Date();
+
+
+    if(!currentRecordId){
+
+        currentRecordId =
+            generateExposureId();
+
+    }
+
+
+    const record = {
+
+        id:
+            currentRecordId,
+
+        createdAt:
+            now.toISOString(),
+
+        createdDate:
+            now.toLocaleString(
+                "ar-SA"
+            ),
+
+
+        employeeName:
+            valueOf(
+                "employeeName"
+            ).trim(),
+
+        employeeId:
+            valueOf(
+                "employeeId"
+            ).trim(),
+
+        department:
+            valueOf(
+                "department"
+            ),
+
+        jobTitle:
+            valueOf(
+                "jobTitle"
+            ).trim(),
+
+
+        incidentDate:
+            valueOf(
+                "incidentDate"
+            ),
+
+        incidentTime:
+            valueOf(
+                "incidentTime"
+            ),
+
+        incidentLocation:
+            valueOf(
+                "incidentLocation"
+            ).trim(),
+
+
+        exposureType:
+            getSelectedExposureType(),
+
+        visibleBlood:
+            valueOf(
+                "visibleBlood"
+            ),
+
+        sourceKnown:
+            valueOf(
+                "sourceKnown"
+            ),
+
+        infectiousDisease:
+            valueOf(
+                "infectiousDisease"
+            ).trim(),
+
+        incidentDescription:
+            valueOf(
+                "incidentDescription"
+            ).trim(),
+
+
+        initialActions:
+            getInitialActions(),
+
+
+        sourceAssessed:
+            valueOf(
+                "sourceAssessed"
+            ),
+
+        baselineTests:
+            valueOf(
+                "baselineTests"
+            ),
+
+        followUpRequired:
+            valueOf(
+                "followUpRequired"
+            ),
+
+        nextFollowUp:
+            valueOf(
+                "nextFollowUp"
+            ),
+
+
+        caseStatus:
+            valueOf(
+                "caseStatus"
+            ),
+
+        closedDate:
+            valueOf(
+                "closedDate"
+            ),
+
+        occupationalNotes:
+            valueOf(
+                "occupationalNotes"
+            ).trim(),
+
+
+        lastUpdated:
+            now.toISOString()
+
+    };
+
+
+    const records =
+        getExposureRecords();
+
+
+    const existingIndex =
+        records.findIndex(
+
+            function(item){
+
+                return (
+                    item.id ===
+                    record.id
+                );
+
+            }
+
+        );
+
+
+    if(
+        existingIndex >=
+        0
+    ){
+
+        record.createdAt =
+            records[
+                existingIndex
+            ].createdAt ||
+            record.createdAt;
+
+
+        record.createdDate =
+            records[
+                existingIndex
+            ].createdDate ||
+            record.createdDate;
+
+
+        records[
+            existingIndex
+        ] =
+            record;
+
+    }else{
+
+        records.unshift(
+            record
+        );
+
+    }
+
+
+    try{
+
+        localStorage.setItem(
+
+            "occupationalExposureRecords",
+
+            JSON.stringify(
+                records
+            )
+
+        );
+
+
+        document.getElementById(
+            "recordId"
+        ).textContent =
+            record.id;
+
+
+        document.getElementById(
+            "recordStatusText"
+        ).textContent =
+            statusName(
+                record.caseStatus
+            );
+
+
+        showResult(
+
+            "✅ تم حفظ بلاغ الإصابة / التعرض المهني بنجاح." +
+
+            "<br><br>" +
+
+            "<strong>رقم البلاغ:</strong> " +
+            record.id +
+
+            "<br>" +
+
+            "<strong>نوع التعرض:</strong> " +
+            exposureTypeName(
+                record.exposureType
+            ) +
+
+            "<br>" +
+
+            "<strong>الحالة:</strong> " +
+            statusName(
+                record.caseStatus
+            ) +
+
+            "<br><br>" +
+
+            "تمت إضافة البلاغ إلى قاعدة بيانات الصحة المهنية التجريبية.",
+
+            false
+
+        );
+
+
+    }catch(error){
+
+        showResult(
+
+            "⚠️ تعذر حفظ البلاغ داخل المتصفح.",
+
+            true
+
+        );
+
+    }
+
+}
+
+
+/* =========================
+   Result
+========================= */
+
+function showResult(
+    message,
+    error
+){
+
+    const result =
+        document.getElementById(
+            "exposureResult"
+        );
+
+
+    result.style.display =
+        "block";
+
+
+    result.innerHTML = `
+
+        <div class="result-alert ${
+            error
+            ? "error"
+            : "success"
+        }">
+
+            ${message}
+
+        </div>
+
+    `;
+
+
+    result.scrollIntoView({
+        behavior:
+            "smooth"
+    });
+
+}
+
+
+/* =========================
+   Clear
+========================= */
+
+function clearExposureForm(){
+
+    const answer =
+        confirm(
+            "هل تريد فتح نموذج جديد ومسح البيانات الحالية؟"
+        );
+
+
+    if(!answer){
+
+        return;
+
+    }
+
+
+    document
+    .querySelectorAll(
+        "input, textarea, select"
+    )
+    .forEach(
+
+        function(element){
+
+            if(
+                element.type ===
+                "radio" ||
+                element.type ===
+                "checkbox"
+            ){
+
+                element.checked =
+                    false;
+
+            }else{
+
+                element.value =
+                    "";
+
+            }
+
+        }
+
+    );
+
+
+    currentRecordId =
+        null;
+
+
+    document.getElementById(
+        "recordId"
+    ).textContent =
+        "سيتم إنشاؤه عند الحفظ";
+
+
+    document.getElementById(
+        "recordStatusText"
+    ).textContent =
+        "جديد";
+
+
+    document.getElementById(
+        "caseStatus"
+    ).value =
+        "new";
+
+
+    document.getElementById(
+        "bloodExposureBox"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "infectiousExposureBox"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "exposureResult"
+    ).style.display =
+        "none";
+
+
+    setInitialDate();
+
+}
+
+
+/* =========================
+   Initial Date
+========================= */
+
+function setInitialDate(){
+
+    const today =
+        new Date();
+
+
+    const localDate =
+        new Date(
+            today.getTime() -
+            today.getTimezoneOffset() *
+            60000
+        )
+        .toISOString()
+        .slice(
+            0,
+            10
+        );
+
+
+    document.getElementById(
+        "incidentDate"
+    ).value =
+        localDate;
+
+
+    document.getElementById(
+        "caseStatus"
+    ).value =
+        "new";
+
+}
+
+
+/* =========================
+   Startup
+========================= */
+
+document.addEventListener(
+
+    "DOMContentLoaded",
+
+    function(){
+
+        setInitialDate();
+
+    }
+
+);
+
+</script>
+
+</body>
+
+</html>

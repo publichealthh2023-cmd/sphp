@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>تفاصيل البلاغ</title>
+
+<link rel="stylesheet" href="Style.css">
+
+<style>
+
+.page{
+    max-width:1200px;
+    margin:30px auto;
+    padding:0 20px 60px;
+}
+
+.header-card,
+.section-card{
+    background:#fff;
+    border:1px solid #dfe8f2;
+    border-radius:16px;
+    padding:22px;
+    margin-bottom:20px;
+    box-shadow:0 4px 14px rgba(0,0,0,.05);
+}
+
+.header-card{
+    text-align:center;
+}
+
+.header-card h2{
+    color:#064c92;
+    margin-bottom:7px;
+}
+
+.header-card p{
+    color:#607387;
+    margin:0;
+}
+
+.notification-number{
+    display:inline-block;
+    margin-top:12px;
+    background:#eaf1f7;
+    color:#064c92;
+    padding:7px 14px;
+    border-radius:18px;
+    font-weight:bold;
+}
+
+.smart-source{
+    display:none;
+    background:#f4efff;
+    border:1px solid #d9ceff;
+    border-right:6px solid #5f3dc4;
+    border-radius:12px;
+    padding:16px 18px;
+    margin-bottom:20px;
+    color:#514568;
+    line-height:1.8;
+}
+
+.smart-source.active{
+    display:block;
+}
+
+.smart-source strong{
+    color:#4d2fa9;
+}
+
+.source-badge{
+    display:inline-block;
+    padding:6px 11px;
+    border-radius:15px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.smart-badge{
+    background:#efe9ff;
+    color:#5f3dc4;
+}
+
+.manual-badge{
+    background:#eef2f5;
+    color:#526270;
+}
+
+.urgent-alert{
+    display:none;
+    background:#fff0f0;
+    border-right:6px solid #c62828;
+    border-radius:11px;
+    padding:16px;
+    margin-bottom:20px;
+    color:#7d2525;
+    line-height:1.8;
+}
+
+.urgent-alert.active{
+    display:block;
+}
+
+.section-card h3{
+    color:#064c92;
+    margin-top:0;
+    border-bottom:1px solid #e7edf2;
+    padding-bottom:10px;
+}
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+}
+
+.info-item{
+    background:#f8fbfd;
+    border:1px solid #e3ebf1;
+    border-radius:10px;
+    padding:13px;
+}
+
+.info-item.full{
+    grid-column:1/-1;
+}
+
+.info-label{
+    display:block;
+    color:#607387;
+    font-size:12px;
+    margin-bottom:5px;
+}
+
+.info-value{
+    color:#294b6a;
+    font-weight:bold;
+    line-height:1.7;
+    word-break:break-word;
+}
+
+.tag-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.tag{
+    display:inline-block;
+    background:#eaf1f7;
+    color:#064c92;
+    padding:6px 10px;
+    border-radius:14px;
+    font-size:12px;
+}
+
+.epi-tag{
+    background:#fff3dc;
+    color:#7a5c18;
+}
+
+.action-tag{
+    background:#eaf7ee;
+    color:#277438;
+}
+
+.workflow-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+
+.group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.group.full{
+    grid-column:1/-1;
+}
+
+.group label{
+    color:#294b6a;
+    font-weight:bold;
+}
+
+.group select,
+.group textarea,
+.group input{
+    width:100%;
+    box-sizing:border-box;
+    padding:11px;
+    border:1px solid #ccd9e5;
+    border-radius:8px;
+    background:#fff;
+}
+
+.group textarea{
+    min-height:130px;
+    resize:vertical;
+}
+
+.save-btn{
+    border:none;
+    background:#187b43;
+    color:#fff;
+    border-radius:9px;
+    padding:13px 20px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:16px;
+}
+
+.print-btn{
+    border:none;
+    background:#687984;
+    color:white;
+    border-radius:9px;
+    padding:12px 18px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.back-btn{
+    display:inline-block;
+    background:#eaf1f7;
+    color:#064c92;
+    text-decoration:none;
+    border-radius:9px;
+    padding:12px 18px;
+    font-weight:bold;
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:25px;
+}
+
+.signature-box{
+    min-height:110px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:1px dashed #bccbd6;
+    border-radius:10px;
+    background:#fff;
+}
+
+.signature-box img{
+    max-width:320px;
+    max-height:120px;
+    object-fit:contain;
+}
+
+.empty{
+    text-align:center;
+    color:#718293;
+    padding:25px;
+}
+
+.success{
+    display:none;
+    margin-top:15px;
+    background:#eaf7ee;
+    border-right:5px solid #187b43;
+    border-radius:9px;
+    padding:14px;
+    color:#285b33;
+}
+
+@media(max-width:800px){
+
+    .info-grid,
+    .workflow-grid{
+        grid-template-columns:1fr;
+    }
+
+    .info-item.full,
+    .group.full{
+        grid-column:auto;
+    }
+
+}
+
+@media print{
+
+    .workflow-section,
+    .actions{
+        display:none !important;
+    }
+
+    .page{
+        margin:0;
+        max-width:none;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="hero-header">
+
+<div class="hero-grid">
+
+<div class="side-logo left-logo">
+    <img src="images/cluster-logo.png">
+</div>
+
+<div class="hero-center">
+
+<h1>
+تفاصيل بلاغ الأمراض المعدية
+</h1>
+
+<h2>
+Infectious Disease Notification Details
+</h2>
+
+<p>
+الصحة العامة
+</p>
+
+</div>
+
+<div class="side-logo right-logo">
+    <img src="images/hospital-logo.png">
+</div>
+
+</div>
+
+</header>
+
+
+<main class="page">
+
+
+<section class="header-card">
+
+<h2 id="mainDisease">
+—
+</h2>
+
+<p>
+تفاصيل البلاغ الوارد إلى الصحة العامة
+</p>
+
+<div
+    id="notificationNumber"
+    class="notification-number">
+—
+</div>
+
+</section>
+
+
+<div
+    id="smartSourceBox"
+    class="smart-source">
+
+<strong>
+🧠 هذا البلاغ بدأ من الفرز الذكي
+</strong>
+
+<br>
+
+تم نقل بعض بيانات الأعراض والتعرض الوبائي تلقائيًا
+من أداة الفرز في بوابة الطوارئ.
+
+</div>
+
+
+<div
+    id="urgentAlert"
+    class="urgent-alert">
+
+<strong>
+🚨 بلاغ ذو أولوية عالية
+</strong>
+
+<br>
+
+راجع متطلبات الإبلاغ والتصعيد والإجراءات الوقائية
+المعتمدة للحالة دون تأخير.
+
+</div>
+
+
+<section class="section-card">
+
+<h3>
+معلومات البلاغ
+</h3>
+
+<div class="info-grid">
+
+<div class="info-item">
+
+<span class="info-label">
+رقم البلاغ
+</span>
+
+<div
+    id="notificationId"
+    class="info-value">
+—
+</div>
+
+</div>
+
+
+<div class="info-item">
+
+<span class="info-label">
+تاريخ البلاغ
+</span>
+
+<div
+    id="notificationDate"
+    class="info-value">
+—
+</div>
+
+</div>
+
+
+<div class="info-item">
+
+<span class="info-label">
+مصدر البلاغ
+</span>
+
+<div
+    id="notificationSource"
+    class="info-value">
+—
+</div>
+
+</div>
+
+
+<div class="info-item">
+
+<span class="info-label">
+المرض المشتبه
+</span>
+
+<div
+    id="disease"
+    class="info-value">
+—
+</div>
+
+</div>
+
+
+<div class="info-item">
+
+<span class="info-label">
+تصنيف الحالة
+</span>
+
+<div
+    id="classification"
+    class="info-value">
+—
+</div>
+
+</div>
+
+
+<div class="info-item">
+
+<span class="info-label">
+الأولوية
+</span>
+
+<div
+    id="priority"
+    class="info-value">
+—
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section-card">
+
+<h3>
+بيانات المريض
+</h3>
+
+<div class="info-grid">
+
+<div class="info-item">
+<span class="info-label">اسم المريض</span>
+<div id="patientName" class="info-value">—</div>
+</div>
+
+<div class="info-item">
+<span class="info-label">رقم الملف الطبي</span>
+<div id="mrn" class="info-value">—</div>
+</div>
+
+<div class="info-item">
+<span class="info-label">الهوية / الإقامة</span>
+<div id="nationalId" class="info-value">—</div>
+</div>
+
+<div class="info-item">
+<span class="info-label">الجنسية</span>
+<div id="nationality" class="info-value">—</div>
+</div>
+
+<div class="info-item">
+<span class="info-label">تاريخ الميلاد</span>
+<div id="dob" class="info-value">—</div>
+</div>
+
+<div class="info-item">
+<span class="info-label">الجنس</span>
+<div id="gender" class="info-value">—</div>
+</div>
+
+<div class="info-item">
+<span class="info-label">رقم التواصل</span>
+<div id="patientPhone" class="info-value">—</div>
+</div>
+
+<div class="info-item">
+<span class="info-label">مكان الإقامة</span>
+<div id="residence" class="info-value">—</div>
+</div>
+
+<div class="info-item">
+<span class="info-label">حالة المريض</span>
+<div id="patientStatus" class="info-value">—</div>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section-card">
+
+<h3>
+بيانات الحالة والأعراض
+</h3>
+
+<div class="info-grid">
+
+<div class="info-item">
+
+<span class="info-label">
+تاريخ بداية الأعراض
+</span>
+
+<div
+    id="symptomOnset"
+    class="info-value">
+—
+</div>
+
+</div>
+
+
+<div class="info-item">
+
+<span class="info-label">
+مدة الأعراض من الفرز
+</span>
+
+<div
+    id="screeningDuration"
+    class="info-value">
+—
+</div>
+
+</div>
+
+
+<div class="info-item">
+
+<span class="info-label">
+تاريخ ووقت اكتشاف الحالة
+</span>
+
+<div
+    id="detectionDateTime"
+    class="info-value">
+—
+</div>
+
+</div>
+
+
+<div class="info-item">
+
+<span class="info-label">
+مكان اكتشاف الحالة
+</span>
+
+<div
+    id="caseLocation"
+    class="info-value">
+—
+</div>
+
+</div>
+
+
+<div class="info-item full">
+
+<span class="info-label">
+الأعراض
+</span>
+
+<div
+    id="symptoms"
+    class="tag-list">
+</div>
+
+</div>
+
+
+<div class="info-item full">
+
+<span class="info-label">
+أعراض أخرى
+</span>
+
+<div
+    id="otherSymptoms"
+    class="info-value">
+—
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section-card">
+
+<h3>
+التاريخ الوبائي
+</h3>
+
+<div class="info-grid">
+
+<div class="info-item">
+<span class="info-label">سفر حديث</span>
+<div id="recentTravel" class="info-value">—</div>
+</div>
+
+<div class="info-item">
+<span class="info-label">الدولة / المنطقة</span>
+<div id="travelCountry" class="info-value">—</div>
+</div>
+
+<div class="info-item">
+<span class="info-label">مخالطة حالة</span>
+<div id="contactCase" class="info-value">—</div>
+</div>
+
+<div class="info-item">
+<span class="info-label">تعرض حيواني / بيئي</span>
+<div id="animalExposure" class="info-value">—</div>
+</div>
+
+<div class="info-item full">
+
+<span class="info-label">
+عوامل التعرض المنقولة من الفرز الذكي
+</span>
+
+<div
+    id="screeningEpiFactors"
+    class="tag-list">
+</div>
+
+</div>
+
+
+<div class="info-item full">
+
+<span class="info-label">
+تفاصيل التاريخ الوبائي
+</span>
+
+<div
+    id="epiHistory"
+    class="info-value">
+—
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section-card">
+
+<h3>
+الإجراءات والعينات
+</h3>
+
+<div class="info-grid">
+
+<div class="info-item full">
+
+<span class="info-label">
+الإجراءات التي تم تنفيذها
+</span>
+
+<div
+    id="actionsTaken"
+    class="tag-list">
+</div>
+
+</div>
+
+
+<div class="info-item">
+<span class="info-label">تم أخذ عينة</span>
+<div id="sampleTaken" class="info-value">—</div>
+</div>
+
+<div class="info-item">
+<span class="info-label">نوع العينة</span>
+<div id="sampleType" class="info-value">—</div>
+</div>
+
+<div class="info-item">
+<span class="info-label">تاريخ / وقت العينة</span>
+<div id="sampleDateTime" class="info-value">—</div>
+</div>
+
+<div class="info-item">
+<span class="info-label">حالة نتيجة المختبر</span>
+<div id="labResult" class="info-value">—</div>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section-card">
+
+<h3>
+بيانات المبلّغ
+</h3>
+
+<div class="info-grid">
+
+<div class="info-item">
+<span class="info-label">اسم المبلّغ</span>
+<div id="reporterName" class="info-value">—</div>
+</div>
+
+<div class="info-item">
+<span class="info-label">الرقم الوظيفي</span>
+<div id="reporterId" class="info-value">—</div>
+</div>
+
+<div class="info-item">
+<span class="info-label">المسمى الوظيفي</span>
+<div id="reporterJob" class="info-value">—</div>
+</div>
+
+<div class="info-item">
+<span class="info-label">القسم</span>
+<div id="reporterDepartment" class="info-value">—</div>
+</div>
+
+<div class="info-item">
+<span class="info-label">رقم التواصل</span>
+<div id="reporterPhone" class="info-value">—</div>
+</div>
+
+<div class="info-item">
+<span class="info-label">وقت البلاغ</span>
+<div id="reportDateTime" class="info-value">—</div>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section-card">
+
+<h3>
+توقيع المبلّغ
+</h3>
+
+<div
+    id="signatureBox"
+    class="signature-box">
+
+لا يوجد توقيع
+
+</div>
+
+</section>
+
+
+<section class="section-card workflow-section">
+
+<h3>
+متابعة الصحة العامة
+</h3>
+
+<div class="workflow-grid">
+
+<div class="group">
+
+<label>
+حالة البلاغ
+</label>
+
+<select id="statusSelect">
+
+<option value="new">
+جديد
+</option>
+
+<option value="progress">
+تحت المتابعة
+</option>
+
+<option value="closed">
+مغلق
+</option>
+
+</select>
+
+</div>
+
+
+<div class="group">
+
+<label>
+حالة حصن بلس
+</label>
+
+<select id="hesnStatusSelect">
+
+<option value="pending">
+لم يتم الإدخال
+</option>
+
+<option value="entered">
+تم الإدخال
+</option>
+
+<option value="notRequired">
+لا ينطبق
+</option>
+
+</select>
+
+</div>
+
+
+<div class="group full">
+
+<label>
+ملاحظات الصحة العامة
+</label>
+
+<textarea
+    id="publicHealthNotes"
+    placeholder="اكتب إجراءات المتابعة، التواصل، التوجيهات، الاستقصاء، أو سبب الإغلاق..."></textarea>
+
+</div>
+
+</div>
+
+
+<button
+    class="save-btn"
+    onclick="saveFollowup()">
+
+💾 حفظ تحديثات المتابعة
+
+</button>
+
+
+<div
+    id="saveSuccess"
+    class="success">
+
+✅ تم حفظ تحديثات البلاغ.
+
+</div>
+
+</section>
+
+
+<div class="actions">
+
+<button
+    class="print-btn"
+    onclick="window.print()">
+
+🖨️ طباعة / حفظ PDF
+
+</button>
+
+<a
+    class="back-btn"
+    href="public-health-inbox.html">
+
+← العودة لصندوق البلاغات
+
+</a>
+
+</div>
+
+
+</main>
+
+
+<script>
+
+
+let notifications = [];
+
+let currentNotification = null;
+
+let currentIndex = -1;
+
+
+/* =====================================
+   الترجمات
+===================================== */
+
+const symptomNames = {
+
+    fever:"حمى",
+    cough:"سعال",
+    dyspnea:"ضيق تنفس",
+    headache:"صداع",
+    rash:"طفح",
+    vomiting:"قيء",
+    diarrhea:"إسهال",
+    bleeding:"نزف",
+    neuro:"أعراض عصبية"
+
+};
+
+
+const actionNames = {
+
+    isolation:"تم العزل",
+    ppe:"تم تطبيق PPE",
+    infectionControl:"إبلاغ مكافحة العدوى",
+    publicHealth:"إبلاغ الصحة العامة",
+    sample:"تم جمع العينة",
+    contacts:"بدأ حصر المخالطين"
+
+};
+
+
+const epiNames = {
+
+    contact:"مخالطة حالة مؤكدة أو مشتبهة",
+    travel:"سفر حديث أو وجود في منطقة تفشٍ",
+    cluster:"وجود حالات مشابهة / تجمع حالات",
+    healthcareExposure:"تعرض في منشأة صحية",
+    animalExposure:"تعرض لحيوان أو إفرازاته",
+    camelExposure:"مخالطة الإبل أو منتجاتها",
+    batExposure:"تعرض للخفافيش",
+    rodentExposure:"تعرض للقوارض أو فضلاتها",
+    foodExposure:"طعام مشترك أو مصدر غذائي مشتبه",
+    bodyFluidExposure:"تعرض لدم أو سوائل جسم"
+
+};
+
+
+const durationNames = {
+
+    less24:"أقل من 24 ساعة",
+    "1to3":"1 - 3 أيام",
+    "4to7":"4 - 7 أيام",
+    more7:"أكثر من 7 أيام"
+
+};
+
+
+const classificationNames = {
+
+    suspected:"مشتبهة",
+    probable:"محتملة",
+    confirmed:"مؤكدة"
+
+};
+
+
+const patientStatusNames = {
+
+    stable:"مستقرة",
+    admitted:"منوم",
+    critical:"حرجة",
+    discharged:"خرج",
+    deceased:"وفاة"
+
+};
+
+
+const yesNoNames = {
+
+    yes:"نعم",
+    no:"لا",
+    unknown:"غير معروف"
+
+};
+
+
+const genderNames = {
+
+    male:"ذكر",
+    female:"أنثى"
+
+};
+
+
+const sampleStatusNames = {
+
+    yes:"نعم",
+    no:"لا",
+    pending:"سيتم"
+
+};
+
+
+const labResultNames = {
+
+    pending:"قيد الانتظار",
+    positive:"إيجابية",
+    negative:"سلبية"
+
+};
+
+
+/* =====================================
+   تحميل البيانات
+===================================== */
+
+function load(){
+
+    try{
+
+        notifications =
+            JSON.parse(
+                localStorage.getItem(
+                    "publicHealthNotifications"
+                )
+            ) || [];
+
+
+        if(!Array.isArray(notifications)){
+
+            notifications = [];
+
+        }
+
+    }catch(error){
+
+        notifications = [];
+
+    }
+
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    const id =
+        params.get(
+            "id"
+        );
+
+
+    currentIndex =
+        notifications.findIndex(
+            function(item){
+
+                return (
+                    item.id === id
+                );
+
+            }
+        );
+
+
+    if(currentIndex < 0){
+
+        document.querySelector(
+            ".page"
+        ).innerHTML = `
+
+        <div class="header-card">
+
+        <h2>
+        البلاغ غير موجود
+        </h2>
+
+        <p>
+        لم يتم العثور على البلاغ المطلوب.
+        </p>
+
+        <br>
+
+        <a
+            class="back-btn"
+            href="public-health-inbox.html">
+
+        ← العودة لصندوق البلاغات
+
+        </a>
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    currentNotification =
+        notifications[
+            currentIndex
+        ];
+
+
+    render();
+
+}
+
+
+/* =====================================
+   مساعد
+===================================== */
+
+function value(
+    item,
+    fallback
+){
+
+    return (
+        item === undefined ||
+        item === null ||
+        item === ""
+    )
+    ? (
+        fallback ||
+        "—"
+    )
+    : item;
+
+}
+
+
+/* =====================================
+   عرض الوسوم
+===================================== */
+
+function renderTags(
+    elementId,
+    list,
+    map,
+    cssClass
+){
+
+    const box =
+        document.getElementById(
+            elementId
+        );
+
+
+    if(
+        !Array.isArray(list) ||
+        list.length === 0
+    ){
+
+        box.innerHTML =
+            '<span class="info-value">—</span>';
+
+        return;
+
+    }
+
+
+    box.innerHTML =
+        list.map(
+            function(item){
+
+                return `
+
+                <span
+                    class="tag ${
+                        cssClass || ""
+                    }">
+
+                ${
+                    map[item] ||
+                    item
+                }
+
+                </span>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+/* =====================================
+   العرض
+===================================== */
+
+function render(){
+
+    const n =
+        currentNotification;
+
+
+    document.getElementById(
+        "mainDisease"
+    ).textContent =
+        value(
+            n.disease
+        );
+
+
+    document.getElementById(
+        "notificationNumber"
+    ).textContent =
+        value(
+            n.id
+        );
+
+
+    document.getElementById(
+        "notificationId"
+    ).textContent =
+        value(
+            n.id
+        );
+
+
+    document.getElementById(
+        "notificationDate"
+    ).textContent =
+        value(
+            n.date ||
+            n.reportDateTime
+        );
+
+
+    document.getElementById(
+        "disease"
+    ).textContent =
+        value(
+            n.disease
+        );
+
+
+    document.getElementById(
+        "classification"
+    ).textContent =
+        classificationNames[
+            n.classification
+        ] ||
+        value(
+            n.classification
+        );
+
+
+    document.getElementById(
+        "priority"
+    ).textContent =
+        n.priority === "urgent"
+        ? "🚨 عاجل"
+        : "عادي";
+
+
+    if(
+        n.priority ===
+        "urgent"
+    ){
+
+        document.getElementById(
+            "urgentAlert"
+        )
+        .classList
+        .add(
+            "active"
+        );
+
+    }
+
+
+    if(
+        n.source ===
+        "smartScreening"
+    ){
+
+        document.getElementById(
+            "smartSourceBox"
+        )
+        .classList
+        .add(
+            "active"
+        );
+
+
+        document.getElementById(
+            "notificationSource"
+        ).innerHTML = `
+
+        <span class="source-badge smart-badge">
+        🧠 الفرز الذكي
+        </span>
+
+        `;
+
+    }else{
+
+        document.getElementById(
+            "notificationSource"
+        ).innerHTML = `
+
+        <span class="source-badge manual-badge">
+        إدخال مباشر
+        </span>
+
+        `;
+
+    }
+
+
+    document.getElementById(
+        "patientName"
+    ).textContent =
+        value(
+            n.patientName
+        );
+
+
+    document.getElementById(
+        "mrn"
+    ).textContent =
+        value(
+            n.mrn
+        );
+
+
+    document.getElementById(
+        "nationalId"
+    ).textContent =
+        value(
+            n.nationalId
+        );
+
+
+    document.getElementById(
+        "nationality"
+    ).textContent =
+        value(
+            n.nationality
+        );
+
+
+    document.getElementById(
+        "dob"
+    ).textContent =
+        value(
+            n.dob
+        );
+
+
+    document.getElementById(
+        "gender"
+    ).textContent =
+        genderNames[
+            n.gender
+        ] ||
+        value(
+            n.gender
+        );
+
+
+    document.getElementById(
+        "patientPhone"
+    ).textContent =
+        value(
+            n.patientPhone
+        );
+
+
+    document.getElementById(
+        "residence"
+    ).textContent =
+        value(
+            n.residence
+        );
+
+
+    document.getElementById(
+        "patientStatus"
+    ).textContent =
+        patientStatusNames[
+            n.patientStatus
+        ] ||
+        value(
+            n.patientStatus
+        );
+
+
+    document.getElementById(
+        "symptomOnset"
+    ).textContent =
+        value(
+            n.symptomOnset
+        );
+
+
+    document.getElementById(
+        "screeningDuration"
+    ).textContent =
+        durationNames[
+            n.screeningDuration
+        ] ||
+        value(
+            n.screeningDuration
+        );
+
+
+    document.getElementById(
+        "detectionDateTime"
+    ).textContent =
+        value(
+            n.detectionDateTime
+        );
+
+
+    document.getElementById(
+        "caseLocation"
+    ).textContent =
+        value(
+            n.caseLocation
+        );
+
+
+    renderTags(
+        "symptoms",
+        n.symptoms,
+        symptomNames,
+        ""
+    );
+
+
+    document.getElementById(
+        "otherSymptoms"
+    ).textContent =
+        value(
+            n.otherSymptoms
+        );
+
+
+    document.getElementById(
+        "recentTravel"
+    ).textContent =
+        yesNoNames[
+            n.recentTravel
+        ] ||
+        value(
+            n.recentTravel
+        );
+
+
+    document.getElementById(
+        "travelCountry"
+    ).textContent =
+        value(
+            n.travelCountry
+        );
+
+
+    document.getElementById(
+        "contactCase"
+    ).textContent =
+        yesNoNames[
+            n.contactCase
+        ] ||
+        value(
+            n.contactCase
+        );
+
+
+    document.getElementById(
+        "animalExposure"
+    ).textContent =
+        yesNoNames[
+            n.animalExposure
+        ] ||
+        value(
+            n.animalExposure
+        );
+
+
+    renderTags(
+        "screeningEpiFactors",
+        n.screeningEpiFactors,
+        epiNames,
+        "epi-tag"
+    );
+
+
+    document.getElementById(
+        "epiHistory"
+    ).textContent =
+        value(
+            n.epidemiologicalHistory
+        );
+
+
+    renderTags(
+        "actionsTaken",
+        n.actions,
+        actionNames,
+        "action-tag"
+    );
+
+
+    document.getElementById(
+        "sampleTaken"
+    ).textContent =
+        sampleStatusNames[
+            n.sampleTaken
+        ] ||
+        value(
+            n.sampleTaken
+        );
+
+
+    document.getElementById(
+        "sampleType"
+    ).textContent =
+        value(
+            n.sampleType
+        );
+
+
+    document.getElementById(
+        "sampleDateTime"
+    ).textContent =
+        value(
+            n.sampleDateTime
+        );
+
+
+    document.getElementById(
+        "labResult"
+    ).textContent =
+        labResultNames[
+            n.labResult
+        ] ||
+        value(
+            n.labResult
+        );
+
+
+    document.getElementById(
+        "reporterName"
+    ).textContent =
+        value(
+            n.reporterName
+        );
+
+
+    document.getElementById(
+        "reporterId"
+    ).textContent =
+        value(
+            n.reporterId
+        );
+
+
+    document.getElementById(
+        "reporterJob"
+    ).textContent =
+        value(
+            n.reporterJob
+        );
+
+
+    document.getElementById(
+        "reporterDepartment"
+    ).textContent =
+        value(
+            n.reporterDepartment
+        );
+
+
+    document.getElementById(
+        "reporterPhone"
+    ).textContent =
+        value(
+            n.reporterPhone
+        );
+
+
+    document.getElementById(
+        "reportDateTime"
+    ).textContent =
+        value(
+            n.reportDateTime
+        );
+
+
+    if(n.signature){
+
+        document.getElementById(
+            "signatureBox"
+        ).innerHTML = `
+
+        <img
+            src="${n.signature}"
+            alt="Signature">
+
+        `;
+
+    }
+
+
+    document.getElementById(
+        "statusSelect"
+    ).value =
+        n.status ||
+        "new";
+
+
+    document.getElementById(
+        "hesnStatusSelect"
+    ).value =
+        n.hesnStatus ||
+        "pending";
+
+
+    document.getElementById(
+        "publicHealthNotes"
+    ).value =
+        n.publicHealthNotes ||
+        "";
+
+}
+
+
+/* =====================================
+   حفظ متابعة الصحة العامة
+===================================== */
+
+function saveFollowup(){
+
+    if(
+        !currentNotification ||
+        currentIndex < 0
+    ){
+
+        return;
+
+    }
+
+
+    currentNotification.status =
+        document.getElementById(
+            "statusSelect"
+        ).value;
+
+
+    currentNotification.hesnStatus =
+        document.getElementById(
+            "hesnStatusSelect"
+        ).value;
+
+
+    currentNotification.publicHealthNotes =
+        document.getElementById(
+            "publicHealthNotes"
+        ).value.trim();
+
+
+    currentNotification.lastUpdatedAt =
+        new Date()
+        .toISOString();
+
+
+    notifications[
+        currentIndex
+    ] =
+        currentNotification;
+
+
+    localStorage.setItem(
+
+        "publicHealthNotifications",
+
+        JSON.stringify(
+            notifications
+        )
+
+    );
+
+
+    const success =
+        document.getElementById(
+            "saveSuccess"
+        );
+
+
+    success.style.display =
+        "block";
+
+
+    setTimeout(
+        function(){
+
+            success.style.display =
+                "none";
+
+        },
+        2500
+    );
+
+}
+
+
+/* =====================================
+   تشغيل الصفحة
+===================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    load
+);
+
+
+</script>
+
+</body>
+
+</html>

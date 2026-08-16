@@ -1,0 +1,6011 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>تقرير الصحة العامة</title>
+
+<link rel="stylesheet" href="Style.css">
+
+<style>
+
+body{
+    background:#f3f6f8;
+    margin:0;
+    font-family:Arial,sans-serif;
+    color:#30495f;
+}
+
+.report-page{
+    max-width:1100px;
+    margin:25px auto;
+    background:white;
+    padding:35px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.report-header{
+    display:grid;
+    grid-template-columns:180px 1fr 180px;
+    align-items:center;
+    gap:20px;
+    border-bottom:2px solid #0a4f8f;
+    padding-bottom:20px;
+}
+
+.report-logo{
+    text-align:center;
+}
+
+.report-logo img{
+    max-width:150px;
+    max-height:95px;
+    object-fit:contain;
+}
+
+.report-title{
+    text-align:center;
+}
+
+.report-title h1{
+    margin:0;
+    color:#064c92;
+    font-size:26px;
+}
+
+.report-title h2{
+    margin:7px 0;
+    color:#3f5365;
+    font-size:18px;
+}
+
+.report-title h3{
+    margin:5px 0;
+    color:#607387;
+    font-size:15px;
+}
+
+.report-meta{
+    margin-top:20px;
+    background:#f4f8fb;
+    border-radius:10px;
+    padding:15px 20px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    font-size:14px;
+}
+
+.meta-item strong{
+    color:#064c92;
+}
+
+.section{
+    margin-top:30px;
+}
+
+.section-title{
+    color:#064c92;
+    border-right:5px solid #0759a6;
+    padding-right:10px;
+    margin-bottom:15px;
+}
+
+.smart-title{
+    color:#5f3dc4;
+    border-right-color:#5f3dc4;
+}
+
+
+/* =====================================================
+   KPI
+===================================================== */
+
+.kpi-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+}
+
+.kpi{
+    border:1px solid #dfe8f2;
+    border-radius:12px;
+    padding:18px;
+    text-align:center;
+    background:#fbfdff;
+}
+
+.kpi strong{
+    display:block;
+    font-size:28px;
+    color:#064c92;
+}
+
+.kpi span{
+    display:block;
+    margin-top:6px;
+    color:#607387;
+    font-size:13px;
+    line-height:1.5;
+}
+
+.purple-kpi{
+    border-top:4px solid #5f3dc4;
+}
+
+.purple-kpi strong{
+    color:#5f3dc4;
+}
+
+.orange-kpi{
+    border-top:4px solid #ef8d22;
+}
+
+.orange-kpi strong{
+    color:#c16800;
+}
+
+.green-kpi{
+    border-top:4px solid #187b43;
+}
+
+.green-kpi strong{
+    color:#187b43;
+}
+
+.red-kpi{
+    border-top:4px solid #c62828;
+}
+
+.red-kpi strong{
+    color:#c62828;
+}
+
+.blue-kpi{
+    border-top:4px solid #0759a6;
+}
+
+
+/* =====================================================
+   Summary
+===================================================== */
+
+.summary-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.summary-card{
+    border:1px solid #dfe8f2;
+    border-radius:12px;
+    padding:18px;
+}
+
+.summary-card h3{
+    color:#064c92;
+    margin-top:0;
+}
+
+.metric-row{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    padding:9px 0;
+    border-bottom:1px solid #edf1f4;
+}
+
+.metric-row:last-child{
+    border-bottom:none;
+}
+
+.metric-name{
+    color:#40566b;
+}
+
+.metric-value{
+    font-weight:bold;
+    color:#064c92;
+}
+
+
+/* =====================================================
+   Smart project intro
+===================================================== */
+
+.project-intro{
+    background:#f4efff;
+    border-right:6px solid #5f3dc4;
+    border-radius:12px;
+    padding:18px;
+    line-height:1.9;
+    color:#514568;
+}
+
+.project-intro strong{
+    color:#4d2fa9;
+}
+
+
+/* =====================================================
+   Flow
+===================================================== */
+
+.impact-flow{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-top:22px;
+}
+
+.flow-step{
+    position:relative;
+    background:#fff;
+    border:1px solid #dfe8f2;
+    border-radius:13px;
+    padding:20px 12px;
+    text-align:center;
+}
+
+.flow-step .icon{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.flow-step strong{
+    display:block;
+    font-size:31px;
+    color:#5f3dc4;
+}
+
+.flow-step span{
+    display:block;
+    color:#607387;
+    margin-top:6px;
+    font-size:13px;
+    line-height:1.6;
+}
+
+.flow-step:not(:last-child)::after{
+    content:"←";
+    position:absolute;
+    left:-18px;
+    top:42%;
+    color:#9b89d6;
+    font-size:25px;
+    font-weight:bold;
+}
+
+
+/* =====================================================
+   Core impact
+===================================================== */
+
+.core-impact{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin-top:18px;
+}
+
+.core-card{
+    border-radius:14px;
+    padding:20px 14px;
+    text-align:center;
+    border:1px solid #dfe8f2;
+    background:#fbfdff;
+}
+
+.core-card strong{
+    display:block;
+    font-size:30px;
+}
+
+.core-card span{
+    display:block;
+    margin-top:7px;
+    color:#607387;
+    font-size:13px;
+    line-height:1.6;
+}
+
+.core-purple{
+    border-top:5px solid #5f3dc4;
+}
+
+.core-purple strong{
+    color:#5f3dc4;
+}
+
+.core-orange{
+    border-top:5px solid #ef8d22;
+}
+
+.core-orange strong{
+    color:#c16800;
+}
+
+.core-green{
+    border-top:5px solid #187b43;
+}
+
+.core-green strong{
+    color:#187b43;
+}
+
+.core-blue{
+    border-top:5px solid #0759a6;
+}
+
+.core-blue strong{
+    color:#0759a6;
+}
+
+
+/* =====================================================
+   Before / After
+===================================================== */
+
+.comparison-wrapper{
+    margin-top:32px;
+}
+
+.comparison-intro{
+    background:#f8fbfd;
+    border-right:5px solid #0759a6;
+    padding:16px;
+    border-radius:10px;
+    line-height:1.9;
+    color:#496276;
+    margin-bottom:18px;
+}
+
+.comparison-subtitle{
+    color:#40566b;
+    margin-top:28px;
+    margin-bottom:13px;
+    font-size:18px;
+}
+
+.comparison-table-wrap{
+    overflow-x:auto;
+}
+
+.comparison-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:760px;
+}
+
+.comparison-table th{
+    padding:14px;
+    border:1px solid #dbe5ec;
+}
+
+.comparison-table td{
+    padding:14px;
+    border:1px solid #dbe5ec;
+    text-align:center;
+    line-height:1.7;
+}
+
+.comparison-table th:first-child{
+    background:#eef3f7;
+    color:#40566b;
+}
+
+.before-head{
+    background:#fff4e5;
+    color:#a75b00;
+}
+
+.after-head{
+    background:#eaf7ef;
+    color:#187b43;
+}
+
+.comparison-table tbody tr:nth-child(even){
+    background:#fafcfd;
+}
+
+.compare-metric{
+    font-weight:bold;
+    color:#40566b;
+}
+
+.before-value{
+    color:#8a640c;
+}
+
+.after-value{
+    color:#187b43;
+    font-weight:bold;
+}
+
+.not-measured{
+    color:#8a96a1;
+    font-style:italic;
+}
+
+.baseline-period{
+    margin-top:12px;
+    font-size:13px;
+    color:#718292;
+}
+
+.comparison-results{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+}
+
+.result-impact-card{
+    background:white;
+    border:1px solid #dfe8f2;
+    border-radius:14px;
+    padding:20px 12px;
+    text-align:center;
+}
+
+.result-impact-card strong{
+    display:block;
+    font-size:31px;
+}
+
+.result-impact-card span{
+    display:block;
+    margin-top:7px;
+    color:#607387;
+    font-size:13px;
+    line-height:1.6;
+}
+
+.result-purple{
+    border-top:5px solid #5f3dc4;
+}
+
+.result-purple strong{
+    color:#5f3dc4;
+}
+
+.result-orange{
+    border-top:5px solid #ef8d22;
+}
+
+.result-orange strong{
+    color:#c16800;
+}
+
+.result-green{
+    border-top:5px solid #187b43;
+}
+
+.result-green strong{
+    color:#187b43;
+}
+
+.result-blue{
+    border-top:5px solid #0759a6;
+}
+
+.result-blue strong{
+    color:#0759a6;
+}
+
+
+/* =====================================================
+   Comparison supporting metrics
+===================================================== */
+
+.comparison-support{
+    margin-top:16px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+}
+
+.support-item{
+    background:#fafbfd;
+    border:1px solid #e1e8ee;
+    border-radius:11px;
+    padding:15px;
+    text-align:center;
+}
+
+.support-item strong{
+    display:block;
+    font-size:23px;
+    color:#40566b;
+}
+
+.support-item span{
+    display:block;
+    margin-top:5px;
+    color:#718292;
+    font-size:12px;
+    line-height:1.5;
+}
+
+
+/* =====================================================
+   Comparison Summary
+===================================================== */
+
+.comparison-summary{
+    margin-top:20px;
+    background:#eef7ff;
+    border-right:6px solid #0759a6;
+    border-radius:12px;
+    padding:20px;
+    color:#31556f;
+    line-height:2;
+}
+
+.comparison-summary h3{
+    margin-top:0;
+    color:#064c92;
+}
+
+
+/* =====================================================
+   Impact statement
+===================================================== */
+
+.impact-statement{
+    margin-top:22px;
+    background:#eef7ff;
+    border-right:6px solid #0759a6;
+    border-radius:12px;
+    padding:20px;
+    color:#31556f;
+    line-height:2;
+    font-size:15px;
+}
+
+.impact-statement h3{
+    margin-top:0;
+    color:#064c92;
+}
+
+
+/* =====================================================
+   Secondary
+===================================================== */
+
+.secondary-metrics{
+    margin-top:25px;
+    background:#fafbfd;
+    border:1px solid #e1e8ee;
+    border-radius:12px;
+    padding:18px;
+}
+
+.secondary-metrics h3{
+    color:#607387;
+    font-size:15px;
+    margin-top:0;
+}
+
+.secondary-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+
+.secondary-item{
+    background:white;
+    border:1px solid #e2e9ef;
+    border-radius:10px;
+    padding:13px;
+    text-align:center;
+}
+
+.secondary-item strong{
+    display:block;
+    color:#40566b;
+    font-size:21px;
+}
+
+.secondary-item span{
+    display:block;
+    margin-top:5px;
+    color:#7a8996;
+    font-size:11px;
+    line-height:1.5;
+}
+
+
+/* =====================================================
+   Bars
+===================================================== */
+
+.bar-list{
+    display:flex;
+    flex-direction:column;
+    gap:11px;
+}
+
+.bar-row{
+    display:grid;
+    grid-template-columns:190px 1fr 95px;
+    gap:10px;
+    align-items:center;
+}
+
+.bar-label{
+    font-size:13px;
+    color:#40566b;
+}
+
+.bar-track{
+    height:16px;
+    background:#e9eef2;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.bar-fill{
+    height:100%;
+    background:#0759a6;
+    border-radius:20px;
+}
+
+.smart-bars .bar-fill{
+    background:#5f3dc4;
+}
+
+.bar-value{
+    text-align:center;
+    font-weight:bold;
+    color:#29465f;
+    font-size:12px;
+}
+
+
+/* =====================================================
+   General
+===================================================== */
+
+.report-note{
+    margin-top:25px;
+    background:#fff8e1;
+    border-right:5px solid #d89a00;
+    padding:15px;
+    border-radius:10px;
+    color:#66531b;
+    line-height:1.8;
+}
+
+.approval-section{
+    margin-top:35px;
+    padding-top:20px;
+    border-top:1px solid #dfe8f2;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.approval-card{
+    border:1px solid #dfe8f2;
+    border-radius:12px;
+    padding:20px;
+    text-align:center;
+}
+
+.approval-card h3{
+    color:#064c92;
+    margin-top:0;
+}
+
+.approval-name{
+    font-weight:bold;
+    color:#29465f;
+    margin-top:8px;
+}
+
+.approval-title{
+    color:#607387;
+    font-size:13px;
+    margin-top:5px;
+}
+
+.approval-department{
+    color:#7a8996;
+    font-size:12px;
+    margin-top:5px;
+}
+
+.signature-box{
+    min-height:100px;
+    margin-top:15px;
+    border-top:1px dashed #b9c8d4;
+    padding-top:12px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.signature-box img{
+    max-width:280px;
+    max-height:110px;
+    object-fit:contain;
+}
+
+.signature-wait{
+    color:#82909c;
+    font-size:12px;
+}
+
+.workflow-badge{
+    display:inline-block;
+    padding:6px 12px;
+    border-radius:16px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.workflow-draft{
+    background:#eef2f5;
+    color:#526270;
+}
+
+.workflow-pending{
+    background:#fff3cf;
+    color:#806316;
+}
+
+.workflow-approved{
+    background:#e7f6eb;
+    color:#277438;
+}
+
+.actions{
+    max-width:1100px;
+    margin:20px auto;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.actions button,
+.actions a{
+    border:none;
+    border-radius:9px;
+    padding:12px 18px;
+    font-weight:bold;
+    cursor:pointer;
+    text-decoration:none;
+}
+
+.print-btn{
+    background:#687984;
+    color:white;
+}
+
+.back-btn{
+    background:#eaf1f7;
+    color:#064c92;
+}
+
+.hidden-section{
+    display:none !important;
+}
+
+.empty{
+    text-align:center;
+    padding:20px;
+    color:#718292;
+}
+
+
+/* =====================================================
+   Responsive
+===================================================== */
+
+@media(max-width:850px){
+
+    .report-header,
+    .report-meta,
+    .kpi-grid,
+    .summary-grid,
+    .approval-section,
+    .impact-flow,
+    .core-impact,
+    .secondary-grid,
+    .comparison-results,
+    .comparison-support{
+        grid-template-columns:1fr;
+    }
+
+    .flow-step::after{
+        display:none;
+    }
+
+    .bar-row{
+        grid-template-columns:100px 1fr 70px;
+    }
+
+}
+
+
+/* =====================================================
+   Print
+===================================================== */
+
+@media print{
+
+    @page{
+        size:A4;
+        margin:12mm;
+    }
+
+    body{
+        background:white;
+    }
+
+    .report-page{
+        margin:0;
+        box-shadow:none;
+        max-width:none;
+        padding:0;
+    }
+
+    .actions{
+        display:none !important;
+    }
+
+    .section,
+    .summary-card,
+    .kpi,
+    .approval-card,
+    .project-intro,
+    .impact-statement,
+    .comparison-summary,
+    .comparison-table,
+    .core-card,
+    .result-impact-card{
+        page-break-inside:avoid;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="actions">
+
+<button
+    class="print-btn"
+    onclick="window.print()">
+
+🖨️ طباعة / حفظ PDF
+
+</button>
+
+<a
+    class="back-btn"
+    href="analytics-dashboard.html">
+
+← العودة للمؤشرات
+
+</a>
+
+</div>
+
+
+<main class="report-page">
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<section class="report-header">
+
+<div class="report-logo">
+<img src="images/cluster-logo.png">
+</div>
+
+
+<div class="report-title">
+
+<h1 id="mainReportTitle">
+تقرير الصحة العامة
+</h1>
+
+<h2 id="mainReportTitleEnglish">
+Public Health Report
+</h2>
+
+<h3>
+مستشفى إرادة والصحة النفسية
+</h3>
+
+<h3>
+الصحة العامة
+</h3>
+
+</div>
+
+
+<div class="report-logo">
+<img src="images/hospital-logo.png">
+</div>
+
+</section>
+
+
+<section class="report-meta">
+
+<div class="meta-item">
+<strong>نوع التقرير:</strong>
+<span id="reportTypeText">—</span>
+</div>
+
+<div class="meta-item">
+<strong>الفترة:</strong>
+<span id="reportPeriodText">—</span>
+</div>
+
+<div class="meta-item">
+<strong>تاريخ الإصدار:</strong>
+<span id="generatedDate">—</span>
+</div>
+
+<div class="meta-item">
+<strong>الحالة:</strong>
+<span id="workflowStatusText">—</span>
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     EXECUTIVE
+===================================================== -->
+
+<section
+    id="executiveSection"
+    class="section">
+
+<h2 class="section-title">
+الملخص التنفيذي
+</h2>
+
+
+<div class="kpi-grid">
+
+
+<div
+    id="executiveNotificationsKpi"
+    class="kpi">
+
+<strong id="totalNotifications">
+0
+</strong>
+
+<span>
+بلاغات الأمراض المعدية
+</span>
+
+</div>
+
+
+<div
+    id="executiveUrgentKpi"
+    class="kpi red-kpi">
+
+<strong id="urgentPercent">
+0%
+</strong>
+
+<span>
+نسبة البلاغات العاجلة
+</span>
+
+</div>
+
+
+<div
+    id="executiveSmartTotalKpi"
+    class="kpi purple-kpi">
+
+<strong id="smartTotalTop">
+0
+</strong>
+
+<span>
+حالات تم فرزها ذكيًا
+</span>
+
+</div>
+
+
+<div
+    id="executiveSmartHiddenKpi"
+    class="kpi orange-kpi">
+
+<strong id="smartHiddenTop">
+0
+</strong>
+
+<span>
+خطر معدٍ خفي مكتشف
+</span>
+
+</div>
+
+
+<div
+    id="executiveSmartSentKpi"
+    class="kpi green-kpi">
+
+<strong id="smartSentTop">
+0
+</strong>
+
+<span>
+حالات انتقلت لمسار البلاغ
+</span>
+
+</div>
+
+
+<div
+    id="executiveSmartTimeKpi"
+    class="kpi blue-kpi">
+
+<strong id="smartAverageTimeTop">
+غير مقاس
+</strong>
+
+<span>
+متوسط زمن الفرز
+</span>
+
+</div>
+
+
+<div
+    id="executiveScreeningKpi"
+    class="kpi">
+
+<strong id="screeningCompletionPercentTop">
+0%
+</strong>
+
+<span>
+نسبة اكتمال الفحص الدوري
+</span>
+
+</div>
+
+
+<div
+    id="executiveFollowupKpi"
+    class="kpi">
+
+<strong id="screeningFollowupTop">
+0
+</strong>
+
+<span>
+فحوص تحتاج متابعة
+</span>
+
+</div>
+
+
+<div
+    id="executiveOccupationalKpi"
+    class="kpi">
+
+<strong id="occupationalTotalTop">
+0
+</strong>
+
+<span>
+التعرضات المهنية
+</span>
+
+</div>
+
+
+<div
+    id="executiveOccupationalFollowupKpi"
+    class="kpi">
+
+<strong id="occupationalFollowupTop">
+0
+</strong>
+
+<span>
+تعرضات تحتاج متابعة
+</span>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     SMART SCREENING
+===================================================== -->
+
+<section
+    id="smartScreeningSection"
+    class="section">
+
+
+<h2 class="section-title smart-title">
+الأثر المحقق من نظام الفرز الذكي
+</h2>
+
+
+<div class="project-intro">
+
+<strong>
+🧠 فكرة المشروع:
+</strong>
+
+يدعم النظام ممارس الطوارئ النفسية في اكتشاف مخاطر
+الأمراض المعدية التي قد لا تكون واضحة من خلال العلامات الحيوية وحدها،
+وذلك من خلال فرز تكيفي يجمع الأعراض وعوامل التعرض الوبائي
+وموثوقية التاريخ المرضي، ثم يربط نتيجة الاشتباه
+بمسار البلاغ عند الحاجة.
+
+</div>
+
+
+<!-- =====================================================
+     FLOW
+===================================================== -->
+
+<div class="impact-flow">
+
+
+<div class="flow-step">
+
+<div class="icon">
+🧠
+</div>
+
+<strong id="flowTotal">
+0
+</strong>
+
+<span>
+حالة تم فرزها
+</span>
+
+</div>
+
+
+<div class="flow-step">
+
+<div class="icon">
+🔍
+</div>
+
+<strong id="flowHigh">
+0
+</strong>
+
+<span>
+تنبيه اشتباه مرتفع
+</span>
+
+</div>
+
+
+<div class="flow-step">
+
+<div class="icon">
+🚩
+</div>
+
+<strong id="flowHidden">
+0
+</strong>
+
+<span>
+خطر معدٍ خفي مكتشف
+</span>
+
+</div>
+
+
+<div class="flow-step">
+
+<div class="icon">
+🚨
+</div>
+
+<strong id="flowSent">
+0
+</strong>
+
+<span>
+حالة انتقلت لمسار البلاغ
+</span>
+
+</div>
+
+
+</div>
+
+
+<!-- =====================================================
+     CORE INDICATORS
+===================================================== -->
+
+<h3
+    class="section-title smart-title"
+    style="margin-top:30px;">
+
+المؤشرات الرئيسية للمشروع
+
+</h3>
+
+
+<div class="core-impact">
+
+
+<div class="core-card core-purple">
+
+<strong id="coreTotal">
+0
+</strong>
+
+<span>
+إجمالي الحالات المفروزة
+</span>
+
+</div>
+
+
+<div class="core-card core-orange">
+
+<strong id="coreHidden">
+0
+</strong>
+
+<span>
+حالات الخطر المعدي الخفي
+</span>
+
+</div>
+
+
+<div class="core-card core-green">
+
+<strong id="coreSent">
+0
+</strong>
+
+<span>
+الحالات التي انتقلت لمسار البلاغ
+</span>
+
+</div>
+
+
+<div class="core-card core-blue">
+
+<strong id="coreAverageTime">
+غير مقاس
+</strong>
+
+<span>
+متوسط زمن الفرز
+</span>
+
+</div>
+
+
+</div>
+
+
+<!-- =====================================================
+     BEFORE / AFTER
+===================================================== -->
+
+<div class="comparison-wrapper">
+
+
+<h3 class="section-title smart-title">
+قبل التطبيق / بعد التطبيق
+</h3>
+
+
+<div class="comparison-intro">
+
+تعرض هذه المقارنة التغيير في
+<strong>آلية فرز مخاطر الأمراض المعدية</strong>
+بعد تطبيق النظام الذكي.
+
+ولا يتم اعتبار أي مؤشر لم يكن مقاسًا قبل التطبيق مساويًا للصفر.
+
+<div
+    id="baselinePeriodText"
+    class="baseline-period">
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     1 - Process Change
+===================================================== -->
+
+<h3 class="comparison-subtitle">
+1. التغيير في آلية العمل
+</h3>
+
+
+<div class="comparison-table-wrap">
+
+<table class="comparison-table">
+
+<thead>
+
+<tr>
+
+<th>
+العنصر
+</th>
+
+<th class="before-head">
+قبل التطبيق
+</th>
+
+<th class="after-head">
+بعد التطبيق
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+
+<tr>
+
+<td class="compare-metric">
+فرز مخاطر الأمراض المعدية
+</td>
+
+<td
+    id="beforeScreeningMethod"
+    class="before-value">
+—
+</td>
+
+<td class="after-value">
+فرز ذكي موحد ومنظم
+</td>
+
+</tr>
+
+
+<tr>
+
+<td class="compare-metric">
+تقييم الأعراض المعدية
+</td>
+
+<td
+    id="beforeSymptoms"
+    class="before-value">
+—
+</td>
+
+<td class="after-value">
+مدمج ضمن أداة الفرز
+</td>
+
+</tr>
+
+
+<tr>
+
+<td class="compare-metric">
+تقييم عوامل التعرض الوبائي
+</td>
+
+<td
+    id="beforeEpi"
+    class="before-value">
+—
+</td>
+
+<td class="after-value">
+تقييم منهجي ضمن الفرز
+</td>
+
+</tr>
+
+
+<tr>
+
+<td class="compare-metric">
+تقييم محدودية التاريخ المرضي
+</td>
+
+<td
+    id="beforePsychHistory"
+    class="before-value">
+—
+</td>
+
+<td class="after-value">
+يتم رصدها ضمن الفرز
+</td>
+
+</tr>
+
+
+<tr>
+
+<td class="compare-metric">
+قياس زمن فرز مخاطر العدوى
+</td>
+
+<td
+    id="beforeScreeningTime"
+    class="before-value">
+غير مقاس قبل التطبيق
+</td>
+
+<td
+    id="afterScreeningTime"
+    class="after-value">
+غير مقاس
+</td>
+
+</tr>
+
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<!-- =====================================================
+     2 - Results after implementation
+===================================================== -->
+
+<h3 class="comparison-subtitle">
+2. النتائج المسجلة بعد التطبيق
+</h3>
+
+
+<div class="comparison-results">
+
+
+<div class="result-impact-card result-purple">
+
+<strong id="comparisonTotal">
+0
+</strong>
+
+<span>
+عمليات فرز ذكي
+</span>
+
+</div>
+
+
+<div class="result-impact-card result-orange">
+
+<strong id="comparisonHidden">
+0
+</strong>
+
+<span>
+حالات خطر معدٍ خفي تم اكتشافها
+</span>
+
+</div>
+
+
+<div class="result-impact-card result-green">
+
+<strong id="comparisonSent">
+0
+</strong>
+
+<span>
+حالات انتقلت إلى مسار البلاغ
+</span>
+
+</div>
+
+
+<div class="result-impact-card result-blue">
+
+<strong id="comparisonTime">
+غير مقاس
+</strong>
+
+<span>
+متوسط زمن الفرز
+</span>
+
+</div>
+
+
+</div>
+
+
+<div class="comparison-support">
+
+
+<div class="support-item">
+
+<strong id="comparisonHigh">
+0
+</strong>
+
+<span>
+حالات اشتباه مرتفع
+</span>
+
+</div>
+
+
+<div class="support-item">
+
+<strong id="comparisonLimited">
+0
+</strong>
+
+<span>
+حالات ذات تاريخ مرضي محدود
+</span>
+
+</div>
+
+
+<div class="support-item">
+
+<strong id="comparisonUnderTwo">
+0%
+</strong>
+
+<span>
+عمليات الفرز المكتملة خلال دقيقتين
+</span>
+
+</div>
+
+
+</div>
+
+
+<!-- =====================================================
+     Comparison summary
+===================================================== -->
+
+<div class="comparison-summary">
+
+<h3>
+📊 خلاصة المقارنة
+</h3>
+
+<div id="comparisonSummaryText">
+
+لا توجد بيانات كافية.
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- =====================================================
+     Impact statement
+===================================================== -->
+
+<div class="impact-statement">
+
+<h3>
+📈 الأثر المحقق خلال فترة التقرير
+</h3>
+
+<div id="impactStatementText">
+
+لا توجد بيانات كافية خلال الفترة المحددة.
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     Additional operational details
+===================================================== -->
+
+<div
+    class="summary-grid"
+    style="margin-top:25px;">
+
+
+<div class="summary-card">
+
+<h3>
+⚡ كفاءة الاستخدام
+</h3>
+
+
+<div class="metric-row">
+
+<span class="metric-name">
+متوسط زمن الفرز
+</span>
+
+<span
+    id="smartAverageTime"
+    class="metric-value">
+غير مقاس
+</span>
+
+</div>
+
+
+<div class="metric-row">
+
+<span class="metric-name">
+أسرع عملية فرز
+</span>
+
+<span
+    id="smartFastestTime"
+    class="metric-value">
+غير مقاس
+</span>
+
+</div>
+
+
+<div class="metric-row">
+
+<span class="metric-name">
+أطول عملية فرز
+</span>
+
+<span
+    id="smartLongestTime"
+    class="metric-value">
+غير مقاس
+</span>
+
+</div>
+
+
+<div class="metric-row">
+
+<span class="metric-name">
+اكتمل خلال دقيقتين
+</span>
+
+<span
+    id="smartUnderTwoMinutes"
+    class="metric-value">
+غير مقاس
+</span>
+
+</div>
+
+
+</div>
+
+
+<div class="summary-card">
+
+<h3>
+🧠 القيمة المضافة
+</h3>
+
+
+<div class="metric-row">
+
+<span class="metric-name">
+حالات تاريخ مرضي محدود
+</span>
+
+<span
+    id="smartLimitedHistory"
+    class="metric-value">
+0
+</span>
+
+</div>
+
+
+<div class="metric-row">
+
+<span class="metric-name">
+خطر معدٍ خفي
+</span>
+
+<span
+    id="smartHiddenRisk"
+    class="metric-value">
+0
+</span>
+
+</div>
+
+
+<div class="metric-row">
+
+<span class="metric-name">
+اشتباه مرتفع
+</span>
+
+<span
+    id="smartHighSuspicion"
+    class="metric-value">
+0
+</span>
+
+</div>
+
+
+<div class="metric-row">
+
+<span class="metric-name">
+بدأ منها مسار بلاغ
+</span>
+
+<span
+    id="smartNotificationStarted"
+    class="metric-value">
+0
+</span>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<div class="secondary-metrics">
+
+<h3>
+تفاصيل تشغيلية إضافية
+</h3>
+
+
+<div class="secondary-grid">
+
+
+<div class="secondary-item">
+
+<strong id="secondaryNoIndicators">
+0
+</strong>
+
+<span>
+لا توجد مؤشرات معدية
+</span>
+
+</div>
+
+
+<div class="secondary-item">
+
+<strong id="secondaryHighPercent">
+0%
+</strong>
+
+<span>
+نسبة الاشتباه المرتفع
+</span>
+
+</div>
+
+
+<div class="secondary-item">
+
+<strong id="secondaryHiddenPercent">
+0%
+</strong>
+
+<span>
+نسبة الخطر المعدي الخفي
+</span>
+
+</div>
+
+
+<div class="secondary-item">
+
+<strong id="secondaryConversion">
+0%
+</strong>
+
+<span>
+نسبة الانتقال من الاشتباه إلى البلاغ
+</span>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<div style="margin-top:28px;">
+
+<h3 class="section-title smart-title">
+أكثر التنبيهات / الأمراض ظهورًا في الفرز
+</h3>
+
+<div
+    id="smartDiseaseBars"
+    class="bar-list smart-bars">
+</div>
+
+</div>
+
+
+<div style="margin-top:28px;">
+
+<h3 class="section-title smart-title">
+أكثر عوامل التعرض الوبائي ظهورًا
+</h3>
+
+<div
+    id="smartEpiBars"
+    class="bar-list smart-bars">
+</div>
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+     NOTIFICATIONS
+===================================================== -->
+
+<section
+    id="notificationsSection"
+    class="section">
+
+<h2 class="section-title">
+بلاغات الأمراض المعدية
+</h2>
+
+
+<div class="summary-grid">
+
+
+<div class="summary-card">
+
+<h3>
+حالة البلاغات
+</h3>
+
+
+<div class="metric-row">
+<span class="metric-name">إجمالي البلاغات</span>
+<span id="notificationTotal2" class="metric-value">0</span>
+</div>
+
+
+<div class="metric-row">
+<span class="metric-name">بلاغات عاجلة</span>
+<span id="urgentCount" class="metric-value">0</span>
+</div>
+
+
+<div class="metric-row">
+<span class="metric-name">بلاغات مفتوحة</span>
+<span id="openCount" class="metric-value">0</span>
+</div>
+
+
+<div class="metric-row">
+<span class="metric-name">بلاغات مغلقة</span>
+<span id="closedCount" class="metric-value">0</span>
+</div>
+
+
+<div class="metric-row">
+<span class="metric-name">نسبة الإغلاق</span>
+<span id="closedPercent" class="metric-value">0%</span>
+</div>
+
+
+</div>
+
+
+<div class="summary-card">
+
+<h3>
+حصن بلس
+</h3>
+
+
+<div class="metric-row">
+<span class="metric-name">تم الإدخال</span>
+<span id="hesnEntered" class="metric-value">0</span>
+</div>
+
+
+<div class="metric-row">
+<span class="metric-name">لم يتم الإدخال</span>
+<span id="hesnPending" class="metric-value">0</span>
+</div>
+
+
+<div class="metric-row">
+<span class="metric-name">لا ينطبق</span>
+<span id="hesnNotRequired" class="metric-value">0</span>
+</div>
+
+
+<div class="metric-row">
+<span class="metric-name">نسبة الإدخال في حصن بلس</span>
+<span id="hesnPercent" class="metric-value">0%</span>
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<div style="margin-top:25px;">
+
+<h3 class="section-title">
+توزيع البلاغات حسب المرض
+</h3>
+
+<div
+    id="diseaseBars"
+    class="bar-list">
+</div>
+
+</div>
+
+
+<div style="margin-top:25px;">
+
+<h3 class="section-title">
+توزيع البلاغات حسب القسم
+</h3>
+
+<div
+    id="notificationDepartmentBars"
+    class="bar-list">
+</div>
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+     EMPLOYEE SCREENING
+===================================================== -->
+
+<section
+    id="screeningSection"
+    class="section">
+
+<h2 class="section-title">
+الفحص الدوري للموظفين
+</h2>
+
+
+<div class="kpi-grid">
+
+
+<div class="kpi">
+
+<strong id="screeningTotal">
+0
+</strong>
+
+<span>
+إجمالي سجلات الفحص
+</span>
+
+</div>
+
+
+<div class="kpi green-kpi">
+
+<strong id="screeningCompleted">
+0
+</strong>
+
+<span>
+فحص مكتمل
+</span>
+
+</div>
+
+
+<div class="kpi blue-kpi">
+
+<strong id="screeningCompletionPercent">
+0%
+</strong>
+
+<span>
+نسبة اكتمال الفحص
+</span>
+
+</div>
+
+
+<div class="kpi orange-kpi">
+
+<strong id="screeningFollowup">
+0
+</strong>
+
+<span>
+يحتاج متابعة
+</span>
+
+</div>
+
+
+</div>
+
+
+<div
+    class="summary-grid"
+    style="margin-top:20px;">
+
+
+<div class="summary-card">
+
+<h3>
+حالة الفحص
+</h3>
+
+<div class="metric-row">
+<span class="metric-name">مكتمل</span>
+<span id="screenCompleted2" class="metric-value">0</span>
+</div>
+
+<div class="metric-row">
+<span class="metric-name">غير مكتمل</span>
+<span id="screenIncomplete" class="metric-value">0</span>
+</div>
+
+<div class="metric-row">
+<span class="metric-name">قيد الانتظار</span>
+<span id="screenPending" class="metric-value">0</span>
+</div>
+
+<div class="metric-row">
+<span class="metric-name">يحتاج متابعة</span>
+<span id="screenFollowUp2" class="metric-value">0</span>
+</div>
+
+</div>
+
+
+<div class="summary-card">
+
+<h3>
+حالة المناعة
+</h3>
+
+<div class="metric-row">
+<span class="metric-name">محصن / مكتمل</span>
+<span id="immuneCount" class="metric-value">0</span>
+</div>
+
+<div class="metric-row">
+<span class="metric-name">غير محصن</span>
+<span id="notImmuneCount" class="metric-value">0</span>
+</div>
+
+<div class="metric-row">
+<span class="metric-name">غير مكتمل</span>
+<span id="partialCount" class="metric-value">0</span>
+</div>
+
+<div class="metric-row">
+<span class="metric-name">بانتظار النتيجة</span>
+<span id="immunityPending" class="metric-value">0</span>
+</div>
+
+</div>
+
+
+</div>
+
+
+<div style="margin-top:25px;">
+
+<h3 class="section-title">
+توزيع الفحوص حسب القسم
+</h3>
+
+<div
+    id="screeningDepartmentBars"
+    class="bar-list">
+</div>
+
+</div>
+
+
+<div style="margin-top:25px;">
+
+<h3 class="section-title">
+أنواع الفحوص
+</h3>
+
+<div
+    id="testBars"
+    class="bar-list">
+</div>
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+     OCCUPATIONAL
+===================================================== -->
+
+<section
+    id="occupationalSection"
+    class="section">
+
+<h2 class="section-title">
+الإصابات والتعرضات المهنية
+</h2>
+
+
+<div class="kpi-grid">
+
+
+<div class="kpi">
+
+<strong id="occupationalTotal">
+0
+</strong>
+
+<span>
+إجمالي البلاغات المهنية
+</span>
+
+</div>
+
+
+<div class="kpi">
+
+<strong id="occupationalNeedle">
+0
+</strong>
+
+<span>
+وخز الإبر
+</span>
+
+</div>
+
+
+<div class="kpi orange-kpi">
+
+<strong id="occupationalFollowup">
+0
+</strong>
+
+<span>
+تحت المتابعة
+</span>
+
+</div>
+
+
+<div class="kpi green-kpi">
+
+<strong id="occupationalClosed">
+0
+</strong>
+
+<span>
+مغلقة
+</span>
+
+</div>
+
+
+</div>
+
+
+<div
+    class="summary-grid"
+    style="margin-top:20px;">
+
+
+<div class="summary-card">
+
+<h3>
+حالة البلاغات المهنية
+</h3>
+
+
+<div class="metric-row">
+<span class="metric-name">جديد</span>
+<span id="occupationalNew" class="metric-value">0</span>
+</div>
+
+
+<div class="metric-row">
+<span class="metric-name">تحت المتابعة</span>
+<span id="occupationalFollowup2" class="metric-value">0</span>
+</div>
+
+
+<div class="metric-row">
+<span class="metric-name">مغلق</span>
+<span id="occupationalClosed2" class="metric-value">0</span>
+</div>
+
+
+<div class="metric-row">
+<span class="metric-name">نسبة الإغلاق</span>
+<span id="occupationalClosedPercent" class="metric-value">0%</span>
+</div>
+
+
+</div>
+
+
+<div class="summary-card">
+
+<h3>
+متابعة التعرض
+</h3>
+
+
+<div class="metric-row">
+<span class="metric-name">يحتاج متابعة إضافية</span>
+<span id="occupationalNeedsFollowup" class="metric-value">0</span>
+</div>
+
+
+<div class="metric-row">
+<span class="metric-name">تمت الفحوص الأساسية</span>
+<span id="occupationalBaselineTests" class="metric-value">0</span>
+</div>
+
+
+<div class="metric-row">
+<span class="metric-name">تم تقييم المصدر</span>
+<span id="occupationalSourceAssessed" class="metric-value">0</span>
+</div>
+
+
+<div class="metric-row">
+<span class="metric-name">تعرض مهني لمرض معدٍ</span>
+<span id="occupationalInfectious" class="metric-value">0</span>
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<div style="margin-top:25px;">
+
+<h3 class="section-title">
+توزيع البلاغات حسب نوع التعرض
+</h3>
+
+<div
+    id="occupationalTypeBars"
+    class="bar-list">
+</div>
+
+</div>
+
+
+<div style="margin-top:25px;">
+
+<h3 class="section-title">
+توزيع البلاغات المهنية حسب القسم
+</h3>
+
+<div
+    id="occupationalDepartmentBars"
+    class="bar-list">
+</div>
+
+</div>
+
+
+</section>
+
+
+<section class="report-note">
+
+<strong>
+ملاحظة:
+</strong>
+
+هذا التقرير يعرض بيانات إحصائية مجمعة.
+وعند المقارنة بين ما قبل التطبيق وما بعد التطبيق،
+لا تعتبر المؤشرات التي لم تكن مقاسة سابقًا مساوية للصفر.
+
+</section>
+
+
+<!-- =====================================================
+     APPROVAL
+===================================================== -->
+
+<section class="approval-section">
+
+
+<div class="approval-card">
+
+<h3>
+إعداد التقرير
+</h3>
+
+<div
+    id="preparedName"
+    class="approval-name">
+—
+</div>
+
+<div
+    id="preparedTitle"
+    class="approval-title">
+—
+</div>
+
+<div
+    id="preparedDepartment"
+    class="approval-department">
+—
+</div>
+
+<div
+    id="preparedSignatureBox"
+    class="signature-box">
+
+<span class="signature-wait">
+لم تتم إضافة توقيع
+</span>
+
+</div>
+
+</div>
+
+
+<div class="approval-card">
+
+<h3>
+اعتماد التقرير
+</h3>
+
+<div
+    id="approvedName"
+    class="approval-name">
+—
+</div>
+
+<div
+    id="approvedTitle"
+    class="approval-title">
+—
+</div>
+
+<div
+    id="approvedDepartment"
+    class="approval-department">
+—
+</div>
+
+<div
+    id="approvedSignatureBox"
+    class="signature-box">
+
+<span class="signature-wait">
+بانتظار الاعتماد
+</span>
+
+</div>
+
+</div>
+
+
+</section>
+
+
+</main>
+
+
+<script>
+
+
+/* =====================================================
+   DATA
+===================================================== */
+
+let notifications = [];
+
+let screenings = [];
+
+let occupationalRecords = [];
+
+let smartScreeningRecords = [];
+
+
+let filteredNotifications = [];
+
+let filteredScreenings = [];
+
+let filteredOccupational = [];
+
+let filteredSmartScreenings = [];
+
+
+let reportType =
+    "full";
+
+
+let reportSettings =
+    {};
+
+
+let smartBaseline =
+    {};
+
+
+/* =====================================================
+   LOAD DATA
+===================================================== */
+
+function loadData(){
+
+    try{
+
+        notifications =
+            JSON.parse(
+                localStorage.getItem(
+                    "publicHealthNotifications"
+                )
+            ) || [];
+
+        if(!Array.isArray(notifications)){
+            notifications = [];
+        }
+
+    }
+    catch(error){
+
+        notifications = [];
+
+    }
+
+
+    try{
+
+        screenings =
+            JSON.parse(
+                localStorage.getItem(
+                    "employeeScreeningRecords"
+                )
+            ) || [];
+
+        if(!Array.isArray(screenings)){
+            screenings = [];
+        }
+
+    }
+    catch(error){
+
+        screenings = [];
+
+    }
+
+
+    try{
+
+        occupationalRecords =
+            JSON.parse(
+                localStorage.getItem(
+                    "occupationalExposureRecords"
+                )
+            ) || [];
+
+        if(!Array.isArray(occupationalRecords)){
+            occupationalRecords = [];
+        }
+
+    }
+    catch(error){
+
+        occupationalRecords = [];
+
+    }
+
+
+    try{
+
+        smartScreeningRecords =
+            JSON.parse(
+                localStorage.getItem(
+                    "smartScreeningRecords"
+                )
+            ) || [];
+
+        if(!Array.isArray(smartScreeningRecords)){
+            smartScreeningRecords = [];
+        }
+
+    }
+    catch(error){
+
+        smartScreeningRecords = [];
+
+    }
+
+
+    try{
+
+        smartBaseline =
+            JSON.parse(
+                localStorage.getItem(
+                    "smartScreeningBaseline"
+                )
+            ) || {};
+
+    }
+    catch(error){
+
+        smartBaseline = {};
+
+    }
+
+}
+
+
+/* =====================================================
+   REPORT SETTINGS
+===================================================== */
+
+function loadReportSettings(){
+
+    try{
+
+        reportSettings =
+            JSON.parse(
+                localStorage.getItem(
+                    "publicHealthReportSettings"
+                )
+            ) || {};
+
+    }
+    catch(error){
+
+        reportSettings = {};
+
+    }
+
+
+    document.getElementById(
+        "preparedName"
+    ).textContent =
+        reportSettings.preparedByName ||
+        "—";
+
+
+    document.getElementById(
+        "preparedTitle"
+    ).textContent =
+        reportSettings.preparedByTitle ||
+        "—";
+
+
+    document.getElementById(
+        "preparedDepartment"
+    ).textContent =
+        reportSettings.preparedByDepartment ||
+        "الصحة العامة";
+
+
+    document.getElementById(
+        "approvedName"
+    ).textContent =
+        reportSettings.approvedByName ||
+        "—";
+
+
+    document.getElementById(
+        "approvedTitle"
+    ).textContent =
+        reportSettings.approvedByTitle ||
+        "—";
+
+
+    document.getElementById(
+        "approvedDepartment"
+    ).textContent =
+        reportSettings.approvedByDepartment ||
+        "—";
+
+
+    renderPreparedSignature();
+
+    renderApprovedSignature();
+
+    renderWorkflowStatus();
+
+}
+
+
+/* =====================================================
+   SIGNATURES
+===================================================== */
+
+function renderPreparedSignature(){
+
+    const box =
+        document.getElementById(
+            "preparedSignatureBox"
+        );
+
+
+    if(
+        reportSettings.preparedSignature
+    ){
+
+        box.innerHTML = `
+
+        <img
+            src="${reportSettings.preparedSignature}"
+            alt="Prepared Signature">
+
+        `;
+
+    }
+    else{
+
+        box.innerHTML = `
+
+        <span class="signature-wait">
+        لم تتم إضافة توقيع
+        </span>
+
+        `;
+
+    }
+
+}
+
+
+function renderApprovedSignature(){
+
+    const box =
+        document.getElementById(
+            "approvedSignatureBox"
+        );
+
+
+    const approved =
+
+        (
+            reportSettings.approvalStatus ===
+            "approved"
+
+            ||
+
+            reportSettings.workflowStatus ===
+            "approved"
+        )
+
+        &&
+
+        reportSettings.approvedSignature;
+
+
+    if(approved){
+
+        box.innerHTML = `
+
+        <img
+            src="${reportSettings.approvedSignature}"
+            alt="Approved Signature">
+
+        `;
+
+    }
+    else{
+
+        box.innerHTML = `
+
+        <span class="signature-wait">
+        بانتظار الاعتماد
+        </span>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   WORKFLOW
+===================================================== */
+
+function renderWorkflowStatus(){
+
+    const box =
+        document.getElementById(
+            "workflowStatusText"
+        );
+
+
+    let status =
+        reportSettings.workflowStatus ||
+        "";
+
+
+    if(
+        reportSettings.approvalStatus ===
+        "approved"
+    ){
+
+        status =
+            "approved";
+
+    }
+    else if(
+        reportSettings.approvalStatus ===
+        "pending"
+
+        &&
+
+        status !==
+        "approved"
+    ){
+
+        status =
+            "pendingApproval";
+
+    }
+
+
+    if(
+        status ===
+        "approved"
+    ){
+
+        box.innerHTML = `
+
+        <span class="workflow-badge workflow-approved">
+        معتمد
+        </span>
+
+        `;
+
+    }
+    else if(
+        status ===
+        "pendingApproval"
+    ){
+
+        box.innerHTML = `
+
+        <span class="workflow-badge workflow-pending">
+        بانتظار الاعتماد
+        </span>
+
+        `;
+
+    }
+    else{
+
+        box.innerHTML = `
+
+        <span class="workflow-badge workflow-draft">
+        مسودة
+        </span>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   PARAMS
+===================================================== */
+
+function getParams(){
+
+    return new URLSearchParams(
+        window.location.search
+    );
+
+}
+
+
+/* =====================================================
+   REPORT TYPE
+===================================================== */
+
+function setupReportType(){
+
+    reportType =
+        getParams()
+        .get(
+            "reportType"
+        ) ||
+        "full";
+
+
+    const notificationsSection =
+        document.getElementById(
+            "notificationsSection"
+        );
+
+
+    const smartSection =
+        document.getElementById(
+            "smartScreeningSection"
+        );
+
+
+    const screeningSection =
+        document.getElementById(
+            "screeningSection"
+        );
+
+
+    const occupationalSection =
+        document.getElementById(
+            "occupationalSection"
+        );
+
+
+    const executiveItems = [
+
+        "executiveNotificationsKpi",
+        "executiveUrgentKpi",
+
+        "executiveSmartTotalKpi",
+        "executiveSmartHiddenKpi",
+        "executiveSmartSentKpi",
+        "executiveSmartTimeKpi",
+
+        "executiveScreeningKpi",
+        "executiveFollowupKpi",
+
+        "executiveOccupationalKpi",
+        "executiveOccupationalFollowupKpi"
+
+    ];
+
+
+    notificationsSection.classList.add(
+        "hidden-section"
+    );
+
+
+    smartSection.classList.add(
+        "hidden-section"
+    );
+
+
+    screeningSection.classList.add(
+        "hidden-section"
+    );
+
+
+    occupationalSection.classList.add(
+        "hidden-section"
+    );
+
+
+    executiveItems.forEach(
+        function(id){
+
+            const element =
+                document.getElementById(id);
+
+
+            if(element){
+
+                element.classList.add(
+                    "hidden-section"
+                );
+
+            }
+
+        }
+    );
+
+
+    if(
+        reportType ===
+        "smartScreening"
+    ){
+
+        document.getElementById(
+            "mainReportTitle"
+        ).textContent =
+            "تقرير أثر الفرز الذكي للأمراض المعدية";
+
+
+        document.getElementById(
+            "mainReportTitleEnglish"
+        ).textContent =
+            "Smart Infectious Disease Screening Impact Report";
+
+
+        smartSection.classList.remove(
+            "hidden-section"
+        );
+
+
+        [
+
+            "executiveSmartTotalKpi",
+            "executiveSmartHiddenKpi",
+            "executiveSmartSentKpi",
+            "executiveSmartTimeKpi"
+
+        ]
+        .forEach(
+            function(id){
+
+                document
+                .getElementById(id)
+                .classList
+                .remove(
+                    "hidden-section"
+                );
+
+            }
+        );
+
+    }
+
+
+    else if(
+        reportType ===
+        "notifications"
+    ){
+
+        document.getElementById(
+            "mainReportTitle"
+        ).textContent =
+            "تقرير الأمراض المعدية والبلاغات";
+
+
+        document.getElementById(
+            "mainReportTitleEnglish"
+        ).textContent =
+            "Infectious Disease Notification Report";
+
+
+        notificationsSection
+        .classList
+        .remove(
+            "hidden-section"
+        );
+
+
+        [
+
+            "executiveNotificationsKpi",
+            "executiveUrgentKpi"
+
+        ]
+        .forEach(
+            function(id){
+
+                document
+                .getElementById(id)
+                .classList
+                .remove(
+                    "hidden-section"
+                );
+
+            }
+        );
+
+    }
+
+
+    else if(
+        reportType ===
+        "screening"
+    ){
+
+        document.getElementById(
+            "mainReportTitle"
+        ).textContent =
+            "تقرير الفحص الدوري للموظفين";
+
+
+        document.getElementById(
+            "mainReportTitleEnglish"
+        ).textContent =
+            "Routine Employee Screening Report";
+
+
+        screeningSection
+        .classList
+        .remove(
+            "hidden-section"
+        );
+
+
+        [
+
+            "executiveScreeningKpi",
+            "executiveFollowupKpi"
+
+        ]
+        .forEach(
+            function(id){
+
+                document
+                .getElementById(id)
+                .classList
+                .remove(
+                    "hidden-section"
+                );
+
+            }
+        );
+
+    }
+
+
+    else if(
+        reportType ===
+        "occupational"
+    ){
+
+        document.getElementById(
+            "mainReportTitle"
+        ).textContent =
+            "تقرير الإصابات والتعرضات المهنية";
+
+
+        document.getElementById(
+            "mainReportTitleEnglish"
+        ).textContent =
+            "Occupational Injury & Exposure Report";
+
+
+        occupationalSection
+        .classList
+        .remove(
+            "hidden-section"
+        );
+
+
+        [
+
+            "executiveOccupationalKpi",
+            "executiveOccupationalFollowupKpi"
+
+        ]
+        .forEach(
+            function(id){
+
+                document
+                .getElementById(id)
+                .classList
+                .remove(
+                    "hidden-section"
+                );
+
+            }
+        );
+
+    }
+
+
+    else{
+
+        reportType =
+            "full";
+
+
+        document.getElementById(
+            "mainReportTitle"
+        ).textContent =
+            "تقرير الصحة العامة الشامل";
+
+
+        document.getElementById(
+            "mainReportTitleEnglish"
+        ).textContent =
+            "Comprehensive Public Health Report";
+
+
+        notificationsSection
+        .classList
+        .remove(
+            "hidden-section"
+        );
+
+
+        smartSection
+        .classList
+        .remove(
+            "hidden-section"
+        );
+
+
+        screeningSection
+        .classList
+        .remove(
+            "hidden-section"
+        );
+
+
+        occupationalSection
+        .classList
+        .remove(
+            "hidden-section"
+        );
+
+
+        executiveItems.forEach(
+            function(id){
+
+                const element =
+                    document.getElementById(id);
+
+
+                if(element){
+
+                    element.classList.remove(
+                        "hidden-section"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   DATES
+===================================================== */
+
+function notificationDate(item){
+
+    const values = [
+
+        item.createdAt,
+        item.reportDateTime,
+        item.detectionDateTime
+
+    ];
+
+
+    for(
+        let i=0;
+        i<values.length;
+        i++
+    ){
+
+        if(!values[i]){
+
+            continue;
+
+        }
+
+
+        const date =
+            new Date(
+                values[i]
+            );
+
+
+        if(
+            !isNaN(
+                date.getTime()
+            )
+        ){
+
+            return date;
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+function screeningDate(item){
+
+    if(item.sampleDate){
+
+        const date =
+            new Date(
+                item.sampleDate +
+                "T12:00:00"
+            );
+
+
+        if(
+            !isNaN(
+                date.getTime()
+            )
+        ){
+
+            return date;
+
+        }
+
+    }
+
+
+    if(item.createdAt){
+
+        const date =
+            new Date(
+                item.createdAt
+            );
+
+
+        if(
+            !isNaN(
+                date.getTime()
+            )
+        ){
+
+            return date;
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+function occupationalDate(item){
+
+    if(item.incidentDate){
+
+        const date =
+            new Date(
+                item.incidentDate +
+                "T12:00:00"
+            );
+
+
+        if(
+            !isNaN(
+                date.getTime()
+            )
+        ){
+
+            return date;
+
+        }
+
+    }
+
+
+    if(item.createdAt){
+
+        const date =
+            new Date(
+                item.createdAt
+            );
+
+
+        if(
+            !isNaN(
+                date.getTime()
+            )
+        ){
+
+            return date;
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+function smartScreeningDate(item){
+
+    if(!item.createdAt){
+
+        return null;
+
+    }
+
+
+    const date =
+        new Date(
+            item.createdAt
+        );
+
+
+    return isNaN(
+        date.getTime()
+    )
+    ? null
+    : date;
+
+}
+
+
+/* =====================================================
+   DATE RANGE
+===================================================== */
+
+function getDateRange(){
+
+    const params =
+        getParams();
+
+
+    const period =
+        params.get(
+            "period"
+        ) ||
+        "all";
+
+
+    const now =
+        new Date();
+
+
+    let start =
+        null;
+
+
+    let end =
+        null;
+
+
+    let periodText =
+        "جميع البيانات المسجلة";
+
+
+    if(
+        period ===
+        "currentMonth"
+    ){
+
+        start =
+            new Date(
+                now.getFullYear(),
+                now.getMonth(),
+                1
+            );
+
+
+        end =
+            new Date(
+                now.getFullYear(),
+                now.getMonth()+1,
+                0,
+                23,59,59
+            );
+
+
+        periodText =
+            now.toLocaleDateString(
+                "ar-SA",
+                {
+                    month:"long",
+                    year:"numeric"
+                }
+            );
+
+    }
+
+
+    else if(
+        period ===
+        "previousMonth"
+    ){
+
+        start =
+            new Date(
+                now.getFullYear(),
+                now.getMonth()-1,
+                1
+            );
+
+
+        end =
+            new Date(
+                now.getFullYear(),
+                now.getMonth(),
+                0,
+                23,59,59
+            );
+
+
+        periodText =
+            start.toLocaleDateString(
+                "ar-SA",
+                {
+                    month:"long",
+                    year:"numeric"
+                }
+            );
+
+    }
+
+
+    else if(
+        period ===
+        "quarter"
+    ){
+
+        const month =
+            Math.floor(
+                now.getMonth()/3
+            ) * 3;
+
+
+        start =
+            new Date(
+                now.getFullYear(),
+                month,
+                1
+            );
+
+
+        end =
+            new Date(
+                now.getFullYear(),
+                month+3,
+                0,
+                23,59,59
+            );
+
+
+        periodText =
+            start.toLocaleDateString(
+                "ar-SA"
+            ) +
+            " - " +
+            end.toLocaleDateString(
+                "ar-SA"
+            );
+
+    }
+
+
+    else if(
+        period ===
+        "halfYear"
+    ){
+
+        const month =
+            now.getMonth() < 6
+            ? 0
+            : 6;
+
+
+        start =
+            new Date(
+                now.getFullYear(),
+                month,
+                1
+            );
+
+
+        end =
+            new Date(
+                now.getFullYear(),
+                month+6,
+                0,
+                23,59,59
+            );
+
+
+        periodText =
+            start.toLocaleDateString(
+                "ar-SA"
+            ) +
+            " - " +
+            end.toLocaleDateString(
+                "ar-SA"
+            );
+
+    }
+
+
+    else if(
+        period ===
+        "currentYear"
+    ){
+
+        start =
+            new Date(
+                now.getFullYear(),
+                0,
+                1
+            );
+
+
+        end =
+            new Date(
+                now.getFullYear(),
+                11,
+                31,
+                23,59,59
+            );
+
+
+        periodText =
+            String(
+                now.getFullYear()
+            );
+
+    }
+
+
+    else if(
+        period ===
+        "previousYear"
+    ){
+
+        const year =
+            now.getFullYear()-1;
+
+
+        start =
+            new Date(
+                year,
+                0,
+                1
+            );
+
+
+        end =
+            new Date(
+                year,
+                11,
+                31,
+                23,59,59
+            );
+
+
+        periodText =
+            String(
+                year
+            );
+
+    }
+
+
+    else if(
+        period ===
+        "custom"
+    ){
+
+        const from =
+            params.get(
+                "from"
+            );
+
+
+        const to =
+            params.get(
+                "to"
+            );
+
+
+        if(from){
+
+            start =
+                new Date(
+                    from +
+                    "T00:00:00"
+                );
+
+        }
+
+
+        if(to){
+
+            end =
+                new Date(
+                    to +
+                    "T23:59:59"
+                );
+
+        }
+
+
+        periodText =
+            (from || "—") +
+            " - " +
+            (to || "—");
+
+    }
+
+
+    return {
+
+        period:
+            period,
+
+        start:
+            start,
+
+        end:
+            end,
+
+        periodText:
+            periodText
+
+    };
+
+}
+
+
+/* =====================================================
+   RANGE
+===================================================== */
+
+function withinRange(
+    date,
+    range
+){
+
+    if(!date){
+
+        return false;
+
+    }
+
+
+    if(
+        range.start &&
+        date < range.start
+    ){
+
+        return false;
+
+    }
+
+
+    if(
+        range.end &&
+        date > range.end
+    ){
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+/* =====================================================
+   FILTER DATA
+===================================================== */
+
+function filterData(){
+
+    const range =
+        getDateRange();
+
+
+    if(
+        range.period ===
+        "all"
+    ){
+
+        filteredNotifications =
+            [...notifications];
+
+
+        filteredScreenings =
+            [...screenings];
+
+
+        filteredOccupational =
+            [...occupationalRecords];
+
+
+        filteredSmartScreenings =
+            [...smartScreeningRecords];
+
+    }
+    else{
+
+        filteredNotifications =
+            notifications.filter(
+                function(item){
+
+                    return withinRange(
+                        notificationDate(item),
+                        range
+                    );
+
+                }
+            );
+
+
+        filteredScreenings =
+            screenings.filter(
+                function(item){
+
+                    return withinRange(
+                        screeningDate(item),
+                        range
+                    );
+
+                }
+            );
+
+
+        filteredOccupational =
+            occupationalRecords.filter(
+                function(item){
+
+                    return withinRange(
+                        occupationalDate(item),
+                        range
+                    );
+
+                }
+            );
+
+
+        filteredSmartScreenings =
+            smartScreeningRecords.filter(
+                function(item){
+
+                    return withinRange(
+                        smartScreeningDate(item),
+                        range
+                    );
+
+                }
+            );
+
+    }
+
+
+    let typeText =
+        "تقرير الصحة العامة الشامل";
+
+
+    if(
+        reportType ===
+        "notifications"
+    ){
+
+        typeText =
+            "تقرير الأمراض المعدية والبلاغات";
+
+    }
+
+
+    else if(
+        reportType ===
+        "smartScreening"
+    ){
+
+        typeText =
+            "تقرير أثر الفرز الذكي للأمراض المعدية";
+
+    }
+
+
+    else if(
+        reportType ===
+        "screening"
+    ){
+
+        typeText =
+            "تقرير الفحص الدوري للموظفين";
+
+    }
+
+
+    else if(
+        reportType ===
+        "occupational"
+    ){
+
+        typeText =
+            "تقرير الإصابات والتعرضات المهنية";
+
+    }
+
+
+    document.getElementById(
+        "reportTypeText"
+    ).textContent =
+        typeText;
+
+
+    document.getElementById(
+        "reportPeriodText"
+    ).textContent =
+        range.periodText;
+
+
+    document.getElementById(
+        "generatedDate"
+    ).textContent =
+        new Date()
+        .toLocaleString(
+            "ar-SA"
+        );
+
+}
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function percent(
+    value,
+    total
+){
+
+    if(!total){
+
+        return 0;
+
+    }
+
+
+    return Math.round(
+        value /
+        total *
+        100
+    );
+
+}
+
+
+function countBy(
+    list,
+    field
+){
+
+    const result =
+        {};
+
+
+    list.forEach(
+        function(item){
+
+            const value =
+                item[field] ||
+                "غير محدد";
+
+
+            result[value] =
+                (
+                    result[value] ||
+                    0
+                ) + 1;
+
+        }
+    );
+
+
+    return result;
+
+}
+
+
+/* =====================================================
+   TIME
+===================================================== */
+
+function formatDuration(
+    seconds
+){
+
+    seconds =
+        Number(
+            seconds
+        );
+
+
+    if(
+        !Number.isFinite(seconds) ||
+        seconds <= 0
+    ){
+
+        return "غير مقاس";
+
+    }
+
+
+    const minutes =
+        Math.floor(
+            seconds / 60
+        );
+
+
+    const remaining =
+        Math.round(
+            seconds % 60
+        );
+
+
+    if(
+        minutes === 0
+    ){
+
+        return (
+            remaining +
+            " ث"
+        );
+
+    }
+
+
+    if(
+        remaining === 0
+    ){
+
+        return (
+            minutes +
+            " د"
+        );
+
+    }
+
+
+    return (
+        minutes +
+        " د " +
+        remaining +
+        " ث"
+    );
+
+}
+
+
+function calculateTimingMetrics(
+    records
+){
+
+    const durations =
+        records
+        .filter(
+            function(item){
+
+                const value =
+                    Number(
+                        item.screeningDurationSeconds
+                    );
+
+
+                return (
+                    Number.isFinite(value) &&
+                    value > 0
+                );
+
+            }
+        )
+        .map(
+            function(item){
+
+                return Number(
+                    item.screeningDurationSeconds
+                );
+
+            }
+        );
+
+
+    if(
+        !durations.length
+    ){
+
+        return {
+
+            count:
+                0,
+
+            average:
+                null,
+
+            fastest:
+                null,
+
+            longest:
+                null,
+
+            underTwoCount:
+                0,
+
+            underTwoPercent:
+                null
+
+        };
+
+    }
+
+
+    const totalSeconds =
+        durations.reduce(
+            function(sum,value){
+
+                return (
+                    sum +
+                    value
+                );
+
+            },
+            0
+        );
+
+
+    const underTwoCount =
+        durations.filter(
+            function(seconds){
+
+                return (
+                    seconds <=
+                    120
+                );
+
+            }
+        ).length;
+
+
+    return {
+
+        count:
+            durations.length,
+
+        average:
+            Math.round(
+                totalSeconds /
+                durations.length
+            ),
+
+        fastest:
+            Math.min(
+                ...durations
+            ),
+
+        longest:
+            Math.max(
+                ...durations
+            ),
+
+        underTwoCount:
+            underTwoCount,
+
+        underTwoPercent:
+            percent(
+                underTwoCount,
+                durations.length
+            )
+
+    };
+
+}
+
+
+/* =====================================================
+   BASELINE
+===================================================== */
+
+function baselineSelectValue(
+    value
+){
+
+    const map = {
+
+        yes:
+            "نعم",
+
+        no:
+            "لا",
+
+        partial:
+            "جزئي / غير موحد"
+
+    };
+
+
+    return (
+        map[value] ||
+        "غير موثق"
+    );
+
+}
+
+
+/* =====================================================
+   BEFORE / AFTER
+===================================================== */
+
+function renderBeforeAfter(
+    smartStats
+){
+
+    const baseline =
+        smartBaseline ||
+        {};
+
+
+    /*
+      الفترة
+    */
+
+    let periodText =
+        "فترة خط الأساس: غير محددة";
+
+
+    if(
+        baseline.fromDate ||
+        baseline.toDate
+    ){
+
+        periodText =
+            "فترة خط الأساس: " +
+            (
+                baseline.fromDate ||
+                "—"
+            ) +
+            " إلى " +
+            (
+                baseline.toDate ||
+                "—"
+            );
+
+    }
+
+
+    document.getElementById(
+        "baselinePeriodText"
+    ).textContent =
+        periodText;
+
+
+    /*
+      التغيير في الآلية
+    */
+
+    document.getElementById(
+        "beforeScreeningMethod"
+    ).textContent =
+        baseline.previousMethod ||
+        "لم يتم توثيق آلية الفرز السابقة";
+
+
+    document.getElementById(
+        "beforeSymptoms"
+    ).textContent =
+        baselineSelectValue(
+            baseline.structuredSymptoms
+        );
+
+
+    document.getElementById(
+        "beforeEpi"
+    ).textContent =
+        baselineSelectValue(
+            baseline.structuredEpi
+        );
+
+
+    document.getElementById(
+        "beforePsychHistory"
+    ).textContent =
+        baselineSelectValue(
+            baseline.psychHistoryMeasured
+        );
+
+
+    /*
+      الزمن قبل
+    */
+
+    const baselineTime =
+        Number(
+            baseline.screeningTimeSeconds
+        );
+
+
+    document.getElementById(
+        "beforeScreeningTime"
+    ).textContent =
+
+        Number.isFinite(
+            baselineTime
+        )
+
+        &&
+
+        baselineTime > 0
+
+        ? formatDuration(
+            baselineTime
+        )
+
+        : "غير مقاس قبل التطبيق";
+
+
+    /*
+      الزمن بعد
+    */
+
+    document.getElementById(
+        "afterScreeningTime"
+    ).textContent =
+        formatDuration(
+            smartStats.timing.average
+        );
+
+
+    /*
+      النتائج بعد التطبيق
+    */
+
+    document.getElementById(
+        "comparisonTotal"
+    ).textContent =
+        smartStats.total;
+
+
+    document.getElementById(
+        "comparisonHidden"
+    ).textContent =
+        smartStats.hidden;
+
+
+    document.getElementById(
+        "comparisonSent"
+    ).textContent =
+        smartStats.sent;
+
+
+    document.getElementById(
+        "comparisonTime"
+    ).textContent =
+        formatDuration(
+            smartStats.timing.average
+        );
+
+
+    document.getElementById(
+        "comparisonHigh"
+    ).textContent =
+        smartStats.high;
+
+
+    document.getElementById(
+        "comparisonLimited"
+    ).textContent =
+        smartStats.limited;
+
+
+    document.getElementById(
+        "comparisonUnderTwo"
+    ).textContent =
+
+        smartStats.timing.underTwoPercent ===
+        null
+
+        ? "غير مقاس"
+
+        : (
+            smartStats.timing.underTwoPercent +
+            "%"
+        );
+
+
+    /*
+      خلاصة واضحة للمقيم
+    */
+
+    const summary =
+        document.getElementById(
+            "comparisonSummaryText"
+        );
+
+
+    if(
+        smartStats.total ===
+        0
+    ){
+
+        summary.innerHTML = `
+
+        لا توجد عمليات فرز ذكي مسجلة خلال فترة التقرير الحالية.
+
+        `;
+
+        return;
+
+    }
+
+
+    let text = `
+
+    <strong>قبل التطبيق:</strong>
+    كان تقييم مخاطر الأمراض المعدية يعتمد على الممارسة السابقة
+    الموثقة في خط الأساس، دون وجود مسار الفرز الذكي الحالي.
+
+    <br><br>
+
+    <strong>بعد التطبيق:</strong>
+    تم تطبيق فرز موحد يجمع الأعراض وعوامل التعرض الوبائي
+    وموثوقية التاريخ المرضي.
+
+    `;
+
+
+    text += `
+
+    وخلال فترة التقرير تم تنفيذ
+    <strong>${smartStats.total}</strong>
+    ${
+        smartStats.total === 1
+        ? "عملية فرز"
+        : "عمليات فرز"
+    }.
+
+    `;
+
+
+    if(
+        smartStats.hidden > 0
+    ){
+
+        text += `
+
+        وتم اكتشاف
+        <strong>${smartStats.hidden}</strong>
+        ${
+            smartStats.hidden === 1
+            ? "حالة ذات خطر معدٍ خفي"
+            : "حالات ذات خطر معدٍ خفي"
+        }.
+
+        `;
+
+    }
+
+
+    if(
+        smartStats.sent > 0
+    ){
+
+        text += `
+
+        كما انتقلت
+        <strong>${smartStats.sent}</strong>
+        ${
+            smartStats.sent === 1
+            ? "حالة"
+            : "حالات"
+        }
+        من نتيجة الفرز إلى مسار البلاغ.
+
+        `;
+
+    }
+
+
+    if(
+        smartStats.timing.average
+    ){
+
+        text += `
+
+        وبلغ متوسط زمن إتمام الفرز
+        <strong>
+        ${formatDuration(
+            smartStats.timing.average
+        )}
+        </strong>.
+
+        `;
+
+    }
+
+
+    summary.innerHTML =
+        text;
+
+}
+
+
+/* =====================================================
+   BARS
+===================================================== */
+
+function renderBars(
+    id,
+    data,
+    total
+){
+
+    const container =
+        document.getElementById(
+            id
+        );
+
+
+    if(!container){
+
+        return;
+
+    }
+
+
+    const entries =
+        Object.entries(
+            data
+        )
+        .sort(
+            function(a,b){
+
+                return (
+                    b[1] -
+                    a[1]
+                );
+
+            }
+        );
+
+
+    if(
+        !entries.length
+    ){
+
+        container.innerHTML = `
+
+        <div class="empty">
+        لا توجد بيانات خلال الفترة المحددة.
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const max =
+        Math.max(
+            ...entries.map(
+                function(item){
+
+                    return item[1];
+
+                }
+            )
+        );
+
+
+    container.innerHTML =
+        entries.map(
+            function(item){
+
+                const width =
+                    max
+                    ? (
+                        item[1] /
+                        max *
+                        100
+                    )
+                    : 0;
+
+
+                let percentageText =
+                    "";
+
+
+                if(total){
+
+                    percentageText =
+                        " (" +
+                        percent(
+                            item[1],
+                            total
+                        ) +
+                        "%)";
+
+                }
+
+
+                return `
+
+                <div class="bar-row">
+
+                <div class="bar-label">
+                ${item[0]}
+                </div>
+
+
+                <div class="bar-track">
+
+                <div
+                    class="bar-fill"
+                    style="width:${width}%">
+                </div>
+
+                </div>
+
+
+                <div class="bar-value">
+
+                ${item[1]}${percentageText}
+
+                </div>
+
+
+                </div>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+/* =====================================================
+   SMART SCREENING
+===================================================== */
+
+const epiNames = {
+
+    contact:
+        "مخالطة حالة",
+
+    travel:
+        "سفر / منطقة تفشٍ",
+
+    cluster:
+        "تجمع حالات",
+
+    healthcareExposure:
+        "تعرض صحي",
+
+    animalExposure:
+        "تعرض حيواني",
+
+    camelExposure:
+        "مخالطة الإبل",
+
+    batExposure:
+        "تعرض للخفافيش",
+
+    rodentExposure:
+        "تعرض للقوارض",
+
+    foodExposure:
+        "مصدر غذائي مشتبه",
+
+    bodyFluidExposure:
+        "تعرض لدم / سوائل جسم"
+
+};
+
+
+function renderSmartScreening(){
+
+    const total =
+        filteredSmartScreenings.length;
+
+
+    const noIndicators =
+        filteredSmartScreenings.filter(
+            function(item){
+
+                return (
+                    item.noIndicators ===
+                    true
+                );
+
+            }
+        ).length;
+
+
+    const high =
+        filteredSmartScreenings.filter(
+            function(item){
+
+                return (
+                    item.highSuspicion ===
+                    true
+                );
+
+            }
+        ).length;
+
+
+    const hidden =
+        filteredSmartScreenings.filter(
+            function(item){
+
+                return (
+                    item.hiddenInfectionFlag ===
+                    true
+                );
+
+            }
+        ).length;
+
+
+    const limited =
+        filteredSmartScreenings.filter(
+            function(item){
+
+                return (
+                    item.limitedHistory ===
+                    true
+                );
+
+            }
+        ).length;
+
+
+    const started =
+        filteredSmartScreenings.filter(
+            function(item){
+
+                return (
+                    item.notificationStarted ===
+                    true
+                );
+
+            }
+        ).length;
+
+
+    const sent =
+        filteredSmartScreenings.filter(
+            function(item){
+
+                return (
+                    item.notificationSent ===
+                    true
+                );
+
+            }
+        ).length;
+
+
+    const timing =
+        calculateTimingMetrics(
+            filteredSmartScreenings
+        );
+
+
+    const highPercent =
+        percent(
+            high,
+            total
+        );
+
+
+    const hiddenPercent =
+        percent(
+            hidden,
+            total
+        );
+
+
+    const conversion =
+        percent(
+            sent,
+            high
+        );
+
+
+    const smartStats = {
+
+        total:
+            total,
+
+        noIndicators:
+            noIndicators,
+
+        high:
+            high,
+
+        hidden:
+            hidden,
+
+        limited:
+            limited,
+
+        started:
+            started,
+
+        sent:
+            sent,
+
+        timing:
+            timing,
+
+        highPercent:
+            highPercent,
+
+        hiddenPercent:
+            hiddenPercent,
+
+        conversion:
+            conversion
+
+    };
+
+
+    /*
+      Executive
+    */
+
+    document.getElementById(
+        "smartTotalTop"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "smartHiddenTop"
+    ).textContent =
+        hidden;
+
+
+    document.getElementById(
+        "smartSentTop"
+    ).textContent =
+        sent;
+
+
+    document.getElementById(
+        "smartAverageTimeTop"
+    ).textContent =
+        formatDuration(
+            timing.average
+        );
+
+
+    /*
+      Flow
+    */
+
+    document.getElementById(
+        "flowTotal"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "flowHigh"
+    ).textContent =
+        high;
+
+
+    document.getElementById(
+        "flowHidden"
+    ).textContent =
+        hidden;
+
+
+    document.getElementById(
+        "flowSent"
+    ).textContent =
+        sent;
+
+
+    /*
+      Core
+    */
+
+    document.getElementById(
+        "coreTotal"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "coreHidden"
+    ).textContent =
+        hidden;
+
+
+    document.getElementById(
+        "coreSent"
+    ).textContent =
+        sent;
+
+
+    document.getElementById(
+        "coreAverageTime"
+    ).textContent =
+        formatDuration(
+            timing.average
+        );
+
+
+    /*
+      Efficiency
+    */
+
+    document.getElementById(
+        "smartAverageTime"
+    ).textContent =
+        formatDuration(
+            timing.average
+        );
+
+
+    document.getElementById(
+        "smartFastestTime"
+    ).textContent =
+        formatDuration(
+            timing.fastest
+        );
+
+
+    document.getElementById(
+        "smartLongestTime"
+    ).textContent =
+        formatDuration(
+            timing.longest
+        );
+
+
+    document.getElementById(
+        "smartUnderTwoMinutes"
+    ).textContent =
+
+        timing.underTwoPercent ===
+        null
+
+        ? "غير مقاس"
+
+        : (
+            timing.underTwoPercent +
+            "%"
+        );
+
+
+    /*
+      Value
+    */
+
+    document.getElementById(
+        "smartLimitedHistory"
+    ).textContent =
+        limited;
+
+
+    document.getElementById(
+        "smartHiddenRisk"
+    ).textContent =
+        hidden;
+
+
+    document.getElementById(
+        "smartHighSuspicion"
+    ).textContent =
+        high;
+
+
+    document.getElementById(
+        "smartNotificationStarted"
+    ).textContent =
+        started;
+
+
+    /*
+      Secondary
+    */
+
+    document.getElementById(
+        "secondaryNoIndicators"
+    ).textContent =
+        noIndicators;
+
+
+    document.getElementById(
+        "secondaryHighPercent"
+    ).textContent =
+        highPercent +
+        "%";
+
+
+    document.getElementById(
+        "secondaryHiddenPercent"
+    ).textContent =
+        hiddenPercent +
+        "%";
+
+
+    document.getElementById(
+        "secondaryConversion"
+    ).textContent =
+        conversion +
+        "%";
+
+
+    /*
+      Before / after
+    */
+
+    renderBeforeAfter(
+        smartStats
+    );
+
+
+    /*
+      Impact statement
+    */
+
+    const impactBox =
+        document.getElementById(
+            "impactStatementText"
+        );
+
+
+    if(
+        total ===
+        0
+    ){
+
+        impactBox.innerHTML =
+            "لا توجد عمليات فرز مسجلة خلال الفترة المحددة.";
+
+    }
+    else{
+
+        let text = `
+
+        تم استخدام أداة الفرز الذكي في
+        <strong>${total}</strong>
+        ${
+            total === 1
+            ? "حالة"
+            : "حالات"
+        }
+        خلال فترة التقرير.
+
+        `;
+
+
+        if(
+            hidden > 0
+        ){
+
+            text += `
+
+            وأظهرت البيانات
+            <strong>${hidden}</strong>
+            ${
+                hidden === 1
+                ? "حالة"
+                : "حالات"
+            }
+            استوفت تعريف
+            <strong>الخطر المعدي الخفي</strong>
+            داخل النظام؛ أي وجود أعراض وعوامل تعرض وبائية
+            رغم عدم تسجيل علامة حيوية ملفتة.
+
+            `;
+
+        }
+
+
+        if(
+            sent > 0
+        ){
+
+            text += `
+
+            وانتقلت
+            <strong>${sent}</strong>
+            ${
+                sent === 1
+                ? "حالة"
+                : "حالات"
+            }
+            إلى مسار البلاغ بعد الفرز.
+
+            `;
+
+        }
+
+
+        if(
+            timing.average
+        ){
+
+            text += `
+
+            وبلغ متوسط زمن تنفيذ الفرز
+            <strong>
+            ${formatDuration(
+                timing.average
+            )}
+            </strong>.
+
+            `;
+
+        }
+
+
+        impactBox.innerHTML =
+            text;
+
+    }
+
+
+    /*
+      Diseases
+    */
+
+    const diseaseCounts =
+        {};
+
+
+    filteredSmartScreenings
+    .forEach(
+        function(record){
+
+            const results =
+                Array.isArray(
+                    record.results
+                )
+                ? record.results
+                : [];
+
+
+            results.forEach(
+                function(result){
+
+                    const name =
+                        result.disease ||
+                        result.key ||
+                        "غير محدد";
+
+
+                    diseaseCounts[name] =
+                        (
+                            diseaseCounts[name] ||
+                            0
+                        ) + 1;
+
+                }
+            );
+
+        }
+    );
+
+
+    const diseaseTotal =
+        Object.values(
+            diseaseCounts
+        )
+        .reduce(
+            function(sum,value){
+
+                return (
+                    sum +
+                    value
+                );
+
+            },
+            0
+        );
+
+
+    renderBars(
+        "smartDiseaseBars",
+        diseaseCounts,
+        diseaseTotal
+    );
+
+
+    /*
+      Epidemiological
+    */
+
+    const epiCounts =
+        {};
+
+
+    filteredSmartScreenings
+    .forEach(
+        function(record){
+
+            const factors =
+                Array.isArray(
+                    record.epidemiologicalFactors
+                )
+                ? record.epidemiologicalFactors
+                : [];
+
+
+            factors.forEach(
+                function(item){
+
+                    const name =
+                        epiNames[item] ||
+                        item;
+
+
+                    epiCounts[name] =
+                        (
+                            epiCounts[name] ||
+                            0
+                        ) + 1;
+
+                }
+            );
+
+        }
+    );
+
+
+    const epiTotal =
+        Object.values(
+            epiCounts
+        )
+        .reduce(
+            function(sum,value){
+
+                return (
+                    sum +
+                    value
+                );
+
+            },
+            0
+        );
+
+
+    renderBars(
+        "smartEpiBars",
+        epiCounts,
+        epiTotal
+    );
+
+}
+
+
+/* =====================================================
+   NOTIFICATIONS
+===================================================== */
+
+function renderNotifications(){
+
+    const total =
+        filteredNotifications.length;
+
+
+    const urgent =
+        filteredNotifications.filter(
+            function(item){
+
+                return (
+                    item.priority ===
+                    "urgent"
+                );
+
+            }
+        ).length;
+
+
+    const closed =
+        filteredNotifications.filter(
+            function(item){
+
+                return (
+                    item.status ===
+                    "closed"
+                );
+
+            }
+        ).length;
+
+
+    const opened =
+        total -
+        closed;
+
+
+    const entered =
+        filteredNotifications.filter(
+            function(item){
+
+                return (
+                    item.hesnStatus ===
+                    "entered"
+                );
+
+            }
+        ).length;
+
+
+    const pending =
+        filteredNotifications.filter(
+            function(item){
+
+                return (
+                    !item.hesnStatus
+
+                    ||
+
+                    item.hesnStatus ===
+                    "pending"
+                );
+
+            }
+        ).length;
+
+
+    const notRequired =
+        filteredNotifications.filter(
+            function(item){
+
+                return (
+                    item.hesnStatus ===
+                    "notRequired"
+                );
+
+            }
+        ).length;
+
+
+    document.getElementById(
+        "totalNotifications"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "urgentPercent"
+    ).textContent =
+        percent(
+            urgent,
+            total
+        ) +
+        "%";
+
+
+    document.getElementById(
+        "notificationTotal2"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "urgentCount"
+    ).textContent =
+        urgent;
+
+
+    document.getElementById(
+        "openCount"
+    ).textContent =
+        opened;
+
+
+    document.getElementById(
+        "closedCount"
+    ).textContent =
+        closed;
+
+
+    document.getElementById(
+        "closedPercent"
+    ).textContent =
+        percent(
+            closed,
+            total
+        ) +
+        "%";
+
+
+    document.getElementById(
+        "hesnEntered"
+    ).textContent =
+        entered;
+
+
+    document.getElementById(
+        "hesnPending"
+    ).textContent =
+        pending;
+
+
+    document.getElementById(
+        "hesnNotRequired"
+    ).textContent =
+        notRequired;
+
+
+    document.getElementById(
+        "hesnPercent"
+    ).textContent =
+        percent(
+            entered,
+            total
+        ) +
+        "%";
+
+
+    renderBars(
+        "diseaseBars",
+
+        countBy(
+            filteredNotifications,
+            "disease"
+        ),
+
+        total
+    );
+
+
+    renderBars(
+        "notificationDepartmentBars",
+
+        countBy(
+            filteredNotifications,
+            "reporterDepartment"
+        ),
+
+        total
+    );
+
+}
+
+
+/* =====================================================
+   SCREENINGS
+===================================================== */
+
+function renderScreenings(){
+
+    const total =
+        filteredScreenings.length;
+
+
+    const completed =
+        filteredScreenings.filter(
+            function(item){
+
+                return (
+                    item.screeningStatus ===
+                    "completed"
+                );
+
+            }
+        ).length;
+
+
+    const incomplete =
+        filteredScreenings.filter(
+            function(item){
+
+                return (
+                    item.screeningStatus ===
+                    "incomplete"
+                );
+
+            }
+        ).length;
+
+
+    const pending =
+        filteredScreenings.filter(
+            function(item){
+
+                return (
+                    item.screeningStatus ===
+                    "pending"
+                );
+
+            }
+        ).length;
+
+
+    const followUp =
+        filteredScreenings.filter(
+            function(item){
+
+                return (
+                    item.screeningStatus ===
+                    "followUp"
+                );
+
+            }
+        ).length;
+
+
+    const completion =
+        percent(
+            completed,
+            total
+        );
+
+
+    document.getElementById(
+        "screeningCompletionPercentTop"
+    ).textContent =
+        completion +
+        "%";
+
+
+    document.getElementById(
+        "screeningFollowupTop"
+    ).textContent =
+        followUp;
+
+
+    document.getElementById(
+        "screeningTotal"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "screeningCompleted"
+    ).textContent =
+        completed;
+
+
+    document.getElementById(
+        "screeningCompletionPercent"
+    ).textContent =
+        completion +
+        "%";
+
+
+    document.getElementById(
+        "screeningFollowup"
+    ).textContent =
+        followUp;
+
+
+    document.getElementById(
+        "screenCompleted2"
+    ).textContent =
+        completed;
+
+
+    document.getElementById(
+        "screenIncomplete"
+    ).textContent =
+        incomplete;
+
+
+    document.getElementById(
+        "screenPending"
+    ).textContent =
+        pending;
+
+
+    document.getElementById(
+        "screenFollowUp2"
+    ).textContent =
+        followUp;
+
+
+    document.getElementById(
+        "immuneCount"
+    ).textContent =
+        filteredScreenings.filter(
+            function(item){
+
+                return (
+                    item.immunityStatus ===
+                    "immune"
+                );
+
+            }
+        ).length;
+
+
+    document.getElementById(
+        "notImmuneCount"
+    ).textContent =
+        filteredScreenings.filter(
+            function(item){
+
+                return (
+                    item.immunityStatus ===
+                    "notImmune"
+                );
+
+            }
+        ).length;
+
+
+    document.getElementById(
+        "partialCount"
+    ).textContent =
+        filteredScreenings.filter(
+            function(item){
+
+                return (
+                    item.immunityStatus ===
+                    "partial"
+                );
+
+            }
+        ).length;
+
+
+    document.getElementById(
+        "immunityPending"
+    ).textContent =
+        filteredScreenings.filter(
+            function(item){
+
+                return (
+                    item.immunityStatus ===
+                    "pending"
+                );
+
+            }
+        ).length;
+
+
+    renderBars(
+        "screeningDepartmentBars",
+
+        countBy(
+            filteredScreenings,
+            "department"
+        ),
+
+        total
+    );
+
+
+    const tests =
+        {};
+
+
+    filteredScreenings
+    .forEach(
+        function(record){
+
+            const list =
+                Array.isArray(
+                    record.tests
+                )
+                ? record.tests
+                : [];
+
+
+            list.forEach(
+                function(test){
+
+                    tests[test] =
+                        (
+                            tests[test] ||
+                            0
+                        ) + 1;
+
+                }
+            );
+
+        }
+    );
+
+
+    const testTotal =
+        Object.values(
+            tests
+        )
+        .reduce(
+            function(sum,value){
+
+                return (
+                    sum +
+                    value
+                );
+
+            },
+            0
+        );
+
+
+    renderBars(
+        "testBars",
+        tests,
+        testTotal
+    );
+
+}
+
+
+/* =====================================================
+   OCCUPATIONAL
+===================================================== */
+
+function occupationalTypeName(type){
+
+    const map = {
+
+        needle:
+            "وخز إبرة",
+
+        sharp:
+            "إصابة بأداة حادة",
+
+        eye:
+            "رذاذ للعين / الأغشية",
+
+        skin:
+            "تلوث جلد غير سليم",
+
+        infectious:
+            "تعرض مهني لمرض معدٍ",
+
+        other:
+            "أخرى"
+
+    };
+
+
+    return (
+        map[type] ||
+        type ||
+        "غير محدد"
+    );
+
+}
+
+
+function renderOccupational(){
+
+    const total =
+        filteredOccupational.length;
+
+
+    const needle =
+        filteredOccupational.filter(
+            function(item){
+
+                return (
+                    item.exposureType ===
+                    "needle"
+                );
+
+            }
+        ).length;
+
+
+    const followUp =
+        filteredOccupational.filter(
+            function(item){
+
+                return (
+                    item.caseStatus ===
+                    "followUp"
+                );
+
+            }
+        ).length;
+
+
+    const closed =
+        filteredOccupational.filter(
+            function(item){
+
+                return (
+                    item.caseStatus ===
+                    "closed"
+                );
+
+            }
+        ).length;
+
+
+    const newCases =
+        filteredOccupational.filter(
+            function(item){
+
+                return (
+                    !item.caseStatus
+
+                    ||
+
+                    item.caseStatus ===
+                    "new"
+                );
+
+            }
+        ).length;
+
+
+    const needsFollowup =
+        filteredOccupational.filter(
+            function(item){
+
+                return (
+                    item.followUpRequired ===
+                    "yes"
+                );
+
+            }
+        ).length;
+
+
+    const baselineTests =
+        filteredOccupational.filter(
+            function(item){
+
+                return (
+                    item.baselineTests ===
+                    "yes"
+                );
+
+            }
+        ).length;
+
+
+    const sourceAssessed =
+        filteredOccupational.filter(
+            function(item){
+
+                return (
+                    item.sourceAssessed ===
+                    "yes"
+                );
+
+            }
+        ).length;
+
+
+    const infectious =
+        filteredOccupational.filter(
+            function(item){
+
+                return (
+                    item.exposureType ===
+                    "infectious"
+                );
+
+            }
+        ).length;
+
+
+    document.getElementById(
+        "occupationalTotalTop"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "occupationalFollowupTop"
+    ).textContent =
+        followUp;
+
+
+    document.getElementById(
+        "occupationalTotal"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "occupationalNeedle"
+    ).textContent =
+        needle;
+
+
+    document.getElementById(
+        "occupationalFollowup"
+    ).textContent =
+        followUp;
+
+
+    document.getElementById(
+        "occupationalClosed"
+    ).textContent =
+        closed;
+
+
+    document.getElementById(
+        "occupationalNew"
+    ).textContent =
+        newCases;
+
+
+    document.getElementById(
+        "occupationalFollowup2"
+    ).textContent =
+        followUp;
+
+
+    document.getElementById(
+        "occupationalClosed2"
+    ).textContent =
+        closed;
+
+
+    document.getElementById(
+        "occupationalClosedPercent"
+    ).textContent =
+        percent(
+            closed,
+            total
+        ) +
+        "%";
+
+
+    document.getElementById(
+        "occupationalNeedsFollowup"
+    ).textContent =
+        needsFollowup;
+
+
+    document.getElementById(
+        "occupationalBaselineTests"
+    ).textContent =
+        baselineTests;
+
+
+    document.getElementById(
+        "occupationalSourceAssessed"
+    ).textContent =
+        sourceAssessed;
+
+
+    document.getElementById(
+        "occupationalInfectious"
+    ).textContent =
+        infectious;
+
+
+    const typeCounts =
+        {};
+
+
+    filteredOccupational
+    .forEach(
+        function(item){
+
+            const name =
+                occupationalTypeName(
+                    item.exposureType
+                );
+
+
+            typeCounts[name] =
+                (
+                    typeCounts[name] ||
+                    0
+                ) + 1;
+
+        }
+    );
+
+
+    renderBars(
+        "occupationalTypeBars",
+        typeCounts,
+        total
+    );
+
+
+    renderBars(
+        "occupationalDepartmentBars",
+
+        countBy(
+            filteredOccupational,
+            "department"
+        ),
+
+        total
+    );
+
+}
+
+
+/* =====================================================
+   STARTUP
+===================================================== */
+
+document.addEventListener(
+
+    "DOMContentLoaded",
+
+    function(){
+
+        loadData();
+
+        loadReportSettings();
+
+        setupReportType();
+
+        filterData();
+
+        renderNotifications();
+
+        renderSmartScreening();
+
+        renderScreenings();
+
+        renderOccupational();
+
+    }
+
+);
+
+</script>
+
+
+</body>
+
+</html>

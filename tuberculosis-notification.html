@@ -1,0 +1,1993 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>بلاغ الدرن</title>
+
+<link rel="stylesheet" href="Style.css">
+
+<style>
+
+.tb-page{
+    max-width:1150px;
+    margin:30px auto;
+    padding:0 20px 50px;
+}
+
+.page-title{
+    background:white;
+    border-radius:16px;
+    padding:25px;
+    text-align:center;
+    margin-bottom:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,.07);
+}
+
+.page-title .icon{
+    font-size:48px;
+}
+
+.page-title h1{
+    color:#064c92;
+    margin:8px 0 4px;
+}
+
+.page-title h2{
+    color:#687b8d;
+    margin:0;
+    font-size:17px;
+}
+
+.notification-box{
+    background:#fff8e1;
+    border-right:5px solid #f9a825;
+    border-radius:10px;
+    padding:16px;
+    margin-bottom:20px;
+    line-height:1.8;
+    color:#66531b;
+}
+
+.airborne-box{
+    background:#eef7ff;
+    border-right:5px solid #0759a6;
+    border-radius:10px;
+    padding:16px;
+    margin-bottom:20px;
+    line-height:1.8;
+    color:#31556f;
+}
+
+.section-card{
+    background:white;
+    border:1px solid #dfe8f2;
+    border-radius:14px;
+    padding:23px;
+    margin-bottom:18px;
+    box-shadow:0 4px 13px rgba(0,0,0,.05);
+}
+
+.section-card h3{
+    color:#064c92;
+    margin-top:0;
+    border-bottom:1px solid #e4ebf1;
+    padding-bottom:10px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:17px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+label{
+    font-weight:bold;
+    color:#294b6a;
+}
+
+.required{
+    color:#c62828;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:11px;
+    border:1px solid #ccd9e5;
+    border-radius:8px;
+    background:white;
+    font-size:14px;
+}
+
+textarea{
+    min-height:95px;
+    resize:vertical;
+}
+
+.symptoms-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.check-item{
+    background:#f7fafc;
+    border:1px solid #dfe8ef;
+    border-radius:9px;
+    padding:10px;
+}
+
+.check-item label{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    cursor:pointer;
+}
+
+.check-item input{
+    width:auto;
+}
+
+.signature-area{
+    border:2px dashed #aebdca;
+    border-radius:12px;
+    padding:10px;
+    background:white;
+}
+
+#signatureCanvas{
+    display:block;
+    width:100%;
+    height:180px;
+    background:white;
+    touch-action:none;
+    cursor:crosshair;
+}
+
+.buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:20px;
+}
+
+.buttons button,
+.buttons a{
+    border:none;
+    border-radius:9px;
+    padding:13px 20px;
+    font-weight:bold;
+    cursor:pointer;
+    text-decoration:none;
+    text-align:center;
+}
+
+.review-btn{
+    background:#0759a6;
+    color:white;
+}
+
+.save-btn{
+    background:#187b43;
+    color:white;
+}
+
+.print-btn{
+    background:#687984;
+    color:white;
+}
+
+.back-btn{
+    background:#eaf1f7;
+    color:#064c92;
+}
+
+.result-box{
+    display:none;
+    margin-top:18px;
+    padding:15px;
+    border-radius:10px;
+    background:#eaf7ee;
+    border-right:5px solid #2e7d32;
+    color:#285b33;
+}
+
+.result-box.error{
+    background:#fff0f0;
+    border-right-color:#c62828;
+    color:#7d2525;
+}
+
+@media(max-width:750px){
+
+    .form-grid,
+    .symptoms-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+}
+
+@media print{
+
+    .buttons,
+    .notification-box,
+    .airborne-box{
+        display:none !important;
+    }
+
+    body{
+        background:white;
+    }
+
+    .section-card,
+    .page-title{
+        box-shadow:none;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="hero-header">
+
+<div class="hero-grid">
+
+    <div class="side-logo left-logo">
+
+        <img
+            src="images/cluster-logo.png"
+            alt="Hafr Al-Batin Health Cluster">
+
+    </div>
+
+
+    <div class="hero-center">
+
+        <h1>
+            بلاغ حالة درن
+        </h1>
+
+        <h2>
+            Tuberculosis Notification
+        </h2>
+
+        <p>
+            الصحة العامة
+        </p>
+
+    </div>
+
+
+    <div class="side-logo right-logo">
+
+        <img
+            src="images/hospital-logo.png"
+            alt="Hospital Logo">
+
+    </div>
+
+</div>
+
+</header>
+
+
+
+<main class="tb-page">
+
+
+<section class="page-title">
+
+    <div class="icon">
+        🩻
+    </div>
+
+    <h1>
+        بلاغ وتقييم أولي لحالة درن
+    </h1>
+
+    <h2>
+        Tuberculosis Initial Notification & Assessment
+    </h2>
+
+</section>
+
+
+
+<div class="notification-box">
+
+    <strong>
+        ⏱️ الإبلاغ:
+    </strong>
+
+    يتم الإبلاغ عن الدرن الرئوي والدرن خارج الرئة
+    عبر حصن بلس خلال 72 ساعة حسب سياسة الإبلاغ المعتمدة.
+
+</div>
+
+
+
+<div class="airborne-box">
+
+    <strong>
+        🛡️ احتياطات العدوى:
+    </strong>
+
+    عند الاشتباه بالدرن الرئوي المعدي،
+    يجب تطبيق احتياطات الانتقال عبر الهواء
+    وفق سياسة مكافحة العدوى والعزل المعتمدة بالمستشفى.
+
+</div>
+
+
+
+<section class="section-card">
+
+<h3>
+    👤 بيانات المريض
+</h3>
+
+<div class="form-grid">
+
+
+    <div class="form-group">
+
+        <label>
+            اسم المريض
+            <span class="required">*</span>
+        </label>
+
+        <input id="patientName">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            رقم الملف الطبي
+            <span class="required">*</span>
+        </label>
+
+        <input id="mrn">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            رقم الهوية / الإقامة
+        </label>
+
+        <input id="nationalId">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            الجنسية
+        </label>
+
+        <input id="nationality">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            تاريخ الميلاد
+        </label>
+
+        <input
+            id="dob"
+            type="date">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            الجنس
+        </label>
+
+        <select id="gender">
+
+            <option value="">
+                اختر
+            </option>
+
+            <option value="male">
+                ذكر
+            </option>
+
+            <option value="female">
+                أنثى
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            رقم التواصل
+        </label>
+
+        <input id="patientPhone">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            مكان الإقامة
+        </label>
+
+        <input id="residence">
+
+    </div>
+
+
+</div>
+
+</section>
+
+
+
+<section class="section-card">
+
+<h3>
+    🩻 نوع الدرن وتصنيف الحالة
+</h3>
+
+<div class="form-grid">
+
+
+    <div class="form-group">
+
+        <label>
+            نوع الدرن
+            <span class="required">*</span>
+        </label>
+
+        <select id="tbType">
+
+            <option value="">
+                اختر
+            </option>
+
+            <option value="pulmonary">
+                درن رئوي
+            </option>
+
+            <option value="extrapulmonary">
+                درن خارج الرئة
+            </option>
+
+            <option value="unknown">
+                غير محدد بعد
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            تصنيف الحالة
+            <span class="required">*</span>
+        </label>
+
+        <select id="classification">
+
+            <option value="">
+                اختر
+            </option>
+
+            <option value="suspected">
+                مشتبهة
+            </option>
+
+            <option value="clinical">
+                مشخصة سريريًا
+            </option>
+
+            <option value="confirmed">
+                مؤكدة مخبريًا
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            تاريخ بداية الأعراض
+        </label>
+
+        <input
+            id="symptomOnset"
+            type="date">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            هل يوجد تاريخ مخالطة لحالة درن مؤكدة؟
+        </label>
+
+        <select id="tbContact">
+
+            <option value="">
+                اختر
+            </option>
+
+            <option value="yes">
+                نعم
+            </option>
+
+            <option value="no">
+                لا
+            </option>
+
+            <option value="unknown">
+                غير معروف
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group full">
+
+        <label>
+            موقع الدرن خارج الرئة إن وجد
+        </label>
+
+        <input
+            id="extraPulmonarySite"
+            placeholder="مثال: العقد اللمفاوية، العظام، السحايا...">
+
+    </div>
+
+
+</div>
+
+</section>
+
+
+
+<section class="section-card">
+
+<h3>
+    🌡️ الأعراض والعلامات
+</h3>
+
+<div class="symptoms-grid">
+
+
+    <div class="check-item">
+        <label>
+            <input
+                type="checkbox"
+                name="symptom"
+                value="coughOver2Weeks">
+
+            سعال لأكثر من أسبوعين
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+            <input
+                type="checkbox"
+                name="symptom"
+                value="sputum">
+
+            بلغم
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+            <input
+                type="checkbox"
+                name="symptom"
+                value="hemoptysis">
+
+            نفث دم
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+            <input
+                type="checkbox"
+                name="symptom"
+                value="chestPain">
+
+            ألم بالصدر
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+            <input
+                type="checkbox"
+                name="symptom"
+                value="dyspnea">
+
+            ضيق تنفس
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+            <input
+                type="checkbox"
+                name="symptom"
+                value="fever">
+
+            حمى
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+            <input
+                type="checkbox"
+                name="symptom"
+                value="nightSweats">
+
+            تعرق ليلي
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+            <input
+                type="checkbox"
+                name="symptom"
+                value="weightLoss">
+
+            فقدان وزن
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+            <input
+                type="checkbox"
+                name="symptom"
+                value="lossAppetite">
+
+            فقدان الشهية
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+            <input
+                type="checkbox"
+                name="symptom"
+                value="fatigue">
+
+            إرهاق
+        </label>
+    </div>
+
+
+</div>
+
+
+<div
+    class="form-group full"
+    style="margin-top:15px;">
+
+    <label>
+        أعراض أو علامات أخرى
+    </label>
+
+    <textarea id="otherSymptoms"></textarea>
+
+</div>
+
+</section>
+
+
+
+<section class="section-card">
+
+<h3>
+    🧪 الفحوصات والتشخيص
+</h3>
+
+<div class="form-grid">
+
+
+    <div class="form-group">
+
+        <label>
+            فحص البلغم / العينة
+        </label>
+
+        <select id="sputumStatus">
+
+            <option value="">
+                اختر
+            </option>
+
+            <option value="collected">
+                تم جمع العينة
+            </option>
+
+            <option value="pending">
+                سيتم جمعها
+            </option>
+
+            <option value="notDone">
+                لم يتم
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            الفحص المجهري
+        </label>
+
+        <select id="smearResult">
+
+            <option value="">
+                اختر
+            </option>
+
+            <option value="positive">
+                إيجابي
+            </option>
+
+            <option value="negative">
+                سلبي
+            </option>
+
+            <option value="pending">
+                قيد الانتظار
+            </option>
+
+            <option value="notDone">
+                لم يتم
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            Xpert MTB/RIF
+        </label>
+
+        <select id="xpertResult">
+
+            <option value="">
+                اختر
+            </option>
+
+            <option value="positive">
+                إيجابي
+            </option>
+
+            <option value="negative">
+                سلبي
+            </option>
+
+            <option value="pending">
+                قيد الانتظار
+            </option>
+
+            <option value="notDone">
+                لم يتم
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            الزراعة
+        </label>
+
+        <select id="cultureResult">
+
+            <option value="">
+                اختر
+            </option>
+
+            <option value="positive">
+                إيجابية
+            </option>
+
+            <option value="negative">
+                سلبية
+            </option>
+
+            <option value="pending">
+                قيد الانتظار
+            </option>
+
+            <option value="notDone">
+                لم يتم
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group full">
+
+        <label>
+            نتائج الأشعة / الفحوصات الأخرى
+        </label>
+
+        <textarea id="otherInvestigations"></textarea>
+
+    </div>
+
+
+</div>
+
+</section>
+
+
+
+<section class="section-card">
+
+<h3>
+    🛡️ الإجراءات المتخذة بالمستشفى
+</h3>
+
+<div class="symptoms-grid">
+
+
+    <div class="check-item">
+        <label>
+            <input
+                type="checkbox"
+                name="action"
+                value="airborneIsolation">
+
+            تطبيق احتياطات العزل الهوائي
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+            <input
+                type="checkbox"
+                name="action"
+                value="infectionControl">
+
+            إبلاغ مكافحة العدوى
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+            <input
+                type="checkbox"
+                name="action"
+                value="publicHealth">
+
+            إبلاغ الصحة العامة
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+            <input
+                type="checkbox"
+                name="action"
+                value="specimen">
+
+            جمع العينات
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+            <input
+                type="checkbox"
+                name="action"
+                value="physicianEvaluation">
+
+            تقييم الطبيب
+        </label>
+    </div>
+
+
+</div>
+
+
+<div
+    class="form-group full"
+    style="margin-top:15px;">
+
+    <label>
+        ملاحظات الإجراءات
+    </label>
+
+    <textarea id="actionNotes"></textarea>
+
+</div>
+
+</section>
+
+
+
+<section class="section-card">
+
+<h3>
+    📡 الإبلاغ
+</h3>
+
+<div class="form-grid">
+
+
+    <div class="form-group">
+
+        <label>
+            حالة الإبلاغ في حصن بلس
+        </label>
+
+        <select id="hesnStatus">
+
+            <option value="pending">
+                لم يتم بعد
+            </option>
+
+            <option value="entered">
+                تم إدخال البلاغ
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            رقم البلاغ في حصن بلس
+        </label>
+
+        <input id="hesnNumber">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            تاريخ ووقت الإبلاغ
+        </label>
+
+        <input
+            id="notificationDateTime"
+            type="datetime-local">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            اسم المبلّغ
+            <span class="required">*</span>
+        </label>
+
+        <input id="reporterName">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            الرقم الوظيفي
+            <span class="required">*</span>
+        </label>
+
+        <input id="reporterId">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            القسم
+        </label>
+
+        <input
+            id="reporterDepartment"
+            value="قسم الطوارئ">
+
+    </div>
+
+
+</div>
+
+</section>
+
+
+
+<section class="section-card">
+
+<h3>
+    ✍️ التوقيع الإلكتروني
+</h3>
+
+
+<div class="signature-area">
+
+    <canvas id="signatureCanvas"></canvas>
+
+</div>
+
+
+<button
+    type="button"
+    onclick="clearSignature()"
+    style="margin-top:10px;">
+
+    مسح التوقيع
+
+</button>
+
+
+<label style="display:block;margin-top:15px;">
+
+    <input
+        id="declaration"
+        type="checkbox">
+
+    أقر بأن البيانات المدخلة صحيحة حسب المعلومات
+    المتاحة وقت الإبلاغ.
+
+</label>
+
+</section>
+
+
+
+<div class="buttons">
+
+
+<button
+    class="review-btn"
+    onclick="reviewTBNotification()">
+
+    ✅ مراجعة البلاغ
+
+</button>
+
+
+<button
+    class="save-btn"
+    onclick="saveTBNotification()">
+
+    📤 إرسال للصحة العامة
+
+</button>
+
+
+<button
+    class="print-btn"
+    onclick="window.print()">
+
+    🖨️ طباعة / حفظ PDF
+
+</button>
+
+
+<a
+    class="back-btn"
+    href="disease-details.html?disease=tuberculosis">
+
+    ← العودة لدليل الدرن
+
+</a>
+
+
+</div>
+
+
+
+<div
+    id="resultBox"
+    class="result-box">
+</div>
+
+
+</main>
+
+
+
+<script>
+
+
+let signatureEmpty =
+    true;
+
+
+
+function localNow(){
+
+    const now =
+        new Date();
+
+
+    return new Date(
+
+        now.getTime() -
+        now.getTimezoneOffset() *
+        60000
+
+    )
+    .toISOString()
+    .slice(0,16);
+
+}
+
+
+
+function initializePage(){
+
+    document.getElementById(
+        "notificationDateTime"
+    ).value =
+        localNow();
+
+
+    setupSignature();
+
+
+    preloadFromGeneralNotification();
+
+}
+
+
+
+function setupSignature(){
+
+    const canvas =
+        document.getElementById(
+            "signatureCanvas"
+        );
+
+
+    const ctx =
+        canvas.getContext("2d");
+
+
+    const rect =
+        canvas.getBoundingClientRect();
+
+
+    const ratio =
+        window.devicePixelRatio || 1;
+
+
+    canvas.width =
+        rect.width * ratio;
+
+
+    canvas.height =
+        180 * ratio;
+
+
+    ctx.setTransform(
+        ratio,
+        0,
+        0,
+        ratio,
+        0,
+        0
+    );
+
+
+    ctx.lineWidth =
+        2;
+
+
+    ctx.lineCap =
+        "round";
+
+
+    ctx.strokeStyle =
+        "#152637";
+
+
+    let drawing =
+        false;
+
+
+    function getPosition(event){
+
+        const canvasRect =
+            canvas.getBoundingClientRect();
+
+
+        const point =
+            event.touches
+            ? event.touches[0]
+            : event;
+
+
+        return {
+
+            x:
+                point.clientX -
+                canvasRect.left,
+
+            y:
+                point.clientY -
+                canvasRect.top
+
+        };
+
+    }
+
+
+    function start(event){
+
+        event.preventDefault();
+
+
+        drawing =
+            true;
+
+
+        signatureEmpty =
+            false;
+
+
+        const p =
+            getPosition(event);
+
+
+        ctx.beginPath();
+
+
+        ctx.moveTo(
+            p.x,
+            p.y
+        );
+
+    }
+
+
+    function move(event){
+
+        if(!drawing){
+
+            return;
+
+        }
+
+
+        event.preventDefault();
+
+
+        const p =
+            getPosition(event);
+
+
+        ctx.lineTo(
+            p.x,
+            p.y
+        );
+
+
+        ctx.stroke();
+
+    }
+
+
+    function end(){
+
+        drawing =
+            false;
+
+    }
+
+
+    canvas.addEventListener(
+        "mousedown",
+        start
+    );
+
+
+    canvas.addEventListener(
+        "mousemove",
+        move
+    );
+
+
+    window.addEventListener(
+        "mouseup",
+        end
+    );
+
+
+    canvas.addEventListener(
+        "touchstart",
+        start,
+        {passive:false}
+    );
+
+
+    canvas.addEventListener(
+        "touchmove",
+        move,
+        {passive:false}
+    );
+
+
+    canvas.addEventListener(
+        "touchend",
+        end
+    );
+
+}
+
+
+
+function clearSignature(){
+
+    const canvas =
+        document.getElementById(
+            "signatureCanvas"
+        );
+
+
+    const ctx =
+        canvas.getContext("2d");
+
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    signatureEmpty =
+        true;
+
+}
+
+
+
+function getCheckedValues(name){
+
+    return Array.from(
+
+        document.querySelectorAll(
+            'input[name="' +
+            name +
+            '"]:checked'
+        )
+
+    ).map(
+
+        function(item){
+
+            return item.value;
+
+        }
+
+    );
+
+}
+
+
+
+function showResult(message,error){
+
+    const box =
+        document.getElementById(
+            "resultBox"
+        );
+
+
+    box.style.display =
+        "block";
+
+
+    box.classList.toggle(
+        "error",
+        !!error
+    );
+
+
+    box.innerHTML =
+        message;
+
+
+    box.scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+
+function validateTBForm(){
+
+    if(
+        !document.getElementById(
+            "patientName"
+        ).value.trim() ||
+
+        !document.getElementById(
+            "mrn"
+        ).value.trim() ||
+
+        !document.getElementById(
+            "tbType"
+        ).value ||
+
+        !document.getElementById(
+            "classification"
+        ).value ||
+
+        !document.getElementById(
+            "reporterName"
+        ).value.trim() ||
+
+        !document.getElementById(
+            "reporterId"
+        ).value.trim()
+    ){
+
+        showResult(
+            "⚠️ يرجى استكمال الحقول الإلزامية.",
+            true
+        );
+
+        return false;
+
+    }
+
+
+    if(signatureEmpty){
+
+        showResult(
+            "⚠️ يرجى إضافة التوقيع الإلكتروني.",
+            true
+        );
+
+        return false;
+
+    }
+
+
+    if(
+        !document.getElementById(
+            "declaration"
+        ).checked
+    ){
+
+        showResult(
+            "⚠️ يرجى تأكيد الإقرار.",
+            true
+        );
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+
+function reviewTBNotification(){
+
+    if(!validateTBForm()){
+
+        return false;
+
+    }
+
+
+    showResult(
+
+        "✅ بلاغ الدرن جاهز للإرسال إلى الصحة العامة.",
+
+        false
+
+    );
+
+
+    return true;
+
+}
+
+
+
+function generateNotificationId(){
+
+    const date =
+        new Date()
+        .toISOString()
+        .slice(0,10)
+        .replaceAll("-","");
+
+
+    const random =
+        Math.floor(
+            1000 +
+            Math.random() * 9000
+        );
+
+
+    return "TB-" +
+           date +
+           "-" +
+           random;
+
+}
+
+
+
+function saveTBNotification(){
+
+    if(!reviewTBNotification()){
+
+        return;
+
+    }
+
+
+    const canvas =
+        document.getElementById(
+            "signatureCanvas"
+        );
+
+
+    const notification = {
+
+        id:
+            generateNotificationId(),
+
+        createdAt:
+            new Date().toISOString(),
+
+        date:
+            new Date().toLocaleString(
+                "ar-SA"
+            ),
+
+        diseaseKey:
+            "tuberculosis",
+
+        disease:
+            "الدرن",
+
+        priority:
+            "normal",
+
+        status:
+            "new",
+
+        patientName:
+            document.getElementById(
+                "patientName"
+            ).value.trim(),
+
+        mrn:
+            document.getElementById(
+                "mrn"
+            ).value.trim(),
+
+        nationalId:
+            document.getElementById(
+                "nationalId"
+            ).value.trim(),
+
+        nationality:
+            document.getElementById(
+                "nationality"
+            ).value.trim(),
+
+        dob:
+            document.getElementById(
+                "dob"
+            ).value,
+
+        gender:
+            document.getElementById(
+                "gender"
+            ).value,
+
+        patientPhone:
+            document.getElementById(
+                "patientPhone"
+            ).value.trim(),
+
+        residence:
+            document.getElementById(
+                "residence"
+            ).value.trim(),
+
+        tbType:
+            document.getElementById(
+                "tbType"
+            ).value,
+
+        classification:
+            document.getElementById(
+                "classification"
+            ).value,
+
+        symptomOnset:
+            document.getElementById(
+                "symptomOnset"
+            ).value,
+
+        tbContact:
+            document.getElementById(
+                "tbContact"
+            ).value,
+
+        extraPulmonarySite:
+            document.getElementById(
+                "extraPulmonarySite"
+            ).value.trim(),
+
+        symptoms:
+            getCheckedValues(
+                "symptom"
+            ),
+
+        otherSymptoms:
+            document.getElementById(
+                "otherSymptoms"
+            ).value.trim(),
+
+        sputumStatus:
+            document.getElementById(
+                "sputumStatus"
+            ).value,
+
+        smearResult:
+            document.getElementById(
+                "smearResult"
+            ).value,
+
+        xpertResult:
+            document.getElementById(
+                "xpertResult"
+            ).value,
+
+        cultureResult:
+            document.getElementById(
+                "cultureResult"
+            ).value,
+
+        otherInvestigations:
+            document.getElementById(
+                "otherInvestigations"
+            ).value.trim(),
+
+        actions:
+            getCheckedValues(
+                "action"
+            ),
+
+        actionNotes:
+            document.getElementById(
+                "actionNotes"
+            ).value.trim(),
+
+        hesnStatus:
+            document.getElementById(
+                "hesnStatus"
+            ).value,
+
+        hesnNumber:
+            document.getElementById(
+                "hesnNumber"
+            ).value.trim(),
+
+        reportDateTime:
+            document.getElementById(
+                "notificationDateTime"
+            ).value,
+
+        reporterName:
+            document.getElementById(
+                "reporterName"
+            ).value.trim(),
+
+        reporterId:
+            document.getElementById(
+                "reporterId"
+            ).value.trim(),
+
+        reporterDepartment:
+            document.getElementById(
+                "reporterDepartment"
+            ).value.trim(),
+
+        signature:
+            canvas.toDataURL(
+                "image/png"
+            ),
+
+        publicHealthNotes:
+            ""
+
+    };
+
+
+    let notifications = [];
+
+
+    try{
+
+        notifications =
+            JSON.parse(
+                localStorage.getItem(
+                    "publicHealthNotifications"
+                )
+            ) || [];
+
+    }catch(error){
+
+        notifications =
+            [];
+
+    }
+
+
+    notifications.unshift(
+        notification
+    );
+
+
+    localStorage.setItem(
+        "publicHealthNotifications",
+        JSON.stringify(
+            notifications
+        )
+    );
+
+
+    showResult(
+
+        "✅ تم إرسال بلاغ الدرن إلى صندوق الصحة العامة." +
+
+        "<br><br>" +
+
+        "<strong>رقم البلاغ:</strong> " +
+        notification.id +
+
+        "<br><br>" +
+
+        false
+
+    );
+
+}
+
+
+
+function preloadFromGeneralNotification(){
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    const sourceId =
+        params.get(
+            "sourceNotification"
+        );
+
+
+    if(!sourceId){
+
+        return;
+
+    }
+
+
+    let list = [];
+
+
+    try{
+
+        list =
+            JSON.parse(
+                localStorage.getItem(
+                    "publicHealthNotifications"
+                )
+            ) || [];
+
+    }catch(error){
+
+        return;
+
+    }
+
+
+    const source =
+        list.find(
+            function(item){
+
+                return item.id ===
+                    sourceId;
+
+            }
+        );
+
+
+    if(!source){
+
+        return;
+
+    }
+
+
+    const values = {
+
+        patientName:
+            source.patientName,
+
+        mrn:
+            source.mrn,
+
+        nationalId:
+            source.nationalId,
+
+        nationality:
+            source.nationality,
+
+        dob:
+            source.dob,
+
+        gender:
+            source.gender,
+
+        patientPhone:
+            source.patientPhone,
+
+        residence:
+            source.residence,
+
+        symptomOnset:
+            source.symptomOnset,
+
+        reporterName:
+            source.reporterName,
+
+        reporterId:
+            source.reporterId,
+
+        reporterDepartment:
+            source.reporterDepartment
+
+    };
+
+
+    Object.keys(
+        values
+    ).forEach(
+        function(key){
+
+            const element =
+                document.getElementById(
+                    key
+                );
+
+
+            if(
+                element &&
+                values[key]
+            ){
+
+                element.value =
+                    values[key];
+
+            }
+
+        }
+    );
+
+}
+
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    initializePage
+);
+
+
+</script>
+
+
+</body>
+
+</html>

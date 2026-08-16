@@ -1,0 +1,3010 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>الإبلاغ الإلكتروني عن الأمراض المعدية</title>
+
+<link rel="stylesheet" href="Style.css">
+
+<style>
+
+.page{
+    max-width:1150px;
+    margin:30px auto;
+    padding:0 20px 50px;
+}
+
+.intro,
+.section{
+    background:#fff;
+    border:1px solid #dfe8f2;
+    border-radius:15px;
+    padding:24px;
+    margin-bottom:18px;
+    box-shadow:0 4px 14px rgba(0,0,0,.05);
+}
+
+.intro{
+    text-align:center;
+}
+
+.intro h2,
+.section h2{
+    color:#064c92;
+}
+
+
+/* ==========================================
+   مصدر الفرز الذكي
+========================================== */
+
+.screening-source{
+    display:none;
+    background:#f4efff;
+    border:1px solid #d9ceff;
+    border-right:6px solid #5f3dc4;
+    border-radius:12px;
+    padding:16px 18px;
+    margin-bottom:18px;
+    color:#514568;
+    line-height:1.9;
+}
+
+.screening-source.active{
+    display:block;
+}
+
+.screening-source strong{
+    color:#4d2fa9;
+}
+
+.screening-badge{
+    display:inline-block;
+    background:#5f3dc4;
+    color:white;
+    padding:5px 10px;
+    border-radius:14px;
+    font-size:11px;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+
+/* ==========================================
+   تنبيه الخطر المعدي الخفي
+========================================== */
+
+.hidden-risk{
+    display:none;
+    background:#fff4e5;
+    border:1px solid #f3c488;
+    border-right:6px solid #ef8d22;
+    border-radius:12px;
+    padding:16px 18px;
+    margin-bottom:18px;
+    color:#784b12;
+    line-height:1.8;
+}
+
+.hidden-risk.active{
+    display:block;
+}
+
+
+/* ==========================================
+   تاريخ غير موثوق
+========================================== */
+
+.history-warning{
+    display:none;
+    background:#eef7ff;
+    border:1px solid #c5deef;
+    border-right:6px solid #0759a6;
+    border-radius:12px;
+    padding:16px 18px;
+    margin-bottom:18px;
+    color:#31556f;
+    line-height:1.8;
+}
+
+.history-warning.active{
+    display:block;
+}
+
+
+/* ==========================================
+   عاجل
+========================================== */
+
+.alert{
+    display:none;
+    background:#fff0f0;
+    border-right:5px solid #c62828;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:18px;
+    color:#7d2525;
+    line-height:1.8;
+}
+
+
+/* ==========================================
+   الحقول
+========================================== */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+
+.group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+label{
+    font-weight:bold;
+    color:#294b6a;
+}
+
+input,
+select,
+textarea{
+    padding:11px;
+    border:1px solid #ccd9e5;
+    border-radius:8px;
+    font-size:14px;
+    width:100%;
+    box-sizing:border-box;
+}
+
+textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+
+/* ==========================================
+   Checkboxes
+========================================== */
+
+.checkgrid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.check{
+    background:#f8fbfd;
+    border:1px solid #dce6ee;
+    border-radius:9px;
+    padding:10px;
+}
+
+.check input{
+    width:auto;
+}
+
+
+/* ==========================================
+   التوقيع
+========================================== */
+
+.signature-area{
+    border:2px dashed #aebdca;
+    border-radius:12px;
+    padding:10px;
+}
+
+#signatureCanvas{
+    display:block;
+    width:100%;
+    height:180px;
+    background:#fff;
+    touch-action:none;
+}
+
+
+/* ==========================================
+   الأزرار
+========================================== */
+
+.actions{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    margin-top:20px;
+}
+
+.actions button,
+.actions a{
+    border:0;
+    border-radius:8px;
+    padding:13px;
+    text-decoration:none;
+    text-align:center;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.review{
+    background:#0759a6;
+    color:#fff;
+}
+
+.send{
+    background:#187b43;
+    color:#fff;
+}
+
+.print{
+    background:#687984;
+    color:#fff;
+}
+
+.back{
+    background:#eaf1f7;
+    color:#064c92;
+}
+
+
+/* ==========================================
+   النتيجة
+========================================== */
+
+.result{
+    display:none;
+    margin-top:20px;
+    padding:15px;
+    border-radius:10px;
+    background:#eaf7ee;
+    color:#285b33;
+    line-height:1.9;
+    border-right:5px solid #187b43;
+}
+
+.error{
+    background:#fff0f0;
+    color:#7d2525;
+    border-right-color:#c62828;
+}
+
+
+/* ==========================================
+   بيانات الفرز
+========================================== */
+
+.auto-info{
+    background:#eef7ff;
+    border-right:5px solid #0759a6;
+    padding:14px;
+    border-radius:9px;
+    margin-top:14px;
+    color:#31556f;
+    line-height:1.8;
+}
+
+.auto-info strong{
+    color:#064c92;
+}
+
+
+@media(max-width:750px){
+
+    .grid,
+    .checkgrid,
+    .actions{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="hero-header">
+
+<div class="hero-grid">
+
+<div class="side-logo left-logo">
+<img src="images/cluster-logo.png">
+</div>
+
+<div class="hero-center">
+
+<h1>
+الإبلاغ الإلكتروني عن الأمراض المعدية
+</h1>
+
+<h2>
+Infectious Disease Notification
+</h2>
+
+<p>
+الصحة العامة
+</p>
+
+</div>
+
+<div class="side-logo right-logo">
+<img src="images/hospital-logo.png">
+</div>
+
+</div>
+
+</header>
+
+
+<main class="page">
+
+
+<section class="intro">
+
+<h2>
+بلاغ داخلي لحالة مرض معدٍ / حالة مشتبهة
+</h2>
+
+<p>
+هذا النموذج الداخلي يجمع البيانات الأولية.
+الاستمارة الرسمية الخاصة بالمرض تُستكمل لاحقًا
+من الصحة العامة.
+</p>
+
+<div id="diseaseLabel"></div>
+
+</section>
+
+
+<!-- ==========================================
+     مصدر البلاغ
+========================================== -->
+
+<div
+    id="screeningSource"
+    class="screening-source">
+
+<div class="screening-badge">
+🧠 قادم من الفرز الذكي
+</div>
+
+<br>
+
+<strong>
+تم بدء هذا البلاغ من نتيجة الفرز الذكي للأمراض المعدية.
+</strong>
+
+<div id="screeningSourceDetails"></div>
+
+</div>
+
+
+<div
+    id="historyWarning"
+    class="history-warning">
+
+<strong>
+🧠 تنبيه حول التاريخ المرضي:
+</strong>
+
+الحالة النفسية أو السلوكية حدّت من القدرة على الحصول
+على تاريخ وبائي موثوق أثناء الفرز.
+
+</div>
+
+
+<div
+    id="hiddenRisk"
+    class="hidden-risk">
+
+<strong>
+🚩 تنبيه الخطر المعدي الخفي:
+</strong>
+
+تم اكتشاف مؤشرات معدية أو وبائية رغم عدم وجود
+علامة حيوية ملفتة في الفرز التقليدي.
+
+</div>
+
+
+<div
+    id="urgent"
+    class="alert">
+
+🚨 الحالة المختارة من الأمراض ذات الأولوية.
+
+اتبع مسار التصعيد والإبلاغ الرسمي المعتمد دون تأخير.
+
+</div>
+
+
+<!-- ==========================================
+     1 المريض
+========================================== -->
+
+<section class="section">
+
+<h2>
+1. بيانات المريض
+</h2>
+
+<div class="grid">
+
+<div class="group">
+
+<label>
+اسم المريض *
+</label>
+
+<input id="patientName">
+
+</div>
+
+
+<div class="group">
+
+<label>
+رقم الملف الطبي *
+</label>
+
+<input id="mrn">
+
+</div>
+
+
+<div class="group">
+
+<label>
+رقم الهوية / الإقامة
+</label>
+
+<input id="nationalId">
+
+</div>
+
+
+<div class="group">
+
+<label>
+الجنسية
+</label>
+
+<input id="nationality">
+
+</div>
+
+
+<div class="group">
+
+<label>
+تاريخ الميلاد
+</label>
+
+<input id="dob" type="date">
+
+</div>
+
+
+<div class="group">
+
+<label>
+الجنس
+</label>
+
+<select id="gender">
+
+<option value=""></option>
+<option value="male">ذكر</option>
+<option value="female">أنثى</option>
+
+</select>
+
+</div>
+
+
+<div class="group">
+
+<label>
+رقم التواصل
+</label>
+
+<input id="patientPhone">
+
+</div>
+
+
+<div class="group">
+
+<label>
+مكان الإقامة
+</label>
+
+<input id="residence">
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ==========================================
+     2 الحالة
+========================================== -->
+
+<section class="section">
+
+<h2>
+2. بيانات الحالة
+</h2>
+
+<div class="grid">
+
+
+<div class="group">
+
+<label>
+المرض المشتبه *
+</label>
+
+<select id="diseaseSelect">
+
+<option value="">-- اختر --</option>
+
+<option value="nipah">
+فيروس نيباه
+</option>
+
+<option value="ebola">
+إيبولا / ماربيرج
+</option>
+
+<option value="mers">
+MERS
+</option>
+
+<option value="hantavirus">
+فيروس هانتا
+</option>
+
+<option value="tuberculosis">
+الدرن
+</option>
+
+<option value="rabies">
+السعار / داء الكلب
+</option>
+
+<option value="foodpoisoning">
+اشتباه تسمم غذائي / فاشية
+</option>
+
+<option value="measles">
+الحصبة
+</option>
+
+<option value="meningitis">
+التهاب السحايا
+</option>
+
+<option value="cholera">
+الكوليرا
+</option>
+
+<option value="pertussis">
+السعال الديكي
+</option>
+
+<option value="mpox">
+جدري القردة
+</option>
+
+<option value="other">
+أخرى
+</option>
+
+</select>
+
+</div>
+
+
+<div class="group">
+
+<label>
+تصنيف الحالة *
+</label>
+
+<select id="classification">
+
+<option value=""></option>
+<option value="suspected">مشتبهة</option>
+<option value="probable">محتملة</option>
+<option value="confirmed">مؤكدة</option>
+
+</select>
+
+</div>
+
+
+<div class="group">
+
+<label>
+تاريخ بداية الأعراض
+</label>
+
+<input
+    id="symptomOnset"
+    type="date">
+
+</div>
+
+
+<div class="group">
+
+<label>
+تاريخ ووقت اكتشاف الحالة
+</label>
+
+<input
+    id="detectionDateTime"
+    type="datetime-local">
+
+</div>
+
+
+<div class="group">
+
+<label>
+مكان اكتشاف الحالة
+</label>
+
+<input
+    id="caseLocation"
+    value="قسم الطوارئ">
+
+</div>
+
+
+<div class="group">
+
+<label>
+حالة المريض الحالية
+</label>
+
+<select id="patientStatus">
+
+<option value=""></option>
+<option value="stable">مستقرة</option>
+<option value="admitted">منوم</option>
+<option value="critical">حرجة</option>
+<option value="discharged">خرج</option>
+<option value="deceased">وفاة</option>
+
+</select>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ==========================================
+     3 الأعراض
+========================================== -->
+
+<section class="section">
+
+<h2>
+3. الأعراض
+</h2>
+
+<div class="checkgrid">
+
+<label class="check">
+<input type="checkbox" name="symptom" value="fever">
+حمى
+</label>
+
+<label class="check">
+<input type="checkbox" name="symptom" value="cough">
+سعال
+</label>
+
+<label class="check">
+<input type="checkbox" name="symptom" value="dyspnea">
+ضيق تنفس
+</label>
+
+<label class="check">
+<input type="checkbox" name="symptom" value="headache">
+صداع
+</label>
+
+<label class="check">
+<input type="checkbox" name="symptom" value="rash">
+طفح
+</label>
+
+<label class="check">
+<input type="checkbox" name="symptom" value="vomiting">
+قيء
+</label>
+
+<label class="check">
+<input type="checkbox" name="symptom" value="diarrhea">
+إسهال
+</label>
+
+<label class="check">
+<input type="checkbox" name="symptom" value="bleeding">
+نزف
+</label>
+
+<label class="check">
+<input type="checkbox" name="symptom" value="neuro">
+أعراض عصبية
+</label>
+
+</div>
+
+
+<div
+    class="group full"
+    style="margin-top:14px">
+
+<label>
+أعراض أخرى
+</label>
+
+<textarea id="otherSymptoms"></textarea>
+
+</div>
+
+</section>
+
+
+<!-- ==========================================
+     4 التاريخ الوبائي
+========================================== -->
+
+<section class="section">
+
+<h2>
+4. التاريخ الوبائي
+</h2>
+
+<div class="grid">
+
+
+<div class="group">
+
+<label>
+سفر حديث
+</label>
+
+<select id="recentTravel">
+
+<option value=""></option>
+<option value="yes">نعم</option>
+<option value="no">لا</option>
+<option value="unknown">غير معروف</option>
+
+</select>
+
+</div>
+
+
+<div class="group">
+
+<label>
+الدولة / المنطقة
+</label>
+
+<input id="travelCountry">
+
+</div>
+
+
+<div class="group">
+
+<label>
+مخالطة حالة
+</label>
+
+<select id="contactCase">
+
+<option value=""></option>
+<option value="yes">نعم</option>
+<option value="no">لا</option>
+<option value="unknown">غير معروف</option>
+
+</select>
+
+</div>
+
+
+<div class="group">
+
+<label>
+تعرض حيواني / بيئي
+</label>
+
+<select id="animalExposure">
+
+<option value=""></option>
+<option value="yes">نعم</option>
+<option value="no">لا</option>
+<option value="unknown">غير معروف</option>
+
+</select>
+
+</div>
+
+
+<div class="group full">
+
+<label>
+تفاصيل التاريخ الوبائي
+</label>
+
+<textarea
+    id="epiHistory"
+    placeholder="تفاصيل السفر، المخالطة، التعرض الحيواني أو البيئي، مصدر غذائي مشتبه..."></textarea>
+
+</div>
+
+</div>
+
+
+<div
+    id="autoEpiInfo"
+    class="auto-info"
+    style="display:none">
+
+<strong>
+🧠 بيانات منقولة تلقائيًا من الفرز الذكي:
+</strong>
+
+<div id="autoEpiText"></div>
+
+</div>
+
+</section>
+
+
+<!-- ==========================================
+     5 الإجراءات
+========================================== -->
+
+<section class="section">
+
+<h2>
+5. الإجراءات والعينات
+</h2>
+
+<div class="checkgrid">
+
+<label class="check">
+<input type="checkbox" name="action" value="isolation">
+تم العزل
+</label>
+
+<label class="check">
+<input type="checkbox" name="action" value="ppe">
+تم تطبيق PPE
+</label>
+
+<label class="check">
+<input type="checkbox" name="action" value="infectionControl">
+إبلاغ مكافحة العدوى
+</label>
+
+<label class="check">
+<input type="checkbox" name="action" value="publicHealth">
+إبلاغ الصحة العامة
+</label>
+
+<label class="check">
+<input type="checkbox" name="action" value="sample">
+تم جمع العينة
+</label>
+
+<label class="check">
+<input type="checkbox" name="action" value="contacts">
+بدأ حصر المخالطين
+</label>
+
+</div>
+
+
+<div
+    class="grid"
+    style="margin-top:14px">
+
+<div class="group">
+
+<label>
+تم أخذ عينة
+</label>
+
+<select id="sampleTaken">
+
+<option value=""></option>
+<option value="yes">نعم</option>
+<option value="no">لا</option>
+<option value="pending">سيتم</option>
+
+</select>
+
+</div>
+
+
+<div class="group">
+
+<label>
+نوع العينة
+</label>
+
+<input id="sampleType">
+
+</div>
+
+
+<div class="group">
+
+<label>
+تاريخ / وقت العينة
+</label>
+
+<input
+    id="sampleDateTime"
+    type="datetime-local">
+
+</div>
+
+
+<div class="group">
+
+<label>
+حالة النتيجة
+</label>
+
+<select id="labResult">
+
+<option value=""></option>
+<option value="pending">قيد الانتظار</option>
+<option value="positive">إيجابية</option>
+<option value="negative">سلبية</option>
+
+</select>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ==========================================
+     6 المبلغ
+========================================== -->
+
+<section class="section">
+
+<h2>
+6. بيانات المبلّغ
+</h2>
+
+<div class="grid">
+
+
+<div class="group">
+
+<label>
+اسم المبلّغ *
+</label>
+
+<input id="reporterName">
+
+</div>
+
+
+<div class="group">
+
+<label>
+الرقم الوظيفي *
+</label>
+
+<input id="reporterId">
+
+</div>
+
+
+<div class="group">
+
+<label>
+المسمى الوظيفي
+</label>
+
+<input id="reporterJob">
+
+</div>
+
+
+<div class="group">
+
+<label>
+القسم
+</label>
+
+<input
+    id="reporterDepartment"
+    value="قسم الطوارئ">
+
+</div>
+
+
+<div class="group">
+
+<label>
+رقم التواصل
+</label>
+
+<input id="reporterPhone">
+
+</div>
+
+
+<div class="group">
+
+<label>
+تاريخ ووقت البلاغ
+</label>
+
+<input
+    id="reportDateTime"
+    type="datetime-local">
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ==========================================
+     7 التوقيع
+========================================== -->
+
+<section class="section">
+
+<h2>
+7. التوقيع الإلكتروني
+</h2>
+
+<div class="signature-area">
+
+<canvas id="signatureCanvas"></canvas>
+
+</div>
+
+
+<button
+    type="button"
+    onclick="clearSignature()"
+    style="margin-top:10px">
+
+مسح التوقيع
+
+</button>
+
+
+<label style="display:block;margin-top:15px">
+
+<input
+    id="declaration"
+    type="checkbox"
+    style="width:auto">
+
+أقر بصحة البيانات حسب المعلومات المتاحة وقت الإبلاغ.
+
+</label>
+
+</section>
+
+
+<section class="actions">
+
+<button
+    type="button"
+    class="review"
+    onclick="reviewNotification()">
+
+✅ مراجعة
+
+</button>
+
+
+<button
+    type="button"
+    id="sendButton"
+    class="send"
+    onclick="saveNotification()">
+
+📤 إرسال للصحة العامة
+
+</button>
+
+
+<button
+    type="button"
+    class="print"
+    onclick="window.print()">
+
+🖨️ طباعة / PDF
+
+</button>
+
+
+<a
+    class="back"
+    href="infectious-diseases.html">
+
+← العودة
+
+</a>
+
+</section>
+
+
+<div
+    id="result"
+    class="result">
+</div>
+
+
+</main>
+
+
+<script>
+
+
+/* ==========================================
+   الأمراض
+========================================== */
+
+const names = {
+
+    nipah:"فيروس نيباه",
+
+    ebola:"إيبولا / ماربيرج",
+
+    mers:"MERS",
+
+    hantavirus:"فيروس هانتا",
+
+    tuberculosis:"الدرن",
+
+    rabies:"السعار / داء الكلب",
+
+    foodpoisoning:"اشتباه تسمم غذائي / فاشية",
+
+    measles:"الحصبة",
+
+    meningitis:"التهاب السحايا",
+
+    cholera:"الكوليرا",
+
+    pertussis:"السعال الديكي",
+
+    mpox:"جدري القردة",
+
+    other:"أخرى"
+
+};
+
+
+/* ==========================================
+   الأمراض ذات الأولوية
+========================================== */
+
+const urgentDiseases = [
+
+    "nipah",
+    "ebola",
+    "mers",
+    "hantavirus",
+    "rabies",
+    "measles",
+    "meningitis",
+    "cholera",
+    "pertussis",
+    "mpox"
+
+];
+
+
+/* ==========================================
+   عوامل التعرض
+========================================== */
+
+const epiLabels = {
+
+    contact:
+        "مخالطة حالة مؤكدة أو مشتبهة",
+
+    travel:
+        "سفر حديث أو وجود في منطقة تفشٍ",
+
+    cluster:
+        "وجود حالات مشابهة / تجمع حالات",
+
+    healthcareExposure:
+        "مخالطة أو تعرض داخل منشأة صحية",
+
+    animalExposure:
+        "تعرض لحيوان أو إفرازاته",
+
+    camelExposure:
+        "مخالطة الإبل أو منتجاتها",
+
+    batExposure:
+        "تعرض للخفافيش أو بيئة مرتبطة بها",
+
+    rodentExposure:
+        "تعرض للقوارض أو فضلاتها",
+
+    foodExposure:
+        "طعام مشترك أو مصدر غذائي مشتبه",
+
+    bodyFluidExposure:
+        "تعرض لدم أو سوائل جسم لحالة مشتبهة"
+
+};
+
+
+const durationLabels = {
+
+    less24:
+        "أقل من 24 ساعة",
+
+    "1to3":
+        "1 - 3 أيام",
+
+    "4to7":
+        "4 - 7 أيام",
+
+    more7:
+        "أكثر من 7 أيام"
+
+};
+
+
+let signatureEmpty =
+    true;
+
+
+let incomingEpiFactors =
+    [];
+
+
+let incomingDuration =
+    "";
+
+
+let incomingScreeningId =
+    "";
+
+
+let incomingHistoryReliability =
+    "";
+
+
+let incomingVitalStatus =
+    "";
+
+
+let incomingHiddenFlag =
+    false;
+
+
+/* ==========================================
+   الوقت المحلي
+========================================== */
+
+function localNow(){
+
+    const n =
+        new Date();
+
+
+    return new Date(
+
+        n.getTime() -
+        n.getTimezoneOffset() *
+        60000
+
+    )
+    .toISOString()
+    .slice(0,16);
+
+}
+
+
+/* ==========================================
+   بدء الصفحة
+========================================== */
+
+function init(){
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    const disease =
+        params.get(
+            "disease"
+        );
+
+
+    const fromScreening =
+        params.get(
+            "fromScreening"
+        ) === "1";
+
+
+    const screeningName =
+        params.get(
+            "name"
+        );
+
+
+    const onset =
+        params.get(
+            "onset"
+        );
+
+
+    const symptoms =
+        params.get(
+            "symptoms"
+        );
+
+
+    const epi =
+        params.get(
+            "epi"
+        );
+
+
+    const duration =
+        params.get(
+            "duration"
+        );
+
+
+    incomingScreeningId =
+        params.get(
+            "screeningId"
+        ) || "";
+
+
+    incomingHistoryReliability =
+        params.get(
+            "historyReliability"
+        ) || "";
+
+
+    incomingVitalStatus =
+        params.get(
+            "vitalStatus"
+        ) || "";
+
+
+    incomingHiddenFlag =
+        params.get(
+            "hiddenFlag"
+        ) === "1";
+
+
+    /* =====================================
+       المرض
+    ===================================== */
+
+    if(disease){
+
+        const option =
+            document.querySelector(
+                '#diseaseSelect option[value="' +
+                disease +
+                '"]'
+            );
+
+
+        if(option){
+
+            document.getElementById(
+                "diseaseSelect"
+            ).value =
+                disease;
+
+        }
+
+    }
+
+
+    /* =====================================
+       مصدر الفرز
+    ===================================== */
+
+    if(fromScreening){
+
+        document.getElementById(
+            "screeningSource"
+        )
+        .classList
+        .add(
+            "active"
+        );
+
+
+        let details =
+            "";
+
+
+        if(screeningName){
+
+            details +=
+                "<br><strong>نتيجة الفرز:</strong> " +
+                screeningName;
+
+        }
+
+
+        if(incomingScreeningId){
+
+            details +=
+                "<br><strong>رقم جلسة الفرز:</strong> " +
+                incomingScreeningId;
+
+        }
+
+
+        document.getElementById(
+            "screeningSourceDetails"
+        ).innerHTML =
+            details;
+
+
+        document.getElementById(
+            "classification"
+        ).value =
+            "suspected";
+
+    }
+
+
+    /* =====================================
+       التاريخ غير الموثوق
+    ===================================== */
+
+    if(
+        incomingHistoryReliability ===
+        "limited"
+    ){
+
+        document.getElementById(
+            "historyWarning"
+        )
+        .classList
+        .add(
+            "active"
+        );
+
+    }
+
+
+    /* =====================================
+       الخطر المعدي الخفي
+    ===================================== */
+
+    if(incomingHiddenFlag){
+
+        document.getElementById(
+            "hiddenRisk"
+        )
+        .classList
+        .add(
+            "active"
+        );
+
+    }
+
+
+    /* =====================================
+       تاريخ الأعراض
+    ===================================== */
+
+    if(onset){
+
+        document.getElementById(
+            "symptomOnset"
+        ).value =
+            onset;
+
+    }
+
+
+    if(duration){
+
+        incomingDuration =
+            duration;
+
+    }
+
+
+    /* =====================================
+       الأعراض
+    ===================================== */
+
+    if(symptoms){
+
+        applyScreeningSymptoms(
+            symptoms.split(",")
+        );
+
+    }
+
+
+    /* =====================================
+       التعرض الوبائي
+    ===================================== */
+
+    if(epi){
+
+        incomingEpiFactors =
+            epi
+            .split(",")
+            .filter(Boolean);
+
+
+        applyEpidemiologicalFactors(
+            incomingEpiFactors
+        );
+
+    }
+
+
+    document.getElementById(
+        "reportDateTime"
+    ).value =
+        localNow();
+
+
+    document.getElementById(
+        "detectionDateTime"
+    ).value =
+        localNow();
+
+
+    updateDisease();
+
+    setupSignature();
+
+}
+
+
+/* ==========================================
+   نقل الأعراض
+========================================== */
+
+function applyScreeningSymptoms(
+    screeningSymptoms
+){
+
+    const symptomMap = {
+
+        fever:"fever",
+
+        cough:"cough",
+
+        breathing:"dyspnea",
+
+        headache:"headache",
+
+        rash:"rash",
+
+        vomiting:"vomiting",
+
+        diarrhea:"diarrhea",
+
+        bleeding:"bleeding",
+
+        confusion:"neuro",
+
+        stiffNeck:"neuro",
+
+        seizure:"neuro"
+
+    };
+
+
+    screeningSymptoms
+    .forEach(
+        function(screeningValue){
+
+            const notificationValue =
+                symptomMap[
+                    screeningValue
+                ];
+
+
+            if(!notificationValue){
+
+                return;
+
+            }
+
+
+            const input =
+                document.querySelector(
+
+                    'input[name="symptom"][value="' +
+                    notificationValue +
+                    '"]'
+
+                );
+
+
+            if(input){
+
+                input.checked =
+                    true;
+
+            }
+
+        }
+    );
+
+}
+
+
+/* ==========================================
+   نقل عوامل التعرض
+========================================== */
+
+function applyEpidemiologicalFactors(
+    factors
+){
+
+    if(
+        factors.includes(
+            "travel"
+        )
+    ){
+
+        document.getElementById(
+            "recentTravel"
+        ).value =
+            "yes";
+
+    }
+
+
+    if(
+        factors.includes(
+            "contact"
+        )
+    ){
+
+        document.getElementById(
+            "contactCase"
+        ).value =
+            "yes";
+
+    }
+
+
+    const animalFactors = [
+
+        "animalExposure",
+        "camelExposure",
+        "batExposure",
+        "rodentExposure"
+
+    ];
+
+
+    if(
+        animalFactors.some(
+            function(item){
+
+                return factors.includes(
+                    item
+                );
+
+            }
+        )
+    ){
+
+        document.getElementById(
+            "animalExposure"
+        ).value =
+            "yes";
+
+    }
+
+
+    const descriptions =
+        factors
+        .map(
+            function(item){
+
+                return (
+                    epiLabels[item] ||
+                    item
+                );
+
+            }
+        );
+
+
+    if(incomingDuration){
+
+        descriptions.unshift(
+
+            "مدة الأعراض حسب الفرز: " +
+
+            (
+                durationLabels[
+                    incomingDuration
+                ] ||
+                incomingDuration
+            )
+
+        );
+
+    }
+
+
+    if(
+        incomingHistoryReliability ===
+        "limited"
+    ){
+
+        descriptions.push(
+            "التاريخ المرضي/الوبائي محدود بسبب حالة المريض أثناء الفرز."
+        );
+
+    }
+
+
+    if(incomingHiddenFlag){
+
+        descriptions.push(
+            "تم تفعيل تنبيه الخطر المعدي الخفي أثناء الفرز."
+        );
+
+    }
+
+
+    const textarea =
+        document.getElementById(
+            "epiHistory"
+        );
+
+
+    if(descriptions.length){
+
+        textarea.value =
+            "بيانات منقولة من الفرز الذكي:\n- " +
+            descriptions.join(
+                "\n- "
+            );
+
+    }
+
+
+    const box =
+        document.getElementById(
+            "autoEpiInfo"
+        );
+
+
+    const text =
+        document.getElementById(
+            "autoEpiText"
+        );
+
+
+    if(descriptions.length){
+
+        box.style.display =
+            "block";
+
+
+        text.innerHTML =
+            descriptions
+            .map(
+                function(item){
+
+                    return (
+                        "• " +
+                        item
+                    );
+
+                }
+            )
+            .join("<br>");
+
+    }
+
+}
+
+
+/* ==========================================
+   تحديث المرض
+========================================== */
+
+function updateDisease(){
+
+    const disease =
+        document.getElementById(
+            "diseaseSelect"
+        ).value;
+
+
+    document.getElementById(
+        "diseaseLabel"
+    ).textContent =
+
+        disease
+        ? "المرض المشتبه: " +
+          (
+              names[disease] ||
+              disease
+          )
+        : "المرض المشتبه: غير محدد";
+
+
+    document.getElementById(
+        "urgent"
+    ).style.display =
+
+        urgentDiseases.includes(
+            disease
+        )
+        ? "block"
+        : "none";
+
+}
+
+
+/* ==========================================
+   التوقيع
+========================================== */
+
+function setupSignature(){
+
+    const canvas =
+        document.getElementById(
+            "signatureCanvas"
+        );
+
+
+    const ctx =
+        canvas.getContext(
+            "2d"
+        );
+
+
+    function sizeCanvas(){
+
+        const rect =
+            canvas.getBoundingClientRect();
+
+
+        const ratio =
+            window.devicePixelRatio ||
+            1;
+
+
+        canvas.width =
+            rect.width *
+            ratio;
+
+
+        canvas.height =
+            180 *
+            ratio;
+
+
+        ctx.setTransform(
+            ratio,
+            0,
+            0,
+            ratio,
+            0,
+            0
+        );
+
+
+        ctx.lineWidth =
+            2;
+
+
+        ctx.lineCap =
+            "round";
+
+
+        ctx.strokeStyle =
+            "#152637";
+
+    }
+
+
+    sizeCanvas();
+
+
+    let drawing =
+        false;
+
+
+    function position(event){
+
+        const rect =
+            canvas
+            .getBoundingClientRect();
+
+
+        const point =
+            event.touches
+            ? event.touches[0]
+            : event;
+
+
+        return {
+
+            x:
+                point.clientX -
+                rect.left,
+
+            y:
+                point.clientY -
+                rect.top
+
+        };
+
+    }
+
+
+    function start(event){
+
+        event.preventDefault();
+
+
+        drawing =
+            true;
+
+
+        signatureEmpty =
+            false;
+
+
+        const p =
+            position(
+                event
+            );
+
+
+        ctx.beginPath();
+
+
+        ctx.moveTo(
+            p.x,
+            p.y
+        );
+
+    }
+
+
+    function move(event){
+
+        if(!drawing){
+
+            return;
+
+        }
+
+
+        event.preventDefault();
+
+
+        const p =
+            position(
+                event
+            );
+
+
+        ctx.lineTo(
+            p.x,
+            p.y
+        );
+
+
+        ctx.stroke();
+
+    }
+
+
+    function end(){
+
+        drawing =
+            false;
+
+    }
+
+
+    canvas.addEventListener(
+        "mousedown",
+        start
+    );
+
+
+    canvas.addEventListener(
+        "mousemove",
+        move
+    );
+
+
+    window.addEventListener(
+        "mouseup",
+        end
+    );
+
+
+    canvas.addEventListener(
+        "touchstart",
+        start,
+        {
+            passive:false
+        }
+    );
+
+
+    canvas.addEventListener(
+        "touchmove",
+        move,
+        {
+            passive:false
+        }
+    );
+
+
+    canvas.addEventListener(
+        "touchend",
+        end
+    );
+
+}
+
+
+/* ==========================================
+   مسح التوقيع
+========================================== */
+
+function clearSignature(){
+
+    const canvas =
+        document.getElementById(
+            "signatureCanvas"
+        );
+
+
+    const ctx =
+        canvas.getContext(
+            "2d"
+        );
+
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    signatureEmpty =
+        true;
+
+}
+
+
+/* ==========================================
+   Checkboxes
+========================================== */
+
+function checked(name){
+
+    return Array.from(
+
+        document.querySelectorAll(
+            'input[name="' +
+            name +
+            '"]:checked'
+        )
+
+    )
+    .map(
+        function(item){
+
+            return item.value;
+
+        }
+    );
+
+}
+
+
+/* ==========================================
+   التحقق
+========================================== */
+
+function valid(){
+
+    return (
+
+        document.getElementById(
+            "patientName"
+        ).value.trim()
+
+        &&
+
+        document.getElementById(
+            "mrn"
+        ).value.trim()
+
+        &&
+
+        document.getElementById(
+            "diseaseSelect"
+        ).value
+
+        &&
+
+        document.getElementById(
+            "classification"
+        ).value
+
+        &&
+
+        document.getElementById(
+            "reporterName"
+        ).value.trim()
+
+        &&
+
+        document.getElementById(
+            "reporterId"
+        ).value.trim()
+
+        &&
+
+        !signatureEmpty
+
+        &&
+
+        document.getElementById(
+            "declaration"
+        ).checked
+
+    );
+
+}
+
+
+/* ==========================================
+   الرسائل
+========================================== */
+
+function show(
+    message,
+    error
+){
+
+    const result =
+        document.getElementById(
+            "result"
+        );
+
+
+    result.style.display =
+        "block";
+
+
+    result.className =
+        "result" +
+        (
+            error
+            ? " error"
+            : ""
+        );
+
+
+    result.innerHTML =
+        message;
+
+
+    result.scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+/* ==========================================
+   المراجعة
+========================================== */
+
+function reviewNotification(){
+
+    if(!valid()){
+
+        show(
+
+            "⚠️ يرجى استكمال الحقول الإلزامية، وإضافة التوقيع الإلكتروني، وتفعيل الإقرار.",
+
+            true
+
+        );
+
+        return;
+
+    }
+
+
+    show(
+
+        "✅ تمت مراجعة البيانات.<br>" +
+        "البلاغ جاهز للإرسال إلى الصحة العامة.",
+
+        false
+
+    );
+
+}
+
+
+/* ==========================================
+   رقم البلاغ
+========================================== */
+
+function generateNotificationId(){
+
+    const date =
+        new Date()
+        .toISOString()
+        .slice(0,10)
+        .replaceAll(
+            "-",
+            ""
+        );
+
+
+    const random =
+        Math.floor(
+            1000 +
+            Math.random() *
+            9000
+        );
+
+
+    return (
+        "PH-" +
+        date +
+        "-" +
+        random
+    );
+
+}
+
+
+/* ==========================================
+   البلاغات المحفوظة
+========================================== */
+
+function getSavedNotifications(){
+
+    try{
+
+        const stored =
+            localStorage.getItem(
+                "publicHealthNotifications"
+            );
+
+
+        if(!stored){
+
+            return [];
+
+        }
+
+
+        const data =
+            JSON.parse(
+                stored
+            );
+
+
+        return Array.isArray(
+            data
+        )
+        ? data
+        : [];
+
+    }
+    catch(error){
+
+        console.error(
+            error
+        );
+
+
+        return [];
+
+    }
+
+}
+
+
+/* ==========================================
+   سجلات الفرز الذكي
+========================================== */
+
+function getSmartScreeningRecords(){
+
+    try{
+
+        const stored =
+            localStorage.getItem(
+                "smartScreeningRecords"
+            );
+
+
+        if(!stored){
+
+            return [];
+
+        }
+
+
+        const data =
+            JSON.parse(
+                stored
+            );
+
+
+        return Array.isArray(
+            data
+        )
+        ? data
+        : [];
+
+    }
+    catch(error){
+
+        console.error(
+            error
+        );
+
+
+        return [];
+
+    }
+
+}
+
+
+/* ==========================================
+   تأكيد تحويل الفرز إلى بلاغ فعلي
+========================================== */
+
+function markScreeningNotificationSent(
+    notificationId,
+    diseaseKey
+){
+
+    if(!incomingScreeningId){
+
+        return;
+
+    }
+
+
+    const records =
+        getSmartScreeningRecords();
+
+
+    const index =
+        records.findIndex(
+            function(item){
+
+                return (
+                    item.id ===
+                    incomingScreeningId
+                );
+
+            }
+        );
+
+
+    if(index < 0){
+
+        console.warn(
+            "Screening record not found:",
+            incomingScreeningId
+        );
+
+        return;
+
+    }
+
+
+    records[index].notificationStarted =
+        true;
+
+
+    records[index].notificationSent =
+        true;
+
+
+    records[index].notificationId =
+        notificationId;
+
+
+    records[index].notificationDisease =
+        diseaseKey;
+
+
+    records[index].notificationSentAt =
+        new Date()
+        .toISOString();
+
+
+    records[index].updatedAt =
+        new Date()
+        .toISOString();
+
+
+    localStorage.setItem(
+
+        "smartScreeningRecords",
+
+        JSON.stringify(
+            records
+        )
+
+    );
+
+}
+
+
+/* ==========================================
+   إرسال البلاغ
+========================================== */
+
+function saveNotification(){
+
+    if(!valid()){
+
+        show(
+
+            "⚠️ لا يمكن إرسال البلاغ.<br>" +
+            "يرجى استكمال الحقول المطلوبة والتوقيع والإقرار.",
+
+            true
+
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+
+        const diseaseKey =
+            document.getElementById(
+                "diseaseSelect"
+            ).value;
+
+
+        const canvas =
+            document.getElementById(
+                "signatureCanvas"
+            );
+
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        const notification = {
+
+
+            id:
+                generateNotificationId(),
+
+
+            createdAt:
+                new Date()
+                .toISOString(),
+
+
+            source:
+                params.get(
+                    "fromScreening"
+                ) === "1"
+                ? "smartScreening"
+                : "manual",
+
+
+            screeningId:
+                incomingScreeningId,
+
+
+            screeningDuration:
+                incomingDuration,
+
+
+            screeningEpiFactors:
+                incomingEpiFactors,
+
+
+            screeningHistoryReliability:
+                incomingHistoryReliability,
+
+
+            screeningVitalStatus:
+                incomingVitalStatus,
+
+
+            hiddenInfectionFlag:
+                incomingHiddenFlag,
+
+
+            date:
+                new Date()
+                .toLocaleString(
+                    "ar-SA"
+                ),
+
+
+            patientName:
+                document.getElementById(
+                    "patientName"
+                ).value.trim(),
+
+
+            mrn:
+                document.getElementById(
+                    "mrn"
+                ).value.trim(),
+
+
+            nationalId:
+                document.getElementById(
+                    "nationalId"
+                ).value.trim(),
+
+
+            nationality:
+                document.getElementById(
+                    "nationality"
+                ).value.trim(),
+
+
+            dob:
+                document.getElementById(
+                    "dob"
+                ).value,
+
+
+            gender:
+                document.getElementById(
+                    "gender"
+                ).value,
+
+
+            patientPhone:
+                document.getElementById(
+                    "patientPhone"
+                ).value.trim(),
+
+
+            residence:
+                document.getElementById(
+                    "residence"
+                ).value.trim(),
+
+
+            diseaseKey:
+                diseaseKey,
+
+
+            disease:
+                names[
+                    diseaseKey
+                ] ||
+                diseaseKey,
+
+
+            classification:
+                document.getElementById(
+                    "classification"
+                ).value,
+
+
+            symptomOnset:
+                document.getElementById(
+                    "symptomOnset"
+                ).value,
+
+
+            detectionDateTime:
+                document.getElementById(
+                    "detectionDateTime"
+                ).value,
+
+
+            caseLocation:
+                document.getElementById(
+                    "caseLocation"
+                ).value.trim(),
+
+
+            patientStatus:
+                document.getElementById(
+                    "patientStatus"
+                ).value,
+
+
+            symptoms:
+                checked(
+                    "symptom"
+                ),
+
+
+            otherSymptoms:
+                document.getElementById(
+                    "otherSymptoms"
+                ).value.trim(),
+
+
+            recentTravel:
+                document.getElementById(
+                    "recentTravel"
+                ).value,
+
+
+            travelCountry:
+                document.getElementById(
+                    "travelCountry"
+                ).value.trim(),
+
+
+            contactCase:
+                document.getElementById(
+                    "contactCase"
+                ).value,
+
+
+            animalExposure:
+                document.getElementById(
+                    "animalExposure"
+                ).value,
+
+
+            epidemiologicalHistory:
+                document.getElementById(
+                    "epiHistory"
+                ).value.trim(),
+
+
+            actions:
+                checked(
+                    "action"
+                ),
+
+
+            sampleTaken:
+                document.getElementById(
+                    "sampleTaken"
+                ).value,
+
+
+            sampleType:
+                document.getElementById(
+                    "sampleType"
+                ).value.trim(),
+
+
+            sampleDateTime:
+                document.getElementById(
+                    "sampleDateTime"
+                ).value,
+
+
+            labResult:
+                document.getElementById(
+                    "labResult"
+                ).value,
+
+
+            reporterName:
+                document.getElementById(
+                    "reporterName"
+                ).value.trim(),
+
+
+            reporterId:
+                document.getElementById(
+                    "reporterId"
+                ).value.trim(),
+
+
+            reporterJob:
+                document.getElementById(
+                    "reporterJob"
+                ).value.trim(),
+
+
+            reporterDepartment:
+                document.getElementById(
+                    "reporterDepartment"
+                ).value.trim(),
+
+
+            reporterPhone:
+                document.getElementById(
+                    "reporterPhone"
+                ).value.trim(),
+
+
+            reportDateTime:
+                document.getElementById(
+                    "reportDateTime"
+                ).value,
+
+
+            priority:
+                urgentDiseases.includes(
+                    diseaseKey
+                )
+                ? "urgent"
+                : "normal",
+
+
+            status:
+                "new",
+
+
+            hesnStatus:
+                "pending",
+
+
+            publicHealthNotes:
+                "",
+
+
+            signature:
+                canvas.toDataURL(
+                    "image/png"
+                )
+
+        };
+
+
+        const notifications =
+            getSavedNotifications();
+
+
+        notifications.unshift(
+            notification
+        );
+
+
+        localStorage.setItem(
+
+            "publicHealthNotifications",
+
+            JSON.stringify(
+                notifications
+            )
+
+        );
+
+
+        /* =====================================
+           التأكد من الحفظ
+        ===================================== */
+
+        const verification =
+            getSavedNotifications();
+
+
+        const savedSuccessfully =
+            verification.some(
+                function(item){
+
+                    return (
+                        item.id ===
+                        notification.id
+                    );
+
+                }
+            );
+
+
+        if(!savedSuccessfully){
+
+            throw new Error(
+                "Notification was not saved."
+            );
+
+        }
+
+
+        /* =====================================
+           أهم إضافة:
+           ربط البلاغ النهائي بجلسة الفرز
+        ===================================== */
+
+        if(
+            notification.source ===
+            "smartScreening"
+        ){
+
+            markScreeningNotificationSent(
+                notification.id,
+                diseaseKey
+            );
+
+        }
+
+
+        show(
+
+            "✅ <strong>تم إرسال البلاغ للصحة العامة بنجاح.</strong>" +
+
+            "<br><br>" +
+
+            "<strong>رقم البلاغ:</strong> " +
+            notification.id +
+
+            "<br>" +
+
+            "<strong>المرض:</strong> " +
+            notification.disease +
+
+            "<br>" +
+
+            "<strong>مصدر البلاغ:</strong> " +
+
+            (
+                notification.source ===
+                "smartScreening"
+                ? "🧠 الفرز الذكي"
+                : "إدخال مباشر"
+            ) +
+
+            "<br>" +
+
+            "<strong>وقت الإرسال:</strong> " +
+            notification.date +
+
+            (
+                incomingHiddenFlag
+                ? "<br><strong>🚩 تم اكتشاف خطر معدٍ خفي أثناء الفرز.</strong>"
+                : ""
+            ),
+
+            false
+
+        );
+
+
+        const sendButton =
+            document.getElementById(
+                "sendButton"
+            );
+
+
+        sendButton.disabled =
+            true;
+
+
+        sendButton.textContent =
+            "✅ تم إرسال البلاغ";
+
+
+        sendButton.style.opacity =
+            "0.65";
+
+
+        sendButton.style.cursor =
+            "default";
+
+    }
+    catch(error){
+
+        console.error(
+            "Notification save error:",
+            error
+        );
+
+
+        show(
+
+            "❌ حدث خطأ أثناء حفظ البلاغ.<br>" +
+            "لم يتم تأكيد الإرسال، يرجى المحاولة مرة أخرى.",
+
+            true
+
+        );
+
+    }
+
+}
+
+
+/* ==========================================
+   تغيير المرض
+========================================== */
+
+document
+.getElementById(
+    "diseaseSelect"
+)
+.addEventListener(
+    "change",
+    updateDisease
+);
+
+
+/* ==========================================
+   التشغيل
+========================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    init
+);
+
+
+</script>
+
+</body>
+
+</html>

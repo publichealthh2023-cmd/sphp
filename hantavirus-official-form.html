@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hantavirus Case Notification / Investigation Form</title><link rel="stylesheet" href="Style.css">
+<style>
+body{background:#eef3f6}.page{max-width:1000px;margin:25px auto;padding:0 20px 50px}.sheet{background:#fff;padding:25px;border-radius:8px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.title{text-align:center;border-bottom:3px solid #198f72;padding-bottom:15px}.title h1{color:#178d6c;font-size:24px;margin:0 0 8px}.conf{background:#fff1e9;border:1px solid #eea678;padding:10px;margin:15px 0;text-align:center;font-weight:bold}
+.sec{background:#139b79;color:#fff;padding:10px 13px;font-weight:bold;margin:20px 0 12px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.group{display:flex;flex-direction:column;gap:6px}.full{grid-column:1/-1}
+label{font-weight:bold;color:#315269;font-size:13px}input,select,textarea{padding:10px;border:1px solid #adbcc7;border-radius:5px;font-size:14px}textarea{min-height:75px}.checks{display:flex;flex-wrap:wrap;gap:13px;background:#f7faf9;border:1px solid #dae6e2;padding:10px;border-radius:6px}
+.table{width:100%;border-collapse:collapse}.table th,.table td{border:1px solid #b8c8c2;padding:8px}.table th{background:#d9f0e8}.buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.buttons button,.buttons a{border:0;padding:12px 18px;border-radius:7px;text-decoration:none;font-weight:bold;cursor:pointer}.save{background:#0759a6;color:#fff}.print{background:#16875f;color:#fff}.back{background:#e7eef4;color:#064c92}.sig img{max-height:120px;max-width:350px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.full{grid-column:auto}}@media print{body{background:#fff}.page{max-width:none;margin:0;padding:0}.sheet{box-shadow:none}.buttons{display:none}}
+</style>
+</head><body>
+<main class="page"><div class="sheet">
+<div class="title"><h1>Hantavirus Case Notification / Investigation Form</h1><p>نموذج التبليغ والتقصي عن حالة فيروس هانتا</p></div>
+<div class="conf">CONFIDENTIAL — معلومات صحية محمية</div>
+
+<div class="sec">Section A — Brief Case Information / معلومات مختصرة</div>
+<div class="group"><label>Case Classification / تصنيف الحالة</label><div class="checks">
+<label><input type="radio" name="classification" value="suspected"> Suspected</label><label><input type="radio" name="classification" value="probable"> Probable</label><label><input type="radio" name="classification" value="confirmed"> Confirmed</label>
+</div></div><br>
+<div class="group"><label>Disease Syndrome / المتلازمة</label><div class="checks">
+<label><input type="radio" name="syndrome" value="HPS"> HPS</label><label><input type="radio" name="syndrome" value="HFRS"> HFRS</label><label><input type="radio" name="syndrome" value="Non-HPS"> Non-HPS</label>
+</div></div><br>
+<div class="grid"><div class="group"><label>Final Outcome</label><select id="finalOutcome"><option></option><option>Alive</option><option>Dead</option><option>Unknown</option></select></div>
+<div class="group"><label>Hospital Name</label><input id="hospitalName" value="مستشفى إرادة والصحة النفسية بحفر الباطن"></div><div class="group"><label>City</label><input id="city" value="حفر الباطن"></div></div>
+
+<div class="sec">Section B — Demographic Data / بيانات المريض</div>
+<div class="grid">
+<div class="group"><label>Patient Name</label><input id="patientName"></div><div class="group"><label>Patient ID / MRN</label><input id="patientId"></div>
+<div class="group"><label>Date of Birth</label><input id="dob" type="date"></div><div class="group"><label>Sex</label><select id="sex"><option></option><option value="male">Male</option><option value="female">Female</option></select></div>
+<div class="group"><label>Nationality</label><input id="nationality"></div><div class="group"><label>Occupation</label><input id="occupation"></div>
+<div class="group"><label>Address / City</label><input id="address"></div><div class="group"><label>Contact Number</label><input id="contactNumber"></div>
+</div>
+
+<div class="sec">Section C — Clinical Case Profile / الملف السريري</div>
+<div class="grid"><div class="group"><label>Date of Symptom Onset</label><input id="symptomOnset" type="date"></div><div class="group"><label>Date of Hospitalization</label><input id="hospitalizationDate" type="date"></div>
+<div class="group"><label>Attending Physician</label><input id="physician"></div><div class="group"><label>Physician Phone</label><input id="physicianPhone"></div></div>
+<br><table class="table"><thead><tr><th>Clinical Presentation</th><th>Answer</th></tr></thead><tbody id="symptomBody"></tbody></table>
+
+<div class="sec">Section D — Laboratory Information / المعلومات المخبرية</div>
+<div class="grid"><div class="group"><label>Date of First Specimen Collection</label><input id="firstSpecimenDate" type="date"></div><div class="group"><label>Laboratory Name</label><input id="laboratoryName"></div>
+<div class="group"><label>Date Results Received</label><input id="resultDate" type="date"></div><div class="group"><label>Viral Species if Identified</label><input id="viralSpecies"></div></div>
+<br><table class="table"><tr><th>Test</th><th>Result</th></tr>
+<tr><td>Hantavirus IgM ELISA</td><td><select id="igm"><option></option><option>Positive</option><option>Negative</option><option>Indeterminate</option><option>Not Done</option></select></td></tr>
+<tr><td>Hantavirus IgG ELISA</td><td><select id="igg"><option></option><option>Positive</option><option>Negative</option><option>Indeterminate</option><option>Not Done</option></select></td></tr>
+<tr><td>RT-PCR</td><td><select id="pcr"><option></option><option>Positive</option><option>Negative</option><option>Indeterminate</option><option>Not Done</option></select></td></tr></table>
+
+<div class="sec">Section E — Exposure Assessment / تقييم التعرض</div>
+<div class="grid">
+<div class="group"><label>Exposure Start Date</label><input id="exposureStart" type="date"></div><div class="group"><label>Exposure End Date</label><input id="exposureEnd" type="date"></div>
+<div class="group"><label>Evidence of Rodents at Home</label><select id="rodentsHome"><option></option><option>Yes</option><option>No</option><option>Unknown</option></select></div>
+<div class="group"><label>Cleaning Rodent-Infested Areas</label><select id="rodentCleaning"><option></option><option>Yes</option><option>No</option><option>Unknown</option></select></div>
+<div class="group full"><label>Describe Rodent Evidence / Exposure</label><textarea id="rodentEvidence"></textarea></div>
+<div class="group"><label>Travel During Exposure Period</label><select id="travelExposure"><option></option><option>Yes</option><option>No</option><option>Unknown</option></select></div>
+<div class="group"><label>Travel Destinations</label><input id="travelDestination"></div>
+<div class="group"><label>Direct Contact with Rodents</label><select id="directRodent"><option></option><option>Yes</option><option>No</option><option>Unknown</option></select></div>
+<div class="group"><label>Bitten / Scratched by Rodent</label><select id="rodentBite"><option></option><option>Yes</option><option>No</option><option>Unknown</option></select></div>
+</div>
+
+<div class="sec">Section F — Contact Tracing / تتبع المخالطين</div>
+<div class="grid"><div class="group"><label>Human-to-Human Transmission Suspected</label><select id="humanTransmission"><option></option><option>Yes</option><option>No</option><option>Unknown</option></select></div>
+<div class="group"><label>Total Close Contacts</label><input id="closeContacts" type="number"></div><div class="group full"><label>Basis for Suspicion</label><textarea id="transmissionBasis"></textarea></div></div>
+
+<div class="sec">Section G — Infection Control Measures / مكافحة العدوى</div>
+<div class="grid"><div class="group"><label>Isolation Precautions</label><select id="isolation"><option></option><option>Standard</option><option>Contact + Droplet</option><option>Not Applicable</option></select></div>
+<div class="group"><label>Healthcare Worker Exposures</label><select id="hcwExposure"><option></option><option>Yes</option><option>No</option><option>Unknown</option></select></div>
+<div class="group"><label>Number of HCW Exposed</label><input id="hcwNumber" type="number"></div><div class="group full"><label>Describe IPC Measures</label><textarea id="ipcNotes"></textarea></div></div>
+
+<div class="sec">Section H — Additional Information / معلومات إضافية</div><div class="group"><textarea id="additionalNotes"></textarea></div>
+
+<div class="sec">Section I — Investigator Information / بيانات مسؤول التقصي</div>
+<div class="grid"><div class="group"><label>Investigator Name</label><input id="investigatorName"></div><div class="group"><label>Title</label><input id="investigatorTitle"></div>
+<div class="group"><label>Sector</label><input id="investigatorSector" value="Public Health"></div><div class="group"><label>Phone</label><input id="investigatorPhone"></div>
+<div class="group"><label>Email</label><input id="investigatorEmail" type="email"></div><div class="group"><label>Date</label><input id="investigatorDate" type="date"></div>
+<div class="group full"><label>Electronic Signature</label><div id="signature" class="sig">لا يوجد توقيع</div></div></div>
+
+<div class="buttons"><button class="save" onclick="saveForm()">💾 حفظ الاستمارة</button><button class="print" onclick="window.print()">🖨️ طباعة / حفظ PDF</button><a id="back" class="back" href="public-health-inbox.html">← العودة للبلاغ</a></div>
+</div></main>
+
+<script>
+const symptoms=["Fever ≥38°C","Headache","Myalgia","Fatigue","Chills","Dizziness","Nausea","Vomiting","Diarrhea","Abdominal Pain","Cough","Shortness of Breath","Tachypnea","Chest Pain","Back Pain","Oliguria","Hematuria"];
+let nid=null;
+function build(){symptomBody.innerHTML=symptoms.map((x,i)=>`<tr><td>${x}</td><td><select id="sym_${i}"><option></option><option>Yes</option><option>No</option><option>Unknown</option></select></td></tr>`).join("")}
+function getN(){nid=new URLSearchParams(location.search).get("id");let l=[];try{l=JSON.parse(localStorage.getItem("publicHealthNotifications"))||[]}catch(e){}return l.find(x=>x.id===nid)}
+function set(id,v){const e=document.getElementById(id);if(e&&v!=null)e.value=v}
+function preload(){
+ const n=getN();if(!n)return;
+ set("patientName",n.patientName);set("patientId",n.nationalId||n.mrn);set("dob",n.dob);set("sex",n.gender);set("nationality",n.nationality);set("address",n.residence);set("contactNumber",n.patientPhone);set("symptomOnset",n.symptomOnset);
+ const r=document.querySelector(`input[name="classification"][value="${CSS.escape(n.classification||"")}"]`);if(r)r.checked=true;
+ if(n.signature)signature.innerHTML=`<img src="${n.signature}">`;back.href=`notification-details.html?id=${encodeURIComponent(nid)}`;loadSaved();
+}
+function collect(){
+ const d={};document.querySelectorAll("input,select,textarea").forEach(e=>{
+  if(e.type==="radio"){if(e.checked)d[e.name]=e.value}else if(e.id)d[e.id]=e.value
+ });d.notificationId=nid;d.savedAt=new Date().toISOString();return d
+}
+function saveForm(){if(!nid){alert("لا يوجد بلاغ مرتبط");return}localStorage.setItem("hantavirusOfficialForm_"+nid,JSON.stringify(collect()));alert("تم حفظ الاستمارة التجريبية")}
+function loadSaved(){
+ const raw=localStorage.getItem("hantavirusOfficialForm_"+nid);if(!raw)return;let d;try{d=JSON.parse(raw)}catch(e){return}
+ Object.entries(d).forEach(([k,v])=>{const e=document.getElementById(k);if(e)e.value=v});
+ if(d.classification){const r=document.querySelector(`input[name="classification"][value="${CSS.escape(d.classification)}"]`);if(r)r.checked=true}
+ if(d.syndrome){const r=document.querySelector(`input[name="syndrome"][value="${CSS.escape(d.syndrome)}"]`);if(r)r.checked=true}
+}
+document.addEventListener("DOMContentLoaded",()=>{build();preload()});
+</script>
+</body></html>

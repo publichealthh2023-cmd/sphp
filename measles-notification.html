@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>بلاغ الحمى والطفح الجلدي - الحصبة</title>
+
+<link rel="stylesheet" href="Style.css">
+
+<style>
+
+.measles-page{
+    max-width:1150px;
+    margin:30px auto;
+    padding:0 20px 50px;
+}
+
+.page-title{
+    background:white;
+    border-radius:16px;
+    padding:25px;
+    text-align:center;
+    margin-bottom:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,.07);
+}
+
+.page-title .icon{
+    font-size:48px;
+}
+
+.page-title h1{
+    color:#064c92;
+    margin:8px 0 4px;
+}
+
+.page-title h2{
+    color:#687b8d;
+    font-size:17px;
+    margin:0;
+}
+
+.urgent-box{
+    background:#fff0f0;
+    border-right:5px solid #c62828;
+    border-radius:10px;
+    padding:16px;
+    margin-bottom:18px;
+    line-height:1.8;
+    color:#782626;
+}
+
+.isolation-box{
+    background:#eef7ff;
+    border-right:5px solid #0759a6;
+    border-radius:10px;
+    padding:16px;
+    margin-bottom:20px;
+    line-height:1.8;
+    color:#31556f;
+}
+
+.section-card{
+    background:white;
+    border:1px solid #dfe8f2;
+    border-radius:14px;
+    padding:23px;
+    margin-bottom:18px;
+    box-shadow:0 4px 13px rgba(0,0,0,.05);
+}
+
+.section-card h3{
+    color:#064c92;
+    margin-top:0;
+    border-bottom:1px solid #e4ebf1;
+    padding-bottom:10px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:17px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+label{
+    font-weight:bold;
+    color:#294b6a;
+}
+
+.required{
+    color:#c62828;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:11px;
+    border:1px solid #ccd9e5;
+    border-radius:8px;
+    background:white;
+    font-size:14px;
+}
+
+textarea{
+    min-height:95px;
+    resize:vertical;
+}
+
+.check-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.check-item{
+    background:#f7fafc;
+    border:1px solid #dfe8ef;
+    border-radius:9px;
+    padding:10px;
+}
+
+.check-item label{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    cursor:pointer;
+}
+
+.check-item input{
+    width:auto;
+}
+
+.signature-area{
+    border:2px dashed #aebdca;
+    border-radius:12px;
+    padding:10px;
+    background:white;
+}
+
+#signatureCanvas{
+    display:block;
+    width:100%;
+    height:180px;
+    background:white;
+    touch-action:none;
+    cursor:crosshair;
+}
+
+.buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:20px;
+}
+
+.buttons button,
+.buttons a{
+    border:none;
+    border-radius:9px;
+    padding:13px 20px;
+    font-weight:bold;
+    cursor:pointer;
+    text-decoration:none;
+    text-align:center;
+}
+
+.review-btn{
+    background:#0759a6;
+    color:white;
+}
+
+.send-btn{
+    background:#187b43;
+    color:white;
+}
+
+.print-btn{
+    background:#687984;
+    color:white;
+}
+
+.back-btn{
+    background:#eaf1f7;
+    color:#064c92;
+}
+
+.result-box{
+    display:none;
+    margin-top:18px;
+    padding:15px;
+    border-radius:10px;
+    background:#eaf7ee;
+    border-right:5px solid #2e7d32;
+    color:#285b33;
+}
+
+.result-box.error{
+    background:#fff0f0;
+    border-right-color:#c62828;
+    color:#7d2525;
+}
+
+@media(max-width:750px){
+
+    .form-grid,
+    .check-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+}
+
+@media print{
+
+    .buttons,
+    .urgent-box,
+    .isolation-box{
+        display:none !important;
+    }
+
+    body{
+        background:white;
+    }
+
+    .section-card,
+    .page-title{
+        box-shadow:none;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="hero-header">
+
+<div class="hero-grid">
+
+    <div class="side-logo left-logo">
+
+        <img
+            src="images/cluster-logo.png"
+            alt="Hafr Al-Batin Health Cluster">
+
+    </div>
+
+
+    <div class="hero-center">
+
+        <h1>
+            بلاغ الحمى المصحوبة بطفح جلدي
+        </h1>
+
+        <h2>
+            Fever & Rash / Measles Notification
+        </h2>
+
+        <p>
+            الصحة العامة
+        </p>
+
+    </div>
+
+
+    <div class="side-logo right-logo">
+
+        <img
+            src="images/hospital-logo.png"
+            alt="Hospital Logo">
+
+    </div>
+
+</div>
+
+</header>
+
+
+
+<main class="measles-page">
+
+
+<section class="page-title">
+
+    <div class="icon">
+        🔴
+    </div>
+
+    <h1>
+        بلاغ حالة مشتبهة بالحصبة / الحصبة الألمانية
+    </h1>
+
+    <h2>
+        Suspected Measles / Rubella Case Notification
+    </h2>
+
+</section>
+
+
+
+<div class="urgent-box">
+
+    <strong>
+        🚨 الإبلاغ:
+    </strong>
+
+    يتم الإبلاغ الفوري عن كل حالة مشتبهة
+    بحمى وطفح جلدي وإدخالها في حصن بلس
+    حسب الإجراءات المعتمدة.
+
+</div>
+
+
+
+<div class="isolation-box">
+
+    <strong>
+        🛡️ مكافحة العدوى:
+    </strong>
+
+    الحصبة تنتقل عن طريق الهواء أو التلامس المباشر
+    مع إفرازات الأنف أو الحلق؛ لذلك يتم تطبيق
+    احتياطات العدوى المناسبة وفق سياسة المنشأة.
+
+</div>
+
+
+
+<section class="section-card">
+
+<h3>
+    👤 بيانات المريض
+</h3>
+
+<div class="form-grid">
+
+
+    <div class="form-group">
+
+        <label>
+            اسم المريض
+            <span class="required">*</span>
+        </label>
+
+        <input id="patientName">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            رقم الملف الطبي
+            <span class="required">*</span>
+        </label>
+
+        <input id="mrn">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            رقم الهوية / الإقامة
+        </label>
+
+        <input id="nationalId">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            الجنسية
+        </label>
+
+        <input id="nationality">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            تاريخ الميلاد
+        </label>
+
+        <input
+            id="dob"
+            type="date">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            الجنس
+        </label>
+
+        <select id="gender">
+
+            <option value="">
+                اختر
+            </option>
+
+            <option value="male">
+                ذكر
+            </option>
+
+            <option value="female">
+                أنثى
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            رقم التواصل
+        </label>
+
+        <input id="patientPhone">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            مكان الإقامة
+        </label>
+
+        <input id="residence">
+
+    </div>
+
+
+</div>
+
+</section>
+
+
+
+<section class="section-card">
+
+<h3>
+    🔎 تصنيف الحالة
+</h3>
+
+<div class="form-grid">
+
+
+    <div class="form-group">
+
+        <label>
+            نوع الاشتباه
+            <span class="required">*</span>
+        </label>
+
+        <select id="caseType">
+
+            <option value="">
+                اختر
+            </option>
+
+            <option value="feverRash">
+                حمى مع طفح جلدي
+            </option>
+
+            <option value="measles">
+                اشتباه حصبة
+            </option>
+
+            <option value="rubella">
+                اشتباه حصبة ألمانية
+            </option>
+
+            <option value="confirmedMeasles">
+                حصبة مؤكدة مخبريًا
+            </option>
+
+            <option value="confirmedRubella">
+                حصبة ألمانية مؤكدة مخبريًا
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            درجة الحرارة
+        </label>
+
+        <input
+            id="temperature"
+            type="number"
+            step="0.1"
+            placeholder="مثال: 38.5">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            تاريخ بداية الحمى
+        </label>
+
+        <input
+            id="feverOnset"
+            type="date">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            تاريخ بداية الطفح
+        </label>
+
+        <input
+            id="rashOnset"
+            type="date">
+
+    </div>
+
+
+</div>
+
+</section>
+
+
+
+<section class="section-card">
+
+<h3>
+    🌡️ الأعراض والعلامات
+</h3>
+
+<div class="check-grid">
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="symptom"
+                value="fever">
+
+            حمى
+
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="symptom"
+                value="rash">
+
+            طفح جلدي
+
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="symptom"
+                value="cough">
+
+            سعال
+
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="symptom"
+                value="coryza">
+
+            زكام / رشح
+
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="symptom"
+                value="conjunctivitis">
+
+            التهاب ملتحمة
+
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="symptom"
+                value="koplik">
+
+            بقع كوبليك
+
+        </label>
+    </div>
+
+
+</div>
+
+
+<div
+    class="form-group full"
+    style="margin-top:15px;">
+
+    <label>
+        وصف الطفح
+    </label>
+
+    <textarea
+        id="rashDescription"
+        placeholder="مكان بداية الطفح وانتشاره وشكله..."></textarea>
+
+</div>
+
+
+<div
+    class="form-group full"
+    style="margin-top:15px;">
+
+    <label>
+        أعراض أخرى
+    </label>
+
+    <textarea id="otherSymptoms"></textarea>
+
+</div>
+
+</section>
+
+
+
+<section class="section-card">
+
+<h3>
+    💉 التاريخ التطعيمي والوبائي
+</h3>
+
+<div class="form-grid">
+
+
+    <div class="form-group">
+
+        <label>
+            حالة تطعيم MMR
+        </label>
+
+        <select id="mmrStatus">
+
+            <option value="">
+                غير معروف
+            </option>
+
+            <option value="none">
+                لم يتلق اللقاح
+            </option>
+
+            <option value="oneDose">
+                جرعة واحدة
+            </option>
+
+            <option value="twoDoses">
+                جرعتان
+            </option>
+
+            <option value="documented">
+                مطعم حسب السجل
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            هل خالط حالة مشتبهة / مؤكدة؟
+        </label>
+
+        <select id="contactCase">
+
+            <option value="">
+                غير معروف
+            </option>
+
+            <option value="yes">
+                نعم
+            </option>
+
+            <option value="no">
+                لا
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            سفر حديث
+        </label>
+
+        <select id="recentTravel">
+
+            <option value="">
+                غير معروف
+            </option>
+
+            <option value="yes">
+                نعم
+            </option>
+
+            <option value="no">
+                لا
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            الدولة / المنطقة
+        </label>
+
+        <input id="travelLocation">
+
+    </div>
+
+
+    <div class="form-group full">
+
+        <label>
+            تفاصيل المخالطة / التعرض
+        </label>
+
+        <textarea id="epiHistory"></textarea>
+
+    </div>
+
+
+</div>
+
+</section>
+
+
+
+<section class="section-card">
+
+<h3>
+    🧪 العينات والفحوصات
+</h3>
+
+<div class="form-grid">
+
+
+    <div class="form-group">
+
+        <label>
+            عينة الدم
+        </label>
+
+        <select id="bloodSample">
+
+            <option value="">
+                اختر
+            </option>
+
+            <option value="collected">
+                تم أخذها
+            </option>
+
+            <option value="pending">
+                سيتم أخذها
+            </option>
+
+            <option value="notDone">
+                لم تؤخذ
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            المسحة الحلقية
+        </label>
+
+        <select id="throatSwab">
+
+            <option value="">
+                اختر
+            </option>
+
+            <option value="collected">
+                تم أخذها
+            </option>
+
+            <option value="pending">
+                سيتم أخذها
+            </option>
+
+            <option value="notDone">
+                لم تؤخذ
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            نتيجة IgM
+        </label>
+
+        <select id="igmResult">
+
+            <option value="">
+                غير متوفرة
+            </option>
+
+            <option value="positive">
+                إيجابية
+            </option>
+
+            <option value="negative">
+                سلبية
+            </option>
+
+            <option value="pending">
+                قيد الانتظار
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            نتيجة المختبر النهائية
+        </label>
+
+        <select id="finalLabResult">
+
+            <option value="">
+                غير متوفرة
+            </option>
+
+            <option value="measles">
+                حصبة
+            </option>
+
+            <option value="rubella">
+                حصبة ألمانية
+            </option>
+
+            <option value="negative">
+                سلبية
+            </option>
+
+            <option value="pending">
+                قيد الانتظار
+            </option>
+
+        </select>
+
+    </div>
+
+
+</div>
+
+</section>
+
+
+
+<section class="section-card">
+
+<h3>
+    🛡️ الإجراءات الأولية بالمستشفى
+</h3>
+
+<div class="check-grid">
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="action"
+                value="isolation">
+
+            عزل الحالة
+
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="action"
+                value="airbornePrecautions">
+
+            تطبيق احتياطات الانتقال الهوائي
+
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="action"
+                value="infectionControl">
+
+            إبلاغ مكافحة العدوى
+
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="action"
+                value="publicHealth">
+
+            إبلاغ الصحة العامة
+
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="action"
+                value="bloodSample">
+
+            أخذ عينة الدم
+
+        </label>
+    </div>
+
+
+    <div class="check-item">
+        <label>
+
+            <input
+                type="checkbox"
+                name="action"
+                value="throatSwab">
+
+            أخذ المسحة الحلقية
+
+        </label>
+    </div>
+
+
+</div>
+
+
+<div
+    class="form-group full"
+    style="margin-top:15px;">
+
+    <label>
+        ملاحظات الإجراءات
+    </label>
+
+    <textarea id="actionNotes"></textarea>
+
+</div>
+
+</section>
+
+
+
+<section class="section-card">
+
+<h3>
+    📡 الإبلاغ
+</h3>
+
+<div class="form-grid">
+
+
+    <div class="form-group">
+
+        <label>
+            حالة الإبلاغ في حصن بلس
+        </label>
+
+        <select id="hesnStatus">
+
+            <option value="pending">
+                لم يتم بعد
+            </option>
+
+            <option value="entered">
+                تم إدخال البلاغ
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            رقم البلاغ في حصن بلس
+        </label>
+
+        <input id="hesnNumber">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            تم الإبلاغ هاتفيًا؟
+        </label>
+
+        <select id="phoneNotification">
+
+            <option value="">
+                اختر
+            </option>
+
+            <option value="yes">
+                نعم
+            </option>
+
+            <option value="no">
+                لا
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            تاريخ ووقت الإبلاغ
+        </label>
+
+        <input
+            id="notificationDateTime"
+            type="datetime-local">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            اسم المبلّغ
+            <span class="required">*</span>
+        </label>
+
+        <input id="reporterName">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            الرقم الوظيفي
+            <span class="required">*</span>
+        </label>
+
+        <input id="reporterId">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            القسم
+        </label>
+
+        <input
+            id="reporterDepartment"
+            value="قسم الطوارئ">
+
+    </div>
+
+
+</div>
+
+</section>
+
+
+
+<section class="section-card">
+
+<h3>
+    ✍️ التوقيع الإلكتروني
+</h3>
+
+
+<div class="signature-area">
+
+    <canvas id="signatureCanvas"></canvas>
+
+</div>
+
+
+<button
+    type="button"
+    onclick="clearSignature()"
+    style="margin-top:10px;">
+
+    مسح التوقيع
+
+</button>
+
+
+<label style="display:block;margin-top:15px;">
+
+    <input
+        id="declaration"
+        type="checkbox">
+
+    أقر بأن البيانات المدخلة صحيحة حسب
+    المعلومات المتاحة وقت الإبلاغ.
+
+</label>
+
+</section>
+
+
+
+<div class="buttons">
+
+
+<button
+    class="review-btn"
+    onclick="reviewNotification()">
+
+    ✅ مراجعة البلاغ
+
+</button>
+
+
+<button
+    class="send-btn"
+    onclick="saveNotification()">
+
+    📤 إرسال للصحة العامة
+
+</button>
+
+
+<button
+    class="print-btn"
+    onclick="window.print()">
+
+    🖨️ طباعة / حفظ PDF
+
+</button>
+
+
+<a
+    class="back-btn"
+    href="disease-details.html?disease=measles">
+
+    ← العودة لدليل الحصبة
+
+</a>
+
+
+</div>
+
+
+
+<div
+    id="resultBox"
+    class="result-box">
+</div>
+
+
+</main>
+
+
+
+<script>
+
+
+let signatureEmpty =
+    true;
+
+
+
+function localNow(){
+
+    const now =
+        new Date();
+
+
+    return new Date(
+
+        now.getTime() -
+        now.getTimezoneOffset() *
+        60000
+
+    )
+    .toISOString()
+    .slice(0,16);
+
+}
+
+
+
+function initializePage(){
+
+    document.getElementById(
+        "notificationDateTime"
+    ).value =
+        localNow();
+
+
+    setupSignature();
+
+}
+
+
+
+function setupSignature(){
+
+    const canvas =
+        document.getElementById(
+            "signatureCanvas"
+        );
+
+
+    const ctx =
+        canvas.getContext("2d");
+
+
+    const rect =
+        canvas.getBoundingClientRect();
+
+
+    const ratio =
+        window.devicePixelRatio || 1;
+
+
+    canvas.width =
+        rect.width * ratio;
+
+
+    canvas.height =
+        180 * ratio;
+
+
+    ctx.setTransform(
+        ratio,
+        0,
+        0,
+        ratio,
+        0,
+        0
+    );
+
+
+    ctx.lineWidth =
+        2;
+
+
+    ctx.lineCap =
+        "round";
+
+
+    ctx.strokeStyle =
+        "#152637";
+
+
+    let drawing =
+        false;
+
+
+    function position(event){
+
+        const rect =
+            canvas.getBoundingClientRect();
+
+
+        const point =
+            event.touches
+            ? event.touches[0]
+            : event;
+
+
+        return {
+
+            x:
+                point.clientX -
+                rect.left,
+
+            y:
+                point.clientY -
+                rect.top
+
+        };
+
+    }
+
+
+    function start(event){
+
+        event.preventDefault();
+
+
+        drawing =
+            true;
+
+
+        signatureEmpty =
+            false;
+
+
+        const p =
+            position(event);
+
+
+        ctx.beginPath();
+
+
+        ctx.moveTo(
+            p.x,
+            p.y
+        );
+
+    }
+
+
+    function move(event){
+
+        if(!drawing){
+
+            return;
+
+        }
+
+
+        event.preventDefault();
+
+
+        const p =
+            position(event);
+
+
+        ctx.lineTo(
+            p.x,
+            p.y
+        );
+
+
+        ctx.stroke();
+
+    }
+
+
+    function end(){
+
+        drawing =
+            false;
+
+    }
+
+
+    canvas.addEventListener(
+        "mousedown",
+        start
+    );
+
+
+    canvas.addEventListener(
+        "mousemove",
+        move
+    );
+
+
+    window.addEventListener(
+        "mouseup",
+        end
+    );
+
+
+    canvas.addEventListener(
+        "touchstart",
+        start,
+        {passive:false}
+    );
+
+
+    canvas.addEventListener(
+        "touchmove",
+        move,
+        {passive:false}
+    );
+
+
+    canvas.addEventListener(
+        "touchend",
+        end
+    );
+
+}
+
+
+
+function clearSignature(){
+
+    const canvas =
+        document.getElementById(
+            "signatureCanvas"
+        );
+
+
+    const ctx =
+        canvas.getContext("2d");
+
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    signatureEmpty =
+        true;
+
+}
+
+
+
+function getCheckedValues(name){
+
+    return Array.from(
+
+        document.querySelectorAll(
+            'input[name="' +
+            name +
+            '"]:checked'
+        )
+
+    ).map(
+
+        function(item){
+
+            return item.value;
+
+        }
+
+    );
+
+}
+
+
+
+function showResult(message,error){
+
+    const box =
+        document.getElementById(
+            "resultBox"
+        );
+
+
+    box.style.display =
+        "block";
+
+
+    box.classList.toggle(
+        "error",
+        !!error
+    );
+
+
+    box.innerHTML =
+        message;
+
+
+    box.scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+
+function validateForm(){
+
+    if(
+        !document.getElementById(
+            "patientName"
+        ).value.trim() ||
+
+        !document.getElementById(
+            "mrn"
+        ).value.trim() ||
+
+        !document.getElementById(

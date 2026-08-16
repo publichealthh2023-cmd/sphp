@@ -1,0 +1,1733 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>البوابة الذكية للصحة العامة</title>
+
+<link rel="stylesheet" href="Style.css">
+
+<style>
+
+body{
+    margin:0;
+}
+
+main{
+    max-width:1300px;
+    margin:auto;
+    padding:30px 20px 60px;
+}
+
+
+/* =========================================
+   Header adjustments
+========================================= */
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:220px 1fr 250px;
+    align-items:center;
+    gap:20px;
+}
+
+.left-logo img{
+    max-width:170px !important;
+    max-height:110px !important;
+    object-fit:contain;
+}
+
+.right-logo img{
+    max-width:225px !important;
+    max-height:145px !important;
+    width:auto !important;
+    height:auto !important;
+    object-fit:contain;
+}
+
+
+/* =========================================
+   Welcome
+========================================= */
+
+.welcome-section{
+    text-align:center;
+    margin-bottom:24px;
+}
+
+.welcome-section h2{
+    color:#064c92;
+    margin-bottom:5px;
+    font-size:25px;
+}
+
+.welcome-section h3{
+    margin-top:0;
+    color:#718293;
+    font-size:15px;
+}
+
+.welcome-section p{
+    color:#617387;
+    line-height:1.8;
+    max-width:900px;
+    margin:12px auto;
+}
+
+
+/* =========================================
+   Search
+========================================= */
+
+.search-wrapper{
+    max-width:900px;
+    margin:22px auto 32px;
+}
+
+.search-box{
+    display:flex;
+    background:white;
+    border-radius:11px;
+    overflow:hidden;
+    box-shadow:0 4px 14px rgba(0,0,0,.08);
+    border:1px solid #dfe8f2;
+}
+
+.search-box input{
+    flex:1;
+    border:none;
+    outline:none;
+    padding:15px;
+    font-size:15px;
+}
+
+.search-box button{
+    border:none;
+    background:#0759a6;
+    color:white;
+    padding:0 25px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+#searchResult{
+    margin-top:12px;
+}
+
+.search-result-item{
+    display:block;
+    background:white;
+    border:1px solid #dfe8f2;
+    border-radius:9px;
+    padding:12px 15px;
+    margin-bottom:8px;
+    color:#064c92;
+    text-decoration:none;
+}
+
+
+/* =========================================
+   Primary Workflow
+========================================= */
+
+.workflow-title{
+    text-align:center;
+    margin:35px 0 20px;
+}
+
+.workflow-title h2{
+    color:#064c92;
+    margin-bottom:5px;
+}
+
+.workflow-title p{
+    color:#607387;
+    margin:0;
+}
+
+
+/* Smart Screening */
+
+.smart-primary-card{
+    position:relative;
+    background:linear-gradient(
+        135deg,
+        #f7f3ff,
+        #ffffff
+    );
+    border:2px solid #d8ccff;
+    border-top:7px solid #5f3dc4;
+    border-radius:20px;
+    padding:35px 30px;
+    box-shadow:0 7px 24px rgba(0,0,0,.09);
+    text-align:center;
+    max-width:1000px;
+    margin:0 auto 20px;
+}
+
+.smart-main-icon{
+    width:92px;
+    height:92px;
+    margin:0 auto 15px;
+    border-radius:24px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:53px;
+    background:#efe9ff;
+}
+
+.smart-primary-card h2{
+    color:#4c2cab;
+    font-size:28px;
+    margin:8px 0 4px;
+}
+
+.smart-primary-card h3{
+    color:#718293;
+    font-size:16px;
+    margin:0 0 15px;
+}
+
+.smart-primary-card p{
+    color:#53697c;
+    line-height:1.9;
+    max-width:760px;
+    margin:0 auto 20px;
+}
+
+.start-smart-btn{
+    border:none;
+    background:#5f3dc4;
+    color:white;
+    padding:14px 32px;
+    border-radius:10px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.start-smart-btn:hover{
+    background:#4d2eaa;
+}
+
+.start-here-badge{
+    position:absolute;
+    top:15px;
+    left:15px;
+    background:#5f3dc4;
+    color:white;
+    border-radius:18px;
+    padding:6px 12px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+
+/* =========================================
+   Direct Notification
+========================================= */
+
+.direct-notification{
+    max-width:1000px;
+    margin:0 auto 35px;
+    background:#fff8f8;
+    border:1px solid #f1cece;
+    border-right:6px solid #c62828;
+    border-radius:15px;
+    padding:20px 24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.direct-notification-info{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.direct-icon{
+    width:58px;
+    height:58px;
+    border-radius:15px;
+    background:#ffe9e9;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    flex-shrink:0;
+}
+
+.direct-notification h3{
+    color:#b71c1c;
+    margin:0 0 5px;
+}
+
+.direct-notification p{
+    color:#6e5555;
+    margin:0;
+    line-height:1.7;
+    font-size:13px;
+}
+
+.direct-report-btn{
+    background:#c62828;
+    color:white;
+    border:none;
+    border-radius:9px;
+    padding:12px 22px;
+    font-weight:bold;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+
+/* =========================================
+   Supporting Services
+========================================= */
+
+.support-title{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin:35px 0 20px;
+}
+
+.support-title-line{
+    height:1px;
+    background:#d7e1e8;
+    flex:1;
+}
+
+.support-title-center{
+    text-align:center;
+}
+
+.support-title-center h2{
+    color:#064c92;
+    margin:0;
+}
+
+.support-title-center p{
+    margin:5px 0 0;
+    color:#718293;
+    font-size:13px;
+}
+
+.support-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:16px;
+}
+
+.support-card{
+    background:white;
+    border:1px solid #dfe8f2;
+    border-radius:15px;
+    padding:21px 16px;
+    text-align:center;
+    box-shadow:0 4px 14px rgba(0,0,0,.05);
+    transition:.2s;
+}
+
+.support-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(0,0,0,.09);
+}
+
+.support-icon{
+    width:60px;
+    height:60px;
+    margin:0 auto 10px;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#edf5fb;
+    font-size:32px;
+}
+
+.support-card h3{
+    color:#064c92;
+    margin:8px 0 4px;
+    font-size:15px;
+}
+
+.support-card h4{
+    color:#718293;
+    margin:0 0 8px;
+    font-size:11px;
+}
+
+.support-card p{
+    color:#607387;
+    font-size:12px;
+    line-height:1.7;
+    min-height:65px;
+}
+
+.support-card button{
+    border:none;
+    background:#0759a6;
+    color:white;
+    border-radius:8px;
+    padding:9px 14px;
+    cursor:pointer;
+    font-weight:bold;
+    font-size:12px;
+}
+
+
+/* =========================================
+   Workflow Explanation
+========================================= */
+
+.flow-section{
+    margin-top:35px;
+    background:white;
+    border:1px solid #dfe8f2;
+    border-radius:16px;
+    padding:24px;
+}
+
+.flow-section h2{
+    text-align:center;
+    color:#064c92;
+    margin-top:0;
+}
+
+.flow-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin-top:20px;
+}
+
+.flow-step{
+    position:relative;
+    background:#f8fbfd;
+    border-radius:12px;
+    padding:18px 14px;
+    text-align:center;
+}
+
+.flow-number{
+    width:34px;
+    height:34px;
+    margin:0 auto 8px;
+    border-radius:50%;
+    background:#0759a6;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+
+.flow-step h3{
+    color:#064c92;
+    margin:6px 0;
+    font-size:14px;
+}
+
+.flow-step p{
+    color:#607387;
+    margin:0;
+    font-size:12px;
+    line-height:1.7;
+}
+
+
+/* =========================================
+   Information
+========================================= */
+
+.info-strip{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin-top:30px;
+}
+
+.info-card{
+    display:flex;
+    gap:14px;
+    background:white;
+    border:1px solid #dfe8f2;
+    border-radius:13px;
+    padding:18px;
+}
+
+.info-icon{
+    font-size:30px;
+}
+
+.info-card h3{
+    color:#064c92;
+    margin:0 0 5px;
+}
+
+.info-card p{
+    color:#607387;
+    margin:0;
+    line-height:1.7;
+    font-size:13px;
+}
+
+
+/* =========================================
+   Notice
+========================================= */
+
+.notice-bar{
+    margin-top:25px;
+    background:#fff8e1;
+    border-right:5px solid #f9a825;
+    border-radius:10px;
+    padding:16px;
+    color:#66531b;
+    line-height:1.8;
+}
+
+html[dir="ltr"] .notice-bar{
+    border-right:none;
+    border-left:5px solid #f9a825;
+}
+
+
+/* =========================================
+   Footer
+========================================= */
+
+footer{
+    background:#f3f6f8;
+    border-top:1px solid #dfe8ef;
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    padding:22px 5%;
+    color:#66798a;
+    font-size:13px;
+}
+
+footer p{
+    margin:4px 0;
+}
+
+
+/* =========================================
+   Responsive
+========================================= */
+
+@media(max-width:1100px){
+
+    .support-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+}
+
+@media(max-width:850px){
+
+    .hero-grid{
+        grid-template-columns:150px 1fr 170px;
+    }
+
+    .right-logo img{
+        max-width:165px !important;
+    }
+
+    .flow-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .direct-notification{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .direct-report-btn{
+        width:100%;
+    }
+
+}
+
+@media(max-width:700px){
+
+    .hero-grid{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+
+    .left-logo,
+    .right-logo{
+        display:flex;
+        justify-content:center;
+    }
+
+    .right-logo img{
+        max-width:210px !important;
+        max-height:135px !important;
+    }
+
+    .support-grid,
+    .info-strip,
+    .flow-grid{
+        grid-template-columns:1fr;
+    }
+
+    .search-box{
+        flex-direction:column;
+    }
+
+    .search-box button{
+        padding:13px;
+    }
+
+    .direct-notification-info{
+        align-items:flex-start;
+    }
+
+    footer{
+        flex-direction:column;
+        text-align:center;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="hero-header">
+
+<div class="lang-area">
+
+<button
+    id="languageButton"
+    class="language-btn"
+    onclick="toggleLanguage()">
+
+🌐 English
+
+</button>
+
+</div>
+
+
+<div class="hero-grid">
+
+
+<div class="side-logo left-logo">
+
+<img
+    src="images/cluster-logo.png"
+    alt="Hafr Al-Batin Health Cluster">
+
+</div>
+
+
+<div class="hero-center">
+
+<h1
+    data-ar="البوابة الذكية للصحة العامة"
+    data-en="Smart Public Health Portal">
+
+البوابة الذكية للصحة العامة
+
+</h1>
+
+<h2>
+Smart Public Health Portal
+</h2>
+
+<p
+    data-ar="مستشفى إرادة والصحة النفسية بحفر الباطن"
+    data-en="Eradah & Mental Health Hospital - Hafar Al-Batin">
+
+مستشفى إرادة والصحة النفسية بحفر الباطن
+
+</p>
+
+
+<div class="public-health-name">
+
+<span>
+🛡️
+</span>
+
+<span
+    data-ar="الصحة العامة"
+    data-en="Public Health">
+
+الصحة العامة
+
+</span>
+
+<span class="divider-dot">
+|
+</span>
+
+<span>
+Public Health
+</span>
+
+</div>
+
+</div>
+
+
+<div class="side-logo right-logo">
+
+<img
+    src="images/hospital-logo.png"
+    alt="Hospital Logo">
+
+</div>
+
+
+</div>
+
+</header>
+
+
+
+<main>
+
+
+<!-- =====================================
+     Welcome
+===================================== -->
+
+<section class="welcome-section">
+
+<h2
+    data-ar="دعم الفرز المبكر للأمراض المعدية في الطوارئ"
+    data-en="Early Infectious Disease Screening Support in Emergency Care">
+
+دعم الفرز المبكر للأمراض المعدية في الطوارئ
+
+</h2>
+
+<h3>
+Emergency Infectious Disease Screening Support
+</h3>
+
+<p
+    data-ar="ابدأ بالفرز الذكي عند وجود أعراض أو اشتباه بمرض معدٍ. يساعد النظام على الوصول السريع إلى المرض المحتمل والإجراء والعزل ومسار البلاغ."
+    data-en="Start with smart screening when an infectious disease is suspected. The portal supports rapid access to possible diseases, precautions, isolation and notification pathways.">
+
+ابدأ بالفرز الذكي عند وجود أعراض أو اشتباه بمرض معدٍ.
+يساعد النظام على الوصول السريع إلى المرض المحتمل
+والإجراء والعزل ومسار البلاغ.
+
+</p>
+
+</section>
+
+
+
+<!-- =====================================
+     Search
+===================================== -->
+
+<section class="search-wrapper">
+
+<div class="search-box">
+
+<input
+    id="searchInput"
+    type="text"
+    data-placeholder-ar="ابحث عن مرض أو سياسة أو عينة أو إجراء..."
+    data-placeholder-en="Search for a disease, policy, specimen or procedure..."
+    placeholder="ابحث عن مرض أو سياسة أو عينة أو إجراء..."
+    oninput="searchPortal()">
+
+<button
+    onclick="searchPortal()"
+    data-ar="🔍 بحث"
+    data-en="🔍 Search">
+
+🔍 بحث
+
+</button>
+
+</div>
+
+<div id="searchResult"></div>
+
+</section>
+
+
+
+<!-- =====================================
+     Main workflow
+===================================== -->
+
+<section class="workflow-title">
+
+<h2
+    data-ar="ابدأ من هنا"
+    data-en="Start Here">
+
+ابدأ من هنا
+
+</h2>
+
+<p
+    data-ar="الفرز الذكي هو نقطة البداية عند الاشتباه بمرض معدٍ"
+    data-en="Smart screening is the starting point when an infectious disease is suspected">
+
+الفرز الذكي هو نقطة البداية عند الاشتباه بمرض معدٍ
+
+</p>
+
+</section>
+
+
+
+<!-- Smart Screening -->
+
+<section class="smart-primary-card">
+
+<div
+    class="start-here-badge"
+    data-ar="ابدأ هنا"
+    data-en="START HERE">
+
+ابدأ هنا
+
+</div>
+
+<div class="smart-main-icon">
+🧠
+</div>
+
+<h2
+    data-ar="الفرز الذكي للأمراض المعدية"
+    data-en="Smart Infectious Disease Screening">
+
+الفرز الذكي للأمراض المعدية
+
+</h2>
+
+<h3>
+Smart Infectious Disease Screening
+</h3>
+
+<p
+    data-ar="أدخل الأعراض والعوامل الوبائية للمريض لمساعدة الممارس الصحي في تحديد الأمراض المعدية المحتملة، ثم الوصول إلى إجراءات العزل والعينات والبلاغ عند الحاجة."
+    data-en="Enter patient symptoms and epidemiological factors to support identification of possible infectious diseases, then access isolation, specimen and notification guidance when required.">
+
+أدخل الأعراض والعوامل الوبائية للمريض لمساعدة الممارس الصحي
+في تحديد الأمراض المعدية المحتملة، ثم الوصول إلى إجراءات العزل
+والعينات والبلاغ عند الحاجة.
+
+</p>
+
+<button
+    class="start-smart-btn"
+    onclick="window.location.href='smart-screening.html'"
+    data-ar="🧠 بدء الفرز الذكي"
+    data-en="🧠 Start Smart Screening">
+
+🧠 بدء الفرز الذكي
+
+</button>
+
+</section>
+
+
+
+<!-- Direct notification -->
+
+<section class="direct-notification">
+
+<div class="direct-notification-info">
+
+<div class="direct-icon">
+🚨
+</div>
+
+<div>
+
+<h3
+    data-ar="هل تعرف المرض أو الحالة المشتبهة بالفعل؟"
+    data-en="Do you already know the suspected disease?">
+
+هل تعرف المرض أو الحالة المشتبهة بالفعل؟
+
+</h3>
+
+<p
+    data-ar="يمكنك تجاوز الفرز الذكي والانتقال مباشرة إلى دليل المرض وبدء البلاغ."
+    data-en="You can bypass smart screening, select the disease and start the notification directly.">
+
+يمكنك تجاوز الفرز الذكي والانتقال مباشرة إلى دليل المرض وبدء البلاغ.
+
+</p>
+
+</div>
+
+</div>
+
+
+<button
+    class="direct-report-btn"
+    onclick="window.location.href='infectious-diseases.html'"
+    data-ar="🚨 بدء بلاغ مباشر"
+    data-en="🚨 Start Direct Notification">
+
+🚨 بدء بلاغ مباشر
+
+</button>
+
+</section>
+
+
+
+<!-- =====================================
+     Supporting Services
+===================================== -->
+
+<section class="support-title">
+
+<div class="support-title-line"></div>
+
+<div class="support-title-center">
+
+<h2
+    data-ar="الأدوات المساندة"
+    data-en="Clinical Support Tools">
+
+الأدوات المساندة
+
+</h2>
+
+<p
+    data-ar="المعلومات التي يحتاجها طاقم الطوارئ أثناء التعامل مع الحالة"
+    data-en="Information needed by emergency staff while managing the patient">
+
+المعلومات التي يحتاجها طاقم الطوارئ أثناء التعامل مع الحالة
+
+</p>
+
+</div>
+
+<div class="support-title-line"></div>
+
+</section>
+
+
+
+<section class="support-grid">
+
+
+<!-- Diseases -->
+
+<div class="support-card">
+
+<div class="support-icon">
+🦠
+</div>
+
+<h3
+    data-ar="دليل الأمراض المعدية"
+    data-en="Infectious Disease Guide">
+
+دليل الأمراض المعدية
+
+</h3>
+
+<h4>
+Infectious Diseases
+</h4>
+
+<p
+    data-ar="تعريفات الاشتباه والأعراض والانتقال والإجراءات المطلوبة."
+    data-en="Suspicion criteria, symptoms, transmission and required actions.">
+
+تعريفات الاشتباه والأعراض والانتقال والإجراءات المطلوبة.
+
+</p>
+
+<button
+    onclick="window.location.href='infectious-diseases.html'"
+    data-ar="فتح الدليل"
+    data-en="Open Guide">
+
+فتح الدليل
+
+</button>
+
+</div>
+
+
+
+<!-- Isolation -->
+
+<div class="support-card">
+
+<div class="support-icon">
+🛡️
+</div>
+
+<h3
+    data-ar="العزل والاحتياطات"
+    data-en="Isolation & Precautions">
+
+العزل والاحتياطات
+
+</h3>
+
+<h4>
+Isolation & Precautions
+</h4>
+
+<p
+    data-ar="الوصول السريع إلى نوع العزل ومعدات الوقاية والاحتياطات."
+    data-en="Quick access to isolation type, PPE and transmission precautions.">
+
+الوصول السريع إلى نوع العزل ومعدات الوقاية والاحتياطات.
+
+</p>
+
+<button
+    onclick="window.location.href='isolation-precautions.html'"
+    data-ar="فتح الدليل"
+    data-en="Open Guide">
+
+فتح الدليل
+
+</button>
+
+</div>
+
+
+
+<!-- Specimens -->
+
+<div class="support-card">
+
+<div class="support-icon">
+🧪
+</div>
+
+<h3
+    data-ar="دليل العينات"
+    data-en="Specimen Guide">
+
+دليل العينات
+
+</h3>
+
+<h4>
+Specimen Guide
+</h4>
+
+<p
+    data-ar="نوع العينة وطريقة الجمع والحفظ والنقل والفحص المطلوب."
+    data-en="Specimen type, collection, storage, transport and required testing.">
+
+نوع العينة وطريقة الجمع والحفظ والنقل والفحص المطلوب.
+
+</p>
+
+<button
+    onclick="window.location.href='specimen-guide.html'"
+    data-ar="فتح الدليل"
+    data-en="Open Guide">
+
+فتح الدليل
+
+</button>
+
+</div>
+
+
+
+<!-- Policies -->
+
+<div class="support-card">
+
+<div class="support-icon">
+📘
+</div>
+
+<h3
+    data-ar="السياسات والإجراءات"
+    data-en="Policies & Procedures">
+
+السياسات والإجراءات
+
+</h3>
+
+<h4>
+Policies & Procedures
+</h4>
+
+<p
+    data-ar="السياسات والإجراءات والمراجع المعتمدة ذات العلاقة."
+    data-en="Approved policies, procedures and relevant references.">
+
+السياسات والإجراءات والمراجع المعتمدة ذات العلاقة.
+
+</p>
+
+<button
+    onclick="window.location.href='policies.html'"
+    data-ar="فتح السياسات"
+    data-en="Open Policies">
+
+فتح السياسات
+
+</button>
+
+</div>
+
+
+
+<!-- Forms -->
+
+<div class="support-card">
+
+<div class="support-icon">
+📋
+</div>
+
+<h3
+    data-ar="النماذج الرسمية"
+    data-en="Official Forms">
+
+النماذج الرسمية
+
+</h3>
+
+<h4>
+Official Forms
+</h4>
+
+<p
+    data-ar="الوصول إلى نماذج الإبلاغ والتقصي الرسمية عند الحاجة."
+    data-en="Access official notification and investigation forms when required.">
+
+الوصول إلى نماذج الإبلاغ والتقصي الرسمية عند الحاجة.
+
+</p>
+
+<button
+    onclick="window.location.href='forms.html'"
+    data-ar="فتح النماذج"
+    data-en="Open Forms">
+
+فتح النماذج
+
+</button>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================
+     Workflow
+===================================== -->
+
+<section class="flow-section">
+
+<h2
+    data-ar="مسار العمل المقترح في الطوارئ"
+    data-en="Recommended Emergency Workflow">
+
+مسار العمل المقترح في الطوارئ
+
+</h2>
+
+
+<div class="flow-grid">
+
+
+<div class="flow-step">
+
+<div class="flow-number">
+1
+</div>
+
+<h3
+    data-ar="الفرز الذكي"
+    data-en="Smart Screening">
+
+الفرز الذكي
+
+</h3>
+
+<p
+    data-ar="إدخال الأعراض والتاريخ الوبائي."
+    data-en="Enter symptoms and epidemiological history.">
+
+إدخال الأعراض والتاريخ الوبائي.
+
+</p>
+
+</div>
+
+
+<div class="flow-step">
+
+<div class="flow-number">
+2
+</div>
+
+<h3
+    data-ar="تحديد الاشتباه"
+    data-en="Identify Suspicion">
+
+تحديد الاشتباه
+
+</h3>
+
+<p
+    data-ar="عرض الأمراض المحتملة والتنبيهات ذات الأولوية."
+    data-en="Display possible diseases and priority alerts.">
+
+عرض الأمراض المحتملة والتنبيهات ذات الأولوية.
+
+</p>
+
+</div>
+
+
+<div class="flow-step">
+
+<div class="flow-number">
+3
+</div>
+
+<h3
+    data-ar="الإجراء الفوري"
+    data-en="Immediate Action">
+
+الإجراء الفوري
+
+</h3>
+
+<p
+    data-ar="العزل والاحتياطات والعينات والإجراءات المطلوبة."
+    data-en="Isolation, precautions, specimens and required actions.">
+
+العزل والاحتياطات والعينات والإجراءات المطلوبة.
+
+</p>
+
+</div>
+
+
+<div class="flow-step">
+
+<div class="flow-number">
+4
+</div>
+
+<h3
+    data-ar="البلاغ"
+    data-en="Notification">
+
+البلاغ
+
+</h3>
+
+<p
+    data-ar="بدء البلاغ وإرساله لمسار متابعة الصحة العامة عند الحاجة."
+    data-en="Start the notification and send it to Public Health follow-up when required.">
+
+بدء البلاغ وإرساله لمسار متابعة الصحة العامة عند الحاجة.
+
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================
+     Information
+===================================== -->
+
+<section class="info-strip">
+
+
+<div class="info-card">
+
+<div class="info-icon">
+⚡
+</div>
+
+<div>
+
+<h3
+    data-ar="مصمم للطوارئ"
+    data-en="Designed for Emergency Care">
+
+مصمم للطوارئ
+
+</h3>
+
+<p
+    data-ar="تم اختصار المسار للوصول إلى المعلومات والإجراء بسرعة."
+    data-en="The workflow is simplified for rapid access to information and action.">
+
+تم اختصار المسار للوصول إلى المعلومات والإجراء بسرعة.
+
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="info-card">
+
+<div class="info-icon">
+🔐
+</div>
+
+<div>
+
+<h3
+    data-ar="الخصوصية"
+    data-en="Privacy">
+
+الخصوصية
+
+</h3>
+
+<p
+    data-ar="البيانات التشغيلية مخصصة للاستخدام الداخلي ولا تظهر أدوات إدارة الصحة العامة في هذه الواجهة."
+    data-en="Operational data is for internal use and Public Health management tools are not displayed in this interface.">
+
+البيانات التشغيلية مخصصة للاستخدام الداخلي
+ولا تظهر أدوات إدارة الصحة العامة في هذه الواجهة.
+
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="info-card">
+
+<div class="info-icon">
+☎️
+</div>
+
+<div>
+
+<h3
+    data-ar="التصعيد"
+    data-en="Escalation">
+
+التصعيد
+
+</h3>
+
+<p
+    data-ar="يتم إشعار الصحة العامة ومكافحة العدوى وفق نوع الحالة والإجراء المعتمد."
+    data-en="Public Health and Infection Control are escalated according to the case and approved procedure.">
+
+يتم إشعار الصحة العامة ومكافحة العدوى
+وفق نوع الحالة والإجراء المعتمد.
+
+</p>
+
+</div>
+
+</div>
+
+
+</section>
+
+
+
+<section class="notice-bar">
+
+<strong
+    data-ar="⚠️ تنبيه:"
+    data-en="⚠️ Notice:">
+
+⚠️ تنبيه:
+
+</strong>
+
+<span
+    data-ar="الفرز الذكي أداة مساندة للممارس الصحي ولا يمثل تشخيصًا طبيًا، ولا يستبدل الحكم السريري أو تعريف الحالة الرسمي أو السياسات والإجراءات المعتمدة أو الإبلاغ الرسمي عند وجوبه."
+    data-en="Smart screening is a clinical support tool and does not provide a medical diagnosis. It does not replace clinical judgment, official case definitions, approved policies, procedures or mandatory official notification.">
+
+الفرز الذكي أداة مساندة للممارس الصحي ولا يمثل تشخيصًا طبيًا،
+ولا يستبدل الحكم السريري أو تعريف الحالة الرسمي أو السياسات
+والإجراءات المعتمدة أو الإبلاغ الرسمي عند وجوبه.
+
+</span>
+
+</section>
+
+
+</main>
+
+
+
+<footer>
+
+<div>
+
+<p>
+SPHP - البوابة الذكية للصحة العامة
+</p>
+
+<p>
+Smart Public Health Portal - SPHP
+</p>
+
+</div>
+
+
+<div>
+
+<p>
+واجهة دعم الفرز في الطوارئ
+</p>
+
+<p>
+Emergency Screening Support Interface
+</p>
+
+</div>
+
+</footer>
+
+
+
+<script>
+
+
+let currentLanguage =
+    "ar";
+
+
+const portalSearchItems = [
+
+
+{
+    titleAr:
+        "الفرز الذكي للأمراض المعدية",
+
+    titleEn:
+        "Smart Infectious Disease Screening",
+
+    keywords:
+        "فرز ذكي اعراض اشتباه smart screening symptoms triage infectious",
+
+    url:
+        "smart-screening.html"
+},
+
+
+{
+    titleAr:
+        "الإبلاغ الإلكتروني",
+
+    titleEn:
+        "Electronic Notification",
+
+    keywords:
+        "بلاغ تبليغ حالة مشتبهة report notification suspected",
+
+    url:
+        "infectious-diseases.html"
+},
+
+
+{
+    titleAr:
+        "دليل الأمراض المعدية",
+
+    titleEn:
+        "Infectious Disease Guide",
+
+    keywords:
+        "امراض معدية نيباه هانتا درن سعار كوفيد انفلونزا التهاب كبدي جدري قردة جرب حصبة infectious nipah hanta tuberculosis rabies covid influenza hepatitis mpox scabies",
+
+    url:
+        "infectious-diseases.html"
+},
+
+
+{
+    titleAr:
+        "العزل والاحتياطات",
+
+    titleEn:
+        "Isolation & Precautions",
+
+    keywords:
+        "عزل احتياطات هوائي رذاذ تلامس معدات وقاية isolation airborne droplet contact ppe",
+
+    url:
+        "isolation-precautions.html"
+},
+
+
+{
+    titleAr:
+        "دليل العينات",
+
+    titleEn:
+        "Specimen Guide",
+
+    keywords:
+        "عينات مسحات دم براز مختبر specimen sample laboratory swab blood",
+
+    url:
+        "specimen-guide.html"
+},
+
+
+{
+    titleAr:
+        "السياسات والإجراءات",
+
+    titleEn:
+        "Policies & Procedures",
+
+    keywords:
+        "سياسات اجراءات دليل مرجع policies procedures",
+
+    url:
+        "policies.html"
+},
+
+
+{
+    titleAr:
+        "النماذج الرسمية",
+
+    titleEn:
+        "Official Forms",
+
+    keywords:
+        "نماذج نموذج بلاغ تقصي forms notification investigation",
+
+    url:
+        "forms.html"
+}
+
+
+];
+
+
+
+function searchPortal(){
+
+    const input =
+        document.getElementById(
+            "searchInput"
+        );
+
+
+    const result =
+        document.getElementById(
+            "searchResult"
+        );
+
+
+    const query =
+        input.value
+        .trim()
+        .toLowerCase();
+
+
+    if(!query){
+
+        result.innerHTML =
+            "";
+
+        return;
+
+    }
+
+
+    const matches =
+        portalSearchItems.filter(
+            function(item){
+
+                const text =
+                    (
+                        item.titleAr +
+                        " " +
+                        item.titleEn +
+                        " " +
+                        item.keywords
+                    )
+                    .toLowerCase();
+
+
+                return text.includes(
+                    query
+                );
+
+            }
+        );
+
+
+    if(
+        matches.length ===
+        0
+    ){
+
+        result.innerHTML = `
+
+        <div class="search-result-item">
+
+        لا توجد نتيجة مطابقة.
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    result.innerHTML =
+        matches.map(
+            function(item){
+
+                const title =
+                    currentLanguage ===
+                    "ar"
+
+                    ? item.titleAr
+
+                    : item.titleEn;
+
+
+                return `
+
+                <a
+                    class="search-result-item"
+                    href="${item.url}">
+
+                🔎 ${title}
+
+                </a>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+
+/* =========================================
+   Language
+========================================= */
+
+function toggleLanguage(){
+
+    currentLanguage =
+        currentLanguage ===
+        "ar"
+
+        ? "en"
+
+        : "ar";
+
+
+    const english =
+        currentLanguage ===
+        "en";
+
+
+    document.documentElement.lang =
+        english
+        ? "en"
+        : "ar";
+
+
+    document.documentElement.dir =
+        english
+        ? "ltr"
+        : "rtl";
+
+
+    document.getElementById(
+        "languageButton"
+    ).textContent =
+        english
+        ? "🌐 العربية"
+        : "🌐 English";
+
+
+    document
+    .querySelectorAll(
+        "[data-ar][data-en]"
+    )
+    .forEach(
+        function(element){
+
+            element.textContent =
+                english
+                ? element.dataset.en
+                : element.dataset.ar;
+
+        }
+    );
+
+
+    document
+    .querySelectorAll(
+        "[data-placeholder-ar][data-placeholder-en]"
+    )
+    .forEach(
+        function(element){
+
+            element.placeholder =
+                english
+                ? element.dataset.placeholderEn
+                : element.dataset.placeholderAr;
+
+        }
+    );
+
+
+    searchPortal();
+
+}
+
+</script>
+
+
+</body>
+
+</html>

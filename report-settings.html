@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>إعدادات واعتماد التقارير</title>
+
+<link rel="stylesheet" href="Style.css">
+
+<style>
+
+body{
+    margin:0;
+    background:#f3f6f8;
+    font-family:Arial, sans-serif;
+    color:#29465f;
+}
+
+.page{
+    max-width:1100px;
+    margin:30px auto;
+    padding:0 20px 60px;
+}
+
+.intro,
+.card{
+    background:#fff;
+    border:1px solid #dfe8f2;
+    border-radius:16px;
+    padding:24px;
+    margin-bottom:20px;
+    box-shadow:0 4px 14px rgba(0,0,0,.05);
+}
+
+.intro{
+    text-align:center;
+}
+
+.intro h2{
+    color:#064c92;
+    margin-top:0;
+}
+
+.intro p{
+    color:#607387;
+    line-height:1.8;
+}
+
+.card h3{
+    color:#064c92;
+    margin-top:0;
+    border-bottom:1px solid #e4ebf1;
+    padding-bottom:12px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+
+.group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.group.full{
+    grid-column:1/-1;
+}
+
+label{
+    font-weight:bold;
+    color:#294b6a;
+}
+
+input,
+select{
+    width:100%;
+    box-sizing:border-box;
+    padding:12px;
+    border:1px solid #ccd9e5;
+    border-radius:8px;
+    background:#fff;
+    font-size:14px;
+}
+
+.signature-area{
+    margin-top:18px;
+    border:2px dashed #cbd8e4;
+    border-radius:12px;
+    padding:20px;
+    text-align:center;
+    background:#f8fbfd;
+}
+
+.signature-area img{
+    display:none;
+    max-width:260px;
+    max-height:120px;
+    object-fit:contain;
+    margin:15px auto;
+}
+
+.signature-placeholder{
+    color:#7a8b99;
+    padding:18px;
+}
+
+.upload-btn{
+    display:inline-block;
+    background:#eaf1f7;
+    color:#064c92;
+    padding:10px 16px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.upload-btn input{
+    display:none;
+}
+
+.remove-btn{
+    display:none;
+    margin:10px auto 0;
+    border:none;
+    background:#fff0f0;
+    color:#b3261e;
+    padding:8px 14px;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:20px;
+}
+
+.save-btn,
+.back-btn,
+.clear-btn{
+    border:none;
+    border-radius:9px;
+    padding:13px 20px;
+    font-weight:bold;
+    cursor:pointer;
+    text-decoration:none;
+}
+
+.save-btn{
+    background:#187b43;
+    color:#fff;
+}
+
+.back-btn{
+    background:#eaf1f7;
+    color:#064c92;
+}
+
+.clear-btn{
+    background:#fff0f0;
+    color:#b3261e;
+}
+
+.message{
+    display:none;
+    margin-top:20px;
+    padding:16px;
+    border-radius:10px;
+    line-height:1.8;
+}
+
+.message.success{
+    display:block;
+    background:#eaf7ee;
+    border-right:5px solid #2e7d32;
+    color:#285b33;
+}
+
+.message.error{
+    display:block;
+    background:#fff0f0;
+    border-right:5px solid #c62828;
+    color:#7d2525;
+}
+
+.security-note{
+    background:#eef7ff;
+    border-right:5px solid #0759a6;
+    border-radius:10px;
+    padding:16px;
+    margin-top:20px;
+    line-height:1.8;
+    color:#36566f;
+}
+
+.status-box{
+    margin-top:15px;
+    background:#f8fbfd;
+    border-radius:10px;
+    padding:15px;
+}
+
+.status-row{
+    display:flex;
+    justify-content:space-between;
+    padding:8px 0;
+    border-bottom:1px solid #e7edf2;
+}
+
+.status-row:last-child{
+    border-bottom:none;
+}
+
+.status-ok{
+    color:#187b43;
+    font-weight:bold;
+}
+
+.status-wait{
+    color:#b07800;
+    font-weight:bold;
+}
+
+@media(max-width:750px){
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .group.full{
+        grid-column:auto;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="hero-header">
+
+<div class="hero-grid">
+
+<div class="side-logo left-logo">
+    <img src="images/cluster-logo.png">
+</div>
+
+<div class="hero-center">
+
+<h1>
+إعدادات واعتماد التقارير
+</h1>
+
+<h2>
+Report Approval Settings
+</h2>
+
+<p>
+الصحة العامة
+</p>
+
+</div>
+
+<div class="side-logo right-logo">
+    <img src="images/hospital-logo.png">
+</div>
+
+</div>
+
+</header>
+
+
+<main class="page">
+
+
+<section class="intro">
+
+<h2>
+إدارة بيانات إعداد واعتماد التقارير
+</h2>
+
+<p>
+تستخدم هذه الصفحة لتحديد بيانات مُعد التقرير
+وبيانات المعتمد والتوقيعات الإلكترونية التي ستظهر
+في تقارير الصحة العامة.
+</p>
+
+</section>
+
+
+<!-- ===========================
+     معد التقرير
+=========================== -->
+
+<section class="card">
+
+<h3>
+✍️ أولًا: مُعد التقرير
+</h3>
+
+<div class="grid">
+
+<div class="group">
+
+<label>
+اسم مُعد التقرير
+</label>
+
+<input
+    type="text"
+    id="preparedByName"
+    placeholder="الاسم الكامل">
+
+</div>
+
+
+<div class="group">
+
+<label>
+المسمى الوظيفي
+</label>
+
+<input
+    type="text"
+    id="preparedByTitle"
+    placeholder="مثال: مدير إدارة الصحة العامة">
+
+</div>
+
+
+<div class="group">
+
+<label>
+القسم / الإدارة
+</label>
+
+<input
+    type="text"
+    id="preparedByDepartment"
+    value="الصحة العامة">
+
+</div>
+
+
+<div class="group">
+
+<label>
+حالة التوقيع
+</label>
+
+<select id="preparedSignatureStatus">
+
+<option value="unsigned">
+غير موقع
+</option>
+
+<option value="signed">
+موقع إلكترونيًا
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<div class="signature-area">
+
+<strong>
+التوقيع الإلكتروني لمُعد التقرير
+</strong>
+
+<div
+    id="preparedPlaceholder"
+    class="signature-placeholder">
+
+    لم تتم إضافة توقيع.
+
+</div>
+
+<img
+    id="preparedSignaturePreview"
+    alt="توقيع معد التقرير">
+
+<br>
+
+<label class="upload-btn">
+
+📎 اختيار صورة التوقيع
+
+<input
+    type="file"
+    id="preparedSignatureFile"
+    accept="image/png,image/jpeg,image/webp"
+    onchange="loadSignature(this,'prepared')">
+
+</label>
+
+<button
+    id="preparedRemove"
+    class="remove-btn"
+    onclick="removeSignature('prepared')">
+
+حذف التوقيع
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ===========================
+     اعتماد التقرير
+=========================== -->
+
+<section class="card">
+
+<h3>
+✅ ثانيًا: اعتماد التقرير
+</h3>
+
+<div class="grid">
+
+<div class="group">
+
+<label>
+اسم معتمد التقرير
+</label>
+
+<input
+    type="text"
+    id="approvedByName"
+    placeholder="الاسم الكامل">
+
+</div>
+
+
+<div class="group">
+
+<label>
+المسمى الوظيفي
+</label>
+
+<input
+    type="text"
+    id="approvedByTitle"
+    placeholder="مثال: مدير المستشفى">
+
+</div>
+
+
+<div class="group">
+
+<label>
+الإدارة
+</label>
+
+<input
+    type="text"
+    id="approvedByDepartment"
+    placeholder="الإدارة">
+
+</div>
+
+
+<div class="group">
+
+<label>
+حالة الاعتماد
+</label>
+
+<select id="approvalStatus">
+
+<option value="pending">
+بانتظار الاعتماد
+</option>
+
+<option value="approved">
+معتمد
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<div class="signature-area">
+
+<strong>
+التوقيع الإلكتروني للمعتمد
+</strong>
+
+<div
+    id="approvedPlaceholder"
+    class="signature-placeholder">
+
+    لم تتم إضافة توقيع.
+
+</div>
+
+<img
+    id="approvedSignaturePreview"
+    alt="توقيع معتمد التقرير">
+
+<br>
+
+<label class="upload-btn">
+
+📎 اختيار صورة التوقيع
+
+<input
+    type="file"
+    id="approvedSignatureFile"
+    accept="image/png,image/jpeg,image/webp"
+    onchange="loadSignature(this,'approved')">
+
+</label>
+
+<button
+    id="approvedRemove"
+    class="remove-btn"
+    onclick="removeSignature('approved')">
+
+حذف التوقيع
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ===========================
+     الحالة
+=========================== -->
+
+<section class="card">
+
+<h3>
+📋 حالة إعداد التقرير
+</h3>
+
+<div class="status-box">
+
+<div class="status-row">
+
+<span>
+بيانات مُعد التقرير
+</span>
+
+<span
+    id="preparedDataStatus"
+    class="status-wait">
+
+غير مكتملة
+
+</span>
+
+</div>
+
+
+<div class="status-row">
+
+<span>
+توقيع مُعد التقرير
+</span>
+
+<span
+    id="preparedSignStatus"
+    class="status-wait">
+
+غير مضاف
+
+</span>
+
+</div>
+
+
+<div class="status-row">
+
+<span>
+بيانات المعتمد
+</span>
+
+<span
+    id="approvedDataStatus"
+    class="status-wait">
+
+غير مكتملة
+
+</span>
+
+</div>
+
+
+<div class="status-row">
+
+<span>
+اعتماد التقرير
+</span>
+
+<span
+    id="approvalDisplayStatus"
+    class="status-wait">
+
+بانتظار الاعتماد
+
+</span>
+
+</div>
+
+</div>
+
+</section>
+
+
+<div class="actions">
+
+<button
+    class="save-btn"
+    onclick="saveSettings()">
+
+💾 حفظ الإعدادات
+
+</button>
+
+
+<button
+    class="clear-btn"
+    onclick="clearSettings()">
+
+🗑️ مسح الإعدادات
+
+</button>
+
+
+<a
+    class="back-btn"
+    href="analytics-dashboard.html">
+
+← العودة إلى المؤشرات
+
+</a>
+
+</div>
+
+
+<div
+    id="message"
+    class="message">
+</div>
+
+
+<div class="security-note">
+
+<strong>
+🔐 ملاحظة مهمة:
+</strong>
+
+في النسخة التجريبية الحالية يتم حفظ بيانات الإعدادات
+وصور التوقيع داخل متصفح الجهاز باستخدام Local Storage.
+
+عند نقل النظام إلى بيئة العمل الفعلية يجب تخزين التوقيعات
+والاعتمادات داخل النظام الداخلي المعتمد مع التحكم في
+الصلاحيات وسجل عمليات الاعتماد.
+
+</div>
+
+
+</main>
+
+
+<script>
+
+
+let preparedSignatureData = "";
+
+let approvedSignatureData = "";
+
+
+/* ===========================
+   قراءة الصورة
+=========================== */
+
+function loadSignature(input,type){
+
+    if(
+        !input.files ||
+        !input.files[0]
+    ){
+        return;
+    }
+
+
+    const file =
+        input.files[0];
+
+
+    if(
+        !file.type.startsWith("image/")
+    ){
+
+        showMessage(
+            "⚠️ يرجى اختيار ملف صورة فقط.",
+            true
+        );
+
+        input.value = "";
+
+        return;
+
+    }
+
+
+    /*
+      نحدد الحجم في النسخة التجريبية
+      حتى لا يمتلئ Local Storage.
+    */
+
+    if(
+        file.size >
+        1024 * 1024
+    ){
+
+        showMessage(
+            "⚠️ حجم صورة التوقيع كبير. يفضل أن يكون أقل من 1 MB.",
+            true
+        );
+
+        input.value = "";
+
+        return;
+
+    }
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload =
+        function(event){
+
+            const data =
+                event.target.result;
+
+
+            if(
+                type ===
+                "prepared"
+            ){
+
+                preparedSignatureData =
+                    data;
+
+            }else{
+
+                approvedSignatureData =
+                    data;
+
+            }
+
+
+            updateSignaturePreview(
+                type
+            );
+
+            updateStatus();
+
+        };
+
+
+    reader.readAsDataURL(
+        file
+    );
+
+}
+
+
+/* ===========================
+   عرض التوقيع
+=========================== */
+
+function updateSignaturePreview(type){
+
+    let data = "";
+
+    let preview;
+
+    let placeholder;
+
+    let removeButton;
+
+
+    if(
+        type ===
+        "prepared"
+    ){
+
+        data =
+            preparedSignatureData;
+
+        preview =
+            document.getElementById(
+                "preparedSignaturePreview"
+            );
+
+        placeholder =
+            document.getElementById(
+                "preparedPlaceholder"
+            );
+
+        removeButton =
+            document.getElementById(
+                "preparedRemove"
+            );
+
+    }else{
+
+        data =
+            approvedSignatureData;
+
+        preview =
+            document.getElementById(
+                "approvedSignaturePreview"
+            );
+
+        placeholder =
+            document.getElementById(
+                "approvedPlaceholder"
+            );
+
+        removeButton =
+            document.getElementById(
+                "approvedRemove"
+            );
+
+    }
+
+
+    if(data){
+
+        preview.src =
+            data;
+
+        preview.style.display =
+            "block";
+
+        placeholder.style.display =
+            "none";
+
+        removeButton.style.display =
+            "block";
+
+    }else{
+
+        preview.removeAttribute(
+            "src"
+        );
+
+        preview.style.display =
+            "none";
+
+        placeholder.style.display =
+            "block";
+
+        removeButton.style.display =
+            "none";
+
+    }
+
+}
+
+
+/* ===========================
+   حذف توقيع
+=========================== */
+
+function removeSignature(type){
+
+    if(
+        type ===
+        "prepared"
+    ){
+
+        preparedSignatureData =
+            "";
+
+        document.getElementById(
+            "preparedSignatureFile"
+        ).value =
+            "";
+
+    }else{
+
+        approvedSignatureData =
+            "";
+
+        document.getElementById(
+            "approvedSignatureFile"
+        ).value =
+            "";
+
+    }
+
+
+    updateSignaturePreview(
+        type
+    );
+
+    updateStatus();
+
+}
+
+
+/* ===========================
+   قيمة عنصر
+=========================== */
+
+function valueOf(id){
+
+    const element =
+        document.getElementById(
+            id
+        );
+
+
+    return element
+        ? element.value.trim()
+        : "";
+
+}
+
+
+/* ===========================
+   حفظ الإعدادات
+=========================== */
+
+function saveSettings(){
+
+    const settings = {
+
+        preparedByName:
+            valueOf(
+                "preparedByName"
+            ),
+
+        preparedByTitle:
+            valueOf(
+                "preparedByTitle"
+            ),
+
+        preparedByDepartment:
+            valueOf(
+                "preparedByDepartment"
+            ),
+
+        preparedSignatureStatus:
+            valueOf(
+                "preparedSignatureStatus"
+            ),
+
+        preparedSignature:
+            preparedSignatureData,
+
+
+        approvedByName:
+            valueOf(
+                "approvedByName"
+            ),
+
+        approvedByTitle:
+            valueOf(
+                "approvedByTitle"
+            ),
+
+        approvedByDepartment:
+            valueOf(
+                "approvedByDepartment"
+            ),
+
+        approvalStatus:
+            valueOf(
+                "approvalStatus"
+            ),
+
+        approvedSignature:
+            approvedSignatureData,
+
+
+        updatedAt:
+            new Date().toISOString()
+
+    };
+
+
+    /*
+      لا نسمح بوضع حالة "موقع"
+      بدون وجود توقيع فعلي.
+    */
+
+    if(
+        settings.preparedSignatureStatus ===
+        "signed"
+
+        &&
+
+        !settings.preparedSignature
+    ){
+
+        showMessage(
+            "⚠️ تم اختيار أن مُعد التقرير موقع إلكترونيًا، ولكن لم تتم إضافة صورة التوقيع.",
+            true
+        );
+
+        return;
+
+    }
+
+
+    /*
+      لا نسمح باعتماد التقرير
+      بدون بيانات المعتمد.
+    */
+
+    if(
+        settings.approvalStatus ===
+        "approved"
+    ){
+
+        if(
+            !settings.approvedByName ||
+            !settings.approvedByTitle
+        ){
+
+            showMessage(
+                "⚠️ يرجى إدخال اسم ومسمى معتمد التقرير قبل اختيار حالة معتمد.",
+                true
+            );
+
+            return;
+
+        }
+
+
+        if(
+            !settings.approvedSignature
+        ){
+
+            showMessage(
+                "⚠️ لا يمكن اعتماد التقرير دون إضافة توقيع المعتمد.",
+                true
+            );
+
+            return;
+
+        }
+
+    }
+
+
+    try{
+
+        localStorage.setItem(
+
+            "publicHealthReportSettings",
+
+            JSON.stringify(
+                settings
+            )
+
+        );
+
+
+        showMessage(
+            "✅ تم حفظ إعدادات التقرير والتوقيعات بنجاح.",
+            false
+        );
+
+
+        updateStatus();
+
+    }catch(error){
+
+        showMessage(
+            "⚠️ تعذر حفظ الإعدادات. قد يكون حجم صورة التوقيع كبيرًا.",
+            true
+        );
+
+    }
+
+}
+
+
+/* ===========================
+   تحميل الإعدادات
+=========================== */
+
+function loadSettings(){
+
+    let settings = {};
+
+
+    try{
+
+        settings =
+            JSON.parse(
+                localStorage.getItem(
+                    "publicHealthReportSettings"
+                )
+            ) || {};
+
+    }catch(error){
+
+        settings = {};
+
+    }
+
+
+    document.getElementById(
+        "preparedByName"
+    ).value =
+        settings.preparedByName ||
+        "";
+
+
+    document.getElementById(
+        "preparedByTitle"
+    ).value =
+        settings.preparedByTitle ||
+        "";
+
+
+    document.getElementById(
+        "preparedByDepartment"
+    ).value =
+        settings.preparedByDepartment ||
+        "الصحة العامة";
+
+
+    document.getElementById(
+        "preparedSignatureStatus"
+    ).value =
+        settings.preparedSignatureStatus ||
+        "unsigned";
+
+
+    preparedSignatureData =
+        settings.preparedSignature ||
+        "";
+
+
+    document.getElementById(
+        "approvedByName"
+    ).value =
+        settings.approvedByName ||
+        "";
+
+
+    document.getElementById(
+        "approvedByTitle"
+    ).value =
+        settings.approvedByTitle ||
+        "";
+
+
+    document.getElementById(
+        "approvedByDepartment"
+    ).value =
+        settings.approvedByDepartment ||
+        "";
+
+
+    document.getElementById(
+        "approvalStatus"
+    ).value =
+        settings.approvalStatus ||
+        "pending";
+
+
+    approvedSignatureData =
+        settings.approvedSignature ||
+        "";
+
+
+    updateSignaturePreview(
+        "prepared"
+    );
+
+
+    updateSignaturePreview(
+        "approved"
+    );
+
+
+    updateStatus();
+
+}
+
+
+/* ===========================
+   تحديث حالة الصفحة
+=========================== */
+
+function setStatus(
+    id,
+    text,
+    ok
+){
+
+    const element =
+        document.getElementById(
+            id
+        );
+
+
+    element.textContent =
+        text;
+
+
+    element.className =
+        ok
+        ? "status-ok"
+        : "status-wait";
+
+}
+
+
+function updateStatus(){
+
+    const preparedComplete =
+
+        valueOf(
+            "preparedByName"
+        )
+
+        &&
+
+        valueOf(
+            "preparedByTitle"
+        );
+
+
+    setStatus(
+
+        "preparedDataStatus",
+
+        preparedComplete
+        ? "مكتملة"
+        : "غير مكتملة",
+
+        !!preparedComplete
+
+    );
+
+
+    setStatus(
+
+        "preparedSignStatus",
+
+        preparedSignatureData
+        ? "تمت إضافة التوقيع"
+        : "غير مضاف",
+
+        !!preparedSignatureData
+
+    );
+
+
+    const approvedComplete =
+
+        valueOf(
+            "approvedByName"
+        )
+
+        &&
+
+        valueOf(
+            "approvedByTitle"
+        );
+
+
+    setStatus(
+
+        "approvedDataStatus",
+
+        approvedComplete
+        ? "مكتملة"
+        : "غير مكتملة",
+
+        !!approvedComplete
+
+    );
+
+
+    const approved =
+
+        valueOf(
+            "approvalStatus"
+        ) ===
+        "approved"
+
+        &&
+
+        approvedSignatureData;
+
+
+    setStatus(
+
+        "approvalDisplayStatus",
+
+        approved
+        ? "معتمد وموقع"
+        : "بانتظار الاعتماد",
+
+        !!approved
+
+    );
+
+}
+
+
+/* ===========================
+   رسالة
+=========================== */
+
+function showMessage(
+    text,
+    error
+){
+
+    const box =
+        document.getElementById(
+            "message"
+        );
+
+
+    box.textContent =
+        text;
+
+
+    box.className =
+        error
+        ? "message error"
+        : "message success";
+
+
+    box.scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+/* ===========================
+   مسح
+=========================== */
+
+function clearSettings(){
+
+    const answer =
+        confirm(
+            "هل تريد مسح جميع بيانات إعداد واعتماد التقارير؟"
+        );
+
+
+    if(!answer){
+        return;
+    }
+
+
+    localStorage.removeItem(
+        "publicHealthReportSettings"
+    );
+
+
+    preparedSignatureData =
+        "";
+
+    approvedSignatureData =
+        "";
+
+
+    document.getElementById(
+        "preparedByName"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "preparedByTitle"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "preparedByDepartment"
+    ).value =
+        "الصحة العامة";
+
+
+    document.getElementById(
+        "preparedSignatureStatus"
+    ).value =
+        "unsigned";
+
+
+    document.getElementById(
+        "approvedByName"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "approvedByTitle"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "approvedByDepartment"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "approvalStatus"
+    ).value =
+        "pending";
+
+
+    document.getElementById(
+        "preparedSignatureFile"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "approvedSignatureFile"
+    ).value =
+        "";
+
+
+    updateSignaturePreview(
+        "prepared"
+    );
+
+
+    updateSignaturePreview(
+        "approved"
+    );
+
+
+    updateStatus();
+
+
+    showMessage(
+        "تم مسح إعدادات التقرير.",
+        false
+    );
+
+}
+
+
+/* ===========================
+   مراقبة التغييرات
+=========================== */
+
+document
+.querySelectorAll(
+    "input, select"
+)
+.forEach(
+
+    function(element){
+
+        if(
+            element.type !==
+            "file"
+        ){
+
+            element.addEventListener(
+                "input",
+                updateStatus
+            );
+
+            element.addEventListener(
+                "change",
+                updateStatus
+            );
+
+        }
+
+    }
+
+);
+
+
+/* ===========================
+   تشغيل الصفحة
+=========================== */
+
+document.addEventListener(
+
+    "DOMContentLoaded",
+
+    function(){
+
+        loadSettings();
+
+    }
+
+);
+
+</script>
+
+
+</body>
+
+</html>

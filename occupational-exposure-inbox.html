@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>سجل الإصابات والتعرضات المهنية</title>
+
+<link rel="stylesheet" href="Style.css">
+
+<style>
+
+.page{
+    max-width:1300px;
+    margin:30px auto;
+    padding:0 20px 60px;
+}
+
+.intro{
+    background:#fff;
+    border:1px solid #dfe8f2;
+    border-radius:15px;
+    padding:24px;
+    text-align:center;
+    box-shadow:0 4px 14px rgba(0,0,0,.05);
+}
+
+.intro h2{
+    color:#064c92;
+    margin-top:0;
+}
+
+.intro p{
+    color:#607387;
+    line-height:1.8;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin:22px 0;
+}
+
+.stat{
+    background:#fff;
+    border:1px solid #dfe8f2;
+    border-radius:13px;
+    padding:20px;
+    text-align:center;
+}
+
+.num{
+    font-size:30px;
+    font-weight:bold;
+    color:#064c92;
+}
+
+.stat p{
+    margin:7px 0 0;
+    color:#607387;
+}
+
+.filters{
+    background:#fff;
+    border:1px solid #dfe8f2;
+    border-radius:14px;
+    padding:18px;
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:12px;
+    margin-bottom:18px;
+}
+
+.filters input,
+.filters select{
+    width:100%;
+    box-sizing:border-box;
+    padding:11px;
+    border:1px solid #ccd9e5;
+    border-radius:8px;
+    background:#fff;
+}
+
+.wrap{
+    overflow-x:auto;
+    background:#fff;
+    border:1px solid #dfe8f2;
+    border-radius:14px;
+}
+
+.table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:1050px;
+}
+
+.table th{
+    background:#064c92;
+    color:#fff;
+    padding:12px;
+    font-size:13px;
+}
+
+.table td{
+    padding:12px;
+    border-bottom:1px solid #e7edf2;
+    text-align:center;
+    font-size:13px;
+}
+
+.table tr:nth-child(even){
+    background:#f9fbfd;
+}
+
+.badge{
+    display:inline-block;
+    padding:5px 10px;
+    border-radius:15px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.new{
+    background:#e9f3ff;
+    color:#0759a6;
+}
+
+.follow{
+    background:#fff4d7;
+    color:#806316;
+}
+
+.closed{
+    background:#e8f6ec;
+    color:#277438;
+}
+
+.type-badge{
+    background:#eef4f8;
+    color:#29465f;
+}
+
+.open-btn{
+    display:inline-block;
+    background:#eaf1f7;
+    color:#064c92;
+    text-decoration:none;
+    padding:8px 13px;
+    border-radius:7px;
+    font-weight:bold;
+}
+
+.empty{
+    text-align:center;
+    padding:35px;
+    color:#607387;
+}
+
+.actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:20px;
+}
+
+.actions a,
+.actions button{
+    border:none;
+    border-radius:9px;
+    padding:11px 18px;
+    font-weight:bold;
+    cursor:pointer;
+    text-decoration:none;
+}
+
+.new-report{
+    background:#187b43;
+    color:white;
+}
+
+.back{
+    background:#eaf1f7;
+    color:#064c92;
+}
+
+.clear-btn{
+    background:#687984;
+    color:white;
+}
+
+@media(max-width:900px){
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .filters{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:650px){
+
+    .stats,
+    .filters{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<header class="hero-header">
+
+<div class="hero-grid">
+
+<div class="side-logo left-logo">
+    <img src="images/cluster-logo.png">
+</div>
+
+<div class="hero-center">
+
+<h1>
+سجل الإصابات والتعرضات المهنية
+</h1>
+
+<h2>
+Occupational Injury & Exposure Registry
+</h2>
+
+<p>
+الصحة المهنية
+</p>
+
+</div>
+
+<div class="side-logo right-logo">
+    <img src="images/hospital-logo.png">
+</div>
+
+</div>
+
+</header>
+
+
+<main class="page">
+
+
+<section class="intro">
+
+<h2>
+البلاغات المهنية المسجلة
+</h2>
+
+<p>
+متابعة إصابات العمل والتعرضات المهنية والحالات التي تحتاج إلى متابعة.
+</p>
+
+</section>
+
+
+<section class="stats">
+
+
+<div class="stat">
+
+<div
+    id="totalRecords"
+    class="num">
+
+0
+
+</div>
+
+<p>
+إجمالي البلاغات
+</p>
+
+</div>
+
+
+<div class="stat">
+
+<div
+    id="needleRecords"
+    class="num">
+
+0
+
+</div>
+
+<p>
+وخز الإبر
+</p>
+
+</div>
+
+
+<div class="stat">
+
+<div
+    id="followupRecords"
+    class="num">
+
+0
+
+</div>
+
+<p>
+تحت المتابعة
+</p>
+
+</div>
+
+
+<div class="stat">
+
+<div
+    id="closedRecords"
+    class="num">
+
+0
+
+</div>
+
+<p>
+مغلقة
+</p>
+
+</div>
+
+
+</section>
+
+
+<section class="filters">
+
+
+<input
+    id="search"
+    placeholder="ابحث برقم البلاغ أو اسم الموظف أو الرقم الوظيفي"
+    oninput="render()">
+
+
+<select
+    id="statusFilter"
+    onchange="render()">
+
+<option value="">
+جميع الحالات
+</option>
+
+<option value="new">
+جديد
+</option>
+
+<option value="followUp">
+تحت المتابعة
+</option>
+
+<option value="closed">
+مغلق
+</option>
+
+</select>
+
+
+<select
+    id="typeFilter"
+    onchange="render()">
+
+<option value="">
+جميع أنواع التعرض
+</option>
+
+<option value="needle">
+وخز إبرة
+</option>
+
+<option value="sharp">
+إصابة بأداة حادة
+</option>
+
+<option value="eye">
+رذاذ للعين / الأغشية
+</option>
+
+<option value="skin">
+تلوث جلد غير سليم
+</option>
+
+<option value="infectious">
+تعرض لمرض معدٍ
+</option>
+
+<option value="other">
+أخرى
+</option>
+
+</select>
+
+
+<select
+    id="departmentFilter"
+    onchange="render()">
+
+<option value="">
+جميع الأقسام
+</option>
+
+</select>
+
+
+</section>
+
+
+<section class="wrap">
+
+<table class="table">
+
+<thead>
+
+<tr>
+
+<th>
+رقم البلاغ
+</th>
+
+<th>
+تاريخ الحادث
+</th>
+
+<th>
+الموظف
+</th>
+
+<th>
+الرقم الوظيفي
+</th>
+
+<th>
+القسم
+</th>
+
+<th>
+نوع التعرض
+</th>
+
+<th>
+المتابعة
+</th>
+
+<th>
+الحالة
+</th>
+
+<th>
+الإجراء
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="tableBody">
+</tbody>
+
+
+</table>
+
+
+<div
+    id="empty"
+    class="empty">
+
+لا توجد بلاغات مسجلة.
+
+</div>
+
+
+</section>
+
+
+<div class="actions">
+
+
+<a
+    class="new-report"
+    href="occupational-exposure.html">
+
+➕ تسجيل إصابة / تعرض جديد
+
+</a>
+
+
+<a
+    class="back"
+    href="occupational-health.html">
+
+← العودة للصحة المهنية
+
+</a>
+
+
+<button
+    class="clear-btn"
+    onclick="resetFilters()">
+
+↻ إعادة تعيين الفلاتر
+
+</button>
+
+
+</div>
+
+
+</main>
+
+
+<script>
+
+
+let records = [];
+
+
+/* ===========================
+   تحميل البيانات
+=========================== */
+
+function loadRecords(){
+
+    try{
+
+        const raw =
+            localStorage.getItem(
+                "occupationalExposureRecords"
+            );
+
+
+        records =
+            raw
+            ? JSON.parse(raw)
+            : [];
+
+
+        if(
+            !Array.isArray(
+                records
+            )
+        ){
+
+            records = [];
+
+        }
+
+    }catch(error){
+
+        records = [];
+
+    }
+
+
+    populateDepartments();
+
+    updateStats();
+
+    render();
+
+}
+
+
+/* ===========================
+   الإحصائيات
+=========================== */
+
+function updateStats(){
+
+    document.getElementById(
+        "totalRecords"
+    ).textContent =
+        records.length;
+
+
+    document.getElementById(
+        "needleRecords"
+    ).textContent =
+        records.filter(
+            function(item){
+
+                return (
+                    item.exposureType ===
+                    "needle"
+                );
+
+            }
+        ).length;
+
+
+    document.getElementById(
+        "followupRecords"
+    ).textContent =
+        records.filter(
+            function(item){
+
+                return (
+                    item.caseStatus ===
+                    "followUp"
+                );
+
+            }
+        ).length;
+
+
+    document.getElementById(
+        "closedRecords"
+    ).textContent =
+        records.filter(
+            function(item){
+
+                return (
+                    item.caseStatus ===
+                    "closed"
+                );
+
+            }
+        ).length;
+
+}
+
+
+/* ===========================
+   الأقسام
+=========================== */
+
+function populateDepartments(){
+
+    const select =
+        document.getElementById(
+            "departmentFilter"
+        );
+
+
+    const departments =
+        Array.from(
+            new Set(
+                records
+                .map(
+                    function(item){
+
+                        return (
+                            item.department ||
+                            ""
+                        );
+
+                    }
+                )
+                .filter(Boolean)
+            )
+        )
+        .sort();
+
+
+    select.innerHTML =
+        '<option value="">جميع الأقسام</option>';
+
+
+    departments.forEach(
+        function(department){
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                department;
+
+
+            option.textContent =
+                department;
+
+
+            select.appendChild(
+                option
+            );
+
+        }
+    );
+
+}
+
+
+/* ===========================
+   أسماء الأنواع
+=========================== */
+
+function exposureTypeName(type){
+
+    const map = {
+
+        needle:
+            "وخز إبرة",
+
+        sharp:
+            "أداة حادة",
+
+        eye:
+            "رذاذ للعين / الأغشية",
+
+        skin:
+            "تلوث جلد غير سليم",
+
+        infectious:
+            "تعرض لمرض معدٍ",
+
+        other:
+            "أخرى"
+
+    };
+
+
+    return (
+        map[type] ||
+        type ||
+        "—"
+    );
+
+}
+
+
+/* ===========================
+   أسماء الحالات
+=========================== */
+
+function statusBadge(status){
+
+    if(
+        status ===
+        "closed"
+    ){
+
+        return `
+
+        <span class="badge closed">
+            مغلق
+        </span>
+
+        `;
+
+    }
+
+
+    if(
+        status ===
+        "followUp"
+    ){
+
+        return `
+
+        <span class="badge follow">
+            تحت المتابعة
+        </span>
+
+        `;
+
+    }
+
+
+    return `
+
+    <span class="badge new">
+        جديد
+    </span>
+
+    `;
+
+}
+
+
+/* ===========================
+   المتابعة
+=========================== */
+
+function followupName(value){
+
+    if(
+        value ===
+        "yes"
+    ){
+
+        return "نعم";
+
+    }
+
+
+    if(
+        value ===
+        "no"
+    ){
+
+        return "لا";
+
+    }
+
+
+    if(
+        value ===
+        "pending"
+    ){
+
+        return "لم يحدد";
+
+    }
+
+
+    return "—";
+
+}
+
+
+/* ===========================
+   رسم الجدول
+=========================== */
+
+function render(){
+
+    const search =
+        (
+            document.getElementById(
+                "search"
+            ).value ||
+            ""
+        )
+        .trim()
+        .toLowerCase();
+
+
+    const status =
+        document.getElementById(
+            "statusFilter"
+        ).value;
+
+
+    const type =
+        document.getElementById(
+            "typeFilter"
+        ).value;
+
+
+    const department =
+        document.getElementById(
+            "departmentFilter"
+        ).value;
+
+
+    const filtered =
+        records.filter(
+            function(item){
+
+                const searchable =
+                    [
+                        item.id,
+                        item.employeeName,
+                        item.employeeId,
+                        item.department,
+                        item.incidentLocation,
+                        item.infectiousDisease
+                    ]
+                    .filter(Boolean)
+                    .join(" ")
+                    .toLowerCase();
+
+
+                if(
+                    search &&
+                    !searchable.includes(
+                        search
+                    )
+                ){
+
+                    return false;
+
+                }
+
+
+                if(
+                    status &&
+                    item.caseStatus !==
+                    status
+                ){
+
+                    return false;
+
+                }
+
+
+                if(
+                    type &&
+                    item.exposureType !==
+                    type
+                ){
+
+                    return false;
+
+                }
+
+
+                if(
+                    department &&
+                    item.department !==
+                    department
+                ){
+
+                    return false;
+
+                }
+
+
+                return true;
+
+            }
+        );
+
+
+    const body =
+        document.getElementById(
+            "tableBody"
+        );
+
+
+    body.innerHTML =
+        filtered.map(
+            function(item){
+
+                return `
+
+                <tr>
+
+                    <td>
+                        ${item.id || "—"}
+                    </td>
+
+                    <td>
+                        ${item.incidentDate || "—"}
+                    </td>
+
+                    <td>
+                        ${item.employeeName || "—"}
+                    </td>
+
+                    <td>
+                        ${item.employeeId || "—"}
+                    </td>
+
+                    <td>
+                        ${item.department || "—"}
+                    </td>
+
+                    <td>
+
+                        <span class="badge type-badge">
+
+                            ${
+                                exposureTypeName(
+                                    item.exposureType
+                                )
+                            }
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        ${
+                            followupName(
+                                item.followUpRequired
+                            )
+                        }
+
+                    </td>
+
+                    <td>
+
+                        ${
+                            statusBadge(
+                                item.caseStatus
+                            )
+                        }
+
+                    </td>
+
+                    <td>
+
+                        <a
+                            class="open-btn"
+                            href="occupational-exposure-details.html?id=${
+                                encodeURIComponent(
+                                    item.id || ""
+                                )
+                            }">
+
+                            فتح
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                `;
+
+            }
+        )
+        .join("");
+
+
+    document.getElementById(
+        "empty"
+    ).style.display =
+        filtered.length
+        ? "none"
+        : "block";
+
+}
+
+
+/* ===========================
+   إعادة تعيين
+=========================== */
+
+function resetFilters(){
+
+    document.getElementById(
+        "search"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "statusFilter"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "typeFilter"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "departmentFilter"
+    ).value =
+        "";
+
+
+    render();
+
+}
+
+
+/* ===========================
+   تشغيل
+=========================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    loadRecords
+);
+
+</script>
+
+</body>
+
+</html>

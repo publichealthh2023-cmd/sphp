@@ -1,0 +1,1788 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>الأمراض المعدية</title>
+
+<link rel="stylesheet" href="Style.css">
+
+<style>
+
+.disease-page{
+    max-width:1250px;
+    margin:30px auto;
+    padding:0 20px 50px;
+}
+
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+.intro{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.intro h2{
+    color:#064c92;
+    margin-bottom:8px;
+}
+
+.intro p{
+    color:#617387;
+    line-height:1.8;
+}
+
+
+/* =====================================================
+   SCREENING BANNER
+===================================================== */
+
+.screening-banner{
+    display:none;
+    background:#f5f0ff;
+    border:1px solid #d9ceff;
+    border-right:6px solid #5f3dc4;
+    border-radius:14px;
+    padding:18px 20px;
+    margin-bottom:22px;
+}
+
+.screening-banner.active{
+    display:block;
+}
+
+.screening-banner h3{
+    color:#4d2fa9;
+    margin:0 0 7px;
+}
+
+.screening-banner p{
+    margin:0;
+    color:#5f5875;
+    line-height:1.8;
+}
+
+.screening-banner-actions{
+    display:flex;
+    gap:9px;
+    flex-wrap:wrap;
+    margin-top:14px;
+}
+
+.screening-banner button,
+.screening-banner a{
+    border:none;
+    border-radius:8px;
+    padding:10px 14px;
+    cursor:pointer;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+.screening-back-btn{
+    background:#5f3dc4;
+    color:white;
+}
+
+.screening-guide-btn{
+    background:#e9e2ff;
+    color:#4d2fa9;
+}
+
+
+/* =====================================================
+   PRIORITY
+===================================================== */
+
+.priority-header{
+    background:#fff1f1;
+    border-right:6px solid #c62828;
+    border-radius:12px;
+    padding:18px 20px;
+    margin:25px 0 18px;
+}
+
+.priority-header h2{
+    color:#b71c1c;
+    margin:0 0 5px;
+}
+
+.priority-header p{
+    margin:0;
+    color:#735353;
+    line-height:1.7;
+}
+
+
+.priority-grid,
+.categories-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+
+.priority-card,
+.category-card{
+    position:relative;
+    background:white;
+    border:1px solid #dfe8f2;
+    border-radius:14px;
+    padding:22px;
+    text-align:center;
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
+    transition:.2s;
+}
+
+
+.priority-card{
+    border-top:5px solid #c62828;
+}
+
+
+.priority-card.highlighted{
+    outline:4px solid rgba(95,61,196,.22);
+    box-shadow:0 7px 24px rgba(95,61,196,.20);
+    transform:translateY(-3px);
+}
+
+
+.priority-badge{
+    position:absolute;
+    top:10px;
+    left:10px;
+    background:#c62828;
+    color:white;
+    padding:4px 9px;
+    border-radius:12px;
+    font-size:10px;
+    font-weight:bold;
+}
+
+
+.priority-icon,
+.cat-icon{
+    font-size:40px;
+}
+
+
+.priority-card h3,
+.category-card h3{
+    color:#064c92;
+    margin:10px 0 4px;
+}
+
+
+.priority-card h4,
+.category-card h4{
+    margin:0 0 10px;
+    color:#687786;
+    font-size:13px;
+}
+
+
+.priority-card p,
+.category-card p{
+    color:#617387;
+    line-height:1.7;
+    font-size:13px;
+    min-height:58px;
+}
+
+
+.guide-link{
+    display:inline-block;
+    background:#c62828;
+    color:#fff;
+    text-decoration:none;
+    border-radius:8px;
+    padding:10px 18px;
+    font-weight:bold;
+}
+
+
+/* =====================================================
+   CATEGORIES
+===================================================== */
+
+.category-card{
+    cursor:pointer;
+    text-align:right;
+}
+
+
+.category-card:hover{
+    transform:translateY(-3px);
+}
+
+
+.category-card.highlighted{
+    outline:4px solid rgba(95,61,196,.20);
+    background:#faf8ff;
+}
+
+
+.categories-title{
+    text-align:center;
+    margin:35px 0 20px;
+}
+
+
+.categories-title h2{
+    color:#064c92;
+}
+
+
+/* =====================================================
+   DISEASE LIST
+===================================================== */
+
+.disease-list-section{
+    display:none;
+    margin-top:30px;
+    background:white;
+    border-radius:15px;
+    padding:25px;
+    border:1px solid #dfe8f2;
+    box-shadow:0 4px 14px rgba(0,0,0,.06);
+}
+
+
+.disease-list-section.active{
+    display:block;
+}
+
+
+.disease-list{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+
+.disease-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    border:1px solid #e0e8ef;
+    background:#f9fbfd;
+    border-radius:10px;
+    padding:13px 15px;
+    transition:.2s;
+}
+
+
+.disease-item.highlighted{
+    background:#f3efff;
+    border:2px solid #5f3dc4;
+    box-shadow:0 5px 16px rgba(95,61,196,.15);
+}
+
+
+.disease-item a{
+    background:#e8f1f9;
+    color:#064c92;
+    text-decoration:none;
+    border-radius:7px;
+    padding:8px 12px;
+    font-weight:bold;
+}
+
+
+.disease-item.highlighted a{
+    background:#5f3dc4;
+    color:white;
+}
+
+
+/* =====================================================
+   REPORT NOTE
+===================================================== */
+
+.report-note{
+    margin-top:30px;
+    background:#fff8e1;
+    border-right:5px solid #f9a825;
+    border-radius:10px;
+    padding:18px;
+    line-height:1.8;
+    color:#6e5918;
+}
+
+
+/* =====================================================
+   ACTIONS
+===================================================== */
+
+.page-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:25px;
+}
+
+
+.back-btn{
+    display:inline-block;
+    background:#eaf1f7;
+    color:#064c92;
+    text-decoration:none;
+    border-radius:8px;
+    padding:10px 18px;
+    font-weight:bold;
+}
+
+
+.smart-btn{
+    display:inline-block;
+    background:#5f3dc4;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+    padding:10px 18px;
+    font-weight:bold;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:900px){
+
+    .priority-grid,
+    .categories-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+
+@media(max-width:650px){
+
+    .priority-grid,
+    .categories-grid,
+    .disease-list{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="hero-header">
+
+<div class="hero-grid">
+
+
+<div class="side-logo left-logo">
+
+<img
+    src="images/cluster-logo.png"
+    alt="Cluster">
+
+</div>
+
+
+<div class="hero-center">
+
+<h1>
+الأمراض المعدية
+</h1>
+
+<h2>
+Infectious Diseases
+</h2>
+
+<p>
+البوابة الذكية للصحة العامة
+</p>
+
+</div>
+
+
+<div class="side-logo right-logo">
+
+<img
+    src="images/hospital-logo.png"
+    alt="Hospital">
+
+</div>
+
+
+</div>
+
+</header>
+
+
+
+<main class="disease-page">
+
+
+<!-- =====================================================
+     INTRO
+===================================================== -->
+
+<section class="intro">
+
+<h2>
+دليل الأمراض المعدية
+</h2>
+
+<p>
+
+اختر المرض أو التصنيف للوصول إلى تعريف الحالة
+والأعراض والتبليغ والعينات والإجراءات الوقائية.
+
+</p>
+
+</section>
+
+
+
+<!-- =====================================================
+     FROM SMART SCREENING
+===================================================== -->
+
+<section
+    id="screeningBanner"
+    class="screening-banner">
+
+<h3>
+🧠 تم الوصول من الفرز الذكي
+</h3>
+
+<p id="screeningBannerText">
+
+تم تحديد مسار محتمل بواسطة أداة الفرز الذكي.
+راجع المرض أو التصنيف المناسب قبل اتخاذ إجراء البلاغ.
+
+</p>
+
+
+<div class="screening-banner-actions">
+
+
+<a
+    href="smart-screening.html"
+    class="screening-back-btn">
+
+↩ العودة إلى الفرز
+
+</a>
+
+
+<a
+    href="#diseaseListSection"
+    class="screening-guide-btn">
+
+📖 متابعة الدليل
+
+</a>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PRIORITY
+===================================================== -->
+
+<div class="priority-header">
+
+<h2>
+⚠️ التنبيهات والأمراض ذات الأولوية
+</h2>
+
+<p>
+
+هذه المسارات للاشتباه المبكر ولا تستبدل
+الإبلاغ الرسمي أو السياسات المعتمدة.
+
+</p>
+
+</div>
+
+
+
+<section class="priority-grid">
+
+
+<!-- NIPAH -->
+
+<div
+    id="priority-nipah"
+    class="priority-card"
+    data-disease="nipah">
+
+<span class="priority-badge">
+إبلاغ فوري
+</span>
+
+<div class="priority-icon">
+🦠
+</div>
+
+<h3>
+فيروس نيباه
+</h3>
+
+<h4>
+Nipah Virus
+</h4>
+
+<p>
+تقييم التاريخ الوبائي والأعراض العصبية أو التنفسية.
+</p>
+
+<a
+    class="guide-link"
+    href="disease-details.html?disease=nipah">
+
+فتح الدليل
+
+</a>
+
+</div>
+
+
+
+<!-- EBOLA -->
+
+<div
+    id="priority-ebola"
+    class="priority-card"
+    data-disease="ebola">
+
+<span class="priority-badge">
+إبلاغ فوري
+</span>
+
+<div class="priority-icon">
+🚨
+</div>
+
+<h3>
+إيبولا / ماربيرج
+</h3>
+
+<h4>
+Ebola / Marburg
+</h4>
+
+<p>
+حمى نزفية عالية الأهمية تتطلب تصعيدًا سريعًا.
+</p>
+
+<a
+    class="guide-link"
+    href="disease-details.html?disease=ebola">
+
+فتح الدليل
+
+</a>
+
+</div>
+
+
+
+<!-- MERS -->
+
+<div
+    id="priority-mers"
+    class="priority-card"
+    data-disease="mers">
+
+<span class="priority-badge">
+إبلاغ فوري
+</span>
+
+<div class="priority-icon">
+🫁
+</div>
+
+<h3>
+متلازمة الشرق الأوسط التنفسية
+</h3>
+
+<h4>
+MERS
+</h4>
+
+<p>
+تقييم الأعراض التنفسية والعوامل الوبائية.
+</p>
+
+<a
+    class="guide-link"
+    href="disease-details.html?disease=mers">
+
+فتح الدليل
+
+</a>
+
+</div>
+
+
+
+<!-- HANTA -->
+
+<div
+    id="priority-hantavirus"
+    class="priority-card"
+    data-disease="hantavirus">
+
+<span class="priority-badge">
+إبلاغ فوري
+</span>
+
+<div class="priority-icon">
+🐀
+</div>
+
+<h3>
+فيروس هانتا
+</h3>
+
+<h4>
+Hantavirus
+</h4>
+
+<p>
+مرض مرتبط بالتعرض للقوارض وقد يظهر بمتلازمة
+قلبية رئوية أو كلوية نزفية.
+</p>
+
+<a
+    class="guide-link"
+    href="disease-details.html?disease=hantavirus">
+
+فتح الدليل
+
+</a>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     CATEGORIES
+===================================================== -->
+
+<section class="categories-title">
+
+<h2>
+تصنيفات الأمراض
+</h2>
+
+</section>
+
+
+
+<section class="categories-grid">
+
+
+<div
+    id="category-respiratory"
+    class="category-card"
+    onclick="showCategory('respiratory')">
+
+<div class="cat-icon">
+🫁
+</div>
+
+<h3>
+الأمراض التنفسية
+</h3>
+
+<h4>
+Respiratory Diseases
+</h4>
+
+<p>
+MERS، الإنفلونزا، كوفيد-19 وغيرها.
+</p>
+
+</div>
+
+
+
+<div
+    id="category-tb"
+    class="category-card"
+    onclick="showCategory('tb')">
+
+<div class="cat-icon">
+🩻
+</div>
+
+<h3>
+الدرن والجذام
+</h3>
+
+<h4>
+Tuberculosis & Leprosy
+</h4>
+
+<p>
+الدرن والجذام.
+</p>
+
+</div>
+
+
+
+<div
+    id="category-hepatitis"
+    class="category-card"
+    onclick="showCategory('hepatitis')">
+
+<div class="cat-icon">
+🧬
+</div>
+
+<h3>
+التهاب الكبد الفيروسي
+</h3>
+
+<h4>
+Viral Hepatitis
+</h4>
+
+<p>
+التهاب الكبد A وB وC وD وE ومسارات الإبلاغ المرتبطة بها.
+</p>
+
+</div>
+
+
+
+<div
+    id="category-food"
+    class="category-card"
+    onclick="showCategory('food')">
+
+<div class="cat-icon">
+🍽️
+</div>
+
+<h3>
+التسممات والأمراض المنقولة بالغذاء
+</h3>
+
+<h4>
+Foodborne Diseases
+</h4>
+
+<p>
+التسمم الغذائي، السالمونيلا، الشيغيلا، نوروفيروس.
+</p>
+
+</div>
+
+
+
+<div
+    id="category-zoonotic"
+    class="category-card"
+    onclick="showCategory('zoonotic')">
+
+<div class="cat-icon">
+🐾
+</div>
+
+<h3>
+الأمراض المشتركة
+</h3>
+
+<h4>
+Zoonotic Diseases
+</h4>
+
+<p>
+السعار، الحمى المالطية، هانتا وغيرها.
+</p>
+
+</div>
+
+
+
+<div
+    id="category-vaccine"
+    class="category-card"
+    onclick="showCategory('vaccine')">
+
+<div class="cat-icon">
+🛡️
+</div>
+
+<h3>
+الأمراض المستهدفة بالتحصين
+</h3>
+
+<h4>
+Vaccine Preventable
+</h4>
+
+<p>
+الحصبة، الدفتيريا، السعال الديكي، التهاب السحايا.
+</p>
+
+</div>
+
+
+
+<div
+    id="category-other"
+    class="category-card"
+    onclick="showCategory('other')">
+
+<div class="cat-icon">
+📌
+</div>
+
+<h3>
+أمراض أخرى
+</h3>
+
+<h4>
+Other Diseases
+</h4>
+
+<p>
+جدري القردة والجرب وغيرها.
+</p>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     DISEASE LIST
+===================================================== -->
+
+<section
+    id="diseaseListSection"
+    class="disease-list-section">
+
+<h2 id="categoryTitle">
+الأمراض
+</h2>
+
+<div
+    id="diseaseList"
+    class="disease-list">
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     NOTE
+===================================================== -->
+
+<section class="report-note">
+
+<strong>
+⚠️ تنبيه:
+</strong>
+
+نتيجة الفرز الذكي لا تعتبر تشخيصًا للمرض.
+
+عند ظهور مجموعة أمراض محتملة يجب اختيار المرض
+الأنسب بعد التقييم السريري ومراجعة تعريف الحالة المعتمد
+قبل استكمال البلاغ.
+
+</section>
+
+
+
+<div class="page-actions">
+
+
+<a
+    class="back-btn"
+    href="index.html">
+
+← العودة للبوابة الرئيسية
+
+</a>
+
+
+<a
+    class="smart-btn"
+    href="smart-screening.html">
+
+🧠 بدء فرز ذكي جديد
+
+</a>
+
+
+</div>
+
+
+</main>
+
+
+
+<script>
+
+
+/* =====================================================
+   CATEGORIES
+===================================================== */
+
+const diseaseCategories = {
+
+
+respiratory:{
+
+    title:
+        "الأمراض التنفسية",
+
+    items:[
+
+        [
+            "mers",
+            "متلازمة الشرق الأوسط التنفسية"
+        ],
+
+        [
+            "influenza",
+            "الإنفلونزا"
+        ],
+
+        [
+            "covid",
+            "كوفيد-19"
+        ]
+
+    ]
+
+},
+
+
+
+tb:{
+
+    title:
+        "الدرن والجذام",
+
+    items:[
+
+        [
+            "tuberculosis",
+            "الدرن"
+        ],
+
+        [
+            "leprosy",
+            "الجذام"
+        ]
+
+    ]
+
+},
+
+
+
+hepatitis:{
+
+    title:
+        "التهاب الكبد الفيروسي",
+
+    items:[
+
+        [
+            "hepatitis-a",
+            "التهاب الكبد الفيروسي A"
+        ],
+
+        [
+            "hepatitis-b",
+            "التهاب الكبد الفيروسي B"
+        ],
+
+        [
+            "hepatitis-c",
+            "التهاب الكبد الفيروسي C"
+        ],
+
+        [
+            "hepatitis-d",
+            "التهاب الكبد الفيروسي D"
+        ],
+
+        [
+            "hepatitis-e",
+            "التهاب الكبد الفيروسي E"
+        ],
+
+        [
+            "hepatitis",
+            "التهاب الكبد الفيروسي - الدليل العام"
+        ]
+
+    ]
+
+},
+
+
+
+food:{
+
+    title:
+        "التسممات والأمراض المنقولة بالغذاء",
+
+    items:[
+
+        [
+            "foodpoisoning",
+            "اشتباه تسمم غذائي / فاشية"
+        ],
+
+        [
+            "salmonella",
+            "السالمونيلا"
+        ],
+
+        [
+            "shigella",
+            "الشيغيلا"
+        ],
+
+        [
+            "norovirus",
+            "فيروس نورو"
+        ],
+
+        [
+            "cholera",
+            "الكوليرا"
+        ]
+
+    ]
+
+},
+
+
+
+zoonotic:{
+
+    title:
+        "الأمراض المشتركة",
+
+    items:[
+
+        [
+            "rabies",
+            "السعار / داء الكلب"
+        ],
+
+        [
+            "hantavirus",
+            "فيروس هانتا"
+        ],
+
+        [
+            "brucellosis",
+            "الحمى المالطية"
+        ],
+
+        [
+            "avian",
+            "إنفلونزا الطيور"
+        ]
+
+    ]
+
+},
+
+
+
+vaccine:{
+
+    title:
+        "الأمراض المستهدفة بالتحصين",
+
+    items:[
+
+        [
+            "measles",
+            "الحصبة"
+        ],
+
+        [
+            "diphtheria",
+            "الدفتيريا"
+        ],
+
+        [
+            "pertussis",
+            "السعال الديكي"
+        ],
+
+        [
+            "meningitis",
+            "التهاب السحايا"
+        ]
+
+    ]
+
+},
+
+
+
+other:{
+
+    title:
+        "أمراض أخرى",
+
+    items:[
+
+        [
+            "mpox",
+            "جدري القردة"
+        ],
+
+        [
+            "scabies",
+            "الجرب"
+        ]
+
+    ]
+
+}
+
+};
+
+
+/* =====================================================
+   DISEASE → CATEGORY MAP
+===================================================== */
+
+const diseaseToCategory = {};
+
+
+Object.keys(
+    diseaseCategories
+)
+.forEach(
+    function(categoryKey){
+
+        diseaseCategories[
+            categoryKey
+        ]
+        .items
+        .forEach(
+            function(item){
+
+                diseaseToCategory[
+                    item[0]
+                ] =
+                    categoryKey;
+
+            }
+        );
+
+    }
+);
+
+
+/* =====================================================
+   SMART SCREENING GENERIC ROUTES
+===================================================== */
+
+const screeningRoutes = {
+
+
+/*
+   نتائج محددة
+*/
+
+measles:{
+
+    type:"disease",
+
+    disease:"measles",
+
+    category:"vaccine"
+
+},
+
+
+meningitis:{
+
+    type:"disease",
+
+    disease:"meningitis",
+
+    category:"vaccine"
+
+},
+
+
+mers:{
+
+    type:"priority",
+
+    disease:"mers"
+
+},
+
+
+nipah:{
+
+    type:"priority",
+
+    disease:"nipah"
+
+},
+
+
+ebola:{
+
+    type:"priority",
+
+    disease:"ebola"
+
+},
+
+
+hantavirus:{
+
+    type:"priority",
+
+    disease:"hantavirus"
+
+},
+
+
+
+/*
+   نتائج غير محددة لمرض واحد
+*/
+
+respiratory:{
+
+    type:"category",
+
+    category:"respiratory",
+
+    message:
+        "نتيجة الفرز تشير إلى مسار مرض تنفسي معدٍ. اختر المرض الأنسب بعد التقييم السريري."
+
+},
+
+
+gastroenteritis:{
+
+    type:"category",
+
+    category:"food",
+
+    message:
+        "نتيجة الفرز تشير إلى مرض معدٍ بالجهاز الهضمي أو احتمال تجمع حالات. اختر المسار الأنسب بعد التقييم."
+
+}
+
+
+};
+
+
+/* =====================================================
+   SHOW CATEGORY
+===================================================== */
+
+function showCategory(
+    key,
+    highlightDisease
+){
+
+    const category =
+        diseaseCategories[
+            key
+        ];
+
+
+    if(!category){
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "categoryTitle"
+    ).textContent =
+        category.title;
+
+
+    document.getElementById(
+        "diseaseList"
+    ).innerHTML =
+        category.items
+        .map(
+            function(item){
+
+                const diseaseKey =
+                    item[0];
+
+
+                const diseaseName =
+                    item[1];
+
+
+                const highlighted =
+                    diseaseKey ===
+                    highlightDisease;
+
+
+                return `
+
+                <div
+                    id="disease-item-${diseaseKey}"
+                    class="disease-item ${
+                        highlighted
+                        ? "highlighted"
+                        : ""
+                    }">
+
+                    <span>
+
+                    ${
+                        highlighted
+                        ? "🧠 "
+                        : ""
+                    }
+
+                    ${diseaseName}
+
+                    </span>
+
+
+                    <a
+                        href="disease-details.html?disease=${
+                            encodeURIComponent(
+                                diseaseKey
+                            )
+                        }">
+
+                    فتح الدليل
+
+                    </a>
+
+                </div>
+
+                `;
+
+            }
+        )
+        .join("");
+
+
+    const section =
+        document.getElementById(
+            "diseaseListSection"
+        );
+
+
+    section.classList.add(
+        "active"
+    );
+
+
+    if(highlightDisease){
+
+        setTimeout(
+            function(){
+
+                const item =
+                    document.getElementById(
+                        "disease-item-" +
+                        highlightDisease
+                    );
+
+
+                if(item){
+
+                    item.scrollIntoView({
+                        behavior:"smooth",
+                        block:"center"
+                    });
+
+                }
+
+            },
+            120
+        );
+
+    }else{
+
+        section.scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+
+    }
+
+}
+
+
+/* =====================================================
+   REMOVE HIGHLIGHTS
+===================================================== */
+
+function clearHighlights(){
+
+    document
+    .querySelectorAll(
+        ".priority-card, .category-card"
+    )
+    .forEach(
+        function(item){
+
+            item.classList.remove(
+                "highlighted"
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   PROCESS URL
+===================================================== */
+
+function processIncomingRoute(){
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    const disease =
+        params.get(
+            "disease"
+        );
+
+
+    const fromScreening =
+        params.get(
+            "fromScreening"
+        ) === "1";
+
+
+    const screeningName =
+        params.get(
+            "name"
+        );
+
+
+    if(!disease){
+
+        return;
+
+    }
+
+
+    const banner =
+        document.getElementById(
+            "screeningBanner"
+        );
+
+
+    const bannerText =
+        document.getElementById(
+            "screeningBannerText"
+        );
+
+
+    if(fromScreening){
+
+        banner.classList.add(
+            "active"
+        );
+
+
+        if(screeningName){
+
+            try{
+
+                bannerText.innerHTML =
+
+                    "نتيجة الفرز الذكي أظهرت: <strong>" +
+
+                    decodeURIComponent(
+                        screeningName
+                    ) +
+
+                    "</strong>. راجع المسار الموضح أدناه قبل استكمال الإجراء أو البلاغ.";
+
+            }catch(error){
+
+                bannerText.textContent =
+                    "تم الوصول من نتيجة الفرز الذكي. راجع المرض أو التصنيف المناسب.";
+
+            }
+
+        }
+
+    }
+
+
+    clearHighlights();
+
+
+    const route =
+        screeningRoutes[
+            disease
+        ];
+
+
+    /*
+      نتيجة معروفة من الفرز
+    */
+
+    if(route){
+
+        if(
+            route.type ===
+            "priority"
+        ){
+
+            highlightPriority(
+                route.disease
+            );
+
+            return;
+
+        }
+
+
+        if(
+            route.type ===
+            "disease"
+        ){
+
+            highlightCategory(
+                route.category
+            );
+
+
+            showCategory(
+                route.category,
+                route.disease
+            );
+
+            return;
+
+        }
+
+
+        if(
+            route.type ===
+            "category"
+        ){
+
+            highlightCategory(
+                route.category
+            );
+
+
+            showCategory(
+                route.category
+            );
+
+
+            if(route.message){
+
+                banner.classList.add(
+                    "active"
+                );
+
+
+                bannerText.textContent =
+                    route.message;
+
+            }
+
+
+            return;
+
+        }
+
+    }
+
+
+    /*
+      مرض عادي موجود في التصنيفات
+    */
+
+    if(
+        diseaseToCategory[
+            disease
+        ]
+    ){
+
+        const category =
+            diseaseToCategory[
+                disease
+            ];
+
+
+        highlightCategory(
+            category
+        );
+
+
+        showCategory(
+            category,
+            disease
+        );
+
+
+        return;
+
+    }
+
+
+    /*
+      Priority diseases
+    */
+
+    if(
+        [
+            "nipah",
+            "ebola",
+            "mers",
+            "hantavirus"
+        ]
+        .includes(
+            disease
+        )
+    ){
+
+        highlightPriority(
+            disease
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   HIGHLIGHT CATEGORY
+===================================================== */
+
+function highlightCategory(
+    category
+){
+
+    const card =
+        document.getElementById(
+            "category-" +
+            category
+        );
+
+
+    if(card){
+
+        card.classList.add(
+            "highlighted"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   HIGHLIGHT PRIORITY
+===================================================== */
+
+function highlightPriority(
+    disease
+){
+
+    const card =
+        document.getElementById(
+            "priority-" +
+            disease
+        );
+
+
+    if(!card){
+
+        return;
+
+    }
+
+
+    card.classList.add(
+        "highlighted"
+    );
+
+
+    setTimeout(
+        function(){
+
+            card.scrollIntoView({
+                behavior:"smooth",
+                block:"center"
+            });
+
+        },
+        120
+    );
+
+}
+
+
+/* =====================================================
+   STARTUP
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    processIncomingRoute
+);
+
+
+</script>
+
+
+</body>
+
+</html>
