@@ -688,35 +688,50 @@ let list = [];
    Load
 ===================================== */
 
-function load(){
+async function load(){
 
     try{
 
-        list =
-            JSON.parse(
+        if (typeof getPublicHealthNotifications === "function") {
+
+            const data = await getPublicHealthNotifications();
+
+            list = Array.isArray(data) ? data : [];
+
+        } else {
+
+            list = JSON.parse(
                 localStorage.getItem(
                     "publicHealthNotifications"
                 )
             ) || [];
 
-
-        if(!Array.isArray(list)){
-
-            list = [];
-
         }
 
-    }catch(error){
+        if (!Array.isArray(list)){
+            list = [];
+        }
 
-        list = [];
+    } catch(error){
 
+        console.error(
+            "Failed to load notifications:",
+            error
+        );
+
+        try{
+            list = JSON.parse(
+                localStorage.getItem(
+                    "publicHealthNotifications"
+                )
+            ) || [];
+        } catch(e){
+            list = [];
+        }
     }
 
-
     stats();
-
     render();
-
 }
 
 
@@ -1137,7 +1152,7 @@ document.addEventListener(
 
 
 </script>
-
+<script src="api.js"></script>
 
 </body>
 
