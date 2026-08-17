@@ -885,15 +885,17 @@ Infectious Disease Notification Details
 </div>
 
 
-<div class="group full">
+<div class="group">
 
-<label>
-ملاحظات الصحة العامة
-</label>
+    <label>
+        حالة الاستجابة للبلاغ
+    </label>
 
-<textarea
-    id="publicHealthNotes"
-    placeholder="اكتب إجراءات المتابعة، التواصل، التوجيهات، الاستقصاء، أو سبب الإغلاق..."></textarea>
+    <select id="responseStatusSelect">
+        <option value="notStarted">لم يبدأ</option>
+        <option value="inProgress">جاري التنفيذ</option>
+        <option value="completed">مكتمل</option>
+    </select>
 
 </div>
 
@@ -1678,7 +1680,11 @@ function render(){
         n.hesnStatus ||
         "pending";
 
-
+document.getElementById(
+    "responseStatusSelect"
+).value =
+    n.responseStatus ||
+    "notStarted";
     document.getElementById(
         "publicHealthNotes"
     ).value =
@@ -1715,7 +1721,10 @@ function saveFollowup(){
             "hesnStatusSelect"
         ).value;
 
-
+currentNotification.responseStatus =
+    document.getElementById(
+        "responseStatusSelect"
+    ).value;
     currentNotification.publicHealthNotes =
         document.getElementById(
             "publicHealthNotes"
