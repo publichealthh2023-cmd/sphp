@@ -35,11 +35,6 @@
     color:#607387;
 }
 
-
-/* =====================================
-   أدوات الصحة العامة
-===================================== */
-
 .ph-tools{
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -57,11 +52,6 @@
     align-items:center;
     gap:15px;
     box-shadow:0 4px 13px rgba(0,0,0,.05);
-    transition:.2s;
-}
-
-.tool-card:hover{
-    transform:translateY(-2px);
 }
 
 .tool-icon{
@@ -73,7 +63,6 @@
     justify-content:center;
     font-size:28px;
     background:#eaf3fb;
-    flex-shrink:0;
 }
 
 .tool-text h3{
@@ -85,13 +74,7 @@
     margin:0;
     color:#607387;
     font-size:13px;
-    line-height:1.6;
 }
-
-
-/* =====================================
-   الإحصائيات
-===================================== */
 
 .stats{
     display:grid;
@@ -108,8 +91,8 @@
     border:1px solid #dfe8f2;
 }
 
-.stat.smart{
-    border-top:4px solid #5f3dc4;
+.stat.foodborne{
+    border-top:4px solid #ef8d22;
 }
 
 .num{
@@ -118,19 +101,10 @@
     color:#064c92;
 }
 
-.smart .num{
-    color:#5f3dc4;
-}
-
 .stat p{
     margin-bottom:0;
     color:#607387;
 }
-
-
-/* =====================================
-   الفلاتر
-===================================== */
 
 .filters{
     background:#fff;
@@ -149,13 +123,7 @@
     border:1px solid #ccd9e5;
     border-radius:8px;
     width:100%;
-    box-sizing:border-box;
 }
-
-
-/* =====================================
-   الجدول
-===================================== */
 
 .wrap{
     overflow-x:auto;
@@ -185,11 +153,6 @@
 .table tr:nth-child(even){
     background:#f9fbfd;
 }
-
-
-/* =====================================
-   Badges
-===================================== */
 
 .badge{
     display:inline-block;
@@ -235,6 +198,11 @@
     color:#526270;
 }
 
+.foodborne-source{
+    background:#fff3dc;
+    color:#a75b00;
+}
+
 .open{
     background:#eaf1f7;
     color:#064c92;
@@ -250,30 +218,6 @@
     padding:35px;
     color:#607387;
 }
-
-
-/* =====================================
-   Smart note
-===================================== */
-
-.smart-note{
-    background:#f5f0ff;
-    border-right:5px solid #5f3dc4;
-    border-radius:10px;
-    padding:15px 18px;
-    margin-bottom:18px;
-    color:#554a70;
-    line-height:1.8;
-}
-
-.smart-note strong{
-    color:#4d2fa9;
-}
-
-
-/* =====================================
-   Responsive
-===================================== */
 
 @media(max-width:1050px){
 
@@ -351,14 +295,13 @@ Public Health Notification Inbox
 </h2>
 
 <p>
-إدارة ومتابعة بلاغات الأمراض المعدية الواردة من بوابة الطوارئ.
+إدارة ومتابعة بلاغات الأمراض المعدية والفاشيات الواردة إلى الصحة العامة.
 </p>
 
 </section>
 
 
 <section class="ph-tools">
-
 
 <a
     href="public-health-inbox.html"
@@ -428,7 +371,6 @@ Public Health Notification Inbox
 
 </a>
 
-
 </section>
 
 
@@ -495,34 +437,21 @@ Public Health Notification Inbox
 </div>
 
 
-<div class="stat smart">
+<div class="stat foodborne">
 
 <div
-    id="smartCount"
+    id="foodborneCount"
     class="num">
 0
 </div>
 
 <p>
-من الفرز الذكي
+فاشيات غذائية
 </p>
 
 </div>
 
-
 </section>
-
-
-<div class="smart-note">
-
-<strong>
-🧠 مؤشر الفرز الذكي:
-</strong>
-
-يتم تمييز البلاغ الذي بدأ من أداة الفرز الذكي عن البلاغ المدخل مباشرة.
-سيساعد ذلك لاحقًا في قياس أثر البوابة على اكتشاف الحالات وبدء البلاغات.
-
-</div>
 
 
 <section class="filters">
@@ -530,7 +459,7 @@ Public Health Notification Inbox
 
 <input
     id="search"
-    placeholder="ابحث برقم البلاغ أو المرض أو اسم المريض"
+    placeholder="ابحث برقم البلاغ أو المرض أو القسم أو مصدر الطعام"
     oninput="render()">
 
 
@@ -592,6 +521,10 @@ Public Health Notification Inbox
 إدخال مباشر
 </option>
 
+<option value="foodborneOutbreak">
+فاشية غذائية
+</option>
+
 </select>
 
 
@@ -615,7 +548,7 @@ Public Health Notification Inbox
 </th>
 
 <th>
-المرض
+المرض / الحدث
 </th>
 
 <th>
@@ -685,58 +618,91 @@ let list = [];
 
 
 /* =====================================
-   Load
+   تحميل البيانات
 ===================================== */
 
 async function load(){
 
     try{
 
-        if (typeof getPublicHealthNotifications === "function") {
+        if(
+            typeof getPublicHealthNotifications ===
+            "function"
+        ){
 
-            const data = await getPublicHealthNotifications();
+            const data =
+                await getPublicHealthNotifications();
 
-            list = Array.isArray(data) ? data : [];
 
-        } else {
-
-            list = JSON.parse(
-                localStorage.getItem(
-                    "publicHealthNotifications"
+            list =
+                Array.isArray(
+                    data
                 )
-            ) || [];
+                ? data
+                : [];
+
+        }
+        else{
+
+            list =
+                JSON.parse(
+                    localStorage.getItem(
+                        "publicHealthNotifications"
+                    ) ||
+                    "[]"
+                );
 
         }
 
-        if (!Array.isArray(list)){
+
+        if(
+            !Array.isArray(
+                list
+            )
+        ){
+
             list = [];
+
         }
 
-    } catch(error){
+    }
+    catch(error){
 
         console.error(
             "Failed to load notifications:",
             error
         );
 
+
         try{
-            list = JSON.parse(
-                localStorage.getItem(
-                    "publicHealthNotifications"
-                )
-            ) || [];
-        } catch(e){
-            list = [];
+
+            list =
+                JSON.parse(
+                    localStorage.getItem(
+                        "publicHealthNotifications"
+                    ) ||
+                    "[]"
+                );
+
         }
+        catch(e){
+
+            list = [];
+
+        }
+
     }
 
+
     stats();
+
     render();
+
 }
 
 
 /* =====================================
-   Statistics
+   الإحصائيات
 ===================================== */
 
 function stats(){
@@ -751,6 +717,7 @@ function stats(){
         "urgentCount"
     ).textContent =
         list.filter(
+
             function(item){
 
                 return (
@@ -759,14 +726,15 @@ function stats(){
                 );
 
             }
-        )
-        .length;
+
+        ).length;
 
 
     document.getElementById(
         "openCount"
     ).textContent =
         list.filter(
+
             function(item){
 
                 return (
@@ -775,14 +743,15 @@ function stats(){
                 );
 
             }
-        )
-        .length;
+
+        ).length;
 
 
     document.getElementById(
         "closedCount"
     ).textContent =
         list.filter(
+
             function(item){
 
                 return (
@@ -791,30 +760,31 @@ function stats(){
                 );
 
             }
-        )
-        .length;
+
+        ).length;
 
 
     document.getElementById(
-        "smartCount"
+        "foodborneCount"
     ).textContent =
         list.filter(
+
             function(item){
 
                 return (
-                    item.source ===
-                    "smartScreening"
+                    item.notificationType ===
+                    "foodborneOutbreak"
                 );
 
             }
-        )
-        .length;
+
+        ).length;
 
 }
 
 
 /* =====================================
-   Status badge
+   شارات الحالة
 ===================================== */
 
 function statusBadge(
@@ -827,11 +797,9 @@ function statusBadge(
     ){
 
         return `
-
         <span class="badge closed">
         مغلق
         </span>
-
         `;
 
     }
@@ -843,29 +811,25 @@ function statusBadge(
     ){
 
         return `
-
         <span class="badge progress">
         تحت المتابعة
         </span>
-
         `;
 
     }
 
 
     return `
-
     <span class="badge new">
     جديد
     </span>
-
     `;
 
 }
 
 
 /* =====================================
-   Priority badge
+   شارة الأولوية
 ===================================== */
 
 function priorityBadge(
@@ -878,64 +842,70 @@ function priorityBadge(
     ){
 
         return `
-
         <span class="badge urgent">
         🚨 عاجل
         </span>
-
         `;
 
     }
 
 
     return `
-
     <span class="badge normal">
     عادي
     </span>
-
     `;
 
 }
 
 
 /* =====================================
-   Source badge
+   مصدر البلاغ
 ===================================== */
 
 function sourceBadge(
-    source
+    item
 ){
 
     if(
-        source ===
+        item.notificationType ===
+        "foodborneOutbreak"
+    ){
+
+        return `
+        <span class="badge foodborne-source">
+        🍽️ فاشية غذائية
+        </span>
+        `;
+
+    }
+
+
+    if(
+        item.source ===
         "smartScreening"
     ){
 
         return `
-
         <span class="badge smart-source">
         🧠 الفرز الذكي
         </span>
-
         `;
 
     }
 
 
     return `
-
     <span class="badge manual-source">
     إدخال مباشر
     </span>
-
     `;
 
 }
 
 
 /* =====================================
-   Render
+   عرض البلاغات
 ===================================== */
 
 function render(){
@@ -944,7 +914,8 @@ function render(){
         (
             document.getElementById(
                 "search"
-            ).value || ""
+            ).value ||
+            ""
         )
         .trim()
         .toLowerCase();
@@ -970,7 +941,18 @@ function render(){
 
     const filtered =
         list.filter(
+
             function(item){
+
+                const outbreak =
+                    item.outbreakData ||
+                    {};
+
+
+                const food =
+                    outbreak.food ||
+                    {};
+
 
                 const searchText =
                     (
@@ -980,49 +962,62 @@ function render(){
                         " " +
                         (item.patientName || "") +
                         " " +
-                        (item.mrn || "")
+                        (item.reporterDepartment || "") +
+                        " " +
+                        (food.sourceName || "") +
+                        " " +
+                        (food.suspectedFood || "")
                     )
                     .toLowerCase();
 
 
-                const searchMatch =
-                    !q ||
-                    searchText.includes(
-                        q
+                const sourceValue =
+                    item.notificationType ===
+                    "foodborneOutbreak"
+                    ? "foodborneOutbreak"
+                    : (
+                        item.source ||
+                        "manual"
                     );
 
 
-                const statusMatch =
-                    !status ||
-                    item.status ===
-                    status;
-
-
-                const priorityMatch =
-                    !priority ||
-                    item.priority ===
-                    priority;
-
-
-                const itemSource =
-                    item.source ||
-                    "manual";
-
-
-                const sourceMatch =
-                    !source ||
-                    itemSource ===
-                    source;
-
-
                 return (
-                    searchMatch &&
-                    statusMatch &&
-                    priorityMatch &&
-                    sourceMatch
+
+                    (
+                        !q ||
+                        searchText.includes(
+                            q
+                        )
+                    )
+
+                    &&
+
+                    (
+                        !status ||
+                        item.status ===
+                        status
+                    )
+
+                    &&
+
+                    (
+                        !priority ||
+                        item.priority ===
+                        priority
+                    )
+
+                    &&
+
+                    (
+                        !source ||
+                        sourceValue ===
+                        source
+                    )
+
                 );
 
             }
+
         );
 
 
@@ -1034,6 +1029,7 @@ function render(){
 
     body.innerHTML =
         filtered.map(
+
             function(item){
 
                 return `
@@ -1061,28 +1057,15 @@ function render(){
                 </td>
 
                 <td>
-                ${
-                    sourceBadge(
-                        item.source ||
-                        "manual"
-                    )
-                }
+                ${sourceBadge(item)}
                 </td>
 
                 <td>
-                ${
-                    priorityBadge(
-                        item.priority
-                    )
-                }
+                ${priorityBadge(item.priority)}
                 </td>
 
                 <td>
-                ${
-                    statusBadge(
-                        item.status
-                    )
-                }
+                ${statusBadge(item.status)}
                 </td>
 
                 <td>
@@ -1091,7 +1074,8 @@ function render(){
                     class="open"
                     href="notification-details.html?id=${
                         encodeURIComponent(
-                            item.id || ""
+                            item.id ||
+                            ""
                         )
                     }">
 
@@ -1106,6 +1090,7 @@ function render(){
                 `;
 
             }
+
         )
         .join("");
 
@@ -1121,11 +1106,13 @@ function render(){
 
 
 /* =====================================
-   Refresh when returning to page
+   تحديث الصفحة
 ===================================== */
 
 window.addEventListener(
+
     "storage",
+
     function(event){
 
         if(
@@ -1138,21 +1125,27 @@ window.addEventListener(
         }
 
     }
+
 );
 
 
 /* =====================================
-   Startup
+   تشغيل
 ===================================== */
 
 document.addEventListener(
+
     "DOMContentLoaded",
+
     load
+
 );
 
-
 </script>
+
+
 <script src="api.js"></script>
+
 
 </body>
 

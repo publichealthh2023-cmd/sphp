@@ -1,79 +1,97 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>تقصي فاشية تسمم غذائي</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الإبلاغ عن فاشية منقولة بالغذاء | SPHP</title>
 
 <link rel="stylesheet" href="Style.css">
 
 <style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    background:#f3f6f8;
+    font-family:Arial,Tahoma,sans-serif;
+    color:#294b6a;
+}
 
 .outbreak-page{
-    max-width:1150px;
+    max-width:1180px;
     margin:30px auto;
-    padding:0 20px 50px;
+    padding:0 18px 60px;
+}
+
+.page-title,
+.section-card{
+    background:#fff;
+    border:1px solid #dfe8f2;
+    border-radius:15px;
+    box-shadow:0 4px 14px rgba(0,0,0,.05);
 }
 
 .page-title{
-    background:white;
-    border-radius:16px;
-    padding:25px;
     text-align:center;
-    margin-bottom:20px;
-    box-shadow:0 4px 15px rgba(0,0,0,.07);
+    padding:24px;
+    margin-bottom:18px;
 }
 
 .page-title .icon{
-    font-size:48px;
+    font-size:46px;
 }
 
 .page-title h1{
-    color:#064c92;
     margin:8px 0 4px;
+    color:#064c92;
 }
 
 .page-title h2{
-    color:#687b8d;
-    font-size:17px;
     margin:0;
+    color:#6d7f90;
+    font-size:16px;
 }
 
 .alert-box{
     background:#fff8e1;
     border-right:5px solid #f9a825;
     border-radius:10px;
-    padding:16px;
-    margin-bottom:20px;
+    padding:15px;
+    margin-bottom:18px;
     line-height:1.8;
     color:#66531b;
 }
 
 .section-card{
-    background:white;
-    border:1px solid #dfe8f2;
-    border-radius:14px;
-    padding:23px;
+    padding:22px;
     margin-bottom:18px;
-    box-shadow:0 4px 13px rgba(0,0,0,.05);
 }
 
 .section-card h3{
-    color:#064c92;
     margin-top:0;
-    border-bottom:1px solid #e3eaf0;
+    color:#064c92;
+    border-bottom:1px solid #e5edf3;
     padding-bottom:10px;
 }
 
 .form-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:17px;
+    gap:14px;
+}
+
+.grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+}
+
+.grid-4{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
 }
 
 .form-group{
@@ -89,127 +107,75 @@
 label{
     font-weight:bold;
     color:#294b6a;
+    font-size:13px;
 }
 
 input,
 select,
 textarea{
     width:100%;
-    box-sizing:border-box;
     padding:11px;
     border:1px solid #ccd9e5;
     border-radius:8px;
-    background:white;
+    background:#fff;
     font-size:14px;
+    outline:none;
 }
 
 textarea{
-    min-height:95px;
+    min-height:90px;
     resize:vertical;
 }
 
-.symptoms-grid{
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#0759a6;
+    box-shadow:0 0 0 3px rgba(7,89,166,.08);
+}
+
+.required{
+    color:#c62828;
+}
+
+.subtle{
+    color:#718293;
+    font-size:12px;
+    line-height:1.7;
+}
+
+.symptom-card{
+    background:#f8fbfd;
+    border:1px solid #dfe8f2;
+    border-radius:10px;
+    padding:11px;
+}
+
+.symptom-card .row{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:10px;
-}
-
-.check-item{
-    background:#f7fafc;
-    border:1px solid #dfe8ef;
-    border-radius:9px;
-    padding:10px;
-}
-
-.check-item label{
-    display:flex;
+    grid-template-columns:1fr 95px;
+    gap:8px;
     align-items:center;
-    gap:7px;
-    cursor:pointer;
 }
 
-.check-item input{
+.symptom-card input[type="checkbox"]{
     width:auto;
 }
 
-.stats-box{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-}
-
-.stat{
-    background:#f3f8fc;
+.summary-box{
+    background:#eef7ff;
+    border-right:5px solid #0759a6;
     border-radius:10px;
-    padding:15px;
-    text-align:center;
-}
-
-.stat strong{
-    display:block;
-    color:#064c92;
-    font-size:24px;
-}
-
-.stat span{
-    color:#617387;
-    font-size:12px;
-}
-
-.case-table-wrapper{
-    overflow-x:auto;
-}
-
-.case-table{
-    width:100%;
-    border-collapse:collapse;
-    min-width:850px;
-}
-
-.case-table th,
-.case-table td{
-    border:1px solid #dfe7ee;
-    padding:9px;
-    text-align:center;
-    font-size:13px;
-}
-
-.case-table th{
-    background:#edf5fb;
-    color:#064c92;
-}
-
-.case-table input,
-.case-table select{
-    min-width:110px;
-    padding:7px;
-}
-
-.add-case-btn{
+    padding:14px;
+    line-height:1.8;
     margin-top:12px;
-    border:none;
-    background:#187b43;
-    color:white;
-    padding:10px 18px;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-.delete-btn{
-    border:none;
-    background:#ffe8e8;
-    color:#b71c1c;
-    padding:7px 10px;
-    border-radius:7px;
-    cursor:pointer;
 }
 
 .buttons{
     display:flex;
-    flex-wrap:wrap;
     gap:10px;
-    margin-top:20px;
+    flex-wrap:wrap;
+    margin-top:18px;
 }
 
 .buttons button,
@@ -220,17 +186,21 @@ textarea{
     font-weight:bold;
     cursor:pointer;
     text-decoration:none;
-    text-align:center;
 }
 
-.save-btn{
+.send-btn{
     background:#0759a6;
-    color:white;
+    color:#fff;
+}
+
+.draft-btn{
+    background:#187b43;
+    color:#fff;
 }
 
 .print-btn{
     background:#687984;
-    color:white;
+    color:#fff;
 }
 
 .back-btn{
@@ -238,25 +208,32 @@ textarea{
     color:#064c92;
 }
 
-.success-message{
+.success-message,
+.error-message{
     display:none;
     margin-top:18px;
-    background:#eaf7ee;
-    border-right:5px solid #2e7d32;
     border-radius:9px;
     padding:15px;
+    line-height:1.8;
+}
+
+.success-message{
+    background:#eaf7ee;
+    border-right:5px solid #2e7d32;
     color:#285b33;
 }
 
-.required{
-    color:#c62828;
+.error-message{
+    background:#fff0f0;
+    border-right:5px solid #c62828;
+    color:#7d2525;
 }
 
-@media(max-width:750px){
+@media(max-width:800px){
 
     .form-grid,
-    .symptoms-grid,
-    .stats-box{
+    .grid-3,
+    .grid-4{
         grid-template-columns:1fr;
     }
 
@@ -264,19 +241,21 @@ textarea{
         grid-column:auto;
     }
 
+    .outbreak-page{
+        padding:0 10px 50px;
+    }
+
 }
 
 @media print{
 
     .buttons,
-    .add-case-btn,
-    .delete-btn,
-    .back-btn{
+    .alert-box{
         display:none !important;
     }
 
     body{
-        background:white;
+        background:#fff;
     }
 
     .section-card,
@@ -285,52 +264,45 @@ textarea{
     }
 
 }
-
 </style>
 
 </head>
 
-
 <body>
-
 
 <header class="hero-header">
 
 <div class="hero-grid">
 
-    <div class="side-logo left-logo">
+<div class="side-logo left-logo">
+<img
+    src="images/cluster-logo.png"
+    alt="Hafr Al-Batin Health Cluster">
+</div>
 
-        <img
-            src="images/cluster-logo.png"
-            alt="Hafr Al-Batin Health Cluster">
+<div class="hero-center">
 
-    </div>
+<h1>
+الإبلاغ عن فاشية منقولة بالغذاء
+</h1>
 
+<h2>
+Foodborne Disease Outbreak Notification
+</h2>
 
-    <div class="hero-center">
+<p>
+الصحة العامة
+</p>
 
-        <h1>
-            تقصي فاشية تسمم غذائي
-        </h1>
+</div>
 
-        <h2>
-            Foodborne Outbreak Investigation
-        </h2>
+<div class="side-logo right-logo">
 
-        <p>
-            الصحة العامة
-        </p>
+<img
+    src="images/hospital-logo.png"
+    alt="Hospital Logo">
 
-    </div>
-
-
-    <div class="side-logo right-logo">
-
-        <img
-            src="images/hospital-logo.png"
-            alt="Hospital Logo">
-
-    </div>
+</div>
 
 </div>
 
@@ -342,655 +314,1104 @@ textarea{
 
 <section class="page-title">
 
-    <div class="icon">
-        🍽️
-    </div>
+<div class="icon">
+🍽️
+</div>
 
-    <h1>
-        نموذج تقصي فاشية الأمراض المنقولة بالغذاء
-    </h1>
+<h1>
+نموذج الإبلاغ الإلكتروني عن فاشية مرض منقول بالغذاء
+</h1>
 
-    <h2>
-        Foodborne Disease Outbreak Investigation
-    </h2>
+<h2>
+Electronic Foodborne Disease Outbreak Notification Form
+</h2>
 
 </section>
 
 
 <div class="alert-box">
 
-    <strong>
-        ⚠️ تنبيه:
-    </strong>
+<strong>
+⚠️ تنبيه:
+</strong>
 
-    هذا النموذج مخصص للتقصي الداخلي ودعم عمل الصحة العامة.
-    ولا يستبدل الإبلاغ الرسمي في حصن بلس أو النماذج والسياسات
-    الرسمية المعتمدة عند وجوب استخدامها.
+هذا النموذج يدعم الإبلاغ الداخلي إلى الصحة العامة،
+ولا يستبدل أي إجراء أو منصة رسمية واجبة الاستخدام
+وفق السياسات المعتمدة.
 
 </div>
-
 
 
 <section class="section-card">
 
 <h3>
-    📌 معلومات الفاشية
+📌 بيانات البلاغ
 </h3>
 
 <div class="form-grid">
 
+<div class="form-group">
 
-    <div class="form-group">
+<label>
+رقم البلاغ
+</label>
 
-        <label>
-            رقم الفاشية
-        </label>
+<input
+    id="outbreakId"
+    readonly>
 
-        <input
-            id="outbreakId"
-            readonly>
-
-    </div>
-
-
-    <div class="form-group">
-
-        <label>
-            تاريخ ووقت استقبال البلاغ
-        </label>
-
-        <input
-            id="receivedDateTime"
-            type="datetime-local">
-
-    </div>
+</div>
 
 
-    <div class="form-group">
+<div class="form-group">
 
-        <label>
-            اسم الجهة / القسم المبلّغ
-        </label>
+<label>
+نوع البلاغ
+</label>
 
-        <input
-            id="reportingDepartment"
-            placeholder="مثال: قسم الطوارئ">
+<select id="reportType">
 
-    </div>
+<option value="new">
+بلاغ جديد
+</option>
 
+<option value="update">
+تحديث بلاغ سابق
+</option>
 
-    <div class="form-group">
+</select>
 
-        <label>
-            اسم المبلّغ
-        </label>
-
-        <input
-            id="reporterName">
-
-    </div>
+</div>
 
 
-    <div class="form-group">
+<div class="form-group">
 
-        <label>
-            رقم التواصل
-        </label>
+<label>
+رقم التحديث
+</label>
 
-        <input
-            id="reporterPhone">
+<input
+    id="updateNumber"
+    type="number"
+    min="1"
+    placeholder="عند اختيار تحديث">
 
-    </div>
+</div>
 
 
-    <div class="form-group">
+<div class="form-group">
 
-        <label>
-            حالة الفاشية
-        </label>
+<label>
+تاريخ ووقت استقبال البلاغ
+</label>
 
-        <select id="outbreakStatus">
+<input
+    id="receivedDateTime"
+    type="datetime-local">
 
-            <option value="suspected">
-                اشتباه أولي
-            </option>
-
-            <option value="underInvestigation">
-                تحت التقصي
-            </option>
-
-            <option value="confirmed">
-                فاشية مؤكدة
-            </option>
-
-            <option value="closed">
-                مغلقة
-            </option>
-
-        </select>
-
-    </div>
-
+</div>
 
 </div>
 
 </section>
 
 
-
 <section class="section-card">
 
 <h3>
-    🍱 بيانات الغذاء ومكان التعرض
+🏥 بيانات المنشأة الصحية
 </h3>
 
 <div class="form-grid">
 
+<div class="form-group">
 
-    <div class="form-group">
+<label>
+اسم المنشأة الصحية
+<span class="required">*</span>
+</label>
 
-        <label>
-            اسم المنشأة / المكان
-            <span class="required">*</span>
-        </label>
+<input
+    id="facilityName"
+    value="مستشفى إرادة والصحة النفسية">
 
-        <input
-            id="exposurePlace"
-            placeholder="مطعم، منزل، مناسبة، منشأة...">
-
-    </div>
-
-
-    <div class="form-group">
-
-        <label>
-            المدينة / الموقع
-        </label>
-
-        <input
-            id="exposureLocation">
-
-    </div>
+</div>
 
 
-    <div class="form-group">
+<div class="form-group">
 
-        <label>
-            تاريخ تناول الغذاء المشتبه
-        </label>
+<label>
+القطاع الصحي
+</label>
 
-        <input
-            id="mealDate"
-            type="date">
+<select id="healthSector">
 
-    </div>
+<option value="moh">
+وزارة الصحة
+</option>
 
+<option value="government">
+حكومي آخر
+</option>
 
-    <div class="form-group">
+<option value="private">
+خاص
+</option>
 
-        <label>
-            وقت تناول الغذاء
-        </label>
+</select>
 
-        <input
-            id="mealTime"
-            type="time">
-
-    </div>
-
-
-    <div class="form-group full">
-
-        <label>
-            الغذاء / الوجبة المشتبه بها
-        </label>
-
-        <textarea
-            id="suspectedFood"
-            placeholder="اذكر الوجبات أو الأصناف الغذائية المشتبه بها..."></textarea>
-
-    </div>
+</div>
 
 
-    <div class="form-group full">
+<div class="form-group">
 
-        <label>
-            وصف العلاقة المشتركة بين الحالات
-        </label>
+<label>
+المنطقة
+</label>
 
-        <textarea
-            id="commonExposure"
-            placeholder="مثال: جميع الحالات تناولت الوجبة نفسها في المكان نفسه..."></textarea>
+<input
+    id="region"
+    value="حفر الباطن">
 
-    </div>
+</div>
 
+
+<div class="form-group">
+
+<label>
+المدينة
+</label>
+
+<input
+    id="city"
+    value="حفر الباطن">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+نوع المنشأة
+</label>
+
+<select id="facilityType">
+
+<option value="hospital">
+مستشفى
+</option>
+
+<option value="primaryCare">
+مركز رعاية صحية أولية
+</option>
+
+<option value="other">
+أخرى
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+القسم المبلّغ
+<span class="required">*</span>
+</label>
+
+<input
+    id="reportingDepartment"
+    placeholder="مثال: الطوارئ">
+
+</div>
 
 </div>
 
 </section>
 
 
-
 <section class="section-card">
 
 <h3>
-    🌡️ الأعراض الرئيسية
-</h3>
-
-<div class="symptoms-grid">
-
-
-    <div class="check-item">
-        <label>
-            <input type="checkbox" value="abdominalPain">
-            ألم / تقلصات البطن
-        </label>
-    </div>
-
-
-    <div class="check-item">
-        <label>
-            <input type="checkbox" value="nausea">
-            غثيان
-        </label>
-    </div>
-
-
-    <div class="check-item">
-        <label>
-            <input type="checkbox" value="vomiting">
-            قيء
-        </label>
-    </div>
-
-
-    <div class="check-item">
-        <label>
-            <input type="checkbox" value="diarrhea">
-            إسهال
-        </label>
-    </div>
-
-
-    <div class="check-item">
-        <label>
-            <input type="checkbox" value="fever">
-            حمى
-        </label>
-    </div>
-
-
-    <div class="check-item">
-        <label>
-            <input type="checkbox" value="headache">
-            صداع
-        </label>
-    </div>
-
-
-    <div class="check-item">
-        <label>
-            <input type="checkbox" value="chills">
-            قشعريرة
-        </label>
-    </div>
-
-
-    <div class="check-item">
-        <label>
-            <input type="checkbox" value="fatigue">
-            إرهاق
-        </label>
-    </div>
-
-
-    <div class="check-item">
-        <label>
-            <input type="checkbox" value="myalgia">
-            آلام عضلية
-        </label>
-    </div>
-
-
-</div>
-
-</section>
-
-
-
-<section class="section-card">
-
-<h3>
-    👥 ملخص الحالات
-</h3>
-
-<div class="stats-box">
-
-
-    <div class="stat">
-
-        <strong id="totalCases">
-            0
-        </strong>
-
-        <span>
-            إجمالي الحالات المسجلة
-        </span>
-
-    </div>
-
-
-    <div class="stat">
-
-        <strong id="hospitalizedCases">
-            0
-        </strong>
-
-        <span>
-            حالات التنويم
-        </span>
-
-    </div>
-
-
-    <div class="stat">
-
-        <strong id="deaths">
-            0
-        </strong>
-
-        <span>
-            الوفيات
-        </span>
-
-    </div>
-
-
-</div>
-
-</section>
-
-
-
-<section class="section-card">
-
-<h3>
-    🧑‍🤝‍🧑 قائمة الحالات المرتبطة بالفاشية
-</h3>
-
-
-<div class="case-table-wrapper">
-
-<table class="case-table">
-
-<thead>
-
-<tr>
-
-    <th>
-        #
-    </th>
-
-    <th>
-        اسم / رمز الحالة
-    </th>
-
-    <th>
-        العمر
-    </th>
-
-    <th>
-        الجنس
-    </th>
-
-    <th>
-        بداية الأعراض
-    </th>
-
-    <th>
-        الحالة
-    </th>
-
-    <th>
-        ملاحظات
-    </th>
-
-    <th>
-        حذف
-    </th>
-
-</tr>
-
-</thead>
-
-
-<tbody id="casesBody">
-</tbody>
-
-</table>
-
-</div>
-
-
-<button
-    class="add-case-btn"
-    onclick="addCaseRow()">
-
-    + إضافة حالة
-
-</button>
-
-
-</section>
-
-
-
-<section class="section-card">
-
-<h3>
-    🧪 العينات والفحوصات
+🚨 نوع الحدث
 </h3>
 
 <div class="form-grid">
 
+<div class="form-group">
 
-    <div class="form-group">
+<label>
+تصنيف الحدث
+<span class="required">*</span>
+</label>
 
-        <label>
-            هل تم جمع عينات سريرية؟
-        </label>
+<select id="eventType">
 
-        <select id="clinicalSamples">
+<option value="foodborneOutbreak">
+فاشية مرض منقول بالغذاء
+</option>
 
-            <option value="">
-                اختر
-            </option>
+<option value="botulism">
+اشتباه تسمم وشيقي مرتبط بالغذاء
+</option>
 
-            <option value="yes">
-                نعم
-            </option>
+<option value="criticalFoodCase">
+حالة حرجة / وفاة مرتبطة بالغذاء
+</option>
 
-            <option value="no">
-                لا
-            </option>
+<option value="publicHealthImportance">
+حدث ذو أهمية للصحة العامة
+</option>
 
-        </select>
+</select>
 
-    </div>
-
-
-    <div class="form-group">
-
-        <label>
-            نوع العينات السريرية
-        </label>
-
-        <input
-            id="clinicalSampleType"
-            placeholder="براز، دم، قيء...">
-
-    </div>
+</div>
 
 
-    <div class="form-group">
+<div class="form-group">
 
-        <label>
-            هل تم جمع عينات غذائية؟
-        </label>
+<label>
+حالة الحدث
+</label>
 
-        <select id="foodSamples">
+<select id="outbreakStatus">
 
-            <option value="">
-                اختر
-            </option>
+<option value="suspected">
+اشتباه أولي
+</option>
 
-            <option value="yes">
-                نعم
-            </option>
+<option value="underInvestigation">
+تحت التقصي
+</option>
 
-            <option value="no">
-                لا
-            </option>
+<option value="confirmed">
+مؤكد
+</option>
 
-        </select>
+</select>
 
-    </div>
+</div>
 
 
-    <div class="form-group">
+<div class="form-group full">
 
-        <label>
-            نتيجة المختبر
-        </label>
+<label>
+وصف مختصر للحدث
+</label>
 
-        <input
-            id="labResult"
-            placeholder="قيد الانتظار / النتيجة...">
+<textarea id="eventDescription"></textarea>
 
-    </div>
-
+</div>
 
 </div>
 
 </section>
-
 
 
 <section class="section-card">
 
 <h3>
-    🔍 إجراءات التقصي
+👥 توزيع الحالات والحالة السريرية
 </h3>
 
-<div class="form-grid">
+<div class="grid-4">
 
+<div class="form-group">
+<label>عيادات</label>
+<input id="casesOutpatient" type="number" min="0" value="0">
+</div>
 
-    <div class="form-group">
+<div class="form-group">
+<label>طوارئ</label>
+<input id="casesEmergency" type="number" min="0" value="0">
+</div>
 
-        <label>
-            هل تم إبلاغ الصحة العامة؟
-        </label>
+<div class="form-group">
+<label>تنويم</label>
+<input id="casesAdmitted" type="number" min="0" value="0">
+</div>
 
-        <select id="publicHealthNotified">
+<div class="form-group">
+<label>عناية مركزة</label>
+<input id="casesIcu" type="number" min="0" value="0">
+</div>
 
-            <option value="yes">
-                نعم
-            </option>
+<div class="form-group">
+<label>خرجوا</label>
+<input id="casesDischarged" type="number" min="0" value="0">
+</div>
 
-            <option value="no">
-                لا
-            </option>
+<div class="form-group">
+<label>متعافٍ</label>
+<input id="clinicalRecovered" type="number" min="0" value="0">
+</div>
 
-        </select>
+<div class="form-group">
+<label>خفيف</label>
+<input id="clinicalMild" type="number" min="0" value="0">
+</div>
 
-    </div>
+<div class="form-group">
+<label>متوسط</label>
+<input id="clinicalModerate" type="number" min="0" value="0">
+</div>
 
+<div class="form-group">
+<label>شديد</label>
+<input id="clinicalSevere" type="number" min="0" value="0">
+</div>
 
-    <div class="form-group">
+<div class="form-group">
+<label>حرج</label>
+<input id="clinicalCritical" type="number" min="0" value="0">
+</div>
 
-        <label>
-            حالة الإبلاغ في حصن بلس
-        </label>
+<div class="form-group">
+<label>وفيات</label>
+<input id="clinicalDeaths" type="number" min="0" value="0">
+</div>
 
-        <select id="hesnStatus">
+</div>
 
-            <option value="pending">
-                لم يتم بعد
-            </option>
+<div class="summary-box">
 
-            <option value="entered">
-                تم الإدخال
-            </option>
+إجمالي الحالات حسب أماكن الرعاية:
 
-            <option value="notRequired">
-                لا ينطبق
-            </option>
-
-        </select>
-
-    </div>
-
-
-    <div class="form-group">
-
-        <label>
-            رقم البلاغ في حصن بلس
-        </label>
-
-        <input id="hesnNumber">
-
-    </div>
-
-
-    <div class="form-group">
-
-        <label>
-            مسؤول التقصي
-        </label>
-
-        <input id="investigatorName">
-
-    </div>
-
-
-    <div class="form-group full">
-
-        <label>
-            الإجراءات المتخذة
-        </label>
-
-        <textarea
-            id="actionsTaken"
-            placeholder="حصر الحالات، جمع العينات، التواصل مع الجهات المختصة، تقييم الغذاء المشترك..."></textarea>
-
-    </div>
-
-
-    <div class="form-group full">
-
-        <label>
-            ملاحظات التقصي
-        </label>
-
-        <textarea id="investigationNotes"></textarea>
-
-    </div>
-
+<strong id="totalCasesPreview">
+0
+</strong>
 
 </div>
 
 </section>
 
+
+<section class="section-card">
+
+<h3>
+🧑 خصائص المصابين
+</h3>
+
+<div class="grid-3">
+
+<div class="form-group">
+<label>سعودي</label>
+<input id="nationalitySaudi" type="number" min="0" value="0">
+</div>
+
+<div class="form-group">
+<label>غير سعودي</label>
+<input id="nationalityNonSaudi" type="number" min="0" value="0">
+</div>
+
+<div class="form-group">
+<label>غير معروف</label>
+<input id="nationalityUnknown" type="number" min="0" value="0">
+</div>
+
+<div class="form-group">
+<label>ذكور</label>
+<input id="genderMale" type="number" min="0" value="0">
+</div>
+
+<div class="form-group">
+<label>إناث</label>
+<input id="genderFemale" type="number" min="0" value="0">
+</div>
+
+<div class="form-group">
+<label>الجنس غير معروف</label>
+<input id="genderUnknown" type="number" min="0" value="0">
+</div>
+
+<div class="form-group">
+<label>أقل من 5 سنوات</label>
+<input id="ageUnder5" type="number" min="0" value="0">
+</div>
+
+<div class="form-group">
+<label>5–14 سنة</label>
+<input id="age5to14" type="number" min="0" value="0">
+</div>
+
+<div class="form-group">
+<label>15–24 سنة</label>
+<input id="age15to24" type="number" min="0" value="0">
+</div>
+
+<div class="form-group">
+<label>25–44 سنة</label>
+<input id="age25to44" type="number" min="0" value="0">
+</div>
+
+<div class="form-group">
+<label>45–64 سنة</label>
+<input id="age45to64" type="number" min="0" value="0">
+</div>
+
+<div class="form-group">
+<label>65 سنة فأكثر</label>
+<input id="age65plus" type="number" min="0" value="0">
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section-card">
+
+<h3>
+🍱 الطعام المشتبه ومكان التعرض
+</h3>
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>
+مكان إعداد الطعام المشتبه
+</label>
+
+<input id="foodPreparationPlace">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+مكان تناول الطعام المشتبه
+</label>
+
+<input id="foodConsumptionPlace">
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+اسم / وصف الطعام المشتبه
+<span class="required">*</span>
+</label>
+
+<textarea id="suspectedFood"></textarea>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+عدد المصابين الذين تناولوا الطعام المشتبه
+</label>
+
+<input
+    id="exposedCasesCount"
+    type="number"
+    min="0"
+    value="0">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+تاريخ ووقت تناول الطعام
+</label>
+
+<input
+    id="mealDateTime"
+    type="datetime-local">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+مصدر الطعام المشتبه
+</label>
+
+<select id="foodSourceType">
+
+<option value="">
+اختر
+</option>
+
+<option value="public">
+عام / تجاري
+</option>
+
+<option value="home">
+منزلي
+</option>
+
+<option value="other">
+أخرى
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+اسم المصدر
+</label>
+
+<input id="foodSourceName">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+موقع المصدر
+</label>
+
+<input id="foodSourceLocation">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+هل يشتركون في مصدر تعرض واحد؟
+</label>
+
+<select id="commonSource">
+
+<option value="unknown">
+غير معروف
+</option>
+
+<option value="yes">
+نعم
+</option>
+
+<option value="no">
+لا
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section-card">
+
+<h3>
+🌡️ الأعراض والعلامات السريرية
+</h3>
+
+<p class="subtle">
+حدد العرض واكتب عدد الحالات التي ظهر لديها.
+</p>
+
+<div
+    class="grid-3"
+    id="symptomsArea">
+
+
+<div class="symptom-card">
+
+<div class="row">
+
+<label>
+<input
+    type="checkbox"
+    data-symptom="nausea">
+غثيان
+</label>
+
+<input
+    type="number"
+    min="0"
+    value="0"
+    data-count="nausea">
+
+</div>
+
+</div>
+
+
+<div class="symptom-card">
+
+<div class="row">
+
+<label>
+<input
+    type="checkbox"
+    data-symptom="vomiting">
+قيء
+</label>
+
+<input
+    type="number"
+    min="0"
+    value="0"
+    data-count="vomiting">
+
+</div>
+
+</div>
+
+
+<div class="symptom-card">
+
+<div class="row">
+
+<label>
+<input
+    type="checkbox"
+    data-symptom="abdominalPain">
+ألم بالبطن
+</label>
+
+<input
+    type="number"
+    min="0"
+    value="0"
+    data-count="abdominalPain">
+
+</div>
+
+</div>
+
+
+<div class="symptom-card">
+
+<div class="row">
+
+<label>
+<input
+    type="checkbox"
+    data-symptom="diarrhea">
+إسهال
+</label>
+
+<input
+    type="number"
+    min="0"
+    value="0"
+    data-count="diarrhea">
+
+</div>
+
+</div>
+
+
+<div class="symptom-card">
+
+<div class="row">
+
+<label>
+<input
+    type="checkbox"
+    data-symptom="bloodyStool">
+براز دموي
+</label>
+
+<input
+    type="number"
+    min="0"
+    value="0"
+    data-count="bloodyStool">
+
+</div>
+
+</div>
+
+
+<div class="symptom-card">
+
+<div class="row">
+
+<label>
+<input
+    type="checkbox"
+    data-symptom="fever">
+حمى
+</label>
+
+<input
+    type="number"
+    min="0"
+    value="0"
+    data-count="fever">
+
+</div>
+
+</div>
+
+
+<div class="symptom-card">
+
+<div class="row">
+
+<label>
+<input
+    type="checkbox"
+    data-symptom="headache">
+صداع
+</label>
+
+<input
+    type="number"
+    min="0"
+    value="0"
+    data-count="headache">
+
+</div>
+
+</div>
+
+</div>
+
+
+<div
+    class="form-grid"
+    style="margin-top:14px">
+
+<div class="form-group">
+
+<label>
+أعراض أخرى
+</label>
+
+<input id="otherSymptoms">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+عدد الحالات ذات الأعراض الأخرى
+</label>
+
+<input
+    id="otherSymptomsCount"
+    type="number"
+    min="0"
+    value="0">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+تاريخ ووقت بداية ظهور الأعراض
+</label>
+
+<input
+    id="symptomOnsetDateTime"
+    type="datetime-local">
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section-card">
+
+<h3>
+🧪 عينات المصابين والنتائج
+</h3>
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>
+هل تم أخذ عينات من المصابين؟
+</label>
+
+<select id="clinicalSamples">
+
+<option value="">
+اختر
+</option>
+
+<option value="yes">
+نعم
+</option>
+
+<option value="no">
+لا
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+هل رفض جميع المصابين أخذ العينات؟
+</label>
+
+<select id="allRefusedSamples">
+
+<option value="no">
+لا
+</option>
+
+<option value="yes">
+نعم
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+عدد المصابين الذين أخذت منهم عينات
+</label>
+
+<input
+    id="sampledCasesCount"
+    type="number"
+    min="0"
+    value="0">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+إجمالي عدد العينات
+</label>
+
+<input
+    id="totalSamplesCount"
+    type="number"
+    min="0"
+    value="0">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+أنواع العينات
+</label>
+
+<input
+    id="clinicalSampleType"
+    placeholder="براز، دم، قيء...">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+هل ظهرت نتائج إيجابية؟
+</label>
+
+<select id="positiveResults">
+
+<option value="pending">
+قيد الانتظار
+</option>
+
+<option value="yes">
+نعم
+</option>
+
+<option value="no">
+لا
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+نتيجة المختبر / العامل المسبب
+</label>
+
+<textarea id="labResult"></textarea>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section-card">
+
+<h3>
+📝 معلومات إضافية وإجراءات أولية
+</h3>
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>
+حالة البلاغ في حصن بلس
+</label>
+
+<select id="hesnStatus">
+
+<option value="pending">
+لم يتم الإدخال
+</option>
+
+<option value="entered">
+تم الإدخال
+</option>
+
+<option value="notRequired">
+لا ينطبق
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+رقم البلاغ في حصن بلس
+</label>
+
+<input id="hesnNumber">
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+الإجراءات المتخذة
+</label>
+
+<textarea id="actionsTaken"></textarea>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+معلومات / ملاحظات إضافية
+</label>
+
+<textarea id="additionalInformation"></textarea>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section-card">
+
+<h3>
+✍️ بيانات المبلّغ
+</h3>
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>
+اسم المبلّغ
+<span class="required">*</span>
+</label>
+
+<input id="reporterName">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+الإدارة / القسم
+<span class="required">*</span>
+</label>
+
+<input id="reporterDepartment">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+رقم الجوال / التواصل
+</label>
+
+<input id="reporterPhone">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+التاريخ والوقت
+</label>
+
+<input
+    id="reportDateTime"
+    type="datetime-local">
+
+</div>
+
+</div>
+
+</section>
 
 
 <div class="buttons">
 
+<button
+    class="send-btn"
+    onclick="sendOutbreak()">
+
+📨 إرسال البلاغ إلى الصحة العامة
+
+</button>
+
 
 <button
-    class="save-btn"
-    onclick="saveOutbreak()">
+    class="draft-btn"
+    onclick="saveDraft()">
 
-    💾 حفظ الفاشية
+💾 حفظ مسودة
 
 </button>
 
@@ -999,19 +1420,18 @@ textarea{
     class="print-btn"
     onclick="window.print()">
 
-    🖨️ طباعة / حفظ PDF
+🖨️ طباعة / حفظ PDF
 
 </button>
 
 
 <a
-    href="public-health-inbox.html"
+    href="index.html"
     class="back-btn">
 
-    ← العودة
+← العودة للبوابة
 
 </a>
-
 
 </div>
 
@@ -1019,444 +1439,165 @@ textarea{
 <div
     id="successMessage"
     class="success-message">
+</div>
 
-    ✅ تم حفظ بيانات الفاشية بنجاح.
 
+<div
+    id="errorMessage"
+    class="error-message">
 </div>
 
 
 </main>
 
 
-
 <script>
 
+const OUTBREAKS_KEY =
+    "foodborneOutbreaks";
 
-let outbreakCases = [];
+const NOTIFICATIONS_KEY =
+    "publicHealthNotifications";
 
+
+const symptomNames = {
+
+    nausea:"غثيان",
+
+    vomiting:"قيء",
+
+    abdominalPain:"ألم بالبطن",
+
+    diarrhea:"إسهال",
+
+    bloodyStool:"براز دموي",
+
+    fever:"حمى",
+
+    headache:"صداع"
+
+};
+
+
+function el(id){
+
+    return document.getElementById(
+        id
+    );
+
+}
+
+
+function num(id){
+
+    return Math.max(
+        0,
+        Number(
+            el(id).value || 0
+        )
+    );
+
+}
+
+
+function text(id){
+
+    return (
+        el(id).value ||
+        ""
+    ).trim();
+
+}
+
+
+function nowLocal(){
+
+    const now =
+        new Date();
+
+
+    return new Date(
+
+        now.getTime() -
+        now.getTimezoneOffset() *
+        60000
+
+    )
+    .toISOString()
+    .slice(
+        0,
+        16
+    );
+
+}
 
 
 function generateOutbreakId(){
 
-    const now =
+    const d =
         new Date();
 
-    const year =
-        now.getFullYear();
+
+    const stamp =
+
+        d.getFullYear() +
+
+        String(
+            d.getMonth() + 1
+        )
+        .padStart(
+            2,
+            "0"
+        ) +
+
+        String(
+            d.getDate()
+        )
+        .padStart(
+            2,
+            "0"
+        );
+
 
     const random =
         Math.floor(
             1000 +
-            Math.random() * 9000
-        );
-
-    return "FBO-" +
-           year +
-           "-" +
-           random;
-
-}
-
-
-
-function setInitialValues(){
-
-    document.getElementById(
-        "outbreakId"
-    ).value =
-        generateOutbreakId();
-
-
-    const now =
-        new Date();
-
-
-    const local =
-        new Date(
-            now.getTime() -
-            now.getTimezoneOffset() * 60000
-        )
-        .toISOString()
-        .slice(0,16);
-
-
-    document.getElementById(
-        "receivedDateTime"
-    ).value =
-        local;
-
-
-    addCaseRow();
-
-}
-
-
-
-function addCaseRow(){
-
-    outbreakCases.push({
-
-        id:
-            Date.now() +
-            Math.random(),
-
-        name:"",
-
-        age:"",
-
-        gender:"",
-
-        onset:"",
-
-        status:"outpatient",
-
-        notes:""
-
-    });
-
-
-    renderCases();
-
-}
-
-
-
-function removeCaseRow(index){
-
-    outbreakCases.splice(
-        index,
-        1
-    );
-
-
-    renderCases();
-
-}
-
-
-
-function updateCase(index,field,value){
-
-    outbreakCases[index][field] =
-        value;
-
-
-    updateStatistics();
-
-}
-
-
-
-function renderCases(){
-
-    const body =
-        document.getElementById(
-            "casesBody"
+            Math.random() *
+            9000
         );
 
 
-    body.innerHTML =
-        outbreakCases.map(
-
-            function(item,index){
-
-                return `
-
-                <tr>
-
-                    <td>
-                        ${index + 1}
-                    </td>
-
-
-                    <td>
-
-                        <input
-                            value="${item.name}"
-                            onchange="
-                                updateCase(
-                                    ${index},
-                                    'name',
-                                    this.value
-                                )
-                            ">
-
-                    </td>
-
-
-                    <td>
-
-                        <input
-                            type="number"
-                            min="0"
-                            value="${item.age}"
-                            onchange="
-                                updateCase(
-                                    ${index},
-                                    'age',
-                                    this.value
-                                )
-                            ">
-
-                    </td>
-
-
-                    <td>
-
-                        <select
-                            onchange="
-                                updateCase(
-                                    ${index},
-                                    'gender',
-                                    this.value
-                                )
-                            ">
-
-                            <option value="">
-                                اختر
-                            </option>
-
-                            <option
-                                value="male"
-                                ${
-                                    item.gender === "male"
-                                    ? "selected"
-                                    : ""
-                                }>
-                                ذكر
-                            </option>
-
-                            <option
-                                value="female"
-                                ${
-                                    item.gender === "female"
-                                    ? "selected"
-                                    : ""
-                                }>
-                                أنثى
-                            </option>
-
-                        </select>
-
-                    </td>
-
-
-                    <td>
-
-                        <input
-                            type="datetime-local"
-                            value="${item.onset}"
-                            onchange="
-                                updateCase(
-                                    ${index},
-                                    'onset',
-                                    this.value
-                                )
-                            ">
-
-                    </td>
-
-
-                    <td>
-
-                        <select
-                            onchange="
-                                updateCase(
-                                    ${index},
-                                    'status',
-                                    this.value
-                                )
-                            ">
-
-                            <option
-                                value="outpatient"
-                                ${
-                                    item.status === "outpatient"
-                                    ? "selected"
-                                    : ""
-                                }>
-                                عيادات / طوارئ
-                            </option>
-
-                            <option
-                                value="admitted"
-                                ${
-                                    item.status === "admitted"
-                                    ? "selected"
-                                    : ""
-                                }>
-                                منوم
-                            </option>
-
-                            <option
-                                value="icu"
-                                ${
-                                    item.status === "icu"
-                                    ? "selected"
-                                    : ""
-                                }>
-                                عناية مركزة
-                            </option>
-
-                            <option
-                                value="recovered"
-                                ${
-                                    item.status === "recovered"
-                                    ? "selected"
-                                    : ""
-                                }>
-                                تعافى
-                            </option>
-
-                            <option
-                                value="deceased"
-                                ${
-                                    item.status === "deceased"
-                                    ? "selected"
-                                    : ""
-                                }>
-                                وفاة
-                            </option>
-
-                        </select>
-
-                    </td>
-
-
-                    <td>
-
-                        <input
-                            value="${item.notes}"
-                            onchange="
-                                updateCase(
-                                    ${index},
-                                    'notes',
-                                    this.value
-                                )
-                            ">
-
-                    </td>
-
-
-                    <td>
-
-                        <button
-                            class="delete-btn"
-                            onclick="
-                                removeCaseRow(
-                                    ${index}
-                                )
-                            ">
-
-                            حذف
-
-                        </button>
-
-                    </td>
-
-
-                </tr>
-
-                `;
-
-            }
-
-        ).join("");
-
-
-    updateStatistics();
-
-}
-
-
-
-function updateStatistics(){
-
-    document.getElementById(
-        "totalCases"
-    ).textContent =
-        outbreakCases.length;
-
-
-    const hospitalized =
-        outbreakCases.filter(
-
-            function(item){
-
-                return (
-                    item.status === "admitted" ||
-                    item.status === "icu"
-                );
-
-            }
-
-        ).length;
-
-
-    const deaths =
-        outbreakCases.filter(
-
-            function(item){
-
-                return (
-                    item.status === "deceased"
-                );
-
-            }
-
-        ).length;
-
-
-    document.getElementById(
-        "hospitalizedCases"
-    ).textContent =
-        hospitalized;
-
-
-    document.getElementById(
-        "deaths"
-    ).textContent =
-        deaths;
-
-}
-
-
-
-function getSelectedSymptoms(){
-
-    const checked =
-        document.querySelectorAll(
-            '.symptoms-grid input[type="checkbox"]:checked'
-        );
-
-
-    return Array.from(
-        checked
-    ).map(
-
-        function(item){
-
-            return item.value;
-
-        }
-
+    return (
+        "FBO-" +
+        stamp +
+        "-" +
+        random
     );
 
 }
 
 
-
-function getOutbreaks(){
+function getArray(key){
 
     try{
 
-        return JSON.parse(
-            localStorage.getItem(
-                "foodborneOutbreaks"
-            )
-        ) || [];
+        const value =
+            JSON.parse(
+                localStorage.getItem(
+                    key
+                ) ||
+                "[]"
+            );
 
-    }catch(error){
+
+        return Array.isArray(
+            value
+        )
+        ? value
+        : [];
+
+    }
+    catch(error){
 
         return [];
 
@@ -1465,153 +1606,650 @@ function getOutbreaks(){
 }
 
 
+function saveArray(
+    key,
+    data
+){
 
-function saveOutbreak(){
+    localStorage.setItem(
 
-    const place =
-        document.getElementById(
-            "exposurePlace"
-        ).value.trim();
+        key,
+
+        JSON.stringify(
+            data
+        )
+
+    );
+
+}
 
 
-    if(!place){
+function setInitialValues(){
 
-        alert(
-            "يرجى إدخال اسم المنشأة أو مكان التعرض."
+    el(
+        "outbreakId"
+    ).value =
+        generateOutbreakId();
+
+
+    el(
+        "receivedDateTime"
+    ).value =
+        nowLocal();
+
+
+    el(
+        "reportDateTime"
+    ).value =
+        nowLocal();
+
+
+    updateTotalPreview();
+
+}
+
+
+function updateTotalPreview(){
+
+    el(
+        "totalCasesPreview"
+    ).textContent =
+
+        num(
+            "casesOutpatient"
+        ) +
+
+        num(
+            "casesEmergency"
+        ) +
+
+        num(
+            "casesAdmitted"
+        ) +
+
+        num(
+            "casesIcu"
+        ) +
+
+        num(
+            "casesDischarged"
         );
 
-        return;
+}
+
+
+[
+    "casesOutpatient",
+    "casesEmergency",
+    "casesAdmitted",
+    "casesIcu",
+    "casesDischarged"
+
+]
+.forEach(
+
+    function(id){
+
+        document.addEventListener(
+
+            "input",
+
+            function(event){
+
+                if(
+                    event.target &&
+                    event.target.id === id
+                ){
+
+                    updateTotalPreview();
+
+                }
+
+            }
+
+        );
+
+    }
+
+);
+
+
+function collectSymptoms(){
+
+    return Array.from(
+
+        document.querySelectorAll(
+            "[data-symptom]"
+        )
+
+    )
+    .map(
+
+        function(checkBox){
+
+            const key =
+                checkBox.dataset.symptom;
+
+
+            const countInput =
+                document.querySelector(
+                    `[data-count="${key}"]`
+                );
+
+
+            return {
+
+                key:
+                    key,
+
+                name:
+                    symptomNames[key] ||
+                    key,
+
+                selected:
+                    checkBox.checked,
+
+                count:
+                    Number(
+                        countInput.value ||
+                        0
+                    )
+
+            };
+
+        }
+
+    );
+
+}
+
+
+function buildOutbreak(){
+
+    return {
+
+        id:
+            text(
+                "outbreakId"
+            ),
+
+        notificationType:
+            "foodborneOutbreak",
+
+        reportType:
+            el(
+                "reportType"
+            ).value,
+
+        updateNumber:
+            num(
+                "updateNumber"
+            ),
+
+        receivedDateTime:
+            el(
+                "receivedDateTime"
+            ).value,
+
+
+        facility:{
+
+            name:
+                text(
+                    "facilityName"
+                ),
+
+            sector:
+                el(
+                    "healthSector"
+                ).value,
+
+            region:
+                text(
+                    "region"
+                ),
+
+            city:
+                text(
+                    "city"
+                ),
+
+            type:
+                el(
+                    "facilityType"
+                ).value,
+
+            reportingDepartment:
+                text(
+                    "reportingDepartment"
+                )
+
+        },
+
+
+        event:{
+
+            type:
+                el(
+                    "eventType"
+                ).value,
+
+            status:
+                el(
+                    "outbreakStatus"
+                ).value,
+
+            description:
+                text(
+                    "eventDescription"
+                )
+
+        },
+
+
+        casesDistribution:{
+
+            outpatient:
+                num(
+                    "casesOutpatient"
+                ),
+
+            emergency:
+                num(
+                    "casesEmergency"
+                ),
+
+            admitted:
+                num(
+                    "casesAdmitted"
+                ),
+
+            icu:
+                num(
+                    "casesIcu"
+                ),
+
+            discharged:
+                num(
+                    "casesDischarged"
+                )
+
+        },
+
+
+        clinicalStatus:{
+
+            recovered:
+                num(
+                    "clinicalRecovered"
+                ),
+
+            mild:
+                num(
+                    "clinicalMild"
+                ),
+
+            moderate:
+                num(
+                    "clinicalModerate"
+                ),
+
+            severe:
+                num(
+                    "clinicalSevere"
+                ),
+
+            critical:
+                num(
+                    "clinicalCritical"
+                ),
+
+            deaths:
+                num(
+                    "clinicalDeaths"
+                )
+
+        },
+
+
+        demographics:{
+
+            nationality:{
+
+                saudi:
+                    num(
+                        "nationalitySaudi"
+                    ),
+
+                nonSaudi:
+                    num(
+                        "nationalityNonSaudi"
+                    ),
+
+                unknown:
+                    num(
+                        "nationalityUnknown"
+                    )
+
+            },
+
+
+            gender:{
+
+                male:
+                    num(
+                        "genderMale"
+                    ),
+
+                female:
+                    num(
+                        "genderFemale"
+                    ),
+
+                unknown:
+                    num(
+                        "genderUnknown"
+                    )
+
+            },
+
+
+            age:{
+
+                under5:
+                    num(
+                        "ageUnder5"
+                    ),
+
+                age5to14:
+                    num(
+                        "age5to14"
+                    ),
+
+                age15to24:
+                    num(
+                        "age15to24"
+                    ),
+
+                age25to44:
+                    num(
+                        "age25to44"
+                    ),
+
+                age45to64:
+                    num(
+                        "age45to64"
+                    ),
+
+                age65plus:
+                    num(
+                        "age65plus"
+                    )
+
+            }
+
+        },
+
+
+        food:{
+
+            preparationPlace:
+                text(
+                    "foodPreparationPlace"
+                ),
+
+            consumptionPlace:
+                text(
+                    "foodConsumptionPlace"
+                ),
+
+            suspectedFood:
+                text(
+                    "suspectedFood"
+                ),
+
+            exposedCasesCount:
+                num(
+                    "exposedCasesCount"
+                ),
+
+            mealDateTime:
+                el(
+                    "mealDateTime"
+                ).value,
+
+            sourceType:
+                el(
+                    "foodSourceType"
+                ).value,
+
+            sourceName:
+                text(
+                    "foodSourceName"
+                ),
+
+            sourceLocation:
+                text(
+                    "foodSourceLocation"
+                ),
+
+            commonSource:
+                el(
+                    "commonSource"
+                ).value
+
+        },
+
+
+        symptoms:
+            collectSymptoms(),
+
+
+        otherSymptoms:
+            text(
+                "otherSymptoms"
+            ),
+
+
+        otherSymptomsCount:
+            num(
+                "otherSymptomsCount"
+            ),
+
+
+        symptomOnsetDateTime:
+            el(
+                "symptomOnsetDateTime"
+            ).value,
+
+
+        samples:{
+
+            clinicalSamples:
+                el(
+                    "clinicalSamples"
+                ).value,
+
+            allRefusedSamples:
+                el(
+                    "allRefusedSamples"
+                ).value,
+
+            sampledCasesCount:
+                num(
+                    "sampledCasesCount"
+                ),
+
+            totalSamplesCount:
+                num(
+                    "totalSamplesCount"
+                ),
+
+            sampleTypes:
+                text(
+                    "clinicalSampleType"
+                ),
+
+            positiveResults:
+                el(
+                    "positiveResults"
+                ).value,
+
+            labResult:
+                text(
+                    "labResult"
+                )
+
+        },
+
+
+        hesnStatus:
+            el(
+                "hesnStatus"
+            ).value,
+
+
+        hesnNumber:
+            text(
+                "hesnNumber"
+            ),
+
+
+        actionsTaken:
+            text(
+                "actionsTaken"
+            ),
+
+
+        additionalInformation:
+            text(
+                "additionalInformation"
+            ),
+
+
+        reporter:{
+
+            name:
+                text(
+                    "reporterName"
+                ),
+
+            department:
+                text(
+                    "reporterDepartment"
+                ),
+
+            phone:
+                text(
+                    "reporterPhone"
+                ),
+
+            reportDateTime:
+                el(
+                    "reportDateTime"
+                ).value
+
+        },
+
+
+        totalCases:
+
+            num(
+                "casesOutpatient"
+            ) +
+
+            num(
+                "casesEmergency"
+            ) +
+
+            num(
+                "casesAdmitted"
+            ) +
+
+            num(
+                "casesIcu"
+            ) +
+
+            num(
+                "casesDischarged"
+            ),
+
+
+        createdAt:
+            new Date()
+            .toISOString(),
+
+
+        status:
+            "new"
+
+    };
+
+}
+
+
+function validateOutbreak(
+    outbreak
+){
+
+    if(
+        !outbreak.facility.name
+    ){
+
+        return "يرجى إدخال اسم المنشأة الصحية.";
 
     }
 
 
-    const outbreak = {
+    if(
+        !outbreak.facility.reportingDepartment
+    ){
 
-        id:
-            document.getElementById(
-                "outbreakId"
-            ).value,
+        return "يرجى إدخال القسم المبلّغ.";
 
-        receivedDateTime:
-            document.getElementById(
-                "receivedDateTime"
-            ).value,
+    }
 
-        reportingDepartment:
-            document.getElementById(
-                "reportingDepartment"
-            ).value.trim(),
 
-        reporterName:
-            document.getElementById(
-                "reporterName"
-            ).value.trim(),
+    if(
+        !outbreak.food.suspectedFood
+    ){
 
-        reporterPhone:
-            document.getElementById(
-                "reporterPhone"
-            ).value.trim(),
+        return "يرجى إدخال الطعام أو الوجبة المشتبه بها.";
 
-        outbreakStatus:
-            document.getElementById(
-                "outbreakStatus"
-            ).value,
+    }
 
-        exposurePlace:
-            place,
 
-        exposureLocation:
-            document.getElementById(
-                "exposureLocation"
-            ).value.trim(),
+    if(
+        !outbreak.reporter.name
+    ){
 
-        mealDate:
-            document.getElementById(
-                "mealDate"
-            ).value,
+        return "يرجى إدخال اسم المبلّغ.";
 
-        mealTime:
-            document.getElementById(
-                "mealTime"
-            ).value,
+    }
 
-        suspectedFood:
-            document.getElementById(
-                "suspectedFood"
-            ).value.trim(),
 
-        commonExposure:
-            document.getElementById(
-                "commonExposure"
-            ).value.trim(),
+    if(
+        !outbreak.reporter.department
+    ){
 
-        symptoms:
-            getSelectedSymptoms(),
+        return "يرجى إدخال إدارة / قسم المبلّغ.";
 
-        cases:
-            outbreakCases,
+    }
 
-        clinicalSamples:
-            document.getElementById(
-                "clinicalSamples"
-            ).value,
 
-        clinicalSampleType:
-            document.getElementById(
-                "clinicalSampleType"
-            ).value.trim(),
+    return "";
 
-        foodSamples:
-            document.getElementById(
-                "foodSamples"
-            ).value,
+}
 
-        labResult:
-            document.getElementById(
-                "labResult"
-            ).value.trim(),
 
-        publicHealthNotified:
-            document.getElementById(
-                "publicHealthNotified"
-            ).value,
-
-        hesnStatus:
-            document.getElementById(
-                "hesnStatus"
-            ).value,
-
-        hesnNumber:
-            document.getElementById(
-                "hesnNumber"
-            ).value.trim(),
-
-        investigatorName:
-            document.getElementById(
-                "investigatorName"
-            ).value.trim(),
-
-        actionsTaken:
-            document.getElementById(
-                "actionsTaken"
-            ).value.trim(),
-
-        investigationNotes:
-            document.getElementById(
-                "investigationNotes"
-            ).value.trim(),
-
-        createdAt:
-            new Date().toISOString(),
-
-        totalCases:
-            outbreakCases.length
-
-    };
-
+function saveOutbreakRecord(
+    outbreak
+){
 
     const outbreaks =
-        getOutbreaks();
+        getArray(
+            OUTBREAKS_KEY
+        );
 
 
     const existingIndex =
@@ -1619,66 +2257,333 @@ function saveOutbreak(){
 
             function(item){
 
-                return item.id ===
-                       outbreak.id;
+                return (
+                    item.id ===
+                    outbreak.id
+                );
 
             }
 
         );
 
 
-    if(existingIndex >= 0){
+    if(
+        existingIndex >= 0
+    ){
 
         outbreaks[
             existingIndex
-        ] = outbreak;
+        ] =
+            outbreak;
 
-    }else{
+    }
+    else{
 
-        outbreaks.push(
+        outbreaks.unshift(
             outbreak
         );
 
     }
 
 
-    localStorage.setItem(
-        "foodborneOutbreaks",
-        JSON.stringify(
-            outbreaks
-        )
+    saveArray(
+        OUTBREAKS_KEY,
+        outbreaks
+    );
+
+}
+
+
+function saveDraft(){
+
+    const outbreak =
+        buildOutbreak();
+
+
+    outbreak.status =
+        "draft";
+
+
+    saveOutbreakRecord(
+        outbreak
     );
 
 
-    const message =
-        document.getElementById(
-            "successMessage"
+    showSuccess(
+        "💾 تم حفظ المسودة محليًا."
+    );
+
+}
+
+
+function sendOutbreak(){
+
+    const outbreak =
+        buildOutbreak();
+
+
+    const error =
+        validateOutbreak(
+            outbreak
         );
 
 
-    message.style.display =
+    if(
+        error
+    ){
+
+        showError(
+            error
+        );
+
+        return;
+
+    }
+
+
+    outbreak.status =
+        "new";
+
+
+    saveOutbreakRecord(
+        outbreak
+    );
+
+
+    const notifications =
+        getArray(
+            NOTIFICATIONS_KEY
+        );
+
+
+    const notification = {
+
+        id:
+            outbreak.id,
+
+        date:
+            outbreak.receivedDateTime ||
+            outbreak.reporter.reportDateTime ||
+            nowLocal(),
+
+        reportDateTime:
+            outbreak.reporter.reportDateTime ||
+            outbreak.receivedDateTime ||
+            nowLocal(),
+
+        disease:
+            "فاشية مرض منقول بالغذاء",
+
+        classification:
+            "suspected",
+
+        priority:
+            "urgent",
+
+        status:
+            "new",
+
+        source:
+            "manual",
+
+        notificationType:
+            "foodborneOutbreak",
+
+        outbreakId:
+            outbreak.id,
+
+        reporterName:
+            outbreak.reporter.name,
+
+        reporterDepartment:
+            outbreak.reporter.department ||
+            outbreak.facility.reportingDepartment,
+
+        reporterPhone:
+            outbreak.reporter.phone,
+
+        hesnStatus:
+            outbreak.hesnStatus,
+
+        hesnNumber:
+            outbreak.hesnNumber,
+
+        patientName:
+            outbreak.food.sourceName ||
+            outbreak.food.consumptionPlace ||
+            "فاشية غذائية",
+
+        caseLocation:
+            outbreak.food.consumptionPlace ||
+            outbreak.food.sourceLocation ||
+            outbreak.facility.name,
+
+        createdAt:
+            new Date()
+            .toISOString(),
+
+        outbreakData:
+            outbreak
+
+    };
+
+
+    const existingIndex =
+        notifications.findIndex(
+
+            function(item){
+
+                return (
+                    item.id ===
+                    notification.id
+                );
+
+            }
+
+        );
+
+
+    if(
+        existingIndex >= 0
+    ){
+
+        notifications[
+            existingIndex
+        ] = {
+
+            ...notifications[
+                existingIndex
+            ],
+
+            ...notification
+
+        };
+
+    }
+    else{
+
+        notifications.unshift(
+            notification
+        );
+
+    }
+
+
+    saveArray(
+        NOTIFICATIONS_KEY,
+        notifications
+    );
+
+
+    showSuccess(
+
+        `✅ تم إرسال البلاغ إلى صندوق الصحة العامة بنجاح.
+        <br>
+        رقم البلاغ:
+        <strong>${outbreak.id}</strong>`
+
+    );
+
+
+    setTimeout(
+
+        function(){
+
+            window.location.href =
+                "public-health-inbox.html";
+
+        },
+
+        1800
+
+    );
+
+}
+
+
+function showSuccess(
+    message
+){
+
+    el(
+        "errorMessage"
+    ).style.display =
+        "none";
+
+
+    el(
+        "successMessage"
+    ).innerHTML =
+        message;
+
+
+    el(
+        "successMessage"
+    ).style.display =
         "block";
 
 
-    window.scrollTo({
-        top:
-            document.body.scrollHeight,
-        behavior:"smooth"
+    el(
+        "successMessage"
+    ).scrollIntoView({
+
+        behavior:
+            "smooth",
+
+        block:
+            "center"
+
     });
 
 }
 
 
+function showError(
+    message
+){
+
+    el(
+        "successMessage"
+    ).style.display =
+        "none";
+
+
+    el(
+        "errorMessage"
+    ).textContent =
+        message;
+
+
+    el(
+        "errorMessage"
+    ).style.display =
+        "block";
+
+
+    el(
+        "errorMessage"
+    ).scrollIntoView({
+
+        behavior:
+            "smooth",
+
+        block:
+            "center"
+
+    });
+
+}
+
 
 document.addEventListener(
-    "DOMContentLoaded",
-    setInitialValues
-);
 
+    "DOMContentLoaded",
+
+    setInitialValues
+
+);
 
 </script>
 
-
 </body>
-
 </html>
