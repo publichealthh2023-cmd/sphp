@@ -12,6 +12,76 @@
 
 <style>
 
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+}
+
+
+/* =====================================================
+   HEADER + LOGOS FIX
+===================================================== */
+
+.hero-header{
+    width:100%;
+    overflow:hidden;
+}
+
+.hero-grid{
+    display:grid !important;
+    grid-template-columns:180px 1fr 200px !important;
+    align-items:center !important;
+    gap:20px !important;
+
+    max-width:1200px !important;
+
+    margin:0 auto !important;
+
+    padding:18px 20px !important;
+}
+
+.side-logo{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+}
+
+.left-logo img{
+    width:auto !important;
+    height:auto !important;
+
+    max-width:155px !important;
+    max-height:90px !important;
+
+    object-fit:contain !important;
+
+    display:block !important;
+}
+
+.right-logo img{
+    width:auto !important;
+    height:auto !important;
+
+    max-width:185px !important;
+    max-height:105px !important;
+
+    object-fit:contain !important;
+
+    display:block !important;
+}
+
+.hero-center{
+    text-align:center !important;
+}
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
 .page{
     max-width:1300px;
     margin:30px auto;
@@ -24,15 +94,6 @@
     border-radius:15px;
     text-align:center;
     border:1px solid #dfe8f2;
-    box-shadow:0 4px 13px rgba(0,0,0,.05);
-}
-
-.intro h2{
-    color:#064c92;
-}
-
-.intro p{
-    color:#607387;
 }
 
 .ph-tools{
@@ -51,30 +112,27 @@
     display:flex;
     align-items:center;
     gap:15px;
-    box-shadow:0 4px 13px rgba(0,0,0,.05);
 }
 
 .tool-icon{
-    width:55px;
-    height:55px;
-    border-radius:14px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
     font-size:28px;
-    background:#eaf3fb;
 }
 
 .tool-text h3{
-    margin:0 0 5px;
+    margin:0;
     color:#064c92;
 }
 
 .tool-text p{
-    margin:0;
+    margin:5px 0 0;
     color:#607387;
     font-size:13px;
 }
+
+
+/* =====================================================
+   STATS
+===================================================== */
 
 .stats{
     display:grid;
@@ -101,19 +159,26 @@
     color:#064c92;
 }
 
-.stat p{
-    margin-bottom:0;
-    color:#607387;
-}
+
+/* =====================================================
+   FILTERS
+===================================================== */
 
 .filters{
     background:#fff;
     padding:16px;
     border-radius:12px;
+
     display:grid;
-    grid-template-columns:2fr repeat(3,1fr);
+
+    grid-template-columns:
+        2fr
+        repeat(3,1fr);
+
     gap:10px;
+
     margin-bottom:18px;
+
     border:1px solid #dfe8f2;
 }
 
@@ -124,6 +189,11 @@
     border-radius:8px;
     width:100%;
 }
+
+
+/* =====================================================
+   TABLE
+===================================================== */
 
 .wrap{
     overflow-x:auto;
@@ -150,17 +220,12 @@
     text-align:center;
 }
 
-.table tr:nth-child(even){
-    background:#f9fbfd;
-}
-
 .badge{
     display:inline-block;
     padding:5px 10px;
     border-radius:15px;
     font-size:11px;
     font-weight:bold;
-    white-space:nowrap;
 }
 
 .urgent{
@@ -210,7 +275,6 @@
     padding:8px 13px;
     border-radius:7px;
     font-weight:bold;
-    display:inline-block;
 }
 
 .empty{
@@ -219,24 +283,29 @@
     color:#607387;
 }
 
-@media(max-width:1050px){
 
-    .stats{
-        grid-template-columns:repeat(3,1fr);
-    }
-
-    .ph-tools{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-}
+/* =====================================================
+   RESPONSIVE
+===================================================== */
 
 @media(max-width:800px){
 
-    .stats{
-        grid-template-columns:repeat(2,1fr);
+    .hero-grid{
+        grid-template-columns:1fr !important;
+        gap:10px !important;
     }
 
+    .left-logo img{
+        max-width:125px !important;
+        max-height:75px !important;
+    }
+
+    .right-logo img{
+        max-width:155px !important;
+        max-height:90px !important;
+    }
+
+    .stats,
     .filters,
     .ph-tools{
         grid-template-columns:1fr;
@@ -256,9 +325,15 @@
 
 <div class="hero-grid">
 
+
 <div class="side-logo left-logo">
-    <img src="images/cluster-logo.png">
+
+<img
+    src="images/cluster-logo.png"
+    alt="Hafr Al-Batin Health Cluster">
+
 </div>
+
 
 <div class="hero-center">
 
@@ -276,13 +351,20 @@ Public Health Notification Inbox
 
 </div>
 
+
 <div class="side-logo right-logo">
-    <img src="images/hospital-logo.png">
+
+<img
+    src="images/hospital-logo.png"
+    alt="Hospital Logo">
+
 </div>
+
 
 </div>
 
 </header>
+
 
 
 <main class="page">
@@ -301,7 +383,9 @@ Public Health Notification Inbox
 </section>
 
 
+
 <section class="ph-tools">
+
 
 <a
     href="public-health-inbox.html"
@@ -371,7 +455,9 @@ Public Health Notification Inbox
 
 </a>
 
+
 </section>
+
 
 
 <section class="stats">
@@ -382,7 +468,9 @@ Public Health Notification Inbox
 <div
     id="total"
     class="num">
+
 0
+
 </div>
 
 <p>
@@ -397,7 +485,9 @@ Public Health Notification Inbox
 <div
     id="urgentCount"
     class="num">
+
 0
+
 </div>
 
 <p>
@@ -412,7 +502,9 @@ Public Health Notification Inbox
 <div
     id="openCount"
     class="num">
+
 0
+
 </div>
 
 <p>
@@ -427,7 +519,9 @@ Public Health Notification Inbox
 <div
     id="closedCount"
     class="num">
+
 0
+
 </div>
 
 <p>
@@ -442,7 +536,9 @@ Public Health Notification Inbox
 <div
     id="foodborneCount"
     class="num">
+
 0
+
 </div>
 
 <p>
@@ -451,7 +547,9 @@ Public Health Notification Inbox
 
 </div>
 
+
 </section>
+
 
 
 <section class="filters">
@@ -531,9 +629,12 @@ Public Health Notification Inbox
 </section>
 
 
+
 <section class="wrap">
 
+
 <table class="table">
+
 
 <thead>
 
@@ -611,15 +712,17 @@ Public Health Notification Inbox
 </main>
 
 
+
 <script>
 
 
-let list = [];
+let list =
+    [];
 
 
-/* =====================================
-   تحميل البيانات
-===================================== */
+/* =====================================================
+   LOAD
+===================================================== */
 
 async function load(){
 
@@ -635,31 +738,29 @@ async function load(){
 
 
             list =
-                Array.isArray(
-                    data
-                )
+                Array.isArray(data)
                 ? data
                 : [];
 
-        }
-        else{
+        }else{
 
             list =
                 JSON.parse(
+
                     localStorage.getItem(
                         "publicHealthNotifications"
-                    ) ||
+                    )
+
+                    ||
+
                     "[]"
+
                 );
 
         }
 
 
-        if(
-            !Array.isArray(
-                list
-            )
-        ){
+        if(!Array.isArray(list)){
 
             list = [];
 
@@ -668,24 +769,23 @@ async function load(){
     }
     catch(error){
 
-        console.error(
-            "Failed to load notifications:",
-            error
-        );
-
-
         try{
 
             list =
                 JSON.parse(
+
                     localStorage.getItem(
                         "publicHealthNotifications"
-                    ) ||
+                    )
+
+                    ||
+
                     "[]"
+
                 );
 
         }
-        catch(e){
+        catch(secondError){
 
             list = [];
 
@@ -701,9 +801,9 @@ async function load(){
 }
 
 
-/* =====================================
-   الإحصائيات
-===================================== */
+/* =====================================================
+   STATS
+===================================================== */
 
 function stats(){
 
@@ -717,7 +817,6 @@ function stats(){
         "urgentCount"
     ).textContent =
         list.filter(
-
             function(item){
 
                 return (
@@ -726,15 +825,14 @@ function stats(){
                 );
 
             }
-
-        ).length;
+        )
+        .length;
 
 
     document.getElementById(
         "openCount"
     ).textContent =
         list.filter(
-
             function(item){
 
                 return (
@@ -743,15 +841,14 @@ function stats(){
                 );
 
             }
-
-        ).length;
+        )
+        .length;
 
 
     document.getElementById(
         "closedCount"
     ).textContent =
         list.filter(
-
             function(item){
 
                 return (
@@ -760,15 +857,14 @@ function stats(){
                 );
 
             }
-
-        ).length;
+        )
+        .length;
 
 
     document.getElementById(
         "foodborneCount"
     ).textContent =
         list.filter(
-
             function(item){
 
                 return (
@@ -777,106 +873,83 @@ function stats(){
                 );
 
             }
-
-        ).length;
-
-}
-
-
-/* =====================================
-   شارات الحالة
-===================================== */
-
-function statusBadge(
-    status
-){
-
-    if(
-        status ===
-        "closed"
-    ){
-
-        return `
-        <span class="badge closed">
-        مغلق
-        </span>
-        `;
-
-    }
-
-
-    if(
-        status ===
-        "progress"
-    ){
-
-        return `
-        <span class="badge progress">
-        تحت المتابعة
-        </span>
-        `;
-
-    }
-
-
-    return `
-    <span class="badge new">
-    جديد
-    </span>
-    `;
+        )
+        .length;
 
 }
 
 
-/* =====================================
-   شارة الأولوية
-===================================== */
+/* =====================================================
+   BADGES
+===================================================== */
 
-function priorityBadge(
-    priority
-){
+function statusBadge(status){
 
-    if(
-        priority ===
-        "urgent"
-    ){
+    if(status === "closed"){
 
-        return `
-        <span class="badge urgent">
-        🚨 عاجل
-        </span>
-        `;
+        return (
+            '<span class="badge closed">' +
+            'مغلق' +
+            '</span>'
+        );
 
     }
 
 
-    return `
-    <span class="badge normal">
-    عادي
-    </span>
-    `;
+    if(status === "progress"){
+
+        return (
+            '<span class="badge progress">' +
+            'تحت المتابعة' +
+            '</span>'
+        );
+
+    }
+
+
+    return (
+        '<span class="badge new">' +
+        'جديد' +
+        '</span>'
+    );
 
 }
 
 
-/* =====================================
-   مصدر البلاغ
-===================================== */
+function priorityBadge(priority){
 
-function sourceBadge(
-    item
-){
+    if(priority === "urgent"){
+
+        return (
+            '<span class="badge urgent">' +
+            '🚨 عاجل' +
+            '</span>'
+        );
+
+    }
+
+
+    return (
+        '<span class="badge normal">' +
+        'عادي' +
+        '</span>'
+    );
+
+}
+
+
+function sourceBadge(item){
 
     if(
         item.notificationType ===
         "foodborneOutbreak"
     ){
 
-        return `
-        <span class="badge foodborne-source">
-        🍽️ فاشية غذائية
-        </span>
-        `;
+        return (
+            '<span class="badge foodborne-source">' +
+            '🍽️ فاشية غذائية' +
+            '</span>'
+        );
 
     }
 
@@ -886,31 +959,31 @@ function sourceBadge(
         "smartScreening"
     ){
 
-        return `
-        <span class="badge smart-source">
-        🧠 الفرز الذكي
-        </span>
-        `;
+        return (
+            '<span class="badge smart-source">' +
+            '🧠 الفرز الذكي' +
+            '</span>'
+        );
 
     }
 
 
-    return `
-    <span class="badge manual-source">
-    إدخال مباشر
-    </span>
-    `;
+    return (
+        '<span class="badge manual-source">' +
+        'إدخال مباشر' +
+        '</span>'
+    );
 
 }
 
 
-/* =====================================
-   عرض البلاغات
-===================================== */
+/* =====================================================
+   RENDER
+===================================================== */
 
 function render(){
 
-    const q =
+    const query =
         (
             document.getElementById(
                 "search"
@@ -941,7 +1014,6 @@ function render(){
 
     const filtered =
         list.filter(
-
             function(item){
 
                 const outbreak =
@@ -956,25 +1028,35 @@ function render(){
 
                 const searchText =
                     (
+
                         (item.id || "") +
                         " " +
+
                         (item.disease || "") +
                         " " +
+
                         (item.patientName || "") +
                         " " +
+
                         (item.reporterDepartment || "") +
                         " " +
+
                         (food.sourceName || "") +
                         " " +
+
                         (food.suspectedFood || "")
+
                     )
                     .toLowerCase();
 
 
                 const sourceValue =
+
                     item.notificationType ===
                     "foodborneOutbreak"
+
                     ? "foodborneOutbreak"
+
                     : (
                         item.source ||
                         "manual"
@@ -984,9 +1066,9 @@ function render(){
                 return (
 
                     (
-                        !q ||
+                        !query ||
                         searchText.includes(
-                            q
+                            query
                         )
                     )
 
@@ -1017,80 +1099,78 @@ function render(){
                 );
 
             }
-
         );
 
 
-    const body =
-        document.getElementById(
-            "body"
-        );
+    document.getElementById(
+        "body"
+    ).innerHTML =
 
-
-    body.innerHTML =
-        filtered.map(
-
+        filtered
+        .map(
             function(item){
 
                 return `
 
                 <tr>
 
-                <td>
-                ${item.id || "—"}
-                </td>
+                    <td>
+                        ${item.id || "—"}
+                    </td>
 
-                <td>
-                ${
-                    item.date ||
-                    item.reportDateTime ||
-                    "—"
-                }
-                </td>
+                    <td>
+                        ${
+                            item.date ||
+                            item.reportDateTime ||
+                            "—"
+                        }
+                    </td>
 
-                <td>
-                ${item.disease || "—"}
-                </td>
+                    <td>
+                        ${item.disease || "—"}
+                    </td>
 
-                <td>
-                ${item.reporterDepartment || "—"}
-                </td>
+                    <td>
+                        ${
+                            item.reporterDepartment ||
+                            "—"
+                        }
+                    </td>
 
-                <td>
-                ${sourceBadge(item)}
-                </td>
+                    <td>
+                        ${sourceBadge(item)}
+                    </td>
 
-                <td>
-                ${priorityBadge(item.priority)}
-                </td>
+                    <td>
+                        ${priorityBadge(item.priority)}
+                    </td>
 
-                <td>
-                ${statusBadge(item.status)}
-                </td>
+                    <td>
+                        ${statusBadge(item.status)}
+                    </td>
 
-                <td>
+                    <td>
 
-                <a
-                    class="open"
-                    href="notification-details.html?id=${
-                        encodeURIComponent(
-                            item.id ||
-                            ""
-                        )
-                    }">
+                        <a
+                            class="open"
+                            href="notification-details.html?id=${
+                                encodeURIComponent(
+                                    item.id ||
+                                    ""
+                                )
+                            }">
 
-                فتح
+                        فتح
 
-                </a>
+                        </a>
 
-                </td>
+                    </td>
 
                 </tr>
 
                 `;
 
             }
-
         )
         .join("");
 
@@ -1098,6 +1178,7 @@ function render(){
     document.getElementById(
         "empty"
     ).style.display =
+
         filtered.length
         ? "none"
         : "block";
@@ -1105,14 +1186,12 @@ function render(){
 }
 
 
-/* =====================================
-   تحديث الصفحة
-===================================== */
+/* =====================================================
+   START
+===================================================== */
 
 window.addEventListener(
-
     "storage",
-
     function(event){
 
         if(
@@ -1125,21 +1204,14 @@ window.addEventListener(
         }
 
     }
-
 );
 
-
-/* =====================================
-   تشغيل
-===================================== */
 
 document.addEventListener(
-
     "DOMContentLoaded",
-
     load
-
 );
+
 
 </script>
 
