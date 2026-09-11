@@ -22,7 +22,7 @@ body{
 
 
 /* =====================================================
-   HEADER + LOGOS FIX
+   HEADER
 ===================================================== */
 
 .hero-header{
@@ -35,11 +35,8 @@ body{
     grid-template-columns:180px 1fr 200px !important;
     align-items:center !important;
     gap:20px !important;
-
     max-width:1200px !important;
-
     margin:0 auto !important;
-
     padding:18px 20px !important;
 }
 
@@ -52,24 +49,18 @@ body{
 .left-logo img{
     width:auto !important;
     height:auto !important;
-
     max-width:155px !important;
     max-height:90px !important;
-
     object-fit:contain !important;
-
     display:block !important;
 }
 
 .right-logo img{
     width:auto !important;
     height:auto !important;
-
     max-width:185px !important;
     max-height:105px !important;
-
     object-fit:contain !important;
-
     display:block !important;
 }
 
@@ -83,7 +74,7 @@ body{
 ===================================================== */
 
 .page{
-    max-width:1300px;
+    max-width:1350px;
     margin:30px auto;
     padding:0 20px 50px;
 }
@@ -94,7 +85,51 @@ body{
     border-radius:15px;
     text-align:center;
     border:1px solid #dfe8f2;
+    box-shadow:0 4px 14px rgba(0,0,0,.04);
 }
+
+.intro h2{
+    margin-top:0;
+    color:#064c92;
+}
+
+
+/* =====================================================
+   TOP ACTION BAR
+===================================================== */
+
+.top-actions{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin:18px 0;
+}
+
+.refresh-btn{
+    border:none;
+    background:#0759a6;
+    color:white;
+    border-radius:9px;
+    padding:11px 16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.refresh-btn:hover{
+    opacity:.9;
+}
+
+.last-update{
+    color:#607387;
+    font-size:13px;
+}
+
+
+/* =====================================================
+   TOOLS
+===================================================== */
 
 .ph-tools{
     display:grid;
@@ -112,6 +147,12 @@ body{
     display:flex;
     align-items:center;
     gap:15px;
+    transition:.15s;
+}
+
+.tool-card:hover{
+    transform:translateY(-1px);
+    box-shadow:0 5px 15px rgba(0,0,0,.05);
 }
 
 .tool-icon{
@@ -136,7 +177,7 @@ body{
 
 .stats{
     display:grid;
-    grid-template-columns:repeat(5,1fr);
+    grid-template-columns:repeat(6,1fr);
     gap:15px;
     margin:22px 0;
 }
@@ -149,7 +190,23 @@ body{
     border:1px solid #dfe8f2;
 }
 
-.stat.foodborne{
+.stat.new-stat{
+    border-top:4px solid #0759a6;
+}
+
+.stat.urgent-stat{
+    border-top:4px solid #c62828;
+}
+
+.stat.progress-stat{
+    border-top:4px solid #f9a825;
+}
+
+.stat.closed-stat{
+    border-top:4px solid #2e7d32;
+}
+
+.stat.foodborne-stat{
     border-top:4px solid #ef8d22;
 }
 
@@ -157,6 +214,22 @@ body{
     font-size:30px;
     font-weight:bold;
     color:#064c92;
+}
+
+.stat.urgent-stat .num{
+    color:#c62828;
+}
+
+.stat.progress-stat .num{
+    color:#b27b00;
+}
+
+.stat.closed-stat .num{
+    color:#2e7d32;
+}
+
+.stat.foodborne-stat .num{
+    color:#d56b00;
 }
 
 
@@ -168,17 +241,10 @@ body{
     background:#fff;
     padding:16px;
     border-radius:12px;
-
     display:grid;
-
-    grid-template-columns:
-        2fr
-        repeat(3,1fr);
-
+    grid-template-columns:2fr repeat(4,1fr);
     gap:10px;
-
     margin-bottom:18px;
-
     border:1px solid #dfe8f2;
 }
 
@@ -205,20 +271,53 @@ body{
 .table{
     width:100%;
     border-collapse:collapse;
-    min-width:1100px;
+    min-width:1280px;
 }
 
 .table th{
     background:#064c92;
     color:#fff;
     padding:12px;
+    white-space:nowrap;
 }
 
 .table td{
     padding:12px;
     border-bottom:1px solid #e7edf2;
     text-align:center;
+    vertical-align:middle;
 }
+
+.table tbody tr:hover{
+    background:#f8fbfd;
+}
+
+.table tbody tr.new-row{
+    background:#f4f9ff;
+}
+
+.table tbody tr.urgent-row{
+    border-right:5px solid #c62828;
+}
+
+.patient-cell{
+    text-align:right !important;
+    min-width:180px;
+}
+
+.patient-cell strong{
+    display:block;
+    color:#294b6a;
+}
+
+.patient-cell small{
+    color:#738596;
+}
+
+
+/* =====================================================
+   BADGES
+===================================================== */
 
 .badge{
     display:inline-block;
@@ -226,6 +325,7 @@ body{
     border-radius:15px;
     font-size:11px;
     font-weight:bold;
+    white-space:nowrap;
 }
 
 .urgent{
@@ -268,6 +368,26 @@ body{
     color:#a75b00;
 }
 
+.food-individual-source{
+    background:#fff8e7;
+    color:#8b6300;
+}
+
+.hesn-pending{
+    background:#fff4d7;
+    color:#806316;
+}
+
+.hesn-entered{
+    background:#e8f6ec;
+    color:#277438;
+}
+
+.hesn-not-required{
+    background:#eef2f5;
+    color:#526270;
+}
+
 .open{
     background:#eaf1f7;
     color:#064c92;
@@ -275,6 +395,11 @@ body{
     padding:8px 13px;
     border-radius:7px;
     font-weight:bold;
+    white-space:nowrap;
+}
+
+.open:hover{
+    background:#dce9f4;
 }
 
 .empty{
@@ -287,6 +412,18 @@ body{
 /* =====================================================
    RESPONSIVE
 ===================================================== */
+
+@media(max-width:1000px){
+
+    .stats{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .filters{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
 
 @media(max-width:800px){
 
@@ -325,7 +462,6 @@ body{
 
 <div class="hero-grid">
 
-
 <div class="side-logo left-logo">
 
 <img
@@ -360,11 +496,9 @@ Public Health Notification Inbox
 
 </div>
 
-
 </div>
 
 </header>
-
 
 
 <main class="page">
@@ -377,11 +511,31 @@ Public Health Notification Inbox
 </h2>
 
 <p>
-إدارة ومتابعة بلاغات الأمراض المعدية والفاشيات الواردة إلى الصحة العامة.
+إدارة ومتابعة بلاغات الأمراض المعدية والتسممات والفاشيات الواردة إلى الصحة العامة.
 </p>
 
 </section>
 
+
+<div class="top-actions">
+
+<div class="last-update">
+
+آخر تحديث:
+<strong id="lastUpdate">—</strong>
+
+</div>
+
+<button
+    type="button"
+    class="refresh-btn"
+    onclick="load()">
+
+🔄 تحديث البلاغات
+
+</button>
+
+</div>
 
 
 <section class="ph-tools">
@@ -459,18 +613,13 @@ Public Health Notification Inbox
 </section>
 
 
-
 <section class="stats">
 
 
 <div class="stat">
 
-<div
-    id="total"
-    class="num">
-
+<div id="total" class="num">
 0
-
 </div>
 
 <p>
@@ -480,14 +629,23 @@ Public Health Notification Inbox
 </div>
 
 
-<div class="stat">
+<div class="stat new-stat">
 
-<div
-    id="urgentCount"
-    class="num">
-
+<div id="newCount" class="num">
 0
+</div>
 
+<p>
+بلاغات جديدة
+</p>
+
+</div>
+
+
+<div class="stat urgent-stat">
+
+<div id="urgentCount" class="num">
+0
 </div>
 
 <p>
@@ -497,14 +655,10 @@ Public Health Notification Inbox
 </div>
 
 
-<div class="stat">
+<div class="stat progress-stat">
 
-<div
-    id="openCount"
-    class="num">
-
+<div id="openCount" class="num">
 0
-
 </div>
 
 <p>
@@ -514,14 +668,10 @@ Public Health Notification Inbox
 </div>
 
 
-<div class="stat">
+<div class="stat closed-stat">
 
-<div
-    id="closedCount"
-    class="num">
-
+<div id="closedCount" class="num">
 0
-
 </div>
 
 <p>
@@ -531,18 +681,14 @@ Public Health Notification Inbox
 </div>
 
 
-<div class="stat foodborne">
+<div class="stat foodborne-stat">
 
-<div
-    id="foodborneCount"
-    class="num">
-
+<div id="foodborneCount" class="num">
 0
-
 </div>
 
 <p>
-فاشيات غذائية
+بلاغات غذائية
 </p>
 
 </div>
@@ -551,13 +697,12 @@ Public Health Notification Inbox
 </section>
 
 
-
 <section class="filters">
 
 
 <input
     id="search"
-    placeholder="ابحث برقم البلاغ أو المرض أو القسم أو مصدر الطعام"
+    placeholder="ابحث برقم البلاغ أو المرض أو اسم المريض أو القسم"
     oninput="render()">
 
 
@@ -619,6 +764,10 @@ Public Health Notification Inbox
 إدخال مباشر
 </option>
 
+<option value="foodPoisoningIndividual">
+تسمم غذائي فردي
+</option>
+
 <option value="foodborneOutbreak">
 فاشية غذائية
 </option>
@@ -626,8 +775,30 @@ Public Health Notification Inbox
 </select>
 
 
-</section>
+<select
+    id="hesn"
+    onchange="render()">
 
+<option value="">
+كل حالات HESN+
+</option>
+
+<option value="pending">
+لم يُدخل
+</option>
+
+<option value="entered">
+تم الإدخال
+</option>
+
+<option value="notRequired">
+لا يتطلب
+</option>
+
+</select>
+
+
+</section>
 
 
 <section class="wrap">
@@ -649,6 +820,10 @@ Public Health Notification Inbox
 </th>
 
 <th>
+المريض / المصدر
+</th>
+
+<th>
 المرض / الحدث
 </th>
 
@@ -666,6 +841,10 @@ Public Health Notification Inbox
 
 <th>
 الحالة
+</th>
+
+<th>
+HESN+
 </th>
 
 <th>
@@ -712,12 +891,81 @@ Public Health Notification Inbox
 </main>
 
 
-
 <script>
 
 
-let list =
-    [];
+let list = [];
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function safeArray(value){
+
+    return Array.isArray(value)
+        ? value
+        : [];
+
+}
+
+
+function localNowText(){
+
+    return new Date()
+        .toLocaleString(
+            "ar-SA"
+        );
+
+}
+
+
+function parseDate(item){
+
+    const candidates = [
+
+        item.createdAt,
+        item.reportDateTime,
+        item.date
+
+    ];
+
+
+    for(
+        let i = 0;
+        i < candidates.length;
+        i++
+    ){
+
+        const value =
+            candidates[i];
+
+
+        if(!value){
+            continue;
+        }
+
+
+        const date =
+            new Date(value);
+
+
+        if(
+            !Number.isNaN(
+                date.getTime()
+            )
+        ){
+
+            return date.getTime();
+
+        }
+
+    }
+
+
+    return 0;
+
+}
 
 
 /* =====================================================
@@ -728,23 +976,21 @@ async function load(){
 
     try{
 
+        let data = [];
+
+
         if(
             typeof getPublicHealthNotifications ===
             "function"
         ){
 
-            const data =
+            data =
                 await getPublicHealthNotifications();
 
+        }
+        else{
 
-            list =
-                Array.isArray(data)
-                ? data
-                : [];
-
-        }else{
-
-            list =
+            data =
                 JSON.parse(
 
                     localStorage.getItem(
@@ -760,27 +1006,36 @@ async function load(){
         }
 
 
-        if(!Array.isArray(list)){
-
-            list = [];
-
-        }
+        list =
+            safeArray(
+                data
+            );
 
     }
     catch(error){
 
+        console.error(
+            "Inbox API error:",
+            error
+        );
+
+
         try{
 
             list =
-                JSON.parse(
+                safeArray(
 
-                    localStorage.getItem(
-                        "publicHealthNotifications"
+                    JSON.parse(
+
+                        localStorage.getItem(
+                            "publicHealthNotifications"
+                        )
+
+                        ||
+
+                        "[]"
+
                     )
-
-                    ||
-
-                    "[]"
 
                 );
 
@@ -792,6 +1047,28 @@ async function load(){
         }
 
     }
+
+
+    /*
+      الأحدث أولًا
+    */
+
+    list.sort(
+        function(a,b){
+
+            return (
+                parseDate(b) -
+                parseDate(a)
+            );
+
+        }
+    );
+
+
+    document.getElementById(
+        "lastUpdate"
+    ).textContent =
+        localNowText();
 
 
     stats();
@@ -814,6 +1091,21 @@ function stats(){
 
 
     document.getElementById(
+        "newCount"
+    ).textContent =
+        list.filter(
+            function(item){
+
+                return (
+                    !item.status ||
+                    item.status === "new"
+                );
+
+            }
+        ).length;
+
+
+    document.getElementById(
         "urgentCount"
     ).textContent =
         list.filter(
@@ -825,8 +1117,7 @@ function stats(){
                 );
 
             }
-        )
-        .length;
+        ).length;
 
 
     document.getElementById(
@@ -836,13 +1127,12 @@ function stats(){
             function(item){
 
                 return (
-                    item.status !==
-                    "closed"
+                    item.status ===
+                    "progress"
                 );
 
             }
-        )
-        .length;
+        ).length;
 
 
     document.getElementById(
@@ -857,8 +1147,7 @@ function stats(){
                 );
 
             }
-        )
-        .length;
+        ).length;
 
 
     document.getElementById(
@@ -870,11 +1159,15 @@ function stats(){
                 return (
                     item.notificationType ===
                     "foodborneOutbreak"
+
+                    ||
+
+                    item.notificationType ===
+                    "foodPoisoningIndividual"
                 );
 
             }
-        )
-        .length;
+        ).length;
 
 }
 
@@ -955,6 +1248,20 @@ function sourceBadge(item){
 
 
     if(
+        item.notificationType ===
+        "foodPoisoningIndividual"
+    ){
+
+        return (
+            '<span class="badge food-individual-source">' +
+            '🥘 تسمم غذائي فردي' +
+            '</span>'
+        );
+
+    }
+
+
+    if(
         item.source ===
         "smartScreening"
     ){
@@ -972,6 +1279,182 @@ function sourceBadge(item){
         '<span class="badge manual-source">' +
         'إدخال مباشر' +
         '</span>'
+    );
+
+}
+
+
+function hesnBadge(status){
+
+    if(
+        status ===
+        "entered"
+    ){
+
+        return (
+            '<span class="badge hesn-entered">' +
+            '✅ تم الإدخال' +
+            '</span>'
+        );
+
+    }
+
+
+    if(
+        status ===
+        "notRequired"
+    ){
+
+        return (
+            '<span class="badge hesn-not-required">' +
+            'لا يتطلب' +
+            '</span>'
+        );
+
+    }
+
+
+    return (
+        '<span class="badge hesn-pending">' +
+        '⏳ لم يُدخل' +
+        '</span>'
+    );
+
+}
+
+
+/* =====================================================
+   DISPLAY HELPERS
+===================================================== */
+
+function getPatientDisplay(item){
+
+    const outbreak =
+        item.outbreakData ||
+        {};
+
+
+    const food =
+        outbreak.food ||
+        {};
+
+
+    if(
+        item.notificationType ===
+        "foodborneOutbreak"
+    ){
+
+        return {
+
+            title:
+                food.sourceName ||
+                food.consumptionPlace ||
+                item.patientName ||
+                "فاشية غذائية",
+
+            subtitle:
+                food.suspectedFood ||
+                ""
+
+        };
+
+    }
+
+
+    return {
+
+        title:
+            item.patientName ||
+            "—",
+
+        subtitle:
+            item.mrn
+            ? "MRN: " + item.mrn
+            : ""
+
+    };
+
+}
+
+
+function getDepartment(item){
+
+    return (
+
+        item.reporterDepartment
+
+        ||
+
+        (
+            item.reporter &&
+            item.reporter.department
+        )
+
+        ||
+
+        (
+            item.outbreakData &&
+            item.outbreakData.reporter &&
+            item.outbreakData.reporter.department
+        )
+
+        ||
+
+        "—"
+
+    );
+
+}
+
+
+function getDisplayDate(item){
+
+    return (
+
+        item.reportDateTime
+
+        ||
+
+        item.date
+
+        ||
+
+        item.createdAt
+
+        ||
+
+        "—"
+
+    );
+
+}
+
+
+function getSourceValue(item){
+
+    if(
+        item.notificationType ===
+        "foodborneOutbreak"
+    ){
+
+        return "foodborneOutbreak";
+
+    }
+
+
+    if(
+        item.notificationType ===
+        "foodPoisoningIndividual"
+    ){
+
+        return "foodPoisoningIndividual";
+
+    }
+
+
+    return (
+        item.source ||
+        "manual"
     );
 
 }
@@ -1012,6 +1495,12 @@ function render(){
         ).value;
 
 
+    const hesn =
+        document.getElementById(
+            "hesn"
+        ).value;
+
+
     const filtered =
         list.filter(
             function(item){
@@ -1026,6 +1515,12 @@ function render(){
                     {};
 
 
+                const patient =
+                    getPatientDisplay(
+                        item
+                    );
+
+
                 const searchText =
                     (
 
@@ -1035,10 +1530,13 @@ function render(){
                         (item.disease || "") +
                         " " +
 
-                        (item.patientName || "") +
+                        (patient.title || "") +
                         " " +
 
-                        (item.reporterDepartment || "") +
+                        (patient.subtitle || "") +
+                        " " +
+
+                        (getDepartment(item) || "") +
                         " " +
 
                         (food.sourceName || "") +
@@ -1051,16 +1549,19 @@ function render(){
 
 
                 const sourceValue =
-
-                    item.notificationType ===
-                    "foodborneOutbreak"
-
-                    ? "foodborneOutbreak"
-
-                    : (
-                        item.source ||
-                        "manual"
+                    getSourceValue(
+                        item
                     );
+
+
+                const itemStatus =
+                    item.status ||
+                    "new";
+
+
+                const itemHesn =
+                    item.hesnStatus ||
+                    "pending";
 
 
                 return (
@@ -1076,7 +1577,7 @@ function render(){
 
                     (
                         !status ||
-                        item.status ===
+                        itemStatus ===
                         status
                     )
 
@@ -1096,6 +1597,14 @@ function render(){
                         source
                     )
 
+                    &&
+
+                    (
+                        !hesn ||
+                        itemHesn ===
+                        hesn
+                    )
+
                 );
 
             }
@@ -1110,20 +1619,70 @@ function render(){
         .map(
             function(item){
 
+                const patient =
+                    getPatientDisplay(
+                        item
+                    );
+
+
+                const rowClasses = [];
+
+
+                if(
+                    !item.status ||
+                    item.status ===
+                    "new"
+                ){
+
+                    rowClasses.push(
+                        "new-row"
+                    );
+
+                }
+
+
+                if(
+                    item.priority ===
+                    "urgent"
+                ){
+
+                    rowClasses.push(
+                        "urgent-row"
+                    );
+
+                }
+
+
                 return `
 
-                <tr>
+                <tr class="${rowClasses.join(" ")}">
 
                     <td>
+                        <strong>
                         ${item.id || "—"}
+                        </strong>
                     </td>
 
                     <td>
+                        ${getDisplayDate(item)}
+                    </td>
+
+                    <td class="patient-cell">
+
+                        <strong>
+                        ${patient.title}
+                        </strong>
+
                         ${
-                            item.date ||
-                            item.reportDateTime ||
-                            "—"
+                            patient.subtitle
+                            ? (
+                                "<small>" +
+                                patient.subtitle +
+                                "</small>"
+                            )
+                            : ""
                         }
+
                     </td>
 
                     <td>
@@ -1131,10 +1690,7 @@ function render(){
                     </td>
 
                     <td>
-                        ${
-                            item.reporterDepartment ||
-                            "—"
-                        }
+                        ${getDepartment(item)}
                     </td>
 
                     <td>
@@ -1142,11 +1698,21 @@ function render(){
                     </td>
 
                     <td>
-                        ${priorityBadge(item.priority)}
+                        ${priorityBadge(
+                            item.priority
+                        )}
                     </td>
 
                     <td>
-                        ${statusBadge(item.status)}
+                        ${statusBadge(
+                            item.status
+                        )}
+                    </td>
+
+                    <td>
+                        ${hesnBadge(
+                            item.hesnStatus
+                        )}
                     </td>
 
                     <td>
@@ -1160,7 +1726,7 @@ function render(){
                                 )
                             }">
 
-                        فتح
+                        فتح البلاغ
 
                         </a>
 
@@ -1187,7 +1753,7 @@ function render(){
 
 
 /* =====================================================
-   START
+   LIVE UPDATE
 ===================================================== */
 
 window.addEventListener(
@@ -1206,6 +1772,26 @@ window.addEventListener(
     }
 );
 
+
+/*
+  تحديث تلقائي كل 30 ثانية.
+  عند الانتقال للسيرفر المحلي يمكننا
+  تقليل المدة أو استخدام WebSocket.
+*/
+
+setInterval(
+    function(){
+
+        load();
+
+    },
+    30000
+);
+
+
+/* =====================================================
+   START
+===================================================== */
 
 document.addEventListener(
     "DOMContentLoaded",
