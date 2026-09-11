@@ -22,7 +22,7 @@ body{
 
 
 /* ==========================================
-   FIX HEADER
+   HEADER
 ========================================== */
 
 .hero-header{
@@ -134,13 +134,39 @@ body{
     margin-bottom:7px;
 }
 
+.screening-summary-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-top:12px;
+}
+
+.screening-summary-item{
+    background:white;
+    border:1px solid #e1d8ff;
+    border-radius:9px;
+    padding:10px;
+}
+
+.screening-summary-item strong{
+    display:block;
+    font-size:11px;
+    margin-bottom:3px;
+}
+
+.screening-summary-item span{
+    color:#294b6a;
+    font-weight:bold;
+}
+
 
 /* ==========================================
    WARNINGS
 ========================================== */
 
 .hidden-risk,
-.history-warning{
+.history-warning,
+.rapid-red-warning{
     display:none;
     border-radius:12px;
     padding:16px 18px;
@@ -162,8 +188,16 @@ body{
     color:#31556f;
 }
 
+.rapid-red-warning{
+    background:#fff0f0;
+    border:1px solid #e3adad;
+    border-right:6px solid #c62828;
+    color:#7d2525;
+}
+
 .hidden-risk.active,
-.history-warning.active{
+.history-warning.active,
+.rapid-red-warning.active{
     display:block;
 }
 
@@ -217,6 +251,11 @@ textarea{
 textarea{
     min-height:100px;
     resize:vertical;
+}
+
+.prefilled{
+    background:#f1f8ff !important;
+    border-color:#8eb9db !important;
 }
 
 .checkgrid{
@@ -353,7 +392,8 @@ textarea{
 
     .grid,
     .checkgrid,
-    .actions{
+    .actions,
+    .screening-summary-grid{
         grid-template-columns:1fr;
     }
 
@@ -419,6 +459,11 @@ Infectious Disease Notification
 </section>
 
 
+
+<!-- ==========================================
+     SCREENING SOURCE
+========================================== -->
+
 <div id="screeningSource" class="screening-source">
 
 <div class="screening-badge">
@@ -428,12 +473,48 @@ Infectious Disease Notification
 <br>
 
 <strong>
-تم بدء هذا البلاغ من نتيجة الفرز الذكي للأمراض المعدية.
+تم إنشاء هذا البلاغ من نتيجة الفرز الذكي للأمراض المعدية.
 </strong>
 
 <div id="screeningSourceDetails"></div>
 
+
+<div class="screening-summary-grid">
+
+<div class="screening-summary-item">
+<strong>Rapid Screening ID</strong>
+<span id="summaryRapidId">—</span>
 </div>
+
+<div class="screening-summary-item">
+<strong>Rapid Score</strong>
+<span id="summaryRapidScore">—</span>
+</div>
+
+<div class="screening-summary-item">
+<strong>Rapid Risk</strong>
+<span id="summaryRapidRisk">—</span>
+</div>
+
+<div class="screening-summary-item">
+<strong>Smart Screening ID</strong>
+<span id="summarySmartId">—</span>
+</div>
+
+<div class="screening-summary-item">
+<strong>اسم المريض</strong>
+<span id="summaryPatientName">—</span>
+</div>
+
+<div class="screening-summary-item">
+<strong>MRN</strong>
+<span id="summaryMrn">—</span>
+</div>
+
+</div>
+
+</div>
+
 
 
 <div id="historyWarning" class="history-warning">
@@ -460,6 +541,18 @@ Infectious Disease Notification
 </div>
 
 
+<div id="rapidRedWarning" class="rapid-red-warning">
+
+<strong>
+🚨 Red Flag من الفرز السريع:
+</strong>
+
+تم تسجيل عامل خطورة مهم أثناء الفرز السريع.
+يجب مراعاة التقييم السريري والاحتياطات المناسبة.
+
+</div>
+
+
 <div id="urgent" class="alert">
 
 🚨 الحالة المختارة من الأمراض ذات الأولوية.
@@ -469,6 +562,11 @@ Infectious Disease Notification
 </div>
 
 
+
+<!-- ==========================================
+     PATIENT
+========================================== -->
+
 <section class="section">
 
 <h2>
@@ -477,56 +575,98 @@ Infectious Disease Notification
 
 <div class="grid">
 
+
 <div class="group">
 <label>اسم المريض *</label>
 <input id="patientName">
 </div>
+
 
 <div class="group">
 <label>رقم الملف الطبي *</label>
 <input id="mrn">
 </div>
 
+
+<div class="group">
+
+<label>
+فئة المريض
+</label>
+
+<select id="patientType">
+
+<option value=""></option>
+
+<option value="adult">
+بالغ
+</option>
+
+<option value="pediatric">
+طفل
+</option>
+
+</select>
+
+</div>
+
+
 <div class="group">
 <label>رقم الهوية / الإقامة</label>
 <input id="nationalId">
 </div>
+
 
 <div class="group">
 <label>الجنسية</label>
 <input id="nationality">
 </div>
 
+
 <div class="group">
 <label>تاريخ الميلاد</label>
 <input id="dob" type="date">
 </div>
 
+
 <div class="group">
-<label>الجنس</label>
+
+<label>
+الجنس
+</label>
 
 <select id="gender">
+
 <option value=""></option>
 <option value="male">ذكر</option>
 <option value="female">أنثى</option>
+
 </select>
 
 </div>
+
 
 <div class="group">
 <label>رقم التواصل</label>
 <input id="patientPhone">
 </div>
 
+
 <div class="group">
 <label>مكان الإقامة</label>
 <input id="residence">
 </div>
 
+
 </div>
 
 </section>
 
+
+
+<!-- ==========================================
+     CASE
+========================================== -->
 
 <section class="section">
 
@@ -535,6 +675,7 @@ Infectious Disease Notification
 </h2>
 
 <div class="grid">
+
 
 <div class="group">
 
@@ -545,6 +686,7 @@ Infectious Disease Notification
 <select id="diseaseSelect">
 
 <option value="">-- اختر --</option>
+
 <option value="nipah">فيروس نيباه</option>
 <option value="ebola">إيبولا / ماربيرج</option>
 <option value="mers">MERS</option>
@@ -570,10 +712,12 @@ Infectious Disease Notification
 </label>
 
 <select id="classification">
+
 <option value=""></option>
 <option value="suspected">مشتبهة</option>
 <option value="probable">محتملة</option>
 <option value="confirmed">مؤكدة</option>
+
 </select>
 
 </div>
@@ -604,20 +748,28 @@ Infectious Disease Notification
 </label>
 
 <select id="patientStatus">
+
 <option value=""></option>
 <option value="stable">مستقرة</option>
 <option value="admitted">منوم</option>
 <option value="critical">حرجة</option>
 <option value="discharged">خرج</option>
 <option value="deceased">وفاة</option>
+
 </select>
 
 </div>
+
 
 </div>
 
 </section>
 
+
+
+<!-- ==========================================
+     SYMPTOMS
+========================================== -->
 
 <section class="section">
 
@@ -627,52 +779,63 @@ Infectious Disease Notification
 
 <div class="checkgrid">
 
+
 <label class="check">
 <input type="checkbox" name="symptom" value="fever">
 حمى
 </label>
+
 
 <label class="check">
 <input type="checkbox" name="symptom" value="cough">
 سعال
 </label>
 
+
 <label class="check">
 <input type="checkbox" name="symptom" value="dyspnea">
 ضيق تنفس
 </label>
+
 
 <label class="check">
 <input type="checkbox" name="symptom" value="headache">
 صداع
 </label>
 
+
 <label class="check">
 <input type="checkbox" name="symptom" value="rash">
 طفح
 </label>
+
 
 <label class="check">
 <input type="checkbox" name="symptom" value="vomiting">
 قيء
 </label>
 
+
 <label class="check">
 <input type="checkbox" name="symptom" value="diarrhea">
 إسهال
 </label>
+
 
 <label class="check">
 <input type="checkbox" name="symptom" value="bleeding">
 نزف
 </label>
 
+
 <label class="check">
 <input type="checkbox" name="symptom" value="neuro">
 أعراض عصبية
 </label>
 
+
 </div>
+
 
 <div class="group full" style="margin-top:14px">
 
@@ -687,6 +850,11 @@ Infectious Disease Notification
 </section>
 
 
+
+<!-- ==========================================
+     EPI
+========================================== -->
+
 <section class="section">
 
 <h2>
@@ -695,6 +863,7 @@ Infectious Disease Notification
 
 <div class="grid">
 
+
 <div class="group">
 
 <label>
@@ -702,10 +871,12 @@ Infectious Disease Notification
 </label>
 
 <select id="recentTravel">
+
 <option value=""></option>
 <option value="yes">نعم</option>
 <option value="no">لا</option>
 <option value="unknown">غير معروف</option>
+
 </select>
 
 </div>
@@ -724,10 +895,12 @@ Infectious Disease Notification
 </label>
 
 <select id="contactCase">
+
 <option value=""></option>
 <option value="yes">نعم</option>
 <option value="no">لا</option>
 <option value="unknown">غير معروف</option>
+
 </select>
 
 </div>
@@ -740,10 +913,12 @@ Infectious Disease Notification
 </label>
 
 <select id="animalExposure">
+
 <option value=""></option>
 <option value="yes">نعم</option>
 <option value="no">لا</option>
 <option value="unknown">غير معروف</option>
+
 </select>
 
 </div>
@@ -761,10 +936,14 @@ placeholder="تفاصيل السفر، المخالطة، التعرض الحي�
 
 </div>
 
+
 </div>
 
 
-<div id="autoEpiInfo" class="auto-info" style="display:none">
+<div
+id="autoEpiInfo"
+class="auto-info"
+style="display:none">
 
 <strong>
 🧠 بيانات منقولة تلقائيًا من الفرز الذكي:
@@ -777,6 +956,11 @@ placeholder="تفاصيل السفر، المخالطة، التعرض الحي�
 </section>
 
 
+
+<!-- ==========================================
+     ACTIONS / SAMPLES
+========================================== -->
+
 <section class="section">
 
 <h2>
@@ -785,40 +969,48 @@ placeholder="تفاصيل السفر، المخالطة، التعرض الحي�
 
 <div class="checkgrid">
 
+
 <label class="check">
 <input type="checkbox" name="action" value="isolation">
 تم العزل
 </label>
+
 
 <label class="check">
 <input type="checkbox" name="action" value="ppe">
 تم تطبيق PPE
 </label>
 
+
 <label class="check">
 <input type="checkbox" name="action" value="infectionControl">
 إبلاغ مكافحة العدوى
 </label>
+
 
 <label class="check">
 <input type="checkbox" name="action" value="publicHealth">
 إبلاغ الصحة العامة
 </label>
 
+
 <label class="check">
 <input type="checkbox" name="action" value="sample">
 تم جمع العينة
 </label>
+
 
 <label class="check">
 <input type="checkbox" name="action" value="contacts">
 بدأ حصر المخالطين
 </label>
 
+
 </div>
 
 
 <div class="grid" style="margin-top:14px">
+
 
 <div class="group">
 
@@ -827,10 +1019,12 @@ placeholder="تفاصيل السفر، المخالطة، التعرض الحي�
 </label>
 
 <select id="sampleTaken">
+
 <option value=""></option>
 <option value="yes">نعم</option>
 <option value="no">لا</option>
 <option value="pending">سيتم</option>
+
 </select>
 
 </div>
@@ -855,18 +1049,26 @@ placeholder="تفاصيل السفر، المخالطة، التعرض الحي�
 </label>
 
 <select id="labResult">
+
 <option value=""></option>
 <option value="pending">قيد الانتظار</option>
 <option value="positive">إيجابية</option>
 <option value="negative">سلبية</option>
+
 </select>
 
 </div>
+
 
 </div>
 
 </section>
 
+
+
+<!-- ==========================================
+     REPORTER
+========================================== -->
 
 <section class="section">
 
@@ -876,40 +1078,52 @@ placeholder="تفاصيل السفر، المخالطة، التعرض الحي�
 
 <div class="grid">
 
+
 <div class="group">
 <label>اسم المبلّغ *</label>
 <input id="reporterName">
 </div>
+
 
 <div class="group">
 <label>الرقم الوظيفي *</label>
 <input id="reporterId">
 </div>
 
+
 <div class="group">
 <label>المسمى الوظيفي</label>
 <input id="reporterJob">
 </div>
+
 
 <div class="group">
 <label>القسم</label>
 <input id="reporterDepartment" value="قسم الطوارئ">
 </div>
 
+
 <div class="group">
 <label>رقم التواصل</label>
 <input id="reporterPhone">
 </div>
+
 
 <div class="group">
 <label>تاريخ ووقت البلاغ</label>
 <input id="reportDateTime" type="datetime-local">
 </div>
 
+
 </div>
 
 </section>
 
+
+
+<!-- ==========================================
+     SIGNATURE
+========================================== -->
 
 <section class="section">
 
@@ -917,16 +1131,23 @@ placeholder="تفاصيل السفر، المخالطة، التعرض الحي�
 7. التوقيع الإلكتروني
 </h2>
 
+
 <div class="signature-area">
+
 <canvas id="signatureCanvas"></canvas>
+
 </div>
+
 
 <button
 type="button"
 onclick="clearSignature()"
 style="margin-top:10px">
+
 مسح التوقيع
+
 </button>
+
 
 <label style="display:block;margin-top:15px">
 
@@ -942,42 +1163,66 @@ style="width:auto">
 </section>
 
 
+
 <section class="actions">
+
 
 <button
 type="button"
 class="review"
 onclick="reviewNotification()">
+
 ✅ مراجعة
+
 </button>
+
 
 <button
 type="button"
 id="sendButton"
 class="send"
 onclick="saveNotification()">
+
 📤 إرسال للصحة العامة
+
 </button>
+
 
 <button
 type="button"
 class="print"
 onclick="window.print()">
+
 🖨️ طباعة / PDF
+
 </button>
 
-<a class="back" href="infectious-diseases.html">
+
+<a
+class="back"
+href="infectious-diseases.html">
+
 ← العودة
+
 </a>
+
 
 </section>
 
+
 <div id="result" class="result"></div>
+
 
 </main>
 
 
+
 <script>
+
+
+/* ==========================================
+   DISEASES
+========================================== */
 
 const names = {
 
@@ -1039,28 +1284,138 @@ const durationLabels = {
 };
 
 
-let signatureEmpty = true;
-let incomingEpiFactors = [];
-let incomingDuration = "";
-let incomingScreeningId = "";
-let incomingHistoryReliability = "";
-let incomingVitalStatus = "";
-let incomingHiddenFlag = false;
+const riskLabels = {
 
+    low:"منخفض",
+    medium:"يحتاج تقييم إضافي",
+    high:"اشتباه مرتفع"
+
+};
+
+
+/* ==========================================
+   INCOMING DATA
+========================================== */
+
+let signatureEmpty =
+    true;
+
+
+let incomingEpiFactors =
+    [];
+
+
+let incomingDuration =
+    "";
+
+
+let incomingScreeningId =
+    "";
+
+
+let incomingHistoryReliability =
+    "";
+
+
+let incomingVitalStatus =
+    "";
+
+
+let incomingHiddenFlag =
+    false;
+
+
+/*
+  Rapid Screening
+*/
+
+let incomingRapidId =
+    "";
+
+
+let incomingRapidScore =
+    "";
+
+
+let incomingRapidRisk =
+    "";
+
+
+let incomingRapidRedFlag =
+    false;
+
+
+let incomingPatientName =
+    "";
+
+
+let incomingMrn =
+    "";
+
+
+let incomingPatientType =
+    "";
+
+
+let incomingGender =
+    "";
+
+
+/* ==========================================
+   TIME
+========================================== */
 
 function localNow(){
 
-    const n = new Date();
+    const n =
+        new Date();
+
 
     return new Date(
+
         n.getTime() -
-        n.getTimezoneOffset() * 60000
+
+        n.getTimezoneOffset() *
+        60000
+
     )
     .toISOString()
-    .slice(0,16);
+    .slice(
+        0,
+        16
+    );
 
 }
 
+
+/* ==========================================
+   MARK PREFILLED
+========================================== */
+
+function markPrefilled(id){
+
+    const element =
+        document.getElementById(
+            id
+        );
+
+
+    if(element){
+
+        element
+        .classList
+        .add(
+            "prefilled"
+        );
+
+    }
+
+}
+
+
+/* ==========================================
+   INIT
+========================================== */
 
 function init(){
 
@@ -1071,7 +1426,7 @@ function init(){
 
 
     /* ==========================================
-       OLD WRONG FOOD LINKS REDIRECT
+       FOOD REDIRECT
     ========================================== */
 
     const reportType =
@@ -1080,7 +1435,10 @@ function init(){
         );
 
 
-    if(reportType === "food-poisoning"){
+    if(
+        reportType ===
+        "food-poisoning"
+    ){
 
         window.location.replace(
             "food-poisoning.html"
@@ -1092,8 +1450,13 @@ function init(){
 
 
     if(
-        reportType === "foodborne-disease" ||
-        reportType === "foodborne-outbreak"
+        reportType ===
+        "foodborne-disease"
+
+        ||
+
+        reportType ===
+        "foodborne-outbreak"
     ){
 
         window.location.replace(
@@ -1105,6 +1468,10 @@ function init(){
     }
 
 
+    /* ==========================================
+       SMART SCREENING DATA
+    ========================================== */
+
     const disease =
         params.get(
             "disease"
@@ -1114,7 +1481,8 @@ function init(){
     const fromScreening =
         params.get(
             "fromScreening"
-        ) === "1";
+        ) ===
+        "1";
 
 
     const screeningName =
@@ -1168,16 +1536,92 @@ function init(){
     incomingHiddenFlag =
         params.get(
             "hiddenFlag"
-        ) === "1";
+        ) ===
+        "1";
 
+
+    /* ==========================================
+       RAPID SCREENING DATA
+    ========================================== */
+
+    incomingRapidId =
+        params.get(
+            "rapidId"
+        ) || "";
+
+
+    incomingRapidScore =
+        params.get(
+            "rapidScore"
+        ) || "";
+
+
+    incomingRapidRisk =
+        params.get(
+            "rapidRisk"
+        ) || "";
+
+
+    incomingRapidRedFlag =
+        params.get(
+            "rapidRedFlag"
+        ) ===
+        "1";
+
+
+    incomingPatientName =
+        params.get(
+            "patientName"
+        ) || "";
+
+
+    incomingMrn =
+        params.get(
+            "mrn"
+        ) || "";
+
+
+    incomingPatientType =
+        params.get(
+            "patientType"
+        ) || "";
+
+
+    incomingGender =
+        params.get(
+            "gender"
+        ) || "";
+
+
+    /* ==========================================
+       FALLBACK FROM SMART SCREENING RECORD
+    ========================================== */
+
+    if(
+        fromScreening &&
+        incomingScreeningId
+    ){
+
+        applySmartScreeningRecordFallback();
+
+    }
+
+
+    /* ==========================================
+       DISEASE
+    ========================================== */
 
     if(disease){
 
         const option =
             document.querySelector(
+
                 '#diseaseSelect option[value="' +
+
                 disease +
+
                 '"]'
+
             );
 
 
@@ -1188,10 +1632,83 @@ function init(){
             ).value =
                 disease;
 
+
+            markPrefilled(
+                "diseaseSelect"
+            );
+
         }
 
     }
 
+
+    /* ==========================================
+       PATIENT DATA
+    ========================================== */
+
+    if(incomingPatientName){
+
+        document.getElementById(
+            "patientName"
+        ).value =
+            incomingPatientName;
+
+
+        markPrefilled(
+            "patientName"
+        );
+
+    }
+
+
+    if(incomingMrn){
+
+        document.getElementById(
+            "mrn"
+        ).value =
+            incomingMrn;
+
+
+        markPrefilled(
+            "mrn"
+        );
+
+    }
+
+
+    if(incomingPatientType){
+
+        document.getElementById(
+            "patientType"
+        ).value =
+            incomingPatientType;
+
+
+        markPrefilled(
+            "patientType"
+        );
+
+    }
+
+
+    if(incomingGender){
+
+        document.getElementById(
+            "gender"
+        ).value =
+            incomingGender;
+
+
+        markPrefilled(
+            "gender"
+        );
+
+    }
+
+
+    /* ==========================================
+       SCREENING SOURCE CARD
+    ========================================== */
 
     if(fromScreening){
 
@@ -1204,13 +1721,16 @@ function init(){
         );
 
 
-        let details = "";
+        let details =
+            "";
 
 
         if(screeningName){
 
             details +=
+
                 "<br><strong>نتيجة الفرز:</strong> " +
+
                 screeningName;
 
         }
@@ -1219,7 +1739,9 @@ function init(){
         if(incomingScreeningId){
 
             details +=
-                "<br><strong>رقم جلسة الفرز:</strong> " +
+
+                "<br><strong>رقم جلسة الفرز الذكي:</strong> " +
+
                 incomingScreeningId;
 
         }
@@ -1236,8 +1758,20 @@ function init(){
         ).value =
             "suspected";
 
+
+        markPrefilled(
+            "classification"
+        );
+
+
+        fillScreeningSummary();
+
     }
 
+
+    /* ==========================================
+       ALERTS
+    ========================================== */
 
     if(
         incomingHistoryReliability ===
@@ -1268,12 +1802,34 @@ function init(){
     }
 
 
+    if(incomingRapidRedFlag){
+
+        document.getElementById(
+            "rapidRedWarning"
+        )
+        .classList
+        .add(
+            "active"
+        );
+
+    }
+
+
+    /* ==========================================
+       ONSET
+    ========================================== */
+
     if(onset){
 
         document.getElementById(
             "symptomOnset"
         ).value =
             onset;
+
+
+        markPrefilled(
+            "symptomOnset"
+        );
 
     }
 
@@ -1286,14 +1842,26 @@ function init(){
     }
 
 
+    /* ==========================================
+       SYMPTOMS
+    ========================================== */
+
     if(symptoms){
 
         applyScreeningSymptoms(
-            symptoms.split(",")
+
+            symptoms
+            .split(",")
+            .filter(Boolean)
+
         );
 
     }
 
+
+    /* ==========================================
+       EPI
+    ========================================== */
 
     if(epi){
 
@@ -1308,7 +1876,24 @@ function init(){
         );
 
     }
+    else{
 
+        /*
+          حتى لو لم توجد عوامل EPI،
+          قد نحتاج إظهار مدة الأعراض أو
+          تنبيه التاريخ في textarea.
+        */
+
+        applyEpidemiologicalFactors(
+            []
+        );
+
+    }
+
+
+    /* ==========================================
+       TIMES
+    ========================================== */
 
     document.getElementById(
         "reportDateTime"
@@ -1328,6 +1913,221 @@ function init(){
 
 }
 
+
+/* ==========================================
+   FALLBACK FROM SAVED SMART RECORD
+========================================== */
+
+function applySmartScreeningRecordFallback(){
+
+    const records =
+        getSmartScreeningRecords();
+
+
+    const record =
+        records.find(
+            function(item){
+
+                return (
+                    item.id ===
+                    incomingScreeningId
+                );
+
+            }
+        );
+
+
+    if(!record){
+
+        return;
+
+    }
+
+
+    if(!incomingPatientName){
+
+        incomingPatientName =
+            record.patientName ||
+            "";
+
+    }
+
+
+    if(!incomingMrn){
+
+        incomingMrn =
+            record.mrn ||
+            "";
+
+    }
+
+
+    if(!incomingPatientType){
+
+        incomingPatientType =
+            record.patientType ||
+            "";
+
+    }
+
+
+    if(!incomingGender){
+
+        incomingGender =
+            record.gender ||
+            "";
+
+    }
+
+
+    if(!incomingRapidId){
+
+        incomingRapidId =
+            record.rapidScreeningId ||
+            "";
+
+    }
+
+
+    if(
+        incomingRapidScore ===
+        ""
+    ){
+
+        if(
+            record.rapidScore !==
+            undefined
+
+            &&
+
+            record.rapidScore !==
+            null
+        ){
+
+            incomingRapidScore =
+                String(
+                    record.rapidScore
+                );
+
+        }
+
+    }
+
+
+    if(!incomingRapidRisk){
+
+        incomingRapidRisk =
+            record.rapidRisk ||
+            "";
+
+    }
+
+
+    if(record.rapidRedFlag){
+
+        incomingRapidRedFlag =
+            true;
+
+    }
+
+
+    if(
+        !incomingHistoryReliability
+    ){
+
+        incomingHistoryReliability =
+            record.historyReliability ||
+            "";
+
+    }
+
+
+    if(!incomingVitalStatus){
+
+        incomingVitalStatus =
+            record.vitalStatus ||
+            "";
+
+    }
+
+
+    if(record.hiddenInfectionFlag){
+
+        incomingHiddenFlag =
+            true;
+
+    }
+
+}
+
+
+/* ==========================================
+   SUMMARY
+========================================== */
+
+function fillScreeningSummary(){
+
+    document.getElementById(
+        "summaryRapidId"
+    ).textContent =
+        incomingRapidId ||
+        "—";
+
+
+    document.getElementById(
+        "summaryRapidScore"
+    ).textContent =
+        incomingRapidScore !==
+        ""
+
+        ? incomingRapidScore
+
+        : "—";
+
+
+    document.getElementById(
+        "summaryRapidRisk"
+    ).textContent =
+
+        riskLabels[
+            incomingRapidRisk
+        ]
+
+        ||
+
+        incomingRapidRisk
+
+        ||
+
+        "—";
+
+
+    document.getElementById(
+        "summarySmartId"
+    ).textContent =
+        incomingScreeningId ||
+        "—";
+
+
+    document.getElementById(
+        "summaryPatientName"
+    ).textContent =
+        incomingPatientName ||
+        "—";
+
+
+    document.getElementById(
+        "summaryMrn"
+    ).textContent =
+        incomingMrn ||
+        "—";
+
+}
+
+
+/* ==========================================
+   SCREENING SYMPTOMS
+========================================== */
 
 function applyScreeningSymptoms(
     screeningSymptoms
@@ -1350,7 +2150,8 @@ function applyScreeningSymptoms(
     };
 
 
-    screeningSymptoms.forEach(
+    screeningSymptoms
+    .forEach(
         function(screeningValue){
 
             const notificationValue =
@@ -1360,20 +2161,47 @@ function applyScreeningSymptoms(
 
 
             if(!notificationValue){
+
                 return;
+
             }
 
 
             const input =
                 document.querySelector(
+
                     'input[name="symptom"][value="' +
+
                     notificationValue +
+
                     '"]'
+
                 );
 
 
             if(input){
-                input.checked = true;
+
+                input.checked =
+                    true;
+
+
+                const label =
+                    input.closest(
+                        ".check"
+                    );
+
+
+                if(label){
+
+                    label.style.background =
+                        "#eef7ff";
+
+
+                    label.style.borderColor =
+                        "#8eb9db";
+
+                }
+
             }
 
         }
@@ -1382,42 +2210,70 @@ function applyScreeningSymptoms(
 }
 
 
+/* ==========================================
+   EPIDEMIOLOGICAL FACTORS
+========================================== */
+
 function applyEpidemiologicalFactors(
     factors
 ){
 
-    if(factors.includes("travel")){
+    if(
+        factors.includes(
+            "travel"
+        )
+    ){
 
         document.getElementById(
             "recentTravel"
         ).value =
             "yes";
 
+
+        markPrefilled(
+            "recentTravel"
+        );
+
     }
 
 
-    if(factors.includes("contact")){
+    if(
+        factors.includes(
+            "contact"
+        )
+    ){
 
         document.getElementById(
             "contactCase"
         ).value =
             "yes";
 
+
+        markPrefilled(
+            "contactCase"
+        );
+
     }
 
 
     const animalFactors = [
+
         "animalExposure",
         "camelExposure",
         "batExposure",
         "rodentExposure"
+
     ];
 
 
     if(
         animalFactors.some(
             function(item){
-                return factors.includes(item);
+
+                return factors.includes(
+                    item
+                );
+
             }
         )
     ){
@@ -1427,13 +2283,23 @@ function applyEpidemiologicalFactors(
         ).value =
             "yes";
 
+
+        markPrefilled(
+            "animalExposure"
+        );
+
     }
 
 
     const descriptions =
         factors.map(
             function(item){
-                return epiLabels[item] || item;
+
+                return (
+                    epiLabels[item] ||
+                    item
+                );
+
             }
         );
 
@@ -1447,7 +2313,10 @@ function applyEpidemiologicalFactors(
             (
                 durationLabels[
                     incomingDuration
-                ] ||
+                ]
+
+                ||
+
                 incomingDuration
             )
 
@@ -1462,7 +2331,37 @@ function applyEpidemiologicalFactors(
     ){
 
         descriptions.push(
+
             "التاريخ المرضي/الوبائي محدود بسبب حالة المريض أثناء الفرز."
+
+        );
+
+    }
+
+
+    if(
+        incomingVitalStatus ===
+        "normal"
+    ){
+
+        descriptions.push(
+
+            "لم توجد علامة حيوية ملفتة أثناء الفرز التقليدي."
+
+        );
+
+    }
+
+
+    if(
+        incomingVitalStatus ===
+        "abnormal"
+    ){
+
+        descriptions.push(
+
+            "تم تسجيل علامة حيوية غير طبيعية أثناء الفرز."
+
         );
 
     }
@@ -1471,7 +2370,45 @@ function applyEpidemiologicalFactors(
     if(incomingHiddenFlag){
 
         descriptions.push(
+
             "تم تفعيل تنبيه الخطر المعدي الخفي أثناء الفرز."
+
+        );
+
+    }
+
+
+    if(
+        incomingRapidScore !==
+        ""
+    ){
+
+        descriptions.push(
+
+            "Rapid Screening Score: " +
+            incomingRapidScore
+
+        );
+
+    }
+
+
+    if(incomingRapidRisk){
+
+        descriptions.push(
+
+            "مستوى الفرز السريع: " +
+
+            (
+                riskLabels[
+                    incomingRapidRisk
+                ]
+
+                ||
+
+                incomingRapidRisk
+            )
+
         );
 
     }
@@ -1486,10 +2423,17 @@ function applyEpidemiologicalFactors(
     if(descriptions.length){
 
         textarea.value =
+
             "بيانات منقولة من الفرز الذكي:\n- " +
+
             descriptions.join(
                 "\n- "
             );
+
+
+        markPrefilled(
+            "epiHistory"
+        );
 
     }
 
@@ -1516,7 +2460,12 @@ function applyEpidemiologicalFactors(
             descriptions
             .map(
                 function(item){
-                    return "• " + item;
+
+                    return (
+                        "• " +
+                        item
+                    );
+
                 }
             )
             .join("<br>");
@@ -1525,6 +2474,10 @@ function applyEpidemiologicalFactors(
 
 }
 
+
+/* ==========================================
+   DISEASE
+========================================== */
 
 function updateDisease(){
 
@@ -1539,11 +2492,13 @@ function updateDisease(){
     ).textContent =
 
         disease
+
         ? "المرض المشتبه: " +
           (
               names[disease] ||
               disease
           )
+
         : "المرض المشتبه: غير محدد";
 
 
@@ -1554,11 +2509,17 @@ function updateDisease(){
         urgentDiseases.includes(
             disease
         )
+
         ? "block"
+
         : "none";
 
 }
 
+
+/* ==========================================
+   SIGNATURE
+========================================== */
 
 function setupSignature(){
 
@@ -1577,7 +2538,8 @@ function setupSignature(){
     function sizeCanvas(){
 
         const rect =
-            canvas.getBoundingClientRect();
+            canvas
+            .getBoundingClientRect();
 
 
         const ratio =
@@ -1605,9 +2567,16 @@ function setupSignature(){
         );
 
 
-        ctx.lineWidth = 2;
-        ctx.lineCap = "round";
-        ctx.strokeStyle = "#152637";
+        ctx.lineWidth =
+            2;
+
+
+        ctx.lineCap =
+            "round";
+
+
+        ctx.strokeStyle =
+            "#152637";
 
     }
 
@@ -1615,7 +2584,8 @@ function setupSignature(){
     sizeCanvas();
 
 
-    let drawing = false;
+    let drawing =
+        false;
 
 
     function position(event){
@@ -1650,12 +2620,21 @@ function setupSignature(){
 
         event.preventDefault();
 
-        drawing = true;
-        signatureEmpty = false;
 
-        const p = position(event);
+        drawing =
+            true;
+
+
+        signatureEmpty =
+            false;
+
+
+        const p =
+            position(event);
+
 
         ctx.beginPath();
+
 
         ctx.moveTo(
             p.x,
@@ -1668,17 +2647,24 @@ function setupSignature(){
     function move(event){
 
         if(!drawing){
+
             return;
+
         }
+
 
         event.preventDefault();
 
-        const p = position(event);
+
+        const p =
+            position(event);
+
 
         ctx.lineTo(
             p.x,
             p.y
         );
+
 
         ctx.stroke();
 
@@ -1686,7 +2672,10 @@ function setupSignature(){
 
 
     function end(){
-        drawing = false;
+
+        drawing =
+            false;
+
     }
 
 
@@ -1695,15 +2684,18 @@ function setupSignature(){
         start
     );
 
+
     canvas.addEventListener(
         "mousemove",
         move
     );
 
+
     window.addEventListener(
         "mouseup",
         end
     );
+
 
     canvas.addEventListener(
         "touchstart",
@@ -1713,6 +2705,7 @@ function setupSignature(){
         }
     );
 
+
     canvas.addEventListener(
         "touchmove",
         move,
@@ -1721,6 +2714,7 @@ function setupSignature(){
         }
     );
 
+
     canvas.addEventListener(
         "touchend",
         end
@@ -1728,6 +2722,10 @@ function setupSignature(){
 
 }
 
+
+/* ==========================================
+   CLEAR SIGNATURE
+========================================== */
 
 function clearSignature(){
 
@@ -1751,30 +2749,45 @@ function clearSignature(){
     );
 
 
-    signatureEmpty = true;
+    signatureEmpty =
+        true;
 
 }
 
+
+/* ==========================================
+   CHECKED
+========================================== */
 
 function checked(name){
 
     return Array.from(
 
         document.querySelectorAll(
+
             'input[name="' +
+
             name +
+
             '"]:checked'
+
         )
 
     )
     .map(
         function(item){
+
             return item.value;
+
         }
     );
 
 }
 
+
+/* ==========================================
+   VALIDATE
+========================================== */
 
 function valid(){
 
@@ -1829,6 +2842,10 @@ function valid(){
 }
 
 
+/* ==========================================
+   RESULT MESSAGE
+========================================== */
+
 function show(
     message,
     error
@@ -1845,7 +2862,9 @@ function show(
 
 
     result.className =
+
         "result" +
+
         (
             error
             ? " error"
@@ -1858,20 +2877,30 @@ function show(
 
 
     result.scrollIntoView({
+
         behavior:"smooth"
+
     });
 
 }
 
+
+/* ==========================================
+   REVIEW
+========================================== */
 
 function reviewNotification(){
 
     if(!valid()){
 
         show(
+
             "⚠️ يرجى استكمال الحقول الإلزامية، وإضافة التوقيع الإلكتروني، وتفعيل الإقرار.",
+
             true
+
         );
+
 
         return;
 
@@ -1879,19 +2908,29 @@ function reviewNotification(){
 
 
     show(
+
         "✅ تمت مراجعة البيانات.<br>البلاغ جاهز للإرسال إلى الصحة العامة.",
+
         false
+
     );
 
 }
 
+
+/* ==========================================
+   NOTIFICATION ID
+========================================== */
 
 function generateNotificationId(){
 
     const date =
         new Date()
         .toISOString()
-        .slice(0,10)
+        .slice(
+            0,
+            10
+        )
         .replaceAll(
             "-",
             ""
@@ -1900,21 +2939,33 @@ function generateNotificationId(){
 
     const random =
         Math.floor(
+
             1000 +
+
             Math.random() *
             9000
+
         );
 
 
     return (
+
         "PH-" +
+
         date +
+
         "-" +
+
         random
+
     );
 
 }
 
+
+/* ==========================================
+   NOTIFICATIONS STORAGE
+========================================== */
 
 function getSavedNotifications(){
 
@@ -1927,7 +2978,9 @@ function getSavedNotifications(){
 
 
         if(!stored){
+
             return [];
+
         }
 
 
@@ -1946,7 +2999,10 @@ function getSavedNotifications(){
     }
     catch(error){
 
-        console.error(error);
+        console.error(
+            error
+        );
+
 
         return [];
 
@@ -1954,6 +3010,10 @@ function getSavedNotifications(){
 
 }
 
+
+/* ==========================================
+   SMART SCREENING STORAGE
+========================================== */
 
 function getSmartScreeningRecords(){
 
@@ -1966,7 +3026,9 @@ function getSmartScreeningRecords(){
 
 
         if(!stored){
+
             return [];
+
         }
 
 
@@ -1985,7 +3047,10 @@ function getSmartScreeningRecords(){
     }
     catch(error){
 
-        console.error(error);
+        console.error(
+            error
+        );
+
 
         return [];
 
@@ -1994,13 +3059,19 @@ function getSmartScreeningRecords(){
 }
 
 
+/* ==========================================
+   MARK SCREENING SENT
+========================================== */
+
 function markScreeningNotificationSent(
     notificationId,
     diseaseKey
 ){
 
     if(!incomingScreeningId){
+
         return;
+
     }
 
 
@@ -2022,32 +3093,40 @@ function markScreeningNotificationSent(
 
 
     if(index < 0){
+
         return;
+
     }
 
 
-    records[index].notificationStarted =
+    records[index]
+    .notificationStarted =
         true;
 
 
-    records[index].notificationSent =
+    records[index]
+    .notificationSent =
         true;
 
 
-    records[index].notificationId =
+    records[index]
+    .notificationId =
         notificationId;
 
 
-    records[index].notificationDisease =
+    records[index]
+    .notificationDisease =
         diseaseKey;
 
 
-    records[index].notificationSentAt =
+    records[index]
+    .notificationSentAt =
         new Date()
         .toISOString();
 
 
-    records[index].updatedAt =
+    records[index]
+    .updatedAt =
         new Date()
         .toISOString();
 
@@ -2065,6 +3144,10 @@ function markScreeningNotificationSent(
 }
 
 
+/* ==========================================
+   SAVE NOTIFICATION
+========================================== */
+
 function saveNotification(){
 
     if(!valid()){
@@ -2077,6 +3160,7 @@ function saveNotification(){
             true
 
         );
+
 
         return;
 
@@ -2105,39 +3189,75 @@ function saveNotification(){
 
         const notification = {
 
+
             id:
                 generateNotificationId(),
 
+
             createdAt:
-                new Date().toISOString(),
+                new Date()
+                .toISOString(),
+
 
             notificationType:
                 "infectiousDisease",
 
+
             source:
+
                 params.get(
                     "fromScreening"
-                ) === "1"
+                ) ===
+                "1"
+
                 ? "smartScreening"
+
                 : "manual",
+
+
+            /* ==================================
+               SCREENING LINK
+            ================================== */
 
             screeningId:
                 incomingScreeningId,
 
+
+            rapidScreeningId:
+                incomingRapidId,
+
+
+            rapidScore:
+                incomingRapidScore,
+
+
+            rapidRisk:
+                incomingRapidRisk,
+
+
+            rapidRedFlag:
+                incomingRapidRedFlag,
+
+
             screeningDuration:
                 incomingDuration,
+
 
             screeningEpiFactors:
                 incomingEpiFactors,
 
+
             screeningHistoryReliability:
                 incomingHistoryReliability,
+
 
             screeningVitalStatus:
                 incomingVitalStatus,
 
+
             hiddenInfectionFlag:
                 incomingHiddenFlag,
+
 
             date:
                 new Date()
@@ -2145,185 +3265,260 @@ function saveNotification(){
                     "ar-SA"
                 ),
 
+
+            /* ==================================
+               PATIENT
+            ================================== */
+
             patientName:
                 document.getElementById(
                     "patientName"
                 ).value.trim(),
+
 
             mrn:
                 document.getElementById(
                     "mrn"
                 ).value.trim(),
 
+
+            patientType:
+                document.getElementById(
+                    "patientType"
+                ).value,
+
+
             nationalId:
                 document.getElementById(
                     "nationalId"
                 ).value.trim(),
+
 
             nationality:
                 document.getElementById(
                     "nationality"
                 ).value.trim(),
 
+
             dob:
                 document.getElementById(
                     "dob"
                 ).value,
+
 
             gender:
                 document.getElementById(
                     "gender"
                 ).value,
 
+
             patientPhone:
                 document.getElementById(
                     "patientPhone"
                 ).value.trim(),
+
 
             residence:
                 document.getElementById(
                     "residence"
                 ).value.trim(),
 
+
+            /* ==================================
+               CASE
+            ================================== */
+
             diseaseKey:
                 diseaseKey,
 
+
             disease:
+
                 names[
                     diseaseKey
-                ] ||
+                ]
+
+                ||
+
                 diseaseKey,
+
 
             classification:
                 document.getElementById(
                     "classification"
                 ).value,
 
+
             symptomOnset:
                 document.getElementById(
                     "symptomOnset"
                 ).value,
+
 
             detectionDateTime:
                 document.getElementById(
                     "detectionDateTime"
                 ).value,
 
+
             caseLocation:
                 document.getElementById(
                     "caseLocation"
                 ).value.trim(),
+
 
             patientStatus:
                 document.getElementById(
                     "patientStatus"
                 ).value,
 
+
+            /* ==================================
+               SYMPTOMS
+            ================================== */
+
             symptoms:
                 checked(
                     "symptom"
                 ),
+
 
             otherSymptoms:
                 document.getElementById(
                     "otherSymptoms"
                 ).value.trim(),
 
+
+            /* ==================================
+               EPI
+            ================================== */
+
             recentTravel:
                 document.getElementById(
                     "recentTravel"
                 ).value,
+
 
             travelCountry:
                 document.getElementById(
                     "travelCountry"
                 ).value.trim(),
 
+
             contactCase:
                 document.getElementById(
                     "contactCase"
                 ).value,
+
 
             animalExposure:
                 document.getElementById(
                     "animalExposure"
                 ).value,
 
+
             epidemiologicalHistory:
                 document.getElementById(
                     "epiHistory"
                 ).value.trim(),
+
+
+            /* ==================================
+               ACTIONS
+            ================================== */
 
             actions:
                 checked(
                     "action"
                 ),
 
+
             sampleTaken:
                 document.getElementById(
                     "sampleTaken"
                 ).value,
+
 
             sampleType:
                 document.getElementById(
                     "sampleType"
                 ).value.trim(),
 
+
             sampleDateTime:
                 document.getElementById(
                     "sampleDateTime"
                 ).value,
+
 
             labResult:
                 document.getElementById(
                     "labResult"
                 ).value,
 
+
+            /* ==================================
+               REPORTER
+            ================================== */
+
             reporterName:
                 document.getElementById(
                     "reporterName"
                 ).value.trim(),
+
 
             reporterId:
                 document.getElementById(
                     "reporterId"
                 ).value.trim(),
 
+
             reporterJob:
                 document.getElementById(
                     "reporterJob"
                 ).value.trim(),
+
 
             reporterDepartment:
                 document.getElementById(
                     "reporterDepartment"
                 ).value.trim(),
 
+
             reporterPhone:
                 document.getElementById(
                     "reporterPhone"
                 ).value.trim(),
+
 
             reportDateTime:
                 document.getElementById(
                     "reportDateTime"
                 ).value,
 
+
             priority:
+
                 urgentDiseases.includes(
                     diseaseKey
                 )
+
                 ? "urgent"
+
                 : "normal",
+
 
             status:
                 "new",
 
+
             hesnStatus:
                 "pending",
 
+
             publicHealthNotes:
                 "",
+
 
             signature:
                 canvas.toDataURL(
@@ -2332,6 +3527,10 @@ function saveNotification(){
 
         };
 
+
+        /* ==================================
+           LOCAL STORAGE
+        ================================== */
 
         const notifications =
             getSavedNotifications();
@@ -2353,6 +3552,10 @@ function saveNotification(){
         );
 
 
+        /* ==================================
+           DATA LAYER
+        ================================== */
+
         if(
             typeof savePublicHealthNotification ===
             "function"
@@ -2365,8 +3568,11 @@ function saveNotification(){
                 function(error){
 
                     console.error(
+
                         "SPHP Data Layer save error:",
+
                         error
+
                     );
 
                 }
@@ -2375,14 +3581,21 @@ function saveNotification(){
         }
 
 
+        /* ==================================
+           UPDATE SMART SCREENING
+        ================================== */
+
         if(
             notification.source ===
             "smartScreening"
         ){
 
             markScreeningNotificationSent(
+
                 notification.id,
+
                 diseaseKey
+
             );
 
         }
@@ -2395,12 +3608,26 @@ function saveNotification(){
             "<br><br>" +
 
             "<strong>رقم البلاغ:</strong> " +
+
             notification.id +
 
             "<br>" +
 
             "<strong>المرض:</strong> " +
-            notification.disease,
+
+            notification.disease +
+
+            (
+
+                incomingRapidScore !==
+                ""
+
+                ? "<br><strong>Rapid Score:</strong> " +
+                  incomingRapidScore
+
+                : ""
+
+            ),
 
             false
 
@@ -2445,6 +3672,10 @@ function saveNotification(){
 }
 
 
+/* ==========================================
+   EVENTS
+========================================== */
+
 document
 .getElementById(
     "diseaseSelect"
@@ -2460,9 +3691,12 @@ document.addEventListener(
     init
 );
 
+
 </script>
 
+
 <script src="api.js"></script>
+
 
 </body>
 
