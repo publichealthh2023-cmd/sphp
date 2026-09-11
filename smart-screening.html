@@ -12,11 +12,20 @@
 
 <style>
 
+*{
+    box-sizing:border-box;
+}
+
 .page{
     max-width:1150px;
     margin:30px auto;
     padding:0 20px 60px;
 }
+
+
+/* =====================================================
+   INTRO + CARDS
+===================================================== */
 
 .intro-card,
 .screening-card{
@@ -74,8 +83,129 @@
     line-height:1.7;
 }
 
+
+/* =====================================================
+   RAPID SCREENING SOURCE
+===================================================== */
+
+.rapid-source{
+    display:none;
+    background:#f7f3ff;
+    border:1px solid #d8ccff;
+    border-right:6px solid #5f3dc4;
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:18px;
+}
+
+.rapid-source.active{
+    display:block;
+}
+
+.rapid-source-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-bottom:14px;
+}
+
+.rapid-source-title{
+    color:#4d2fa9;
+    font-weight:bold;
+    font-size:18px;
+}
+
+.rapid-score-badge{
+    padding:8px 13px;
+    border-radius:18px;
+    font-weight:bold;
+    font-size:12px;
+}
+
+.rapid-low{
+    background:#e8f6ec;
+    color:#277438;
+}
+
+.rapid-medium{
+    background:#fff4d7;
+    color:#806316;
+}
+
+.rapid-high{
+    background:#ffe5e5;
+    color:#b71c1c;
+}
+
+.rapid-patient-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+
+.rapid-patient-item{
+    background:white;
+    border:1px solid #e1d9ff;
+    border-radius:10px;
+    padding:11px;
+}
+
+.rapid-patient-item strong{
+    display:block;
+    font-size:11px;
+    color:#718293;
+    margin-bottom:4px;
+}
+
+.rapid-patient-item span{
+    font-weight:bold;
+    color:#294b6a;
+    word-break:break-word;
+}
+
+.rapid-note{
+    margin-top:13px;
+    background:#fff;
+    border-radius:9px;
+    padding:11px 13px;
+    color:#5c5370;
+    line-height:1.7;
+    font-size:12px;
+}
+
+
+/* =====================================================
+   PRE-FILLED NOTICE
+===================================================== */
+
+.prefilled-notice{
+    display:none;
+    background:#eef7ff;
+    border-right:5px solid #0759a6;
+    border-radius:10px;
+    padding:13px 15px;
+    margin-bottom:18px;
+    color:#31556f;
+    line-height:1.8;
+}
+
+.prefilled-notice.active{
+    display:block;
+}
+
+
+/* =====================================================
+   QUICK
+===================================================== */
+
 .quick-card{
     border-top:5px solid #5f3dc4;
+}
+
+.quick-card.hidden-by-rapid{
+    display:none;
 }
 
 .quick-grid{
@@ -120,6 +250,38 @@
     border-color:#c8e3ce;
 }
 
+
+/* =====================================================
+   LOCKED FROM RAPID
+===================================================== */
+
+.option.rapid-locked{
+    background:#eef7ff;
+    border:2px solid #0759a6;
+    cursor:default;
+    position:relative;
+}
+
+.option.rapid-locked::after{
+    content:"من الفرز السريع";
+    margin-right:auto;
+    background:#0759a6;
+    color:white;
+    border-radius:12px;
+    padding:3px 7px;
+    font-size:9px;
+    font-weight:bold;
+}
+
+.option.rapid-locked input{
+    pointer-events:none;
+}
+
+
+/* =====================================================
+   OPTIONS
+===================================================== */
+
 .options-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
@@ -150,6 +312,11 @@
     border-radius:8px;
     background:white;
 }
+
+
+/* =====================================================
+   SPECIAL CARDS
+===================================================== */
 
 .priority-card{
     border-top:5px solid #c62828;
@@ -185,6 +352,11 @@
     display:block;
 }
 
+
+/* =====================================================
+   ACTIONS
+===================================================== */
+
 .main-actions{
     display:grid;
     grid-template-columns:2fr 1fr;
@@ -210,6 +382,11 @@
     background:#eaf1f7;
     color:#064c92;
 }
+
+
+/* =====================================================
+   RESULTS
+===================================================== */
 
 .results-area{
     display:none;
@@ -331,6 +508,11 @@
     border-radius:14px;
 }
 
+
+/* =====================================================
+   ALERTS
+===================================================== */
+
 .emergency-alert{
     background:#fff0f0;
     border:2px solid #c62828;
@@ -376,6 +558,11 @@
     color:#285b33;
 }
 
+
+/* =====================================================
+   DISCLAIMER
+===================================================== */
+
 .disclaimer{
     margin-top:25px;
     background:#fff8e1;
@@ -396,13 +583,27 @@
     font-weight:bold;
 }
 
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:850px){
+
+    .rapid-patient-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
 @media(max-width:650px){
 
     .quick-grid,
     .options-grid,
     .result-grid,
     .main-actions,
-    .form-grid{
+    .form-grid,
+    .rapid-patient-grid{
         grid-template-columns:1fr;
     }
 
@@ -421,8 +622,13 @@
 <div class="hero-grid">
 
 <div class="side-logo left-logo">
-<img src="images/cluster-logo.png">
+
+<img
+    src="images/cluster-logo.png"
+    alt="Cluster">
+
 </div>
+
 
 <div class="hero-center">
 
@@ -440,13 +646,19 @@ Adaptive Infectious Disease Screening
 
 </div>
 
+
 <div class="side-logo right-logo">
-<img src="images/hospital-logo.png">
+
+<img
+    src="images/hospital-logo.png"
+    alt="Hospital">
+
 </div>
 
 </div>
 
 </header>
+
 
 
 <main class="page">
@@ -467,18 +679,189 @@ Adaptive Infectious Disease Screening
 </h2>
 
 <p>
-أداة مساندة لفرز مخاطر الأمراض المعدية لدى مراجعي الطوارئ النفسية.
-ابدأ بالمؤشرات السريعة، وسيظهر فقط الجزء الذي يحتاجه الممارس.
+أداة مساندة لفرز مخاطر الأمراض المعدية لدى مراجعي الطوارئ.
+عند الوصول من الفرز السريع سيتم نقل البيانات السابقة تلقائيًا
+ويتم استكمال الأسئلة التفصيلية فقط.
 </p>
 
 </section>
 
 
+
 <!-- =====================================================
-     الفرز السريع
+     RAPID SCREENING SOURCE
 ===================================================== -->
 
-<section class="screening-card quick-card">
+<section
+    id="rapidSource"
+    class="rapid-source">
+
+
+<div class="rapid-source-header">
+
+<div class="rapid-source-title">
+
+🩺 تم الوصول من الفرز السريع
+
+</div>
+
+
+<div
+    id="rapidScoreBadge"
+    class="rapid-score-badge rapid-medium">
+
+Score: —
+
+</div>
+
+</div>
+
+
+<div class="rapid-patient-grid">
+
+
+<div class="rapid-patient-item">
+
+<strong>
+اسم المريض
+</strong>
+
+<span id="rapidPatientName">
+—
+</span>
+
+</div>
+
+
+<div class="rapid-patient-item">
+
+<strong>
+رقم الملف الطبي
+</strong>
+
+<span id="rapidMrn">
+—
+</span>
+
+</div>
+
+
+<div class="rapid-patient-item">
+
+<strong>
+فئة المريض
+</strong>
+
+<span id="rapidPatientType">
+—
+</span>
+
+</div>
+
+
+<div class="rapid-patient-item">
+
+<strong>
+الجنس
+</strong>
+
+<span id="rapidGender">
+—
+</span>
+
+</div>
+
+
+<div class="rapid-patient-item">
+
+<strong>
+رقم الفرز السريع
+</strong>
+
+<span id="rapidScreeningId">
+—
+</span>
+
+</div>
+
+
+<div class="rapid-patient-item">
+
+<strong>
+درجة الفرز
+</strong>
+
+<span id="rapidScoreValue">
+—
+</span>
+
+</div>
+
+
+<div class="rapid-patient-item">
+
+<strong>
+مستوى الخطورة
+</strong>
+
+<span id="rapidRiskValue">
+—
+</span>
+
+</div>
+
+
+<div class="rapid-patient-item">
+
+<strong>
+Red Flag
+</strong>
+
+<span id="rapidRedFlagValue">
+لا
+</span>
+
+</div>
+
+
+</div>
+
+
+<div class="rapid-note">
+
+تم نقل الإجابات المسجلة في الفرز السريع تلقائيًا.
+العناصر التي تحمل عبارة
+<strong>«من الفرز السريع»</strong>
+لا تحتاج إلى إدخالها مرة أخرى.
+
+</div>
+
+</section>
+
+
+
+<div
+    id="prefilledNotice"
+    class="prefilled-notice">
+
+<strong>
+ℹ️ استكمال الفرز:
+</strong>
+
+تم تعبئة الأعراض وعوامل التعرض التي سبق تسجيلها.
+استكمل فقط المعلومات التفصيلية المطلوبة أدناه.
+
+</div>
+
+
+
+<!-- =====================================================
+     QUICK SCREENING - MANUAL ONLY
+===================================================== -->
+
+<section
+    id="quickCard"
+    class="screening-card quick-card">
 
 <h2>
 ⚡ الفرز السريع
@@ -489,6 +872,7 @@ Adaptive Infectious Disease Screening
 </p>
 
 <div class="quick-grid">
+
 
 <label class="quick-option">
 
@@ -573,13 +957,15 @@ Adaptive Infectious Disease Screening
 
 </label>
 
+
 </div>
 
 </section>
 
 
+
 <!-- =====================================================
-     معلومات عامة
+     BASIC
 ===================================================== -->
 
 <section
@@ -592,6 +978,7 @@ Adaptive Infectious Disease Screening
 
 <div class="form-grid">
 
+
 <div class="group">
 
 <label>
@@ -600,10 +987,21 @@ Adaptive Infectious Disease Screening
 
 <select id="ageGroup">
 
-<option value="">غير محدد</option>
-<option value="child">طفل</option>
-<option value="adult">بالغ</option>
-<option value="elderly">كبير سن</option>
+<option value="">
+غير محدد
+</option>
+
+<option value="child">
+طفل
+</option>
+
+<option value="adult">
+بالغ
+</option>
+
+<option value="elderly">
+كبير سن
+</option>
 
 </select>
 
@@ -631,23 +1029,39 @@ Adaptive Infectious Disease Screening
 
 <select id="duration">
 
-<option value="">غير محدد</option>
-<option value="less24">أقل من 24 ساعة</option>
-<option value="1to3">1 - 3 أيام</option>
-<option value="4to7">4 - 7 أيام</option>
-<option value="more7">أكثر من 7 أيام</option>
+<option value="">
+غير محدد
+</option>
+
+<option value="less24">
+أقل من 24 ساعة
+</option>
+
+<option value="1to3">
+1 - 3 أيام
+</option>
+
+<option value="4to7">
+4 - 7 أيام
+</option>
+
+<option value="more7">
+أكثر من 7 أيام
+</option>
 
 </select>
 
 </div>
+
 
 </div>
 
 </section>
 
 
+
 <!-- =====================================================
-     بيئة الصحة النفسية
+     PSYCHIATRIC
 ===================================================== -->
 
 <section
@@ -658,6 +1072,7 @@ Adaptive Infectious Disease Screening
 🧠 موثوقية التاريخ المرضي
 </h2>
 
+
 <div class="psych-note">
 
 لا يعتمد النظام على التشخيص النفسي لتشخيص العدوى.
@@ -665,7 +1080,9 @@ Adaptive Infectious Disease Screening
 
 </div>
 
+
 <div class="form-grid">
+
 
 <div class="group">
 
@@ -716,13 +1133,15 @@ Adaptive Infectious Disease Screening
 
 </div>
 
+
 </div>
 
 </section>
 
 
+
 <!-- =====================================================
-     أعراض عامة
+     GENERAL
 ===================================================== -->
 
 <section
@@ -735,28 +1154,51 @@ Adaptive Infectious Disease Screening
 
 <div class="options-grid">
 
+
 <label class="option">
-<input type="checkbox" class="screening-option symptom-option" value="fever">
+
+<input
+    type="checkbox"
+    class="screening-option symptom-option"
+    value="fever">
+
 🌡️ ارتفاع درجة الحرارة
+
 </label>
 
+
 <label class="option">
-<input type="checkbox" class="screening-option symptom-option" value="fatigue">
+
+<input
+    type="checkbox"
+    class="screening-option symptom-option"
+    value="fatigue">
+
 😴 تعب أو إرهاق شديد
+
 </label>
 
+
 <label class="option">
-<input type="checkbox" class="screening-option symptom-option" value="headache">
+
+<input
+    type="checkbox"
+    class="screening-option symptom-option"
+    value="headache">
+
 🤕 صداع شديد
+
 </label>
+
 
 </div>
 
 </section>
 
 
+
 <!-- =====================================================
-     تنفسي
+     RESPIRATORY
 ===================================================== -->
 
 <section
@@ -769,33 +1211,63 @@ Adaptive Infectious Disease Screening
 
 <div class="options-grid">
 
+
 <label class="option">
-<input type="checkbox" class="screening-option symptom-option" value="cough">
+
+<input
+    type="checkbox"
+    class="screening-option symptom-option"
+    value="cough">
+
 😷 سعال
+
 </label>
 
+
 <label class="option">
-<input type="checkbox" class="screening-option symptom-option" value="runnyNose">
+
+<input
+    type="checkbox"
+    class="screening-option symptom-option"
+    value="runnyNose">
+
 🤧 رشح أو سيلان الأنف
+
 </label>
 
+
 <label class="option">
-<input type="checkbox" class="screening-option symptom-option" value="soreThroat">
+
+<input
+    type="checkbox"
+    class="screening-option symptom-option"
+    value="soreThroat">
+
 🗣️ ألم / التهاب الحلق
+
 </label>
 
+
 <label class="option">
-<input type="checkbox" class="screening-option symptom-option" value="breathing">
+
+<input
+    type="checkbox"
+    class="screening-option symptom-option"
+    value="breathing">
+
 🫁 ضيق أو صعوبة في التنفس
+
 </label>
+
 
 </div>
 
 </section>
 
 
+
 <!-- =====================================================
-     طفح
+     RASH
 ===================================================== -->
 
 <section
@@ -808,23 +1280,39 @@ Adaptive Infectious Disease Screening
 
 <div class="options-grid">
 
-<label class="option">
-<input type="checkbox" class="screening-option symptom-option" value="rash">
-🔴 طفح جلدي
-</label>
 
 <label class="option">
-<input type="checkbox" class="screening-option symptom-option" value="conjunctivitis">
-👁️ احمرار أو التهاب العين
+
+<input
+    type="checkbox"
+    class="screening-option symptom-option"
+    value="rash">
+
+🔴 طفح جلدي
+
 </label>
+
+
+<label class="option">
+
+<input
+    type="checkbox"
+    class="screening-option symptom-option"
+    value="conjunctivitis">
+
+👁️ احمرار أو التهاب العين
+
+</label>
+
 
 </div>
 
 </section>
 
 
+
 <!-- =====================================================
-     عصبي
+     NEURO
 ===================================================== -->
 
 <section
@@ -837,28 +1325,51 @@ Adaptive Infectious Disease Screening
 
 <div class="options-grid">
 
+
 <label class="option">
-<input type="checkbox" class="screening-option symptom-option" value="stiffNeck">
+
+<input
+    type="checkbox"
+    class="screening-option symptom-option"
+    value="stiffNeck">
+
 تيبس الرقبة
+
 </label>
 
+
 <label class="option">
-<input type="checkbox" class="screening-option symptom-option" value="confusion">
+
+<input
+    type="checkbox"
+    class="screening-option symptom-option"
+    value="confusion">
+
 🧠 تغير مستوى الوعي أو ارتباك
+
 </label>
 
+
 <label class="option">
-<input type="checkbox" class="screening-option symptom-option" value="seizure">
+
+<input
+    type="checkbox"
+    class="screening-option symptom-option"
+    value="seizure">
+
 ⚡ تشنجات
+
 </label>
+
 
 </div>
 
 </section>
 
 
+
 <!-- =====================================================
-     هضمي
+     GASTRO
 ===================================================== -->
 
 <section
@@ -871,33 +1382,63 @@ Adaptive Infectious Disease Screening
 
 <div class="options-grid">
 
+
 <label class="option">
-<input type="checkbox" class="screening-option symptom-option" value="vomiting">
+
+<input
+    type="checkbox"
+    class="screening-option symptom-option"
+    value="vomiting">
+
 🤢 قيء
+
 </label>
 
+
 <label class="option">
-<input type="checkbox" class="screening-option symptom-option" value="diarrhea">
+
+<input
+    type="checkbox"
+    class="screening-option symptom-option"
+    value="diarrhea">
+
 🚻 إسهال
+
 </label>
 
+
 <label class="option">
-<input type="checkbox" class="screening-option symptom-option" value="abdominal">
+
+<input
+    type="checkbox"
+    class="screening-option symptom-option"
+    value="abdominal">
+
 ألم أو مغص بالبطن
+
 </label>
 
+
 <label class="option">
-<input type="checkbox" class="screening-option symptom-option" value="bleeding">
+
+<input
+    type="checkbox"
+    class="screening-option symptom-option"
+    value="bleeding">
+
 🩸 نزف غير مفسر
+
 </label>
+
 
 </div>
 
 </section>
 
 
+
 <!-- =====================================================
-     التعرض الوبائي
+     EPI
 ===================================================== -->
 
 <section
@@ -914,63 +1455,135 @@ Adaptive Infectious Disease Screening
 
 <div class="options-grid">
 
+
 <label class="option">
-<input type="checkbox" class="screening-option epi-option" value="contact">
+
+<input
+    type="checkbox"
+    class="screening-option epi-option"
+    value="contact">
+
 👥 مخالطة حالة مؤكدة أو مشتبهة
+
 </label>
 
+
 <label class="option">
-<input type="checkbox" class="screening-option epi-option" value="travel">
+
+<input
+    type="checkbox"
+    class="screening-option epi-option"
+    value="travel">
+
 ✈️ سفر حديث أو وجود في منطقة تفشٍ
+
 </label>
 
+
 <label class="option">
-<input type="checkbox" class="screening-option epi-option" value="cluster">
+
+<input
+    type="checkbox"
+    class="screening-option epi-option"
+    value="cluster">
+
 👨‍👩‍👧 وجود حالات مشابهة / تجمع حالات
+
 </label>
 
+
 <label class="option">
-<input type="checkbox" class="screening-option epi-option" value="healthcareExposure">
+
+<input
+    type="checkbox"
+    class="screening-option epi-option"
+    value="healthcareExposure">
+
 🏥 مخالطة أو تعرض في منشأة صحية
+
 </label>
 
+
 <label class="option">
-<input type="checkbox" class="screening-option epi-option" value="animalExposure">
+
+<input
+    type="checkbox"
+    class="screening-option epi-option"
+    value="animalExposure">
+
 🐾 تعرض لحيوان أو إفرازاته
+
 </label>
 
+
 <label class="option">
-<input type="checkbox" class="screening-option epi-option" value="camelExposure">
+
+<input
+    type="checkbox"
+    class="screening-option epi-option"
+    value="camelExposure">
+
 🐪 مخالطة الإبل أو منتجاتها
+
 </label>
 
+
 <label class="option">
-<input type="checkbox" class="screening-option epi-option" value="batExposure">
+
+<input
+    type="checkbox"
+    class="screening-option epi-option"
+    value="batExposure">
+
 🦇 تعرض للخفافيش أو بيئة مرتبطة بها
+
 </label>
 
+
 <label class="option">
-<input type="checkbox" class="screening-option epi-option" value="rodentExposure">
+
+<input
+    type="checkbox"
+    class="screening-option epi-option"
+    value="rodentExposure">
+
 🐀 تعرض للقوارض أو فضلاتها
+
 </label>
 
+
 <label class="option">
-<input type="checkbox" class="screening-option epi-option" value="foodExposure">
+
+<input
+    type="checkbox"
+    class="screening-option epi-option"
+    value="foodExposure">
+
 🍽️ طعام مشترك أو مصدر غذائي مشتبه
+
 </label>
 
+
 <label class="option">
-<input type="checkbox" class="screening-option epi-option" value="bodyFluidExposure">
+
+<input
+    type="checkbox"
+    class="screening-option epi-option"
+    value="bodyFluidExposure">
+
 🩸 تعرض لدم أو سوائل جسم لحالة مشتبهة
+
 </label>
+
 
 </div>
 
 </section>
 
 
+
 <!-- =====================================================
-     علامات حمراء
+     RED FLAGS
 ===================================================== -->
 
 <section
@@ -981,6 +1594,7 @@ Adaptive Infectious Disease Screening
 7. علامات تستدعي تقييمًا سريريًا عاجلًا
 </h2>
 
+
 <div class="alert-note">
 
 هذه العلامات لا تحدد مرضًا بعينه.
@@ -988,37 +1602,69 @@ Adaptive Infectious Disease Screening
 
 </div>
 
+
 <div class="options-grid">
 
+
 <label class="option">
-<input type="checkbox" class="red-flag" value="severeBreathing">
+
+<input
+    type="checkbox"
+    class="red-flag"
+    value="severeBreathing">
+
 🚨 ضيق تنفس شديد
+
 </label>
 
+
 <label class="option">
-<input type="checkbox" class="red-flag" value="reducedConsciousness">
+
+<input
+    type="checkbox"
+    class="red-flag"
+    value="reducedConsciousness">
+
 🚨 انخفاض مستوى الوعي
+
 </label>
 
+
 <label class="option">
-<input type="checkbox" class="red-flag" value="shock">
+
+<input
+    type="checkbox"
+    class="red-flag"
+    value="shock">
+
 🚨 علامات عدم استقرار / صدمة
+
 </label>
 
+
 <label class="option">
-<input type="checkbox" class="red-flag" value="activeBleeding">
+
+<input
+    type="checkbox"
+    class="red-flag"
+    value="activeBleeding">
+
 🚨 نزف شديد
+
 </label>
+
 
 </div>
 
 </section>
 
 
+
 <div
     id="mainActions"
     class="main-actions"
     style="display:none">
+
 
 <button
     class="analyze-btn"
@@ -1028,6 +1674,7 @@ Adaptive Infectious Disease Screening
 
 </button>
 
+
 <button
     class="reset-btn"
     onclick="resetScreening()">
@@ -1036,12 +1683,15 @@ Adaptive Infectious Disease Screening
 
 </button>
 
+
 </div>
+
 
 
 <section
     id="resultsArea"
     class="results-area">
+
 
 <div class="results-header">
 
@@ -1055,6 +1705,7 @@ Adaptive Infectious Disease Screening
 
 </div>
 
+
 <div id="historyAlert"></div>
 
 <div id="hiddenRiskAlert"></div>
@@ -1063,7 +1714,9 @@ Adaptive Infectious Disease Screening
 
 <div id="screeningResult"></div>
 
+
 </section>
+
 
 
 <div class="disclaimer">
@@ -1078,6 +1731,7 @@ Adaptive Infectious Disease Screening
 </div>
 
 
+
 <a
     href="index.html"
     class="back-btn">
@@ -1086,54 +1740,109 @@ Adaptive Infectious Disease Screening
 
 </a>
 
+
 </main>
 
 
-<<script>
+
+<script>
 
 
 /* =====================================================
-   متغيرات مشروع التحسين
+   RAPID SCREENING DATA
+===================================================== */
+
+let cameFromRapid =
+    false;
+
+
+let rapidScreeningId =
+    "";
+
+
+let rapidScore =
+    "";
+
+
+let rapidRisk =
+    "";
+
+
+let rapidRedFlag =
+    false;
+
+
+let rapidPatientName =
+    "";
+
+
+let rapidMrn =
+    "";
+
+
+let rapidPatientType =
+    "";
+
+
+let rapidGender =
+    "";
+
+
+let rapidSymptoms =
+    [];
+
+
+let rapidEpi =
+    [];
+
+
+/* =====================================================
+   SMART SCREENING VARIABLES
 ===================================================== */
 
 let currentScreeningId =
     null;
 
+
 let currentScreeningResults =
     [];
 
 
-/*
-  قياس زمن الفرز
-*/
-
 let screeningStartedAt =
-    new Date().toISOString();
+    new Date()
+    .toISOString();
+
 
 let screeningStartTimestamp =
     Date.now();
 
+
 let screeningCompletedAt =
     "";
+
 
 let screeningDurationSeconds =
     null;
 
 
 /* =====================================================
-   بدء عداد فرز جديد
+   TIMER
 ===================================================== */
 
 function startScreeningTimer(){
 
     screeningStartedAt =
-        new Date().toISOString();
+        new Date()
+        .toISOString();
+
 
     screeningStartTimestamp =
         Date.now();
 
+
     screeningCompletedAt =
         "";
+
 
     screeningDurationSeconds =
         null;
@@ -1141,16 +1850,7 @@ function startScreeningTimer(){
 }
 
 
-/* =====================================================
-   إيقاف عداد الفرز
-===================================================== */
-
 function finishScreeningTimer(){
-
-    /*
-      لا نعيد حساب الزمن إذا تم تحليل نفس
-      جلسة الفرز أكثر من مرة.
-    */
 
     if(
         screeningDurationSeconds !==
@@ -1163,7 +1863,8 @@ function finishScreeningTimer(){
 
 
     screeningCompletedAt =
-        new Date().toISOString();
+        new Date()
+        .toISOString();
 
 
     screeningDurationSeconds =
@@ -1172,20 +1873,22 @@ function finishScreeningTimer(){
             1,
 
             Math.round(
+
                 (
                     Date.now() -
                     screeningStartTimestamp
-                ) / 1000
+                )
+
+                /
+
+                1000
+
             )
 
         );
 
 }
 
-
-/* =====================================================
-   تحويل الزمن إلى صيغة مقروءة
-===================================================== */
 
 function formatScreeningDuration(
     seconds
@@ -1211,9 +1914,7 @@ function formatScreeningDuration(
         seconds % 60;
 
 
-    if(
-        minutes === 0
-    ){
+    if(minutes === 0){
 
         return (
             remainingSeconds +
@@ -1223,9 +1924,7 @@ function formatScreeningDuration(
     }
 
 
-    if(
-        remainingSeconds === 0
-    ){
+    if(remainingSeconds === 0){
 
         return (
             minutes +
@@ -1236,17 +1935,19 @@ function formatScreeningDuration(
 
 
     return (
+
         minutes +
         " دقيقة و " +
         remainingSeconds +
         " ثانية"
+
     );
 
 }
 
 
 /* =====================================================
-   قواعد الفرز
+   RULES
 ===================================================== */
 
 const screeningRules = [
@@ -1341,10 +2042,12 @@ match:function(s){
             has(s,"breathing")
         );
 
+
     const epi =
         has(s,"camelExposure") ||
         has(s,"healthcareExposure") ||
         has(s,"contact");
+
 
     return (
         respiratory &&
@@ -1388,11 +2091,13 @@ match:function(s){
             has(s,"headache")
         );
 
+
     const epi =
         has(s,"batExposure") ||
         has(s,"animalExposure") ||
         has(s,"contact") ||
         has(s,"travel");
+
 
     return (
         clinical &&
@@ -1437,10 +2142,12 @@ match:function(s){
             has(s,"bleeding")
         );
 
+
     const epi =
         has(s,"travel") ||
         has(s,"contact") ||
         has(s,"bodyFluidExposure");
+
 
     return (
         clinical &&
@@ -1483,6 +2190,7 @@ match:function(s){
             has(s,"fatigue")
         );
 
+
     return (
         clinical &&
         has(s,"rodentExposure")
@@ -1522,9 +2230,11 @@ match:function(s){
             has(s,"abdominal")
         );
 
+
     const epi =
         has(s,"foodExposure") ||
         has(s,"cluster");
+
 
     return (
         gi &&
@@ -1585,7 +2295,7 @@ directNotification:false
 
 
 /* =====================================================
-   إدارة سجلات الفرز
+   STORAGE
 ===================================================== */
 
 function getSmartScreeningRecords(){
@@ -1644,20 +2354,26 @@ function saveSmartScreeningRecords(
 function generateScreeningId(){
 
     return (
+
         "SCR-" +
+
         Date.now() +
+
         "-" +
+
         Math.floor(
             1000 +
-            Math.random() * 9000
+            Math.random() *
+            9000
         )
+
     );
 
 }
 
 
 /* =====================================================
-   حفظ أو تحديث جلسة الفرز
+   SAVE ANALYTICS
 ===================================================== */
 
 function saveScreeningAnalytics(
@@ -1713,9 +2429,18 @@ function saveScreeningAnalytics(
 
     const hiddenRisk =
         (
-            vitalStatus === "normal" &&
-            epiFactors.length > 0 &&
-            symptoms.length > 0
+            vitalStatus ===
+            "normal"
+
+            &&
+
+            epiFactors.length >
+            0
+
+            &&
+
+            symptoms.length >
+            0
         );
 
 
@@ -1733,43 +2458,87 @@ function saveScreeningAnalytics(
 
 
     const now =
-        new Date().toISOString();
+        new Date()
+        .toISOString();
 
 
     const record = {
+
 
         id:
             currentScreeningId,
 
 
-        /*
-          التاريخ العام للسجل
-        */
-
         createdAt:
             now,
+
 
         updatedAt:
             now,
 
 
-        /*
-          قياس زمن الفرز
-        */
-
         screeningStartedAt:
             screeningStartedAt,
+
 
         screeningCompletedAt:
             screeningCompletedAt,
 
+
         screeningDurationSeconds:
             screeningDurationSeconds,
+
 
         screeningDurationText:
             formatScreeningDuration(
                 screeningDurationSeconds
             ),
+
+
+        source:
+            cameFromRapid
+            ? "rapidScreening"
+            : "directSmartScreening",
+
+
+        /*
+          ربط الفرز السريع
+        */
+
+        rapidScreeningId:
+            rapidScreeningId,
+
+
+        rapidScore:
+            rapidScore,
+
+
+        rapidRisk:
+            rapidRisk,
+
+
+        rapidRedFlag:
+            rapidRedFlag,
+
+
+        /*
+          بيانات المريض
+        */
+
+        patientName:
+            rapidPatientName,
+
+
+        mrn:
+            rapidMrn,
+
+
+        patientType:
+            rapidPatientType,
+
+
+        gender:
+            rapidGender,
 
 
         noIndicators:
@@ -1855,7 +2624,8 @@ function saveScreeningAnalytics(
 
 
         highSuspicion:
-            highResults.length > 0,
+            highResults.length >
+            0,
 
 
         highSuspicionCount:
@@ -1864,7 +2634,9 @@ function saveScreeningAnalytics(
 
         highestRiskLevel:
             highResults.length
+
             ? "high"
+
             : (
                 results.length
                 ? "medium"
@@ -1909,19 +2681,10 @@ function saveScreeningAnalytics(
 
     if(index >= 0){
 
-        /*
-          الحفاظ على تاريخ إنشاء السجل الأصلي
-        */
-
         record.createdAt =
             records[index].createdAt ||
             record.createdAt;
 
-
-        /*
-          الحفاظ على زمن الفرز الأول
-          وعدم تغييره إذا أعيد حفظ السجل
-        */
 
         record.screeningStartedAt =
             records[index].screeningStartedAt ||
@@ -1933,24 +2696,23 @@ function saveScreeningAnalytics(
             record.screeningCompletedAt;
 
 
-        record.screeningDurationSeconds =
-            (
+        if(
+            records[index]
+            .screeningDurationSeconds !==
+            undefined
+
+            &&
+
+            records[index]
+            .screeningDurationSeconds !==
+            null
+        ){
+
+            record.screeningDurationSeconds =
                 records[index]
-                .screeningDurationSeconds !==
-                undefined
+                .screeningDurationSeconds;
 
-                &&
-
-                records[index]
-                .screeningDurationSeconds !==
-                null
-            )
-
-            ? records[index]
-              .screeningDurationSeconds
-
-            : record
-              .screeningDurationSeconds;
+        }
 
 
         record.screeningDurationText =
@@ -1963,10 +2725,6 @@ function saveScreeningAnalytics(
                 record.screeningDurationSeconds
             );
 
-
-        /*
-          الحفاظ على بيانات التحويل للبلاغ
-        */
 
         record.notificationStarted =
             records[index].notificationStarted ||
@@ -2014,7 +2772,7 @@ function saveScreeningAnalytics(
 
 
 /* =====================================================
-   تسجيل بدء البلاغ
+   MARK NOTIFICATION
 ===================================================== */
 
 function markNotificationStarted(
@@ -2078,7 +2836,7 @@ function markNotificationStarted(
 
 
 /* =====================================================
-   الفرز التكيفي
+   QUICK SCREENING
 ===================================================== */
 
 const quickIndicators =
@@ -2108,7 +2866,9 @@ quickIndicators
 
 
                     noIndicators
-                    .closest(".quick-option")
+                    .closest(
+                        ".quick-option"
+                    )
                     .classList
                     .remove(
                         "selected"
@@ -2118,7 +2878,9 @@ quickIndicators
 
 
                 this
-                .closest(".quick-option")
+                .closest(
+                    ".quick-option"
+                )
                 .classList
                 .toggle(
                     "selected",
@@ -2151,7 +2913,9 @@ noIndicators
 
 
                     item
-                    .closest(".quick-option")
+                    .closest(
+                        ".quick-option"
+                    )
                     .classList
                     .remove(
                         "selected"
@@ -2162,7 +2926,9 @@ noIndicators
 
 
             this
-            .closest(".quick-option")
+            .closest(
+                ".quick-option"
+            )
             .classList
             .add(
                 "selected"
@@ -2184,7 +2950,9 @@ noIndicators
         else{
 
             this
-            .closest(".quick-option")
+            .closest(
+                ".quick-option"
+            )
             .classList
             .remove(
                 "selected"
@@ -2214,9 +2982,11 @@ noIndicators
 function selectedQuick(){
 
     return Array.from(
+
         document.querySelectorAll(
             ".quick-indicator:checked"
         )
+
     )
     .map(
         function(item){
@@ -2228,6 +2998,10 @@ function selectedQuick(){
 
 }
 
+
+/* =====================================================
+   ADAPTIVE SECTIONS
+===================================================== */
 
 function updateAdaptiveSections(){
 
@@ -2244,6 +3018,7 @@ function updateAdaptiveSections(){
             "mainActions"
         ).style.display =
             "none";
+
 
         return;
 
@@ -2288,6 +3063,7 @@ function updateAdaptiveSections(){
             "generalSection"
         );
 
+
         activateSection(
             "respiratorySection"
         );
@@ -2305,9 +3081,11 @@ function updateAdaptiveSections(){
             "generalSection"
         );
 
+
         activateSection(
             "rashSection"
         );
+
 
         activateSection(
             "respiratorySection"
@@ -2326,9 +3104,11 @@ function updateAdaptiveSections(){
             "generalSection"
         );
 
+
         activateSection(
             "gastroSection"
         );
+
 
         activateSection(
             "epiSection"
@@ -2347,6 +3127,7 @@ function updateAdaptiveSections(){
             "generalSection"
         );
 
+
         activateSection(
             "neuroSection"
         );
@@ -2364,17 +3145,21 @@ function updateAdaptiveSections(){
             "generalSection"
         );
 
+
         activateSection(
             "respiratorySection"
         );
+
 
         activateSection(
             "gastroSection"
         );
 
+
         activateSection(
             "neuroSection"
         );
+
 
         activateSection(
             "epiSection"
@@ -2384,9 +3169,21 @@ function updateAdaptiveSections(){
 
 
     if(
-        selected.includes("respiratory") ||
-        selected.includes("rash") ||
-        selected.includes("neuro")
+        selected.includes(
+            "respiratory"
+        )
+
+        ||
+
+        selected.includes(
+            "rash"
+        )
+
+        ||
+
+        selected.includes(
+            "neuro"
+        )
     ){
 
         activateSection(
@@ -2406,13 +3203,21 @@ function updateAdaptiveSections(){
 
 function activateSection(id){
 
-    document.getElementById(
-        id
-    )
-    .classList
-    .add(
-        "active"
-    );
+    const section =
+        document.getElementById(
+            id
+        );
+
+
+    if(section){
+
+        section
+        .classList
+        .add(
+            "active"
+        );
+
+    }
 
 }
 
@@ -2439,7 +3244,7 @@ function hideAllAdaptiveSections(){
 
 
 /* =====================================================
-   واجهة الاختيارات
+   OPTION UI
 ===================================================== */
 
 document
@@ -2454,7 +3259,9 @@ document
             function(){
 
                 this
-                .closest(".option")
+                .closest(
+                    ".option"
+                )
                 .classList
                 .toggle(
                     "selected",
@@ -2469,15 +3276,20 @@ document
 
 
 /* =====================================================
-   Helpers
+   HELPERS
 ===================================================== */
 
-function getSelectedValues(selector){
+function getSelectedValues(
+    selector
+){
 
     return Array.from(
+
         document.querySelectorAll(
-            selector + ":checked"
+            selector +
+            ":checked"
         )
+
     )
     .map(
         function(item){
@@ -2490,7 +3302,10 @@ function getSelectedValues(selector){
 }
 
 
-function has(list,value){
+function has(
+    list,
+    value
+){
 
     return list.includes(
         value
@@ -2500,7 +3315,759 @@ function has(list,value){
 
 
 /* =====================================================
-   لا توجد مؤشرات
+   RAPID SCREENING INCOMING DATA
+===================================================== */
+
+function processRapidScreeningData(){
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    cameFromRapid =
+        params.get(
+            "fromRapid"
+        ) ===
+        "1";
+
+
+    if(!cameFromRapid){
+
+        return;
+
+    }
+
+
+    rapidScreeningId =
+        params.get(
+            "rapidId"
+        ) || "";
+
+
+    rapidScore =
+        params.get(
+            "rapidScore"
+        ) || "";
+
+
+    rapidRisk =
+        params.get(
+            "rapidRisk"
+        ) || "";
+
+
+    rapidRedFlag =
+        params.get(
+            "rapidRedFlag"
+        ) ===
+        "1";
+
+
+    rapidPatientName =
+        params.get(
+            "patientName"
+        ) || "";
+
+
+    rapidMrn =
+        params.get(
+            "mrn"
+        ) || "";
+
+
+    rapidPatientType =
+        params.get(
+            "patientType"
+        ) || "";
+
+
+    rapidGender =
+        params.get(
+            "gender"
+        ) || "";
+
+
+    const symptomsParam =
+        params.get(
+            "symptoms"
+        );
+
+
+    const epiParam =
+        params.get(
+            "epi"
+        );
+
+
+    rapidSymptoms =
+        symptomsParam
+        ? symptomsParam
+          .split(",")
+          .filter(Boolean)
+        : [];
+
+
+    rapidEpi =
+        epiParam
+        ? epiParam
+          .split(",")
+          .filter(Boolean)
+        : [];
+
+
+    /*
+      بيانات احتياطية من sessionStorage
+      إذا كانت موجودة.
+    */
+
+    try{
+
+        const saved =
+            JSON.parse(
+
+                sessionStorage.getItem(
+                    "latestRapidScreening"
+                )
+
+                ||
+
+                "null"
+
+            );
+
+
+        if(saved){
+
+            if(!rapidScreeningId){
+
+                rapidScreeningId =
+                    saved.id ||
+                    "";
+
+            }
+
+
+            if(!rapidPatientName){
+
+                rapidPatientName =
+                    saved.patientName ||
+                    "";
+
+            }
+
+
+            if(!rapidMrn){
+
+                rapidMrn =
+                    saved.mrn ||
+                    "";
+
+            }
+
+
+            if(!rapidPatientType){
+
+                rapidPatientType =
+                    saved.patientType ||
+                    "";
+
+            }
+
+
+            if(!rapidGender){
+
+                rapidGender =
+                    saved.gender ||
+                    "";
+
+            }
+
+
+            if(
+                rapidScore ===
+                ""
+            ){
+
+                rapidScore =
+                    saved.score !==
+                    undefined
+
+                    ? String(
+                        saved.score
+                    )
+
+                    : "";
+
+            }
+
+
+            if(!rapidRisk){
+
+                rapidRisk =
+                    saved.risk ||
+                    "";
+
+            }
+
+
+            if(
+                !rapidSymptoms.length &&
+                Array.isArray(
+                    saved.symptoms
+                )
+            ){
+
+                rapidSymptoms =
+                    saved.symptoms;
+
+            }
+
+
+            if(
+                !rapidEpi.length &&
+                Array.isArray(
+                    saved.epi
+                )
+            ){
+
+                rapidEpi =
+                    saved.epi;
+
+            }
+
+
+            if(saved.redFlag){
+
+                rapidRedFlag =
+                    true;
+
+            }
+
+        }
+
+    }
+    catch(error){
+
+        console.warn(
+            "Rapid screening session data unavailable.",
+            error
+        );
+
+    }
+
+
+    showRapidSourceCard();
+
+
+    applyRapidPatientData();
+
+
+    applyRapidSelections();
+
+
+    configureAdvancedScreeningFromRapid();
+
+}
+
+
+/* =====================================================
+   RAPID SOURCE CARD
+===================================================== */
+
+function showRapidSourceCard(){
+
+    const box =
+        document.getElementById(
+            "rapidSource"
+        );
+
+
+    box.classList.add(
+        "active"
+    );
+
+
+    document.getElementById(
+        "prefilledNotice"
+    )
+    .classList
+    .add(
+        "active"
+    );
+
+
+    document.getElementById(
+        "rapidPatientName"
+    ).textContent =
+        rapidPatientName ||
+        "—";
+
+
+    document.getElementById(
+        "rapidMrn"
+    ).textContent =
+        rapidMrn ||
+        "—";
+
+
+    document.getElementById(
+        "rapidPatientType"
+    ).textContent =
+
+        rapidPatientType ===
+        "adult"
+
+        ? "بالغ / Adult"
+
+        : (
+            rapidPatientType ===
+            "pediatric"
+
+            ? "طفل / Pediatric"
+
+            : "—"
+        );
+
+
+    document.getElementById(
+        "rapidGender"
+    ).textContent =
+
+        rapidGender ===
+        "male"
+
+        ? "ذكر / Male"
+
+        : (
+            rapidGender ===
+            "female"
+
+            ? "أنثى / Female"
+
+            : "—"
+        );
+
+
+    document.getElementById(
+        "rapidScreeningId"
+    ).textContent =
+        rapidScreeningId ||
+        "—";
+
+
+    document.getElementById(
+        "rapidScoreValue"
+    ).textContent =
+        rapidScore !==
+        ""
+
+        ? rapidScore
+
+        : "—";
+
+
+    const riskLabels = {
+
+        low:
+            "منخفض / Low",
+
+        medium:
+            "متوسط / Further Screening",
+
+        high:
+            "مرتفع / High"
+
+    };
+
+
+    document.getElementById(
+        "rapidRiskValue"
+    ).textContent =
+        riskLabels[
+            rapidRisk
+        ] ||
+        rapidRisk ||
+        "—";
+
+
+    document.getElementById(
+        "rapidRedFlagValue"
+    ).textContent =
+        rapidRedFlag
+        ? "نعم"
+        : "لا";
+
+
+    const badge =
+        document.getElementById(
+            "rapidScoreBadge"
+        );
+
+
+    badge.className =
+        "rapid-score-badge";
+
+
+    if(
+        rapidRisk ===
+        "high"
+    ){
+
+        badge.classList.add(
+            "rapid-high"
+        );
+
+    }
+    else if(
+        rapidRisk ===
+        "medium"
+    ){
+
+        badge.classList.add(
+            "rapid-medium"
+        );
+
+    }
+    else{
+
+        badge.classList.add(
+            "rapid-low"
+        );
+
+    }
+
+
+    badge.textContent =
+
+        "Score: " +
+
+        (
+            rapidScore !==
+            ""
+
+            ? rapidScore
+
+            : "—"
+        );
+
+}
+
+
+/* =====================================================
+   RAPID PATIENT DATA
+===================================================== */
+
+function applyRapidPatientData(){
+
+    if(
+        rapidPatientType ===
+        "adult"
+    ){
+
+        document.getElementById(
+            "ageGroup"
+        ).value =
+            "adult";
+
+    }
+
+
+    if(
+        rapidPatientType ===
+        "pediatric"
+    ){
+
+        document.getElementById(
+            "ageGroup"
+        ).value =
+            "child";
+
+    }
+
+}
+
+
+/* =====================================================
+   CHECK + LOCK PREFILLED ITEM
+===================================================== */
+
+function checkAndLock(
+    selector,
+    value
+){
+
+    const input =
+        document.querySelector(
+
+            selector +
+
+            '[value="' +
+
+            value +
+
+            '"]'
+
+        );
+
+
+    if(!input){
+
+        return;
+
+    }
+
+
+    input.checked =
+        true;
+
+
+    const parent =
+        input.closest(
+            ".option"
+        );
+
+
+    if(parent){
+
+        parent.classList.add(
+            "selected",
+            "rapid-locked"
+        );
+
+    }
+
+
+    input.dataset.fromRapid =
+        "1";
+
+}
+
+
+/* =====================================================
+   APPLY RAPID SELECTIONS
+===================================================== */
+
+function applyRapidSelections(){
+
+    rapidSymptoms
+    .forEach(
+        function(value){
+
+            checkAndLock(
+                ".symptom-option",
+                value
+            );
+
+        }
+    );
+
+
+    rapidEpi
+    .forEach(
+        function(value){
+
+            checkAndLock(
+                ".epi-option",
+                value
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   BUILD ADVANCED SCREENING SECTIONS
+===================================================== */
+
+function configureAdvancedScreeningFromRapid(){
+
+    /*
+      نخفي شاشة الفرز السريع الداخلية.
+    */
+
+    document.getElementById(
+        "quickCard"
+    )
+    .classList
+    .add(
+        "hidden-by-rapid"
+    );
+
+
+    /*
+      نفتح المعلومات العامة دائمًا.
+    */
+
+    activateSection(
+        "basicSection"
+    );
+
+
+    activateSection(
+        "psychSection"
+    );
+
+
+    activateSection(
+        "redFlagSection"
+    );
+
+
+    /*
+      تحديد الأقسام حسب البيانات
+      القادمة من الفرز السريع.
+    */
+
+    if(
+        rapidSymptoms.some(
+            function(item){
+
+                return [
+                    "fever",
+                    "fatigue",
+                    "headache"
+                ]
+                .includes(
+                    item
+                );
+
+            }
+        )
+    ){
+
+        activateSection(
+            "generalSection"
+        );
+
+    }
+
+
+    if(
+        rapidSymptoms.some(
+            function(item){
+
+                return [
+                    "cough",
+                    "breathing",
+                    "runnyNose",
+                    "soreThroat"
+                ]
+                .includes(
+                    item
+                );
+
+            }
+        )
+    ){
+
+        activateSection(
+            "generalSection"
+        );
+
+
+        activateSection(
+            "respiratorySection"
+        );
+
+    }
+
+
+    if(
+        rapidSymptoms.some(
+            function(item){
+
+                return [
+                    "vomiting",
+                    "diarrhea",
+                    "abdominal",
+                    "bleeding"
+                ]
+                .includes(
+                    item
+                );
+
+            }
+        )
+    ){
+
+        activateSection(
+            "generalSection"
+        );
+
+
+        activateSection(
+            "gastroSection"
+        );
+
+    }
+
+
+    if(
+        rapidSymptoms.some(
+            function(item){
+
+                return [
+                    "confusion",
+                    "seizure",
+                    "stiffNeck"
+                ]
+                .includes(
+                    item
+                );
+
+            }
+        )
+    ){
+
+        activateSection(
+            "generalSection"
+        );
+
+
+        activateSection(
+            "neuroSection"
+        );
+
+    }
+
+
+    if(
+        rapidSymptoms.includes(
+            "rash"
+        )
+    ){
+
+        activateSection(
+            "rashSection"
+        );
+
+    }
+
+
+    /*
+      في كل حالة قادمة من rapid
+      نحتاج تقييم عوامل التعرض التفصيلية.
+    */
+
+    activateSection(
+        "epiSection"
+    );
+
+
+    document.getElementById(
+        "mainActions"
+    ).style.display =
+        "grid";
+
+}
+
+
+/* =====================================================
+   NO INDICATORS
 ===================================================== */
 
 function showNoIndicatorResult(){
@@ -2508,10 +4075,6 @@ function showNoIndicatorResult(){
     currentScreeningResults =
         [];
 
-
-    /*
-      انتهاء الفرز هنا تلقائيًا
-    */
 
     finishScreeningTimer();
 
@@ -2551,26 +4114,27 @@ function showNoIndicatorResult(){
 
     <div class="clear-result">
 
-    <h2>
-    🟢 لا توجد مؤشرات معدية ظاهرة حاليًا
-    </h2>
+        <h2>
+        🟢 لا توجد مؤشرات معدية ظاهرة حاليًا
+        </h2>
 
-    <p>
-    استكمل الفرز والتقييم السريري المعتاد.
-    وإذا ظهرت معلومات جديدة أو أعراض لاحقًا،
-    يمكن إعادة الفرز الذكي.
-    </p>
+        <p>
+        استكمل الفرز والتقييم السريري المعتاد.
+        وإذا ظهرت معلومات جديدة أو أعراض لاحقًا،
+        يمكن إعادة الفرز الذكي.
+        </p>
 
-    <p>
-    <strong>
-    ⏱️ زمن الفرز:
-    </strong>
+        <p>
 
-    ${formatScreeningDuration(
-        screeningDurationSeconds
-    )}
+        <strong>
+        ⏱️ زمن الفرز:
+        </strong>
 
-    </p>
+        ${formatScreeningDuration(
+            screeningDurationSeconds
+        )}
+
+        </p>
 
     </div>
 
@@ -2584,19 +4148,22 @@ function showNoIndicatorResult(){
 
 
     area.scrollIntoView({
+
         behavior:"smooth"
+
     });
 
 }
 
 
 /* =====================================================
-   تحليل الفرز
+   ANALYZE
 ===================================================== */
 
 function analyzeScreening(){
 
     if(
+        !cameFromRapid &&
         noIndicators.checked
     ){
 
@@ -2626,8 +4193,13 @@ function analyzeScreening(){
 
 
     if(
-        allSelected.length === 0 &&
-        redFlags.length === 0
+        allSelected.length ===
+        0
+
+        &&
+
+        redFlags.length ===
+        0
     ){
 
         resultsArea
@@ -2643,13 +4215,13 @@ function analyzeScreening(){
 
         <div class="disease-result medium">
 
-        <h2>
-        ⚠️ لم يتم تحديد معلومات كافية
-        </h2>
+            <h2>
+            ⚠️ لم يتم تحديد معلومات كافية
+            </h2>
 
-        <p>
-        اختر الأعراض أو عوامل التعرض الموجودة لدى المريض.
-        </p>
+            <p>
+            اختر الأعراض أو عوامل التعرض الموجودة لدى المريض.
+            </p>
 
         </div>
 
@@ -2657,14 +4229,11 @@ function analyzeScreening(){
 
 
         resultsArea.scrollIntoView({
+
             behavior:"smooth"
+
         });
 
-
-        /*
-          لا نوقف العداد هنا لأن الفرز
-          لم يكتمل بعد.
-        */
 
         return;
 
@@ -2700,9 +4269,18 @@ function analyzeScreening(){
             function(item){
 
                 return (
-                    item.key === "mers" ||
-                    item.key === "nipah" ||
-                    item.key === "hantavirus"
+                    item.key ===
+                    "mers"
+
+                    ||
+
+                    item.key ===
+                    "nipah"
+
+                    ||
+
+                    item.key ===
+                    "hantavirus"
                 );
 
             }
@@ -2730,11 +4308,6 @@ function analyzeScreening(){
         results;
 
 
-    /*
-      هنا تعتبر عملية الفرز مكتملة
-      ويتم إيقاف العداد.
-    */
-
     finishScreeningTimer();
 
 
@@ -2761,17 +4334,14 @@ function analyzeScreening(){
     );
 
 
-    /*
-      إضافة زمن الفرز أسفل النتيجة
-    */
-
     const resultContainer =
         document.getElementById(
             "screeningResult"
         );
 
 
-    resultContainer.insertAdjacentHTML(
+    resultContainer
+    .insertAdjacentHTML(
 
         "beforeend",
 
@@ -2788,12 +4358,28 @@ function analyzeScreening(){
             ">
 
             <strong>
-            ⏱️ زمن إتمام الفرز:
+            ⏱️ زمن إتمام الفرز الموسع:
             </strong>
 
             ${formatScreeningDuration(
                 screeningDurationSeconds
             )}
+
+            ${
+                cameFromRapid
+                ? `
+
+                    <br>
+
+                    <strong>
+                    🩺 درجة الفرز السريع:
+                    </strong>
+
+                    ${rapidScore || "—"}
+
+                `
+                : ""
+            }
 
         </div>
 
@@ -2809,14 +4395,16 @@ function analyzeScreening(){
 
 
     resultsArea.scrollIntoView({
+
         behavior:"smooth"
+
     });
 
 }
 
 
 /* =====================================================
-   موثوقية التاريخ
+   HISTORY RELIABILITY
 ===================================================== */
 
 function renderHistoryReliabilityAlert(){
@@ -2841,6 +4429,7 @@ function renderHistoryReliabilityAlert(){
         box.innerHTML =
             "";
 
+
         return;
 
     }
@@ -2850,19 +4439,19 @@ function renderHistoryReliabilityAlert(){
 
     <div class="history-alert">
 
-    <h3>
-    🧠 التاريخ الوبائي غير مكتمل
-    </h3>
+        <h3>
+        🧠 التاريخ الوبائي غير مكتمل
+        </h3>
 
-    <p>
-    الحالة النفسية أو السلوكية قد تحد من موثوقية المعلومات.
-    لا تعتبر المعلومات غير المتوفرة إجابة سلبية.
-    </p>
+        <p>
+        الحالة النفسية أو السلوكية قد تحد من موثوقية المعلومات.
+        لا تعتبر المعلومات غير المتوفرة إجابة سلبية.
+        </p>
 
-    <p>
-    استكمل المعلومات من المرافق أو الملف الطبي أو المصدر المتاح
-    عند الحاجة.
-    </p>
+        <p>
+        استكمل المعلومات من المرافق أو الملف الطبي أو المصدر المتاح
+        عند الحاجة.
+        </p>
 
     </div>
 
@@ -2872,7 +4461,7 @@ function renderHistoryReliabilityAlert(){
 
 
 /* =====================================================
-   الخطر المعدي الخفي
+   HIDDEN INFECTION
 ===================================================== */
 
 function renderHiddenInfectionFlag(){
@@ -2902,24 +4491,33 @@ function renderHiddenInfectionFlag(){
 
 
     if(
-        vitalStatus === "normal" &&
-        epiFactors.length > 0 &&
-        symptoms.length > 0
+        vitalStatus ===
+        "normal"
+
+        &&
+
+        epiFactors.length >
+        0
+
+        &&
+
+        symptoms.length >
+        0
     ){
 
         box.innerHTML = `
 
         <div class="hidden-risk-alert">
 
-        <h3>
-        🚩 تنبيه الخطر المعدي الخفي
-        </h3>
+            <h3>
+            🚩 تنبيه الخطر المعدي الخفي
+            </h3>
 
-        <p>
-        رغم عدم وجود علامة حيوية ملفتة في الفرز التقليدي،
-        توجد أعراض أو عوامل تعرض وبائية تستدعي استكمال
-        تقييم مخاطر الأمراض المعدية.
-        </p>
+            <p>
+            رغم عدم وجود علامة حيوية ملفتة في الفرز التقليدي،
+            توجد أعراض أو عوامل تعرض وبائية تستدعي استكمال
+            تقييم مخاطر الأمراض المعدية.
+            </p>
 
         </div>
 
@@ -2937,7 +4535,7 @@ function renderHiddenInfectionFlag(){
 
 
 /* =====================================================
-   العلامات الحمراء
+   CLINICAL ALERT
 ===================================================== */
 
 function renderClinicalAlert(
@@ -2951,11 +4549,13 @@ function renderClinicalAlert(
 
 
     if(
-        !redFlags.length
+        !redFlags.length &&
+        !rapidRedFlag
     ){
 
         box.innerHTML =
             "";
+
 
         return;
 
@@ -2966,14 +4566,14 @@ function renderClinicalAlert(
 
     <div class="emergency-alert">
 
-    <h3>
-    🚨 أولوية التقييم السريري العاجل
-    </h3>
+        <h3>
+        🚨 أولوية التقييم السريري العاجل
+        </h3>
 
-    <p>
-    توجد علامة أو أكثر تستدعي تقييمًا وعلاجًا عاجلًا.
-    يجب ألا يؤخر استخدام أداة الفرز تقديم الرعاية الطبية اللازمة.
-    </p>
+        <p>
+        توجد علامة أو أكثر تستدعي تقييمًا وعلاجًا عاجلًا.
+        يجب ألا يؤخر استخدام أداة الفرز تقديم الرعاية الطبية اللازمة.
+        </p>
 
     </div>
 
@@ -2983,7 +4583,7 @@ function renderClinicalAlert(
 
 
 /* =====================================================
-   النتائج
+   RESULTS
 ===================================================== */
 
 function renderResults(
@@ -3004,19 +4604,20 @@ function renderResults(
 
         <div class="general-result">
 
-        <h2>
-        لا توجد مطابقة واضحة ضمن قواعد الفرز الحالية
-        </h2>
+            <h2>
+            لا توجد مطابقة واضحة ضمن قواعد الفرز الحالية
+            </h2>
 
-        <p>
-        هذا لا يستبعد وجود مرض معدٍ.
-        استمر بالتقييم السريري ومراجعة دليل الأمراض
-        إذا بقي الاشتباه قائمًا.
-        </p>
+            <p>
+            هذا لا يستبعد وجود مرض معدٍ.
+            استمر بالتقييم السريري ومراجعة دليل الأمراض
+            إذا بقي الاشتباه قائمًا.
+            </p>
 
         </div>
 
         `;
+
 
         return;
 
@@ -3034,7 +4635,7 @@ function renderResults(
 
 
 /* =====================================================
-   بطاقة النتيجة
+   RESULT CARD
 ===================================================== */
 
 function resultCard(
@@ -3067,105 +4668,109 @@ function resultCard(
     <article
         class="disease-result ${item.level}">
 
-    <div class="result-top">
+        <div class="result-top">
 
-    <div>
+            <div>
 
-    <h2>
-    ${item.icon} ${item.disease}
-    </h2>
+                <h2>
+                ${item.icon} ${item.disease}
+                </h2>
 
-    <div>
-    ${item.english}
-    </div>
+                <div>
+                ${item.english}
+                </div>
 
-    </div>
-
-
-    <span class="risk-badge">
-
-    ${
-        item.level === "high"
-        ? "🔴 اشتباه مرتفع"
-        : "🟡 يحتاج تقييم"
-    }
-
-    </span>
-
-    </div>
+            </div>
 
 
-    <div class="result-grid">
+            <span class="risk-badge">
+
+                ${
+                    item.level ===
+                    "high"
+
+                    ? "🔴 اشتباه مرتفع"
+
+                    : "🟡 يحتاج تقييم"
+                }
+
+            </span>
+
+        </div>
 
 
-    <div class="result-info">
-
-    <strong>
-    🔍 سبب التنبيه
-    </strong>
-
-    <span>
-    ${item.reason}
-    </span>
-
-    </div>
+        <div class="result-grid">
 
 
-    <div class="result-info">
+            <div class="result-info">
 
-    <strong>
-    🛡️ الاحتياطات
-    </strong>
+                <strong>
+                🔍 سبب التنبيه
+                </strong>
 
-    <span>
-    ${item.precaution}
-    </span>
+                <span>
+                ${item.reason}
+                </span>
 
-    </div>
-
-
-    <div class="result-info">
-
-    <strong>
-    🧪 العينات
-    </strong>
-
-    <span>
-    ${item.specimen}
-    </span>
-
-    </div>
+            </div>
 
 
-    <div class="result-info">
+            <div class="result-info">
 
-    <strong>
-    🚨 الإبلاغ
-    </strong>
+                <strong>
+                🛡️ الاحتياطات
+                </strong>
 
-    <span>
-    ${item.notification}
-    </span>
+                <span>
+                ${item.precaution}
+                </span>
 
-    </div>
-
-    </div>
+            </div>
 
 
-    <div class="result-actions">
+            <div class="result-info">
 
-    ${notificationButton}
+                <strong>
+                🧪 العينات
+                </strong>
+
+                <span>
+                ${item.specimen}
+                </span>
+
+            </div>
 
 
-    <button
-        class="blue-btn"
-        onclick="openDiseaseGuide('${item.key}')">
+            <div class="result-info">
 
-    📖 فتح دليل المرض
+                <strong>
+                🚨 الإبلاغ
+                </strong>
 
-    </button>
+                <span>
+                ${item.notification}
+                </span>
 
-    </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="result-actions">
+
+            ${notificationButton}
+
+
+            <button
+                class="blue-btn"
+                onclick="openDiseaseGuide('${item.key}')">
+
+            📖 فتح دليل المرض
+
+            </button>
+
+        </div>
 
     </article>
 
@@ -3175,7 +4780,7 @@ function resultCard(
 
 
 /* =====================================================
-   بدء البلاغ
+   START NOTIFICATION
 ===================================================== */
 
 function startNotification(
@@ -3221,18 +4826,24 @@ function startNotification(
 
     const hiddenFlag =
         (
-            vitalStatus === "normal" &&
-            epidemiologicalFactors.length > 0 &&
-            selectedSymptoms.length > 0
+            vitalStatus ===
+            "normal"
+
+            &&
+
+            epidemiologicalFactors.length >
+            0
+
+            &&
+
+            selectedSymptoms.length >
+            0
         )
+
         ? "1"
+
         : "0";
 
-
-    /*
-      إذا ضغط الممرض البلاغ قبل أن يسجل
-      الزمن لأي سبب، نغلق العداد هنا.
-    */
 
     finishScreeningTimer();
 
@@ -3248,43 +4859,139 @@ function startNotification(
     );
 
 
-    let url =
-        "infectious-notification.html" +
+    const params =
+        new URLSearchParams();
 
-        "?fromScreening=1" +
 
-        "&screeningId=" +
-        encodeURIComponent(
-            currentScreeningId
-        ) +
+    params.set(
+        "fromScreening",
+        "1"
+    );
 
-        "&disease=" +
-        encodeURIComponent(
-            diseaseKey
-        ) +
 
-        "&name=" +
-        diseaseName;
+    params.set(
+        "screeningId",
+        currentScreeningId
+    );
+
+
+    params.set(
+        "disease",
+        diseaseKey
+    );
+
+
+    params.set(
+        "name",
+        decodeURIComponent(
+            diseaseName
+        )
+    );
+
+
+    /*
+      بيانات المريض القادمة من الفرز السريع
+    */
+
+    if(rapidPatientName){
+
+        params.set(
+            "patientName",
+            rapidPatientName
+        );
+
+    }
+
+
+    if(rapidMrn){
+
+        params.set(
+            "mrn",
+            rapidMrn
+        );
+
+    }
+
+
+    if(rapidPatientType){
+
+        params.set(
+            "patientType",
+            rapidPatientType
+        );
+
+    }
+
+
+    if(rapidGender){
+
+        params.set(
+            "gender",
+            rapidGender
+        );
+
+    }
+
+
+    if(rapidScreeningId){
+
+        params.set(
+            "rapidId",
+            rapidScreeningId
+        );
+
+    }
+
+
+    if(
+        rapidScore !==
+        ""
+    ){
+
+        params.set(
+            "rapidScore",
+            rapidScore
+        );
+
+    }
+
+
+    if(rapidRisk){
+
+        params.set(
+            "rapidRisk",
+            rapidRisk
+        );
+
+    }
+
+
+    if(rapidRedFlag){
+
+        params.set(
+            "rapidRedFlag",
+            "1"
+        );
+
+    }
 
 
     if(onset){
 
-        url +=
-            "&onset=" +
-            encodeURIComponent(
-                onset
-            );
+        params.set(
+            "onset",
+            onset
+        );
 
     }
 
 
     if(duration){
 
-        url +=
-            "&duration=" +
-            encodeURIComponent(
-                duration
-            );
+        params.set(
+            "duration",
+            duration
+        );
 
     }
 
@@ -3293,11 +5000,15 @@ function startNotification(
         selectedSymptoms.length
     ){
 
-        url +=
-            "&symptoms=" +
-            encodeURIComponent(
-                selectedSymptoms.join(",")
-            );
+        params.set(
+
+            "symptoms",
+
+            selectedSymptoms.join(
+                ","
+            )
+
+        );
 
     }
 
@@ -3306,50 +5017,56 @@ function startNotification(
         epidemiologicalFactors.length
     ){
 
-        url +=
-            "&epi=" +
-            encodeURIComponent(
-                epidemiologicalFactors.join(",")
-            );
+        params.set(
+
+            "epi",
+
+            epidemiologicalFactors.join(
+                ","
+            )
+
+        );
 
     }
 
 
     if(historyReliability){
 
-        url +=
-            "&historyReliability=" +
-            encodeURIComponent(
-                historyReliability
-            );
+        params.set(
+            "historyReliability",
+            historyReliability
+        );
 
     }
 
 
     if(vitalStatus){
 
-        url +=
-            "&vitalStatus=" +
-            encodeURIComponent(
-                vitalStatus
-            );
+        params.set(
+            "vitalStatus",
+            vitalStatus
+        );
 
     }
 
 
-    url +=
-        "&hiddenFlag=" +
-        hiddenFlag;
+    params.set(
+        "hiddenFlag",
+        hiddenFlag
+    );
 
 
     window.location.href =
-        url;
+
+        "infectious-notification.html?" +
+
+        params.toString();
 
 }
 
 
 /* =====================================================
-   دليل المرض
+   DISEASE GUIDE
 ===================================================== */
 
 function openDiseaseGuide(
@@ -3370,10 +5087,13 @@ function openDiseaseGuide(
     ){
 
         window.location.href =
+
             "disease-details.html?disease=" +
+
             encodeURIComponent(
                 key
             );
+
 
         return;
 
@@ -3381,8 +5101,11 @@ function openDiseaseGuide(
 
 
     window.location.href =
+
         "infectious-diseases.html" +
+
         "?fromScreening=1&disease=" +
+
         encodeURIComponent(
             key
         );
@@ -3391,7 +5114,7 @@ function openDiseaseGuide(
 
 
 /* =====================================================
-   إعادة الفرز
+   RESET
 ===================================================== */
 
 function resetScreening(){
@@ -3405,8 +5128,53 @@ function resetScreening(){
 
 
     /*
-      يبدأ عداد جديد تلقائيًا
+      إذا بدأ المستخدم فرزًا جديدًا
+      نلغي حالة الربط بالفرز السابق.
     */
+
+    cameFromRapid =
+        false;
+
+
+    rapidScreeningId =
+        "";
+
+
+    rapidScore =
+        "";
+
+
+    rapidRisk =
+        "";
+
+
+    rapidRedFlag =
+        false;
+
+
+    rapidPatientName =
+        "";
+
+
+    rapidMrn =
+        "";
+
+
+    rapidPatientType =
+        "";
+
+
+    rapidGender =
+        "";
+
+
+    rapidSymptoms =
+        [];
+
+
+    rapidEpi =
+        [];
+
 
     startScreeningTimer();
 
@@ -3422,6 +5190,9 @@ function resetScreening(){
                 false;
 
 
+            delete input.dataset.fromRapid;
+
+
             const parent =
                 input.closest(
                     ".quick-option, .option"
@@ -3431,7 +5202,8 @@ function resetScreening(){
             if(parent){
 
                 parent.classList.remove(
-                    "selected"
+                    "selected",
+                    "rapid-locked"
                 );
 
             }
@@ -3451,6 +5223,33 @@ function resetScreening(){
     .classList
     .remove(
         "selected"
+    );
+
+
+    document.getElementById(
+        "quickCard"
+    )
+    .classList
+    .remove(
+        "hidden-by-rapid"
+    );
+
+
+    document.getElementById(
+        "rapidSource"
+    )
+    .classList
+    .remove(
+        "active"
+    );
+
+
+    document.getElementById(
+        "prefilledNotice"
+    )
+    .classList
+    .remove(
+        "active"
     );
 
 
@@ -3526,32 +5325,59 @@ function resetScreening(){
     hideAllAdaptiveSections();
 
 
+    /*
+      إزالة query string حتى لا يعاد
+      تحميل بيانات الفرز السريع عند Refresh.
+    */
+
+    if(
+        window.history &&
+        window.history.replaceState
+    ){
+
+        window.history.replaceState(
+
+            {},
+
+            document.title,
+
+            "smart-screening.html"
+
+        );
+
+    }
+
+
     window.scrollTo({
+
         top:0,
+
         behavior:"smooth"
+
     });
 
 }
 
 
 /* =====================================================
-   تشغيل عداد الفرز عند فتح الصفحة
+   STARTUP
 ===================================================== */
 
 document.addEventListener(
-
     "DOMContentLoaded",
-
     function(){
 
         startScreeningTimer();
 
-    }
 
+        processRapidScreeningData();
+
+    }
 );
 
 
 </script>
+
 
 </body>
 
