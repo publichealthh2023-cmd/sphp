@@ -87,9 +87,7 @@ body{
 }
 
 
-/* ==========================================
-   SCREENING SOURCE
-========================================== */
+/* SCREENING SOURCE */
 
 .screening-source{
     display:none;
@@ -99,16 +97,10 @@ body{
     border-radius:12px;
     padding:16px 18px;
     margin-bottom:18px;
-    color:#514568;
-    line-height:1.9;
 }
 
 .screening-source.active{
     display:block;
-}
-
-.screening-source strong{
-    color:#4d2fa9;
 }
 
 .screening-badge{
@@ -147,18 +139,15 @@ body{
 }
 
 
-/* ==========================================
-   ALERTS
-========================================== */
+/* ALERTS */
 
 .hidden-risk,
 .history-warning,
 .rapid-red-warning{
     display:none;
     border-radius:12px;
-    padding:16px 18px;
+    padding:16px;
     margin-bottom:18px;
-    line-height:1.8;
 }
 
 .hidden-risk.active,
@@ -189,13 +178,10 @@ body{
     padding:15px;
     border-radius:10px;
     margin-bottom:18px;
-    color:#7d2525;
 }
 
 
-/* ==========================================
-   FORM
-========================================== */
+/* FORM */
 
 .grid{
     display:grid;
@@ -259,25 +245,16 @@ textarea{
     width:auto;
 }
 
-
-/* ==========================================
-   EPI
-========================================== */
-
 .auto-info{
     background:#eef7ff;
     border-right:5px solid #0759a6;
     padding:14px;
     border-radius:9px;
     margin-top:14px;
-    color:#31556f;
-    line-height:1.8;
 }
 
 
-/* ==========================================
-   SIGNATURE
-========================================== */
+/* SIGNATURE */
 
 .signature-area{
     border:2px dashed #aebdca;
@@ -294,9 +271,7 @@ textarea{
 }
 
 
-/* ==========================================
-   ACTIONS
-========================================== */
+/* ACTIONS */
 
 .actions{
     display:grid;
@@ -344,7 +319,6 @@ textarea{
     background:#eaf7ee;
     color:#285b33;
     border-right:5px solid #187b43;
-    line-height:1.9;
 }
 
 .result.error{
@@ -383,17 +357,11 @@ textarea{
 
 <div class="hero-center">
 
-<h1>
-الإبلاغ الإلكتروني عن الأمراض المعدية
-</h1>
+<h1>الإبلاغ الإلكتروني عن الأمراض المعدية</h1>
 
-<h2>
-Infectious Disease Notification
-</h2>
+<h2>Infectious Disease Notification</h2>
 
-<p>
-الصحة العامة
-</p>
+<p>الصحة العامة</p>
 
 </div>
 
@@ -472,44 +440,28 @@ Infectious Disease Notification
 
 
 <div id="historyWarning" class="history-warning">
-
-<strong>
-🧠 التاريخ المرضي محدود.
-</strong>
-
+<strong>🧠 التاريخ المرضي محدود.</strong>
 </div>
 
 
 <div id="hiddenRisk" class="hidden-risk">
-
-<strong>
-🚩 تم تفعيل تنبيه الخطر المعدي الخفي.
-</strong>
-
+<strong>🚩 تم تفعيل تنبيه الخطر المعدي الخفي.</strong>
 </div>
 
 
 <div id="rapidRedWarning" class="rapid-red-warning">
-
-<strong>
-🚨 تم تسجيل Red Flag أثناء الفرز السريع.
-</strong>
-
+<strong>🚨 تم تسجيل Red Flag أثناء الفرز السريع.</strong>
 </div>
 
 
 <div id="urgent" class="alert">
-
 🚨 الحالة من الأمراض ذات الأولوية.
-
 </div>
 
 
 <section class="section">
 
-<h2>
-1. بيانات المريض
-</h2>
+<h2>1. بيانات المريض</h2>
 
 <div class="grid">
 
@@ -528,9 +480,11 @@ Infectious Disease Notification
 <label>فئة المريض</label>
 
 <select id="patientType">
+
 <option value=""></option>
 <option value="adult">بالغ</option>
 <option value="pediatric">طفل</option>
+
 </select>
 
 </div>
@@ -555,9 +509,11 @@ Infectious Disease Notification
 <label>الجنس</label>
 
 <select id="gender">
+
 <option value=""></option>
 <option value="male">ذكر</option>
 <option value="female">أنثى</option>
+
 </select>
 
 </div>
@@ -579,9 +535,7 @@ Infectious Disease Notification
 
 <section class="section">
 
-<h2>
-2. بيانات الحالة
-</h2>
+<h2>2. بيانات الحالة</h2>
 
 <div class="grid">
 
@@ -615,10 +569,12 @@ Infectious Disease Notification
 <label>تصنيف الحالة *</label>
 
 <select id="classification">
+
 <option value=""></option>
 <option value="suspected">مشتبهة</option>
 <option value="probable">محتملة</option>
 <option value="confirmed">مؤكدة</option>
+
 </select>
 
 </div>
@@ -644,12 +600,14 @@ Infectious Disease Notification
 <label>حالة المريض الحالية</label>
 
 <select id="patientStatus">
+
 <option value=""></option>
 <option value="stable">مستقرة</option>
 <option value="admitted">منوم</option>
 <option value="critical">حرجة</option>
 <option value="discharged">خرج</option>
 <option value="deceased">وفاة</option>
+
 </select>
 
 </div>
@@ -661,9 +619,7 @@ Infectious Disease Notification
 
 <section class="section">
 
-<h2>
-3. الأعراض
-</h2>
+<h2>3. الأعراض</h2>
 
 <div class="checkgrid">
 
@@ -727,9 +683,7 @@ Infectious Disease Notification
 
 <section class="section">
 
-<h2>
-4. التاريخ الوبائي
-</h2>
+<h2>4. التاريخ الوبائي</h2>
 
 <div class="grid">
 
@@ -738,10 +692,12 @@ Infectious Disease Notification
 <label>سفر حديث</label>
 
 <select id="recentTravel">
+
 <option value=""></option>
 <option value="yes">نعم</option>
 <option value="no">لا</option>
 <option value="unknown">غير معروف</option>
+
 </select>
 
 </div>
@@ -756,10 +712,12 @@ Infectious Disease Notification
 <label>مخالطة حالة</label>
 
 <select id="contactCase">
+
 <option value=""></option>
 <option value="yes">نعم</option>
 <option value="no">لا</option>
 <option value="unknown">غير معروف</option>
+
 </select>
 
 </div>
@@ -769,10 +727,12 @@ Infectious Disease Notification
 <label>تعرض حيواني / بيئي</label>
 
 <select id="animalExposure">
+
 <option value=""></option>
 <option value="yes">نعم</option>
 <option value="no">لا</option>
 <option value="unknown">غير معروف</option>
+
 </select>
 
 </div>
@@ -806,9 +766,7 @@ style="display:none">
 
 <section class="section">
 
-<h2>
-5. الإجراءات والعينات
-</h2>
+<h2>5. الإجراءات والعينات</h2>
 
 <div class="checkgrid">
 
@@ -852,10 +810,12 @@ style="display:none">
 <label>تم أخذ عينة</label>
 
 <select id="sampleTaken">
+
 <option value=""></option>
 <option value="yes">نعم</option>
 <option value="no">لا</option>
 <option value="pending">سيتم</option>
+
 </select>
 
 </div>
@@ -875,10 +835,12 @@ style="display:none">
 <label>حالة النتيجة</label>
 
 <select id="labResult">
+
 <option value=""></option>
 <option value="pending">قيد الانتظار</option>
 <option value="positive">إيجابية</option>
 <option value="negative">سلبية</option>
+
 </select>
 
 </div>
@@ -890,9 +852,7 @@ style="display:none">
 
 <section class="section">
 
-<h2>
-6. بيانات المبلّغ
-</h2>
+<h2>6. بيانات المبلّغ</h2>
 
 <div class="grid">
 
@@ -933,9 +893,7 @@ style="display:none">
 
 <section class="section">
 
-<h2>
-7. التوقيع الإلكتروني
-</h2>
+<h2>7. التوقيع الإلكتروني</h2>
 
 <div class="signature-area">
 <canvas id="signatureCanvas"></canvas>
@@ -949,7 +907,6 @@ style="margin-top:10px">
 مسح التوقيع
 
 </button>
-
 
 <label style="display:block;margin-top:15px">
 
@@ -968,6 +925,7 @@ style="width:auto">
 <section class="actions">
 
 <button
+type="button"
 class="review"
 onclick="reviewNotification()">
 
@@ -976,6 +934,7 @@ onclick="reviewNotification()">
 </button>
 
 <button
+type="button"
 id="sendButton"
 class="send"
 onclick="saveNotification()">
@@ -985,6 +944,7 @@ onclick="saveNotification()">
 </button>
 
 <button
+type="button"
 class="print"
 onclick="window.print()">
 
@@ -992,12 +952,8 @@ onclick="window.print()">
 
 </button>
 
-<a
-class="back"
-href="infectious-diseases.html">
-
+<a class="back" href="infectious-diseases.html">
 ← العودة
-
 </a>
 
 </section>
@@ -1011,10 +967,6 @@ href="infectious-diseases.html">
 
 <script>
 
-
-/* ==========================================
-   CONSTANTS
-========================================== */
 
 const names = {
 
@@ -1083,6 +1035,7 @@ let incoming = {
     rapidRedFlag:false,
 
     screeningId:"",
+    diseaseKey:"",
 
     duration:"",
     historyReliability:"",
@@ -1090,19 +1043,20 @@ let incoming = {
     hiddenFlag:false,
 
     symptoms:[],
-    epi:[]
+    epi:[],
+
+    onset:""
 
 };
 
 
-/* ==========================================
-   TIME
-========================================== */
+/* TIME */
 
 function localNow(){
 
     const now =
         new Date();
+
 
     return new Date(
 
@@ -1118,9 +1072,7 @@ function localNow(){
 }
 
 
-/* ==========================================
-   STORAGE HELPERS
-========================================== */
+/* STORAGE */
 
 function getSmartScreeningRecords(){
 
@@ -1132,6 +1084,7 @@ function getSmartScreeningRecords(){
                     "smartScreeningRecords"
                 ) || "[]"
             );
+
 
         return Array.isArray(data)
             ? data
@@ -1158,6 +1111,7 @@ function getSavedNotifications(){
                 ) || "[]"
             );
 
+
         return Array.isArray(data)
             ? data
             : [];
@@ -1172,9 +1126,7 @@ function getSavedNotifications(){
 }
 
 
-/* ==========================================
-   TRANSFER DATA
-========================================== */
+/* LOAD ALL SOURCES */
 
 function loadIncomingData(){
 
@@ -1185,57 +1137,49 @@ function loadIncomingData(){
 
 
     incoming.patientName =
-        params.get("patientName") ||
-        "";
+        params.get("patientName") || "";
 
     incoming.mrn =
-        params.get("mrn") ||
-        "";
+        params.get("mrn") || "";
 
     incoming.patientType =
-        params.get("patientType") ||
-        "";
+        params.get("patientType") || "";
 
     incoming.gender =
-        params.get("gender") ||
-        "";
+        params.get("gender") || "";
 
     incoming.rapidId =
-        params.get("rapidId") ||
-        "";
+        params.get("rapidId") || "";
 
     incoming.rapidScore =
-        params.get("rapidScore") ||
-        "";
+        params.get("rapidScore") || "";
 
     incoming.rapidRisk =
-        params.get("rapidRisk") ||
-        "";
+        params.get("rapidRisk") || "";
 
     incoming.rapidRedFlag =
-        params.get(
-            "rapidRedFlag"
-        ) === "1";
+        params.get("rapidRedFlag") === "1";
 
     incoming.screeningId =
-        params.get("screeningId") ||
-        "";
+        params.get("screeningId") || "";
+
+    incoming.diseaseKey =
+        params.get("disease") || "";
 
     incoming.duration =
-        params.get("duration") ||
-        "";
+        params.get("duration") || "";
 
     incoming.historyReliability =
-        params.get(
-            "historyReliability"
-        ) || "";
+        params.get("historyReliability") || "";
 
     incoming.vitalStatus =
-        params.get("vitalStatus") ||
-        "";
+        params.get("vitalStatus") || "";
 
     incoming.hiddenFlag =
         params.get("hiddenFlag") === "1";
+
+    incoming.onset =
+        params.get("onset") || "";
 
     incoming.symptoms =
         (
@@ -1255,8 +1199,7 @@ function loadIncomingData(){
 
 
     /*
-      المصدر الثاني:
-      Smart Screening Record
+      2. Smart record
     */
 
     if(incoming.screeningId){
@@ -1302,21 +1245,12 @@ function loadIncomingData(){
                 record.rapidScreeningId ||
                 "";
 
-            if(
-                incoming.rapidScore === ""
-            ){
-
-                incoming.rapidScore =
-                    record.rapidScore !==
-                    undefined
-
-                    ? String(
-                        record.rapidScore
-                    )
-
-                    : "";
-
-            }
+            incoming.rapidScore =
+                incoming.rapidScore ||
+                String(
+                    record.rapidScore ||
+                    ""
+                );
 
             incoming.rapidRisk =
                 incoming.rapidRisk ||
@@ -1329,6 +1263,11 @@ function loadIncomingData(){
                     true;
 
             }
+
+            incoming.duration =
+                incoming.duration ||
+                record.duration ||
+                "";
 
             incoming.historyReliability =
                 incoming.historyReliability ||
@@ -1346,6 +1285,11 @@ function loadIncomingData(){
                     true;
 
             }
+
+            incoming.onset =
+                incoming.onset ||
+                record.symptomOnset ||
+                "";
 
             if(
                 !incoming.symptoms.length &&
@@ -1371,19 +1315,13 @@ function loadIncomingData(){
 
             }
 
-            incoming.duration =
-                incoming.duration ||
-                record.duration ||
-                "";
-
         }
 
     }
 
 
     /*
-      المصدر الثالث:
-      sessionStorage من Smart Screening
+      3. sessionStorage
     */
 
     try{
@@ -1396,121 +1334,46 @@ function loadIncomingData(){
             );
 
 
-        if(transfer){
-
-            incoming.patientName =
-                incoming.patientName ||
-                transfer.patientName ||
-                "";
-
-            incoming.mrn =
-                incoming.mrn ||
-                transfer.mrn ||
-                "";
-
-            incoming.patientType =
-                incoming.patientType ||
-                transfer.patientType ||
-                "";
-
-            incoming.gender =
-                incoming.gender ||
-                transfer.gender ||
-                "";
-
-            incoming.rapidId =
-                incoming.rapidId ||
-                transfer.rapidId ||
-                "";
-
-            if(
-                incoming.rapidScore === ""
-            ){
-
-                incoming.rapidScore =
-                    transfer.rapidScore !==
-                    undefined
-
-                    ? String(
-                        transfer.rapidScore
-                    )
-
-                    : "";
-
-            }
-
-            incoming.rapidRisk =
-                incoming.rapidRisk ||
-                transfer.rapidRisk ||
-                "";
-
-            if(transfer.rapidRedFlag){
-
-                incoming.rapidRedFlag =
-                    true;
-
-            }
-
-            incoming.screeningId =
-                incoming.screeningId ||
-                transfer.smartScreeningId ||
-                "";
-
-            if(
-                !incoming.symptoms.length &&
-                Array.isArray(
-                    transfer.symptoms
-                )
-            ){
-
-                incoming.symptoms =
-                    transfer.symptoms;
-
-            }
-
-            if(
-                !incoming.epi.length &&
-                Array.isArray(
-                    transfer.epi
-                )
-            ){
-
-                incoming.epi =
-                    transfer.epi;
-
-            }
-
-            incoming.duration =
-                incoming.duration ||
-                transfer.duration ||
-                "";
-
-            incoming.historyReliability =
-                incoming.historyReliability ||
-                transfer.historyReliability ||
-                "";
-
-            incoming.vitalStatus =
-                incoming.vitalStatus ||
-                transfer.vitalStatus ||
-                "";
-
-        }
+        applyTransferObject(
+            transfer
+        );
 
     }
     catch(error){
 
-        console.warn(
-            "notificationPatientData error",
-            error
-        );
+        console.warn(error);
 
     }
 
 
     /*
-      المصدر الرابع:
-      latestRapidScreening
+      4. localStorage
+    */
+
+    try{
+
+        const transfer =
+            JSON.parse(
+                localStorage.getItem(
+                    "notificationTransferData"
+                ) || "null"
+            );
+
+
+        applyTransferObject(
+            transfer
+        );
+
+    }
+    catch(error){
+
+        console.warn(error);
+
+    }
+
+
+    /*
+      5. latestRapidScreening
     */
 
     try{
@@ -1550,16 +1413,12 @@ function loadIncomingData(){
                 rapid.id ||
                 "";
 
-            if(
-                incoming.rapidScore === ""
-            ){
-
-                incoming.rapidScore =
-                    rapid.score !== undefined
-                    ? String(rapid.score)
-                    : "";
-
-            }
+            incoming.rapidScore =
+                incoming.rapidScore ||
+                String(
+                    rapid.score ||
+                    ""
+                );
 
             incoming.rapidRisk =
                 incoming.rapidRisk ||
@@ -1578,20 +1437,136 @@ function loadIncomingData(){
     }
     catch(error){
 
-        console.warn(
-            error
-        );
+        console.warn(error);
 
     }
 
 }
 
 
-/* ==========================================
-   INIT
-========================================== */
+function applyTransferObject(
+    transfer
+){
+
+    if(!transfer){
+        return;
+    }
+
+
+    incoming.patientName =
+        incoming.patientName ||
+        transfer.patientName ||
+        "";
+
+    incoming.mrn =
+        incoming.mrn ||
+        transfer.mrn ||
+        "";
+
+    incoming.patientType =
+        incoming.patientType ||
+        transfer.patientType ||
+        "";
+
+    incoming.gender =
+        incoming.gender ||
+        transfer.gender ||
+        "";
+
+    incoming.rapidId =
+        incoming.rapidId ||
+        transfer.rapidId ||
+        "";
+
+    incoming.rapidScore =
+        incoming.rapidScore ||
+        String(
+            transfer.rapidScore ||
+            ""
+        );
+
+    incoming.rapidRisk =
+        incoming.rapidRisk ||
+        transfer.rapidRisk ||
+        "";
+
+    if(transfer.rapidRedFlag){
+
+        incoming.rapidRedFlag =
+            true;
+
+    }
+
+    incoming.screeningId =
+        incoming.screeningId ||
+        transfer.smartScreeningId ||
+        "";
+
+    incoming.diseaseKey =
+        incoming.diseaseKey ||
+        transfer.diseaseKey ||
+        "";
+
+    incoming.onset =
+        incoming.onset ||
+        transfer.onset ||
+        "";
+
+    incoming.duration =
+        incoming.duration ||
+        transfer.duration ||
+        "";
+
+    incoming.historyReliability =
+        incoming.historyReliability ||
+        transfer.historyReliability ||
+        "";
+
+    incoming.vitalStatus =
+        incoming.vitalStatus ||
+        transfer.vitalStatus ||
+        "";
+
+    if(transfer.hiddenFlag){
+
+        incoming.hiddenFlag =
+            true;
+
+    }
+
+    if(
+        !incoming.symptoms.length &&
+        Array.isArray(
+            transfer.symptoms
+        )
+    ){
+
+        incoming.symptoms =
+            transfer.symptoms;
+
+    }
+
+    if(
+        !incoming.epi.length &&
+        Array.isArray(
+            transfer.epi
+        )
+    ){
+
+        incoming.epi =
+            transfer.epi;
+
+    }
+
+}
+
+
+/* INIT */
 
 function init(){
+
+    loadIncomingData();
+
 
     const params =
         new URLSearchParams(
@@ -1599,78 +1574,11 @@ function init(){
         );
 
 
-    const reportType =
-        params.get("report");
-
-
-    if(
-        reportType ===
-        "food-poisoning"
-    ){
-
-        window.location.replace(
-            "food-poisoning.html"
-        );
-
-        return;
-
-    }
-
-
-    if(
-        reportType ===
-        "foodborne-outbreak"
-        ||
-        reportType ===
-        "foodborne-disease"
-    ){
-
-        window.location.replace(
-            "foodborne-outbreak.html"
-        );
-
-        return;
-
-    }
-
-
-    loadIncomingData();
-
-
-    const disease =
-        params.get("disease");
-
-
-    if(disease){
-
-        const select =
-            document.getElementById(
-                "diseaseSelect"
-            );
-
-        if(
-            select.querySelector(
-                'option[value="' +
-                disease +
-                '"]'
-            )
-        ){
-
-            select.value =
-                disease;
-
-            markPrefilled(
-                "diseaseSelect"
-            );
-
-        }
-
-    }
-
-
     if(
         params.get("fromScreening") ===
         "1"
+        ||
+        incoming.screeningId
     ){
 
         document.getElementById(
@@ -1679,42 +1587,58 @@ function init(){
         .classList
         .add("active");
 
-        document.getElementById(
-            "classification"
-        ).value =
-            "suspected";
-
-        markPrefilled(
-            "classification"
-        );
-
     }
 
 
     fillPatientData();
 
-    fillScreeningSummary();
-
-    applySymptoms();
-
-    applyEpi();
+    fillSummary();
 
 
-    const onset =
-        params.get("onset");
+    if(incoming.diseaseKey){
 
-    if(onset){
+        document.getElementById(
+            "diseaseSelect"
+        ).value =
+            incoming.diseaseKey;
+
+
+        markPrefilled(
+            "diseaseSelect"
+        );
+
+
+        document.getElementById(
+            "classification"
+        ).value =
+            "suspected";
+
+
+        markPrefilled(
+            "classification"
+        );
+
+    }
+
+
+    if(incoming.onset){
 
         document.getElementById(
             "symptomOnset"
         ).value =
-            onset;
+            incoming.onset;
+
 
         markPrefilled(
             "symptomOnset"
         );
 
     }
+
+
+    applySymptoms();
+
+    applyEpi();
 
 
     if(
@@ -1772,9 +1696,7 @@ function init(){
 }
 
 
-/* ==========================================
-   PATIENT DATA
-========================================== */
+/* PATIENT */
 
 function fillPatientData(){
 
@@ -1836,74 +1758,62 @@ function fillPatientData(){
 }
 
 
-/* ==========================================
-   SUMMARY
-========================================== */
+/* SUMMARY */
 
-function fillScreeningSummary(){
+function fillSummary(){
 
     document.getElementById(
         "summaryPatientName"
     ).textContent =
-        incoming.patientName ||
-        "—";
+        incoming.patientName || "—";
 
     document.getElementById(
         "summaryMrn"
     ).textContent =
-        incoming.mrn ||
-        "—";
+        incoming.mrn || "—";
 
     document.getElementById(
         "summaryRapidScore"
     ).textContent =
-        incoming.rapidScore ||
-        "—";
+        incoming.rapidScore || "—";
 
     document.getElementById(
         "summaryRapidId"
     ).textContent =
-        incoming.rapidId ||
-        "—";
+        incoming.rapidId || "—";
 
     document.getElementById(
         "summarySmartId"
     ).textContent =
-        incoming.screeningId ||
-        "—";
+        incoming.screeningId || "—";
 
     document.getElementById(
         "summaryRapidRisk"
     ).textContent =
-        incoming.rapidRisk ||
-        "—";
+        incoming.rapidRisk || "—";
 
 }
 
 
-/* ==========================================
-   MARK PREFILLED
-========================================== */
+/* PREFILL */
 
 function markPrefilled(id){
 
-    const element =
+    const el =
         document.getElementById(id);
 
-    if(element){
+    if(el){
 
-        element.classList.add(
-            "prefilled"
-        );
+        el
+        .classList
+        .add("prefilled");
 
     }
 
 }
 
 
-/* ==========================================
-   SYMPTOMS
-========================================== */
+/* SYMPTOMS */
 
 function applySymptoms(){
 
@@ -1949,9 +1859,7 @@ function applySymptoms(){
                 input
                 .closest(".check")
                 .classList
-                .add(
-                    "prefilled-check"
-                );
+                .add("prefilled-check");
 
             }
 
@@ -1961,9 +1869,7 @@ function applySymptoms(){
 }
 
 
-/* ==========================================
-   EPI
-========================================== */
+/* EPI */
 
 function applyEpi(){
 
@@ -2070,27 +1976,6 @@ function applyEpi(){
     }
 
 
-    if(
-        incoming.historyReliability ===
-        "limited"
-    ){
-
-        details.push(
-            "التاريخ الوبائي محدود."
-        );
-
-    }
-
-
-    if(incoming.hiddenFlag){
-
-        details.push(
-            "تم تفعيل الخطر المعدي الخفي."
-        );
-
-    }
-
-
     if(details.length){
 
         document.getElementById(
@@ -2098,6 +1983,7 @@ function applyEpi(){
         ).value =
             "بيانات منقولة من الفرز:\n- " +
             details.join("\n- ");
+
 
         markPrefilled(
             "epiHistory"
@@ -2131,9 +2017,7 @@ function applyEpi(){
 }
 
 
-/* ==========================================
-   DISEASE
-========================================== */
+/* DISEASE */
 
 function updateDisease(){
 
@@ -2141,6 +2025,7 @@ function updateDisease(){
         document.getElementById(
             "diseaseSelect"
         ).value;
+
 
     document.getElementById(
         "diseaseLabel"
@@ -2152,6 +2037,7 @@ function updateDisease(){
               disease
           )
         : "المرض المشتبه: غير محدد";
+
 
     document.getElementById(
         "urgent"
@@ -2165,9 +2051,7 @@ function updateDisease(){
 }
 
 
-/* ==========================================
-   SIGNATURE
-========================================== */
+/* SIGNATURE */
 
 function setupSignature(){
 
@@ -2180,8 +2064,7 @@ function setupSignature(){
         canvas.getContext("2d");
 
     const ratio =
-        window.devicePixelRatio ||
-        1;
+        window.devicePixelRatio || 1;
 
     const rect =
         canvas.getBoundingClientRect();
@@ -2201,25 +2084,17 @@ function setupSignature(){
         0
     );
 
-    ctx.lineWidth =
-        2;
+    ctx.lineWidth = 2;
+    ctx.lineCap = "round";
+    ctx.strokeStyle = "#152637";
 
-    ctx.lineCap =
-        "round";
-
-    ctx.strokeStyle =
-        "#152637";
-
-
-    let drawing =
-        false;
+    let drawing = false;
 
 
     function point(event){
 
         const rect =
-            canvas
-            .getBoundingClientRect();
+            canvas.getBoundingClientRect();
 
         const p =
             event.touches
@@ -2245,11 +2120,9 @@ function setupSignature(){
 
         event.preventDefault();
 
-        drawing =
-            true;
+        drawing = true;
 
-        signatureEmpty =
-            false;
+        signatureEmpty = false;
 
         const p =
             point(event);
@@ -2287,8 +2160,7 @@ function setupSignature(){
 
     function stop(){
 
-        drawing =
-            false;
+        drawing = false;
 
     }
 
@@ -2348,15 +2220,12 @@ function clearSignature(){
         canvas.height
     );
 
-    signatureEmpty =
-        true;
+    signatureEmpty = true;
 
 }
 
 
-/* ==========================================
-   FORM HELPERS
-========================================== */
+/* HELPERS */
 
 function checked(name){
 
@@ -2369,9 +2238,7 @@ function checked(name){
     )
     .map(
         function(item){
-
             return item.value;
-
         }
     );
 
@@ -2455,12 +2322,10 @@ function show(
     result.innerHTML =
         message;
 
-    result.scrollIntoView({
-        behavior:"smooth"
-    });
-
 }
 
+
+/* REVIEW */
 
 function reviewNotification(){
 
@@ -2483,9 +2348,7 @@ function reviewNotification(){
 }
 
 
-/* ==========================================
-   SAVE
-========================================== */
+/* SAVE */
 
 function generateNotificationId(){
 
@@ -2786,9 +2649,7 @@ function saveNotification(){
         .catch(
             function(error){
 
-                console.error(
-                    error
-                );
+                console.error(error);
 
             }
         );
@@ -2796,11 +2657,28 @@ function saveNotification(){
     }
 
 
+    /*
+      بعد نجاح الإرسال فقط
+      نحذف بيانات التحويل المؤقتة.
+    */
+
+    localStorage.removeItem(
+        "notificationTransferData"
+    );
+
+
+    sessionStorage.removeItem(
+        "notificationPatientData"
+    );
+
+
     show(
 
         "✅ <strong>تم إرسال البلاغ للصحة العامة.</strong>" +
 
-        "<br>رقم البلاغ: " +
+        "<br><br>" +
+
+        "رقم البلاغ: " +
 
         notification.id,
 
@@ -2809,23 +2687,23 @@ function saveNotification(){
     );
 
 
-    document.getElementById(
-        "sendButton"
-    ).disabled =
+    const button =
+        document.getElementById(
+            "sendButton"
+        );
+
+
+    button.disabled =
         true;
 
 
-    document.getElementById(
-        "sendButton"
-    ).textContent =
+    button.textContent =
         "✅ تم إرسال البلاغ";
 
 }
 
 
-/* ==========================================
-   EVENTS
-========================================== */
+/* EVENTS */
 
 document
 .getElementById(
@@ -2844,6 +2722,7 @@ document.addEventListener(
 
 
 </script>
+
 
 <script src="api.js"></script>
 
