@@ -12,10 +12,62 @@
 
 <style>
 
+/* =====================================================
+   PAGE
+===================================================== */
+
 .disease-page{
     max-width:1250px;
     margin:30px auto;
     padding:0 20px 50px;
+}
+
+
+/* =====================================================
+   HEADER / LOGOS
+===================================================== */
+
+.hero-header{
+    width:100%;
+    overflow:hidden;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:180px 1fr 200px;
+    align-items:center;
+    gap:20px;
+    max-width:1200px;
+    margin:0 auto;
+    padding:18px 20px;
+}
+
+.side-logo{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.left-logo img{
+    width:auto !important;
+    height:auto !important;
+    max-width:155px !important;
+    max-height:90px !important;
+    object-fit:contain !important;
+    display:block;
+}
+
+.right-logo img{
+    width:auto !important;
+    height:auto !important;
+    max-width:185px !important;
+    max-height:105px !important;
+    object-fit:contain !important;
+    display:block;
+}
+
+.hero-center{
+    text-align:center;
 }
 
 
@@ -119,14 +171,12 @@
     line-height:1.7;
 }
 
-
 .priority-grid,
 .categories-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:18px;
 }
-
 
 .priority-card,
 .category-card{
@@ -140,18 +190,15 @@
     transition:.2s;
 }
 
-
 .priority-card{
     border-top:5px solid #c62828;
 }
-
 
 .priority-card.highlighted{
     outline:4px solid rgba(95,61,196,.22);
     box-shadow:0 7px 24px rgba(95,61,196,.20);
     transform:translateY(-3px);
 }
-
 
 .priority-badge{
     position:absolute;
@@ -165,19 +212,16 @@
     font-weight:bold;
 }
 
-
 .priority-icon,
 .cat-icon{
     font-size:40px;
 }
-
 
 .priority-card h3,
 .category-card h3{
     color:#064c92;
     margin:10px 0 4px;
 }
-
 
 .priority-card h4,
 .category-card h4{
@@ -186,7 +230,6 @@
     font-size:13px;
 }
 
-
 .priority-card p,
 .category-card p{
     color:#617387;
@@ -194,7 +237,6 @@
     font-size:13px;
     min-height:58px;
 }
-
 
 .guide-link{
     display:inline-block;
@@ -216,23 +258,19 @@
     text-align:right;
 }
 
-
 .category-card:hover{
     transform:translateY(-3px);
 }
-
 
 .category-card.highlighted{
     outline:4px solid rgba(95,61,196,.20);
     background:#faf8ff;
 }
 
-
 .categories-title{
     text-align:center;
     margin:35px 0 20px;
 }
-
 
 .categories-title h2{
     color:#064c92;
@@ -253,18 +291,15 @@
     box-shadow:0 4px 14px rgba(0,0,0,.06);
 }
 
-
 .disease-list-section.active{
     display:block;
 }
-
 
 .disease-list{
     display:grid;
     grid-template-columns:repeat(2,1fr);
     gap:12px;
 }
-
 
 .disease-item{
     display:flex;
@@ -278,13 +313,11 @@
     transition:.2s;
 }
 
-
 .disease-item.highlighted{
     background:#f3efff;
     border:2px solid #5f3dc4;
     box-shadow:0 5px 16px rgba(95,61,196,.15);
 }
-
 
 .disease-item a{
     background:#e8f1f9;
@@ -295,10 +328,87 @@
     font-weight:bold;
 }
 
-
 .disease-item.highlighted a{
     background:#5f3dc4;
     color:white;
+}
+
+
+/* =====================================================
+   DIRECT REPORTS
+===================================================== */
+
+.direct-report-box{
+    display:none;
+    margin-top:25px;
+    padding:22px;
+    border-radius:14px;
+    background:#f4f9fd;
+    border:1px solid #cddfec;
+    border-right:6px solid #064c92;
+}
+
+.direct-report-box.active{
+    display:block;
+}
+
+.direct-report-box h3{
+    margin:0 0 7px;
+    color:#064c92;
+}
+
+.direct-report-box > p{
+    margin:0 0 18px;
+    color:#617387;
+    line-height:1.8;
+}
+
+.direct-report-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.direct-report-card{
+    background:white;
+    border:1px solid #dce7ef;
+    border-radius:12px;
+    padding:22px;
+    text-align:center;
+    box-shadow:0 3px 12px rgba(0,0,0,.05);
+}
+
+.direct-report-icon{
+    font-size:38px;
+    margin-bottom:8px;
+}
+
+.direct-report-card h4{
+    margin:5px 0 10px;
+    color:#064c92;
+    font-size:17px;
+}
+
+.direct-report-card p{
+    color:#617387;
+    line-height:1.7;
+    font-size:13px;
+    min-height:48px;
+}
+
+.direct-report-btn{
+    display:inline-block;
+    margin-top:8px;
+    background:#0759a6;
+    color:#fff;
+    text-decoration:none;
+    padding:11px 19px;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+.direct-report-btn:hover{
+    background:#064b8d;
 }
 
 
@@ -328,7 +438,6 @@
     margin-top:25px;
 }
 
-
 .back-btn{
     display:inline-block;
     background:#eaf1f7;
@@ -338,7 +447,6 @@
     padding:10px 18px;
     font-weight:bold;
 }
-
 
 .smart-btn{
     display:inline-block;
@@ -364,12 +472,31 @@
 
 }
 
+@media(max-width:700px){
+
+    .hero-grid{
+        grid-template-columns:1fr;
+        gap:10px;
+    }
+
+    .left-logo img{
+        max-width:125px !important;
+        max-height:75px !important;
+    }
+
+    .right-logo img{
+        max-width:155px !important;
+        max-height:90px !important;
+    }
+
+}
 
 @media(max-width:650px){
 
     .priority-grid,
     .categories-grid,
-    .disease-list{
+    .disease-list,
+    .direct-report-grid{
         grid-template-columns:1fr;
     }
 
@@ -396,7 +523,7 @@
 
 <img
     src="images/cluster-logo.png"
-    alt="Cluster">
+    alt="Hafr Al-Batin Health Cluster">
 
 </div>
 
@@ -422,7 +549,7 @@ Infectious Diseases
 
 <img
     src="images/hospital-logo.png"
-    alt="Hospital">
+    alt="Hospital Logo">
 
 </div>
 
@@ -447,10 +574,8 @@ Infectious Diseases
 </h2>
 
 <p>
-
 اختر المرض أو التصنيف للوصول إلى تعريف الحالة
 والأعراض والتبليغ والعينات والإجراءات الوقائية.
-
 </p>
 
 </section>
@@ -470,15 +595,12 @@ Infectious Diseases
 </h3>
 
 <p id="screeningBannerText">
-
 تم تحديد مسار محتمل بواسطة أداة الفرز الذكي.
 راجع المرض أو التصنيف المناسب قبل اتخاذ إجراء البلاغ.
-
 </p>
 
 
 <div class="screening-banner-actions">
-
 
 <a
     href="smart-screening.html"
@@ -497,7 +619,6 @@ Infectious Diseases
 
 </a>
 
-
 </div>
 
 </section>
@@ -515,10 +636,8 @@ Infectious Diseases
 </h2>
 
 <p>
-
 هذه المسارات للاشتباه المبكر ولا تستبدل
 الإبلاغ الرسمي أو السياسات المعتمدة.
-
 </p>
 
 </div>
@@ -645,7 +764,7 @@ MERS
 
 
 
-<!-- HANTA -->
+<!-- HANTAVIRUS -->
 
 <div
     id="priority-hantavirus"
@@ -895,10 +1014,100 @@ Other Diseases
 الأمراض
 </h2>
 
+
 <div
     id="diseaseList"
     class="disease-list">
 </div>
+
+
+
+<!-- =====================================================
+     DIRECT FOODBORNE REPORTS
+===================================================== -->
+
+<div
+    id="foodDirectReports"
+    class="direct-report-box">
+
+<h3>
+📝 البلاغات الإلكترونية
+</h3>
+
+<p>
+إذا كانت الحالة معروفة ويمكن البدء بالبلاغ مباشرة،
+اختر نوع البلاغ المناسب أدناه.
+</p>
+
+
+<div class="direct-report-grid">
+
+
+<!-- =====================================================
+     FOOD POISONING - INDIVIDUAL
+===================================================== -->
+
+<div class="direct-report-card">
+
+<div class="direct-report-icon">
+👤🍽️
+</div>
+
+<h4>
+بلاغ تسمم غذائي - حالة فردية
+</h4>
+
+<p>
+يستخدم عند الإبلاغ عن مريض واحد مشتبه
+بإصابته بتسمم أو مرض مرتبط بالغذاء.
+</p>
+
+<a
+    class="direct-report-btn"
+    href="food-poisoning.html">
+
+بدء بلاغ الحالة الفردية
+
+</a>
+
+</div>
+
+
+
+<!-- =====================================================
+     FOODBORNE OUTBREAK
+===================================================== -->
+
+<div class="direct-report-card">
+
+<div class="direct-report-icon">
+👥🍽️
+</div>
+
+<h4>
+بلاغ فاشية مرض منقول بالغذاء
+</h4>
+
+<p>
+يستخدم عند وجود عدة حالات أو اشتباه
+بارتباط الحالات بطعام أو مصدر غذائي مشترك.
+</p>
+
+<a
+    class="direct-report-btn"
+    href="foodborne-outbreak.html">
+
+بدء بلاغ الفاشية
+
+</a>
+
+</div>
+
+
+</div>
+
+</div>
+
 
 </section>
 
@@ -964,8 +1173,7 @@ const diseaseCategories = {
 
 respiratory:{
 
-    title:
-        "الأمراض التنفسية",
+    title:"الأمراض التنفسية",
 
     items:[
 
@@ -992,8 +1200,7 @@ respiratory:{
 
 tb:{
 
-    title:
-        "الدرن والجذام",
+    title:"الدرن والجذام",
 
     items:[
 
@@ -1015,8 +1222,7 @@ tb:{
 
 hepatitis:{
 
-    title:
-        "التهاب الكبد الفيروسي",
+    title:"التهاب الكبد الفيروسي",
 
     items:[
 
@@ -1058,14 +1264,13 @@ hepatitis:{
 
 food:{
 
-    title:
-        "التسممات والأمراض المنقولة بالغذاء",
+    title:"التسممات والأمراض المنقولة بالغذاء",
 
     items:[
 
         [
             "foodpoisoning",
-            "اشتباه تسمم غذائي / فاشية"
+            "اشتباه تسمم غذائي / حالة فردية"
         ],
 
         [
@@ -1096,8 +1301,7 @@ food:{
 
 zoonotic:{
 
-    title:
-        "الأمراض المشتركة",
+    title:"الأمراض المشتركة",
 
     items:[
 
@@ -1129,8 +1333,7 @@ zoonotic:{
 
 vaccine:{
 
-    title:
-        "الأمراض المستهدفة بالتحصين",
+    title:"الأمراض المستهدفة بالتحصين",
 
     items:[
 
@@ -1162,8 +1365,7 @@ vaccine:{
 
 other:{
 
-    title:
-        "أمراض أخرى",
+    title:"أمراض أخرى",
 
     items:[
 
@@ -1185,7 +1387,7 @@ other:{
 
 
 /* =====================================================
-   DISEASE → CATEGORY MAP
+   DISEASE TO CATEGORY MAP
 ===================================================== */
 
 const diseaseToCategory = {};
@@ -1217,22 +1419,16 @@ Object.keys(
 
 
 /* =====================================================
-   SMART SCREENING GENERIC ROUTES
+   SMART SCREENING ROUTES
 ===================================================== */
 
 const screeningRoutes = {
 
 
-/*
-   نتائج محددة
-*/
-
 measles:{
 
     type:"disease",
-
     disease:"measles",
-
     category:"vaccine"
 
 },
@@ -1241,9 +1437,7 @@ measles:{
 meningitis:{
 
     type:"disease",
-
     disease:"meningitis",
-
     category:"vaccine"
 
 },
@@ -1252,7 +1446,6 @@ meningitis:{
 mers:{
 
     type:"priority",
-
     disease:"mers"
 
 },
@@ -1261,7 +1454,6 @@ mers:{
 nipah:{
 
     type:"priority",
-
     disease:"nipah"
 
 },
@@ -1270,7 +1462,6 @@ nipah:{
 ebola:{
 
     type:"priority",
-
     disease:"ebola"
 
 },
@@ -1279,16 +1470,10 @@ ebola:{
 hantavirus:{
 
     type:"priority",
-
     disease:"hantavirus"
 
 },
 
-
-
-/*
-   نتائج غير محددة لمرض واحد
-*/
 
 respiratory:{
 
@@ -1419,6 +1604,35 @@ function showCategory(
     );
 
 
+    /* =====================================
+       FOOD REPORTS ONLY
+    ===================================== */
+
+    const foodReports =
+        document.getElementById(
+            "foodDirectReports"
+        );
+
+
+    if(foodReports){
+
+        if(key === "food"){
+
+            foodReports.classList.add(
+                "active"
+            );
+
+        }else{
+
+            foodReports.classList.remove(
+                "active"
+            );
+
+        }
+
+    }
+
+
     if(highlightDisease){
 
         setTimeout(
@@ -1457,7 +1671,7 @@ function showCategory(
 
 
 /* =====================================================
-   REMOVE HIGHLIGHTS
+   CLEAR HIGHLIGHTS
 ===================================================== */
 
 function clearHighlights(){
@@ -1489,6 +1703,36 @@ function processIncomingRoute(){
         new URLSearchParams(
             window.location.search
         );
+
+
+    const mode =
+        params.get(
+            "mode"
+        );
+
+
+    /* =================================================
+       DIRECT REPORT
+    ================================================= */
+
+    if(mode === "direct"){
+
+        clearHighlights();
+
+
+        highlightCategory(
+            "food"
+        );
+
+
+        showCategory(
+            "food"
+        );
+
+
+        return;
+
+    }
 
 
     const disease =
@@ -1537,24 +1781,13 @@ function processIncomingRoute(){
 
         if(screeningName){
 
-            try{
+            bannerText.innerHTML =
 
-                bannerText.innerHTML =
+                "نتيجة الفرز الذكي أظهرت: <strong>" +
 
-                    "نتيجة الفرز الذكي أظهرت: <strong>" +
+                screeningName +
 
-                    decodeURIComponent(
-                        screeningName
-                    ) +
-
-                    "</strong>. راجع المسار الموضح أدناه قبل استكمال الإجراء أو البلاغ.";
-
-            }catch(error){
-
-                bannerText.textContent =
-                    "تم الوصول من نتيجة الفرز الذكي. راجع المرض أو التصنيف المناسب.";
-
-            }
+                "</strong>. راجع المسار الموضح أدناه قبل استكمال الإجراء أو البلاغ.";
 
         }
 
@@ -1569,10 +1802,6 @@ function processIncomingRoute(){
             disease
         ];
 
-
-    /*
-      نتيجة معروفة من الفرز
-    */
 
     if(route){
 
@@ -1645,10 +1874,6 @@ function processIncomingRoute(){
     }
 
 
-    /*
-      مرض عادي موجود في التصنيفات
-    */
-
     if(
         diseaseToCategory[
             disease
@@ -1676,10 +1901,6 @@ function processIncomingRoute(){
 
     }
 
-
-    /*
-      Priority diseases
-    */
 
     if(
         [

@@ -1,0 +1,3332 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>الفرز السريع للأمراض المعدية | SPHP</title>
+
+<link rel="stylesheet" href="Style.css">
+
+<!--
+QR مؤقت لمرحلة GitHub.
+لا نضع اسم المريض أو MRN داخل QR.
+عند الانتقال للسيرفر المحلي سنستبدله برابط داخلي.
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    background:#f3f6f8;
+    font-family:Arial,Tahoma,sans-serif;
+    color:#294b6a;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.hero-header{
+    width:100%;
+    overflow:hidden;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:180px 1fr 200px;
+    align-items:center;
+    gap:20px;
+    max-width:1200px;
+    margin:0 auto;
+    padding:18px 20px;
+}
+
+.side-logo{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.left-logo img{
+    width:auto !important;
+    height:auto !important;
+    max-width:155px !important;
+    max-height:90px !important;
+    object-fit:contain !important;
+    display:block !important;
+}
+
+.right-logo img{
+    width:auto !important;
+    height:auto !important;
+    max-width:185px !important;
+    max-height:105px !important;
+    object-fit:contain !important;
+    display:block !important;
+}
+
+.hero-center{
+    text-align:center;
+}
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.page{
+    max-width:1050px;
+    margin:30px auto;
+    padding:0 18px 60px;
+}
+
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+.intro{
+    background:#fff;
+    border:1px solid #dfe8f2;
+    border-radius:18px;
+    padding:27px;
+    text-align:center;
+    box-shadow:0 5px 18px rgba(0,0,0,.06);
+    margin-bottom:20px;
+}
+
+.intro-icon{
+    width:78px;
+    height:78px;
+    margin:0 auto 12px;
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#eef4ff;
+    font-size:42px;
+}
+
+.intro h1{
+    color:#064c92;
+    margin:5px 0;
+}
+
+.intro h2{
+    color:#718293;
+    font-size:15px;
+    margin:0 0 12px;
+}
+
+.intro p{
+    max-width:780px;
+    margin:auto;
+    color:#607387;
+    line-height:1.9;
+}
+
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+.section{
+    background:#fff;
+    border:1px solid #dfe8f2;
+    border-radius:15px;
+    padding:22px;
+    margin-bottom:18px;
+    box-shadow:0 4px 14px rgba(0,0,0,.04);
+}
+
+.section-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    border-bottom:1px solid #e5edf3;
+    padding-bottom:12px;
+    margin-bottom:17px;
+}
+
+.section-title-icon{
+    width:42px;
+    height:42px;
+    border-radius:11px;
+    background:#eef7ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+}
+
+.section h3{
+    margin:0;
+    color:#064c92;
+}
+
+.section-subtitle{
+    color:#718293;
+    font-size:12px;
+    margin:3px 0 0;
+}
+
+
+/* =====================================================
+   PATIENT DATA
+===================================================== */
+
+.patient-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.form-group label{
+    font-weight:bold;
+    color:#294b6a;
+}
+
+.form-group input,
+.form-group select{
+    width:100%;
+    border:1px solid #ccd9e5;
+    border-radius:9px;
+    padding:12px;
+    background:#fff;
+    font-size:14px;
+}
+
+.form-group input:focus,
+.form-group select:focus{
+    outline:none;
+    border-color:#0759a6;
+    box-shadow:0 0 0 3px rgba(7,89,166,.08);
+}
+
+.required{
+    color:#c62828;
+}
+
+
+/* =====================================================
+   QUESTIONS
+===================================================== */
+
+.question-list{
+    display:grid;
+    gap:12px;
+}
+
+.question{
+    border:1px solid #dce7ef;
+    border-radius:13px;
+    padding:15px;
+    background:#fafcfd;
+    transition:.2s;
+}
+
+.question.answered{
+    border-color:#a5bfd2;
+}
+
+.question.yes-answer{
+    background:#eef7ff;
+    border-color:#0759a6;
+}
+
+.question.red-selected{
+    background:#fff1f1;
+    border-color:#c62828;
+}
+
+.question-head{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:12px;
+    align-items:center;
+}
+
+.question-ar{
+    font-weight:bold;
+    color:#294b6a;
+    line-height:1.7;
+}
+
+.question-en{
+    direction:ltr;
+    text-align:left;
+    color:#718293;
+    font-size:11px;
+    margin-top:3px;
+    line-height:1.5;
+}
+
+.answer-options{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+}
+
+.answer-option{
+    position:relative;
+}
+
+.answer-option input{
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+}
+
+.answer-option span{
+    display:inline-flex;
+    min-width:65px;
+    justify-content:center;
+    align-items:center;
+    padding:9px 13px;
+    border:1px solid #ccd9e5;
+    border-radius:8px;
+    background:#fff;
+    cursor:pointer;
+    font-weight:bold;
+    color:#526270;
+    transition:.15s;
+}
+
+.answer-option input[value="yes"]:checked + span{
+    color:#fff;
+    background:#0759a6;
+    border-color:#0759a6;
+}
+
+.answer-option input[value="no"]:checked + span{
+    color:#fff;
+    background:#687984;
+    border-color:#687984;
+}
+
+.question-meta{
+    margin-top:9px;
+}
+
+.points{
+    display:inline-block;
+    padding:4px 9px;
+    border-radius:13px;
+    background:#e4eef6;
+    color:#0759a6;
+    font-size:10px;
+    font-weight:bold;
+}
+
+.red-flag-badge{
+    display:inline-block;
+    padding:4px 9px;
+    border-radius:13px;
+    background:#ffe6e6;
+    color:#b71c1c;
+    font-size:10px;
+    font-weight:bold;
+    margin-right:5px;
+}
+
+
+/* =====================================================
+   COMPLETION
+===================================================== */
+
+.completion-box{
+    background:#eef7ff;
+    border-right:5px solid #0759a6;
+    border-radius:10px;
+    padding:14px 16px;
+    margin-bottom:18px;
+    line-height:1.8;
+}
+
+.progress-track{
+    height:8px;
+    background:#dde7ef;
+    border-radius:8px;
+    overflow:hidden;
+    margin-top:8px;
+}
+
+.progress-fill{
+    width:0;
+    height:100%;
+    background:#0759a6;
+    transition:.2s;
+}
+
+
+/* =====================================================
+   RESULT BUTTON
+===================================================== */
+
+.evaluate-area{
+    text-align:center;
+    margin:22px 0;
+}
+
+.evaluate-btn{
+    border:none;
+    border-radius:10px;
+    background:#0759a6;
+    color:#fff;
+    font-weight:bold;
+    padding:14px 28px;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.evaluate-btn:disabled{
+    opacity:.45;
+    cursor:not-allowed;
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+.message{
+    display:none;
+    margin:15px 0;
+    padding:14px 16px;
+    border-radius:10px;
+    line-height:1.8;
+}
+
+.message.error{
+    display:block;
+    background:#fff0f0;
+    border-right:5px solid #c62828;
+    color:#7d2525;
+}
+
+
+/* =====================================================
+   RESULT
+===================================================== */
+
+.result-panel{
+    display:none;
+    background:#fff;
+    border:1px solid #dfe8f2;
+    border-radius:18px;
+    padding:24px;
+    margin-top:22px;
+    box-shadow:0 7px 25px rgba(0,0,0,.08);
+}
+
+.result-panel.active{
+    display:block;
+}
+
+.result-header{
+    text-align:center;
+}
+
+.result-header h2{
+    color:#064c92;
+    margin-bottom:5px;
+}
+
+.score-circle{
+    width:125px;
+    height:125px;
+    margin:20px auto 12px;
+    border-radius:50%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    border:8px solid #2e9b54;
+    background:#effaf2;
+}
+
+.score-number{
+    font-size:39px;
+    font-weight:bold;
+}
+
+.score-word{
+    font-size:11px;
+}
+
+.result-low .score-circle{
+    border-color:#2e9b54;
+}
+
+.result-medium .score-circle{
+    border-color:#f9a825;
+    background:#fff9e7;
+}
+
+.result-high .score-circle{
+    border-color:#c62828;
+    background:#fff0f0;
+}
+
+.risk-title{
+    text-align:center;
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.risk-description{
+    max-width:720px;
+    margin:0 auto;
+    text-align:center;
+    line-height:1.8;
+    color:#607387;
+}
+
+
+/* =====================================================
+   RESULT ACTIONS
+===================================================== */
+
+.result-actions{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:20px;
+}
+
+.result-actions button{
+    border:none;
+    border-radius:9px;
+    padding:12px 18px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.print-card-btn{
+    background:#687984;
+    color:#fff;
+}
+
+.advanced-btn{
+    background:#5f3dc4;
+    color:#fff;
+}
+
+.finish-btn{
+    background:#27884a;
+    color:#fff;
+}
+
+.reset-btn{
+    background:#eaf1f7;
+    color:#064c92;
+}
+
+
+/* =====================================================
+   SMALL PATIENT CARD
+===================================================== */
+
+.screening-card{
+    display:none;
+    width:105mm;
+    min-height:145mm;
+    margin:25px auto;
+    padding:9mm;
+    background:#fff;
+    border:1px solid #aebdca;
+    font-family:Arial,Tahoma,sans-serif;
+    color:#111;
+}
+
+.card-header{
+    text-align:center;
+    border-bottom:2px solid #0759a6;
+    padding-bottom:10px;
+}
+
+.card-header h2{
+    margin:3px 0;
+    color:#064c92;
+    font-size:18px;
+}
+
+.card-header p{
+    margin:3px;
+    font-size:11px;
+}
+
+.card-data{
+    margin-top:13px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+}
+
+.card-item{
+    border:1px solid #dce5eb;
+    border-radius:7px;
+    padding:8px;
+    font-size:11px;
+}
+
+.card-item strong{
+    display:block;
+    color:#526270;
+    margin-bottom:3px;
+}
+
+.card-result{
+    text-align:center;
+    padding:14px;
+    margin-top:12px;
+    border-radius:9px;
+    background:#f2f8f4;
+}
+
+.card-result-score{
+    font-size:29px;
+    font-weight:bold;
+}
+
+.card-result-risk{
+    margin-top:4px;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.card-qr-area{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:15px;
+    margin-top:13px;
+}
+
+#cardQr{
+    width:100px;
+    min-height:100px;
+}
+
+.qr-caption{
+    max-width:150px;
+    font-size:10px;
+    line-height:1.6;
+    color:#526270;
+}
+
+.card-footer{
+    border-top:1px solid #dce5eb;
+    margin-top:13px;
+    padding-top:8px;
+    text-align:center;
+    font-size:9px;
+    color:#687984;
+}
+
+
+/* =====================================================
+   NOTICE
+===================================================== */
+
+.notice{
+    margin-top:18px;
+    background:#fff8e1;
+    border-right:5px solid #f9a825;
+    border-radius:10px;
+    padding:15px;
+    color:#66531b;
+    line-height:1.8;
+    font-size:12px;
+}
+
+
+/* =====================================================
+   PRINT CARD
+===================================================== */
+
+@page{
+    margin:5mm;
+}
+
+@media print{
+
+    body *{
+        visibility:hidden !important;
+    }
+
+    #screeningCard,
+    #screeningCard *{
+        visibility:visible !important;
+    }
+
+    #screeningCard{
+        display:block !important;
+        position:absolute;
+        right:0;
+        top:0;
+        left:0;
+        margin:0 auto;
+        width:105mm;
+        min-height:140mm;
+        box-shadow:none;
+        border:1px solid #777;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:800px){
+
+    .hero-grid{
+        grid-template-columns:1fr;
+    }
+
+    .patient-grid{
+        grid-template-columns:1fr;
+    }
+
+    .question-head{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="hero-header">
+
+<div class="hero-grid">
+
+
+<div class="side-logo left-logo">
+
+<img
+    src="images/cluster-logo.png"
+    alt="Hafr Al-Batin Health Cluster">
+
+</div>
+
+
+<div class="hero-center">
+
+<h1>
+الفرز السريع للأمراض المعدية
+</h1>
+
+<h2>
+Rapid Infectious Disease Screening
+</h2>
+
+<p>
+البوابة الذكية للصحة العامة
+</p>
+
+</div>
+
+
+<div class="side-logo right-logo">
+
+<img
+    src="images/hospital-logo.png"
+    alt="Hospital Logo">
+
+</div>
+
+
+</div>
+
+</header>
+
+
+
+<main class="page">
+
+
+<section class="intro">
+
+<div class="intro-icon">
+🩺
+</div>
+
+<h1>
+الفرز السريع
+</h1>
+
+<h2>
+Rapid Infectious Disease Risk Screening
+</h2>
+
+<p>
+أدخل بيانات المريض ثم أجب بـ
+<strong>نعم أو لا</strong>
+عن جميع عناصر الفرز.
+لن تظهر نتيجة الفرز قبل استكمال جميع الإجابات.
+</p>
+
+</section>
+
+
+
+<!-- =====================================================
+     PATIENT
+===================================================== -->
+
+<section class="section">
+
+<div class="section-title">
+
+<div class="section-title-icon">
+👤
+</div>
+
+<div>
+
+<h3>
+بيانات المريض
+</h3>
+
+<p class="section-subtitle">
+Patient Information
+</p>
+
+</div>
+
+</div>
+
+
+<div class="patient-grid">
+
+
+<div class="form-group">
+
+<label>
+اسم المريض
+<span class="required">*</span>
+</label>
+
+<input
+    id="patientName"
+    type="text"
+    placeholder="اسم المريض">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+رقم الملف الطبي MRN
+</label>
+
+<input
+    id="mrn"
+    type="text"
+    placeholder="Medical Record Number">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+فئة المريض
+<span class="required">*</span>
+</label>
+
+<select id="patientType">
+
+<option value="">
+-- اختر --
+</option>
+
+<option value="adult">
+بالغ - أكثر من 14 سنة
+</option>
+
+<option value="pediatric">
+طفل - 14 سنة فأقل
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+الجنس
+<span class="required">*</span>
+</label>
+
+<select id="gender">
+
+<option value="">
+-- اختر --
+</option>
+
+<option value="male">
+ذكر
+</option>
+
+<option value="female">
+أنثى
+</option>
+
+</select>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PROGRESS
+===================================================== -->
+
+<div class="completion-box">
+
+<strong>
+اكتمال أسئلة الفرز:
+</strong>
+
+<span id="completionText">
+0 / 10
+</span>
+
+<div class="progress-track">
+
+<div
+    id="progressFill"
+    class="progress-fill">
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     EXPOSURE
+===================================================== -->
+
+<section class="section">
+
+<div class="section-title">
+
+<div class="section-title-icon">
+🌍
+</div>
+
+<div>
+
+<h3>
+عوامل التعرض الوبائي
+</h3>
+
+<p class="section-subtitle">
+Exposure Risks
+</p>
+
+</div>
+
+</div>
+
+
+<div class="question-list">
+
+
+<div
+    class="question"
+    data-question="travel">
+
+<div class="question-head">
+
+<div>
+
+<div class="question-ar">
+سفر خارج المملكة أو إلى منطقة ذات تفشٍ حديثًا
+</div>
+
+<div class="question-en">
+Recent travel abroad or to an outbreak area
+</div>
+
+<div class="question-meta">
+<span class="points">نعم = +3</span>
+</div>
+
+</div>
+
+
+<div class="answer-options">
+
+<label class="answer-option">
+
+<input
+    type="radio"
+    name="travel"
+    value="yes"
+    data-key="travel"
+    data-score="3"
+    data-type="epi">
+
+<span>
+نعم
+</span>
+
+</label>
+
+
+<label class="answer-option">
+
+<input
+    type="radio"
+    name="travel"
+    value="no"
+    data-key="travel"
+    data-score="0"
+    data-type="epi">
+
+<span>
+لا
+</span>
+
+</label>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div
+    class="question"
+    data-question="contact">
+
+<div class="question-head">
+
+<div>
+
+<div class="question-ar">
+مخالطة حالة مؤكدة أو مشتبهة بمرض معدٍ
+</div>
+
+<div class="question-en">
+Contact with a confirmed or suspected infectious case
+</div>
+
+<div class="question-meta">
+
+<span class="points">
+نعم = +3
+</span>
+
+<span class="red-flag-badge">
+عامل مهم
+</span>
+
+</div>
+
+</div>
+
+
+<div class="answer-options">
+
+<label class="answer-option">
+
+<input
+    type="radio"
+    name="contact"
+    value="yes"
+    data-key="contact"
+    data-score="3"
+    data-type="epi"
+    data-redflag="1">
+
+<span>
+نعم
+</span>
+
+</label>
+
+
+<label class="answer-option">
+
+<input
+    type="radio"
+    name="contact"
+    value="no"
+    data-key="contact"
+    data-score="0"
+    data-type="epi">
+
+<span>
+لا
+</span>
+
+</label>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div
+    class="question"
+    data-question="animalExposure">
+
+<div class="question-head">
+
+<div>
+
+<div class="question-ar">
+تعرض لحيوان أو منتجات حيوانية أو بيئة مرتبطة بالحيوانات
+</div>
+
+<div class="question-en">
+Animal or animal-product exposure
+</div>
+
+<div class="question-meta">
+<span class="points">نعم = +3</span>
+</div>
+
+</div>
+
+
+<div class="answer-options">
+
+<label class="answer-option">
+
+<input
+    type="radio"
+    name="animalExposure"
+    value="yes"
+    data-key="animalExposure"
+    data-score="3"
+    data-type="epi">
+
+<span>
+نعم
+</span>
+
+</label>
+
+
+<label class="answer-option">
+
+<input
+    type="radio"
+    name="animalExposure"
+    value="no"
+    data-key="animalExposure"
+    data-score="0"
+    data-type="epi">
+
+<span>
+لا
+</span>
+
+</label>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div
+    class="question"
+    data-question="healthcareExposure">
+
+<div class="question-head">
+
+<div>
+
+<div class="question-ar">
+تعرض أو عمل داخل منشأة صحية مع احتمال عدوى
+</div>
+
+<div class="question-en">
+Healthcare facility exposure
+</div>
+
+<div class="question-meta">
+<span class="points">نعم = +3</span>
+</div>
+
+</div>
+
+
+<div class="answer-options">
+
+<label class="answer-option">
+
+<input
+    type="radio"
+    name="healthcareExposure"
+    value="yes"
+    data-key="healthcareExposure"
+    data-score="3"
+    data-type="epi">
+
+<span>
+نعم
+</span>
+
+</label>
+
+
+<label class="answer-option">
+
+<input
+    type="radio"
+    name="healthcareExposure"
+    value="no"
+    data-key="healthcareExposure"
+    data-score="0"
+    data-type="epi">
+
+<span>
+لا
+</span>
+
+</label>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SYMPTOMS
+===================================================== -->
+
+<section class="section">
+
+<div class="section-title">
+
+<div class="section-title-icon">
+🌡️
+</div>
+
+<div>
+
+<h3>
+الأعراض والعلامات السريرية
+</h3>
+
+<p class="section-subtitle">
+Clinical Signs & Symptoms
+</p>
+
+</div>
+
+</div>
+
+
+<div class="question-list">
+
+
+<div class="question" data-question="fever">
+
+<div class="question-head">
+
+<div>
+
+<div class="question-ar">
+حمى أو تاريخ حديث لارتفاع الحرارة
+</div>
+
+<div class="question-en">
+Fever or recent history of fever
+</div>
+
+<div class="question-meta">
+<span class="points">نعم = +4</span>
+</div>
+
+</div>
+
+<div class="answer-options">
+
+<label class="answer-option">
+<input type="radio" name="fever" value="yes"
+data-key="fever" data-score="4" data-type="symptom">
+<span>نعم</span>
+</label>
+
+<label class="answer-option">
+<input type="radio" name="fever" value="no"
+data-key="fever" data-score="0" data-type="symptom">
+<span>لا</span>
+</label>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="question" data-question="cough">
+
+<div class="question-head">
+
+<div>
+
+<div class="question-ar">
+سعال
+</div>
+
+<div class="question-en">
+Cough
+</div>
+
+<div class="question-meta">
+<span class="points">نعم = +4</span>
+</div>
+
+</div>
+
+<div class="answer-options">
+
+<label class="answer-option">
+<input type="radio" name="cough" value="yes"
+data-key="cough" data-score="4" data-type="symptom">
+<span>نعم</span>
+</label>
+
+<label class="answer-option">
+<input type="radio" name="cough" value="no"
+data-key="cough" data-score="0" data-type="symptom">
+<span>لا</span>
+</label>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="question" data-question="breathing">
+
+<div class="question-head">
+
+<div>
+
+<div class="question-ar">
+ضيق أو صعوبة في التنفس
+</div>
+
+<div class="question-en">
+Shortness of breath or difficulty breathing
+</div>
+
+<div class="question-meta">
+
+<span class="points">
+نعم = +4
+</span>
+
+<span class="red-flag-badge">
+علامة مهمة
+</span>
+
+</div>
+
+</div>
+
+<div class="answer-options">
+
+<label class="answer-option">
+<input type="radio" name="breathing" value="yes"
+data-key="breathing" data-score="4"
+data-type="symptom" data-redflag="1">
+<span>نعم</span>
+</label>
+
+<label class="answer-option">
+<input type="radio" name="breathing" value="no"
+data-key="breathing" data-score="0"
+data-type="symptom">
+<span>لا</span>
+</label>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="question" data-question="upperRespiratory">
+
+<div class="question-head">
+
+<div>
+
+<div class="question-ar">
+صداع أو التهاب حلق أو رشح
+</div>
+
+<div class="question-en">
+Headache, sore throat, or rhinorrhea
+</div>
+
+<div class="question-meta">
+<span class="points">نعم = +1</span>
+</div>
+
+</div>
+
+<div class="answer-options">
+
+<label class="answer-option">
+<input type="radio" name="upperRespiratory" value="yes"
+data-key="upperRespiratory" data-score="1"
+data-type="symptom">
+<span>نعم</span>
+</label>
+
+<label class="answer-option">
+<input type="radio" name="upperRespiratory" value="no"
+data-key="upperRespiratory" data-score="0"
+data-type="symptom">
+<span>لا</span>
+</label>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="question" data-question="gastro">
+
+<div class="question-head">
+
+<div>
+
+<div class="question-ar">
+غثيان أو قيء أو إسهال
+</div>
+
+<div class="question-en">
+Nausea, vomiting, and/or diarrhea
+</div>
+
+<div class="question-meta">
+<span class="points">نعم = +1</span>
+</div>
+
+</div>
+
+<div class="answer-options">
+
+<label class="answer-option">
+<input type="radio" name="gastro" value="yes"
+data-key="gastro" data-score="1"
+data-type="symptom">
+<span>نعم</span>
+</label>
+
+<label class="answer-option">
+<input type="radio" name="gastro" value="no"
+data-key="gastro" data-score="0"
+data-type="symptom">
+<span>لا</span>
+</label>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="question" data-question="chronic">
+
+<div class="question-head">
+
+<div>
+
+<div class="question-ar">
+مرض مزمن مهم أو نقص مناعة
+</div>
+
+<div class="question-en">
+Chronic medical illness / immunocompromised patient
+</div>
+
+<div class="question-meta">
+<span class="points">
+نعم = +1 للبالغ / 0 للطفل
+</span>
+</div>
+
+</div>
+
+<div class="answer-options">
+
+<label class="answer-option">
+
+<input
+    type="radio"
+    name="chronic"
+    value="yes"
+    data-key="chronic"
+    data-type="clinical"
+    data-adult-score="1"
+    data-pediatric-score="0">
+
+<span>
+نعم
+</span>
+
+</label>
+
+<label class="answer-option">
+
+<input
+    type="radio"
+    name="chronic"
+    value="no"
+    data-key="chronic"
+    data-type="clinical"
+    data-score="0">
+
+<span>
+لا
+</span>
+
+</label>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<div
+    id="message"
+    class="message">
+</div>
+
+
+<div class="evaluate-area">
+
+<button
+    id="evaluateButton"
+    class="evaluate-btn"
+    onclick="evaluateScreening()">
+
+📊 إظهار نتيجة الفرز
+
+</button>
+
+</div>
+
+
+
+<!-- =====================================================
+     RESULT
+===================================================== -->
+
+<section
+    id="resultPanel"
+    class="result-panel">
+
+
+<div class="result-header">
+
+<h2>
+نتيجة الفرز السريع
+</h2>
+
+<p>
+Rapid Screening Result
+</p>
+
+</div>
+
+
+<div class="score-circle">
+
+<div
+    id="resultScore"
+    class="score-number">
+
+0
+
+</div>
+
+<div class="score-word">
+Risk Score
+</div>
+
+</div>
+
+
+<div
+    id="resultRiskTitle"
+    class="risk-title">
+</div>
+
+
+<div
+    id="resultDescription"
+    class="risk-description">
+</div>
+
+
+<div class="result-actions">
+
+
+<button
+    class="print-card-btn"
+    onclick="printScreeningCard()">
+
+🖨️ طباعة بطاقة الفرز
+
+</button>
+
+
+<button
+    id="advancedButton"
+    class="advanced-btn"
+    onclick="continueToAdvanced()">
+
+🧠 استكمال الفرز الذكي
+
+</button>
+
+
+<button
+    id="finishButton"
+    class="finish-btn"
+    onclick="window.location.href='index.html'">
+
+✓ إنهاء والعودة للبوابة
+
+</button>
+
+
+<button
+    class="reset-btn"
+    onclick="resetScreening()">
+
+↻ فرز جديد
+
+</button>
+
+
+</div>
+
+
+<div class="notice">
+
+<strong>
+⚠️ ملاحظة:
+</strong>
+
+النتيجة أداة مساندة للفرز وليست تشخيصًا طبيًا،
+ولا تستبدل الحكم السريري أو السياسات وتعريفات الحالات المعتمدة.
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     PRINTABLE SMALL CARD
+===================================================== -->
+
+<section
+    id="screeningCard"
+    class="screening-card">
+
+
+<div class="card-header">
+
+<h2>
+بطاقة الفرز السريع
+</h2>
+
+<p>
+Rapid Infectious Disease Screening
+</p>
+
+<p>
+SPHP — Public Health
+</p>
+
+</div>
+
+
+<div class="card-data">
+
+
+<div class="card-item">
+
+<strong>
+اسم المريض
+</strong>
+
+<span id="cardPatientName">
+—
+</span>
+
+</div>
+
+
+<div class="card-item">
+
+<strong>
+رقم الملف MRN
+</strong>
+
+<span id="cardMrn">
+—
+</span>
+
+</div>
+
+
+<div class="card-item">
+
+<strong>
+فئة المريض
+</strong>
+
+<span id="cardPatientType">
+—
+</span>
+
+</div>
+
+
+<div class="card-item">
+
+<strong>
+الجنس
+</strong>
+
+<span id="cardGender">
+—
+</span>
+
+</div>
+
+
+<div class="card-item">
+
+<strong>
+رقم الفرز
+</strong>
+
+<span id="cardScreeningId">
+—
+</span>
+
+</div>
+
+
+<div class="card-item">
+
+<strong>
+التاريخ والوقت
+</strong>
+
+<span id="cardDateTime">
+—
+</span>
+
+</div>
+
+
+</div>
+
+
+<div class="card-result">
+
+<div>
+Risk Score
+</div>
+
+<div
+    id="cardScore"
+    class="card-result-score">
+
+0
+
+</div>
+
+<div
+    id="cardRisk"
+    class="card-result-risk">
+</div>
+
+<div
+    id="cardRecommendation"
+    style="margin-top:7px;font-size:11px;line-height:1.7;">
+</div>
+
+</div>
+
+
+<div class="card-qr-area">
+
+<div id="cardQr"></div>
+
+<div class="qr-caption">
+
+<strong>
+QR للتحقق من نتيجة الفرز
+</strong>
+
+<br>
+
+يحتوي حاليًا على رقم الفرز والدرجة فقط.
+
+<br><br>
+
+عند الانتقال إلى السيرفر الداخلي سيتم ربطه بالسجل الإلكتروني داخل المستشفى.
+
+</div>
+
+</div>
+
+
+<div class="card-footer">
+
+هذه البطاقة لا تمثل تشخيصًا طبيًا.
+يجب استكمال التقييم الطبي حسب الحالة.
+
+</div>
+
+
+</section>
+
+
+</main>
+
+
+
+<script>
+
+
+/* =====================================================
+   SETTINGS
+===================================================== */
+
+const MEDIUM_THRESHOLD =
+    5;
+
+
+const HIGH_THRESHOLD =
+    8;
+
+
+const TOTAL_QUESTIONS =
+    10;
+
+
+/* =====================================================
+   STATE
+===================================================== */
+
+let currentRecord =
+    null;
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function getValue(id){
+
+    const element =
+        document.getElementById(id);
+
+
+    return element
+        ? element.value.trim()
+        : "";
+
+}
+
+
+function generateRapidId(){
+
+    const now =
+        new Date();
+
+
+    return (
+
+        "RS-" +
+
+        now
+        .toISOString()
+        .replace(
+            /[-:.TZ]/g,
+            ""
+        )
+        .slice(
+            0,
+            14
+        )
+
+        +
+
+        "-" +
+
+        Math.floor(
+            100 +
+            Math.random() *
+            900
+        )
+
+    );
+
+}
+
+
+function localDateTime(){
+
+    return new Date()
+    .toLocaleString(
+        "ar-SA"
+    );
+
+}
+
+
+/* =====================================================
+   UPDATE QUESTIONS
+===================================================== */
+
+function updateQuestionState(){
+
+    document
+    .querySelectorAll(
+        ".question"
+    )
+    .forEach(
+        function(question){
+
+            const selected =
+                question.querySelector(
+                    'input[type="radio"]:checked'
+                );
+
+
+            question.classList.remove(
+                "answered",
+                "yes-answer",
+                "red-selected"
+            );
+
+
+            if(!selected){
+
+                return;
+
+            }
+
+
+            question.classList.add(
+                "answered"
+            );
+
+
+            if(
+                selected.value ===
+                "yes"
+            ){
+
+                question.classList.add(
+                    "yes-answer"
+                );
+
+
+                if(
+                    selected.dataset.redflag ===
+                    "1"
+                ){
+
+                    question.classList.add(
+                        "red-selected"
+                    );
+
+                }
+
+            }
+
+        }
+    );
+
+
+    updateCompletion();
+
+}
+
+
+/* =====================================================
+   COMPLETION
+===================================================== */
+
+function answeredQuestionCount(){
+
+    let count =
+        0;
+
+
+    document
+    .querySelectorAll(
+        ".question"
+    )
+    .forEach(
+        function(question){
+
+            if(
+                question.querySelector(
+                    'input[type="radio"]:checked'
+                )
+            ){
+
+                count++;
+
+            }
+
+        }
+    );
+
+
+    return count;
+
+}
+
+
+function updateCompletion(){
+
+    const answered =
+        answeredQuestionCount();
+
+
+    document.getElementById(
+        "completionText"
+    ).textContent =
+
+        answered +
+        " / " +
+        TOTAL_QUESTIONS;
+
+
+    document.getElementById(
+        "progressFill"
+    ).style.width =
+
+        (
+            answered /
+            TOTAL_QUESTIONS *
+            100
+        ) +
+        "%";
+
+}
+
+
+/* =====================================================
+   SCORE
+===================================================== */
+
+function calculateScore(){
+
+    const patientType =
+        getValue(
+            "patientType"
+        );
+
+
+    let score =
+        0;
+
+
+    let redFlag =
+        false;
+
+
+    document
+    .querySelectorAll(
+        '.question input[type="radio"]:checked'
+    )
+    .forEach(
+        function(input){
+
+            if(
+                input.value !==
+                "yes"
+            ){
+
+                return;
+
+            }
+
+
+            let points =
+                0;
+
+
+            if(
+                input.dataset.key ===
+                "chronic"
+            ){
+
+                points =
+                    patientType ===
+                    "pediatric"
+
+                    ? Number(
+                        input.dataset.pediatricScore ||
+                        0
+                    )
+
+                    : Number(
+                        input.dataset.adultScore ||
+                        0
+                    );
+
+            }
+            else{
+
+                points =
+                    Number(
+                        input.dataset.score ||
+                        0
+                    );
+
+            }
+
+
+            score +=
+                points;
+
+
+            if(
+                input.dataset.redflag ===
+                "1"
+            ){
+
+                redFlag =
+                    true;
+
+            }
+
+        }
+    );
+
+
+    return {
+
+        score:
+            score,
+
+        redFlag:
+            redFlag
+
+    };
+
+}
+
+
+/* =====================================================
+   CLASSIFY RISK
+===================================================== */
+
+function classifyRisk(
+    score,
+    redFlag
+){
+
+    if(
+        score >=
+        HIGH_THRESHOLD
+
+        ||
+
+        (
+            redFlag &&
+            score >= 4
+        )
+    ){
+
+        return "high";
+
+    }
+
+
+    if(
+        score >=
+        MEDIUM_THRESHOLD
+
+        ||
+
+        redFlag
+    ){
+
+        return "medium";
+
+    }
+
+
+    return "low";
+
+}
+
+
+/* =====================================================
+   ANSWERS
+===================================================== */
+
+function collectAnswers(){
+
+    const answers =
+        {};
+
+
+    document
+    .querySelectorAll(
+        ".question"
+    )
+    .forEach(
+        function(question){
+
+            const selected =
+                question.querySelector(
+                    'input[type="radio"]:checked'
+                );
+
+
+            const key =
+                question.dataset.question;
+
+
+            answers[
+                key
+            ] =
+                selected
+                ? selected.value
+                : "";
+
+        }
+    );
+
+
+    return answers;
+
+}
+
+
+/* =====================================================
+   SMART SCREENING MAPPING
+===================================================== */
+
+function collectSmartData(){
+
+    const symptoms =
+        [];
+
+
+    const epi =
+        [];
+
+
+    const answers =
+        collectAnswers();
+
+
+    if(
+        answers.travel ===
+        "yes"
+    ){
+
+        epi.push(
+            "travel"
+        );
+
+    }
+
+
+    if(
+        answers.contact ===
+        "yes"
+    ){
+
+        epi.push(
+            "contact"
+        );
+
+    }
+
+
+    if(
+        answers.animalExposure ===
+        "yes"
+    ){
+
+        epi.push(
+            "animalExposure"
+        );
+
+    }
+
+
+    if(
+        answers.healthcareExposure ===
+        "yes"
+    ){
+
+        epi.push(
+            "healthcareExposure"
+        );
+
+    }
+
+
+    if(
+        answers.fever ===
+        "yes"
+    ){
+
+        symptoms.push(
+            "fever"
+        );
+
+    }
+
+
+    if(
+        answers.cough ===
+        "yes"
+    ){
+
+        symptoms.push(
+            "cough"
+        );
+
+    }
+
+
+    if(
+        answers.breathing ===
+        "yes"
+    ){
+
+        symptoms.push(
+            "breathing"
+        );
+
+    }
+
+
+    if(
+        answers.upperRespiratory ===
+        "yes"
+    ){
+
+        symptoms.push(
+            "headache"
+        );
+
+    }
+
+
+    if(
+        answers.gastro ===
+        "yes"
+    ){
+
+        symptoms.push(
+            "vomiting",
+            "diarrhea"
+        );
+
+    }
+
+
+    return {
+
+        symptoms:
+            [...new Set(
+                symptoms
+            )],
+
+        epi:
+            [...new Set(
+                epi
+            )]
+
+    };
+
+}
+
+
+/* =====================================================
+   VALIDATION
+===================================================== */
+
+function validateScreening(){
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    message.className =
+        "message";
+
+
+    message.style.display =
+        "none";
+
+
+    if(
+        !getValue(
+            "patientName"
+        )
+    ){
+
+        showError(
+            "يرجى إدخال اسم المريض."
+        );
+
+        return false;
+
+    }
+
+
+    if(
+        !getValue(
+            "patientType"
+        )
+    ){
+
+        showError(
+            "يرجى اختيار فئة المريض: بالغ أو طفل."
+        );
+
+        return false;
+
+    }
+
+
+    if(
+        !getValue(
+            "gender"
+        )
+    ){
+
+        showError(
+            "يرجى اختيار جنس المريض."
+        );
+
+        return false;
+
+    }
+
+
+    const answered =
+        answeredQuestionCount();
+
+
+    if(
+        answered !==
+        TOTAL_QUESTIONS
+    ){
+
+        showError(
+
+            "يرجى الإجابة بـ نعم أو لا على جميع أسئلة الفرز. " +
+
+            "تمت الإجابة على " +
+
+            answered +
+
+            " من " +
+
+            TOTAL_QUESTIONS +
+
+            "."
+
+        );
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+function showError(message){
+
+    const box =
+        document.getElementById(
+            "message"
+        );
+
+
+    box.className =
+        "message error";
+
+
+    box.textContent =
+        message;
+
+
+    box.style.display =
+        "block";
+
+
+    box.scrollIntoView({
+
+        behavior:"smooth",
+        block:"center"
+
+    });
+
+}
+
+
+/* =====================================================
+   EVALUATE
+===================================================== */
+
+function evaluateScreening(){
+
+    if(
+        !validateScreening()
+    ){
+
+        return;
+
+    }
+
+
+    const calculated =
+        calculateScore();
+
+
+    const risk =
+        classifyRisk(
+
+            calculated.score,
+
+            calculated.redFlag
+
+        );
+
+
+    const smartData =
+        collectSmartData();
+
+
+    currentRecord = {
+
+        id:
+            generateRapidId(),
+
+        date:
+            new Date()
+            .toISOString(),
+
+        displayDate:
+            localDateTime(),
+
+        patientName:
+            getValue(
+                "patientName"
+            ),
+
+        mrn:
+            getValue(
+                "mrn"
+            ),
+
+        patientType:
+            getValue(
+                "patientType"
+            ),
+
+        gender:
+            getValue(
+                "gender"
+            ),
+
+        answers:
+            collectAnswers(),
+
+        score:
+            calculated.score,
+
+        risk:
+            risk,
+
+        redFlag:
+            calculated.redFlag,
+
+        symptoms:
+            smartData.symptoms,
+
+        epi:
+            smartData.epi
+
+    };
+
+
+    saveRapidRecord(
+        currentRecord
+    );
+
+
+    displayResult(
+        currentRecord
+    );
+
+
+    fillCard(
+        currentRecord
+    );
+
+
+    createQr(
+        currentRecord
+    );
+
+}
+
+
+/* =====================================================
+   SAVE
+===================================================== */
+
+function saveRapidRecord(
+    record
+){
+
+    let records =
+        [];
+
+
+    try{
+
+        records =
+            JSON.parse(
+
+                localStorage.getItem(
+                    "rapidScreeningRecords"
+                )
+
+                ||
+
+                "[]"
+
+            );
+
+
+        if(
+            !Array.isArray(
+                records
+            )
+        ){
+
+            records =
+                [];
+
+        }
+
+    }
+    catch(error){
+
+        records =
+            [];
+
+    }
+
+
+    records.unshift(
+        record
+    );
+
+
+    localStorage.setItem(
+
+        "rapidScreeningRecords",
+
+        JSON.stringify(
+            records
+        )
+
+    );
+
+
+    sessionStorage.setItem(
+
+        "latestRapidScreening",
+
+        JSON.stringify(
+            record
+        )
+
+    );
+
+}
+
+
+/* =====================================================
+   RESULT
+===================================================== */
+
+function displayResult(
+    record
+){
+
+    const panel =
+        document.getElementById(
+            "resultPanel"
+        );
+
+
+    panel.classList.remove(
+        "result-low",
+        "result-medium",
+        "result-high"
+    );
+
+
+    panel.classList.add(
+        "active",
+        "result-" +
+        record.risk
+    );
+
+
+    document.getElementById(
+        "resultScore"
+    ).textContent =
+        record.score;
+
+
+    const title =
+        document.getElementById(
+            "resultRiskTitle"
+        );
+
+
+    const description =
+        document.getElementById(
+            "resultDescription"
+        );
+
+
+    const advancedButton =
+        document.getElementById(
+            "advancedButton"
+        );
+
+
+    const finishButton =
+        document.getElementById(
+            "finishButton"
+        );
+
+
+    if(
+        record.risk ===
+        "low"
+    ){
+
+        title.textContent =
+            "🟢 خطورة منخفضة";
+
+
+        description.textContent =
+            "الدرجة الحالية مطمئنة للفرز المعدي الأولي. يستكمل المريض التقييم الطبي المعتاد مع إعادة التقييم إذا ظهرت مؤشرات جديدة.";
+
+
+        advancedButton.style.display =
+            "none";
+
+
+        finishButton.style.display =
+            "inline-block";
+
+    }
+
+
+    else if(
+        record.risk ===
+        "medium"
+    ){
+
+        title.textContent =
+            "🟠 يحتاج تقييمًا إضافيًا";
+
+
+        description.textContent =
+            "توجد مؤشرات تستدعي استكمال الفرز الذكي الموسع لتحديد المسار الأنسب.";
+
+
+        advancedButton.style.display =
+            "inline-block";
+
+
+        finishButton.style.display =
+            "none";
+
+    }
+
+
+    else{
+
+        title.textContent =
+            "🔴 اشتباه مرتفع";
+
+
+        description.textContent =
+            "توجد مؤشرات مهمة تستدعي استكمال الفرز الذكي الموسع ومراجعة الاحتياطات والإجراءات المطلوبة دون تأخير.";
+
+
+        advancedButton.style.display =
+            "inline-block";
+
+
+        finishButton.style.display =
+            "none";
+
+    }
+
+
+    panel.scrollIntoView({
+
+        behavior:"smooth",
+        block:"start"
+
+    });
+
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+function fillCard(
+    record
+){
+
+    document.getElementById(
+        "cardPatientName"
+    ).textContent =
+        record.patientName;
+
+
+    document.getElementById(
+        "cardMrn"
+    ).textContent =
+        record.mrn ||
+        "—";
+
+
+    document.getElementById(
+        "cardPatientType"
+    ).textContent =
+
+        record.patientType ===
+        "adult"
+
+        ? "بالغ / Adult"
+
+        : "طفل / Pediatric";
+
+
+    document.getElementById(
+        "cardGender"
+    ).textContent =
+
+        record.gender ===
+        "male"
+
+        ? "ذكر / Male"
+
+        : "أنثى / Female";
+
+
+    document.getElementById(
+        "cardScreeningId"
+    ).textContent =
+        record.id;
+
+
+    document.getElementById(
+        "cardDateTime"
+    ).textContent =
+        record.displayDate;
+
+
+    document.getElementById(
+        "cardScore"
+    ).textContent =
+        record.score;
+
+
+    const riskElement =
+        document.getElementById(
+            "cardRisk"
+        );
+
+
+    const recommendation =
+        document.getElementById(
+            "cardRecommendation"
+        );
+
+
+    if(
+        record.risk ===
+        "low"
+    ){
+
+        riskElement.textContent =
+            "🟢 LOW RISK / خطورة منخفضة";
+
+
+        recommendation.textContent =
+            "استكمال التقييم الطبي المعتاد.";
+
+    }
+    else if(
+        record.risk ===
+        "medium"
+    ){
+
+        riskElement.textContent =
+            "🟠 FURTHER SCREENING / يحتاج فرزًا إضافيًا";
+
+
+        recommendation.textContent =
+            "استكمال الفرز الذكي الموسع.";
+
+    }
+    else{
+
+        riskElement.textContent =
+            "🔴 HIGH RISK / اشتباه مرتفع";
+
+
+        recommendation.textContent =
+            "استكمال الفرز الموسع ومراجعة الاحتياطات فورًا.";
+
+    }
+
+}
+
+
+/* =====================================================
+   QR
+===================================================== */
+
+function createQr(
+    record
+){
+
+    const container =
+        document.getElementById(
+            "cardQr"
+        );
+
+
+    container.innerHTML =
+        "";
+
+
+    /*
+      مهم:
+      لا نضع اسم المريض ولا MRN داخل QR.
+    */
+
+    const qrData =
+
+        "SPHP|" +
+
+        "ID=" +
+        record.id +
+
+        "|" +
+
+        "SCORE=" +
+        record.score +
+
+        "|" +
+
+        "RISK=" +
+        record.risk;
+
+
+    try{
+
+        new QRCode(
+            container,
+            {
+                text:
+                    qrData,
+
+                width:
+                    100,
+
+                height:
+                    100,
+
+                correctLevel:
+                    QRCode.CorrectLevel.M
+            }
+        );
+
+    }
+    catch(error){
+
+        container.innerHTML =
+            "<small>QR غير متاح</small>";
+
+    }
+
+}
+
+
+/* =====================================================
+   PRINT
+===================================================== */
+
+function printScreeningCard(){
+
+    if(!currentRecord){
+
+        showError(
+            "يجب إظهار نتيجة الفرز أولًا."
+        );
+
+        return;
+
+    }
+
+
+    window.print();
+
+}
+
+
+/* =====================================================
+   ADVANCED SCREENING
+===================================================== */
+
+function continueToAdvanced(){
+
+    if(!currentRecord){
+
+        return;
+
+    }
+
+
+    const params =
+        new URLSearchParams();
+
+
+    params.set(
+        "fromRapid",
+        "1"
+    );
+
+
+    params.set(
+        "rapidId",
+        currentRecord.id
+    );
+
+
+    params.set(
+        "rapidScore",
+        String(
+            currentRecord.score
+        )
+    );
+
+
+    params.set(
+        "rapidRisk",
+        currentRecord.risk
+    );
+
+
+    params.set(
+        "patientName",
+        currentRecord.patientName
+    );
+
+
+    if(
+        currentRecord.mrn
+    ){
+
+        params.set(
+            "mrn",
+            currentRecord.mrn
+        );
+
+    }
+
+
+    params.set(
+        "patientType",
+        currentRecord.patientType
+    );
+
+
+    params.set(
+        "gender",
+        currentRecord.gender
+    );
+
+
+    if(
+        currentRecord.redFlag
+    ){
+
+        params.set(
+            "rapidRedFlag",
+            "1"
+        );
+
+    }
+
+
+    if(
+        currentRecord.symptoms.length
+    ){
+
+        params.set(
+            "symptoms",
+            currentRecord.symptoms.join(
+                ","
+            )
+        );
+
+    }
+
+
+    if(
+        currentRecord.epi.length
+    ){
+
+        params.set(
+            "epi",
+            currentRecord.epi.join(
+                ","
+            )
+        );
+
+    }
+
+
+    window.location.href =
+
+        "smart-screening.html?" +
+
+        params.toString();
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+function resetScreening(){
+
+    document.getElementById(
+        "patientName"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "mrn"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "patientType"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "gender"
+    ).value =
+        "";
+
+
+    document
+    .querySelectorAll(
+        '.question input[type="radio"]'
+    )
+    .forEach(
+        function(input){
+
+            input.checked =
+                false;
+
+        }
+    );
+
+
+    currentRecord =
+        null;
+
+
+    document.getElementById(
+        "resultPanel"
+    ).className =
+        "result-panel";
+
+
+    document.getElementById(
+        "message"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "cardQr"
+    ).innerHTML =
+        "";
+
+
+    updateQuestionState();
+
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+}
+
+
+/* =====================================================
+   EVENTS
+===================================================== */
+
+document
+.querySelectorAll(
+    '.question input[type="radio"]'
+)
+.forEach(
+    function(input){
+
+        input.addEventListener(
+            "change",
+            updateQuestionState
+        );
+
+    }
+);
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    updateQuestionState
+);
+
+
+</script>
+
+
+</body>
+
+</html>

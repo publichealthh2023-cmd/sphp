@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>بلاغ تسمم غذائي - حالة فردية</title>
+
+<link rel="stylesheet" href="Style.css">
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    background:#f3f6f8;
+    font-family:Arial,Tahoma,sans-serif;
+    color:#294b6a;
+}
+
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.hero-header{
+    width:100%;
+    overflow:hidden;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:180px 1fr 200px;
+    align-items:center;
+    gap:20px;
+    max-width:1200px;
+    margin:0 auto;
+    padding:18px 20px;
+}
+
+.side-logo{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.left-logo img{
+    width:auto !important;
+    height:auto !important;
+    max-width:155px !important;
+    max-height:90px !important;
+    object-fit:contain !important;
+    display:block !important;
+}
+
+.right-logo img{
+    width:auto !important;
+    height:auto !important;
+    max-width:185px !important;
+    max-height:105px !important;
+    object-fit:contain !important;
+    display:block !important;
+}
+
+.hero-center{
+    text-align:center;
+}
+
+
+/* ==========================================
+   PAGE
+========================================== */
+
+.page{
+    max-width:1150px;
+    margin:30px auto;
+    padding:0 20px 60px;
+}
+
+.page-title,
+.section{
+    background:#fff;
+    border:1px solid #dfe8f2;
+    border-radius:15px;
+    padding:22px;
+    margin-bottom:18px;
+    box-shadow:0 4px 14px rgba(0,0,0,.05);
+}
+
+.page-title{
+    text-align:center;
+}
+
+.page-title .icon{
+    font-size:46px;
+}
+
+.page-title h1{
+    color:#064c92;
+    margin:8px 0 4px;
+}
+
+.page-title h2{
+    color:#718293;
+    font-size:16px;
+    margin:0;
+}
+
+.notice{
+    background:#fff8e1;
+    border-right:5px solid #f9a825;
+    border-radius:10px;
+    padding:15px 17px;
+    margin-bottom:18px;
+    color:#66531b;
+    line-height:1.8;
+}
+
+.section h3{
+    color:#064c92;
+    margin-top:0;
+    border-bottom:1px solid #e5edf3;
+    padding-bottom:10px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+}
+
+.grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+}
+
+.group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+label{
+    font-weight:bold;
+    color:#294b6a;
+    font-size:13px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:11px;
+    border:1px solid #ccd9e5;
+    border-radius:8px;
+    background:#fff;
+    font-size:14px;
+}
+
+textarea{
+    min-height:90px;
+    resize:vertical;
+}
+
+.checkgrid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.check{
+    background:#f8fbfd;
+    border:1px solid #dce6ee;
+    border-radius:9px;
+    padding:10px;
+}
+
+.check input{
+    width:auto;
+}
+
+.required{
+    color:#c62828;
+}
+
+.buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:20px;
+}
+
+.buttons button,
+.buttons a{
+    border:none;
+    border-radius:9px;
+    padding:13px 20px;
+    font-weight:bold;
+    cursor:pointer;
+    text-decoration:none;
+}
+
+.send-btn{
+    background:#0759a6;
+    color:white;
+}
+
+.print-btn{
+    background:#687984;
+    color:white;
+}
+
+.back-btn{
+    background:#eaf1f7;
+    color:#064c92;
+}
+
+.success,
+.error{
+    display:none;
+    margin-top:18px;
+    border-radius:9px;
+    padding:15px;
+    line-height:1.8;
+}
+
+.success{
+    background:#eaf7ee;
+    border-right:5px solid #2e7d32;
+    color:#285b33;
+}
+
+.error{
+    background:#fff0f0;
+    border-right:5px solid #c62828;
+    color:#7d2525;
+}
+
+
+@media(max-width:750px){
+
+    .hero-grid{
+        grid-template-columns:1fr;
+        gap:10px;
+    }
+
+    .left-logo img{
+        max-width:125px !important;
+        max-height:75px !important;
+    }
+
+    .right-logo img{
+        max-width:155px !important;
+        max-height:90px !important;
+    }
+
+    .grid,
+    .grid-3,
+    .checkgrid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="hero-header">
+
+<div class="hero-grid">
+
+<div class="side-logo left-logo">
+
+<img
+    src="images/cluster-logo.png"
+    alt="Hafr Al-Batin Health Cluster">
+
+</div>
+
+
+<div class="hero-center">
+
+<h1>
+بلاغ تسمم غذائي - حالة فردية
+</h1>
+
+<h2>
+Individual Food Poisoning Notification
+</h2>
+
+<p>
+الصحة العامة
+</p>
+
+</div>
+
+
+<div class="side-logo right-logo">
+
+<img
+    src="images/hospital-logo.png"
+    alt="Hospital Logo">
+
+</div>
+
+</div>
+
+</header>
+
+
+
+<main class="page">
+
+
+<section class="page-title">
+
+<div class="icon">
+👤🍽️
+</div>
+
+<h1>
+نموذج الإبلاغ عن حالة تسمم غذائي فردية
+</h1>
+
+<h2>
+Individual Food Poisoning Case Notification Form
+</h2>
+
+</section>
+
+
+<div class="notice">
+
+<strong>
+⚠️ تنبيه:
+</strong>
+
+يستخدم هذا النموذج للحالة الفردية المشتبه ارتباطها
+بتسمم أو مرض منقول بالغذاء.
+
+عند وجود عدة حالات مرتبطة بمصدر غذائي مشترك،
+استخدم نموذج الفاشية.
+
+</div>
+
+
+
+<!-- ==========================================
+     PATIENT
+========================================== -->
+
+<section class="section">
+
+<h3>
+👤 بيانات المريض
+</h3>
+
+<div class="grid">
+
+<div class="group">
+
+<label>
+اسم المريض
+<span class="required">*</span>
+</label>
+
+<input id="patientName">
+
+</div>
+
+
+<div class="group">
+
+<label>
+رقم الملف الطبي
+<span class="required">*</span>
+</label>
+
+<input id="mrn">
+
+</div>
+
+
+<div class="group">
+
+<label>
+رقم الهوية / الإقامة
+</label>
+
+<input id="nationalId">
+
+</div>
+
+
+<div class="group">
+
+<label>
+الجنسية
+</label>
+
+<input id="nationality">
+
+</div>
+
+
+<div class="group">
+
+<label>
+العمر
+</label>
+
+<input
+    id="age"
+    type="number"
+    min="0">
+
+</div>
+
+
+<div class="group">
+
+<label>
+الجنس
+</label>
+
+<select id="gender">
+
+<option value="">
+اختر
+</option>
+
+<option value="male">
+ذكر
+</option>
+
+<option value="female">
+أنثى
+</option>
+
+</select>
+
+</div>
+
+
+<div class="group">
+
+<label>
+رقم التواصل
+</label>
+
+<input id="patientPhone">
+
+</div>
+
+
+<div class="group">
+
+<label>
+مكان الإقامة
+</label>
+
+<input id="residence">
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ==========================================
+     CASE
+========================================== -->
+
+<section class="section">
+
+<h3>
+🍽️ بيانات حالة التسمم
+</h3>
+
+<div class="grid">
+
+<div class="group">
+
+<label>
+تصنيف الحالة
+<span class="required">*</span>
+</label>
+
+<select id="classification">
+
+<option value="">
+اختر
+</option>
+
+<option value="suspected">
+مشتبهة
+</option>
+
+<option value="probable">
+محتملة
+</option>
+
+<option value="confirmed">
+مؤكدة
+</option>
+
+</select>
+
+</div>
+
+
+<div class="group">
+
+<label>
+تاريخ ووقت اكتشاف الحالة
+</label>
+
+<input
+    id="detectionDateTime"
+    type="datetime-local">
+
+</div>
+
+
+<div class="group">
+
+<label>
+تاريخ ووقت بداية الأعراض
+</label>
+
+<input
+    id="symptomOnset"
+    type="datetime-local">
+
+</div>
+
+
+<div class="group">
+
+<label>
+حالة المريض
+</label>
+
+<select id="patientStatus">
+
+<option value="">
+اختر
+</option>
+
+<option value="stable">
+مستقرة
+</option>
+
+<option value="admitted">
+منوم
+</option>
+
+<option value="critical">
+حرجة
+</option>
+
+<option value="discharged">
+خرج
+</option>
+
+<option value="deceased">
+وفاة
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ==========================================
+     FOOD EXPOSURE
+========================================== -->
+
+<section class="section">
+
+<h3>
+🍱 بيانات الطعام والتعرض
+</h3>
+
+<div class="grid">
+
+<div class="group full">
+
+<label>
+اسم / وصف الطعام المشتبه
+<span class="required">*</span>
+</label>
+
+<textarea id="suspectedFood"></textarea>
+
+</div>
+
+
+<div class="group">
+
+<label>
+مكان إعداد الطعام
+</label>
+
+<input id="foodPreparationPlace">
+
+</div>
+
+
+<div class="group">
+
+<label>
+مكان تناول الطعام
+</label>
+
+<input id="foodConsumptionPlace">
+
+</div>
+
+
+<div class="group">
+
+<label>
+تاريخ ووقت تناول الطعام
+</label>
+
+<input
+    id="mealDateTime"
+    type="datetime-local">
+
+</div>
+
+
+<div class="group">
+
+<label>
+مصدر الطعام
+</label>
+
+<select id="foodSourceType">
+
+<option value="">
+اختر
+</option>
+
+<option value="commercial">
+مطعم / مصدر تجاري
+</option>
+
+<option value="home">
+منزلي
+</option>
+
+<option value="hospital">
+منشأة صحية
+</option>
+
+<option value="other">
+أخرى
+</option>
+
+</select>
+
+</div>
+
+
+<div class="group">
+
+<label>
+اسم المصدر
+</label>
+
+<input id="foodSourceName">
+
+</div>
+
+
+<div class="group">
+
+<label>
+موقع المصدر
+</label>
+
+<input id="foodSourceLocation">
+
+</div>
+
+
+<div class="group">
+
+<label>
+هل توجد حالات أخرى تناولت نفس الطعام؟
+</label>
+
+<select id="otherCases">
+
+<option value="unknown">
+غير معروف
+</option>
+
+<option value="yes">
+نعم
+</option>
+
+<option value="no">
+لا
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ==========================================
+     SYMPTOMS
+========================================== -->
+
+<section class="section">
+
+<h3>
+🌡️ الأعراض
+</h3>
+
+<div class="checkgrid">
+
+<label class="check">
+<input type="checkbox" name="symptom" value="nausea">
+غثيان
+</label>
+
+<label class="check">
+<input type="checkbox" name="symptom" value="vomiting">
+قيء
+</label>
+
+<label class="check">
+<input type="checkbox" name="symptom" value="abdominalPain">
+ألم بالبطن
+</label>
+
+<label class="check">
+<input type="checkbox" name="symptom" value="diarrhea">
+إسهال
+</label>
+
+<label class="check">
+<input type="checkbox" name="symptom" value="bloodyStool">
+براز دموي
+</label>
+
+<label class="check">
+<input type="checkbox" name="symptom" value="fever">
+حمى
+</label>
+
+<label class="check">
+<input type="checkbox" name="symptom" value="headache">
+صداع
+</label>
+
+<label class="check">
+<input type="checkbox" name="symptom" value="dizziness">
+دوخة
+</label>
+
+<label class="check">
+<input type="checkbox" name="symptom" value="other">
+أعراض أخرى
+</label>
+
+</div>
+
+
+<div class="group full" style="margin-top:14px">
+
+<label>
+تفاصيل أعراض أخرى
+</label>
+
+<textarea id="otherSymptoms"></textarea>
+
+</div>
+
+</section>
+
+
+
+<!-- ==========================================
+     SAMPLES
+========================================== -->
+
+<section class="section">
+
+<h3>
+🧪 العينات والنتائج
+</h3>
+
+<div class="grid">
+
+<div class="group">
+
+<label>
+هل تم أخذ عينة؟
+</label>
+
+<select id="sampleTaken">
+
+<option value="">
+اختر
+</option>
+
+<option value="yes">
+نعم
+</option>
+
+<option value="no">
+لا
+</option>
+
+<option value="pending">
+سيتم
+</option>
+
+</select>
+
+</div>
+
+
+<div class="group">
+
+<label>
+نوع العينة
+</label>
+
+<input
+    id="sampleType"
+    placeholder="براز، دم، قيء...">
+
+</div>
+
+
+<div class="group">
+
+<label>
+تاريخ ووقت أخذ العينة
+</label>
+
+<input
+    id="sampleDateTime"
+    type="datetime-local">
+
+</div>
+
+
+<div class="group">
+
+<label>
+حالة النتيجة
+</label>
+
+<select id="labStatus">
+
+<option value="">
+اختر
+</option>
+
+<option value="pending">
+قيد الانتظار
+</option>
+
+<option value="positive">
+إيجابية
+</option>
+
+<option value="negative">
+سلبية
+</option>
+
+</select>
+
+</div>
+
+
+<div class="group full">
+
+<label>
+نتيجة المختبر / العامل المسبب
+</label>
+
+<textarea id="labResult"></textarea>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ==========================================
+     HESN / ACTIONS
+========================================== -->
+
+<section class="section">
+
+<h3>
+📝 الإجراءات والبلاغ الرسمي
+</h3>
+
+<div class="grid">
+
+<div class="group">
+
+<label>
+حالة البلاغ في حصن بلس
+</label>
+
+<select id="hesnStatus">
+
+<option value="pending">
+لم يتم الإدخال
+</option>
+
+<option value="entered">
+تم الإدخال
+</option>
+
+<option value="notRequired">
+لا ينطبق
+</option>
+
+</select>
+
+</div>
+
+
+<div class="group">
+
+<label>
+رقم البلاغ في حصن بلس
+</label>
+
+<input id="hesnNumber">
+
+</div>
+
+
+<div class="group full">
+
+<label>
+الإجراءات المتخذة
+</label>
+
+<textarea id="actionsTaken"></textarea>
+
+</div>
+
+
+<div class="group full">
+
+<label>
+ملاحظات إضافية
+</label>
+
+<textarea id="notes"></textarea>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ==========================================
+     REPORTER
+========================================== -->
+
+<section class="section">
+
+<h3>
+✍️ بيانات المبلّغ
+</h3>
+
+<div class="grid">
+
+<div class="group">
+
+<label>
+اسم المبلّغ
+<span class="required">*</span>
+</label>
+
+<input id="reporterName">
+
+</div>
+
+
+<div class="group">
+
+<label>
+الرقم الوظيفي
+</label>
+
+<input id="reporterId">
+
+</div>
+
+
+<div class="group">
+
+<label>
+المسمى الوظيفي
+</label>
+
+<input id="reporterJob">
+
+</div>
+
+
+<div class="group">
+
+<label>
+القسم
+<span class="required">*</span>
+</label>
+
+<input
+    id="reporterDepartment"
+    value="قسم الطوارئ">
+
+</div>
+
+
+<div class="group">
+
+<label>
+رقم التواصل
+</label>
+
+<input id="reporterPhone">
+
+</div>
+
+
+<div class="group">
+
+<label>
+تاريخ ووقت البلاغ
+</label>
+
+<input
+    id="reportDateTime"
+    type="datetime-local">
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<div class="buttons">
+
+<button
+    class="send-btn"
+    onclick="sendFoodPoisoning()">
+
+📨 إرسال البلاغ للصحة العامة
+
+</button>
+
+
+<button
+    class="print-btn"
+    onclick="window.print()">
+
+🖨️ طباعة / حفظ PDF
+
+</button>
+
+
+<a
+    href="infectious-diseases.html?mode=direct"
+    class="back-btn">
+
+← العودة
+
+</a>
+
+</div>
+
+
+<div
+    id="successMessage"
+    class="success">
+</div>
+
+<div
+    id="errorMessage"
+    class="error">
+</div>
+
+
+</main>
+
+
+<script>
+
+
+const NOTIFICATIONS_KEY =
+    "publicHealthNotifications";
+
+
+function el(id){
+
+    return document.getElementById(id);
+
+}
+
+
+function text(id){
+
+    return (
+        el(id).value ||
+        ""
+    ).trim();
+
+}
+
+
+function nowLocal(){
+
+    const n =
+        new Date();
+
+
+    return new Date(
+
+        n.getTime() -
+        n.getTimezoneOffset() *
+        60000
+
+    )
+    .toISOString()
+    .slice(0,16);
+
+}
+
+
+function generateId(){
+
+    const d =
+        new Date();
+
+
+    const stamp =
+
+        d.getFullYear() +
+
+        String(
+            d.getMonth() + 1
+        )
+        .padStart(
+            2,
+            "0"
+        ) +
+
+        String(
+            d.getDate()
+        )
+        .padStart(
+            2,
+            "0"
+        );
+
+
+    const r =
+        Math.floor(
+            1000 +
+            Math.random() *
+            9000
+        );
+
+
+    return (
+        "FPI-" +
+        stamp +
+        "-" +
+        r
+    );
+
+}
+
+
+function getArray(key){
+
+    try{
+
+        const value =
+            JSON.parse(
+                localStorage.getItem(key) ||
+                "[]"
+            );
+
+
+        return Array.isArray(value)
+        ? value
+        : [];
+
+    }
+    catch(error){
+
+        return [];
+
+    }
+
+}
+
+
+function checkedSymptoms(){
+
+    return Array.from(
+
+        document.querySelectorAll(
+            'input[name="symptom"]:checked'
+        )
+
+    )
+    .map(
+        function(item){
+
+            return item.value;
+
+        }
+    );
+
+}
+
+
+function validate(){
+
+    if(!text("patientName")){
+
+        return "يرجى إدخال اسم المريض.";
+
+    }
+
+
+    if(!text("mrn")){
+
+        return "يرجى إدخال رقم الملف الطبي.";
+
+    }
+
+
+    if(!el("classification").value){
+
+        return "يرجى تحديد تصنيف الحالة.";
+
+    }
+
+
+    if(!text("suspectedFood")){
+
+        return "يرجى إدخال الطعام المشتبه به.";
+
+    }
+
+
+    if(!text("reporterName")){
+
+        return "يرجى إدخال اسم المبلّغ.";
+
+    }
+
+
+    if(!text("reporterDepartment")){
+
+        return "يرجى إدخال القسم المبلّغ.";
+
+    }
+
+
+    return "";
+
+}
+
+
+function showSuccess(message){
+
+    el(
+        "errorMessage"
+    ).style.display =
+        "none";
+
+
+    el(
+        "successMessage"
+    ).innerHTML =
+        message;
+
+
+    el(
+        "successMessage"
+    ).style.display =
+        "block";
+
+
+    el(
+        "successMessage"
+    ).scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+function showError(message){
+
+    el(
+        "successMessage"
+    ).style.display =
+        "none";
+
+
+    el(
+        "errorMessage"
+    ).textContent =
+        message;
+
+
+    el(
+        "errorMessage"
+    ).style.display =
+        "block";
+
+
+    el(
+        "errorMessage"
+    ).scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+function sendFoodPoisoning(){
+
+    const error =
+        validate();
+
+
+    if(error){
+
+        showError(error);
+
+        return;
+
+    }
+
+
+    const notification = {
+
+        id:
+            generateId(),
+
+        notificationType:
+            "foodPoisoningIndividual",
+
+        disease:
+            "تسمم غذائي - حالة فردية",
+
+        diseaseKey:
+            "foodpoisoning",
+
+        classification:
+            el(
+                "classification"
+            ).value,
+
+        priority:
+            "normal",
+
+        status:
+            "new",
+
+        source:
+            "manual",
+
+        createdAt:
+            new Date()
+            .toISOString(),
+
+        date:
+            el(
+                "reportDateTime"
+            ).value ||
+            nowLocal(),
+
+        reportDateTime:
+            el(
+                "reportDateTime"
+            ).value ||
+            nowLocal(),
+
+        patientName:
+            text(
+                "patientName"
+            ),
+
+        mrn:
+            text(
+                "mrn"
+            ),
+
+        nationalId:
+            text(
+                "nationalId"
+            ),
+
+        nationality:
+            text(
+                "nationality"
+            ),
+
+        age:
+            text(
+                "age"
+            ),
+
+        gender:
+            el(
+                "gender"
+            ).value,
+
+        patientPhone:
+            text(
+                "patientPhone"
+            ),
+
+        residence:
+            text(
+                "residence"
+            ),
+
+        detectionDateTime:
+            el(
+                "detectionDateTime"
+            ).value,
+
+        symptomOnset:
+            el(
+                "symptomOnset"
+            ).value,
+
+        patientStatus:
+            el(
+                "patientStatus"
+            ).value,
+
+        suspectedFood:
+            text(
+                "suspectedFood"
+            ),
+
+        foodPreparationPlace:
+            text(
+                "foodPreparationPlace"
+            ),
+
+        foodConsumptionPlace:
+            text(
+                "foodConsumptionPlace"
+            ),
+
+        mealDateTime:
+            el(
+                "mealDateTime"
+            ).value,
+
+        foodSourceType:
+            el(
+                "foodSourceType"
+            ).value,
+
+        foodSourceName:
+            text(
+                "foodSourceName"
+            ),
+
+        foodSourceLocation:
+            text(
+                "foodSourceLocation"
+            ),
+
+        otherCases:
+            el(
+                "otherCases"
+            ).value,
+
+        symptoms:
+            checkedSymptoms(),
+
+        otherSymptoms:
+            text(
+                "otherSymptoms"
+            ),
+
+        sampleTaken:
+            el(
+                "sampleTaken"
+            ).value,
+
+        sampleType:
+            text(
+                "sampleType"
+            ),
+
+        sampleDateTime:
+            el(
+                "sampleDateTime"
+            ).value,
+
+        labStatus:
+            el(
+                "labStatus"
+            ).value,
+
+        labResult:
+            text(
+                "labResult"
+            ),
+
+        hesnStatus:
+            el(
+                "hesnStatus"
+            ).value,
+
+        hesnNumber:
+            text(
+                "hesnNumber"
+            ),
+
+        actionsTaken:
+            text(
+                "actionsTaken"
+            ),
+
+        notes:
+            text(
+                "notes"
+            ),
+
+        reporterName:
+            text(
+                "reporterName"
+            ),
+
+        reporterId:
+            text(
+                "reporterId"
+            ),
+
+        reporterJob:
+            text(
+                "reporterJob"
+            ),
+
+        reporterDepartment:
+            text(
+                "reporterDepartment"
+            ),
+
+        reporterPhone:
+            text(
+                "reporterPhone"
+            )
+
+    };
+
+
+    const notifications =
+        getArray(
+            NOTIFICATIONS_KEY
+        );
+
+
+    notifications.unshift(
+        notification
+    );
+
+
+    localStorage.setItem(
+
+        NOTIFICATIONS_KEY,
+
+        JSON.stringify(
+            notifications
+        )
+
+    );
+
+
+    if(
+        typeof savePublicHealthNotification ===
+        "function"
+    ){
+
+        savePublicHealthNotification(
+            notification
+        )
+        .catch(
+            function(error){
+
+                console.error(
+                    error
+                );
+
+            }
+        );
+
+    }
+
+
+    showSuccess(
+
+        "✅ تم إرسال بلاغ التسمم الغذائي إلى الصحة العامة بنجاح." +
+
+        "<br><br>" +
+
+        "<strong>رقم البلاغ:</strong> " +
+
+        notification.id
+
+    );
+
+}
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        el(
+            "detectionDateTime"
+        ).value =
+            nowLocal();
+
+
+        el(
+            "reportDateTime"
+        ).value =
+            nowLocal();
+
+    }
+);
+
+</script>
+
+
+<script src="api.js"></script>
+
+
+</body>
+
+</html>

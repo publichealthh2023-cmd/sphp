@@ -149,6 +149,125 @@ main{
 }
 
 
+/* =========================================
+   Main Choice
+========================================= */
+
+.main-choice-section{
+    max-width:1050px;
+    margin:0 auto 35px;
+}
+
+.choice-question{
+    text-align:center;
+    background:#f8fbfd;
+    border:1px solid #dce6ef;
+    border-radius:18px;
+    padding:22px 20px;
+    margin-bottom:20px;
+}
+
+.choice-question h2{
+    margin:0 0 7px;
+    color:#064c92;
+    font-size:24px;
+}
+
+.choice-question p{
+    margin:0;
+    color:#617387;
+    line-height:1.8;
+}
+
+.choice-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+
+/* Direct */
+
+.direct-choice-card{
+    position:relative;
+    background:linear-gradient(
+        135deg,
+        #f2f8fd,
+        #ffffff
+    );
+    border:2px solid #bed9ef;
+    border-top:7px solid #0759a6;
+    border-radius:20px;
+    padding:32px 28px;
+    box-shadow:0 6px 20px rgba(0,0,0,.07);
+    text-align:center;
+    transition:.2s;
+}
+
+.direct-choice-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 9px 25px rgba(0,0,0,.11);
+}
+
+.direct-choice-icon{
+    width:90px;
+    height:90px;
+    margin:0 auto 15px;
+    border-radius:23px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:48px;
+    background:#e8f3fc;
+}
+
+.direct-choice-card h2{
+    color:#0759a6;
+    font-size:25px;
+    margin:8px 0 5px;
+}
+
+.direct-choice-card h3{
+    color:#718293;
+    font-size:14px;
+    margin:0 0 14px;
+}
+
+.direct-choice-card p{
+    color:#53697c;
+    line-height:1.9;
+    margin:0 auto 20px;
+    font-size:14px;
+}
+
+.direct-choice-btn{
+    border:none;
+    background:#0759a6;
+    color:white;
+    padding:14px 28px;
+    border-radius:10px;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.direct-choice-btn:hover{
+    background:#064b8d;
+}
+
+.direct-badge{
+    position:absolute;
+    top:15px;
+    left:15px;
+    background:#0759a6;
+    color:white;
+    border-radius:18px;
+    padding:6px 12px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+
 /* Smart Screening */
 
 .smart-primary-card{
@@ -161,51 +280,55 @@ main{
     border:2px solid #d8ccff;
     border-top:7px solid #5f3dc4;
     border-radius:20px;
-    padding:35px 30px;
-    box-shadow:0 7px 24px rgba(0,0,0,.09);
+    padding:32px 28px;
+    box-shadow:0 6px 20px rgba(0,0,0,.07);
     text-align:center;
-    max-width:1000px;
-    margin:0 auto 20px;
+    transition:.2s;
+}
+
+.smart-primary-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 9px 25px rgba(0,0,0,.11);
 }
 
 .smart-main-icon{
-    width:92px;
-    height:92px;
+    width:90px;
+    height:90px;
     margin:0 auto 15px;
-    border-radius:24px;
+    border-radius:23px;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:53px;
+    font-size:50px;
     background:#efe9ff;
 }
 
 .smart-primary-card h2{
     color:#4c2cab;
-    font-size:28px;
-    margin:8px 0 4px;
+    font-size:25px;
+    margin:8px 0 5px;
 }
 
 .smart-primary-card h3{
     color:#718293;
-    font-size:16px;
-    margin:0 0 15px;
+    font-size:14px;
+    margin:0 0 14px;
 }
 
 .smart-primary-card p{
     color:#53697c;
     line-height:1.9;
-    max-width:760px;
     margin:0 auto 20px;
+    font-size:14px;
 }
 
 .start-smart-btn{
     border:none;
     background:#5f3dc4;
     color:white;
-    padding:14px 32px;
+    padding:14px 28px;
     border-radius:10px;
-    font-size:16px;
+    font-size:15px;
     font-weight:bold;
     cursor:pointer;
 }
@@ -214,7 +337,7 @@ main{
     background:#4d2eaa;
 }
 
-.start-here-badge{
+.smart-badge{
     position:absolute;
     top:15px;
     left:15px;
@@ -228,62 +351,24 @@ main{
 
 
 /* =========================================
-   Direct Notification
+   Quick Guidance
 ========================================= */
 
-.direct-notification{
-    max-width:1000px;
-    margin:0 auto 35px;
-    background:#fff8f8;
-    border:1px solid #f1cece;
-    border-right:6px solid #c62828;
-    border-radius:15px;
-    padding:20px 24px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-}
-
-.direct-notification-info{
-    display:flex;
-    align-items:center;
-    gap:15px;
-}
-
-.direct-icon{
-    width:58px;
-    height:58px;
-    border-radius:15px;
-    background:#ffe9e9;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:30px;
-    flex-shrink:0;
-}
-
-.direct-notification h3{
-    color:#b71c1c;
-    margin:0 0 5px;
-}
-
-.direct-notification p{
-    color:#6e5555;
-    margin:0;
-    line-height:1.7;
+.quick-guide{
+    max-width:1050px;
+    margin:20px auto 40px;
+    background:#fff8e1;
+    border-right:5px solid #f9a825;
+    border-radius:11px;
+    padding:16px 18px;
+    color:#66531b;
+    line-height:1.9;
     font-size:13px;
 }
 
-.direct-report-btn{
-    background:#c62828;
-    color:white;
-    border:none;
-    border-radius:9px;
-    padding:12px 22px;
-    font-weight:bold;
-    cursor:pointer;
-    white-space:nowrap;
+html[dir="ltr"] .quick-guide{
+    border-right:none;
+    border-left:5px solid #f9a825;
 }
 
 
@@ -546,13 +631,12 @@ footer p{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .direct-notification{
-        flex-direction:column;
-        align-items:stretch;
-    }
+}
 
-    .direct-report-btn{
-        width:100%;
+@media(max-width:800px){
+
+    .choice-grid{
+        grid-template-columns:1fr;
     }
 
 }
@@ -587,10 +671,6 @@ footer p{
 
     .search-box button{
         padding:13px;
-    }
-
-    .direct-notification-info{
-        align-items:flex-start;
     }
 
     footer{
@@ -711,24 +791,26 @@ Public Health
 <section class="welcome-section">
 
 <h2
-    data-ar="دعم الفرز المبكر للأمراض المعدية في الطوارئ"
-    data-en="Early Infectious Disease Screening Support in Emergency Care">
+    data-ar="دعم الفرز المبكر والإبلاغ عن الأمراض المعدية"
+    data-en="Infectious Disease Screening and Notification Support">
 
-دعم الفرز المبكر للأمراض المعدية في الطوارئ
+دعم الفرز المبكر والإبلاغ عن الأمراض المعدية
 
 </h2>
 
 <h3>
-Emergency Infectious Disease Screening Support
+Infectious Disease Screening & Notification Support
 </h3>
 
 <p
-    data-ar="ابدأ بالفرز الذكي عند وجود أعراض أو اشتباه بمرض معدٍ. يساعد النظام على الوصول السريع إلى المرض المحتمل والإجراء والعزل ومسار البلاغ."
-    data-en="Start with smart screening when an infectious disease is suspected. The portal supports rapid access to possible diseases, precautions, isolation and notification pathways.">
+    data-ar="إذا كنت تعرف المرض أو نوع الحالة يمكنك الانتقال مباشرة إلى دليل الأمراض ومسار البلاغ. وإذا لم يكن المرض واضحًا، استخدم الفرز الذكي للمساعدة في تحديد المسار المحتمل."
+    data-en="If the disease or event type is known, you can proceed directly to the disease guide and notification pathway. If the disease is unclear, use smart screening to identify the most appropriate pathway.">
 
-ابدأ بالفرز الذكي عند وجود أعراض أو اشتباه بمرض معدٍ.
-يساعد النظام على الوصول السريع إلى المرض المحتمل
-والإجراء والعزل ومسار البلاغ.
+إذا كنت تعرف المرض أو نوع الحالة يمكنك الانتقال مباشرة
+إلى دليل الأمراض ومسار البلاغ.
+
+وإذا لم يكن المرض واضحًا، استخدم الفرز الذكي
+للمساعدة في تحديد المسار المحتمل.
 
 </p>
 
@@ -784,10 +866,10 @@ Emergency Infectious Disease Screening Support
 </h2>
 
 <p
-    data-ar="الفرز الذكي هو نقطة البداية عند الاشتباه بمرض معدٍ"
-    data-en="Smart screening is the starting point when an infectious disease is suspected">
+    data-ar="اختر المسار المناسب حسب معرفتك بالحالة"
+    data-en="Choose the appropriate pathway based on what you know about the case">
 
-الفرز الذكي هو نقطة البداية عند الاشتباه بمرض معدٍ
+اختر المسار المناسب حسب معرفتك بالحالة
 
 </p>
 
@@ -795,22 +877,122 @@ Emergency Infectious Disease Screening Support
 
 
 
-<!-- Smart Screening -->
+<!-- =====================================
+     Main Choice
+===================================== -->
 
-<section class="smart-primary-card">
+<section class="main-choice-section">
 
-<div
-    class="start-here-badge"
-    data-ar="ابدأ هنا"
-    data-en="START HERE">
 
-ابدأ هنا
+<div class="choice-question">
+
+<h2
+    data-ar="هل تعرف المرض أو نوع البلاغ؟"
+    data-en="Do you know the disease or notification type?">
+
+هل تعرف المرض أو نوع البلاغ؟
+
+</h2>
+
+<p
+    data-ar="إذا كان المرض أو الحدث معروفًا اختر البلاغ المباشر، وإذا كانت الأعراض موجودة ولكن المرض غير واضح استخدم الفرز الذكي."
+    data-en="If the disease or event is known, choose direct notification. If symptoms are present but the disease is unclear, use smart screening.">
+
+إذا كان المرض أو الحدث معروفًا اختر البلاغ المباشر،
+وإذا كانت الأعراض موجودة ولكن المرض غير واضح استخدم الفرز الذكي.
+
+</p>
 
 </div>
+
+
+<div class="choice-grid">
+
+
+<!-- =====================================
+     Direct Notification
+===================================== -->
+
+<div class="direct-choice-card">
+
+
+<div
+    class="direct-badge"
+    data-ar="أعرف الحالة"
+    data-en="KNOWN CASE">
+
+أعرف الحالة
+
+</div>
+
+
+<div class="direct-choice-icon">
+📋
+</div>
+
+
+<h2
+    data-ar="بدء بلاغ مباشر"
+    data-en="Direct Notification">
+
+بدء بلاغ مباشر
+
+</h2>
+
+
+<h3>
+Direct Notification
+</h3>
+
+
+<p
+    data-ar="استخدم هذا المسار عندما يكون المرض أو نوع البلاغ معروفًا. سيتم نقلك إلى دليل الأمراض والتصنيفات لاختيار المرض أو البلاغ المناسب مباشرة."
+    data-en="Use this pathway when the disease or notification type is already known. You will be taken directly to the disease categories and notification options.">
+
+استخدم هذا المسار عندما يكون المرض أو نوع البلاغ معروفًا.
+
+سيتم نقلك إلى دليل الأمراض والتصنيفات لاختيار المرض
+أو البلاغ المناسب مباشرة.
+
+</p>
+
+
+<button
+    class="direct-choice-btn"
+    onclick="window.location.href='infectious-diseases.html?mode=direct'"
+    data-ar="📋 بدء بلاغ مباشر"
+    data-en="📋 Start Direct Notification">
+
+📋 بدء بلاغ مباشر
+
+</button>
+
+
+</div>
+
+
+
+<!-- =====================================
+     Smart Screening
+===================================== -->
+
+<div class="smart-primary-card">
+
+
+<div
+    class="smart-badge"
+    data-ar="لا أعرف المرض"
+    data-en="DISEASE UNKNOWN">
+
+لا أعرف المرض
+
+</div>
+
 
 <div class="smart-main-icon">
 🧠
 </div>
+
 
 <h2
     data-ar="الفرز الذكي للأمراض المعدية"
@@ -820,76 +1002,66 @@ Emergency Infectious Disease Screening Support
 
 </h2>
 
+
 <h3>
 Smart Infectious Disease Screening
 </h3>
 
-<p
-    data-ar="أدخل الأعراض والعوامل الوبائية للمريض لمساعدة الممارس الصحي في تحديد الأمراض المعدية المحتملة، ثم الوصول إلى إجراءات العزل والعينات والبلاغ عند الحاجة."
-    data-en="Enter patient symptoms and epidemiological factors to support identification of possible infectious diseases, then access isolation, specimen and notification guidance when required.">
 
-أدخل الأعراض والعوامل الوبائية للمريض لمساعدة الممارس الصحي
-في تحديد الأمراض المعدية المحتملة، ثم الوصول إلى إجراءات العزل
-والعينات والبلاغ عند الحاجة.
+<p
+    data-ar="استخدم هذا المسار عندما تكون هناك أعراض أو عوامل وبائية ولكن المرض غير واضح. يساعد النظام في تحديد الأمراض المحتملة والوصول إلى الإجراء والعزل والبلاغ المناسب."
+    data-en="Use this pathway when symptoms or epidemiological factors are present but the disease is unclear. The system helps identify possible diseases and guides you to the appropriate precautions and notification pathway.">
+
+استخدم هذا المسار عندما تكون هناك أعراض أو عوامل وبائية
+ولكن المرض غير واضح.
+
+يساعد النظام في تحديد الأمراض المحتملة والوصول
+إلى الإجراء والعزل والبلاغ المناسب.
 
 </p>
+
 
 <button
     class="start-smart-btn"
-    onclick="window.location.href='smart-screening.html'"
-    data-ar="🧠 بدء الفرز الذكي"
-    data-en="🧠 Start Smart Screening">
+    onclick="window.location.href='rapid-screening.html'"
+    data-ar="🩺 بدء الفرز السريع"
+    data-en="🩺 Start Rapid Screening">
 
-🧠 بدء الفرز الذكي
-
-</button>
-
-</section>
-
-
-
-<!-- Direct notification -->
-
-<section class="direct-notification">
-
-<div class="direct-notification-info">
-
-<div class="direct-icon">
-🚨
-</div>
-
-<div>
-
-<h3
-    data-ar="هل تعرف المرض أو الحالة المشتبهة بالفعل؟"
-    data-en="Do you already know the suspected disease?">
-
-هل تعرف المرض أو الحالة المشتبهة بالفعل؟
-
-</h3>
-
-<p
-    data-ar="يمكنك تجاوز الفرز الذكي والانتقال مباشرة إلى دليل المرض وبدء البلاغ."
-    data-en="You can bypass smart screening, select the disease and start the notification directly.">
-
-يمكنك تجاوز الفرز الذكي والانتقال مباشرة إلى دليل المرض وبدء البلاغ.
-
-</p>
-
-</div>
-
-</div>
-
-
-<button
-    class="direct-report-btn"
-    onclick="window.location.href='infectious-diseases.html'"
-    data-ar="🚨 بدء بلاغ مباشر"
-    data-en="🚨 Start Direct Notification">
-
-🚨 بدء بلاغ مباشر
+🩺 بدء الفرز السريع
 
 </button>
+
+
+</div>
+
+
+</div>
+
+
+<div class="quick-guide">
+
+<strong
+    data-ar="💡 اختيار المسار:"
+    data-en="💡 Choose the pathway:">
+
+💡 اختيار المسار:
+
+</strong>
+
+<span
+    data-ar="تعرف المرض أو نوع البلاغ = ابدأ بلاغًا مباشرًا. لا تعرف المرض أو توجد أعراض غير محددة = استخدم الفرز الذكي."
+    data-en="Known disease or notification type = Direct Notification. Unknown disease or non-specific symptoms = Smart Screening.">
+
+تعرف المرض أو نوع البلاغ =
+<strong>ابدأ بلاغًا مباشرًا</strong>.
+
+لا تعرف المرض أو توجد أعراض غير محددة =
+<strong>استخدم الفرز الذكي</strong>.
+
+</span>
+
+</div>
+
 
 </section>
 
@@ -932,8 +1104,6 @@ Smart Infectious Disease Screening
 <section class="support-grid">
 
 
-<!-- Diseases -->
-
 <div class="support-card">
 
 <div class="support-icon">
@@ -972,8 +1142,6 @@ Infectious Diseases
 </div>
 
 
-
-<!-- Isolation -->
 
 <div class="support-card">
 
@@ -1014,8 +1182,6 @@ Isolation & Precautions
 
 
 
-<!-- Specimens -->
-
 <div class="support-card">
 
 <div class="support-icon">
@@ -1055,8 +1221,6 @@ Specimen Guide
 
 
 
-<!-- Policies -->
-
 <div class="support-card">
 
 <div class="support-icon">
@@ -1095,8 +1259,6 @@ Policies & Procedures
 </div>
 
 
-
-<!-- Forms -->
 
 <div class="support-card">
 
@@ -1165,18 +1327,18 @@ Official Forms
 </div>
 
 <h3
-    data-ar="الفرز الذكي"
-    data-en="Smart Screening">
+    data-ar="تحديد المسار"
+    data-en="Choose Pathway">
 
-الفرز الذكي
+تحديد المسار
 
 </h3>
 
 <p
-    data-ar="إدخال الأعراض والتاريخ الوبائي."
-    data-en="Enter symptoms and epidemiological history.">
+    data-ar="حدد هل المرض معروف أم يحتاج إلى فرز ذكي."
+    data-en="Determine whether the disease is known or requires smart screening.">
 
-إدخال الأعراض والتاريخ الوبائي.
+حدد هل المرض معروف أم يحتاج إلى فرز ذكي.
 
 </p>
 
@@ -1198,10 +1360,10 @@ Official Forms
 </h3>
 
 <p
-    data-ar="عرض الأمراض المحتملة والتنبيهات ذات الأولوية."
-    data-en="Display possible diseases and priority alerts.">
+    data-ar="مراجعة المرض أو استخدام الفرز للوصول إلى الأمراض المحتملة."
+    data-en="Review the known disease or use screening to identify possible diseases.">
 
-عرض الأمراض المحتملة والتنبيهات ذات الأولوية.
+مراجعة المرض أو استخدام الفرز للوصول إلى الأمراض المحتملة.
 
 </p>
 
@@ -1248,10 +1410,10 @@ Official Forms
 </h3>
 
 <p
-    data-ar="بدء البلاغ وإرساله لمسار متابعة الصحة العامة عند الحاجة."
-    data-en="Start the notification and send it to Public Health follow-up when required.">
+    data-ar="اختيار نموذج البلاغ المناسب وإكمال الإجراء."
+    data-en="Select the appropriate notification form and complete the process.">
 
-بدء البلاغ وإرساله لمسار متابعة الصحة العامة عند الحاجة.
+اختيار نموذج البلاغ المناسب وإكمال الإجراء.
 
 </p>
 
@@ -1451,16 +1613,46 @@ const portalSearchItems = [
 
 {
     titleAr:
-        "الإبلاغ الإلكتروني",
+        "بدء بلاغ مباشر",
 
     titleEn:
-        "Electronic Notification",
+        "Direct Notification",
 
     keywords:
-        "بلاغ تبليغ حالة مشتبهة report notification suspected",
+        "بلاغ مباشر مرض معروف تبليغ notification direct disease known",
 
     url:
-        "infectious-diseases.html"
+        "infectious-diseases.html?mode=direct"
+},
+
+
+{
+    titleAr:
+        "بلاغ حالة مرض معدٍ",
+
+    titleEn:
+        "Individual Infectious Disease Notification",
+
+    keywords:
+        "بلاغ حالة فردية مريض واحد مرض معدي تبليغ infectious disease individual case notification",
+
+    url:
+        "infectious-notification.html"
+},
+
+
+{
+    titleAr:
+        "بلاغ فاشية مرض منقول بالغذاء",
+
+    titleEn:
+        "Foodborne Disease Outbreak Notification",
+
+    keywords:
+        "فاشية غذائية تسمم غذائي طعام وجبة عدة حالات مصدر مشترك foodborne food outbreak poisoning notification",
+
+    url:
+        "foodborne-outbreak.html"
 },
 
 
