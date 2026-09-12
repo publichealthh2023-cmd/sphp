@@ -46,6 +46,7 @@ body{
     display:flex;
     gap:10px;
     flex-wrap:wrap;
+    align-items:center;
 }
 
 .portal-btn{
@@ -55,6 +56,7 @@ body{
     cursor:pointer;
     font-weight:bold;
     text-decoration:none;
+    display:inline-block;
 }
 
 .print-btn{
@@ -70,6 +72,11 @@ body{
 
 .save-btn{
     background:#198754;
+    color:#fff;
+}
+
+.refresh-btn{
+    background:#0759a6;
     color:#fff;
 }
 
@@ -225,13 +232,6 @@ body{
    TEXT
 ================================================== */
 
-.en-label{
-    display:block;
-    direction:ltr;
-    font-size:7px;
-    margin-top:2px;
-}
-
 .value-box{
     min-height:20px;
     width:100%;
@@ -270,60 +270,7 @@ body{
 
 
 /* ==================================================
-   FOLLOW UP
-================================================== */
-
-.followup-card{
-    width:210mm;
-    max-width:calc(100% - 20px);
-    margin:0 auto 40px;
-    background:white;
-    border:1px solid #dfe8f2;
-    border-radius:14px;
-    padding:20px;
-}
-
-.followup-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-}
-
-.followup-group{
-    display:flex;
-    flex-direction:column;
-    gap:6px;
-}
-
-.followup-group.full{
-    grid-column:1/-1;
-}
-
-.followup-group select,
-.followup-group textarea{
-    width:100%;
-    border:1px solid #ccd9e5;
-    border-radius:8px;
-    padding:11px;
-}
-
-.followup-group textarea{
-    min-height:100px;
-}
-
-.success{
-    display:none;
-    margin-top:12px;
-    background:#e8f6ec;
-    color:#277438;
-    border-right:5px solid #277438;
-    padding:12px;
-    border-radius:8px;
-}
-
-
-/* ==================================================
-   NORMAL
+   NORMAL NOTIFICATION
 ================================================== */
 
 .normal-card{
@@ -333,6 +280,12 @@ body{
     background:white;
     padding:25px;
     border-radius:15px;
+    box-shadow:0 4px 14px rgba(0,0,0,.06);
+}
+
+.normal-card h2{
+    margin-top:0;
+    color:#064c92;
 }
 
 .normal-grid{
@@ -351,11 +304,101 @@ body{
 .normal-label{
     color:#607387;
     font-size:12px;
+    margin-bottom:5px;
 }
 
 .normal-value{
     font-weight:bold;
     color:#294b6a;
+    overflow-wrap:anywhere;
+}
+
+
+/* ==================================================
+   FOLLOW UP
+================================================== */
+
+.followup-card{
+    width:1100px;
+    max-width:calc(100% - 30px);
+    margin:0 auto 40px;
+    background:white;
+    border:1px solid #dfe8f2;
+    border-radius:14px;
+    padding:20px;
+    box-shadow:0 4px 14px rgba(0,0,0,.05);
+}
+
+.followup-card h3{
+    margin-top:0;
+    color:#064c92;
+}
+
+.followup-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+}
+
+.followup-group{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.followup-group.full{
+    grid-column:1/-1;
+}
+
+.followup-group label{
+    font-weight:bold;
+    color:#294b6a;
+}
+
+.followup-group select,
+.followup-group input,
+.followup-group textarea{
+    width:100%;
+    border:1px solid #ccd9e5;
+    border-radius:8px;
+    padding:11px;
+    background:white;
+}
+
+.followup-group textarea{
+    min-height:110px;
+    resize:vertical;
+}
+
+.followup-meta{
+    margin-top:15px;
+    padding:12px;
+    background:#f8fbfd;
+    border:1px solid #e0e9f0;
+    border-radius:9px;
+    color:#607387;
+    font-size:13px;
+    line-height:1.8;
+}
+
+.success{
+    display:none;
+    margin-top:12px;
+    background:#e8f6ec;
+    color:#277438;
+    border-right:5px solid #277438;
+    padding:12px;
+    border-radius:8px;
+}
+
+.error-message{
+    display:none;
+    margin-top:12px;
+    background:#fff0f0;
+    color:#a12626;
+    border-right:5px solid #c62828;
+    padding:12px;
+    border-radius:8px;
 }
 
 
@@ -438,6 +481,15 @@ body{
 </button>
 
 
+<button
+    class="portal-btn refresh-btn"
+    onclick="loadNotification()">
+
+🔄 تحديث البيانات
+
+</button>
+
+
 <a
     class="portal-btn back-btn"
     href="public-health-inbox.html">
@@ -449,6 +501,10 @@ body{
 </div>
 
 
+
+<!-- ==================================================
+     FOODBORNE OFFICIAL FORM
+================================================== -->
 
 <main
     id="foodborneOfficialForm"
@@ -501,20 +557,13 @@ Must be submitted immediately upon event detection.
 
 
 
-<!-- ==================================================
-     NOTIFICATION
-================================================== -->
-
 <table class="form-table">
 
 <tr>
-
 <td colspan="12" class="section-bar">
 بيانات البلاغ / Notification data
 </td>
-
 </tr>
-
 
 <tr>
 
@@ -562,20 +611,13 @@ Must be submitted immediately upon event detection.
 
 
 
-<!-- ==================================================
-     FACILITY
-================================================== -->
-
 <table class="form-table">
 
 <tr>
-
 <td colspan="12" class="section-bar">
 بيانات المنشأة / Health facility data
 </td>
-
 </tr>
-
 
 <tr>
 
@@ -635,20 +677,13 @@ Must be submitted immediately upon event detection.
 
 
 
-<!-- ==================================================
-     EVENT
-================================================== -->
-
 <table class="form-table">
 
 <tr>
-
 <td colspan="12" class="section-bar">
 بيانات الحدث / Event Data
 </td>
-
 </tr>
-
 
 <tr>
 
@@ -708,20 +743,13 @@ Must be submitted immediately upon event detection.
 
 
 
-<!-- ==================================================
-     DISTRIBUTION
-================================================== -->
-
 <table class="form-table">
 
 <tr>
-
 <td colspan="12" class="section-bar">
 بيانات توزيع المصابين / Cases distribution
 </td>
-
 </tr>
-
 
 <tr>
 
@@ -734,7 +762,6 @@ Must be submitted immediately upon event detection.
 </td>
 
 </tr>
-
 
 <tr>
 
@@ -764,7 +791,6 @@ Must be submitted immediately upon event detection.
 
 </tr>
 
-
 <tr>
 
 <td colspan="2" class="blue-label">
@@ -783,20 +809,13 @@ Must be submitted immediately upon event detection.
 
 
 
-<!-- ==================================================
-     CLINICAL
-================================================== -->
-
 <table class="form-table">
 
 <tr>
-
 <td colspan="14" class="section-bar">
 الحالة السريرية / Clinical status
 </td>
-
 </tr>
-
 
 <tr>
 
@@ -830,7 +849,6 @@ Must be submitted immediately upon event detection.
 
 </tr>
 
-
 <tr>
 
 <td colspan="2" class="blue-label">
@@ -850,20 +868,13 @@ Must be submitted immediately upon event detection.
 
 
 
-<!-- ==================================================
-     DEMOGRAPHICS
-================================================== -->
-
 <table class="form-table">
 
 <tr>
-
 <td colspan="12" class="section-bar">
 خصائص المصابين / Case characteristics
 </td>
-
 </tr>
-
 
 <tr>
 
@@ -888,7 +899,6 @@ Must be submitted immediately upon event detection.
 
 </tr>
 
-
 <tr>
 
 <td colspan="2" class="blue-label">
@@ -911,7 +921,6 @@ Must be submitted immediately upon event detection.
 </td>
 
 </tr>
-
 
 <tr>
 
@@ -955,20 +964,13 @@ Must be submitted immediately upon event detection.
 
 
 
-<!-- ==================================================
-     FOOD
-================================================== -->
-
 <table class="form-table">
 
 <tr>
-
 <td colspan="12" class="section-bar">
 الأطعمة المشتبهة / Suspected Food
 </td>
-
 </tr>
-
 
 <tr>
 
@@ -990,7 +992,6 @@ Must be submitted immediately upon event detection.
 
 </tr>
 
-
 <tr>
 
 <td colspan="2" class="blue-label">
@@ -1010,7 +1011,6 @@ Must be submitted immediately upon event detection.
 </td>
 
 </tr>
-
 
 <tr>
 
@@ -1036,20 +1036,13 @@ Must be submitted immediately upon event detection.
 
 
 
-<!-- ==================================================
-     SOURCE
-================================================== -->
-
 <table class="form-table">
 
 <tr>
-
 <td colspan="12" class="section-bar">
 مصدر الطعام المشتبه / Suspected food source
 </td>
-
 </tr>
-
 
 <tr>
 
@@ -1070,7 +1063,6 @@ Must be submitted immediately upon event detection.
 </td>
 
 </tr>
-
 
 <tr>
 
@@ -1096,20 +1088,13 @@ Must be submitted immediately upon event detection.
 
 
 
-<!-- ==================================================
-     SYMPTOMS
-================================================== -->
-
 <table class="form-table">
 
 <tr>
-
 <td colspan="16" class="section-bar">
 الأعراض والعلامات السريرية / Signs and symptoms
 </td>
-
 </tr>
-
 
 <tr>
 
@@ -1117,36 +1102,15 @@ Must be submitted immediately upon event detection.
 الأعراض
 </td>
 
-<td colspan="2">
-غثيان
-</td>
-
-<td colspan="2">
-قيء
-</td>
-
-<td colspan="2">
-ألم بالبطن
-</td>
-
-<td colspan="2">
-إسهال
-</td>
-
-<td colspan="2">
-براز دموي
-</td>
-
-<td colspan="2">
-حمى
-</td>
-
-<td colspan="2">
-صداع
-</td>
+<td colspan="2">غثيان</td>
+<td colspan="2">قيء</td>
+<td colspan="2">ألم بالبطن</td>
+<td colspan="2">إسهال</td>
+<td colspan="2">براز دموي</td>
+<td colspan="2">حمى</td>
+<td colspan="2">صداع</td>
 
 </tr>
-
 
 <tr>
 
@@ -1163,7 +1127,6 @@ Must be submitted immediately upon event detection.
 <td colspan="2"><div id="vHeadache" class="value-box">0</div></td>
 
 </tr>
-
 
 <tr>
 
@@ -1184,7 +1147,6 @@ Must be submitted immediately upon event detection.
 </td>
 
 </tr>
-
 
 <tr>
 
@@ -1210,20 +1172,13 @@ Must be submitted immediately upon event detection.
 
 
 
-<!-- ==================================================
-     SAMPLES
-================================================== -->
-
 <table class="form-table">
 
 <tr>
-
 <td colspan="12" class="section-bar">
 عينات المصابين / Patient Samples
 </td>
-
 </tr>
-
 
 <tr>
 
@@ -1245,7 +1200,6 @@ Must be submitted immediately upon event detection.
 
 </tr>
 
-
 <tr>
 
 <td colspan="3" class="blue-label">
@@ -1265,7 +1219,6 @@ Must be submitted immediately upon event detection.
 </td>
 
 </tr>
-
 
 <tr>
 
@@ -1287,7 +1240,6 @@ Must be submitted immediately upon event detection.
 
 </tr>
 
-
 <tr>
 
 <td colspan="3" class="blue-label">
@@ -1304,20 +1256,13 @@ Must be submitted immediately upon event detection.
 
 
 
-<!-- ==================================================
-     ADDITIONAL
-================================================== -->
-
 <table class="form-table">
 
 <tr>
-
 <td colspan="12" class="section-bar">
 المعلومات والإجراءات الإضافية
 </td>
-
 </tr>
-
 
 <tr>
 
@@ -1339,7 +1284,6 @@ Must be submitted immediately upon event detection.
 
 </tr>
 
-
 <tr>
 
 <td colspan="2" class="blue-label">
@@ -1351,7 +1295,6 @@ Must be submitted immediately upon event detection.
 </td>
 
 </tr>
-
 
 <tr>
 
@@ -1368,10 +1311,6 @@ Must be submitted immediately upon event detection.
 </table>
 
 
-
-<!-- ==================================================
-     REPORTER
-================================================== -->
 
 <table class="form-table">
 
@@ -1394,7 +1333,6 @@ Must be submitted immediately upon event detection.
 </td>
 
 </tr>
-
 
 <tr>
 
@@ -1432,7 +1370,7 @@ Must be submitted immediately upon event detection.
 
 
 <!-- ==================================================
-     NORMAL
+     NORMAL NOTIFICATION
 ================================================== -->
 
 <section
@@ -1467,6 +1405,16 @@ Must be submitted immediately upon event detection.
 </div>
 
 <div class="normal-item">
+<div class="normal-label">رقم الملف</div>
+<div id="normalMrn" class="normal-value">—</div>
+</div>
+
+<div class="normal-item">
+<div class="normal-label">الجنس</div>
+<div id="normalGender" class="normal-value">—</div>
+</div>
+
+<div class="normal-item">
 <div class="normal-label">القسم</div>
 <div id="normalDepartment" class="normal-value">—</div>
 </div>
@@ -1474,6 +1422,26 @@ Must be submitted immediately upon event detection.
 <div class="normal-item">
 <div class="normal-label">المبلّغ</div>
 <div id="normalReporter" class="normal-value">—</div>
+</div>
+
+<div class="normal-item">
+<div class="normal-label">الأولوية</div>
+<div id="normalPriority" class="normal-value">—</div>
+</div>
+
+<div class="normal-item">
+<div class="normal-label">التصنيف</div>
+<div id="normalClassification" class="normal-value">—</div>
+</div>
+
+<div class="normal-item">
+<div class="normal-label">Rapid Score</div>
+<div id="normalRapidScore" class="normal-value">—</div>
+</div>
+
+<div class="normal-item">
+<div class="normal-label">مصدر البلاغ</div>
+<div id="normalSource" class="normal-value">—</div>
 </div>
 
 </div>
@@ -1493,6 +1461,7 @@ Must be submitted immediately upon event detection.
 <h3>
 متابعة الصحة العامة
 </h3>
+
 
 <div class="followup-grid">
 
@@ -1525,7 +1494,7 @@ Must be submitted immediately upon event detection.
 <div class="followup-group">
 
 <label>
-حالة حصن بلس
+حالة حصن بلس HESN+
 </label>
 
 <select id="hesnStatusSelect">
@@ -1539,10 +1508,23 @@ Must be submitted immediately upon event detection.
 </option>
 
 <option value="notRequired">
-لا ينطبق
+لا يتطلب
 </option>
 
 </select>
+
+</div>
+
+
+<div class="followup-group">
+
+<label>
+رقم البلاغ في HESN+
+</label>
+
+<input
+    id="hesnNumberInput"
+    placeholder="أدخل الرقم عند توفره">
 
 </div>
 
@@ -1572,16 +1554,67 @@ Must be submitted immediately upon event detection.
 </div>
 
 
+<div class="followup-group">
+
+<label>
+الموظف المتابع
+</label>
+
+<input
+    id="followupBy"
+    placeholder="اسم موظف الصحة العامة">
+
+</div>
+
+
+<div class="followup-group">
+
+<label>
+تاريخ المتابعة القادمة
+</label>
+
+<input
+    id="nextFollowupDate"
+    type="date">
+
+</div>
+
+
 <div class="followup-group full">
 
 <label>
 ملاحظات الصحة العامة
 </label>
 
-<textarea id="publicHealthNotes"></textarea>
+<textarea
+    id="publicHealthNotes"
+    placeholder="التواصل، الإجراءات، نتائج التقصي، التوصيات..."></textarea>
 
 </div>
 
+
+</div>
+
+
+<div class="followup-meta">
+
+<strong>
+آخر تحديث:
+</strong>
+
+<span id="lastUpdatedView">
+—
+</span>
+
+<br>
+
+<strong>
+أنشئ البلاغ:
+</strong>
+
+<span id="createdAtView">
+—
+</span>
 
 </div>
 
@@ -1590,6 +1623,7 @@ Must be submitted immediately upon event detection.
 
 
 <button
+    id="saveFollowupButton"
     class="portal-btn save-btn"
     onclick="saveFollowup()">
 
@@ -1602,7 +1636,16 @@ Must be submitted immediately upon event detection.
     id="saveSuccess"
     class="success">
 
-✅ تم حفظ تحديثات البلاغ.
+✅ تم حفظ تحديثات البلاغ وانعكست على صندوق البلاغات.
+
+</div>
+
+
+<div
+    id="saveError"
+    class="error-message">
+
+❌ تعذر حفظ التحديث.
 
 </div>
 
@@ -1622,7 +1665,7 @@ let currentIndex = -1;
 
 
 /* ==================================================
-   HELPERS
+   BASIC HELPERS
 ================================================== */
 
 function setText(
@@ -1643,21 +1686,17 @@ function setText(
     }
 
 
-    if(
-        value === undefined ||
-        value === null ||
-        value === ""
-    ){
+    element.textContent =
 
-        element.textContent =
-            "—";
+        (
+            value === undefined ||
+            value === null ||
+            value === ""
+        )
 
-    }else{
+        ? "—"
 
-        element.textContent =
-            value;
-
-    }
+        : value;
 
 }
 
@@ -1687,10 +1726,13 @@ function setNumber(
 
 
     element.textContent =
+
         Number.isFinite(
             number
         )
+
         ? number
+
         : 0;
 
 }
@@ -1729,35 +1771,50 @@ function splitDateTime(
     if(!dateTime){
 
         return {
-
             date:"—",
             time:"—"
+        };
+
+    }
+
+
+    const text =
+        String(
+            dateTime
+        );
+
+
+    if(
+        text.includes("T")
+    ){
+
+        const parts =
+            text.split("T");
+
+
+        return {
+
+            date:
+                parts[0] ||
+                "—",
+
+            time:
+                parts[1]
+                ? parts[1].slice(0,5)
+                : "—"
 
         };
 
     }
 
 
-    const parts =
-        String(
-            dateTime
-        )
-        .split("T");
-
-
     return {
 
         date:
-            parts[0] ||
-            "—",
+            text,
 
         time:
-            parts[1]
-            ? parts[1].slice(
-                0,
-                5
-            )
-            : "—"
+            "—"
 
     };
 
@@ -1789,18 +1846,44 @@ function fallbackNumber(
 }
 
 
+function formatDateTime(
+    value
+){
+
+    if(!value){
+
+        return "—";
+
+    }
+
+
+    try{
+
+        return new Date(
+            value
+        )
+        .toLocaleString(
+            "ar-SA"
+        );
+
+    }
+    catch(error){
+
+        return value;
+
+    }
+
+}
+
+
 /* ==================================================
-   SYMPTOMS
+   SYMPTOM COUNT
 ================================================== */
 
 function getSymptomCount(
     outbreak,
     key
 ){
-
-    /*
-       أولاً نحاول من symptomCounts
-    */
 
     if(
         outbreak.symptomCounts &&
@@ -1817,10 +1900,6 @@ function getSymptomCount(
 
     }
 
-
-    /*
-       ثم من مصفوفة symptoms
-    */
 
     if(
         Array.isArray(
@@ -1844,19 +1923,14 @@ function getSymptomCount(
 
         if(found){
 
-            if(
-                found.selected
-            ){
+            if(found.selected){
 
                 return Math.max(
-
                     1,
-
                     Number(
                         found.count ||
                         0
                     )
-
                 );
 
             }
@@ -1875,14 +1949,57 @@ function getSymptomCount(
 
 
 /* ==================================================
-   LOAD
+   LOAD STORAGE / API
 ================================================== */
 
-function load(){
+async function getNotificationList(){
+
+    /*
+      عند توفر Backend لاحقًا
+      api.js يستطيع تولي القراءة.
+    */
+
+    if(
+        typeof getPublicHealthNotifications ===
+        "function"
+    ){
+
+        try{
+
+            const data =
+                await getPublicHealthNotifications();
+
+
+            if(
+                Array.isArray(
+                    data
+                )
+            ){
+
+                return data;
+
+            }
+
+        }
+        catch(error){
+
+            console.error(
+                "API load failed:",
+                error
+            );
+
+        }
+
+    }
+
+
+    /*
+      fallback الحالي
+    */
 
     try{
 
-        notifications =
+        const data =
             JSON.parse(
 
                 localStorage.getItem(
@@ -1896,24 +2013,30 @@ function load(){
             );
 
 
-        if(
-            !Array.isArray(
-                notifications
-            )
-        ){
-
-            notifications =
-                [];
-
-        }
+        return Array.isArray(
+            data
+        )
+        ? data
+        : [];
 
     }
     catch(error){
 
-        notifications =
-            [];
+        return [];
 
     }
+
+}
+
+
+/* ==================================================
+   LOAD CURRENT NOTIFICATION
+================================================== */
+
+async function loadNotification(){
+
+    notifications =
+        await getNotificationList();
 
 
     const params =
@@ -1933,8 +2056,12 @@ function load(){
             function(item){
 
                 return (
-                    item.id ===
-                    id
+                    String(
+                        item.id
+                    ) ===
+                    String(
+                        id
+                    )
                 );
 
             }
@@ -1951,11 +2078,15 @@ function load(){
                 البلاغ غير موجود
             </h2>
 
+            <p>
+                ربما تم حذف البلاغ أو أن البيانات موجودة على جهاز آخر.
+            </p>
+
             <a
                 class="portal-btn back-btn"
                 href="public-health-inbox.html">
 
-                العودة
+                العودة لصندوق البلاغات
 
             </a>
 
@@ -1972,6 +2103,18 @@ function load(){
         notifications[
             currentIndex
         ];
+
+
+    document.getElementById(
+        "foodborneOfficialForm"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "normalNotification"
+    ).style.display =
+        "none";
 
 
     if(
@@ -2009,6 +2152,18 @@ function load(){
     }
 
 
+    fillFollowup();
+
+
+}
+
+
+/* ==================================================
+   FOLLOW UP VALUES
+================================================== */
+
+function fillFollowup(){
+
     document.getElementById(
         "statusSelect"
     ).value =
@@ -2024,6 +2179,17 @@ function load(){
 
 
     document.getElementById(
+        "hesnNumberInput"
+    ).value =
+        currentNotification.hesnNumber ||
+        (
+            currentNotification.outbreakData
+            ? currentNotification.outbreakData.hesnNumber || ""
+            : ""
+        );
+
+
+    document.getElementById(
         "responseStatusSelect"
     ).value =
         currentNotification.responseStatus ||
@@ -2036,11 +2202,41 @@ function load(){
         currentNotification.publicHealthNotes ||
         "";
 
+
+    document.getElementById(
+        "followupBy"
+    ).value =
+        currentNotification.followupBy ||
+        "";
+
+
+    document.getElementById(
+        "nextFollowupDate"
+    ).value =
+        currentNotification.nextFollowupDate ||
+        "";
+
+
+    setText(
+        "lastUpdatedView",
+        formatDateTime(
+            currentNotification.lastUpdatedAt
+        )
+    );
+
+
+    setText(
+        "createdAtView",
+        formatDateTime(
+            currentNotification.createdAt
+        )
+    );
+
 }
 
 
 /* ==================================================
-   RENDER FOODBORNE
+   FOODBORNE
 ================================================== */
 
 function renderFoodborne(
@@ -2102,13 +2298,10 @@ function renderFoodborne(
         {};
 
 
-    /* ==================================================
-       NOTIFICATION
-    ================================================== */
-
     setText(
         "viewNotificationId",
-        outbreak.id
+        outbreak.id ||
+        currentNotification.id
     );
 
 
@@ -2132,14 +2325,9 @@ function renderFoodborne(
 
     setText(
         "viewUpdateNumber",
-        outbreak.updateNumber ||
-        "—"
+        outbreak.updateNumber
     );
 
-
-    /* ==================================================
-       FACILITY
-    ================================================== */
 
     setText(
         "viewFacilityName",
@@ -2212,10 +2400,6 @@ function renderFoodborne(
             "خاص / Private"
         );
 
-
-    /* ==================================================
-       EVENT
-    ================================================== */
 
     const eventLabels = {
 
@@ -2290,10 +2474,6 @@ function renderFoodborne(
     );
 
 
-    /* ==================================================
-       DISTRIBUTION
-    ================================================== */
-
     setNumber(
         "viewCurrentTotalCases",
         outbreak.totalCases
@@ -2329,10 +2509,6 @@ function renderFoodborne(
         distribution.icu
     );
 
-
-    /* ==================================================
-       CLINICAL
-    ================================================== */
 
     setNumber(
         "viewRecovered",
@@ -2370,181 +2546,113 @@ function renderFoodborne(
     );
 
 
-    /* ==================================================
-       DEMOGRAPHICS - WITH FALLBACK
-    ================================================== */
-
     setNumber(
         "viewSaudi",
-
         fallbackNumber(
-
             nationality.saudi,
-
             outbreak.nationalitySaudi
-
         )
-
     );
 
 
     setNumber(
         "viewNonSaudi",
-
         fallbackNumber(
-
             nationality.nonSaudi,
-
             outbreak.nationalityNonSaudi
-
         )
-
     );
 
 
     setNumber(
         "viewNationalityUnknown",
-
         fallbackNumber(
-
             nationality.unknown,
-
             outbreak.nationalityUnknown
-
         )
-
     );
 
 
     setNumber(
         "viewMale",
-
         fallbackNumber(
-
             gender.male,
-
             outbreak.genderMale
-
         )
-
     );
 
 
     setNumber(
         "viewFemale",
-
         fallbackNumber(
-
             gender.female,
-
             outbreak.genderFemale
-
         )
-
     );
 
 
     setNumber(
         "viewGenderUnknown",
-
         fallbackNumber(
-
             gender.unknown,
-
             outbreak.genderUnknown
-
         )
-
     );
 
 
     setNumber(
         "viewAgeUnder5",
-
         fallbackNumber(
-
             age.under5,
-
             outbreak.ageUnder5
-
         )
-
     );
 
 
     setNumber(
         "viewAge5to14",
-
         fallbackNumber(
-
             age.age5to14,
-
             outbreak.age5to14
-
         )
-
     );
 
 
     setNumber(
         "viewAge15to24",
-
         fallbackNumber(
-
             age.age15to24,
-
             outbreak.age15to24
-
         )
-
     );
 
 
     setNumber(
         "viewAge25to44",
-
         fallbackNumber(
-
             age.age25to44,
-
             outbreak.age25to44
-
         )
-
     );
 
 
     setNumber(
         "viewAge45to64",
-
         fallbackNumber(
-
             age.age45to64,
-
             outbreak.age45to64
-
         )
-
     );
 
 
     setNumber(
         "viewAge65plus",
-
         fallbackNumber(
-
             age.age65plus,
-
             outbreak.age65plus
-
         )
-
     );
 
-
-    /* ==================================================
-       FOOD
-    ================================================== */
 
     setText(
         "viewFoodPreparation",
@@ -2654,10 +2762,6 @@ function renderFoodborne(
         );
 
 
-    /* ==================================================
-       SYMPTOMS
-    ================================================== */
-
     setNumber(
         "vNausea",
         getSymptomCount(
@@ -2751,10 +2855,6 @@ function renderFoodborne(
     );
 
 
-    /* ==================================================
-       SAMPLES
-    ================================================== */
-
     document.getElementById(
         "viewSamplesCollected"
     ).innerHTML =
@@ -2844,18 +2944,16 @@ function renderFoodborne(
     );
 
 
-    /* ==================================================
-       ADDITIONAL
-    ================================================== */
-
     setText(
         "viewHesnStatus",
+        currentNotification.hesnStatus ||
         outbreak.hesnStatus
     );
 
 
     setText(
         "viewHesnNumber",
+        currentNotification.hesnNumber ||
         outbreak.hesnNumber
     );
 
@@ -2871,10 +2969,6 @@ function renderFoodborne(
         outbreak.additionalInformation
     );
 
-
-    /* ==================================================
-       REPORTER
-    ================================================== */
 
     setText(
         "viewReporterName",
@@ -2915,12 +3009,32 @@ function renderFoodborne(
 
 
 /* ==================================================
-   NORMAL
+   NORMAL NOTIFICATION
 ================================================== */
 
 function renderNormal(
     notification
 ){
+
+    const genderLabels = {
+        male:"ذكر",
+        female:"أنثى"
+    };
+
+
+    const classLabels = {
+        suspected:"مشتبهة",
+        probable:"محتملة",
+        confirmed:"مؤكدة"
+    };
+
+
+    const sourceLabels = {
+        smartScreening:"الفرز الذكي",
+        manual:"إدخال مباشر",
+        foodPoisoningIndividual:"تسمم غذائي فردي"
+    };
+
 
     setText(
         "normalId",
@@ -2937,13 +3051,29 @@ function renderNormal(
     setText(
         "normalDate",
         notification.date ||
-        notification.reportDateTime
+        notification.reportDateTime ||
+        notification.createdAt
     );
 
 
     setText(
         "normalPatient",
         notification.patientName
+    );
+
+
+    setText(
+        "normalMrn",
+        notification.mrn
+    );
+
+
+    setText(
+        "normalGender",
+        genderLabels[
+            notification.gender
+        ] ||
+        notification.gender
     );
 
 
@@ -2958,14 +3088,47 @@ function renderNormal(
         notification.reporterName
     );
 
+
+    setText(
+        "normalPriority",
+        notification.priority ===
+        "urgent"
+        ? "عاجل"
+        : "عادي"
+    );
+
+
+    setText(
+        "normalClassification",
+        classLabels[
+            notification.classification
+        ] ||
+        notification.classification
+    );
+
+
+    setText(
+        "normalRapidScore",
+        notification.rapidScore
+    );
+
+
+    setText(
+        "normalSource",
+        sourceLabels[
+            notification.source
+        ] ||
+        notification.source
+    );
+
 }
 
 
 /* ==================================================
-   FOLLOWUP
+   SAVE FOLLOWUP
 ================================================== */
 
-function saveFollowup(){
+async function saveFollowup(){
 
     if(
         !currentNotification ||
@@ -2977,50 +3140,10 @@ function saveFollowup(){
     }
 
 
-    currentNotification.status =
+    const button =
         document.getElementById(
-            "statusSelect"
-        ).value;
-
-
-    currentNotification.hesnStatus =
-        document.getElementById(
-            "hesnStatusSelect"
-        ).value;
-
-
-    currentNotification.responseStatus =
-        document.getElementById(
-            "responseStatusSelect"
-        ).value;
-
-
-    currentNotification.publicHealthNotes =
-        document.getElementById(
-            "publicHealthNotes"
-        ).value.trim();
-
-
-    currentNotification.lastUpdatedAt =
-        new Date()
-        .toISOString();
-
-
-    notifications[
-        currentIndex
-    ] =
-        currentNotification;
-
-
-    localStorage.setItem(
-
-        "publicHealthNotifications",
-
-        JSON.stringify(
-            notifications
-        )
-
-    );
+            "saveFollowupButton"
+        );
 
 
     const success =
@@ -3029,30 +3152,255 @@ function saveFollowup(){
         );
 
 
+    const errorBox =
+        document.getElementById(
+            "saveError"
+        );
+
+
     success.style.display =
-        "block";
+        "none";
 
 
-    setTimeout(
-        function(){
+    errorBox.style.display =
+        "none";
 
-            success.style.display =
-                "none";
 
-        },
-        2500
-    );
+    button.disabled =
+        true;
+
+
+    button.textContent =
+        "⏳ جاري الحفظ...";
+
+
+    try{
+
+        currentNotification.status =
+            document.getElementById(
+                "statusSelect"
+            ).value;
+
+
+        currentNotification.hesnStatus =
+            document.getElementById(
+                "hesnStatusSelect"
+            ).value;
+
+
+        currentNotification.hesnNumber =
+            document.getElementById(
+                "hesnNumberInput"
+            ).value.trim();
+
+
+        currentNotification.responseStatus =
+            document.getElementById(
+                "responseStatusSelect"
+            ).value;
+
+
+        currentNotification.publicHealthNotes =
+            document.getElementById(
+                "publicHealthNotes"
+            ).value.trim();
+
+
+        currentNotification.followupBy =
+            document.getElementById(
+                "followupBy"
+            ).value.trim();
+
+
+        currentNotification.nextFollowupDate =
+            document.getElementById(
+                "nextFollowupDate"
+            ).value;
+
+
+        currentNotification.lastUpdatedAt =
+            new Date()
+            .toISOString();
+
+
+        /*
+          تحديث نسخة الفاشية أيضًا
+        */
+
+        if(
+            currentNotification.outbreakData
+        ){
+
+            currentNotification
+            .outbreakData
+            .hesnStatus =
+                currentNotification
+                .hesnStatus;
+
+
+            currentNotification
+            .outbreakData
+            .hesnNumber =
+                currentNotification
+                .hesnNumber;
+
+        }
+
+
+        notifications[
+            currentIndex
+        ] =
+            currentNotification;
+
+
+        /*
+          الحفظ الحالي
+        */
+
+        localStorage.setItem(
+
+            "publicHealthNotifications",
+
+            JSON.stringify(
+                notifications
+            )
+
+        );
+
+
+        /*
+          استعداد للـ Backend المحلي.
+          إذا كان api.js يدعم update نستخدمه.
+        */
+
+        if(
+            typeof updatePublicHealthNotification ===
+            "function"
+        ){
+
+            await updatePublicHealthNotification(
+                currentNotification
+            );
+
+        }
+        else if(
+            typeof savePublicHealthNotification ===
+            "function"
+        ){
+
+            /*
+              إذا savePublicHealthNotification
+              يعمل Upsert حسب ID
+            */
+
+            try{
+
+                await savePublicHealthNotification(
+                    currentNotification
+                );
+
+            }
+            catch(apiError){
+
+                console.warn(
+                    "Remote save not available:",
+                    apiError
+                );
+
+            }
+
+        }
+
+
+        setText(
+            "lastUpdatedView",
+            formatDateTime(
+                currentNotification
+                .lastUpdatedAt
+            )
+        );
+
+
+        if(
+            currentNotification.notificationType ===
+            "foodborneOutbreak"
+
+            &&
+
+            currentNotification.outbreakData
+        ){
+
+            setText(
+                "viewHesnStatus",
+                currentNotification
+                .hesnStatus
+            );
+
+
+            setText(
+                "viewHesnNumber",
+                currentNotification
+                .hesnNumber
+            );
+
+        }
+
+
+        success.style.display =
+            "block";
+
+
+        setTimeout(
+            function(){
+
+                success.style.display =
+                    "none";
+
+            },
+            2500
+        );
+
+    }
+    catch(error){
+
+        console.error(
+            "Followup save error:",
+            error
+        );
+
+
+        errorBox.style.display =
+            "block";
+
+    }
+    finally{
+
+        button.disabled =
+            false;
+
+
+        button.textContent =
+            "💾 حفظ تحديثات المتابعة";
+
+    }
 
 }
 
 
+/* ==================================================
+   START
+================================================== */
+
 document.addEventListener(
     "DOMContentLoaded",
-    load
+    loadNotification
 );
 
 
 </script>
+
+
+<script src="api.js"></script>
 
 
 </body>
