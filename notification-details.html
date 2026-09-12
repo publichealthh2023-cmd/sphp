@@ -18,10 +18,15 @@
     --green:#55c979;
     --blue:#9fc9e8;
     --orange:#efad75;
-    --red:#e21d24;
+    --red:#c62828;
     --red-soft:#ef5b55;
     --yellow:#ffe32f;
-    --dark-blue:#1668a9;
+    --dark-blue:#064c92;
+    --mid-blue:#0759a6;
+    --light-blue:#eef7ff;
+    --border:#ccd9e5;
+    --text:#294b6a;
+    --muted:#607387;
     --black:#161616;
 }
 
@@ -57,6 +62,7 @@ body{
     font-weight:bold;
     text-decoration:none;
     display:inline-block;
+    font-size:13px;
 }
 
 .print-btn{
@@ -82,7 +88,7 @@ body{
 
 
 /* ==================================================
-   OFFICIAL PAPER
+   COMMON OFFICIAL PAPER
 ================================================== */
 
 .official-paper{
@@ -94,12 +100,11 @@ body{
     background:#fff;
     box-shadow:0 4px 20px rgba(0,0,0,.18);
     direction:rtl;
-    overflow:hidden;
 }
 
 
 /* ==================================================
-   TOP
+   FOODBORNE OFFICIAL TOP
 ================================================== */
 
 .form-top{
@@ -160,7 +165,7 @@ body{
 
 
 /* ==================================================
-   TABLE
+   FOODBORNE TABLE
 ================================================== */
 
 .form-table{
@@ -229,7 +234,7 @@ body{
 
 
 /* ==================================================
-   TEXT
+   FOODBORNE TEXT
 ================================================== */
 
 .value-box{
@@ -270,47 +275,323 @@ body{
 
 
 /* ==================================================
-   NORMAL NOTIFICATION
+   INFECTIOUS OFFICIAL REPORT
+================================================== */
+
+.infectious-report{
+    display:none;
+}
+
+.infectious-header{
+    display:grid;
+    grid-template-columns:32mm 1fr 32mm;
+    align-items:center;
+    border-bottom:3px solid var(--dark-blue);
+    padding-bottom:4mm;
+    margin-bottom:4mm;
+    min-height:28mm;
+}
+
+.infectious-logo{
+    text-align:center;
+}
+
+.infectious-logo img{
+    width:auto !important;
+    height:auto !important;
+    max-width:29mm !important;
+    max-height:23mm !important;
+    object-fit:contain !important;
+}
+
+.infectious-title{
+    text-align:center;
+}
+
+.infectious-title h1{
+    margin:0;
+    color:var(--dark-blue);
+    font-size:19px;
+    line-height:1.5;
+}
+
+.infectious-title h2{
+    margin:3px 0 0;
+    color:#51697c;
+    font-size:11px;
+    direction:ltr;
+}
+
+.infectious-title p{
+    margin:4px 0 0;
+    color:#718293;
+    font-size:9px;
+}
+
+.document-classification{
+    text-align:center;
+    padding:5px;
+    border:1px solid #d6e0e7;
+    background:#f5f8fa;
+    color:#51697c;
+    font-size:8px;
+    margin-bottom:4mm;
+}
+
+.infectious-meta{
+    width:100%;
+    border-collapse:collapse;
+    table-layout:fixed;
+    margin-bottom:4mm;
+}
+
+.infectious-meta td{
+    border:1px solid #b8c8d4;
+    padding:6px;
+    font-size:8.5px;
+    vertical-align:top;
+}
+
+.meta-label{
+    background:#edf4f8;
+    color:#48647b;
+    font-weight:bold;
+    display:block;
+    font-size:7.5px;
+    margin-bottom:3px;
+}
+
+.meta-value{
+    font-weight:bold;
+    color:#1e3850;
+    line-height:1.5;
+    overflow-wrap:anywhere;
+}
+
+.priority-urgent{
+    color:#b71c1c;
+}
+
+.priority-normal{
+    color:#187b43;
+}
+
+.report-section{
+    margin-top:4mm;
+    break-inside:avoid;
+}
+
+.report-section-title{
+    background:var(--dark-blue);
+    color:#fff;
+    padding:6px 9px;
+    font-size:10px;
+    font-weight:bold;
+    border-radius:3px 3px 0 0;
+}
+
+.report-section-title.green-title{
+    background:#187b43;
+}
+
+.report-section-title.purple-title{
+    background:#5f3dc4;
+}
+
+.report-section-title.orange-title{
+    background:#c56c00;
+}
+
+.official-data-table{
+    width:100%;
+    border-collapse:collapse;
+    table-layout:fixed;
+}
+
+.official-data-table td,
+.official-data-table th{
+    border:1px solid #c6d2db;
+    padding:6px 7px;
+    font-size:8.5px;
+    vertical-align:top;
+    overflow-wrap:anywhere;
+}
+
+.official-data-table th{
+    background:#eef4f8;
+    color:#294b6a;
+    font-weight:bold;
+    text-align:right;
+}
+
+.official-data-table td{
+    color:#1d3448;
+    line-height:1.55;
+    min-height:25px;
+}
+
+.report-value{
+    font-weight:bold;
+}
+
+.report-list{
+    margin:0;
+    padding-right:17px;
+    line-height:1.8;
+}
+
+.report-empty{
+    color:#8b99a5;
+}
+
+.status-chip{
+    display:inline-block;
+    padding:3px 8px;
+    border-radius:12px;
+    font-size:7.5px;
+    font-weight:bold;
+}
+
+.status-new{
+    background:#e8f1ff;
+    color:#0759a6;
+}
+
+.status-progress{
+    background:#fff3d8;
+    color:#946300;
+}
+
+.status-closed{
+    background:#e7f6ec;
+    color:#24743d;
+}
+
+.screening-box{
+    border:1px solid #d8ccff;
+    background:#f8f5ff;
+    padding:9px;
+    border-radius:5px;
+}
+
+.screening-summary{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:6px;
+}
+
+.screening-summary-item{
+    border:1px solid #ddd5f6;
+    background:#fff;
+    padding:7px;
+    border-radius:4px;
+    text-align:center;
+}
+
+.screening-summary-item strong{
+    display:block;
+    color:#5f3dc4;
+    font-size:12px;
+    margin-top:3px;
+}
+
+.screening-summary-item span{
+    display:block;
+    color:#687984;
+    font-size:7px;
+}
+
+.report-alert{
+    margin-top:7px;
+    padding:7px;
+    border-right:4px solid #c62828;
+    background:#fff2f2;
+    color:#7d2525;
+    font-size:8px;
+    line-height:1.6;
+}
+
+.signature-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-top:5px;
+}
+
+.signature-box{
+    border:1px solid #c6d2db;
+    min-height:38mm;
+    padding:7px;
+    position:relative;
+    background:#fff;
+}
+
+.signature-box-title{
+    font-size:8px;
+    font-weight:bold;
+    color:#294b6a;
+    border-bottom:1px solid #dde5eb;
+    padding-bottom:5px;
+    margin-bottom:6px;
+}
+
+.signature-image-wrap{
+    min-height:23mm;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.signature-image-wrap img{
+    max-width:100%;
+    max-height:25mm;
+    object-fit:contain;
+}
+
+.signature-missing{
+    color:#8997a3;
+    font-size:8px;
+}
+
+.approval-lines{
+    font-size:8px;
+    line-height:2.2;
+}
+
+.report-footer{
+    margin-top:6mm;
+    border-top:1px solid #b7c6d1;
+    padding-top:4px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    color:#718293;
+    font-size:7px;
+    direction:rtl;
+}
+
+.report-footer .english{
+    direction:ltr;
+}
+
+.report-note{
+    margin-top:4mm;
+    background:#f8fbfd;
+    border:1px solid #dce6ee;
+    padding:7px;
+    font-size:7.5px;
+    color:#607387;
+    line-height:1.7;
+}
+
+
+/* ==================================================
+   LEGACY SCREEN CARD
 ================================================== */
 
 .normal-card{
-    width:1100px;
-    max-width:calc(100% - 30px);
-    margin:20px auto;
-    background:white;
-    padding:25px;
-    border-radius:15px;
-    box-shadow:0 4px 14px rgba(0,0,0,.06);
-}
-
-.normal-card h2{
-    margin-top:0;
-    color:#064c92;
-}
-
-.normal-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-}
-
-.normal-item{
-    background:#f8fbfd;
-    border:1px solid #e0e9f0;
-    padding:13px;
-    border-radius:9px;
-}
-
-.normal-label{
-    color:#607387;
-    font-size:12px;
-    margin-bottom:5px;
-}
-
-.normal-value{
-    font-weight:bold;
-    color:#294b6a;
-    overflow-wrap:anywhere;
+    display:none;
 }
 
 
@@ -408,13 +689,14 @@ body{
 
 @page{
     size:A4 portrait;
-    margin:4mm;
+    margin:7mm;
 }
 
 @media print{
 
+    html,
     body{
-        background:white;
+        background:#fff !important;
     }
 
     .portal-actions,
@@ -423,17 +705,49 @@ body{
     }
 
     .official-paper{
-        width:100%;
-        margin:0;
-        padding:0;
-        box-shadow:none;
-        min-height:auto;
+        width:100% !important;
+        max-width:none !important;
+        min-height:auto !important;
+        margin:0 !important;
+        padding:0 !important;
+        box-shadow:none !important;
+        overflow:visible !important;
+    }
+
+    #foodborneOfficialForm[style*="display: block"],
+    #infectiousOfficialReport[style*="display: block"]{
+        display:block !important;
+    }
+
+    .infectious-report{
+        page-break-inside:auto;
+    }
+
+    .report-section{
+        break-inside:avoid;
+        page-break-inside:avoid;
+    }
+
+    .official-data-table{
+        break-inside:avoid;
+    }
+
+    .signature-grid{
+        break-inside:avoid;
     }
 
     .form-table td,
     .form-table th{
         font-size:7px;
         padding:1.5px;
+    }
+
+    .infectious-header{
+        margin-top:0;
+    }
+
+    .report-footer{
+        break-inside:avoid;
     }
 
 }
@@ -455,8 +769,7 @@ body{
         margin:10px;
     }
 
-    .followup-grid,
-    .normal-grid{
+    .followup-grid{
         grid-template-columns:1fr;
     }
 
@@ -527,15 +840,11 @@ body{
 <td class="main-title-cell">
 
 <div class="official-title-en">
-
 Initial Notification Form for a Suspected Foodborne Disease Event at a Health Facility
-
 </div>
 
 <div class="official-title-ar">
-
 نموذج الإبلاغ الأولي عن حدث مشتبه لمرض منقول بالغذاء في منشأة صحية
-
 </div>
 
 </td>
@@ -554,7 +863,6 @@ Initial Notification Form for a Suspected Foodborne Disease Event at a Health Fa
 Must be submitted immediately upon event detection.
 
 </div>
-
 
 
 <table class="form-table">
@@ -608,7 +916,6 @@ Must be submitted immediately upon event detection.
 </tr>
 
 </table>
-
 
 
 <table class="form-table">
@@ -676,7 +983,6 @@ Must be submitted immediately upon event detection.
 </table>
 
 
-
 <table class="form-table">
 
 <tr>
@@ -740,7 +1046,6 @@ Must be submitted immediately upon event detection.
 </tr>
 
 </table>
-
 
 
 <table class="form-table">
@@ -808,7 +1113,6 @@ Must be submitted immediately upon event detection.
 </table>
 
 
-
 <table class="form-table">
 
 <tr>
@@ -819,42 +1123,19 @@ Must be submitted immediately upon event detection.
 
 <tr>
 
-<td colspan="2" class="blue-label">
-الحالة
-</td>
-
-<td colspan="2" class="gray-cell">
-تعافي
-</td>
-
-<td colspan="2" class="green-cell">
-خفيفة
-</td>
-
-<td colspan="2" class="blue-label">
-متوسطة
-</td>
-
-<td colspan="2" class="dark-blue-cell">
-شديدة
-</td>
-
-<td colspan="2" class="red-cell">
-حرجة
-</td>
-
-<td colspan="2" class="black-cell">
-وفاة
-</td>
+<td colspan="2" class="blue-label">الحالة</td>
+<td colspan="2" class="gray-cell">تعافي</td>
+<td colspan="2" class="green-cell">خفيفة</td>
+<td colspan="2" class="blue-label">متوسطة</td>
+<td colspan="2" class="dark-blue-cell">شديدة</td>
+<td colspan="2" class="red-cell">حرجة</td>
+<td colspan="2" class="black-cell">وفاة</td>
 
 </tr>
 
 <tr>
 
-<td colspan="2" class="blue-label">
-العدد
-</td>
-
+<td colspan="2" class="blue-label">العدد</td>
 <td colspan="2"><div id="viewRecovered" class="value-box">0</div></td>
 <td colspan="2"><div id="viewMild" class="value-box">0</div></td>
 <td colspan="2"><div id="viewModerate" class="value-box">0</div></td>
@@ -867,7 +1148,6 @@ Must be submitted immediately upon event detection.
 </table>
 
 
-
 <table class="form-table">
 
 <tr>
@@ -878,9 +1158,7 @@ Must be submitted immediately upon event detection.
 
 <tr>
 
-<td colspan="2" class="blue-label">
-الجنسية
-</td>
+<td colspan="2" class="blue-label">الجنسية</td>
 
 <td colspan="3">
 سعودي / Saudi
@@ -901,9 +1179,7 @@ Must be submitted immediately upon event detection.
 
 <tr>
 
-<td colspan="2" class="blue-label">
-الجنس
-</td>
+<td colspan="2" class="blue-label">الجنس</td>
 
 <td colspan="3">
 ذكر / Male
@@ -924,9 +1200,7 @@ Must be submitted immediately upon event detection.
 
 <tr>
 
-<td colspan="2" class="blue-label">
-الفئة العمرية
-</td>
+<td colspan="2" class="blue-label">الفئة العمرية</td>
 
 <td colspan="2">
 أقل من 5
@@ -963,7 +1237,6 @@ Must be submitted immediately upon event detection.
 </table>
 
 
-
 <table class="form-table">
 
 <tr>
@@ -974,17 +1247,13 @@ Must be submitted immediately upon event detection.
 
 <tr>
 
-<td colspan="2" class="blue-label">
-مكان الإعداد
-</td>
+<td colspan="2" class="blue-label">مكان الإعداد</td>
 
 <td colspan="4">
 <div id="viewFoodPreparation" class="value-box">—</div>
 </td>
 
-<td colspan="2" class="blue-label">
-مكان التناول
-</td>
+<td colspan="2" class="blue-label">مكان التناول</td>
 
 <td colspan="4">
 <div id="viewFoodConsumption" class="value-box">—</div>
@@ -994,17 +1263,13 @@ Must be submitted immediately upon event detection.
 
 <tr>
 
-<td colspan="2" class="blue-label">
-الطعام المشتبه
-</td>
+<td colspan="2" class="blue-label">الطعام المشتبه</td>
 
 <td colspan="5">
 <div id="viewSuspectedFood" class="value-box right">—</div>
 </td>
 
-<td colspan="2" class="blue-label">
-عدد المصابين
-</td>
+<td colspan="2" class="blue-label">عدد المصابين</td>
 
 <td colspan="3">
 <div id="viewExposedCases" class="value-box">0</div>
@@ -1014,17 +1279,13 @@ Must be submitted immediately upon event detection.
 
 <tr>
 
-<td colspan="3" class="blue-label">
-تاريخ تناول الطعام
-</td>
+<td colspan="3" class="blue-label">تاريخ تناول الطعام</td>
 
 <td colspan="4">
 <div id="viewMealDate" class="value-box">—</div>
 </td>
 
-<td class="blue-label">
-الوقت
-</td>
+<td class="blue-label">الوقت</td>
 
 <td colspan="4">
 <div id="viewMealTime" class="value-box">—</div>
@@ -1033,7 +1294,6 @@ Must be submitted immediately upon event detection.
 </tr>
 
 </table>
-
 
 
 <table class="form-table">
@@ -1046,17 +1306,13 @@ Must be submitted immediately upon event detection.
 
 <tr>
 
-<td colspan="2" class="blue-label">
-نوع المصدر
-</td>
+<td colspan="2" class="blue-label">نوع المصدر</td>
 
 <td colspan="4">
 <div id="viewFoodSourceType" class="value-box"></div>
 </td>
 
-<td colspan="2" class="blue-label">
-اسم المصدر
-</td>
+<td colspan="2" class="blue-label">اسم المصدر</td>
 
 <td colspan="4">
 <div id="viewFoodSourceName" class="value-box">—</div>
@@ -1066,17 +1322,13 @@ Must be submitted immediately upon event detection.
 
 <tr>
 
-<td colspan="2" class="blue-label">
-موقع المصدر
-</td>
+<td colspan="2" class="blue-label">موقع المصدر</td>
 
 <td colspan="4">
 <div id="viewFoodSourceLocation" class="value-box">—</div>
 </td>
 
-<td colspan="3" class="blue-label">
-مصدر مشترك؟
-</td>
+<td colspan="3" class="blue-label">مصدر مشترك؟</td>
 
 <td colspan="3">
 <div id="viewCommonExposure" class="value-box"></div>
@@ -1085,7 +1337,6 @@ Must be submitted immediately upon event detection.
 </tr>
 
 </table>
-
 
 
 <table class="form-table">
@@ -1098,10 +1349,7 @@ Must be submitted immediately upon event detection.
 
 <tr>
 
-<td colspan="2" class="blue-label">
-الأعراض
-</td>
-
+<td colspan="2" class="blue-label">الأعراض</td>
 <td colspan="2">غثيان</td>
 <td colspan="2">قيء</td>
 <td colspan="2">ألم بالبطن</td>
@@ -1114,9 +1362,7 @@ Must be submitted immediately upon event detection.
 
 <tr>
 
-<td colspan="2" class="blue-label">
-العدد
-</td>
+<td colspan="2" class="blue-label">العدد</td>
 
 <td colspan="2"><div id="vNausea" class="value-box">0</div></td>
 <td colspan="2"><div id="vVomiting" class="value-box">0</div></td>
@@ -1130,17 +1376,13 @@ Must be submitted immediately upon event detection.
 
 <tr>
 
-<td colspan="2" class="blue-label">
-أعراض أخرى
-</td>
+<td colspan="2" class="blue-label">أعراض أخرى</td>
 
 <td colspan="9">
 <div id="viewOtherSymptoms" class="value-box right">—</div>
 </td>
 
-<td colspan="2" class="blue-label">
-العدد
-</td>
+<td colspan="2" class="blue-label">العدد</td>
 
 <td colspan="3">
 <div id="viewOtherSymptomsCount" class="value-box">0</div>
@@ -1150,17 +1392,13 @@ Must be submitted immediately upon event detection.
 
 <tr>
 
-<td colspan="4" class="blue-label">
-بداية الأعراض
-</td>
+<td colspan="4" class="blue-label">بداية الأعراض</td>
 
 <td colspan="5">
 <div id="viewSymptomDate" class="value-box">—</div>
 </td>
 
-<td colspan="2" class="blue-label">
-الوقت
-</td>
+<td colspan="2" class="blue-label">الوقت</td>
 
 <td colspan="5">
 <div id="viewSymptomTime" class="value-box">—</div>
@@ -1169,7 +1407,6 @@ Must be submitted immediately upon event detection.
 </tr>
 
 </table>
-
 
 
 <table class="form-table">
@@ -1182,17 +1419,13 @@ Must be submitted immediately upon event detection.
 
 <tr>
 
-<td colspan="3" class="blue-label">
-تم أخذ عينات؟
-</td>
+<td colspan="3" class="blue-label">تم أخذ عينات؟</td>
 
 <td colspan="3">
 <div id="viewSamplesCollected" class="value-box"></div>
 </td>
 
-<td colspan="3" class="blue-label">
-رفض جميع المصابين؟
-</td>
+<td colspan="3" class="blue-label">رفض جميع المصابين؟</td>
 
 <td colspan="3">
 <div id="viewAllRefused" class="value-box"></div>
@@ -1210,9 +1443,7 @@ Must be submitted immediately upon event detection.
 <div id="viewCasesProvidedSamples" class="value-box">0</div>
 </td>
 
-<td colspan="3" class="blue-label">
-إجمالي العينات
-</td>
+<td colspan="3" class="blue-label">إجمالي العينات</td>
 
 <td colspan="3">
 <div id="viewTotalSamples" class="value-box">0</div>
@@ -1222,17 +1453,13 @@ Must be submitted immediately upon event detection.
 
 <tr>
 
-<td colspan="3" class="blue-label">
-أنواع العينات
-</td>
+<td colspan="3" class="blue-label">أنواع العينات</td>
 
 <td colspan="3">
 <div id="viewSampleTypes" class="value-box">—</div>
 </td>
 
-<td colspan="3" class="blue-label">
-نتائج إيجابية؟
-</td>
+<td colspan="3" class="blue-label">نتائج إيجابية؟</td>
 
 <td colspan="3">
 <div id="viewPositiveResults" class="value-box"></div>
@@ -1242,9 +1469,7 @@ Must be submitted immediately upon event detection.
 
 <tr>
 
-<td colspan="3" class="blue-label">
-نتيجة المختبر
-</td>
+<td colspan="3" class="blue-label">نتيجة المختبر</td>
 
 <td colspan="9">
 <div id="viewLabResult" class="value-box right">—</div>
@@ -1253,7 +1478,6 @@ Must be submitted immediately upon event detection.
 </tr>
 
 </table>
-
 
 
 <table class="form-table">
@@ -1266,17 +1490,13 @@ Must be submitted immediately upon event detection.
 
 <tr>
 
-<td colspan="2" class="blue-label">
-حالة حصن بلس
-</td>
+<td colspan="2" class="blue-label">حالة حصن بلس</td>
 
 <td colspan="4">
 <div id="viewHesnStatus" class="value-box">—</div>
 </td>
 
-<td colspan="2" class="blue-label">
-رقم حصن بلس
-</td>
+<td colspan="2" class="blue-label">رقم حصن بلس</td>
 
 <td colspan="4">
 <div id="viewHesnNumber" class="value-box">—</div>
@@ -1286,9 +1506,7 @@ Must be submitted immediately upon event detection.
 
 <tr>
 
-<td colspan="2" class="blue-label">
-الإجراءات المتخذة
-</td>
+<td colspan="2" class="blue-label">الإجراءات المتخذة</td>
 
 <td colspan="10">
 <div id="viewActionsTaken" class="value-box right">—</div>
@@ -1298,9 +1516,7 @@ Must be submitted immediately upon event detection.
 
 <tr>
 
-<td colspan="2" class="blue-label">
-ملاحظات إضافية
-</td>
+<td colspan="2" class="blue-label">ملاحظات إضافية</td>
 
 <td colspan="10">
 <div id="viewAdditionalInformation" class="value-box right">—</div>
@@ -1311,22 +1527,17 @@ Must be submitted immediately upon event detection.
 </table>
 
 
-
 <table class="form-table">
 
 <tr>
 
-<td colspan="2" class="section-bar">
-اسم المبلّغ
-</td>
+<td colspan="2" class="section-bar">اسم المبلّغ</td>
 
 <td colspan="4">
 <div id="viewReporterName" class="value-box">—</div>
 </td>
 
-<td colspan="2" class="section-bar">
-القسم
-</td>
+<td colspan="2" class="section-bar">القسم</td>
 
 <td colspan="4">
 <div id="viewReporterDepartment" class="value-box">—</div>
@@ -1336,25 +1547,19 @@ Must be submitted immediately upon event detection.
 
 <tr>
 
-<td colspan="2" class="section-bar">
-رقم التواصل
-</td>
+<td colspan="2" class="section-bar">رقم التواصل</td>
 
 <td colspan="4">
 <div id="viewReporterPhone" class="value-box">—</div>
 </td>
 
-<td colspan="2" class="section-bar">
-التاريخ
-</td>
+<td colspan="2" class="section-bar">التاريخ</td>
 
 <td colspan="2">
 <div id="viewReportDate" class="value-box">—</div>
 </td>
 
-<td class="section-bar">
-الوقت
-</td>
+<td class="section-bar">الوقت</td>
 
 <td>
 <div id="viewReportTime" class="value-box">—</div>
@@ -1364,89 +1569,630 @@ Must be submitted immediately upon event detection.
 
 </table>
 
-
 </main>
 
 
 
 <!-- ==================================================
-     NORMAL NOTIFICATION
+     INFECTIOUS DISEASE OFFICIAL REPORT
 ================================================== -->
 
-<section
-    id="normalNotification"
-    class="normal-card"
+<main
+    id="infectiousOfficialReport"
+    class="official-paper infectious-report"
     style="display:none;">
 
+
+<div class="infectious-header">
+
+<div class="infectious-logo">
+
+<img
+    src="images/cluster-logo.png"
+    alt="Hafr Al-Batin Health Cluster">
+
+</div>
+
+
+<div class="infectious-title">
+
+<h1>
+تقرير بلاغ مرض معدٍ
+</h1>
+
 <h2>
-تفاصيل البلاغ
+Infectious Disease Notification Report
 </h2>
 
-<div class="normal-grid">
+<p>
+البوابة الذكية للصحة العامة
+</p>
 
-<div class="normal-item">
-<div class="normal-label">رقم البلاغ</div>
-<div id="normalId" class="normal-value">—</div>
 </div>
 
-<div class="normal-item">
-<div class="normal-label">المرض</div>
-<div id="normalDisease" class="normal-value">—</div>
+
+<div class="infectious-logo">
+
+<img
+    src="images/hospital-logo.png"
+    alt="Hospital Logo">
+
 </div>
 
-<div class="normal-item">
-<div class="normal-label">التاريخ</div>
-<div id="normalDate" class="normal-value">—</div>
 </div>
 
-<div class="normal-item">
-<div class="normal-label">اسم المريض</div>
-<div id="normalPatient" class="normal-value">—</div>
+
+<div class="document-classification">
+
+وثيقة داخلية للصحة العامة — تستخدم للمتابعة والتوثيق والرفع حسب السياسات والإجراءات المعتمدة
+
+<br>
+
+Internal Public Health Notification Record
+
 </div>
 
-<div class="normal-item">
-<div class="normal-label">رقم الملف</div>
-<div id="normalMrn" class="normal-value">—</div>
+
+<table class="infectious-meta">
+
+<tr>
+
+<td>
+<span class="meta-label">
+رقم البلاغ / Notification ID
+</span>
+<span id="reportNotificationId" class="meta-value">—</span>
+</td>
+
+<td>
+<span class="meta-label">
+تاريخ الإنشاء / Created
+</span>
+<span id="reportCreatedAt" class="meta-value">—</span>
+</td>
+
+<td>
+<span class="meta-label">
+حالة البلاغ / Status
+</span>
+<span id="reportStatus" class="meta-value">—</span>
+</td>
+
+<td>
+<span class="meta-label">
+الأولوية / Priority
+</span>
+<span id="reportPriority" class="meta-value">—</span>
+</td>
+
+</tr>
+
+</table>
+
+
+
+<!-- PATIENT -->
+
+<section class="report-section">
+
+<div class="report-section-title">
+1. بيانات المريض / Patient Information
 </div>
 
-<div class="normal-item">
-<div class="normal-label">الجنس</div>
-<div id="normalGender" class="normal-value">—</div>
+<table class="official-data-table">
+
+<tr>
+
+<th>اسم المريض</th>
+<td id="reportPatientName">—</td>
+
+<th>رقم الملف الطبي MRN</th>
+<td id="reportMrn">—</td>
+
+</tr>
+
+
+<tr>
+
+<th>رقم الهوية / الإقامة</th>
+<td id="reportNationalId">—</td>
+
+<th>الجنسية</th>
+<td id="reportNationality">—</td>
+
+</tr>
+
+
+<tr>
+
+<th>تاريخ الميلاد</th>
+<td id="reportDob">—</td>
+
+<th>الجنس</th>
+<td id="reportGender">—</td>
+
+</tr>
+
+
+<tr>
+
+<th>فئة المريض</th>
+<td id="reportPatientType">—</td>
+
+<th>رقم التواصل</th>
+<td id="reportPatientPhone">—</td>
+
+</tr>
+
+
+<tr>
+
+<th>مكان الإقامة</th>
+<td colspan="3" id="reportResidence">—</td>
+
+</tr>
+
+</table>
+
+</section>
+
+
+
+<!-- CASE -->
+
+<section class="report-section">
+
+<div class="report-section-title">
+2. بيانات الحالة / Case Information
 </div>
 
-<div class="normal-item">
-<div class="normal-label">القسم</div>
-<div id="normalDepartment" class="normal-value">—</div>
+<table class="official-data-table">
+
+<tr>
+
+<th>المرض المشتبه</th>
+<td id="reportDisease">—</td>
+
+<th>تصنيف الحالة</th>
+<td id="reportClassification">—</td>
+
+</tr>
+
+
+<tr>
+
+<th>بداية الأعراض</th>
+<td id="reportSymptomOnset">—</td>
+
+<th>تاريخ ووقت اكتشاف الحالة</th>
+<td id="reportDetectionDateTime">—</td>
+
+</tr>
+
+
+<tr>
+
+<th>مكان اكتشاف الحالة</th>
+<td id="reportCaseLocation">—</td>
+
+<th>الحالة الحالية للمريض</th>
+<td id="reportPatientStatus">—</td>
+
+</tr>
+
+</table>
+
+</section>
+
+
+
+<!-- SYMPTOMS -->
+
+<section class="report-section">
+
+<div class="report-section-title">
+3. الأعراض والعلامات السريرية / Signs & Symptoms
 </div>
 
-<div class="normal-item">
-<div class="normal-label">المبلّغ</div>
-<div id="normalReporter" class="normal-value">—</div>
+<table class="official-data-table">
+
+<tr>
+
+<th style="width:25%">
+الأعراض المسجلة
+</th>
+
+<td id="reportSymptoms">
+—
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+أعراض أخرى
+</th>
+
+<td id="reportOtherSymptoms">
+—
+</td>
+
+</tr>
+
+</table>
+
+</section>
+
+
+
+<!-- EPI -->
+
+<section class="report-section">
+
+<div class="report-section-title">
+4. التاريخ الوبائي / Epidemiological History
 </div>
 
-<div class="normal-item">
-<div class="normal-label">الأولوية</div>
-<div id="normalPriority" class="normal-value">—</div>
+<table class="official-data-table">
+
+<tr>
+
+<th>سفر حديث</th>
+<td id="reportRecentTravel">—</td>
+
+<th>الدولة / المنطقة</th>
+<td id="reportTravelCountry">—</td>
+
+</tr>
+
+<tr>
+
+<th>مخالطة حالة</th>
+<td id="reportContactCase">—</td>
+
+<th>تعرض حيواني / بيئي</th>
+<td id="reportAnimalExposure">—</td>
+
+</tr>
+
+<tr>
+
+<th>تفاصيل التاريخ الوبائي</th>
+
+<td
+    colspan="3"
+    id="reportEpiHistory">
+—
+</td>
+
+</tr>
+
+</table>
+
+</section>
+
+
+
+<!-- ACTIONS & SAMPLES -->
+
+<section class="report-section">
+
+<div class="report-section-title">
+5. الإجراءات والعينات / Actions & Specimens
 </div>
 
-<div class="normal-item">
-<div class="normal-label">التصنيف</div>
-<div id="normalClassification" class="normal-value">—</div>
+<table class="official-data-table">
+
+<tr>
+
+<th style="width:25%">
+الإجراءات المتخذة
+</th>
+
+<td
+    colspan="3"
+    id="reportActions">
+—
+</td>
+
+</tr>
+
+
+<tr>
+
+<th>تم أخذ عينة</th>
+<td id="reportSampleTaken">—</td>
+
+<th>نوع العينة</th>
+<td id="reportSampleType">—</td>
+
+</tr>
+
+
+<tr>
+
+<th>تاريخ ووقت العينة</th>
+<td id="reportSampleDateTime">—</td>
+
+<th>نتيجة المختبر</th>
+<td id="reportLabResult">—</td>
+
+</tr>
+
+</table>
+
+</section>
+
+
+
+<!-- SCREENING -->
+
+<section
+    id="reportScreeningSection"
+    class="report-section"
+    style="display:none;">
+
+<div class="report-section-title purple-title">
+6. بيانات الفرز الإلكتروني / Electronic Screening
 </div>
 
-<div class="normal-item">
-<div class="normal-label">Rapid Score</div>
-<div id="normalRapidScore" class="normal-value">—</div>
+<div class="screening-box">
+
+<div class="screening-summary">
+
+<div class="screening-summary-item">
+<span>Rapid Score</span>
+<strong id="reportRapidScore">—</strong>
 </div>
 
-<div class="normal-item">
-<div class="normal-label">مصدر البلاغ</div>
-<div id="normalSource" class="normal-value">—</div>
+<div class="screening-summary-item">
+<span>Rapid Risk</span>
+<strong id="reportRapidRisk">—</strong>
+</div>
+
+<div class="screening-summary-item">
+<span>Rapid ID</span>
+<strong id="reportRapidId">—</strong>
+</div>
+
+<div class="screening-summary-item">
+<span>Smart Screening ID</span>
+<strong id="reportSmartId">—</strong>
+</div>
+
+</div>
+
+<div
+    id="reportRedFlagAlert"
+    class="report-alert"
+    style="display:none;">
+
+🚨 تم تسجيل Red Flag أثناء الفرز الإلكتروني.
+
 </div>
 
 </div>
 
 </section>
+
+
+
+<!-- REPORTER -->
+
+<section class="report-section">
+
+<div class="report-section-title green-title">
+7. بيانات المبلّغ / Reporter Information
+</div>
+
+<table class="official-data-table">
+
+<tr>
+
+<th>اسم المبلّغ</th>
+<td id="reportReporterName">—</td>
+
+<th>الرقم الوظيفي</th>
+<td id="reportReporterId">—</td>
+
+</tr>
+
+
+<tr>
+
+<th>المسمى الوظيفي</th>
+<td id="reportReporterJob">—</td>
+
+<th>القسم</th>
+<td id="reportReporterDepartment">—</td>
+
+</tr>
+
+
+<tr>
+
+<th>رقم التواصل</th>
+<td id="reportReporterPhone">—</td>
+
+<th>تاريخ ووقت البلاغ</th>
+<td id="reportReportDateTime">—</td>
+
+</tr>
+
+</table>
+
+</section>
+
+
+
+<!-- PUBLIC HEALTH -->
+
+<section class="report-section">
+
+<div class="report-section-title orange-title">
+8. متابعة الصحة العامة / Public Health Follow-up
+</div>
+
+<table class="official-data-table">
+
+<tr>
+
+<th>حالة البلاغ</th>
+<td id="reportFollowupStatus">—</td>
+
+<th>حالة الاستجابة</th>
+<td id="reportResponseStatus">—</td>
+
+</tr>
+
+
+<tr>
+
+<th>حالة HESN+</th>
+<td id="reportHesnStatus">—</td>
+
+<th>رقم HESN+</th>
+<td id="reportHesnNumber">—</td>
+
+</tr>
+
+
+<tr>
+
+<th>الموظف المتابع</th>
+<td id="reportFollowupBy">—</td>
+
+<th>المتابعة القادمة</th>
+<td id="reportNextFollowup">—</td>
+
+</tr>
+
+
+<tr>
+
+<th>ملاحظات الصحة العامة</th>
+
+<td
+    colspan="3"
+    id="reportPublicHealthNotes">
+—
+</td>
+
+</tr>
+
+<tr>
+
+<th>آخر تحديث</th>
+
+<td
+    colspan="3"
+    id="reportLastUpdated">
+—
+</td>
+
+</tr>
+
+</table>
+
+</section>
+
+
+
+<!-- SIGNATURE -->
+
+<section class="report-section">
+
+<div class="report-section-title">
+9. التوقيع والاعتماد / Signature & Approval
+</div>
+
+<div class="signature-grid">
+
+
+<div class="signature-box">
+
+<div class="signature-box-title">
+التوقيع الإلكتروني للمبلّغ
+</div>
+
+<div
+    id="reportSignatureWrap"
+    class="signature-image-wrap">
+
+<span class="signature-missing">
+لا يوجد توقيع محفوظ
+</span>
+
+</div>
+
+</div>
+
+
+<div class="signature-box">
+
+<div class="signature-box-title">
+اعتماد الصحة العامة
+</div>
+
+<div class="approval-lines">
+
+اسم المعتمد:
+________________________________
+
+<br>
+
+المسمى الوظيفي:
+________________________________
+
+<br>
+
+التوقيع:
+________________________________
+
+<br>
+
+التاريخ:
+________________________________
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<div class="report-note">
+
+<strong>ملاحظة:</strong>
+
+هذا التقرير يوثق البلاغ الداخلي والإجراءات والمتابعة المسجلة في البوابة.
+ويتم استكمال أي نموذج وطني أو متطلبات HESN+ أو النماذج الخاصة بالمرض
+وفق السياسات والتعاميم المعتمدة.
+
+</div>
+
+
+<div class="report-footer">
+
+<div>
+البوابة الذكية للصحة العامة — SPHP
+</div>
+
+<div>
+<span id="reportFooterId">—</span>
+</div>
+
+<div class="english">
+Public Health
+</div>
+
+</div>
+
+
+</main>
 
 
 
@@ -1592,7 +2338,6 @@ Must be submitted immediately upon event detection.
 
 </div>
 
-
 </div>
 
 
@@ -1636,7 +2381,7 @@ Must be submitted immediately upon event detection.
     id="saveSuccess"
     class="success">
 
-✅ تم حفظ تحديثات البلاغ وانعكست على صندوق البلاغات.
+✅ تم حفظ تحديثات البلاغ وانعكست على صندوق البلاغات والتقرير الرسمي.
 
 </div>
 
@@ -1649,7 +2394,6 @@ Must be submitted immediately upon event detection.
 
 </div>
 
-
 </section>
 
 
@@ -1657,11 +2401,107 @@ Must be submitted immediately upon event detection.
 <script>
 
 
+/* ==================================================
+   STATE
+================================================== */
+
 let notifications = [];
 
 let currentNotification = null;
 
 let currentIndex = -1;
+
+
+/* ==================================================
+   LABELS
+================================================== */
+
+const genderLabels = {
+    male:"ذكر",
+    female:"أنثى"
+};
+
+
+const patientTypeLabels = {
+    adult:"بالغ",
+    pediatric:"طفل"
+};
+
+
+const classificationLabels = {
+    suspected:"مشتبهة",
+    probable:"محتملة",
+    confirmed:"مؤكدة"
+};
+
+
+const patientStatusLabels = {
+    stable:"مستقرة",
+    admitted:"منوم",
+    critical:"حرجة",
+    discharged:"خرج",
+    deceased:"وفاة"
+};
+
+
+const yesNoLabels = {
+    yes:"نعم",
+    no:"لا",
+    unknown:"غير معروف",
+    pending:"قيد الانتظار",
+    "":"—"
+};
+
+
+const notificationStatusLabels = {
+    new:"جديد",
+    progress:"تحت المتابعة",
+    closed:"مغلق"
+};
+
+
+const responseStatusLabels = {
+    notStarted:"لم يبدأ",
+    inProgress:"جاري التنفيذ",
+    completed:"مكتمل"
+};
+
+
+const hesnStatusLabels = {
+    pending:"لم يتم الإدخال",
+    entered:"تم الإدخال",
+    notRequired:"لا يتطلب"
+};
+
+
+const labResultLabels = {
+    pending:"قيد الانتظار",
+    positive:"إيجابية",
+    negative:"سلبية"
+};
+
+
+const symptomLabels = {
+    fever:"حمى",
+    cough:"سعال",
+    dyspnea:"ضيق تنفس",
+    headache:"صداع",
+    rash:"طفح جلدي",
+    vomiting:"قيء",
+    diarrhea:"إسهال",
+    bleeding:"نزف",
+    neuro:"أعراض عصبية"
+};
+
+
+const actionLabels = {
+    isolation:"تم العزل",
+    ppe:"تطبيق معدات الوقاية الشخصية PPE",
+    infectionControl:"تم إبلاغ مكافحة العدوى",
+    publicHealth:"تم إبلاغ الصحة العامة",
+    sample:"تم جمع العينة",
+    contacts:"بدأ حصر المخالطين"
+};
 
 
 /* ==================================================
@@ -1857,21 +2697,58 @@ function formatDateTime(
     }
 
 
-    try{
-
-        return new Date(
+    const date =
+        new Date(
             value
-        )
-        .toLocaleString(
-            "ar-SA"
         );
 
-    }
-    catch(error){
+
+    if(
+        isNaN(
+            date.getTime()
+        )
+    ){
 
         return value;
 
     }
+
+
+    return date
+    .toLocaleString(
+        "ar-SA"
+    );
+
+}
+
+
+function listToArabic(
+    list,
+    labels
+){
+
+    if(
+        !Array.isArray(list) ||
+        !list.length
+    ){
+
+        return "—";
+
+    }
+
+
+    return list
+    .map(
+        function(item){
+
+            return (
+                labels[item] ||
+                item
+            );
+
+        }
+    )
+    .join("، ");
 
 }
 
@@ -1887,15 +2764,11 @@ function getSymptomCount(
 
     if(
         outbreak.symptomCounts &&
-        outbreak.symptomCounts[
-            key
-        ] !== undefined
+        outbreak.symptomCounts[key] !== undefined
     ){
 
         return Number(
-            outbreak.symptomCounts[
-                key
-            ]
+            outbreak.symptomCounts[key]
         ) || 0;
 
     }
@@ -1913,8 +2786,7 @@ function getSymptomCount(
 
                     return (
                         item &&
-                        item.key ===
-                        key
+                        item.key === key
                     );
 
                 }
@@ -1949,15 +2821,10 @@ function getSymptomCount(
 
 
 /* ==================================================
-   LOAD STORAGE / API
+   STORAGE / API
 ================================================== */
 
 async function getNotificationList(){
-
-    /*
-      عند توفر Backend لاحقًا
-      api.js يستطيع تولي القراءة.
-    */
 
     if(
         typeof getPublicHealthNotifications ===
@@ -1993,10 +2860,6 @@ async function getNotificationList(){
     }
 
 
-    /*
-      fallback الحالي
-    */
-
     try{
 
         const data =
@@ -2013,11 +2876,9 @@ async function getNotificationList(){
             );
 
 
-        return Array.isArray(
-            data
-        )
-        ? data
-        : [];
+        return Array.isArray(data)
+            ? data
+            : [];
 
     }
     catch(error){
@@ -2072,9 +2933,17 @@ async function loadNotification(){
 
         document.body.innerHTML = `
 
-        <section class="normal-card">
+        <section
+            style="
+                width:800px;
+                max-width:calc(100% - 30px);
+                margin:40px auto;
+                background:#fff;
+                padding:30px;
+                border-radius:14px;
+            ">
 
-            <h2>
+            <h2 style="color:#064c92;">
                 البلاغ غير موجود
             </h2>
 
@@ -2112,7 +2981,7 @@ async function loadNotification(){
 
 
     document.getElementById(
-        "normalNotification"
+        "infectiousOfficialReport"
     ).style.display =
         "none";
 
@@ -2140,12 +3009,12 @@ async function loadNotification(){
     else{
 
         document.getElementById(
-            "normalNotification"
+            "infectiousOfficialReport"
         ).style.display =
             "block";
 
 
-        renderNormal(
+        renderInfectiousReport(
             currentNotification
         );
 
@@ -2153,7 +3022,6 @@ async function loadNotification(){
 
 
     fillFollowup();
-
 
 }
 
@@ -2163,6 +3031,11 @@ async function loadNotification(){
 ================================================== */
 
 function fillFollowup(){
+
+    if(!currentNotification){
+        return;
+    }
+
 
     document.getElementById(
         "statusSelect"
@@ -2230,6 +3103,597 @@ function fillFollowup(){
         formatDateTime(
             currentNotification.createdAt
         )
+    );
+
+}
+
+
+/* ==================================================
+   INFECTIOUS OFFICIAL REPORT
+================================================== */
+
+function renderInfectiousReport(
+    notification
+){
+
+    /*
+      ------------------------------------------------
+      Header
+      ------------------------------------------------
+    */
+
+    setText(
+        "reportNotificationId",
+        notification.id
+    );
+
+
+    setText(
+        "reportFooterId",
+        notification.id
+    );
+
+
+    setText(
+        "reportCreatedAt",
+        formatDateTime(
+            notification.createdAt ||
+            notification.reportDateTime
+        )
+    );
+
+
+    const status =
+        notification.status ||
+        "new";
+
+
+    const statusElement =
+        document.getElementById(
+            "reportStatus"
+        );
+
+
+    statusElement.textContent =
+        notificationStatusLabels[
+            status
+        ] ||
+        status;
+
+
+    statusElement.className =
+        "meta-value status-chip " +
+        (
+            status === "closed"
+            ? "status-closed"
+            : status === "progress"
+            ? "status-progress"
+            : "status-new"
+        );
+
+
+    const priorityElement =
+        document.getElementById(
+            "reportPriority"
+        );
+
+
+    const urgent =
+        notification.priority ===
+        "urgent";
+
+
+    priorityElement.textContent =
+        urgent
+        ? "عاجل / Urgent"
+        : "عادي / Routine";
+
+
+    priorityElement.className =
+        "meta-value " +
+        (
+            urgent
+            ? "priority-urgent"
+            : "priority-normal"
+        );
+
+
+    /*
+      ------------------------------------------------
+      Patient
+      ------------------------------------------------
+    */
+
+    setText(
+        "reportPatientName",
+        notification.patientName
+    );
+
+
+    setText(
+        "reportMrn",
+        notification.mrn
+    );
+
+
+    setText(
+        "reportNationalId",
+        notification.nationalId
+    );
+
+
+    setText(
+        "reportNationality",
+        notification.nationality
+    );
+
+
+    setText(
+        "reportDob",
+        notification.dob
+    );
+
+
+    setText(
+        "reportGender",
+        genderLabels[
+            notification.gender
+        ] ||
+        notification.gender
+    );
+
+
+    setText(
+        "reportPatientType",
+        patientTypeLabels[
+            notification.patientType
+        ] ||
+        notification.patientType
+    );
+
+
+    setText(
+        "reportPatientPhone",
+        notification.patientPhone
+    );
+
+
+    setText(
+        "reportResidence",
+        notification.residence
+    );
+
+
+    /*
+      ------------------------------------------------
+      Case
+      ------------------------------------------------
+    */
+
+    setText(
+        "reportDisease",
+        notification.disease ||
+        notification.diseaseKey
+    );
+
+
+    setText(
+        "reportClassification",
+        classificationLabels[
+            notification.classification
+        ] ||
+        notification.classification
+    );
+
+
+    setText(
+        "reportSymptomOnset",
+        notification.symptomOnset
+    );
+
+
+    setText(
+        "reportDetectionDateTime",
+        formatDateTime(
+            notification.detectionDateTime
+        )
+    );
+
+
+    setText(
+        "reportCaseLocation",
+        notification.caseLocation
+    );
+
+
+    setText(
+        "reportPatientStatus",
+        patientStatusLabels[
+            notification.patientStatus
+        ] ||
+        notification.patientStatus
+    );
+
+
+    /*
+      ------------------------------------------------
+      Symptoms
+      ------------------------------------------------
+    */
+
+    setText(
+        "reportSymptoms",
+        listToArabic(
+            notification.symptoms,
+            symptomLabels
+        )
+    );
+
+
+    setText(
+        "reportOtherSymptoms",
+        notification.otherSymptoms
+    );
+
+
+    /*
+      ------------------------------------------------
+      Epidemiology
+      ------------------------------------------------
+    */
+
+    setText(
+        "reportRecentTravel",
+        yesNoLabels[
+            notification.recentTravel
+        ] ||
+        notification.recentTravel
+    );
+
+
+    setText(
+        "reportTravelCountry",
+        notification.travelCountry
+    );
+
+
+    setText(
+        "reportContactCase",
+        yesNoLabels[
+            notification.contactCase
+        ] ||
+        notification.contactCase
+    );
+
+
+    setText(
+        "reportAnimalExposure",
+        yesNoLabels[
+            notification.animalExposure
+        ] ||
+        notification.animalExposure
+    );
+
+
+    setText(
+        "reportEpiHistory",
+        notification.epidemiologicalHistory
+    );
+
+
+    /*
+      ------------------------------------------------
+      Actions and Samples
+      ------------------------------------------------
+    */
+
+    setText(
+        "reportActions",
+        listToArabic(
+            notification.actions,
+            actionLabels
+        )
+    );
+
+
+    setText(
+        "reportSampleTaken",
+        yesNoLabels[
+            notification.sampleTaken
+        ] ||
+        notification.sampleTaken
+    );
+
+
+    setText(
+        "reportSampleType",
+        notification.sampleType
+    );
+
+
+    setText(
+        "reportSampleDateTime",
+        formatDateTime(
+            notification.sampleDateTime
+        )
+    );
+
+
+    setText(
+        "reportLabResult",
+        labResultLabels[
+            notification.labResult
+        ] ||
+        notification.labResult
+    );
+
+
+    /*
+      ------------------------------------------------
+      Screening
+      ------------------------------------------------
+    */
+
+    const hasScreening =
+
+        notification.source ===
+        "smartScreening"
+
+        ||
+
+        notification.screeningId
+
+        ||
+
+        notification.rapidScreeningId
+
+        ||
+
+        notification.rapidScore !== undefined &&
+        notification.rapidScore !== null &&
+        notification.rapidScore !== "";
+
+
+    document.getElementById(
+        "reportScreeningSection"
+    ).style.display =
+        hasScreening
+        ? "block"
+        : "none";
+
+
+    if(hasScreening){
+
+        setText(
+            "reportRapidScore",
+            notification.rapidScore
+        );
+
+
+        setText(
+            "reportRapidRisk",
+            notification.rapidRisk
+        );
+
+
+        setText(
+            "reportRapidId",
+            notification.rapidScreeningId
+        );
+
+
+        setText(
+            "reportSmartId",
+            notification.screeningId
+        );
+
+
+        document.getElementById(
+            "reportRedFlagAlert"
+        ).style.display =
+            notification.rapidRedFlag
+            ? "block"
+            : "none";
+
+    }
+
+
+    /*
+      ------------------------------------------------
+      Reporter
+      ------------------------------------------------
+    */
+
+    setText(
+        "reportReporterName",
+        notification.reporterName
+    );
+
+
+    setText(
+        "reportReporterId",
+        notification.reporterId
+    );
+
+
+    setText(
+        "reportReporterJob",
+        notification.reporterJob
+    );
+
+
+    setText(
+        "reportReporterDepartment",
+        notification.reporterDepartment
+    );
+
+
+    setText(
+        "reportReporterPhone",
+        notification.reporterPhone
+    );
+
+
+    setText(
+        "reportReportDateTime",
+        formatDateTime(
+            notification.reportDateTime
+        )
+    );
+
+
+    /*
+      ------------------------------------------------
+      Public Health Follow-up
+      ------------------------------------------------
+    */
+
+    setText(
+        "reportFollowupStatus",
+        notificationStatusLabels[
+            notification.status
+        ] ||
+        notification.status ||
+        "جديد"
+    );
+
+
+    setText(
+        "reportResponseStatus",
+        responseStatusLabels[
+            notification.responseStatus
+        ] ||
+        notification.responseStatus ||
+        "لم يبدأ"
+    );
+
+
+    setText(
+        "reportHesnStatus",
+        hesnStatusLabels[
+            notification.hesnStatus
+        ] ||
+        notification.hesnStatus ||
+        "لم يتم الإدخال"
+    );
+
+
+    setText(
+        "reportHesnNumber",
+        notification.hesnNumber
+    );
+
+
+    setText(
+        "reportFollowupBy",
+        notification.followupBy
+    );
+
+
+    setText(
+        "reportNextFollowup",
+        notification.nextFollowupDate
+    );
+
+
+    setText(
+        "reportPublicHealthNotes",
+        notification.publicHealthNotes
+    );
+
+
+    setText(
+        "reportLastUpdated",
+        formatDateTime(
+            notification.lastUpdatedAt
+        )
+    );
+
+
+    /*
+      ------------------------------------------------
+      Signature
+      ------------------------------------------------
+    */
+
+    renderNotificationSignature(
+        notification.signature
+    );
+
+}
+
+
+/* ==================================================
+   SIGNATURE
+================================================== */
+
+function renderNotificationSignature(
+    signature
+){
+
+    const wrap =
+        document.getElementById(
+            "reportSignatureWrap"
+        );
+
+
+    if(!wrap){
+        return;
+    }
+
+
+    wrap.innerHTML =
+        "";
+
+
+    if(
+        !signature ||
+        typeof signature !== "string"
+    ){
+
+        wrap.innerHTML = `
+
+        <span class="signature-missing">
+        لا يوجد توقيع محفوظ
+        </span>
+
+        `;
+
+        return;
+
+    }
+
+
+    const img =
+        document.createElement(
+            "img"
+        );
+
+
+    img.src =
+        signature;
+
+
+    img.alt =
+        "Electronic Signature";
+
+
+    img.onerror =
+        function(){
+
+            wrap.innerHTML = `
+
+            <span class="signature-missing">
+            تعذر عرض التوقيع المحفوظ
+            </span>
+
+            `;
+
+        };
+
+
+    wrap.appendChild(
+        img
     );
 
 }
@@ -2352,24 +3816,21 @@ function renderFoodborne(
     ).innerHTML =
 
         optionHTML(
-            facility.type ===
-            "hospital",
+            facility.type === "hospital",
             "مستشفى / Hospital"
         )
 
         +
 
         optionHTML(
-            facility.type ===
-            "primaryCare",
+            facility.type === "primaryCare",
             "مركز صحي / PHC"
         )
 
         +
 
         optionHTML(
-            facility.type ===
-            "other",
+            facility.type === "other",
             "أخرى / Other"
         );
 
@@ -2379,24 +3840,21 @@ function renderFoodborne(
     ).innerHTML =
 
         optionHTML(
-            facility.sector ===
-            "moh",
+            facility.sector === "moh",
             "وزارة الصحة / MOH"
         )
 
         +
 
         optionHTML(
-            facility.sector ===
-            "government",
+            facility.sector === "government",
             "حكومي آخر"
         )
 
         +
 
         optionHTML(
-            facility.sector ===
-            "private",
+            facility.sector === "private",
             "خاص / Private"
         );
 
@@ -2430,12 +3888,9 @@ function renderFoodborne(
 
                 return optionHTML(
 
-                    event.type ===
-                    key,
+                    event.type === key,
 
-                    eventLabels[
-                        key
-                    ]
+                    eventLabels[key]
 
                 );
 
@@ -2701,24 +4156,21 @@ function renderFoodborne(
     ).innerHTML =
 
         optionHTML(
-            food.sourceType ===
-            "public",
+            food.sourceType === "public",
             "عام / تجاري"
         )
 
         +
 
         optionHTML(
-            food.sourceType ===
-            "home",
+            food.sourceType === "home",
             "منزلي"
         )
 
         +
 
         optionHTML(
-            food.sourceType ===
-            "other",
+            food.sourceType === "other",
             "أخرى"
         );
 
@@ -2740,24 +4192,21 @@ function renderFoodborne(
     ).innerHTML =
 
         optionHTML(
-            food.commonSource ===
-            "yes",
+            food.commonSource === "yes",
             "نعم"
         )
 
         +
 
         optionHTML(
-            food.commonSource ===
-            "no",
+            food.commonSource === "no",
             "لا"
         )
 
         +
 
         optionHTML(
-            food.commonSource ===
-            "unknown",
+            food.commonSource === "unknown",
             "غير معروف"
         );
 
@@ -2860,16 +4309,14 @@ function renderFoodborne(
     ).innerHTML =
 
         optionHTML(
-            samples.clinicalSamples ===
-            "yes",
+            samples.clinicalSamples === "yes",
             "نعم"
         )
 
         +
 
         optionHTML(
-            samples.clinicalSamples ===
-            "no",
+            samples.clinicalSamples === "no",
             "لا"
         );
 
@@ -2879,16 +4326,14 @@ function renderFoodborne(
     ).innerHTML =
 
         optionHTML(
-            samples.allRefusedSamples ===
-            "yes",
+            samples.allRefusedSamples === "yes",
             "نعم"
         )
 
         +
 
         optionHTML(
-            samples.allRefusedSamples ===
-            "no",
+            samples.allRefusedSamples === "no",
             "لا"
         );
 
@@ -2916,24 +4361,21 @@ function renderFoodborne(
     ).innerHTML =
 
         optionHTML(
-            samples.positiveResults ===
-            "yes",
+            samples.positiveResults === "yes",
             "نعم"
         )
 
         +
 
         optionHTML(
-            samples.positiveResults ===
-            "no",
+            samples.positiveResults === "no",
             "لا"
         )
 
         +
 
         optionHTML(
-            samples.positiveResults ===
-            "pending",
+            samples.positiveResults === "pending",
             "قيد الانتظار"
         );
 
@@ -2946,6 +4388,9 @@ function renderFoodborne(
 
     setText(
         "viewHesnStatus",
+        hesnStatusLabels[
+            currentNotification.hesnStatus
+        ] ||
         currentNotification.hesnStatus ||
         outbreak.hesnStatus
     );
@@ -3003,122 +4448,6 @@ function renderFoodborne(
     setText(
         "viewReportTime",
         reportDate.time
-    );
-
-}
-
-
-/* ==================================================
-   NORMAL NOTIFICATION
-================================================== */
-
-function renderNormal(
-    notification
-){
-
-    const genderLabels = {
-        male:"ذكر",
-        female:"أنثى"
-    };
-
-
-    const classLabels = {
-        suspected:"مشتبهة",
-        probable:"محتملة",
-        confirmed:"مؤكدة"
-    };
-
-
-    const sourceLabels = {
-        smartScreening:"الفرز الذكي",
-        manual:"إدخال مباشر",
-        foodPoisoningIndividual:"تسمم غذائي فردي"
-    };
-
-
-    setText(
-        "normalId",
-        notification.id
-    );
-
-
-    setText(
-        "normalDisease",
-        notification.disease
-    );
-
-
-    setText(
-        "normalDate",
-        notification.date ||
-        notification.reportDateTime ||
-        notification.createdAt
-    );
-
-
-    setText(
-        "normalPatient",
-        notification.patientName
-    );
-
-
-    setText(
-        "normalMrn",
-        notification.mrn
-    );
-
-
-    setText(
-        "normalGender",
-        genderLabels[
-            notification.gender
-        ] ||
-        notification.gender
-    );
-
-
-    setText(
-        "normalDepartment",
-        notification.reporterDepartment
-    );
-
-
-    setText(
-        "normalReporter",
-        notification.reporterName
-    );
-
-
-    setText(
-        "normalPriority",
-        notification.priority ===
-        "urgent"
-        ? "عاجل"
-        : "عادي"
-    );
-
-
-    setText(
-        "normalClassification",
-        classLabels[
-            notification.classification
-        ] ||
-        notification.classification
-    );
-
-
-    setText(
-        "normalRapidScore",
-        notification.rapidScore
-    );
-
-
-    setText(
-        "normalSource",
-        sourceLabels[
-            notification.source
-        ] ||
-        notification.source
     );
 
 }
@@ -3224,7 +4553,7 @@ async function saveFollowup(){
 
 
         /*
-          تحديث نسخة الفاشية أيضًا
+          تحديث بيانات الفاشية
         */
 
         if(
@@ -3254,7 +4583,7 @@ async function saveFollowup(){
 
 
         /*
-          الحفظ الحالي
+          حفظ محلي حاليًا
         */
 
         localStorage.setItem(
@@ -3269,8 +4598,7 @@ async function saveFollowup(){
 
 
         /*
-          استعداد للـ Backend المحلي.
-          إذا كان api.js يدعم update نستخدمه.
+          Backend عند توفره
         */
 
         if(
@@ -3287,11 +4615,6 @@ async function saveFollowup(){
             typeof savePublicHealthNotification ===
             "function"
         ){
-
-            /*
-              إذا savePublicHealthNotification
-              يعمل Upsert حسب ID
-            */
 
             try{
 
@@ -3315,11 +4638,14 @@ async function saveFollowup(){
         setText(
             "lastUpdatedView",
             formatDateTime(
-                currentNotification
-                .lastUpdatedAt
+                currentNotification.lastUpdatedAt
             )
         );
 
+
+        /*
+          تحديث التقرير الظاهر مباشرة
+        */
 
         if(
             currentNotification.notificationType ===
@@ -3330,17 +4656,15 @@ async function saveFollowup(){
             currentNotification.outbreakData
         ){
 
-            setText(
-                "viewHesnStatus",
-                currentNotification
-                .hesnStatus
+            renderFoodborne(
+                currentNotification.outbreakData
             );
 
+        }
+        else{
 
-            setText(
-                "viewHesnNumber",
+            renderInfectiousReport(
                 currentNotification
-                .hesnNumber
             );
 
         }
@@ -3400,9 +4724,9 @@ document.addEventListener(
 </script>
 
 
+<script src="config.js"></script>
 <script src="api.js"></script>
 
 
 </body>
-
 </html>
