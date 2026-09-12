@@ -17,7 +17,6 @@
 }
 
 :root{
-
     --primary:#064c92;
     --secondary:#0759a6;
     --teal:#0f7c8c;
@@ -29,16 +28,13 @@
     --light:#f6f9fb;
     --text:#243b53;
     --muted:#607387;
-
 }
 
 body{
-
     margin:0;
     background:#e9eef2;
     font-family:Arial,Tahoma,sans-serif;
     color:var(--text);
-
 }
 
 
@@ -47,77 +43,49 @@ body{
 ===================================================== */
 
 .report-toolbar{
-
     max-width:1200px;
     margin:18px auto;
     padding:15px 18px;
-
     background:#fff;
-
     border:1px solid var(--border);
     border-radius:14px;
-
     display:flex;
     justify-content:space-between;
     align-items:center;
     gap:12px;
     flex-wrap:wrap;
-
     box-shadow:0 4px 14px rgba(0,0,0,.05);
-
 }
 
 .toolbar-group{
-
     display:flex;
     gap:8px;
     flex-wrap:wrap;
-
 }
 
 .toolbar-btn{
-
     border:none;
     border-radius:8px;
-
     padding:11px 17px;
-
     font-weight:bold;
-
     cursor:pointer;
-
     text-decoration:none;
-
     display:inline-block;
-
 }
 
 .print-btn{
-
     background:#687984;
     color:#fff;
-
 }
 
 .back-btn{
-
     background:#eaf1f7;
     color:#064c92;
-
-}
-
-.settings-btn{
-
-    background:#0759a6;
-    color:#fff;
-
 }
 
 .pdf-note{
-
     font-size:12px;
     color:#607387;
-
 }
 
 
@@ -126,55 +94,39 @@ body{
 ===================================================== */
 
 .report-options{
-
     max-width:1200px;
     margin:0 auto 18px;
     padding:18px;
-
     background:#fff;
-
     border:1px solid var(--border);
     border-radius:14px;
-
     box-shadow:0 4px 14px rgba(0,0,0,.05);
-
 }
 
 .report-options h3{
-
     color:var(--primary);
     margin-top:0;
-
 }
 
 .options-grid{
-
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(4,1fr);
     gap:12px;
-
 }
 
 .option-box{
-
     border:1px solid var(--border);
     border-radius:10px;
-
     padding:11px;
-
     display:flex;
     align-items:center;
     gap:8px;
-
     background:#fafcfd;
-
 }
 
 .option-box input{
-
     width:18px;
     height:18px;
-
 }
 
 
@@ -183,179 +135,115 @@ body{
 ===================================================== */
 
 .report-paper{
-
     width:210mm;
-
     max-width:calc(100% - 20px);
-
     margin:0 auto 35px;
-
     background:#fff;
-
     min-height:297mm;
-
-    padding:13mm;
-
+    padding:12mm 13mm 15mm;
     box-shadow:0 5px 20px rgba(0,0,0,.16);
-
 }
 
 
 /* =====================================================
-   OFFICIAL HEADER
+   HEADER
 ===================================================== */
 
 .report-header{
-
     display:grid;
-
-    grid-template-columns:150px 1fr 170px;
-
+    grid-template-columns:125px 1fr 145px;
     gap:15px;
-
     align-items:center;
-
     border-bottom:3px solid var(--primary);
-
-    padding-bottom:12px;
-
-    margin-bottom:15px;
-
+    padding-bottom:10px;
+    margin-bottom:14px;
 }
 
 .report-logo{
-
     display:flex;
     justify-content:center;
     align-items:center;
-
 }
 
 .report-logo img{
-
     width:auto !important;
     height:auto !important;
-
-    max-width:130px !important;
-    max-height:75px !important;
-
+    max-width:105px !important;
+    max-height:60px !important;
     object-fit:contain !important;
-
 }
 
 .report-title{
-
     text-align:center;
-
 }
 
 .report-title h1{
-
     margin:0;
-
     color:var(--primary);
-
-    font-size:23px;
-
+    font-size:22px;
 }
 
 .report-title h2{
-
-    margin:5px 0 0;
-
-    font-size:15px;
-
+    margin:4px 0 0;
+    font-size:13px;
     color:#607387;
-
 }
 
 .report-title p{
-
-    margin:6px 0 0;
-
-    font-size:12px;
-
+    margin:5px 0 0;
+    font-size:11px;
     color:#718293;
-
 }
 
 
 /* =====================================================
-   REPORT META
+   META
 ===================================================== */
 
 .report-meta{
-
     display:grid;
-
     grid-template-columns:repeat(4,1fr);
-
     border:1px solid var(--border);
-
     margin-bottom:16px;
-
 }
 
 .meta-item{
-
-    padding:10px;
-
+    padding:9px;
     border-left:1px solid var(--border);
     border-bottom:1px solid var(--border);
-
 }
 
 .meta-label{
-
     display:block;
-
-    font-size:10px;
-
+    font-size:9px;
     color:#718293;
-
-    margin-bottom:4px;
-
+    margin-bottom:3px;
 }
 
 .meta-value{
-
     display:block;
-
-    font-size:12px;
-
+    font-size:11px;
     font-weight:bold;
-
     color:#294b6a;
-
 }
 
 
 /* =====================================================
-   EXECUTIVE SUMMARY
+   SUMMARY
 ===================================================== */
 
 .executive-summary{
-
     background:#f6f9fb;
-
     border-right:5px solid var(--primary);
-
-    padding:14px 16px;
-
-    margin-bottom:18px;
-
+    padding:13px 15px;
+    margin-bottom:17px;
     line-height:1.9;
-
-    font-size:12px;
-
+    font-size:11px;
 }
 
 .executive-summary h3{
-
     color:var(--primary);
-
     margin:0 0 8px;
-
 }
 
 
@@ -364,51 +252,34 @@ body{
 ===================================================== */
 
 .report-section{
-
-    margin:0 0 20px;
-
+    margin:0 0 18px;
     page-break-inside:avoid;
-
+    break-inside:avoid;
 }
 
 .section-heading{
-
     background:var(--primary);
-
     color:#fff;
-
-    padding:9px 12px;
-
-    font-size:14px;
-
+    padding:8px 11px;
+    font-size:13px;
     font-weight:bold;
-
     margin-bottom:10px;
-
 }
 
 .section-heading.teal{
-
     background:var(--teal);
-
 }
 
 .section-heading.purple{
-
     background:var(--purple);
-
 }
 
 .section-heading.green{
-
     background:var(--green);
-
 }
 
 .section-heading.orange{
-
     background:var(--orange);
-
 }
 
 
@@ -417,53 +288,32 @@ body{
 ===================================================== */
 
 .kpi-grid{
-
     display:grid;
-
     grid-template-columns:repeat(4,1fr);
-
-    gap:10px;
-
+    gap:9px;
 }
 
 .kpi-card{
-
     border:1px solid var(--border);
-
-    border-radius:9px;
-
-    padding:12px;
-
+    border-radius:8px;
+    padding:11px;
     text-align:center;
-
     background:#fbfcfd;
-
 }
 
 .kpi-number{
-
     display:block;
-
-    font-size:24px;
-
+    font-size:23px;
     font-weight:bold;
-
     color:var(--primary);
-
 }
 
 .kpi-label{
-
     display:block;
-
-    font-size:10px;
-
+    font-size:9px;
     color:#607387;
-
-    margin-top:5px;
-
+    margin-top:4px;
     line-height:1.5;
-
 }
 
 
@@ -472,123 +322,83 @@ body{
 ===================================================== */
 
 .report-table{
-
     width:100%;
-
     border-collapse:collapse;
-
     table-layout:fixed;
-
     margin-bottom:10px;
-
 }
 
 .report-table th{
-
     background:#edf3f7;
-
     color:#294b6a;
-
     border:1px solid #cbd6df;
-
-    padding:7px;
-
-    font-size:9px;
-
+    padding:6px;
+    font-size:8.5px;
 }
 
 .report-table td{
-
     border:1px solid #cbd6df;
-
-    padding:7px;
-
-    font-size:9px;
-
+    padding:6px;
+    font-size:8.5px;
     text-align:center;
-
     overflow-wrap:anywhere;
+}
 
+.report-table tr{
+    page-break-inside:avoid;
+    break-inside:avoid;
 }
 
 .report-table tr:nth-child(even){
-
     background:#fafcfd;
-
 }
 
 
 /* =====================================================
-   SIMPLE BAR
+   BARS
 ===================================================== */
 
 .report-bar-list{
-
     display:flex;
     flex-direction:column;
-
-    gap:8px;
-
+    gap:7px;
 }
 
 .report-bar-row{
-
     display:grid;
-
-    grid-template-columns:150px 1fr 45px;
-
+    grid-template-columns:145px 1fr 42px;
     gap:8px;
-
     align-items:center;
-
 }
 
 .report-bar-label{
-
-    font-size:10px;
-
+    font-size:9.5px;
 }
 
 .report-bar-track{
-
-    height:13px;
-
+    height:12px;
     background:#edf1f4;
-
     border-radius:10px;
-
     overflow:hidden;
-
 }
 
 .report-bar-fill{
-
     height:100%;
-
     background:var(--primary);
-
 }
 
 .teal-bars .report-bar-fill{
-
     background:var(--teal);
-
 }
 
 .purple-bars .report-bar-fill{
-
     background:var(--purple);
-
 }
 
 .report-bar-value{
-
     text-align:center;
-
-    font-size:10px;
-
+    font-size:9px;
     font-weight:bold;
-
 }
 
 
@@ -597,68 +407,44 @@ body{
 ===================================================== */
 
 .report-note{
-
-    padding:12px;
-
+    padding:11px;
     background:#fff8e1;
-
     border-right:4px solid #d88900;
-
     line-height:1.8;
-
-    font-size:10px;
-
+    font-size:9.5px;
     color:#66531b;
-
 }
 
 
 /* =====================================================
-   SIGNATURE
+   APPROVAL
 ===================================================== */
 
 .approval-section{
-
-    margin-top:25px;
-
+    margin-top:24px;
     display:grid;
-
     grid-template-columns:1fr 1fr;
-
-    gap:25px;
-
+    gap:28px;
+    page-break-inside:avoid;
 }
 
 .signature-box{
-
     border-top:1px solid #74889a;
-
     padding-top:8px;
-
     text-align:center;
-
     min-height:65px;
-
 }
 
 .signature-title{
-
     font-weight:bold;
-
     color:#294b6a;
-
-    font-size:11px;
-
+    font-size:10px;
 }
 
 .signature-name{
-
     margin-top:6px;
-
-    font-size:10px;
-
+    font-size:9px;
     color:#607387;
-
 }
 
 
@@ -667,23 +453,15 @@ body{
 ===================================================== */
 
 .report-footer{
-
-    margin-top:25px;
-
+    margin-top:22px;
     border-top:1px solid #cbd6df;
-
-    padding-top:8px;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    gap:10px;
-
-    font-size:8px;
-
+    padding-top:7px;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:8px;
+    font-size:7.5px;
     color:#718293;
-
+    text-align:center;
 }
 
 
@@ -692,9 +470,17 @@ body{
 ===================================================== */
 
 .hidden-section{
-
     display:none !important;
+}
 
+
+/* =====================================================
+   DETAILS PAGE
+===================================================== */
+
+.details-page{
+    break-before:page;
+    page-break-before:always;
 }
 
 
@@ -703,60 +489,47 @@ body{
 ===================================================== */
 
 @page{
-
     size:A4 portrait;
-
     margin:8mm;
-
 }
 
 @media print{
 
     body{
-
         background:#fff;
-
     }
 
     .report-toolbar,
     .report-options{
-
         display:none !important;
-
     }
 
     .report-paper{
-
         width:100%;
-
         max-width:none;
-
         min-height:auto;
-
         margin:0;
-
         padding:0;
-
         box-shadow:none;
+    }
 
+    .report-header{
+        margin-top:0;
     }
 
     .report-section{
-
         break-inside:avoid;
-
+        page-break-inside:avoid;
     }
 
-    .page-break{
-
+    .details-page{
         break-before:page;
-
+        page-break-before:always;
     }
 
-    .report-footer{
-
-        position:relative;
-
+    .report-table tr{
+        break-inside:avoid;
+        page-break-inside:avoid;
     }
 
 }
@@ -769,22 +542,16 @@ body{
 @media(max-width:800px){
 
     body{
-
         overflow-x:auto;
-
     }
 
     .report-paper{
-
         width:210mm;
         max-width:none;
-
     }
 
     .options-grid{
-
         grid-template-columns:1fr;
-
     }
 
 }
@@ -796,10 +563,6 @@ body{
 
 <body>
 
-
-<!-- =====================================================
-     TOOLBAR
-===================================================== -->
 
 <section class="report-toolbar">
 
@@ -813,7 +576,6 @@ body{
 
 </button>
 
-
 <a
     class="toolbar-btn back-btn"
     href="analytics-dashboard.html">
@@ -824,12 +586,9 @@ body{
 
 </div>
 
-
 <div class="pdf-note">
 
-يفضل اختيار
-<strong>Save as PDF</strong>
-من نافذة الطباعة.
+يتم إنشاء التقرير حسب نوع الإحصائية والفترة المحددة.
 
 </div>
 
@@ -837,123 +596,49 @@ body{
 
 
 
-<!-- =====================================================
-     CONTROL SECTIONS
-===================================================== -->
-
 <section class="report-options">
 
 <h3>
-⚙️ تخصيص محتوى التقرير قبل الطباعة
+⚙️ تخصيص التقرير
 </h3>
-
 
 <div class="options-grid">
 
-
 <label class="option-box">
-
 <input
     type="checkbox"
     checked
     data-target="summarySection"
     onchange="toggleReportSection(this)">
-
 الملخص التنفيذي
-
 </label>
 
-
 <label class="option-box">
-
 <input
     type="checkbox"
     checked
     data-target="kpiSection"
     onchange="toggleReportSection(this)">
-
 المؤشرات الرئيسية
-
 </label>
 
-
 <label class="option-box">
-
-<input
-    type="checkbox"
-    checked
-    data-target="rapidSection"
-    onchange="toggleReportSection(this)">
-
-الفرز السريع
-
-</label>
-
-
-<label class="option-box">
-
-<input
-    type="checkbox"
-    checked
-    data-target="smartSection"
-    onchange="toggleReportSection(this)">
-
-الفرز الذكي
-
-</label>
-
-
-<label class="option-box">
-
-<input
-    type="checkbox"
-    checked
-    data-target="notificationSection"
-    onchange="toggleReportSection(this)">
-
-البلاغات
-
-</label>
-
-
-<label class="option-box">
-
-<input
-    type="checkbox"
-    checked
-    data-target="employeeSection"
-    onchange="toggleReportSection(this)">
-
-فحص الموظفين
-
-</label>
-
-
-<label class="option-box">
-
 <input
     type="checkbox"
     checked
     data-target="detailsSection"
     onchange="toggleReportSection(this)">
-
 الجداول التفصيلية
-
 </label>
 
-
 <label class="option-box">
-
 <input
     type="checkbox"
     checked
     data-target="approvalSection"
     onchange="toggleReportSection(this)">
-
 الاعتماد والتوقيع
-
 </label>
-
 
 </div>
 
@@ -961,19 +646,10 @@ body{
 
 
 
-<!-- =====================================================
-     PAPER
-===================================================== -->
-
 <main class="report-paper">
 
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
 <header class="report-header">
-
 
 <div class="report-logo">
 
@@ -1009,16 +685,26 @@ Public Health Report
 
 </div>
 
-
 </header>
 
 
 
-<!-- =====================================================
-     META
-===================================================== -->
-
 <section class="report-meta">
+
+
+<div class="meta-item">
+
+<span class="meta-label">
+رقم التقرير
+</span>
+
+<span
+    id="metaReportNumber"
+    class="meta-value">
+—
+</span>
+
+</div>
 
 
 <div class="meta-item">
@@ -1030,9 +716,7 @@ Public Health Report
 <span
     id="metaReportType"
     class="meta-value">
-
 —
-
 </span>
 
 </div>
@@ -1047,9 +731,7 @@ Public Health Report
 <span
     id="metaPeriod"
     class="meta-value">
-
 —
-
 </span>
 
 </div>
@@ -1064,22 +746,7 @@ Public Health Report
 <span
     id="metaCreated"
     class="meta-value">
-
 —
-
-</span>
-
-</div>
-
-
-<div class="meta-item">
-
-<span class="meta-label">
-حالة التقرير
-</span>
-
-<span class="meta-value">
-مسودة / للاستخدام الداخلي
 </span>
 
 </div>
@@ -1094,9 +761,7 @@ Public Health Report
 <span
     id="metaPreparedBy"
     class="meta-value">
-
 —
-
 </span>
 
 </div>
@@ -1111,9 +776,7 @@ Public Health Report
 <span
     id="metaPreparedTitle"
     class="meta-value">
-
 —
-
 </span>
 
 </div>
@@ -1128,9 +791,7 @@ Public Health Report
 <span
     id="metaApprovedBy"
     class="meta-value">
-
 —
-
 </span>
 
 </div>
@@ -1139,14 +800,14 @@ Public Health Report
 <div class="meta-item">
 
 <span class="meta-label">
-المسمى الوظيفي
+حالة التقرير
 </span>
 
 <span
-    id="metaApprovedTitle"
+    id="metaReportStatus"
     class="meta-value">
 
-—
+مسودة / للاستخدام الداخلي
 
 </span>
 
@@ -1156,258 +817,188 @@ Public Health Report
 </section>
 
 
-
-<!-- =====================================================
-     EXECUTIVE SUMMARY
-===================================================== -->
 
 <section
     id="summarySection"
     class="executive-summary">
 
-
 <h3>
 الملخص التنفيذي
 </h3>
 
-
 <div id="executiveSummaryText">
-
-يتم إعداد الملخص...
-
+—
 </div>
-
 
 </section>
 
 
 
-<!-- =====================================================
-     KPI
-===================================================== -->
-
 <section
     id="kpiSection"
     class="report-section">
 
-
 <div class="section-heading">
 المؤشرات الرئيسية
 </div>
-
 
 <div
     id="mainKpiGrid"
     class="kpi-grid">
 </div>
 
-
 </section>
 
 
 
-<!-- =====================================================
-     RAPID
-===================================================== -->
-
 <section
     id="rapidSection"
-    class="report-section">
-
+    class="report-section hidden-section">
 
 <div class="section-heading teal">
 الفرز السريع للأمراض المعدية
 </div>
-
 
 <div
     id="rapidKpiGrid"
     class="kpi-grid">
 </div>
 
-
 <br>
-
 
 <h4>
 توزيع درجات Rapid Score
 </h4>
-
 
 <div
     id="rapidScoreBars"
     class="report-bar-list teal-bars">
 </div>
 
-
 <br>
-
 
 <h4>
 عوامل التعرض الوبائي
 </h4>
-
 
 <div
     id="rapidEpiBars"
     class="report-bar-list teal-bars">
 </div>
 
-
 </section>
 
 
 
-<!-- =====================================================
-     SMART
-===================================================== -->
-
 <section
     id="smartSection"
-    class="report-section">
-
+    class="report-section hidden-section">
 
 <div class="section-heading purple">
 الفرز الذكي للأمراض المعدية
 </div>
-
 
 <div
     id="smartKpiGrid"
     class="kpi-grid">
 </div>
 
-
 <br>
-
 
 <h4>
 الأمراض / المسارات المكتشفة
 </h4>
-
 
 <div
     id="smartDiseaseBars"
     class="report-bar-list purple-bars">
 </div>
 
-
 <br>
-
 
 <h4>
 عوامل التعرض الوبائي
 </h4>
-
 
 <div
     id="smartEpiBars"
     class="report-bar-list purple-bars">
 </div>
 
-
 </section>
 
 
 
-<!-- =====================================================
-     NOTIFICATIONS
-===================================================== -->
-
 <section
     id="notificationSection"
-    class="report-section">
-
+    class="report-section hidden-section">
 
 <div class="section-heading">
 بلاغات الأمراض المعدية
 </div>
-
 
 <div
     id="notificationKpiGrid"
     class="kpi-grid">
 </div>
 
-
 <br>
-
 
 <h4>
 توزيع البلاغات حسب المرض
 </h4>
-
 
 <div
     id="notificationDiseaseBars"
     class="report-bar-list">
 </div>
 
-
 <br>
-
 
 <h4>
 توزيع البلاغات حسب القسم
 </h4>
-
 
 <div
     id="notificationDepartmentBars"
     class="report-bar-list">
 </div>
 
-
 </section>
 
 
 
-<!-- =====================================================
-     EMPLOYEE
-===================================================== -->
-
 <section
     id="employeeSection"
-    class="report-section">
-
+    class="report-section hidden-section">
 
 <div class="section-heading green">
 الفحص الدوري للموظفين
 </div>
-
 
 <div
     id="employeeKpiGrid"
     class="kpi-grid">
 </div>
 
-
 <br>
-
 
 <h4>
 الفحوص حسب القسم
 </h4>
-
 
 <div
     id="employeeDepartmentBars"
     class="report-bar-list">
 </div>
 
-
 </section>
 
 
 
-<!-- =====================================================
-     DETAILS
-===================================================== -->
-
 <section
     id="detailsSection"
-    class="report-section page-break">
-
+    class="report-section details-page">
 
 <div class="section-heading">
 الجداول التفصيلية
@@ -1415,12 +1006,13 @@ Public Health Report
 
 
 
-<div id="rapidDetailsBlock">
+<div
+    id="rapidDetailsBlock"
+    style="display:none;">
 
 <h4>
 سجل الفرز السريع
 </h4>
-
 
 <table class="report-table">
 
@@ -1428,34 +1020,16 @@ Public Health Report
 
 <tr>
 
-<th>
-رقم الفرز
-</th>
-
-<th>
-التاريخ
-</th>
-
-<th>
-Score
-</th>
-
-<th>
-الخطورة
-</th>
-
-<th>
-Red Flag
-</th>
-
-<th>
-انتقل للفرز الذكي
-</th>
+<th>رقم الفرز</th>
+<th>التاريخ</th>
+<th>Score</th>
+<th>الخطورة</th>
+<th>Red Flag</th>
+<th>انتقل للفرز الذكي</th>
 
 </tr>
 
 </thead>
-
 
 <tbody id="rapidDetailsBody">
 </tbody>
@@ -1466,12 +1040,13 @@ Red Flag
 
 
 
-<div id="smartDetailsBlock">
+<div
+    id="smartDetailsBlock"
+    style="display:none;">
 
 <h4>
 سجل الفرز الذكي
 </h4>
-
 
 <table class="report-table">
 
@@ -1479,34 +1054,16 @@ Red Flag
 
 <tr>
 
-<th>
-رقم الفرز
-</th>
-
-<th>
-التاريخ
-</th>
-
-<th>
-Rapid ID
-</th>
-
-<th>
-النتيجة
-</th>
-
-<th>
-اشتباه مرتفع
-</th>
-
-<th>
-بلاغ مرتبط
-</th>
+<th>رقم الفرز</th>
+<th>التاريخ</th>
+<th>Rapid ID</th>
+<th>النتيجة</th>
+<th>اشتباه مرتفع</th>
+<th>بلاغ مرتبط</th>
 
 </tr>
 
 </thead>
-
 
 <tbody id="smartDetailsBody">
 </tbody>
@@ -1517,12 +1074,13 @@ Rapid ID
 
 
 
-<div id="notificationDetailsBlock">
+<div
+    id="notificationDetailsBlock"
+    style="display:none;">
 
 <h4>
 سجل البلاغات
 </h4>
-
 
 <table class="report-table">
 
@@ -1530,38 +1088,17 @@ Rapid ID
 
 <tr>
 
-<th>
-رقم البلاغ
-</th>
-
-<th>
-التاريخ
-</th>
-
-<th>
-المرض
-</th>
-
-<th>
-القسم
-</th>
-
-<th>
-الأولوية
-</th>
-
-<th>
-الحالة
-</th>
-
-<th>
-HESN+
-</th>
+<th>رقم البلاغ</th>
+<th>التاريخ</th>
+<th>المرض</th>
+<th>القسم</th>
+<th>الأولوية</th>
+<th>الحالة</th>
+<th>HESN+</th>
 
 </tr>
 
 </thead>
-
 
 <tbody id="notificationDetailsBody">
 </tbody>
@@ -1572,12 +1109,13 @@ HESN+
 
 
 
-<div id="employeeDetailsBlock">
+<div
+    id="employeeDetailsBlock"
+    style="display:none;">
 
 <h4>
 سجل الفحص الدوري للموظفين
 </h4>
-
 
 <table class="report-table">
 
@@ -1585,34 +1123,16 @@ HESN+
 
 <tr>
 
-<th>
-الموظف
-</th>
-
-<th>
-الرقم الوظيفي
-</th>
-
-<th>
-القسم
-</th>
-
-<th>
-التاريخ
-</th>
-
-<th>
-المناعة
-</th>
-
-<th>
-الحالة
-</th>
+<th>الموظف</th>
+<th>الرقم الوظيفي</th>
+<th>القسم</th>
+<th>التاريخ</th>
+<th>المناعة</th>
+<th>الحالة</th>
 
 </tr>
 
 </thead>
-
 
 <tbody id="employeeDetailsBody">
 </tbody>
@@ -1621,44 +1141,31 @@ HESN+
 
 </div>
 
-
 </section>
 
 
 
-<!-- =====================================================
-     NOTES
-===================================================== -->
-
 <section class="report-section">
-
 
 <div class="section-heading orange">
 ملاحظات التقرير
 </div>
 
-
 <div class="report-note">
 
 تم إنشاء هذا التقرير إلكترونيًا من البوابة الذكية للصحة العامة.
-تعتمد المؤشرات على البيانات المدخلة في النظام خلال الفترة المحددة.
+تعتمد المؤشرات على البيانات المدخلة في النظام خلال الفترة المحددة،
 ويجب مراجعة البيانات واعتمادها وفق سياسات المنشأة قبل الاستخدام الرسمي.
 
 </div>
-
 
 </section>
 
 
 
-<!-- =====================================================
-     APPROVAL
-===================================================== -->
-
 <section
     id="approvalSection"
     class="approval-section">
-
 
 <div class="signature-box">
 
@@ -1669,9 +1176,7 @@ HESN+
 <div
     id="preparedSignatureName"
     class="signature-name">
-
 —
-
 </div>
 
 </div>
@@ -1686,23 +1191,20 @@ HESN+
 <div
     id="approvedSignatureName"
     class="signature-name">
-
 —
-
 </div>
 
 </div>
-
 
 </section>
 
 
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
 <footer class="report-footer">
+
+<div id="footerReportNumber">
+رقم التقرير: —
+</div>
 
 <div>
 البوابة الذكية للصحة العامة — SPHP
@@ -1710,10 +1212,6 @@ HESN+
 
 <div id="footerGeneratedDate">
 —
-</div>
-
-<div>
-للاستخدام الداخلي
 </div>
 
 </footer>
@@ -1726,30 +1224,19 @@ HESN+
 <script>
 
 
-/* =====================================================
-   DATA
-===================================================== */
-
 let notifications = [];
-
 let rapidRecords = [];
-
 let smartRecords = [];
-
 let employeeRecords = [];
 
-
 let filteredNotifications = [];
-
 let filteredRapid = [];
-
 let filteredSmart = [];
-
 let filteredEmployee = [];
 
 
 /* =====================================================
-   SAFE STORAGE
+   STORAGE
 ===================================================== */
 
 function readArray(key){
@@ -1762,7 +1249,6 @@ function readArray(key){
                     key
                 ) || "[]"
             );
-
 
         return Array.isArray(data)
             ? data
@@ -1785,44 +1271,20 @@ function loadData(){
             "publicHealthNotifications"
         );
 
-
     rapidRecords =
         readArray(
             "rapidScreeningRecords"
         );
-
 
     smartRecords =
         readArray(
             "smartScreeningRecords"
         );
 
-
     employeeRecords =
         readArray(
             "employeeScreeningRecords"
         );
-
-}
-
-
-/* =====================================================
-   ESCAPE
-===================================================== */
-
-function escapeHTML(value){
-
-    return String(
-        value === undefined ||
-        value === null
-        ? ""
-        : value
-    )
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
 
 }
 
@@ -1837,7 +1299,6 @@ function getQuery(){
         new URLSearchParams(
             window.location.search
         );
-
 
     return {
 
@@ -1867,7 +1328,28 @@ function getQuery(){
 
 
 /* =====================================================
-   DATE
+   ESCAPE
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(
+        value === undefined ||
+        value === null
+        ? ""
+        : value
+    )
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   DATE HELPERS
 ===================================================== */
 
 function validDate(value){
@@ -1878,12 +1360,10 @@ function validDate(value){
 
     }
 
-
     const date =
         new Date(
             value
         );
-
 
     return isNaN(
         date.getTime()
@@ -1897,29 +1377,13 @@ function validDate(value){
 function notificationDate(item){
 
     return (
-
-        validDate(
-            item.createdAt
-        )
-
+        validDate(item.createdAt)
         ||
-
-        validDate(
-            item.reportDateTime
-        )
-
+        validDate(item.reportDateTime)
         ||
-
-        validDate(
-            item.detectionDateTime
-        )
-
+        validDate(item.detectionDateTime)
         ||
-
-        validDate(
-            item.date
-        )
-
+        validDate(item.date)
     );
 
 }
@@ -1928,17 +1392,9 @@ function notificationDate(item){
 function rapidDate(item){
 
     return (
-
-        validDate(
-            item.date
-        )
-
+        validDate(item.date)
         ||
-
-        validDate(
-            item.createdAt
-        )
-
+        validDate(item.createdAt)
     );
 
 }
@@ -1966,7 +1422,6 @@ function employeeDate(item){
 
     }
 
-
     return validDate(
         item.createdAt
     );
@@ -1983,10 +1438,8 @@ function getRange(){
     const query =
         getQuery();
 
-
     const now =
         new Date();
-
 
     let start =
         null;
@@ -2010,7 +1463,6 @@ function getRange(){
                 1
             );
 
-
         end =
             new Date(
                 now.getFullYear(),
@@ -2020,7 +1472,6 @@ function getRange(){
                 59,
                 59
             );
-
 
         text =
             "الشهر الحالي";
@@ -2040,7 +1491,6 @@ function getRange(){
                 1
             );
 
-
         end =
             new Date(
                 now.getFullYear(),
@@ -2050,7 +1500,6 @@ function getRange(){
                 59,
                 59
             );
-
 
         text =
             "الشهر السابق";
@@ -2070,7 +1519,6 @@ function getRange(){
                 1
             );
 
-
         end =
             new Date(
                 now.getFullYear(),
@@ -2080,7 +1528,6 @@ function getRange(){
                 59,
                 59
             );
-
 
         text =
             "السنة الحالية " +
@@ -2097,14 +1544,12 @@ function getRange(){
         const year =
             now.getFullYear()-1;
 
-
         start =
             new Date(
                 year,
                 0,
                 1
             );
-
 
         end =
             new Date(
@@ -2115,7 +1560,6 @@ function getRange(){
                 59,
                 59
             );
-
 
         text =
             "السنة السابقة " +
@@ -2141,7 +1585,6 @@ function getRange(){
 
         }
 
-
         if(
             query.to
         ){
@@ -2154,20 +1597,14 @@ function getRange(){
 
         }
 
-
         text =
-
             (
                 query.from ||
                 "—"
             )
-
             +
-
             " إلى "
-
             +
-
             (
                 query.to ||
                 "—"
@@ -2206,7 +1643,6 @@ function inRange(
 
     }
 
-
     if(
         range.start &&
         date <
@@ -2216,7 +1652,6 @@ function inRange(
         return false;
 
     }
-
 
     if(
         range.end &&
@@ -2228,14 +1663,13 @@ function inRange(
 
     }
 
-
     return true;
 
 }
 
 
 /* =====================================================
-   FILTER DATA
+   FILTER
 ===================================================== */
 
 function filterData(){
@@ -2243,50 +1677,38 @@ function filterData(){
     const range =
         getRange();
 
-
     filteredNotifications =
         notifications.filter(
             item =>
                 inRange(
-                    notificationDate(
-                        item
-                    ),
+                    notificationDate(item),
                     range
                 )
         );
-
 
     filteredRapid =
         rapidRecords.filter(
             item =>
                 inRange(
-                    rapidDate(
-                        item
-                    ),
+                    rapidDate(item),
                     range
                 )
         );
-
 
     filteredSmart =
         smartRecords.filter(
             item =>
                 inRange(
-                    smartDate(
-                        item
-                    ),
+                    smartDate(item),
                     range
                 )
         );
-
 
     filteredEmployee =
         employeeRecords.filter(
             item =>
                 inRange(
-                    employeeDate(
-                        item
-                    ),
+                    employeeDate(item),
                     range
                 )
         );
@@ -2295,7 +1717,7 @@ function filterData(){
 
 
 /* =====================================================
-   HELPERS
+   GENERAL HELPERS
 ===================================================== */
 
 function percent(
@@ -2308,7 +1730,6 @@ function percent(
         return 0;
 
     }
-
 
     return Math.round(
         value /
@@ -2327,7 +1748,6 @@ function countBy(
     const result =
         {};
 
-
     list.forEach(
         function(item){
 
@@ -2335,18 +1755,14 @@ function countBy(
                 item[field] ||
                 "غير محدد";
 
-
             result[value] =
                 (
                     result[value] ||
                     0
-                )
-                +
-                1;
+                ) + 1;
 
         }
     );
-
 
     return result;
 
@@ -2387,7 +1803,6 @@ function renderBars(
             id
         );
 
-
     const entries =
         Object.entries(
             data
@@ -2409,7 +1824,7 @@ function renderBars(
     ){
 
         container.innerHTML =
-            '<p style="font-size:10px;color:#607387">لا توجد بيانات.</p>';
+            '<p style="font-size:9px;color:#607387">لا توجد بيانات.</p>';
 
         return;
 
@@ -2431,20 +1846,16 @@ function renderBars(
             function(item){
 
                 const width =
-
                     item[1] /
                     max *
                     100;
-
 
                 return `
 
                 <div class="report-bar-row">
 
                     <div class="report-bar-label">
-
                     ${escapeHTML(item[0])}
-
                     </div>
 
                     <div class="report-bar-track">
@@ -2457,9 +1868,7 @@ function renderBars(
                     </div>
 
                     <div class="report-bar-value">
-
                     ${item[1]}
-
                     </div>
 
                 </div>
@@ -2474,7 +1883,7 @@ function renderBars(
 
 
 /* =====================================================
-   RELATION
+   RELATIONS
 ===================================================== */
 
 function rapidReachedSmart(
@@ -2485,15 +1894,11 @@ function rapidReachedSmart(
         function(smart){
 
             return (
-
                 smart.rapidScreeningId ===
                 rapid.id
-
                 ||
-
                 smart.rapidId ===
                 rapid.id
-
             );
 
         }
@@ -2508,20 +1913,15 @@ function smartHasNotification(
 
     if(
         smart.notificationSent
-
         ||
-
         smart.notificationStarted
-
         ||
-
         smart.notificationId
     ){
 
         return true;
 
     }
-
 
     return notifications.some(
         notification =>
@@ -2545,7 +1945,6 @@ function smartHigh(
 
     }
 
-
     return Array.isArray(
         record.results
     )
@@ -2560,61 +1959,47 @@ function smartHigh(
 
 
 /* =====================================================
-   FORMAT TIME
+   REPORT NUMBER
 ===================================================== */
 
-function formatDuration(
-    seconds
-){
+function generateReportNumber(){
 
-    seconds =
-        Number(
-            seconds
-        ) || 0;
+    const now =
+        new Date();
 
+    const y =
+        now.getFullYear();
 
-    if(
-        !seconds
-    ){
+    const m =
+        String(
+            now.getMonth()+1
+        ).padStart(
+            2,
+            "0"
+        );
 
-        return "0 ث";
+    const d =
+        String(
+            now.getDate()
+        ).padStart(
+            2,
+            "0"
+        );
 
-    }
-
-
-    const minutes =
+    const random =
         Math.floor(
-            seconds /
-            60
+            1000 +
+            Math.random() *
+            9000
         );
-
-
-    const remaining =
-        Math.round(
-            seconds %
-            60
-        );
-
-
-    if(
-        !minutes
-    ){
-
-        return (
-            remaining +
-            " ث"
-        );
-
-    }
-
 
     return (
-
-        minutes +
-        " د " +
-        remaining +
-        " ث"
-
+        "PHR-" +
+        y +
+        m +
+        d +
+        "-" +
+        random
     );
 
 }
@@ -2624,20 +2009,61 @@ function formatDuration(
    REPORT TYPE
 ===================================================== */
 
+function getNormalizedReportType(){
+
+    const type =
+        getQuery()
+        .reportType;
+
+    if(
+        type ===
+        "rapidScreening"
+    ){
+
+        return "rapid";
+
+    }
+
+    if(
+        type ===
+        "smartScreening"
+    ){
+
+        return "smart";
+
+    }
+
+    if(
+        type ===
+        "screening"
+    ){
+
+        return "employee";
+
+    }
+
+    if(
+        type ===
+        "overview"
+    ){
+
+        return "full";
+
+    }
+
+    return type;
+
+}
+
+
 function reportTypeInfo(){
 
-    const query =
-        getQuery();
-
+    const type =
+        getNormalizedReportType();
 
     const map = {
 
         full:{
-            ar:"تقرير الصحة العامة الشامل",
-            en:"Comprehensive Public Health Report"
-        },
-
-        overview:{
             ar:"تقرير الصحة العامة الشامل",
             en:"Comprehensive Public Health Report"
         },
@@ -2647,17 +2073,7 @@ function reportTypeInfo(){
             en:"Rapid Infectious Disease Screening Report"
         },
 
-        rapidScreening:{
-            ar:"تقرير الفرز السريع للأمراض المعدية",
-            en:"Rapid Infectious Disease Screening Report"
-        },
-
         smart:{
-            ar:"تقرير الفرز الذكي للأمراض المعدية",
-            en:"Smart Infectious Disease Screening Report"
-        },
-
-        smartScreening:{
             ar:"تقرير الفرز الذكي للأمراض المعدية",
             en:"Smart Infectious Disease Screening Report"
         },
@@ -2667,11 +2083,6 @@ function reportTypeInfo(){
             en:"Infectious Disease Notification Report"
         },
 
-        screening:{
-            ar:"تقرير الفحص الدوري للموظفين",
-            en:"Employee Periodic Screening Report"
-        },
-
         employee:{
             ar:"تقرير الفحص الدوري للموظفين",
             en:"Employee Periodic Screening Report"
@@ -2679,310 +2090,11 @@ function reportTypeInfo(){
 
     };
 
-
     return (
-        map[
-            query.reportType
-        ]
+        map[type]
         ||
         map.full
     );
-
-}
-
-
-/* =====================================================
-   AUTO SECTION CONTROL
-===================================================== */
-
-function applyReportTypeSections(){
-
-    const type =
-        getQuery()
-        .reportType;
-
-
-    const all =
-        (
-            type ===
-            "full"
-
-            ||
-
-            type ===
-            "overview"
-        );
-
-
-    const rapid =
-        (
-            all
-
-            ||
-
-            type ===
-            "rapid"
-
-            ||
-
-            type ===
-            "rapidScreening"
-        );
-
-
-    const smart =
-        (
-            all
-
-            ||
-
-            type ===
-            "smart"
-
-            ||
-
-            type ===
-            "smartScreening"
-        );
-
-
-    const notificationsOnly =
-        (
-            all
-
-            ||
-
-            type ===
-            "notifications"
-        );
-
-
-    const employee =
-        (
-            all
-
-            ||
-
-            type ===
-            "employee"
-
-            ||
-
-            type ===
-            "screening"
-        );
-
-
-    setSectionVisible(
-        "rapidSection",
-        rapid
-    );
-
-
-    setSectionVisible(
-        "smartSection",
-        smart
-    );
-
-
-    setSectionVisible(
-        "notificationSection",
-        notificationsOnly
-    );
-
-
-    setSectionVisible(
-        "employeeSection",
-        employee
-    );
-
-
-    document.getElementById(
-        "rapidDetailsBlock"
-    ).style.display =
-        rapid
-        ? "block"
-        : "none";
-
-
-    document.getElementById(
-        "smartDetailsBlock"
-    ).style.display =
-        smart
-        ? "block"
-        : "none";
-
-
-    document.getElementById(
-        "notificationDetailsBlock"
-    ).style.display =
-        notificationsOnly
-        ? "block"
-        : "none";
-
-
-    document.getElementById(
-        "employeeDetailsBlock"
-    ).style.display =
-        employee
-        ? "block"
-        : "none";
-
-
-    document
-    .querySelectorAll(
-        '.report-options input[type="checkbox"]'
-    )
-    .forEach(
-        function(input){
-
-            const target =
-                input.dataset.target;
-
-
-            const section =
-                document.getElementById(
-                    target
-                );
-
-
-            if(section){
-
-                input.checked =
-                    !section.classList.contains(
-                        "hidden-section"
-                    );
-
-            }
-
-        }
-    );
-
-}
-
-
-function setSectionVisible(
-    id,
-    visible
-){
-
-    const section =
-        document.getElementById(
-            id
-        );
-
-
-    if(!section){
-
-        return;
-
-    }
-
-
-    section.classList.toggle(
-        "hidden-section",
-        !visible
-    );
-
-}
-
-
-function toggleReportSection(
-    checkbox
-){
-
-    const id =
-        checkbox.dataset.target;
-
-
-    const section =
-        document.getElementById(
-            id
-        );
-
-
-    if(!section){
-
-        return;
-
-    }
-
-
-    section.classList.toggle(
-        "hidden-section",
-        !checkbox.checked
-    );
-
-}
-
-
-/* =====================================================
-   HEADER
-===================================================== */
-
-function renderHeader(){
-
-    const info =
-        reportTypeInfo();
-
-
-    const range =
-        getRange();
-
-
-    document.getElementById(
-        "mainReportTitle"
-    ).textContent =
-        info.ar;
-
-
-    document.getElementById(
-        "mainReportTitleEn"
-    ).textContent =
-        info.en;
-
-
-    document.getElementById(
-        "reportPeriodText"
-    ).textContent =
-        range.text;
-
-
-    document.getElementById(
-        "metaReportType"
-    ).textContent =
-        info.ar;
-
-
-    document.getElementById(
-        "metaPeriod"
-    ).textContent =
-        range.text;
-
-
-    const now =
-        new Date();
-
-
-    document.getElementById(
-        "metaCreated"
-    ).textContent =
-        now.toLocaleString(
-            "ar-SA"
-        );
-
-
-    document.getElementById(
-        "footerGeneratedDate"
-    ).textContent =
-
-        "تاريخ الإنشاء: "
-
-        +
-
-        now.toLocaleDateString(
-            "ar-SA"
-        );
 
 }
 
@@ -2996,20 +2108,15 @@ function loadReportSettings(){
     let settings =
         {};
 
-
     try{
 
         settings =
             JSON.parse(
-
                 localStorage.getItem(
                     "publicHealthReportSettings"
                 )
-
                 ||
-
                 "{}"
-
             );
 
     }
@@ -3024,82 +2131,48 @@ function loadReportSettings(){
     document.getElementById(
         "metaPreparedBy"
     ).textContent =
-
         settings.preparedByName
-
         ||
-
         settings.preparedBy
-
         ||
-
         "—";
 
 
     document.getElementById(
         "metaPreparedTitle"
     ).textContent =
-
         settings.preparedByTitle
-
         ||
-
         "—";
 
 
     document.getElementById(
         "metaApprovedBy"
     ).textContent =
-
         settings.approvedByName
-
         ||
-
         settings.approvedBy
-
         ||
-
-        "—";
-
-
-    document.getElementById(
-        "metaApprovedTitle"
-    ).textContent =
-
-        settings.approvedByTitle
-
-        ||
-
         "—";
 
 
     document.getElementById(
         "preparedSignatureName"
     ).textContent =
-
         settings.preparedByName
-
         ||
-
         settings.preparedBy
-
         ||
-
         "—";
 
 
     document.getElementById(
         "approvedSignatureName"
     ).textContent =
-
         settings.approvedByName
-
         ||
-
         settings.approvedBy
-
         ||
-
         "—";
 
 }
@@ -3114,14 +2187,12 @@ function renderRapid(){
     const total =
         filteredRapid.length;
 
-
     const low =
         filteredRapid.filter(
             item =>
                 item.risk ===
                 "low"
         ).length;
-
 
     const medium =
         filteredRapid.filter(
@@ -3130,7 +2201,6 @@ function renderRapid(){
                 "medium"
         ).length;
 
-
     const high =
         filteredRapid.filter(
             item =>
@@ -3138,55 +2208,49 @@ function renderRapid(){
                 "high"
         ).length;
 
-
     const red =
         filteredRapid.filter(
             item =>
                 item.redFlag
         ).length;
 
-
     const smart =
         filteredRapid.filter(
             rapidReachedSmart
         ).length;
 
+    let average =
+        0;
 
-    const average =
+    if(total){
 
-        total
+        average =
+            Math.round(
 
-        ? Math.round(
+                filteredRapid.reduce(
+                    function(sum,item){
 
-            filteredRapid.reduce(
-                function(sum,item){
+                        return (
+                            sum
+                            +
+                            (
+                                Number(
+                                    item.score
+                                )
+                                ||
+                                0
+                            )
+                        );
 
-                    return (
+                    },
+                    0
+                )
+                /
+                total
 
-                        sum
+            );
 
-                        +
-
-                        (
-                            Number(
-                                item.score
-                            ) ||
-                            0
-                        )
-
-                    );
-
-                },
-                0
-            )
-
-            /
-
-            total
-
-        )
-
-        : 0;
+    }
 
 
     document.getElementById(
@@ -3197,50 +2261,33 @@ function renderRapid(){
             total,
             "إجمالي الفرز السريع"
         )
-
         +
-
         kpiCard(
             high,
             "خطورة مرتفعة"
         )
-
         +
-
         kpiCard(
             red,
             "Red Flags"
         )
-
         +
-
         kpiCard(
             percent(
                 smart,
                 total
-            )
-            +
-            "%",
+            ) + "%",
             "الانتقال للفرز الذكي"
         );
 
 
     const groups = {
 
-        "0":
-            0,
-
-        "1 - 4":
-            0,
-
-        "5 - 7":
-            0,
-
-        "8 - 14":
-            0,
-
-        "15+":
-            0
+        "0":0,
+        "1 - 4":0,
+        "5 - 7":0,
+        "8 - 14":0,
+        "15+":0
 
     };
 
@@ -3251,46 +2298,30 @@ function renderRapid(){
             const score =
                 Number(
                     item.score
-                ) ||
+                )
+                ||
                 0;
 
-
-            if(
-                score ===
-                0
-            ){
+            if(score === 0){
 
                 groups["0"]++;
 
             }
-
-            else if(
-                score <=
-                4
-            ){
+            else if(score <= 4){
 
                 groups["1 - 4"]++;
 
             }
-
-            else if(
-                score <=
-                7
-            ){
+            else if(score <= 7){
 
                 groups["5 - 7"]++;
 
             }
-
-            else if(
-                score <=
-                14
-            ){
+            else if(score <= 14){
 
                 groups["8 - 14"]++;
 
             }
-
             else{
 
                 groups["15+"]++;
@@ -3310,28 +2341,27 @@ function renderRapid(){
     const epi =
         {};
 
-
     filteredRapid.forEach(
         function(item){
 
-            const list =
+            (
                 Array.isArray(
                     item.epi
                 )
-                ? item.epi
-                : [];
-
-
-            list.forEach(
+                ?
+                item.epi
+                :
+                []
+            )
+            .forEach(
                 function(value){
 
                     epi[value] =
                         (
-                            epi[value] ||
+                            epi[value]
+                            ||
                             0
-                        )
-                        +
-                        1;
+                        ) + 1;
 
                 }
             );
@@ -3351,35 +2381,18 @@ function renderRapid(){
 
     return {
 
-        total:
-            total,
-
-        low:
-            low,
-
-        medium:
-            medium,
-
-        high:
-            high,
-
-        red:
-            red,
-
-        smart:
-            smart,
-
-        average:
-            average
+        total,
+        low,
+        medium,
+        high,
+        red,
+        smart,
+        average
 
     };
 
 }
 
-
-/* =====================================================
-   RAPID DETAILS
-===================================================== */
 
 function renderRapidDetails(){
 
@@ -3387,7 +2400,6 @@ function renderRapidDetails(){
         document.getElementById(
             "rapidDetailsBody"
         );
-
 
     if(
         !filteredRapid.length
@@ -3417,8 +2429,10 @@ function renderRapidDetails(){
                 <td>
                 ${
                     rapidDate(item)
-                    ? rapidDate(item).toLocaleString("ar-SA")
-                    : "—"
+                    ?
+                    rapidDate(item).toLocaleString("ar-SA")
+                    :
+                    "—"
                 }
                 </td>
 
@@ -3428,11 +2442,15 @@ function renderRapidDetails(){
 
                 <td>
                 ${
-                    item.risk === "high"
-                    ? "مرتفع"
+                    item.risk ===
+                    "high"
+                    ?
+                    "مرتفع"
                     :
-                    item.risk === "medium"
-                    ? "متوسط"
+                    item.risk ===
+                    "medium"
+                    ?
+                    "متوسط"
                     :
                     "منخفض"
                 }
@@ -3441,16 +2459,20 @@ function renderRapidDetails(){
                 <td>
                 ${
                     item.redFlag
-                    ? "نعم"
-                    : "لا"
+                    ?
+                    "نعم"
+                    :
+                    "لا"
                 }
                 </td>
 
                 <td>
                 ${
                     rapidReachedSmart(item)
-                    ? "نعم"
-                    : "لا"
+                    ?
+                    "نعم"
+                    :
+                    "لا"
                 }
                 </td>
 
@@ -3474,12 +2496,10 @@ function renderSmart(){
     const total =
         filteredSmart.length;
 
-
     const high =
         filteredSmart.filter(
             smartHigh
         ).length;
-
 
     const hidden =
         filteredSmart.filter(
@@ -3487,49 +2507,10 @@ function renderSmart(){
                 item.hiddenInfectionFlag
         ).length;
 
-
     const notificationCount =
         filteredSmart.filter(
             smartHasNotification
         ).length;
-
-
-    const durations =
-        filteredSmart
-
-        .map(
-            item =>
-                Number(
-                    item.screeningDurationSeconds
-                )
-        )
-
-        .filter(
-            value =>
-                value >
-                0
-        );
-
-
-    const average =
-
-        durations.length
-
-        ? Math.round(
-
-            durations.reduce(
-                (a,b) =>
-                    a+b,
-                0
-            )
-
-            /
-
-            durations.length
-
-        )
-
-        : 0;
 
 
     document.getElementById(
@@ -3540,37 +2521,28 @@ function renderSmart(){
             total,
             "إجمالي الفرز الذكي"
         )
-
         +
-
         kpiCard(
             high,
             "اشتباه مرتفع"
         )
-
         +
-
         kpiCard(
             hidden,
             "خطر معدٍ خفي"
         )
-
         +
-
         kpiCard(
             percent(
                 notificationCount,
                 high
-            )
-            +
-            "%",
+            ) + "%",
             "التحويل إلى بلاغ"
         );
 
 
     const diseases =
         {};
-
 
     const epi =
         {};
@@ -3583,36 +2555,27 @@ function renderSmart(){
                 Array.isArray(
                     record.results
                 )
-                ? record.results
-                : []
+                ?
+                record.results
+                :
+                []
             )
             .forEach(
                 function(result){
 
                     const name =
-
                         result.disease
-
                         ||
-
                         result.key
-
                         ||
-
                         "غير محدد";
 
-
-                    diseases[
-                        name
-                    ] =
+                    diseases[name] =
                         (
-                            diseases[
-                                name
-                            ] ||
+                            diseases[name]
+                            ||
                             0
-                        )
-                        +
-                        1;
+                        ) + 1;
 
                 }
             );
@@ -3622,19 +2585,20 @@ function renderSmart(){
                 Array.isArray(
                     record.epidemiologicalFactors
                 )
-                ? record.epidemiologicalFactors
-                : []
+                ?
+                record.epidemiologicalFactors
+                :
+                []
             )
             .forEach(
                 function(value){
 
                     epi[value] =
                         (
-                            epi[value] ||
+                            epi[value]
+                            ||
                             0
-                        )
-                        +
-                        1;
+                        ) + 1;
 
                 }
             );
@@ -3648,41 +2612,25 @@ function renderSmart(){
         diseases
     );
 
-
     renderBars(
         "smartEpiBars",
         epi
     );
-
 
     renderSmartDetails();
 
 
     return {
 
-        total:
-            total,
-
-        high:
-            high,
-
-        hidden:
-            hidden,
-
-        notificationCount:
-            notificationCount,
-
-        average:
-            average
+        total,
+        high,
+        hidden,
+        notificationCount
 
     };
 
 }
 
-
-/* =====================================================
-   SMART DETAILS
-===================================================== */
 
 function renderSmartDetails(){
 
@@ -3690,7 +2638,6 @@ function renderSmartDetails(){
         document.getElementById(
             "smartDetailsBody"
         );
-
 
     if(
         !filteredSmart.length
@@ -3714,16 +2661,17 @@ function renderSmartDetails(){
                         Array.isArray(
                             item.results
                         )
-                        ? item.results
-                        : []
+                        ?
+                        item.results
+                        :
+                        []
                     )
-
                     .map(
                         value =>
-                            value.disease ||
+                            value.disease
+                            ||
                             value.key
                     )
-
                     .join("، ");
 
 
@@ -3738,8 +2686,10 @@ function renderSmartDetails(){
                 <td>
                 ${
                     smartDate(item)
-                    ? smartDate(item).toLocaleString("ar-SA")
-                    : "—"
+                    ?
+                    smartDate(item).toLocaleString("ar-SA")
+                    :
+                    "—"
                 }
                 </td>
 
@@ -3754,16 +2704,20 @@ function renderSmartDetails(){
                 <td>
                 ${
                     smartHigh(item)
-                    ? "نعم"
-                    : "لا"
+                    ?
+                    "نعم"
+                    :
+                    "لا"
                 }
                 </td>
 
                 <td>
                 ${
                     smartHasNotification(item)
-                    ? "نعم"
-                    : "لا"
+                    ?
+                    "نعم"
+                    :
+                    "لا"
                 }
                 </td>
 
@@ -3787,14 +2741,12 @@ function renderNotifications(){
     const total =
         filteredNotifications.length;
 
-
     const urgent =
         filteredNotifications.filter(
             item =>
                 item.priority ===
                 "urgent"
         ).length;
-
 
     const closed =
         filteredNotifications.filter(
@@ -3812,23 +2764,17 @@ function renderNotifications(){
             total,
             "إجمالي البلاغات"
         )
-
         +
-
         kpiCard(
             urgent,
             "بلاغات عاجلة"
         )
-
         +
-
         kpiCard(
             total - closed,
             "مفتوحة / متابعة"
         )
-
         +
-
         kpiCard(
             closed,
             "مغلقة"
@@ -3836,26 +2782,20 @@ function renderNotifications(){
 
 
     renderBars(
-
         "notificationDiseaseBars",
-
         countBy(
             filteredNotifications,
             "disease"
         )
-
     );
 
 
     renderBars(
-
         "notificationDepartmentBars",
-
         countBy(
             filteredNotifications,
             "reporterDepartment"
         )
-
     );
 
 
@@ -3864,23 +2804,14 @@ function renderNotifications(){
 
     return {
 
-        total:
-            total,
-
-        urgent:
-            urgent,
-
-        closed:
-            closed
+        total,
+        urgent,
+        closed
 
     };
 
 }
 
-
-/* =====================================================
-   NOTIFICATION DETAILS
-===================================================== */
 
 function renderNotificationDetails(){
 
@@ -3888,7 +2819,6 @@ function renderNotificationDetails(){
         document.getElementById(
             "notificationDetailsBody"
         );
-
 
     if(
         !filteredNotifications.length
@@ -3931,8 +2861,10 @@ function renderNotificationDetails(){
                 ${
                     item.priority ===
                     "urgent"
-                    ? "عاجل"
-                    : "عادي"
+                    ?
+                    "عاجل"
+                    :
+                    "عادي"
                 }
                 </td>
 
@@ -3940,11 +2872,13 @@ function renderNotificationDetails(){
                 ${
                     item.status ===
                     "closed"
-                    ? "مغلق"
+                    ?
+                    "مغلق"
                     :
                     item.status ===
                     "progress"
-                    ? "تحت المتابعة"
+                    ?
+                    "تحت المتابعة"
                     :
                     "جديد"
                 }
@@ -3954,11 +2888,13 @@ function renderNotificationDetails(){
                 ${
                     item.hesnStatus ===
                     "entered"
-                    ? "تم الإدخال"
+                    ?
+                    "تم الإدخال"
                     :
                     item.hesnStatus ===
                     "notRequired"
-                    ? "لا يتطلب"
+                    ?
+                    "لا يتطلب"
                     :
                     "لم يتم"
                 }
@@ -3984,14 +2920,12 @@ function renderEmployee(){
     const total =
         filteredEmployee.length;
 
-
     const completed =
         filteredEmployee.filter(
             item =>
                 item.screeningStatus ===
                 "completed"
         ).length;
-
 
     const followUp =
         filteredEmployee.filter(
@@ -4009,43 +2943,32 @@ function renderEmployee(){
             total,
             "إجمالي سجلات الفحص"
         )
-
         +
-
         kpiCard(
             completed,
             "مكتمل"
         )
-
         +
-
         kpiCard(
             followUp,
             "يحتاج متابعة"
         )
-
         +
-
         kpiCard(
             percent(
                 completed,
                 total
-            )
-            +
-            "%",
+            ) + "%",
             "نسبة الاكتمال"
         );
 
 
     renderBars(
-
         "employeeDepartmentBars",
-
         countBy(
             filteredEmployee,
             "department"
         )
-
     );
 
 
@@ -4054,23 +2977,14 @@ function renderEmployee(){
 
     return {
 
-        total:
-            total,
-
-        completed:
-            completed,
-
-        followUp:
-            followUp
+        total,
+        completed,
+        followUp
 
     };
 
 }
 
-
-/* =====================================================
-   EMPLOYEE DETAILS
-===================================================== */
 
 function renderEmployeeDetails(){
 
@@ -4078,7 +2992,6 @@ function renderEmployeeDetails(){
         document.getElementById(
             "employeeDetailsBody"
         );
-
 
     if(
         !filteredEmployee.length
@@ -4137,45 +3050,177 @@ function renderEmployeeDetails(){
 
 
 /* =====================================================
-   MAIN KPI
+   MAIN KPI PER REPORT TYPE
 ===================================================== */
 
 function renderMainKpi(
+    type,
     rapid,
     smart,
     notification,
     employee
 ){
 
+    let html =
+        "";
+
+
+    if(
+        type ===
+        "rapid"
+    ){
+
+        html =
+            kpiCard(
+                rapid.total,
+                "إجمالي الفرز السريع"
+            )
+            +
+            kpiCard(
+                rapid.high,
+                "خطورة مرتفعة"
+            )
+            +
+            kpiCard(
+                rapid.red,
+                "Red Flags"
+            )
+            +
+            kpiCard(
+                percent(
+                    rapid.smart,
+                    rapid.total
+                ) + "%",
+                "الانتقال للفرز الذكي"
+            );
+
+    }
+
+
+    else if(
+        type ===
+        "smart"
+    ){
+
+        html =
+            kpiCard(
+                smart.total,
+                "إجمالي الفرز الذكي"
+            )
+            +
+            kpiCard(
+                smart.high,
+                "اشتباه مرتفع"
+            )
+            +
+            kpiCard(
+                smart.hidden,
+                "خطر معدٍ خفي"
+            )
+            +
+            kpiCard(
+                percent(
+                    smart.notificationCount,
+                    smart.high
+                ) + "%",
+                "التحويل إلى بلاغ"
+            );
+
+    }
+
+
+    else if(
+        type ===
+        "notifications"
+    ){
+
+        html =
+            kpiCard(
+                notification.total,
+                "إجمالي البلاغات"
+            )
+            +
+            kpiCard(
+                notification.urgent,
+                "بلاغات عاجلة"
+            )
+            +
+            kpiCard(
+                notification.total -
+                notification.closed,
+                "مفتوحة / متابعة"
+            )
+            +
+            kpiCard(
+                notification.closed,
+                "مغلقة"
+            );
+
+    }
+
+
+    else if(
+        type ===
+        "employee"
+    ){
+
+        html =
+            kpiCard(
+                employee.total,
+                "إجمالي الفحوص"
+            )
+            +
+            kpiCard(
+                employee.completed,
+                "مكتمل"
+            )
+            +
+            kpiCard(
+                employee.followUp,
+                "يحتاج متابعة"
+            )
+            +
+            kpiCard(
+                percent(
+                    employee.completed,
+                    employee.total
+                ) + "%",
+                "نسبة الاكتمال"
+            );
+
+    }
+
+
+    else{
+
+        html =
+            kpiCard(
+                rapid.total,
+                "الفرز السريع"
+            )
+            +
+            kpiCard(
+                smart.total,
+                "الفرز الذكي"
+            )
+            +
+            kpiCard(
+                notification.total,
+                "البلاغات"
+            )
+            +
+            kpiCard(
+                employee.completed,
+                "فحوص الموظفين المكتملة"
+            );
+
+    }
+
+
     document.getElementById(
         "mainKpiGrid"
     ).innerHTML =
-
-        kpiCard(
-            rapid.total,
-            "الفرز السريع"
-        )
-
-        +
-
-        kpiCard(
-            smart.total,
-            "الفرز الذكي"
-        )
-
-        +
-
-        kpiCard(
-            notification.total,
-            "البلاغات"
-        )
-
-        +
-
-        kpiCard(
-            employee.completed,
-            "فحوص الموظفين المكتملة"
-        );
+        html;
 
 }
 
@@ -4185,202 +3230,116 @@ function renderMainKpi(
 ===================================================== */
 
 function renderExecutiveSummary(
+    type,
     rapid,
     smart,
     notification,
     employee
 ){
 
-    const query =
-        getQuery();
-
-
     let text =
         "";
 
 
     if(
-        query.reportType ===
+        type ===
         "rapid"
-
-        ||
-
-        query.reportType ===
-        "rapidScreening"
     ){
 
         text =
-
             "تم تنفيذ "
-
             +
-
             rapid.total
-
             +
-
             " عملية فرز سريع خلال الفترة المحددة. "
-
             +
-
             "بلغ عدد الحالات ذات الخطورة المرتفعة "
-
             +
-
             rapid.high
-
             +
-
             " حالة، وظهرت علامات حمراء في "
-
             +
-
             rapid.red
-
             +
-
-            " حالة. وقد انتقل "
-
+            " حالة. وانتقل "
             +
-
             rapid.smart
-
             +
-
-            " مريضًا إلى الفرز الذكي الموسع.";
+            " مريضًا إلى الفرز الذكي.";
 
     }
 
 
     else if(
-        query.reportType ===
+        type ===
         "smart"
-
-        ||
-
-        query.reportType ===
-        "smartScreening"
     ){
 
         text =
-
             "تم تنفيذ "
-
             +
-
             smart.total
-
             +
-
             " عملية فرز ذكي خلال الفترة المحددة. "
-
             +
-
             "تم تحديد "
-
             +
-
             smart.high
-
             +
-
             " حالات باشتباه مرتفع، و"
-
             +
-
             smart.hidden
-
             +
-
-            " حالات ذات خطر معدٍ خفي، "
-
+            " حالات ذات خطر معدٍ خفي، وارتبط "
             +
-
-            "وارتبط "
-
-            +
-
             smart.notificationCount
-
             +
-
             " منها بمسار البلاغ.";
 
     }
 
 
     else if(
-        query.reportType ===
+        type ===
         "notifications"
     ){
 
         text =
-
             "بلغ إجمالي البلاغات خلال الفترة المحددة "
-
             +
-
             notification.total
-
             +
-
             " بلاغًا، منها "
-
             +
-
             notification.urgent
-
             +
-
             " بلاغات عاجلة، و"
-
             +
-
             notification.closed
-
             +
-
             " بلاغات مغلقة.";
 
     }
 
 
     else if(
-        query.reportType ===
-        "screening"
-
-        ||
-
-        query.reportType ===
+        type ===
         "employee"
     ){
 
         text =
-
             "بلغ إجمالي سجلات الفحص الدوري للموظفين "
-
             +
-
             employee.total
-
             +
-
             " سجلًا، منها "
-
             +
-
             employee.completed
-
             +
-
             " فحوص مكتملة، و"
-
             +
-
             employee.followUp
-
             +
-
             " حالات تحتاج متابعة.";
 
     }
@@ -4389,43 +3348,24 @@ function renderExecutiveSummary(
     else{
 
         text =
-
-            "يعرض هذا التقرير ملخص أداء الصحة العامة خلال الفترة المحددة. "
-
+            "يعرض هذا التقرير الشامل أداء الصحة العامة خلال الفترة المحددة. "
             +
-
             "تم تسجيل "
-
             +
-
             rapid.total
-
             +
-
             " عملية فرز سريع، و"
-
             +
-
             smart.total
-
             +
-
             " عملية فرز ذكي، و"
-
             +
-
             notification.total
-
             +
-
-            " بلاغًا للأمراض المعدية، بالإضافة إلى "
-
+            " بلاغًا للأمراض المعدية، و"
             +
-
             employee.completed
-
             +
-
             " سجل فحص موظفين مكتمل.";
 
     }
@@ -4440,6 +3380,294 @@ function renderExecutiveSummary(
 
 
 /* =====================================================
+   SECTION VISIBILITY
+===================================================== */
+
+function applyReportSections(
+    type
+){
+
+    document.getElementById(
+        "rapidSection"
+    ).classList.add(
+        "hidden-section"
+    );
+
+    document.getElementById(
+        "smartSection"
+    ).classList.add(
+        "hidden-section"
+    );
+
+    document.getElementById(
+        "notificationSection"
+    ).classList.add(
+        "hidden-section"
+    );
+
+    document.getElementById(
+        "employeeSection"
+    ).classList.add(
+        "hidden-section"
+    );
+
+
+    document.getElementById(
+        "rapidDetailsBlock"
+    ).style.display =
+        "none";
+
+    document.getElementById(
+        "smartDetailsBlock"
+    ).style.display =
+        "none";
+
+    document.getElementById(
+        "notificationDetailsBlock"
+    ).style.display =
+        "none";
+
+    document.getElementById(
+        "employeeDetailsBlock"
+    ).style.display =
+        "none";
+
+
+    if(
+        type ===
+        "rapid"
+    ){
+
+        document.getElementById(
+            "rapidSection"
+        ).classList.remove(
+            "hidden-section"
+        );
+
+        document.getElementById(
+            "rapidDetailsBlock"
+        ).style.display =
+            "block";
+
+    }
+
+
+    else if(
+        type ===
+        "smart"
+    ){
+
+        document.getElementById(
+            "smartSection"
+        ).classList.remove(
+            "hidden-section"
+        );
+
+        document.getElementById(
+            "smartDetailsBlock"
+        ).style.display =
+            "block";
+
+    }
+
+
+    else if(
+        type ===
+        "notifications"
+    ){
+
+        document.getElementById(
+            "notificationSection"
+        ).classList.remove(
+            "hidden-section"
+        );
+
+        document.getElementById(
+            "notificationDetailsBlock"
+        ).style.display =
+            "block";
+
+    }
+
+
+    else if(
+        type ===
+        "employee"
+    ){
+
+        document.getElementById(
+            "employeeSection"
+        ).classList.remove(
+            "hidden-section"
+        );
+
+        document.getElementById(
+            "employeeDetailsBlock"
+        ).style.display =
+            "block";
+
+    }
+
+
+    else{
+
+        document.getElementById(
+            "rapidSection"
+        ).classList.remove(
+            "hidden-section"
+        );
+
+        document.getElementById(
+            "smartSection"
+        ).classList.remove(
+            "hidden-section"
+        );
+
+        document.getElementById(
+            "notificationSection"
+        ).classList.remove(
+            "hidden-section"
+        );
+
+        document.getElementById(
+            "employeeSection"
+        ).classList.remove(
+            "hidden-section"
+        );
+
+        document.getElementById(
+            "rapidDetailsBlock"
+        ).style.display =
+            "block";
+
+        document.getElementById(
+            "smartDetailsBlock"
+        ).style.display =
+            "block";
+
+        document.getElementById(
+            "notificationDetailsBlock"
+        ).style.display =
+            "block";
+
+        document.getElementById(
+            "employeeDetailsBlock"
+        ).style.display =
+            "block";
+
+    }
+
+}
+
+
+/* =====================================================
+   OPTIONS
+===================================================== */
+
+function toggleReportSection(
+    checkbox
+){
+
+    const section =
+        document.getElementById(
+            checkbox.dataset.target
+        );
+
+    if(!section){
+
+        return;
+
+    }
+
+    section.classList.toggle(
+        "hidden-section",
+        !checkbox.checked
+    );
+
+}
+
+
+/* =====================================================
+   HEADER META
+===================================================== */
+
+function renderHeader(
+    reportNumber
+){
+
+    const info =
+        reportTypeInfo();
+
+    const range =
+        getRange();
+
+    const now =
+        new Date();
+
+
+    document.getElementById(
+        "mainReportTitle"
+    ).textContent =
+        info.ar;
+
+
+    document.getElementById(
+        "mainReportTitleEn"
+    ).textContent =
+        info.en;
+
+
+    document.getElementById(
+        "reportPeriodText"
+    ).textContent =
+        range.text;
+
+
+    document.getElementById(
+        "metaReportNumber"
+    ).textContent =
+        reportNumber;
+
+
+    document.getElementById(
+        "metaReportType"
+    ).textContent =
+        info.ar;
+
+
+    document.getElementById(
+        "metaPeriod"
+    ).textContent =
+        range.text;
+
+
+    document.getElementById(
+        "metaCreated"
+    ).textContent =
+        now.toLocaleString(
+            "ar-SA"
+        );
+
+
+    document.getElementById(
+        "footerReportNumber"
+    ).textContent =
+        "رقم التقرير: " +
+        reportNumber;
+
+
+    document.getElementById(
+        "footerGeneratedDate"
+    ).textContent =
+        "تاريخ الإنشاء: " +
+        now.toLocaleDateString(
+            "ar-SA"
+        );
+
+}
+
+
+/* =====================================================
    INIT
 ===================================================== */
 
@@ -4449,7 +3677,15 @@ function init(){
 
     filterData();
 
-    renderHeader();
+    const type =
+        getNormalizedReportType();
+
+    const reportNumber =
+        generateReportNumber();
+
+    renderHeader(
+        reportNumber
+    );
 
     loadReportSettings();
 
@@ -4457,20 +3693,18 @@ function init(){
     const rapid =
         renderRapid();
 
-
     const smart =
         renderSmart();
 
-
     const notification =
         renderNotifications();
-
 
     const employee =
         renderEmployee();
 
 
     renderMainKpi(
+        type,
         rapid,
         smart,
         notification,
@@ -4479,6 +3713,7 @@ function init(){
 
 
     renderExecutiveSummary(
+        type,
         rapid,
         smart,
         notification,
@@ -4486,7 +3721,9 @@ function init(){
     );
 
 
-    applyReportTypeSections();
+    applyReportSections(
+        type
+    );
 
 }
 
@@ -4501,7 +3738,6 @@ document.addEventListener(
 );
 
 </script>
-
 
 </body>
 
