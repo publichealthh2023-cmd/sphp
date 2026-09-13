@@ -111,6 +111,60 @@ body{
     margin:0;
 }
 
+
+/* ==========================================
+   SMART SOURCE
+========================================== */
+
+.screening-source{
+    display:none;
+    background:#f4efff;
+    border:1px solid #d9ceff;
+    border-right:6px solid #5f3dc4;
+    border-radius:12px;
+    padding:17px;
+    margin-bottom:18px;
+}
+
+.screening-source.active{
+    display:block;
+}
+
+.screening-source strong{
+    color:#4d2fa9;
+}
+
+.screening-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    margin-top:13px;
+}
+
+.screening-item{
+    background:#fff;
+    border:1px solid #e0d8f8;
+    border-radius:9px;
+    padding:10px;
+}
+
+.screening-item span{
+    display:block;
+    font-size:11px;
+    color:#718293;
+    margin-bottom:4px;
+}
+
+.screening-item b{
+    font-size:12px;
+    color:#294b6a;
+}
+
+
+/* ==========================================
+   NOTICE
+========================================== */
+
 .notice{
     background:#fff8e1;
     border-right:5px solid #f9a825;
@@ -120,6 +174,11 @@ body{
     color:#66531b;
     line-height:1.8;
 }
+
+
+/* ==========================================
+   FORM
+========================================== */
 
 .section h3{
     color:#064c92;
@@ -132,12 +191,6 @@ body{
     display:grid;
     grid-template-columns:repeat(2,1fr);
     gap:14px;
-}
-
-.grid-3{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
 }
 
 .group{
@@ -172,6 +225,11 @@ textarea{
     resize:vertical;
 }
 
+.prefilled{
+    background:#eef7ff !important;
+    border-color:#7eaed2 !important;
+}
+
 .checkgrid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -189,9 +247,19 @@ textarea{
     width:auto;
 }
 
+.check.prefilled-check{
+    background:#eef7ff;
+    border-color:#7eaed2;
+}
+
 .required{
     color:#c62828;
 }
+
+
+/* ==========================================
+   BUTTONS
+========================================== */
 
 .buttons{
     display:flex;
@@ -215,6 +283,11 @@ textarea{
     color:white;
 }
 
+.send-btn:disabled{
+    opacity:.65;
+    cursor:not-allowed;
+}
+
 .print-btn{
     background:#687984;
     color:white;
@@ -224,6 +297,11 @@ textarea{
     background:#eaf1f7;
     color:#064c92;
 }
+
+
+/* ==========================================
+   MESSAGES
+========================================== */
 
 .success,
 .error{
@@ -247,6 +325,18 @@ textarea{
 }
 
 
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:850px){
+
+    .screening-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
 @media(max-width:750px){
 
     .hero-grid{
@@ -265,8 +355,8 @@ textarea{
     }
 
     .grid,
-    .grid-3,
-    .checkgrid{
+    .checkgrid,
+    .screening-grid{
         grid-template-columns:1fr;
     }
 
@@ -348,6 +438,41 @@ Individual Food Poisoning Case Notification Form
 </section>
 
 
+<section
+    id="screeningSource"
+    class="screening-source">
+
+<strong>
+🧠 تم الوصول من الفرز الذكي
+</strong>
+
+<div class="screening-grid">
+
+<div class="screening-item">
+<span>اسم المريض</span>
+<b id="screenPatientName">—</b>
+</div>
+
+<div class="screening-item">
+<span>رقم الملف</span>
+<b id="screenMrn">—</b>
+</div>
+
+<div class="screening-item">
+<span>Smart Screening ID</span>
+<b id="screenSmartId">—</b>
+</div>
+
+<div class="screening-item">
+<span>Rapid Screening ID</span>
+<b id="screenRapidId">—</b>
+</div>
+
+</div>
+
+</section>
+
+
 <div class="notice">
 
 <strong>
@@ -363,10 +488,6 @@ Individual Food Poisoning Case Notification Form
 </div>
 
 
-
-<!-- ==========================================
-     PATIENT
-========================================== -->
 
 <section class="section">
 
@@ -488,10 +609,6 @@ Individual Food Poisoning Case Notification Form
 
 
 
-<!-- ==========================================
-     CASE
-========================================== -->
-
 <section class="section">
 
 <h3>
@@ -597,10 +714,6 @@ Individual Food Poisoning Case Notification Form
 </section>
 
 
-
-<!-- ==========================================
-     FOOD EXPOSURE
-========================================== -->
 
 <section class="section">
 
@@ -742,10 +855,6 @@ Individual Food Poisoning Case Notification Form
 
 
 
-<!-- ==========================================
-     SYMPTOMS
-========================================== -->
-
 <section class="section">
 
 <h3>
@@ -815,10 +924,6 @@ Individual Food Poisoning Case Notification Form
 </section>
 
 
-
-<!-- ==========================================
-     SAMPLES
-========================================== -->
 
 <section class="section">
 
@@ -928,10 +1033,6 @@ Individual Food Poisoning Case Notification Form
 
 
 
-<!-- ==========================================
-     HESN / ACTIONS
-========================================== -->
-
 <section class="section">
 
 <h3>
@@ -1002,10 +1103,6 @@ Individual Food Poisoning Case Notification Form
 </section>
 
 
-
-<!-- ==========================================
-     REPORTER
-========================================== -->
 
 <section class="section">
 
@@ -1095,6 +1192,8 @@ Individual Food Poisoning Case Notification Form
 <div class="buttons">
 
 <button
+    id="sendButton"
+    type="button"
     class="send-btn"
     onclick="sendFoodPoisoning()">
 
@@ -1104,6 +1203,7 @@ Individual Food Poisoning Case Notification Form
 
 
 <button
+    type="button"
     class="print-btn"
     onclick="window.print()">
 
@@ -1137,26 +1237,77 @@ Individual Food Poisoning Case Notification Form
 </main>
 
 
+<script src="config.js"></script>
+<script src="api.js"></script>
+
+
 <script>
 
 
-const NOTIFICATIONS_KEY =
-    "publicHealthNotifications";
+/* ==========================================
+   STATE
+========================================== */
 
+let incoming = {
+
+    fromScreening:false,
+
+    screeningId:"",
+
+    rapidId:"",
+
+    rapidScore:"",
+
+    rapidRisk:"",
+
+    rapidRedFlag:false,
+
+    patientName:"",
+
+    mrn:"",
+
+    patientType:"",
+
+    gender:"",
+
+    symptoms:[],
+
+    epi:[],
+
+    onset:""
+
+};
+
+
+let sending =
+    false;
+
+
+/* ==========================================
+   HELPERS
+========================================== */
 
 function el(id){
 
-    return document.getElementById(id);
+    return document.getElementById(
+        id
+    );
 
 }
 
 
 function text(id){
 
-    return (
-        el(id).value ||
-        ""
-    ).trim();
+    const element =
+        el(id);
+
+
+    return element
+        ? (
+            element.value ||
+            ""
+        ).trim()
+        : "";
 
 }
 
@@ -1170,17 +1321,37 @@ function nowLocal(){
     return new Date(
 
         n.getTime() -
+
         n.getTimezoneOffset() *
         60000
 
     )
     .toISOString()
-    .slice(0,16);
+    .slice(
+        0,
+        16
+    );
 
 }
 
 
 function generateId(){
+
+    if(
+        window.SPHP &&
+        window.SPHP.helpers &&
+        typeof window.SPHP.helpers.generateId ===
+        "function"
+    ){
+
+        return window.SPHP
+        .helpers
+        .generateId(
+            "FPI"
+        );
+
+    }
+
 
     const d =
         new Date();
@@ -1188,7 +1359,9 @@ function generateId(){
 
     const stamp =
 
-        d.getFullYear() +
+        d.getFullYear()
+
+        +
 
         String(
             d.getMonth() + 1
@@ -1196,7 +1369,9 @@ function generateId(){
         .padStart(
             2,
             "0"
-        ) +
+        )
+
+        +
 
         String(
             d.getDate()
@@ -1225,39 +1400,13 @@ function generateId(){
 }
 
 
-function getArray(key){
-
-    try{
-
-        const value =
-            JSON.parse(
-                localStorage.getItem(key) ||
-                "[]"
-            );
-
-
-        return Array.isArray(value)
-        ? value
-        : [];
-
-    }
-    catch(error){
-
-        return [];
-
-    }
-
-}
-
-
 function checkedSymptoms(){
 
-    return Array.from(
-
+    return Array
+    .from(
         document.querySelectorAll(
             'input[name="symptom"]:checked'
         )
-
     )
     .map(
         function(item){
@@ -1270,44 +1419,579 @@ function checkedSymptoms(){
 }
 
 
+function markPrefilled(id){
+
+    const element =
+        el(id);
+
+
+    if(element){
+
+        element.classList.add(
+            "prefilled"
+        );
+
+    }
+
+}
+
+
+/* ==========================================
+   INCOMING SMART SCREENING
+========================================== */
+
+function loadIncomingData(){
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    incoming.fromScreening =
+
+        params.get(
+            "fromScreening"
+        ) === "1";
+
+
+    incoming.screeningId =
+        params.get(
+            "screeningId"
+        ) || "";
+
+
+    incoming.rapidId =
+        params.get(
+            "rapidId"
+        ) || "";
+
+
+    incoming.rapidScore =
+        params.get(
+            "rapidScore"
+        ) || "";
+
+
+    incoming.rapidRisk =
+        params.get(
+            "rapidRisk"
+        ) || "";
+
+
+    incoming.rapidRedFlag =
+
+        params.get(
+            "rapidRedFlag"
+        ) === "1";
+
+
+    incoming.patientName =
+        params.get(
+            "patientName"
+        ) || "";
+
+
+    incoming.mrn =
+        params.get(
+            "mrn"
+        ) || "";
+
+
+    incoming.patientType =
+        params.get(
+            "patientType"
+        ) || "";
+
+
+    incoming.gender =
+        params.get(
+            "gender"
+        ) || "";
+
+
+    incoming.onset =
+        params.get(
+            "onset"
+        ) || "";
+
+
+    incoming.symptoms =
+
+        (
+            params.get(
+                "symptoms"
+            )
+            ||
+            ""
+        )
+        .split(",")
+        .filter(Boolean);
+
+
+    incoming.epi =
+
+        (
+            params.get(
+                "epi"
+            )
+            ||
+            ""
+        )
+        .split(",")
+        .filter(Boolean);
+
+
+    try{
+
+        const transfer =
+            JSON.parse(
+
+                sessionStorage.getItem(
+                    "notificationPatientData"
+                )
+
+                ||
+
+                "null"
+
+            );
+
+
+        if(transfer){
+
+            incoming.patientName =
+                incoming.patientName ||
+                transfer.patientName ||
+                "";
+
+
+            incoming.mrn =
+                incoming.mrn ||
+                transfer.mrn ||
+                "";
+
+
+            incoming.patientType =
+                incoming.patientType ||
+                transfer.patientType ||
+                "";
+
+
+            incoming.gender =
+                incoming.gender ||
+                transfer.gender ||
+                "";
+
+
+            incoming.rapidId =
+                incoming.rapidId ||
+                transfer.rapidId ||
+                "";
+
+
+            incoming.screeningId =
+                incoming.screeningId ||
+                transfer.smartScreeningId ||
+                "";
+
+
+            incoming.onset =
+                incoming.onset ||
+                transfer.onset ||
+                "";
+
+
+            if(
+                incoming.rapidScore === ""
+
+                &&
+
+                transfer.rapidScore !==
+                undefined
+
+                &&
+
+                transfer.rapidScore !==
+                null
+            ){
+
+                incoming.rapidScore =
+                    String(
+                        transfer.rapidScore
+                    );
+
+            }
+
+
+            incoming.rapidRisk =
+                incoming.rapidRisk ||
+                transfer.rapidRisk ||
+                "";
+
+
+            if(
+                transfer.rapidRedFlag
+            ){
+
+                incoming.rapidRedFlag =
+                    true;
+
+            }
+
+
+            if(
+                !incoming.symptoms.length
+
+                &&
+
+                Array.isArray(
+                    transfer.symptoms
+                )
+            ){
+
+                incoming.symptoms =
+                    transfer.symptoms;
+
+            }
+
+
+            if(
+                !incoming.epi.length
+
+                &&
+
+                Array.isArray(
+                    transfer.epi
+                )
+            ){
+
+                incoming.epi =
+                    transfer.epi;
+
+            }
+
+        }
+
+    }
+    catch(error){
+
+        console.warn(
+            "Food poisoning transfer read error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* ==========================================
+   APPLY INCOMING
+========================================== */
+
+function applyIncomingData(){
+
+    if(
+        !incoming.fromScreening &&
+        !incoming.screeningId
+    ){
+
+        return;
+
+    }
+
+
+    el(
+        "screeningSource"
+    )
+    .classList
+    .add(
+        "active"
+    );
+
+
+    el(
+        "screenPatientName"
+    ).textContent =
+        incoming.patientName ||
+        "—";
+
+
+    el(
+        "screenMrn"
+    ).textContent =
+        incoming.mrn ||
+        "—";
+
+
+    el(
+        "screenSmartId"
+    ).textContent =
+        incoming.screeningId ||
+        "—";
+
+
+    el(
+        "screenRapidId"
+    ).textContent =
+        incoming.rapidId ||
+        "—";
+
+
+    if(
+        incoming.patientName
+    ){
+
+        el(
+            "patientName"
+        ).value =
+            incoming.patientName;
+
+
+        markPrefilled(
+            "patientName"
+        );
+
+    }
+
+
+    if(
+        incoming.mrn
+    ){
+
+        el(
+            "mrn"
+        ).value =
+            incoming.mrn;
+
+
+        markPrefilled(
+            "mrn"
+        );
+
+    }
+
+
+    if(
+        incoming.gender
+    ){
+
+        el(
+            "gender"
+        ).value =
+            incoming.gender;
+
+
+        markPrefilled(
+            "gender"
+        );
+
+    }
+
+
+    if(
+        incoming.onset
+    ){
+
+        if(
+            incoming.onset.length ===
+            10
+        ){
+
+            el(
+                "symptomOnset"
+            ).value =
+                incoming.onset +
+                "T00:00";
+
+        }
+        else{
+
+            el(
+                "symptomOnset"
+            ).value =
+                incoming.onset;
+
+        }
+
+
+        markPrefilled(
+            "symptomOnset"
+        );
+
+    }
+
+
+    const symptomMap = {
+
+        vomiting:
+            "vomiting",
+
+        diarrhea:
+            "diarrhea",
+
+        abdominal:
+            "abdominalPain",
+
+        fever:
+            "fever",
+
+        headache:
+            "headache"
+
+    };
+
+
+    incoming.symptoms.forEach(
+        function(value){
+
+            const mapped =
+                symptomMap[
+                    value
+                ];
+
+
+            if(!mapped){
+                return;
+            }
+
+
+            const input =
+                document.querySelector(
+
+                    'input[name="symptom"][value="'
+
+                    +
+
+                    mapped
+
+                    +
+
+                    '"]'
+
+                );
+
+
+            if(input){
+
+                input.checked =
+                    true;
+
+
+                const card =
+                    input.closest(
+                        ".check"
+                    );
+
+
+                if(card){
+
+                    card.classList.add(
+                        "prefilled-check"
+                    );
+
+                }
+
+            }
+
+        }
+    );
+
+
+    if(
+        incoming.epi.includes(
+            "foodExposure"
+        )
+    ){
+
+        el(
+            "suspectedFood"
+        ).placeholder =
+            "تم تحديد تعرض غذائي في الفرز الذكي — أدخل اسم أو وصف الطعام المشتبه";
+
+    }
+
+
+    el(
+        "classification"
+    ).value =
+        "suspected";
+
+
+    markPrefilled(
+        "classification"
+    );
+
+}
+
+
+/* ==========================================
+   VALIDATION
+========================================== */
+
 function validate(){
 
-    if(!text("patientName")){
+    if(
+        !text(
+            "patientName"
+        )
+    ){
 
         return "يرجى إدخال اسم المريض.";
 
     }
 
 
-    if(!text("mrn")){
+    if(
+        !text(
+            "mrn"
+        )
+    ){
 
         return "يرجى إدخال رقم الملف الطبي.";
 
     }
 
 
-    if(!el("classification").value){
+    if(
+        !el(
+            "classification"
+        ).value
+    ){
 
         return "يرجى تحديد تصنيف الحالة.";
 
     }
 
 
-    if(!text("suspectedFood")){
+    if(
+        !text(
+            "suspectedFood"
+        )
+    ){
 
         return "يرجى إدخال الطعام المشتبه به.";
 
     }
 
 
-    if(!text("reporterName")){
+    if(
+        !text(
+            "reporterName"
+        )
+    ){
 
         return "يرجى إدخال اسم المبلّغ.";
 
     }
 
 
-    if(!text("reporterDepartment")){
+    if(
+        !text(
+            "reporterDepartment"
+        )
+    ){
 
         return "يرجى إدخال القسم المبلّغ.";
 
@@ -1318,6 +2002,10 @@ function validate(){
 
 }
 
+
+/* ==========================================
+   MESSAGES
+========================================== */
 
 function showSuccess(message){
 
@@ -1377,7 +2065,121 @@ function showError(message){
 }
 
 
-function sendFoodPoisoning(){
+/* ==========================================
+   UPDATE SMART RECORD
+========================================== */
+
+async function markSmartNotificationSent(
+    notificationId
+){
+
+    if(
+        !incoming.screeningId
+    ){
+
+        return;
+
+    }
+
+
+    try{
+
+        if(
+            window.SPHP &&
+            window.SPHP.smartScreenings &&
+            typeof window.SPHP.smartScreenings.update ===
+            "function"
+        ){
+
+            await window.SPHP
+            .smartScreenings
+            .update(
+
+                incoming.screeningId,
+
+                {
+
+                    notificationStarted:
+                        true,
+
+                    notificationSent:
+                        true,
+
+                    notificationId:
+                        notificationId
+
+                }
+
+            );
+
+        }
+
+    }
+    catch(error){
+
+        console.error(
+            "Unable to update smart screening:",
+            error
+        );
+
+    }
+
+}
+
+
+/* ==========================================
+   SAVE
+========================================== */
+
+async function saveNotificationRecord(
+    notification
+){
+
+    if(
+        window.SPHP &&
+        window.SPHP.notifications &&
+        typeof window.SPHP.notifications.create ===
+        "function"
+    ){
+
+        return await window.SPHP
+        .notifications
+        .create(
+            notification
+        );
+
+    }
+
+
+    if(
+        typeof savePublicHealthNotification ===
+        "function"
+    ){
+
+        return await savePublicHealthNotification(
+            notification
+        );
+
+    }
+
+
+    throw new Error(
+        "Notification service is unavailable."
+    );
+
+}
+
+
+/* ==========================================
+   SEND
+========================================== */
+
+async function sendFoodPoisoning(){
+
+    if(sending){
+        return;
+    }
+
 
     const error =
         validate();
@@ -1385,11 +2187,24 @@ function sendFoodPoisoning(){
 
     if(error){
 
-        showError(error);
+        showError(
+            error
+        );
 
         return;
 
     }
+
+
+    const reportDateTime =
+
+        el(
+            "reportDateTime"
+        ).value
+
+        ||
+
+        nowLocal();
 
 
     const notification = {
@@ -1418,23 +2233,34 @@ function sendFoodPoisoning(){
             "new",
 
         source:
-            "manual",
+            incoming.screeningId
+            ? "smartScreening"
+            : "manual",
+
+        screeningId:
+            incoming.screeningId,
+
+        rapidScreeningId:
+            incoming.rapidId,
+
+        rapidScore:
+            incoming.rapidScore,
+
+        rapidRisk:
+            incoming.rapidRisk,
+
+        rapidRedFlag:
+            incoming.rapidRedFlag,
 
         createdAt:
             new Date()
             .toISOString(),
 
         date:
-            el(
-                "reportDateTime"
-            ).value ||
-            nowLocal(),
+            reportDateTime,
 
         reportDateTime:
-            el(
-                "reportDateTime"
-            ).value ||
-            nowLocal(),
+            reportDateTime,
 
         patientName:
             text(
@@ -1445,6 +2271,10 @@ function sendFoodPoisoning(){
             text(
                 "mrn"
             ),
+
+        patientType:
+            incoming.patientType ||
+            "",
 
         nationalId:
             text(
@@ -1539,6 +2369,13 @@ function sendFoodPoisoning(){
                 "otherSymptoms"
             ),
 
+        screeningEpiFactors:
+            Array.isArray(
+                incoming.epi
+            )
+            ? incoming.epi
+            : [],
+
         sampleTaken:
             el(
                 "sampleTaken"
@@ -1584,6 +2421,9 @@ function sendFoodPoisoning(){
                 "notes"
             ),
 
+        publicHealthNotes:
+            "",
+
         reporterName:
             text(
                 "reporterName"
@@ -1612,63 +2452,125 @@ function sendFoodPoisoning(){
     };
 
 
-    const notifications =
-        getArray(
-            NOTIFICATIONS_KEY
+    const button =
+        el(
+            "sendButton"
         );
 
 
-    notifications.unshift(
-        notification
-    );
+    try{
+
+        sending =
+            true;
 
 
-    localStorage.setItem(
-
-        NOTIFICATIONS_KEY,
-
-        JSON.stringify(
-            notifications
-        )
-
-    );
+        button.disabled =
+            true;
 
 
-    if(
-        typeof savePublicHealthNotification ===
-        "function"
-    ){
+        button.textContent =
+            "⏳ جاري إرسال البلاغ...";
 
-        savePublicHealthNotification(
-            notification
-        )
-        .catch(
-            function(error){
 
-                console.error(
-                    error
-                );
+        const saved =
+            await saveNotificationRecord(
+                notification
+            );
 
-            }
+
+        const savedId =
+            (
+                saved &&
+                saved.id
+            )
+            ||
+            notification.id;
+
+
+        await markSmartNotificationSent(
+            savedId
+        );
+
+
+        try{
+
+            localStorage.removeItem(
+                "notificationTransferData"
+            );
+
+
+            sessionStorage.removeItem(
+                "notificationPatientData"
+            );
+
+        }
+        catch(error){
+
+            console.warn(
+                error
+            );
+
+        }
+
+
+        showSuccess(
+
+            "✅ تم إرسال بلاغ التسمم الغذائي إلى الصحة العامة بنجاح."
+
+            +
+
+            "<br><br>"
+
+            +
+
+            "<strong>رقم البلاغ:</strong> "
+
+            +
+
+            savedId
+
+        );
+
+
+        button.textContent =
+            "✅ تم إرسال البلاغ";
+
+
+    }
+    catch(error){
+
+        console.error(
+            "Food poisoning save error:",
+            error
+        );
+
+
+        sending =
+            false;
+
+
+        button.disabled =
+            false;
+
+
+        button.textContent =
+            "📨 إرسال البلاغ للصحة العامة";
+
+
+        showError(
+
+            "⚠️ تعذر إرسال البلاغ. لم يتم اعتماد الحفظ، يرجى المحاولة مرة أخرى."
+
         );
 
     }
 
-
-    showSuccess(
-
-        "✅ تم إرسال بلاغ التسمم الغذائي إلى الصحة العامة بنجاح." +
-
-        "<br><br>" +
-
-        "<strong>رقم البلاغ:</strong> " +
-
-        notification.id
-
-    );
-
 }
 
+
+/* ==========================================
+   START
+========================================== */
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -1685,13 +2587,16 @@ document.addEventListener(
         ).value =
             nowLocal();
 
+
+        loadIncomingData();
+
+        applyIncomingData();
+
     }
 );
 
+
 </script>
-
-
-<script src="api.js"></script>
 
 
 </body>

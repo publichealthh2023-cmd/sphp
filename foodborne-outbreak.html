@@ -250,6 +250,12 @@ textarea:focus{
     color:#fff;
 }
 
+.send-btn:disabled,
+.draft-btn:disabled{
+    opacity:.65;
+    cursor:not-allowed;
+}
+
 .draft-btn{
     background:#187b43;
     color:#fff;
@@ -400,10 +406,6 @@ Electronic Foodborne Disease Outbreak Notification Form
 
 
 
-<!-- =====================================================
-     NOTIFICATION DATA
-===================================================== -->
-
 <section class="section-card">
 
 <h3>
@@ -478,10 +480,6 @@ Electronic Foodborne Disease Outbreak Notification Form
 
 
 
-<!-- =====================================================
-     FACILITY
-===================================================== -->
-
 <section class="section-card">
 
 <h3>
@@ -494,7 +492,8 @@ Electronic Foodborne Disease Outbreak Notification Form
 <div class="form-group">
 
 <label>
-اسم المنشأة الصحية *
+اسم المنشأة الصحية
+<span class="required">*</span>
 </label>
 
 <input
@@ -583,7 +582,8 @@ Electronic Foodborne Disease Outbreak Notification Form
 <div class="form-group">
 
 <label>
-القسم المبلّغ *
+القسم المبلّغ
+<span class="required">*</span>
 </label>
 
 <input id="reportingDepartment">
@@ -595,10 +595,6 @@ Electronic Foodborne Disease Outbreak Notification Form
 </section>
 
 
-
-<!-- =====================================================
-     EVENT
-===================================================== -->
 
 <section class="section-card">
 
@@ -679,10 +675,6 @@ Electronic Foodborne Disease Outbreak Notification Form
 
 
 
-<!-- =====================================================
-     CASE DISTRIBUTION
-===================================================== -->
-
 <section class="section-card">
 
 <h3>
@@ -762,10 +754,6 @@ Electronic Foodborne Disease Outbreak Notification Form
 </section>
 
 
-
-<!-- =====================================================
-     DEMOGRAPHICS
-===================================================== -->
 
 <section class="section-card">
 
@@ -854,10 +842,6 @@ Electronic Foodborne Disease Outbreak Notification Form
 
 
 
-<!-- =====================================================
-     FOOD
-===================================================== -->
-
 <section class="section-card">
 
 <h3>
@@ -892,7 +876,8 @@ Electronic Foodborne Disease Outbreak Notification Form
 <div class="form-group full">
 
 <label>
-اسم / وصف الطعام المشتبه *
+اسم / وصف الطعام المشتبه
+<span class="required">*</span>
 </label>
 
 <textarea id="suspectedFood"></textarea>
@@ -1009,10 +994,6 @@ Electronic Foodborne Disease Outbreak Notification Form
 </section>
 
 
-
-<!-- =====================================================
-     SYMPTOMS
-===================================================== -->
 
 <section class="section-card">
 
@@ -1177,10 +1158,6 @@ Electronic Foodborne Disease Outbreak Notification Form
 
 
 
-<!-- =====================================================
-     SAMPLES
-===================================================== -->
-
 <section class="section-card">
 
 <h3>
@@ -1321,10 +1298,6 @@ Electronic Foodborne Disease Outbreak Notification Form
 
 
 
-<!-- =====================================================
-     ADDITIONAL
-===================================================== -->
-
 <section class="section-card">
 
 <h3>
@@ -1398,10 +1371,6 @@ Electronic Foodborne Disease Outbreak Notification Form
 
 
 
-<!-- =====================================================
-     REPORTER
-===================================================== -->
-
 <section class="section-card">
 
 <h3>
@@ -1414,7 +1383,8 @@ Electronic Foodborne Disease Outbreak Notification Form
 <div class="form-group">
 
 <label>
-اسم المبلّغ *
+اسم المبلّغ
+<span class="required">*</span>
 </label>
 
 <input id="reporterName">
@@ -1425,7 +1395,8 @@ Electronic Foodborne Disease Outbreak Notification Form
 <div class="form-group">
 
 <label>
-الإدارة / القسم *
+الإدارة / القسم
+<span class="required">*</span>
 </label>
 
 <input id="reporterDepartment">
@@ -1467,6 +1438,8 @@ Electronic Foodborne Disease Outbreak Notification Form
 
 
 <button
+    id="sendButton"
+    type="button"
     class="send-btn"
     onclick="sendOutbreak()">
 
@@ -1476,6 +1449,8 @@ Electronic Foodborne Disease Outbreak Notification Form
 
 
 <button
+    id="draftButton"
+    type="button"
     class="draft-btn"
     onclick="saveDraft()">
 
@@ -1485,6 +1460,7 @@ Electronic Foodborne Disease Outbreak Notification Form
 
 
 <button
+    type="button"
     class="print-btn"
     onclick="window.print()">
 
@@ -1519,16 +1495,19 @@ Electronic Foodborne Disease Outbreak Notification Form
 </main>
 
 
+<script src="config.js"></script>
+<script src="api.js"></script>
+
 
 <script>
 
 
-const OUTBREAKS_KEY =
-    "foodborneOutbreaks";
+/* =====================================================
+   STATE
+===================================================== */
 
-
-const NOTIFICATIONS_KEY =
-    "publicHealthNotifications";
+let saving =
+    false;
 
 
 const symptomNames = {
@@ -1545,12 +1524,29 @@ const symptomNames = {
 
 
 /* =====================================================
+   ENVIRONMENT
+===================================================== */
+
+function isServerMode(){
+
+    return (
+        window.SPHP_CONFIG &&
+        window.SPHP_CONFIG.dataMode ===
+        "server"
+    );
+
+}
+
+
+/* =====================================================
    HELPERS
 ===================================================== */
 
 function el(id){
 
-    return document.getElementById(id);
+    return document.getElementById(
+        id
+    );
 
 }
 
@@ -1562,9 +1558,7 @@ function num(id){
 
 
     if(!element){
-
         return 0;
-
     }
 
 
@@ -1600,9 +1594,7 @@ function text(id){
 
 
     if(!element){
-
         return "";
-
     }
 
 
@@ -1624,12 +1616,16 @@ function nowLocal(){
     return new Date(
 
         now.getTime() -
+
         now.getTimezoneOffset() *
         60000
 
     )
     .toISOString()
-    .slice(0,16);
+    .slice(
+        0,
+        16
+    );
 
 }
 
@@ -1647,8 +1643,7 @@ function generateOutbreakId(){
         +
 
         String(
-            date.getMonth() +
-            1
+            date.getMonth() + 1
         )
         .padStart(
             2,
@@ -1684,7 +1679,7 @@ function generateOutbreakId(){
 }
 
 
-function getArray(key){
+function readLocalArray(key){
 
     try{
 
@@ -1702,11 +1697,9 @@ function getArray(key){
             );
 
 
-        return Array.isArray(
-            data
-        )
-        ? data
-        : [];
+        return Array.isArray(data)
+            ? data
+            : [];
 
     }
     catch(error){
@@ -1718,7 +1711,7 @@ function getArray(key){
 }
 
 
-function saveArray(
+function writeLocalArray(
     key,
     data
 ){
@@ -1737,27 +1730,51 @@ function saveArray(
 
 
 /* =====================================================
-   START
+   INITIAL VALUES
 ===================================================== */
 
 function setInitialValues(){
 
-    el(
-        "outbreakId"
-    ).value =
-        generateOutbreakId();
+    if(
+        !text(
+            "outbreakId"
+        )
+    ){
+
+        el(
+            "outbreakId"
+        ).value =
+            generateOutbreakId();
+
+    }
 
 
-    el(
-        "receivedDateTime"
-    ).value =
-        nowLocal();
+    if(
+        !el(
+            "receivedDateTime"
+        ).value
+    ){
+
+        el(
+            "receivedDateTime"
+        ).value =
+            nowLocal();
+
+    }
 
 
-    el(
-        "reportDateTime"
-    ).value =
-        nowLocal();
+    if(
+        !el(
+            "reportDateTime"
+        ).value
+    ){
+
+        el(
+            "reportDateTime"
+        ).value =
+            nowLocal();
+
+    }
 
 
     updateTotalPreview();
@@ -1879,6 +1896,17 @@ function collectSymptoms(){
 
 
             if(
+                !Number.isFinite(count)
+                ||
+                count < 0
+            ){
+
+                count = 0;
+
+            }
+
+
+            if(
                 checkBox.checked &&
                 count < 1
             ){
@@ -1915,6 +1943,29 @@ function collectSymptoms(){
 }
 
 
+function selectedSymptomKeys(
+    symptoms
+){
+
+    return symptoms
+    .filter(
+        function(item){
+
+            return item.selected;
+
+        }
+    )
+    .map(
+        function(item){
+
+            return item.key;
+
+        }
+    );
+
+}
+
+
 function buildSymptomCounts(
     symptoms
 ){
@@ -1945,7 +1996,7 @@ function buildSymptomCounts(
 
 
 /* =====================================================
-   BUILD
+   BUILD OUTBREAK
 ===================================================== */
 
 function buildOutbreak(){
@@ -1957,78 +2008,6 @@ function buildOutbreak(){
     const symptomCounts =
         buildSymptomCounts(
             symptoms
-        );
-
-
-    const nationalitySaudi =
-        num(
-            "nationalitySaudi"
-        );
-
-
-    const nationalityNonSaudi =
-        num(
-            "nationalityNonSaudi"
-        );
-
-
-    const nationalityUnknown =
-        num(
-            "nationalityUnknown"
-        );
-
-
-    const genderMale =
-        num(
-            "genderMale"
-        );
-
-
-    const genderFemale =
-        num(
-            "genderFemale"
-        );
-
-
-    const genderUnknown =
-        num(
-            "genderUnknown"
-        );
-
-
-    const ageUnder5 =
-        num(
-            "ageUnder5"
-        );
-
-
-    const age5to14 =
-        num(
-            "age5to14"
-        );
-
-
-    const age15to24 =
-        num(
-            "age15to24"
-        );
-
-
-    const age25to44 =
-        num(
-            "age25to44"
-        );
-
-
-    const age45to64 =
-        num(
-            "age45to64"
-        );
-
-
-    const age65plus =
-        num(
-            "age65plus"
         );
 
 
@@ -2219,13 +2198,19 @@ function buildOutbreak(){
             nationality:{
 
                 saudi:
-                    nationalitySaudi,
+                    num(
+                        "nationalitySaudi"
+                    ),
 
                 nonSaudi:
-                    nationalityNonSaudi,
+                    num(
+                        "nationalityNonSaudi"
+                    ),
 
                 unknown:
-                    nationalityUnknown
+                    num(
+                        "nationalityUnknown"
+                    )
 
             },
 
@@ -2233,13 +2218,19 @@ function buildOutbreak(){
             gender:{
 
                 male:
-                    genderMale,
+                    num(
+                        "genderMale"
+                    ),
 
                 female:
-                    genderFemale,
+                    num(
+                        "genderFemale"
+                    ),
 
                 unknown:
-                    genderUnknown
+                    num(
+                        "genderUnknown"
+                    )
 
             },
 
@@ -2247,67 +2238,38 @@ function buildOutbreak(){
             age:{
 
                 under5:
-                    ageUnder5,
+                    num(
+                        "ageUnder5"
+                    ),
 
                 age5to14:
-                    age5to14,
+                    num(
+                        "age5to14"
+                    ),
 
                 age15to24:
-                    age15to24,
+                    num(
+                        "age15to24"
+                    ),
 
                 age25to44:
-                    age25to44,
+                    num(
+                        "age25to44"
+                    ),
 
                 age45to64:
-                    age45to64,
+                    num(
+                        "age45to64"
+                    ),
 
                 age65plus:
-                    age65plus
+                    num(
+                        "age65plus"
+                    )
 
             }
 
         },
-
-
-        /* احتياط إضافي مباشر */
-
-        nationalitySaudi:
-            nationalitySaudi,
-
-        nationalityNonSaudi:
-            nationalityNonSaudi,
-
-        nationalityUnknown:
-            nationalityUnknown,
-
-
-        genderMale:
-            genderMale,
-
-        genderFemale:
-            genderFemale,
-
-        genderUnknown:
-            genderUnknown,
-
-
-        ageUnder5:
-            ageUnder5,
-
-        age5to14:
-            age5to14,
-
-        age15to24:
-            age15to24,
-
-        age25to44:
-            age25to44,
-
-        age45to64:
-            age45to64,
-
-        age65plus:
-            age65plus,
 
 
         food:{
@@ -2366,6 +2328,12 @@ function buildOutbreak(){
 
         symptomCounts:
             symptomCounts,
+
+
+        selectedSymptoms:
+            selectedSymptomKeys(
+                symptoms
+            ),
 
 
         otherSymptoms:
@@ -2484,6 +2452,11 @@ function buildOutbreak(){
             .toISOString(),
 
 
+        updatedAt:
+            new Date()
+            .toISOString(),
+
+
         status:
             "new"
 
@@ -2551,16 +2524,17 @@ function validateOutbreak(
 
 
 /* =====================================================
-   SAVE OUTBREAK
+   LOCAL FALLBACK
 ===================================================== */
 
-function saveOutbreakRecord(
-    outbreak
+function localUpsert(
+    key,
+    record
 ){
 
     const records =
-        getArray(
-            OUTBREAKS_KEY
+        readLocalArray(
+            key
         );
 
 
@@ -2570,7 +2544,7 @@ function saveOutbreakRecord(
 
                 return (
                     item.id ===
-                    outbreak.id
+                    record.id
                 );
 
             }
@@ -2581,21 +2555,441 @@ function saveOutbreakRecord(
 
         records[
             index
-        ] =
-            outbreak;
+        ] = {
 
-    }else{
+            ...records[index],
+            ...record
+
+        };
+
+    }
+    else{
 
         records.unshift(
+            record
+        );
+
+    }
+
+
+    writeLocalArray(
+        key,
+        records
+    );
+
+
+    return record;
+
+}
+
+
+/* =====================================================
+   SAVE OUTBREAK RECORD
+===================================================== */
+
+async function saveOutbreakRecord(
+    outbreak
+){
+
+    if(
+        window.SPHP &&
+        window.SPHP.foodborneOutbreaks &&
+        typeof window.SPHP.foodborneOutbreaks.upsert ===
+        "function"
+    ){
+
+        return await window.SPHP
+        .foodborneOutbreaks
+        .upsert(
             outbreak
         );
 
     }
 
 
-    saveArray(
-        OUTBREAKS_KEY,
-        records
+    if(
+        !isServerMode()
+    ){
+
+        return localUpsert(
+            "foodborneOutbreaks",
+            outbreak
+        );
+
+    }
+
+
+    throw new Error(
+        "Foodborne outbreak service unavailable."
+    );
+
+}
+
+
+/* =====================================================
+   BUILD NOTIFICATION
+===================================================== */
+
+function buildNotification(
+    outbreak
+){
+
+    let labStatus =
+        "pending";
+
+
+    if(
+        outbreak.samples.positiveResults ===
+        "yes"
+    ){
+
+        labStatus =
+            "positive";
+
+    }
+    else if(
+        outbreak.samples.positiveResults ===
+        "no"
+    ){
+
+        labStatus =
+            "negative";
+
+    }
+
+
+    return {
+
+
+        id:
+            outbreak.id,
+
+
+        notificationType:
+            "foodborneOutbreak",
+
+
+        outbreakId:
+            outbreak.id,
+
+
+        disease:
+            "فاشية مرض منقول بالغذاء",
+
+
+        diseaseKey:
+            "foodborneOutbreak",
+
+
+        classification:
+            outbreak.event.status ===
+            "confirmed"
+            ? "confirmed"
+            : "suspected",
+
+
+        priority:
+            "urgent",
+
+
+        status:
+            "new",
+
+
+        source:
+            "manual",
+
+
+        createdAt:
+            outbreak.createdAt,
+
+
+        date:
+            outbreak.receivedDateTime
+            ||
+            outbreak.reporter.reportDateTime
+            ||
+            nowLocal(),
+
+
+        reportDateTime:
+            outbreak.reporter.reportDateTime
+            ||
+            outbreak.receivedDateTime
+            ||
+            nowLocal(),
+
+
+        detectionDateTime:
+            outbreak.receivedDateTime,
+
+
+        symptomOnset:
+            outbreak.symptomOnsetDateTime,
+
+
+        /*
+          حقول مباشرة لعرض التقرير
+        */
+
+        outbreakName:
+            outbreak.event.description
+            ||
+            "فاشية مرض منقول بالغذاء",
+
+
+        eventName:
+            outbreak.event.description
+            ||
+            "فاشية مرض منقول بالغذاء",
+
+
+        caseCount:
+            outbreak.totalCases,
+
+
+        totalCases:
+            outbreak.totalCases,
+
+
+        admittedCount:
+            outbreak.casesDistribution.admitted,
+
+
+        hospitalizedCount:
+            outbreak.casesDistribution.admitted,
+
+
+        deathCount:
+            outbreak.clinicalStatus.deaths,
+
+
+        deaths:
+            outbreak.clinicalStatus.deaths,
+
+
+        outbreakLocation:
+            outbreak.food.consumptionPlace
+            ||
+            outbreak.food.sourceLocation
+            ||
+            outbreak.facility.name,
+
+
+        suspectedFood:
+            outbreak.food.suspectedFood,
+
+
+        foodSourceName:
+            outbreak.food.sourceName,
+
+
+        foodSourceLocation:
+            outbreak.food.sourceLocation,
+
+
+        foodPreparationPlace:
+            outbreak.food.preparationPlace,
+
+
+        foodConsumptionPlace:
+            outbreak.food.consumptionPlace,
+
+
+        mealDateTime:
+            outbreak.food.mealDateTime,
+
+
+        foodSourceType:
+            outbreak.food.sourceType,
+
+
+        commonSource:
+            outbreak.food.commonSource,
+
+
+        exposedCasesCount:
+            outbreak.food.exposedCasesCount,
+
+
+        /*
+          الأعراض في البلاغ يجب أن تكون مصفوفة مفاتيح فقط
+        */
+
+        symptoms:
+            outbreak.selectedSymptoms,
+
+
+        symptomCounts:
+            outbreak.symptomCounts,
+
+
+        otherSymptoms:
+            outbreak.otherSymptoms,
+
+
+        otherSymptomsCount:
+            outbreak.otherSymptomsCount,
+
+
+        /*
+          العينات
+        */
+
+        sampleTaken:
+            outbreak.samples.clinicalSamples,
+
+
+        sampleType:
+            outbreak.samples.sampleTypes,
+
+
+        labStatus:
+            labStatus,
+
+
+        labResult:
+            outbreak.samples.labResult,
+
+
+        sampledCasesCount:
+            outbreak.samples.sampledCasesCount,
+
+
+        totalSamplesCount:
+            outbreak.samples.totalSamplesCount,
+
+
+        allRefusedSamples:
+            outbreak.samples.allRefusedSamples,
+
+
+        /*
+          الإجراءات
+        */
+
+        actionsTaken:
+            outbreak.actionsTaken,
+
+
+        notes:
+            outbreak.additionalInformation,
+
+
+        /*
+          HESN
+        */
+
+        hesnStatus:
+            outbreak.hesnStatus,
+
+
+        hesnNumber:
+            outbreak.hesnNumber,
+
+
+        /*
+          بيانات المبلّغ
+        */
+
+        reporterName:
+            outbreak.reporter.name,
+
+
+        reporterDepartment:
+            outbreak.reporter.department,
+
+
+        reporterPhone:
+            outbreak.reporter.phone,
+
+
+        /*
+          بيانات عامة للعرض
+        */
+
+        patientName:
+            "فاشية غذائية",
+
+
+        caseLocation:
+            outbreak.food.consumptionPlace
+            ||
+            outbreak.food.sourceLocation
+            ||
+            outbreak.facility.name,
+
+
+        /*
+          المنشأة
+        */
+
+        facilityName:
+            outbreak.facility.name,
+
+
+        facilityRegion:
+            outbreak.facility.region,
+
+
+        facilityCity:
+            outbreak.facility.city,
+
+
+        reportingDepartment:
+            outbreak.facility.reportingDepartment,
+
+
+        /*
+          الاحتفاظ بالبيانات الكاملة
+        */
+
+        outbreakData:
+            outbreak
+
+    };
+
+}
+
+
+/* =====================================================
+   SAVE NOTIFICATION
+===================================================== */
+
+async function saveNotificationRecord(
+    notification
+){
+
+    if(
+        window.SPHP &&
+        window.SPHP.notifications &&
+        typeof window.SPHP.notifications.upsert ===
+        "function"
+    ){
+
+        return await window.SPHP
+        .notifications
+        .upsert(
+            notification
+        );
+
+    }
+
+
+    if(
+        !isServerMode()
+    ){
+
+        return localUpsert(
+            "publicHealthNotifications",
+            notification
+        );
+
+    }
+
+
+    throw new Error(
+        "Notification service unavailable."
     );
 
 }
@@ -2605,7 +2999,12 @@ function saveOutbreakRecord(
    DRAFT
 ===================================================== */
 
-function saveDraft(){
+async function saveDraft(){
+
+    if(saving){
+        return;
+    }
+
 
     const outbreak =
         buildOutbreak();
@@ -2615,14 +3014,63 @@ function saveDraft(){
         "draft";
 
 
-    saveOutbreakRecord(
-        outbreak
-    );
+    const button =
+        el(
+            "draftButton"
+        );
 
 
-    showSuccess(
-        "💾 تم حفظ المسودة."
-    );
+    try{
+
+        saving =
+            true;
+
+
+        button.disabled =
+            true;
+
+
+        button.textContent =
+            "⏳ جاري حفظ المسودة...";
+
+
+        await saveOutbreakRecord(
+            outbreak
+        );
+
+
+        showSuccess(
+            "💾 تم حفظ المسودة بنجاح."
+        );
+
+    }
+    catch(error){
+
+        console.error(
+            "Save outbreak draft error:",
+            error
+        );
+
+
+        showError(
+            "⚠️ تعذر حفظ المسودة."
+        );
+
+    }
+    finally{
+
+        saving =
+            false;
+
+
+        button.disabled =
+            false;
+
+
+        button.textContent =
+            "💾 حفظ مسودة";
+
+    }
 
 }
 
@@ -2631,7 +3079,12 @@ function saveDraft(){
    SEND
 ===================================================== */
 
-function sendOutbreak(){
+async function sendOutbreak(){
+
+    if(saving){
+        return;
+    }
+
 
     const outbreak =
         buildOutbreak();
@@ -2658,175 +3111,125 @@ function sendOutbreak(){
         "new";
 
 
-    saveOutbreakRecord(
-        outbreak
-    );
-
-
-    const notifications =
-        getArray(
-            NOTIFICATIONS_KEY
-        );
-
-
-    const notification = {
-
-
-        id:
-            outbreak.id,
-
-
-        notificationType:
-            "foodborneOutbreak",
-
-
-        outbreakId:
-            outbreak.id,
-
-
-        disease:
-            "فاشية مرض منقول بالغذاء",
-
-
-        classification:
-            "suspected",
-
-
-        priority:
-            "urgent",
-
-
-        status:
-            "new",
-
-
-        source:
-            "manual",
-
-
-        date:
-            outbreak.receivedDateTime ||
-            outbreak.reporter.reportDateTime ||
-            nowLocal(),
-
-
-        reportDateTime:
-            outbreak.reporter.reportDateTime ||
-            outbreak.receivedDateTime ||
-            nowLocal(),
-
-
-        reporterName:
-            outbreak.reporter.name,
-
-
-        reporterDepartment:
-            outbreak.reporter.department,
-
-
-        reporterPhone:
-            outbreak.reporter.phone,
-
-
-        hesnStatus:
-            outbreak.hesnStatus,
-
-
-        hesnNumber:
-            outbreak.hesnNumber,
-
-
-        patientName:
-            outbreak.food.sourceName ||
-            outbreak.food.consumptionPlace ||
-            "فاشية غذائية",
-
-
-        caseLocation:
-            outbreak.food.consumptionPlace ||
-            outbreak.food.sourceLocation ||
-            outbreak.facility.name,
-
-
-        createdAt:
-            new Date()
-            .toISOString(),
-
-
-        outbreakData:
+    const notification =
+        buildNotification(
             outbreak
-
-    };
-
-
-    const index =
-        notifications.findIndex(
-            function(item){
-
-                return (
-                    item.id ===
-                    notification.id
-                );
-
-            }
         );
 
 
-    if(index >= 0){
+    const sendButton =
+        el(
+            "sendButton"
+        );
 
-        notifications[
-            index
-        ] = {
 
-            ...notifications[
-                index
-            ],
+    const draftButton =
+        el(
+            "draftButton"
+        );
 
-            ...notification
 
-        };
+    try{
 
-    }else{
+        saving =
+            true;
 
-        notifications.unshift(
-            notification
+
+        sendButton.disabled =
+            true;
+
+
+        draftButton.disabled =
+            true;
+
+
+        sendButton.textContent =
+            "⏳ جاري إرسال البلاغ...";
+
+
+        /*
+          نحفظ سجل الفاشية كاملًا أولًا
+        */
+
+        await saveOutbreakRecord(
+            outbreak
+        );
+
+
+        /*
+          ثم نحفظ البلاغ المرتبط في صندوق الصحة العامة
+        */
+
+        const savedNotification =
+            await saveNotificationRecord(
+                notification
+            );
+
+
+        const savedId =
+            (
+                savedNotification &&
+                savedNotification.id
+            )
+            ||
+            notification.id;
+
+
+        showSuccess(
+
+            "✅ تم إرسال بلاغ الفاشية إلى الصحة العامة بنجاح."
+
+            +
+
+            "<br><br>"
+
+            +
+
+            "<strong>رقم البلاغ:</strong> "
+
+            +
+
+            savedId
+
+        );
+
+
+        sendButton.textContent =
+            "✅ تم إرسال البلاغ";
+
+
+    }
+    catch(error){
+
+        console.error(
+            "Send foodborne outbreak error:",
+            error
+        );
+
+
+        saving =
+            false;
+
+
+        sendButton.disabled =
+            false;
+
+
+        draftButton.disabled =
+            false;
+
+
+        sendButton.textContent =
+            "📨 إرسال البلاغ إلى الصحة العامة";
+
+
+        showError(
+
+            "⚠️ تعذر إرسال البلاغ. لم يتم اعتماد الإرسال، يرجى المحاولة مرة أخرى."
+
         );
 
     }
-
-
-    saveArray(
-        NOTIFICATIONS_KEY,
-        notifications
-    );
-
-
-    showSuccess(
-
-        "✅ تم إرسال البلاغ إلى الصحة العامة بنجاح." +
-
-        "<br><br>" +
-
-        "<strong>رقم البلاغ:</strong> " +
-
-        outbreak.id +
-
-        "<br><br>" +
-
-        "سيتم إعادتك إلى الصفحة الرئيسية."
-
-    );
-
-
-    setTimeout(
-        function(){
-
-            window.location.href =
-                "index.html";
-
-        },
-        1800
-    );
 
 }
 
@@ -2903,9 +3306,17 @@ function showError(
 }
 
 
+/* =====================================================
+   START
+===================================================== */
+
 document.addEventListener(
     "DOMContentLoaded",
-    setInitialValues
+    function(){
+
+        setInitialValues();
+
+    }
 );
 
 

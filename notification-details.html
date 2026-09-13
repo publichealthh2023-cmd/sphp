@@ -41,6 +41,9 @@
     --red:#c62828;
     --red-light:#fff0f0;
 
+    --food:#9a5b00;
+    --food-light:#fff8e8;
+
     --gray:#607387;
     --border:#cfdbe4;
     --background:#edf1f4;
@@ -394,6 +397,14 @@ body{
     background:var(--red);
 }
 
+.section-title.food{
+    background:var(--food);
+}
+
+.hidden{
+    display:none !important;
+}
+
 
 /* =====================================================
    DATA TABLE
@@ -513,6 +524,16 @@ body{
     border-color:#c2dfcc;
 
     color:#176437;
+
+}
+
+.chip.food{
+
+    background:#fff4d9;
+
+    border-color:#e8ca82;
+
+    color:#7a4900;
 
 }
 
@@ -862,6 +883,11 @@ body{
 
 }
 
+.save-followup:disabled{
+    opacity:.65;
+    cursor:not-allowed;
+}
+
 .save-message{
 
     display:none;
@@ -931,7 +957,6 @@ body{
 
 /* =====================================================
    PRINT
-   قسم طباعة واحد فقط
 ===================================================== */
 
 @page{
@@ -1008,9 +1033,6 @@ body{
 
         overflow:
             visible !important;
-
-        transform-origin:
-            top center;
 
     }
 
@@ -1390,8 +1412,6 @@ body{
     style="display:none;">
 
 
-<!-- HEADER -->
-
 <header class="report-header">
 
 
@@ -1406,11 +1426,11 @@ body{
 
 <div class="report-title">
 
-<h1>
+<h1 id="reportMainTitle">
 تقرير بلاغ مرض معدٍ
 </h1>
 
-<h2>
+<h2 id="reportMainTitleEn">
 Infectious Disease Notification Report
 </h2>
 
@@ -1509,13 +1529,19 @@ Internal Public Health Notification Record
 
 
 <!-- =====================================================
-     1 PATIENT
+     PATIENT
 ===================================================== -->
 
-<section class="report-section">
+<section
+    id="patientSection"
+    class="report-section">
 
-<div class="section-title">
+<div
+    id="patientSectionTitle"
+    class="section-title">
+
 1. بيانات المريض / Patient Information
+
 </div>
 
 <table class="data-table">
@@ -1572,7 +1598,9 @@ Internal Public Health Notification Record
 
 <tr>
 
-<td class="data-label">
+<td
+    id="dobOrAgeLabel"
+    class="data-label">
 تاريخ الميلاد
 </td>
 
@@ -1625,20 +1653,28 @@ Internal Public Health Notification Record
 
 
 <!-- =====================================================
-     2 CASE
+     CASE
 ===================================================== -->
 
-<section class="report-section">
+<section
+    id="caseSection"
+    class="report-section">
 
-<div class="section-title">
+<div
+    id="caseSectionTitle"
+    class="section-title">
+
 2. بيانات الحالة / Case Information
+
 </div>
 
 <table class="data-table">
 
 <tr>
 
-<td class="data-label">
+<td
+    id="diseaseLabel"
+    class="data-label">
 المرض المشتبه
 </td>
 
@@ -1716,13 +1752,265 @@ Internal Public Health Notification Record
 
 
 <!-- =====================================================
-     3 SYMPTOMS
+     FOOD INDIVIDUAL
 ===================================================== -->
 
-<section class="report-section">
+<section
+    id="foodIndividualSection"
+    class="report-section hidden">
 
-<div class="section-title">
+<div class="section-title food">
+3. بيانات الطعام والتعرض / Food Exposure
+</div>
+
+<table class="data-table">
+
+<tr>
+
+<td class="data-label">
+الطعام المشتبه
+</td>
+
+<td
+    id="reportSuspectedFood"
+    colspan="3">
+—
+</td>
+
+</tr>
+
+
+<tr>
+
+<td class="data-label">
+مكان إعداد الطعام
+</td>
+
+<td
+    id="reportFoodPreparationPlace"
+    class="data-value">
+—
+</td>
+
+<td class="data-label">
+مكان تناول الطعام
+</td>
+
+<td
+    id="reportFoodConsumptionPlace"
+    class="data-value">
+—
+</td>
+
+</tr>
+
+
+<tr>
+
+<td class="data-label">
+وقت تناول الطعام
+</td>
+
+<td
+    id="reportMealDateTime"
+    class="data-value">
+—
+</td>
+
+<td class="data-label">
+نوع مصدر الطعام
+</td>
+
+<td
+    id="reportFoodSourceType"
+    class="data-value">
+—
+</td>
+
+</tr>
+
+
+<tr>
+
+<td class="data-label">
+اسم المصدر
+</td>
+
+<td
+    id="reportFoodSourceName"
+    class="data-value">
+—
+</td>
+
+<td class="data-label">
+موقع المصدر
+</td>
+
+<td
+    id="reportFoodSourceLocation"
+    class="data-value">
+—
+</td>
+
+</tr>
+
+
+<tr>
+
+<td class="data-label">
+حالات أخرى تناولت نفس الطعام
+</td>
+
+<td
+    id="reportOtherCases"
+    colspan="3">
+—
+</td>
+
+</tr>
+
+</table>
+
+</section>
+
+
+<!-- =====================================================
+     FOODBORNE OUTBREAK
+===================================================== -->
+
+<section
+    id="foodOutbreakSection"
+    class="report-section hidden">
+
+<div class="section-title food">
+3. بيانات الفاشية الغذائية / Foodborne Outbreak
+</div>
+
+<table class="data-table">
+
+<tr>
+
+<td class="data-label">
+اسم / وصف الفاشية
+</td>
+
+<td
+    id="reportOutbreakName"
+    colspan="3">
+—
+</td>
+
+</tr>
+
+
+<tr>
+
+<td class="data-label">
+عدد الحالات
+</td>
+
+<td
+    id="reportOutbreakCases"
+    class="data-value">
+—
+</td>
+
+<td class="data-label">
+عدد المنومين
+</td>
+
+<td
+    id="reportOutbreakAdmissions"
+    class="data-value">
+—
+</td>
+
+</tr>
+
+
+<tr>
+
+<td class="data-label">
+عدد الوفيات
+</td>
+
+<td
+    id="reportOutbreakDeaths"
+    class="data-value">
+—
+</td>
+
+<td class="data-label">
+الموقع
+</td>
+
+<td
+    id="reportOutbreakLocation"
+    class="data-value">
+—
+</td>
+
+</tr>
+
+
+<tr>
+
+<td class="data-label">
+الطعام / المصدر المشتبه
+</td>
+
+<td
+    id="reportOutbreakFood"
+    colspan="3">
+—
+</td>
+
+</tr>
+
+
+<tr>
+
+<td class="data-label">
+اسم المنشأة / المصدر
+</td>
+
+<td
+    id="reportOutbreakSourceName"
+    class="data-value">
+—
+</td>
+
+<td class="data-label">
+تاريخ بداية الفاشية
+</td>
+
+<td
+    id="reportOutbreakStart"
+    class="data-value">
+—
+</td>
+
+</tr>
+
+</table>
+
+</section>
+
+
+<!-- =====================================================
+     SYMPTOMS
+===================================================== -->
+
+<section
+    id="symptomSection"
+    class="report-section">
+
+<div
+    id="symptomSectionTitle"
+    class="section-title">
+
 3. الأعراض والعلامات السريرية / Signs & Symptoms
+
 </div>
 
 <table class="data-table">
@@ -1766,10 +2054,12 @@ Internal Public Health Notification Record
 
 
 <!-- =====================================================
-     4 EPI
+     EPI INFECTIOUS ONLY
 ===================================================== -->
 
-<section class="report-section">
+<section
+    id="epiSection"
+    class="report-section">
 
 <div class="section-title">
 4. التاريخ الوبائي / Epidemiological History
@@ -1847,18 +2137,24 @@ Internal Public Health Notification Record
 
 
 <!-- =====================================================
-     5 ACTIONS
+     ACTIONS / SAMPLE
 ===================================================== -->
 
-<section class="report-section">
+<section
+    id="actionsSection"
+    class="report-section">
 
-<div class="section-title">
+<div
+    id="actionsSectionTitle"
+    class="section-title">
+
 5. الإجراءات والعينات / Actions & Specimens
+
 </div>
 
 <table class="data-table">
 
-<tr>
+<tr id="genericActionRow">
 
 <td class="data-label">
 الإجراءات المتخذة
@@ -1872,6 +2168,21 @@ Internal Public Health Notification Record
 —
 </div>
 
+</td>
+
+</tr>
+
+
+<tr id="foodActionRow" class="hidden">
+
+<td class="data-label">
+الإجراءات المتخذة
+</td>
+
+<td
+    id="reportFoodActions"
+    colspan="3">
+—
 </td>
 
 </tr>
@@ -1926,21 +2237,50 @@ Internal Public Health Notification Record
 
 </tr>
 
+
+<tr id="labStatusRow" class="hidden">
+
+<td class="data-label">
+حالة نتيجة المختبر
+</td>
+
+<td
+    id="reportLabStatus"
+    class="data-value">
+—
+</td>
+
+<td class="data-label">
+العامل المسبب
+</td>
+
+<td
+    id="reportCausativeAgent"
+    class="data-value">
+—
+</td>
+
+</tr>
+
 </table>
 
 </section>
 
 
 <!-- =====================================================
-     6 SCREENING
+     SCREENING
 ===================================================== -->
 
 <section
     id="screeningSection"
     class="report-section">
 
-<div class="section-title purple">
+<div
+    id="screeningSectionTitle"
+    class="section-title purple">
+
 6. بيانات الفرز الإلكتروني / Electronic Screening
+
 </div>
 
 
@@ -2016,13 +2356,17 @@ Smart Screening ID
 
 
 <!-- =====================================================
-     7 REPORTER
+     REPORTER
 ===================================================== -->
 
 <section class="report-section">
 
-<div class="section-title green">
+<div
+    id="reporterSectionTitle"
+    class="section-title green">
+
 7. بيانات المبلّغ / Reporter Information
+
 </div>
 
 <table class="data-table">
@@ -2107,13 +2451,17 @@ Smart Screening ID
 
 
 <!-- =====================================================
-     8 FOLLOWUP
+     FOLLOW UP
 ===================================================== -->
 
 <section class="report-section">
 
-<div class="section-title orange">
+<div
+    id="followupSectionTitle"
+    class="section-title orange">
+
 8. متابعة الصحة العامة / Public Health Follow-up
+
 </div>
 
 <table class="data-table">
@@ -2213,13 +2561,17 @@ Smart Screening ID
 
 
 <!-- =====================================================
-     9 SIGNATURE
+     SIGNATURE
 ===================================================== -->
 
 <section class="report-section">
 
-<div class="section-title">
+<div
+    id="signatureSectionTitle"
+    class="section-title">
+
 9. التوقيع والاعتماد / Signature & Approval
+
 </div>
 
 
@@ -2492,6 +2844,14 @@ Public Health
 </section>
 
 
+<!-- =====================================================
+     CONFIG / API
+===================================================== -->
+
+<script src="config.js"></script>
+<script src="api.js"></script>
+
+
 <script>
 
 
@@ -2506,6 +2866,21 @@ let currentNotification =
 
 let currentIndex =
     -1;
+
+
+/* =====================================================
+   ENVIRONMENT
+===================================================== */
+
+function isServerMode(){
+
+    return (
+        window.SPHP_CONFIG &&
+        window.SPHP_CONFIG.dataMode ===
+        "server"
+    );
+
+}
 
 
 /* =====================================================
@@ -2591,7 +2966,13 @@ const symptomLabels = {
     vomiting:"قيء",
     diarrhea:"إسهال",
     bleeding:"نزف",
-    neuro:"أعراض عصبية"
+    neuro:"أعراض عصبية",
+
+    nausea:"غثيان",
+    abdominalPain:"ألم بالبطن",
+    bloodyStool:"براز دموي",
+    dizziness:"دوخة",
+    other:"أعراض أخرى"
 
 };
 
@@ -2604,6 +2985,25 @@ const actionLabels = {
     publicHealth:"إبلاغ الصحة العامة",
     sample:"تم جمع عينة",
     contacts:"بدأ حصر المخالطين"
+
+};
+
+
+const foodSourceLabels = {
+
+    commercial:"مطعم / مصدر تجاري",
+    home:"منزلي",
+    hospital:"منشأة صحية",
+    other:"أخرى"
+
+};
+
+
+const labStatusLabels = {
+
+    pending:"قيد الانتظار",
+    positive:"إيجابية",
+    negative:"سلبية"
 
 };
 
@@ -2645,9 +3045,7 @@ function setText(
 
 
     if(!element){
-
         return;
-
     }
 
 
@@ -2664,9 +3062,7 @@ function formatDateTime(
 ){
 
     if(!value){
-
         return "—";
-
     }
 
 
@@ -2704,6 +3100,23 @@ function formatDateTime(
 }
 
 
+function escapeHTML(value){
+
+    return String(
+        value === undefined ||
+        value === null
+        ? ""
+        : value
+    )
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
 function renderChips(
     id,
     values,
@@ -2718,9 +3131,7 @@ function renderChips(
 
 
     if(!box){
-
         return;
-
     }
 
 
@@ -2753,7 +3164,7 @@ function renderChips(
                 return `
 
                 <span class="chip ${cssClass || ""}">
-                ${label}
+                ${escapeHTML(label)}
                 </span>
 
                 `;
@@ -2766,79 +3177,143 @@ function renderChips(
 
 
 /* =====================================================
-   GET NOTIFICATIONS
+   TYPE HELPERS
+===================================================== */
+
+function isFoodPoisoningIndividual(item){
+
+    return (
+        item &&
+        item.notificationType ===
+        "foodPoisoningIndividual"
+    );
+
+}
+
+
+function isFoodborneOutbreak(item){
+
+    return (
+        item &&
+        item.notificationType ===
+        "foodborneOutbreak"
+    );
+
+}
+
+
+function isFoodNotification(item){
+
+    return (
+        isFoodPoisoningIndividual(item)
+        ||
+        isFoodborneOutbreak(item)
+    );
+
+}
+
+
+/* =====================================================
+   LOAD LIST
 ===================================================== */
 
 async function getNotificationList(){
 
-    /*
-      API / hospital backend
-    */
-
-    if(
-        typeof getPublicHealthNotifications ===
-        "function"
-    ){
-
-        try{
-
-            const data =
-                await getPublicHealthNotifications();
-
-
-            if(
-                Array.isArray(
-                    data
-                )
-            ){
-
-                return data;
-
-            }
-
-        }
-        catch(error){
-
-            console.warn(
-                "API not available, using local storage.",
-                error
-            );
-
-        }
-
-    }
-
-
-    /*
-      Current development fallback
-    */
-
     try{
 
-        const data =
-            JSON.parse(
+        if(
+            window.SPHP &&
+            window.SPHP.notifications &&
+            typeof window.SPHP.notifications.getAll ===
+            "function"
+        ){
 
-                localStorage.getItem(
-                    "publicHealthNotifications"
-                )
-
-                ||
-
-                "[]"
-
-            );
+            const data =
+                await window.SPHP
+                .notifications
+                .getAll();
 
 
-        return Array.isArray(
-            data
-        )
-        ? data
-        : [];
+            return Array.isArray(data)
+                ? data
+                : [];
+
+        }
+
+
+        if(
+            !isServerMode()
+        ){
+
+            const data =
+                JSON.parse(
+
+                    localStorage.getItem(
+                        "publicHealthNotifications"
+                    )
+
+                    ||
+
+                    "[]"
+
+                );
+
+
+            return Array.isArray(data)
+                ? data
+                : [];
+
+        }
+
+
+        throw new Error(
+            "Notification service unavailable."
+        );
 
     }
     catch(error){
 
-        return [];
+        console.error(
+            "Notification load error:",
+            error
+        );
+
+
+        if(
+            !isServerMode()
+        ){
+
+            try{
+
+                const data =
+                    JSON.parse(
+
+                        localStorage.getItem(
+                            "publicHealthNotifications"
+                        )
+
+                        ||
+
+                        "[]"
+
+                    );
+
+
+                return Array.isArray(data)
+                    ? data
+                    : [];
+
+            }
+            catch(localError){
+
+                return [];
+
+            }
+
+        }
+
+
+        throw error;
 
     }
 
@@ -2851,75 +3326,92 @@ async function getNotificationList(){
 
 async function loadNotification(){
 
-    notifications =
-        await getNotificationList();
+    try{
+
+        notifications =
+            await getNotificationList();
 
 
-    const params =
-        new URLSearchParams(
-            window.location.search
-        );
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
 
 
-    const requestedId =
-        params.get("id");
+        const requestedId =
+            params.get("id");
 
 
-    currentIndex =
-        notifications.findIndex(
-            function(item){
+        currentIndex =
+            notifications.findIndex(
+                function(item){
 
-                return (
-                    String(
-                        item.id
-                    ) ===
-                    String(
-                        requestedId
-                    )
-                );
+                    return (
+                        String(
+                            item.id
+                        ) ===
+                        String(
+                            requestedId
+                        )
+                    );
 
-            }
-        );
+                }
+            );
 
 
-    if(
-        currentIndex < 0
-    ){
+        if(
+            currentIndex < 0
+        ){
 
-        showNotFound();
+            showNotFound();
 
-        return;
+            return;
+
+        }
+
+
+        currentNotification =
+            notifications[
+                currentIndex
+            ];
+
+
+        document.getElementById(
+            "officialReport"
+        ).style.display =
+            "block";
+
+
+        document.getElementById(
+            "followupCard"
+        ).style.display =
+            "block";
+
+
+        configureReportType();
+
+        renderReport();
+
+        fillFollowupForm();
 
     }
+    catch(error){
+
+        console.error(
+            "Load notification failed:",
+            error
+        );
 
 
-    currentNotification =
-        notifications[
-            currentIndex
-        ];
+        showLoadError();
 
-
-    document.getElementById(
-        "officialReport"
-    ).style.display =
-        "block";
-
-
-    document.getElementById(
-        "followupCard"
-    ).style.display =
-        "block";
-
-
-    renderReport();
-
-    fillFollowupForm();
+    }
 
 }
 
 
 /* =====================================================
-   NOT FOUND
+   NOT FOUND / ERROR
 ===================================================== */
 
 function showNotFound(){
@@ -2951,6 +3443,363 @@ function showNotFound(){
 }
 
 
+function showLoadError(){
+
+    document.body.innerHTML = `
+
+    <section class="empty-card">
+
+    <h2>
+    تعذر تحميل البلاغ
+    </h2>
+
+    <p>
+    حدث خطأ أثناء تحميل بيانات البلاغ.
+    </p>
+
+    <a
+        class="portal-btn back-btn"
+        href="public-health-inbox.html">
+
+    العودة لصندوق البلاغات
+
+    </a>
+
+    </section>
+
+    `;
+
+}
+
+
+/* =====================================================
+   REPORT TYPE CONFIGURATION
+===================================================== */
+
+function configureReportType(){
+
+    const item =
+        currentNotification;
+
+
+    const title =
+        document.getElementById(
+            "reportMainTitle"
+        );
+
+
+    const titleEn =
+        document.getElementById(
+            "reportMainTitleEn"
+        );
+
+
+    const foodIndividual =
+        document.getElementById(
+            "foodIndividualSection"
+        );
+
+
+    const foodOutbreak =
+        document.getElementById(
+            "foodOutbreakSection"
+        );
+
+
+    const epi =
+        document.getElementById(
+            "epiSection"
+        );
+
+
+    const genericActionRow =
+        document.getElementById(
+            "genericActionRow"
+        );
+
+
+    const foodActionRow =
+        document.getElementById(
+            "foodActionRow"
+        );
+
+
+    const labStatusRow =
+        document.getElementById(
+            "labStatusRow"
+        );
+
+
+    foodIndividual.classList.add(
+        "hidden"
+    );
+
+
+    foodOutbreak.classList.add(
+        "hidden"
+    );
+
+
+    epi.classList.remove(
+        "hidden"
+    );
+
+
+    genericActionRow.classList.remove(
+        "hidden"
+    );
+
+
+    foodActionRow.classList.add(
+        "hidden"
+    );
+
+
+    labStatusRow.classList.add(
+        "hidden"
+    );
+
+
+    if(
+        isFoodPoisoningIndividual(
+            item
+        )
+    ){
+
+        title.textContent =
+            "تقرير تسمم غذائي - حالة فردية";
+
+
+        titleEn.textContent =
+            "Individual Food Poisoning Notification Report";
+
+
+        foodIndividual.classList.remove(
+            "hidden"
+        );
+
+
+        epi.classList.add(
+            "hidden"
+        );
+
+
+        genericActionRow.classList.add(
+            "hidden"
+        );
+
+
+        foodActionRow.classList.remove(
+            "hidden"
+        );
+
+
+        labStatusRow.classList.remove(
+            "hidden"
+        );
+
+
+        document.getElementById(
+            "patientSectionTitle"
+        ).textContent =
+            "1. بيانات المريض / Patient Information";
+
+
+        document.getElementById(
+            "caseSectionTitle"
+        ).textContent =
+            "2. بيانات الحالة / Case Information";
+
+
+        document.getElementById(
+            "symptomSectionTitle"
+        ).textContent =
+            "4. الأعراض والعلامات السريرية / Signs & Symptoms";
+
+
+        document.getElementById(
+            "actionsSectionTitle"
+        ).textContent =
+            "5. العينات والإجراءات / Specimens & Actions";
+
+
+        document.getElementById(
+            "screeningSectionTitle"
+        ).textContent =
+            "6. بيانات الفرز الإلكتروني / Electronic Screening";
+
+
+        document.getElementById(
+            "reporterSectionTitle"
+        ).textContent =
+            "7. بيانات المبلّغ / Reporter Information";
+
+
+        document.getElementById(
+            "followupSectionTitle"
+        ).textContent =
+            "8. متابعة الصحة العامة / Public Health Follow-up";
+
+
+        document.getElementById(
+            "signatureSectionTitle"
+        ).textContent =
+            "9. التوقيع والاعتماد / Signature & Approval";
+
+
+        document.getElementById(
+            "dobOrAgeLabel"
+        ).textContent =
+            "العمر";
+
+
+        document.getElementById(
+            "diseaseLabel"
+        ).textContent =
+            "نوع البلاغ";
+
+    }
+
+
+    else if(
+        isFoodborneOutbreak(
+            item
+        )
+    ){
+
+        title.textContent =
+            "تقرير فاشية منقولة بالغذاء";
+
+
+        titleEn.textContent =
+            "Foodborne Outbreak Notification Report";
+
+
+        foodOutbreak.classList.remove(
+            "hidden"
+        );
+
+
+        epi.classList.add(
+            "hidden"
+        );
+
+
+        genericActionRow.classList.add(
+            "hidden"
+        );
+
+
+        foodActionRow.classList.remove(
+            "hidden"
+        );
+
+
+        labStatusRow.classList.remove(
+            "hidden"
+        );
+
+
+        document.getElementById(
+            "patientSectionTitle"
+        ).textContent =
+            "1. بيانات الحالة الأساسية / Basic Case Information";
+
+
+        document.getElementById(
+            "caseSectionTitle"
+        ).textContent =
+            "2. بيانات البلاغ / Notification Information";
+
+
+        document.getElementById(
+            "symptomSectionTitle"
+        ).textContent =
+            "4. الأعراض المشتركة / Common Symptoms";
+
+
+        document.getElementById(
+            "actionsSectionTitle"
+        ).textContent =
+            "5. العينات والإجراءات / Specimens & Actions";
+
+
+        document.getElementById(
+            "screeningSectionTitle"
+        ).textContent =
+            "6. بيانات الفرز الإلكتروني / Electronic Screening";
+
+
+        document.getElementById(
+            "reporterSectionTitle"
+        ).textContent =
+            "7. بيانات المبلّغ / Reporter Information";
+
+
+        document.getElementById(
+            "followupSectionTitle"
+        ).textContent =
+            "8. متابعة الصحة العامة / Public Health Follow-up";
+
+
+        document.getElementById(
+            "signatureSectionTitle"
+        ).textContent =
+            "9. التوقيع والاعتماد / Signature & Approval";
+
+
+        document.getElementById(
+            "dobOrAgeLabel"
+        ).textContent =
+            "العمر";
+
+
+        document.getElementById(
+            "diseaseLabel"
+        ).textContent =
+            "نوع البلاغ";
+
+    }
+
+
+    else{
+
+        title.textContent =
+            "تقرير بلاغ مرض معدٍ";
+
+
+        titleEn.textContent =
+            "Infectious Disease Notification Report";
+
+
+        document.getElementById(
+            "dobOrAgeLabel"
+        ).textContent =
+            "تاريخ الميلاد";
+
+
+        document.getElementById(
+            "diseaseLabel"
+        ).textContent =
+            "المرض المشتبه";
+
+
+        document.getElementById(
+            "symptomSectionTitle"
+        ).textContent =
+            "3. الأعراض والعلامات السريرية / Signs & Symptoms";
+
+
+        document.getElementById(
+            "actionsSectionTitle"
+        ).textContent =
+            "5. الإجراءات والعينات / Actions & Specimens";
+
+    }
+
+}
+
+
 /* =====================================================
    RENDER REPORT
 ===================================================== */
@@ -2961,7 +3810,75 @@ function renderReport(){
         currentNotification;
 
 
-    /* META */
+    renderCommonFields(
+        item
+    );
+
+
+    if(
+        isFoodPoisoningIndividual(
+            item
+        )
+    ){
+
+        renderFoodIndividual(
+            item
+        );
+
+    }
+
+
+    else if(
+        isFoodborneOutbreak(
+            item
+        )
+    ){
+
+        renderFoodOutbreak(
+            item
+        );
+
+    }
+
+
+    else{
+
+        renderInfectiousFields(
+            item
+        );
+
+    }
+
+
+    renderScreening(
+        item
+    );
+
+
+    renderReporter(
+        item
+    );
+
+
+    renderFollowup(
+        item
+    );
+
+
+    renderSignature(
+        item.signature
+    );
+
+}
+
+
+/* =====================================================
+   COMMON FIELDS
+===================================================== */
+
+function renderCommonFields(
+    item
+){
 
     setText(
         "reportId",
@@ -3003,17 +3920,21 @@ function renderReport(){
     );
 
 
-    /* PATIENT */
-
     setText(
         "reportPatientName",
         item.patientName
+        ||
+        item.indexPatientName
+        ||
+        item.outbreakName
     );
 
 
     setText(
         "reportMrn",
         item.mrn
+        ||
+        item.indexPatientMrn
     );
 
 
@@ -3031,7 +3952,9 @@ function renderReport(){
 
     setText(
         "reportDob",
-        item.dob
+        isFoodNotification(item)
+        ? item.age
+        : item.dob
     );
 
 
@@ -3056,11 +3979,11 @@ function renderReport(){
     );
 
 
-    /* CASE */
-
     setText(
         "reportDisease",
         item.disease
+        ||
+        "—"
     );
 
 
@@ -3075,7 +3998,11 @@ function renderReport(){
 
     setText(
         "reportSymptomOnset",
-        item.symptomOnset
+        formatDateTime(
+            item.symptomOnset
+            ||
+            item.onsetDateTime
+        )
     );
 
 
@@ -3090,6 +4017,10 @@ function renderReport(){
     setText(
         "reportCaseLocation",
         item.caseLocation
+        ||
+        item.foodSourceLocation
+        ||
+        item.outbreakLocation
     );
 
 
@@ -3102,13 +4033,13 @@ function renderReport(){
     );
 
 
-    /* SYMPTOMS */
-
     renderChips(
         "reportSymptoms",
         item.symptoms,
         symptomLabels,
-        "blue"
+        isFoodNotification(item)
+        ? "food"
+        : "blue"
     );
 
 
@@ -3118,7 +4049,63 @@ function renderReport(){
     );
 
 
-    /* EPI */
+    setText(
+        "reportSampleTaken",
+        yesNoLabels[
+            item.sampleTaken
+        ] ||
+        item.sampleTaken
+    );
+
+
+    setText(
+        "reportSampleType",
+        item.sampleType
+    );
+
+
+    setText(
+        "reportSampleDate",
+        formatDateTime(
+            item.sampleDateTime
+        )
+    );
+
+
+    setText(
+        "reportLabResult",
+        item.labResult
+    );
+
+
+    setText(
+        "reportLabStatus",
+        labStatusLabels[
+            item.labStatus
+        ] ||
+        item.labStatus
+    );
+
+
+    setText(
+        "reportCausativeAgent",
+        item.causativeAgent
+        ||
+        item.organism
+        ||
+        item.pathogen
+    );
+
+}
+
+
+/* =====================================================
+   INFECTIOUS
+===================================================== */
+
+function renderInfectiousFields(
+    item
+){
 
     setText(
         "reportTravel",
@@ -3159,8 +4146,6 @@ function renderReport(){
     );
 
 
-    /* ACTIONS */
-
     renderChips(
         "reportActions",
         item.actions,
@@ -3168,43 +4153,278 @@ function renderReport(){
         "green"
     );
 
+}
+
+
+/* =====================================================
+   FOOD INDIVIDUAL
+===================================================== */
+
+function renderFoodIndividual(
+    item
+){
 
     setText(
-        "reportSampleTaken",
-        yesNoLabels[
-            item.sampleTaken
-        ] ||
-        item.sampleTaken
+        "reportSuspectedFood",
+        item.suspectedFood
     );
 
 
     setText(
-        "reportSampleType",
-        item.sampleType
+        "reportFoodPreparationPlace",
+        item.foodPreparationPlace
     );
 
 
     setText(
-        "reportSampleDate",
+        "reportFoodConsumptionPlace",
+        item.foodConsumptionPlace
+    );
+
+
+    setText(
+        "reportMealDateTime",
         formatDateTime(
-            item.sampleDateTime
+            item.mealDateTime
         )
     );
 
 
     setText(
-        "reportLabResult",
-        yesNoLabels[
-            item.labResult
+        "reportFoodSourceType",
+        foodSourceLabels[
+            item.foodSourceType
         ] ||
-        item.labResult
+        item.foodSourceType
     );
 
 
-    /* SCREENING */
+    setText(
+        "reportFoodSourceName",
+        item.foodSourceName
+    );
+
+
+    setText(
+        "reportFoodSourceLocation",
+        item.foodSourceLocation
+    );
+
+
+    setText(
+        "reportOtherCases",
+        yesNoLabels[
+            item.otherCases
+        ] ||
+        item.otherCases
+    );
+
+
+    setText(
+        "reportFoodActions",
+        item.actionsTaken
+    );
+
+}
+
+
+/* =====================================================
+   FOOD OUTBREAK
+===================================================== */
+
+function getOutbreakValue(
+    item,
+    keys
+){
+
+    const nested =
+        item.outbreakData &&
+        typeof item.outbreakData ===
+        "object"
+        ?
+        item.outbreakData
+        :
+        {};
+
+
+    for(
+        const key of keys
+    ){
+
+        if(
+            item[key] !== undefined &&
+            item[key] !== null &&
+            item[key] !== ""
+        ){
+
+            return item[key];
+
+        }
+
+
+        if(
+            nested[key] !== undefined &&
+            nested[key] !== null &&
+            nested[key] !== ""
+        ){
+
+            return nested[key];
+
+        }
+
+    }
+
+
+    return "";
+
+}
+
+
+function renderFoodOutbreak(
+    item
+){
+
+    setText(
+        "reportOutbreakName",
+        getOutbreakValue(
+            item,
+            [
+                "outbreakName",
+                "eventName",
+                "title",
+                "description"
+            ]
+        )
+    );
+
+
+    setText(
+        "reportOutbreakCases",
+        getOutbreakValue(
+            item,
+            [
+                "caseCount",
+                "totalCases",
+                "numberOfCases",
+                "cases"
+            ]
+        )
+    );
+
+
+    setText(
+        "reportOutbreakAdmissions",
+        getOutbreakValue(
+            item,
+            [
+                "admittedCount",
+                "hospitalizedCount",
+                "admissions"
+            ]
+        )
+    );
+
+
+    setText(
+        "reportOutbreakDeaths",
+        getOutbreakValue(
+            item,
+            [
+                "deathCount",
+                "deaths"
+            ]
+        )
+    );
+
+
+    setText(
+        "reportOutbreakLocation",
+        getOutbreakValue(
+            item,
+            [
+                "outbreakLocation",
+                "eventLocation",
+                "location",
+                "foodSourceLocation"
+            ]
+        )
+    );
+
+
+    setText(
+        "reportOutbreakFood",
+        getOutbreakValue(
+            item,
+            [
+                "suspectedFood",
+                "suspectedSource",
+                "food",
+                "foodDescription"
+            ]
+        )
+    );
+
+
+    setText(
+        "reportOutbreakSourceName",
+        getOutbreakValue(
+            item,
+            [
+                "foodSourceName",
+                "establishmentName",
+                "sourceName"
+            ]
+        )
+    );
+
+
+    setText(
+        "reportOutbreakStart",
+        formatDateTime(
+            getOutbreakValue(
+                item,
+                [
+                    "outbreakStart",
+                    "startDateTime",
+                    "symptomOnset",
+                    "detectionDateTime"
+                ]
+            )
+        )
+    );
+
+
+    setText(
+        "reportFoodActions",
+        getOutbreakValue(
+            item,
+            [
+                "actionsTaken",
+                "controlMeasures",
+                "actions"
+            ]
+        )
+    );
+
+}
+
+
+/* =====================================================
+   SCREENING
+===================================================== */
+
+function renderScreening(
+    item
+){
 
     const screeningHasData =
-        item.rapidScore !== undefined
+        (
+            item.rapidScore !== undefined
+            &&
+            item.rapidScore !== null
+            &&
+            item.rapidScore !== ""
+        )
 
         ||
 
@@ -3238,12 +4458,16 @@ function renderReport(){
     setText(
         "reportRapidId",
         item.rapidScreeningId
+        ||
+        item.rapidId
     );
 
 
     setText(
         "reportSmartId",
         item.screeningId
+        ||
+        item.smartScreeningId
     );
 
 
@@ -3254,36 +4478,69 @@ function renderReport(){
         ? "block"
         : "none";
 
+}
 
-    /* REPORTER */
+
+/* =====================================================
+   REPORTER
+===================================================== */
+
+function renderReporter(
+    item
+){
 
     setText(
         "reportReporterName",
         item.reporterName
+        ||
+        (
+            item.reporter &&
+            item.reporter.name
+        )
     );
 
 
     setText(
         "reportReporterId",
         item.reporterId
+        ||
+        (
+            item.reporter &&
+            item.reporter.id
+        )
     );
 
 
     setText(
         "reportReporterJob",
         item.reporterJob
+        ||
+        (
+            item.reporter &&
+            item.reporter.job
+        )
     );
 
 
     setText(
         "reportReporterDepartment",
         item.reporterDepartment
+        ||
+        (
+            item.reporter &&
+            item.reporter.department
+        )
     );
 
 
     setText(
         "reportReporterPhone",
         item.reporterPhone
+        ||
+        (
+            item.reporter &&
+            item.reporter.phone
+        )
     );
 
 
@@ -3291,11 +4548,21 @@ function renderReport(){
         "reportReportDate",
         formatDateTime(
             item.reportDateTime
+            ||
+            item.createdAt
         )
     );
 
+}
 
-    /* FOLLOW UP */
+
+/* =====================================================
+   FOLLOWUP
+===================================================== */
+
+function renderFollowup(
+    item
+){
 
     setText(
         "reportFollowStatus",
@@ -3348,13 +4615,8 @@ function renderReport(){
     setText(
         "reportPublicHealthNotes",
         item.publicHealthNotes
-    );
-
-
-    /* SIGNATURE */
-
-    renderSignature(
-        item.signature
+        ||
+        item.notes
     );
 
 }
@@ -3408,6 +4670,11 @@ function renderSignature(
 
     }
     else{
+
+        image.removeAttribute(
+            "src"
+        );
+
 
         image.style.display =
             "none";
@@ -3483,16 +4750,14 @@ function fillFollowupForm(){
 
 
 /* =====================================================
-   FOLLOWUP SAVE
+   SAVE FOLLOWUP
 ===================================================== */
 
 async function saveFollowup(){
 
     if(
         !currentNotification
-
         ||
-
         currentIndex < 0
     ){
 
@@ -3518,51 +4783,127 @@ async function saveFollowup(){
     try{
 
 
-        currentNotification.status =
-            document.getElementById(
-                "statusSelect"
-            ).value;
+        const changes = {
+
+            status:
+                document.getElementById(
+                    "statusSelect"
+                ).value,
+
+            hesnStatus:
+                document.getElementById(
+                    "hesnStatusSelect"
+                ).value,
+
+            hesnNumber:
+                document.getElementById(
+                    "hesnNumberInput"
+                ).value.trim(),
+
+            responseStatus:
+                document.getElementById(
+                    "responseStatusSelect"
+                ).value,
+
+            followupBy:
+                document.getElementById(
+                    "followupBy"
+                ).value.trim(),
+
+            nextFollowupDate:
+                document.getElementById(
+                    "nextFollowupDate"
+                ).value,
+
+            publicHealthNotes:
+                document.getElementById(
+                    "publicHealthNotes"
+                ).value.trim(),
+
+            lastUpdatedAt:
+                new Date()
+                .toISOString()
+
+        };
 
 
-        currentNotification.hesnStatus =
-            document.getElementById(
-                "hesnStatusSelect"
-            ).value;
+        let updatedRecord =
+            null;
 
 
-        currentNotification.hesnNumber =
-            document.getElementById(
-                "hesnNumberInput"
-            ).value.trim();
+        if(
+            window.SPHP &&
+            window.SPHP.notifications &&
+            typeof window.SPHP.notifications.update ===
+            "function"
+        ){
+
+            updatedRecord =
+                await window.SPHP
+                .notifications
+                .update(
+                    currentNotification.id,
+                    changes
+                );
+
+        }
+        else if(
+            !isServerMode()
+        ){
+
+            const merged = {
+
+                ...currentNotification,
+                ...changes
+
+            };
 
 
-        currentNotification.responseStatus =
-            document.getElementById(
-                "responseStatusSelect"
-            ).value;
+            notifications[
+                currentIndex
+            ] =
+                merged;
 
 
-        currentNotification.followupBy =
-            document.getElementById(
-                "followupBy"
-            ).value.trim();
+            localStorage.setItem(
+
+                "publicHealthNotifications",
+
+                JSON.stringify(
+                    notifications
+                )
+
+            );
 
 
-        currentNotification.nextFollowupDate =
-            document.getElementById(
-                "nextFollowupDate"
-            ).value;
+            updatedRecord =
+                merged;
+
+        }
+        else{
+
+            throw new Error(
+                "Notification update service unavailable."
+            );
+
+        }
 
 
-        currentNotification.publicHealthNotes =
-            document.getElementById(
-                "publicHealthNotes"
-            ).value.trim();
+        currentNotification = {
 
+            ...currentNotification,
+            ...changes,
+            ...(
+                updatedRecord &&
+                typeof updatedRecord ===
+                "object"
+                ?
+                updatedRecord
+                :
+                {}
+            )
 
-        currentNotification.lastUpdatedAt =
-            new Date()
-            .toISOString();
+        };
 
 
         notifications[
@@ -3571,57 +4912,7 @@ async function saveFollowup(){
             currentNotification;
 
 
-        /*
-          Local development storage
-        */
-
-        localStorage.setItem(
-
-            "publicHealthNotifications",
-
-            JSON.stringify(
-                notifications
-            )
-
-        );
-
-
-        /*
-          Hospital backend later
-        */
-
-        if(
-            typeof updatePublicHealthNotification ===
-            "function"
-        ){
-
-            await updatePublicHealthNotification(
-                currentNotification
-            );
-
-        }
-        else if(
-            typeof savePublicHealthNotification ===
-            "function"
-        ){
-
-            try{
-
-                await savePublicHealthNotification(
-                    currentNotification
-                );
-
-            }
-            catch(apiError){
-
-                console.warn(
-                    apiError
-                );
-
-            }
-
-        }
-
+        configureReportType();
 
         renderReport();
 
@@ -3635,6 +4926,7 @@ async function saveFollowup(){
     catch(error){
 
         console.error(
+            "Follow-up save failed:",
             error
         );
 
@@ -3708,21 +5000,16 @@ document.addEventListener(
 
     "DOMContentLoaded",
 
-    loadNotification
+    function(){
+
+        loadNotification();
+
+    }
 
 );
 
+
 </script>
-
-
-<!--
-    الترتيب مهم:
-    config أولاً
-    ثم api
--->
-
-<script src="config.js"></script>
-<script src="api.js"></script>
 
 
 </body>
