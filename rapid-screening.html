@@ -11,9 +11,10 @@
 <link rel="stylesheet" href="Style.css">
 
 <!--
-QR مؤقت لمرحلة GitHub.
-لا نضع اسم المريض أو MRN داخل QR.
-عند الانتقال للسيرفر المحلي سنستبدله برابط داخلي.
+QR مؤقت لمرحلة التطوير الحالية.
+لا يحتوي اسم المريض أو MRN.
+عند الانتقال إلى السيرفر الداخلي يفضل أن يصبح رابطًا داخليًا
+يعتمد على رقم الفرز فقط.
 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
@@ -796,10 +797,6 @@ Rapid Infectious Disease Risk Screening
 
 
 
-<!-- =====================================================
-     PATIENT
-===================================================== -->
-
 <section class="section">
 
 <div class="section-title">
@@ -913,10 +910,6 @@ Patient Information
 
 
 
-<!-- =====================================================
-     PROGRESS
-===================================================== -->
-
 <div class="completion-box">
 
 <strong>
@@ -939,10 +932,6 @@ Patient Information
 </div>
 
 
-
-<!-- =====================================================
-     EXPOSURE
-===================================================== -->
 
 <section class="section">
 
@@ -970,9 +959,7 @@ Exposure Risks
 <div class="question-list">
 
 
-<div
-    class="question"
-    data-question="travel">
+<div class="question" data-question="travel">
 
 <div class="question-head">
 
@@ -1036,9 +1023,7 @@ Recent travel abroad or to an outbreak area
 
 
 
-<div
-    class="question"
-    data-question="contact">
+<div class="question" data-question="contact">
 
 <div class="question-head">
 
@@ -1111,9 +1096,7 @@ Contact with a confirmed or suspected infectious case
 
 
 
-<div
-    class="question"
-    data-question="animalExposure">
+<div class="question" data-question="animalExposure">
 
 <div class="question-head">
 
@@ -1177,9 +1160,7 @@ Animal or animal-product exposure
 
 
 
-<div
-    class="question"
-    data-question="healthcareExposure">
+<div class="question" data-question="healthcareExposure">
 
 <div class="question-head">
 
@@ -1248,10 +1229,6 @@ Healthcare facility exposure
 
 
 
-<!-- =====================================================
-     SYMPTOMS
-===================================================== -->
-
 <section class="section">
 
 <div class="section-title">
@@ -1301,15 +1278,36 @@ Fever or recent history of fever
 <div class="answer-options">
 
 <label class="answer-option">
-<input type="radio" name="fever" value="yes"
-data-key="fever" data-score="4" data-type="symptom">
-<span>نعم</span>
+
+<input
+    type="radio"
+    name="fever"
+    value="yes"
+    data-key="fever"
+    data-score="4"
+    data-type="symptom">
+
+<span>
+نعم
+</span>
+
 </label>
 
+
 <label class="answer-option">
-<input type="radio" name="fever" value="no"
-data-key="fever" data-score="0" data-type="symptom">
-<span>لا</span>
+
+<input
+    type="radio"
+    name="fever"
+    value="no"
+    data-key="fever"
+    data-score="0"
+    data-type="symptom">
+
+<span>
+لا
+</span>
+
 </label>
 
 </div>
@@ -1343,15 +1341,36 @@ Cough
 <div class="answer-options">
 
 <label class="answer-option">
-<input type="radio" name="cough" value="yes"
-data-key="cough" data-score="4" data-type="symptom">
-<span>نعم</span>
+
+<input
+    type="radio"
+    name="cough"
+    value="yes"
+    data-key="cough"
+    data-score="4"
+    data-type="symptom">
+
+<span>
+نعم
+</span>
+
 </label>
 
+
 <label class="answer-option">
-<input type="radio" name="cough" value="no"
-data-key="cough" data-score="0" data-type="symptom">
-<span>لا</span>
+
+<input
+    type="radio"
+    name="cough"
+    value="no"
+    data-key="cough"
+    data-score="0"
+    data-type="symptom">
+
+<span>
+لا
+</span>
+
 </label>
 
 </div>
@@ -1393,17 +1412,37 @@ Shortness of breath or difficulty breathing
 <div class="answer-options">
 
 <label class="answer-option">
-<input type="radio" name="breathing" value="yes"
-data-key="breathing" data-score="4"
-data-type="symptom" data-redflag="1">
-<span>نعم</span>
+
+<input
+    type="radio"
+    name="breathing"
+    value="yes"
+    data-key="breathing"
+    data-score="4"
+    data-type="symptom"
+    data-redflag="1">
+
+<span>
+نعم
+</span>
+
 </label>
 
+
 <label class="answer-option">
-<input type="radio" name="breathing" value="no"
-data-key="breathing" data-score="0"
-data-type="symptom">
-<span>لا</span>
+
+<input
+    type="radio"
+    name="breathing"
+    value="no"
+    data-key="breathing"
+    data-score="0"
+    data-type="symptom">
+
+<span>
+لا
+</span>
+
 </label>
 
 </div>
@@ -1437,17 +1476,36 @@ Headache, sore throat, or rhinorrhea
 <div class="answer-options">
 
 <label class="answer-option">
-<input type="radio" name="upperRespiratory" value="yes"
-data-key="upperRespiratory" data-score="1"
-data-type="symptom">
-<span>نعم</span>
+
+<input
+    type="radio"
+    name="upperRespiratory"
+    value="yes"
+    data-key="upperRespiratory"
+    data-score="1"
+    data-type="symptom">
+
+<span>
+نعم
+</span>
+
 </label>
 
+
 <label class="answer-option">
-<input type="radio" name="upperRespiratory" value="no"
-data-key="upperRespiratory" data-score="0"
-data-type="symptom">
-<span>لا</span>
+
+<input
+    type="radio"
+    name="upperRespiratory"
+    value="no"
+    data-key="upperRespiratory"
+    data-score="0"
+    data-type="symptom">
+
+<span>
+لا
+</span>
+
 </label>
 
 </div>
@@ -1481,17 +1539,36 @@ Nausea, vomiting, and/or diarrhea
 <div class="answer-options">
 
 <label class="answer-option">
-<input type="radio" name="gastro" value="yes"
-data-key="gastro" data-score="1"
-data-type="symptom">
-<span>نعم</span>
+
+<input
+    type="radio"
+    name="gastro"
+    value="yes"
+    data-key="gastro"
+    data-score="1"
+    data-type="symptom">
+
+<span>
+نعم
+</span>
+
 </label>
 
+
 <label class="answer-option">
-<input type="radio" name="gastro" value="no"
-data-key="gastro" data-score="0"
-data-type="symptom">
-<span>لا</span>
+
+<input
+    type="radio"
+    name="gastro"
+    value="no"
+    data-key="gastro"
+    data-score="0"
+    data-type="symptom">
+
+<span>
+لا
+</span>
+
 </label>
 
 </div>
@@ -1517,12 +1594,15 @@ Chronic medical illness / immunocompromised patient
 </div>
 
 <div class="question-meta">
+
 <span class="points">
 نعم = +1 للبالغ / 0 للطفل
 </span>
+
 </div>
 
 </div>
+
 
 <div class="answer-options">
 
@@ -1542,6 +1622,7 @@ Chronic medical illness / immunocompromised patient
 </span>
 
 </label>
+
 
 <label class="answer-option">
 
@@ -1583,6 +1664,7 @@ Chronic medical illness / immunocompromised patient
 <button
     id="evaluateButton"
     class="evaluate-btn"
+    type="button"
     onclick="evaluateScreening()">
 
 📊 إظهار نتيجة الفرز
@@ -1592,10 +1674,6 @@ Chronic medical illness / immunocompromised patient
 </div>
 
 
-
-<!-- =====================================================
-     RESULT
-===================================================== -->
 
 <section
     id="resultPanel"
@@ -1648,6 +1726,7 @@ Risk Score
 
 
 <button
+    type="button"
     class="print-card-btn"
     onclick="printScreeningCard()">
 
@@ -1658,6 +1737,7 @@ Risk Score
 
 <button
     id="advancedButton"
+    type="button"
     class="advanced-btn"
     onclick="continueToAdvanced()">
 
@@ -1668,6 +1748,7 @@ Risk Score
 
 <button
     id="finishButton"
+    type="button"
     class="finish-btn"
     onclick="window.location.href='index.html'">
 
@@ -1677,6 +1758,7 @@ Risk Score
 
 
 <button
+    type="button"
     class="reset-btn"
     onclick="resetScreening()">
 
@@ -1703,10 +1785,6 @@ Risk Score
 </section>
 
 
-
-<!-- =====================================================
-     PRINTABLE SMALL CARD
-===================================================== -->
 
 <section
     id="screeningCard"
@@ -1878,6 +1956,14 @@ QR للتحقق من نتيجة الفرز
 </main>
 
 
+<!-- =====================================================
+     CONFIG / API
+     الترتيب مهم
+===================================================== -->
+
+<script src="config.js"></script>
+<script src="api.js"></script>
+
 
 <script>
 
@@ -1906,6 +1992,25 @@ let currentRecord =
     null;
 
 
+let savingScreening =
+    false;
+
+
+/* =====================================================
+   ENVIRONMENT
+===================================================== */
+
+function isServerMode(){
+
+    return (
+        window.SPHP_CONFIG &&
+        window.SPHP_CONFIG.dataMode ===
+        "server"
+    );
+
+}
+
+
 /* =====================================================
    HELPERS
 ===================================================== */
@@ -1913,17 +2018,38 @@ let currentRecord =
 function getValue(id){
 
     const element =
-        document.getElementById(id);
+        document.getElementById(
+            id
+        );
 
 
     return element
-        ? element.value.trim()
+        ? (
+            element.value ||
+            ""
+        ).trim()
         : "";
 
 }
 
 
 function generateRapidId(){
+
+    if(
+        window.SPHP &&
+        window.SPHP.helpers &&
+        typeof window.SPHP.helpers.generateId ===
+        "function"
+    ){
+
+        return window.SPHP
+        .helpers
+        .generateId(
+            "RS"
+        );
+
+    }
+
 
     const now =
         new Date();
@@ -1996,9 +2122,7 @@ function updateQuestionState(){
 
 
             if(!selected){
-
                 return;
-
             }
 
 
@@ -2425,14 +2549,18 @@ function collectSmartData(){
     return {
 
         symptoms:
-            [...new Set(
-                symptoms
-            )],
+            [
+                ...new Set(
+                    symptoms
+                )
+            ],
 
         epi:
-            [...new Set(
-                epi
-            )]
+            [
+                ...new Set(
+                    epi
+                )
+            ]
 
     };
 
@@ -2515,15 +2643,25 @@ function validateScreening(){
 
         showError(
 
-            "يرجى الإجابة بـ نعم أو لا على جميع أسئلة الفرز. " +
+            "يرجى الإجابة بـ نعم أو لا على جميع أسئلة الفرز. "
 
-            "تمت الإجابة على " +
+            +
 
-            answered +
+            "تمت الإجابة على "
 
-            " من " +
+            +
 
-            TOTAL_QUESTIONS +
+            answered
+
+            +
+
+            " من "
+
+            +
+
+            TOTAL_QUESTIONS
+
+            +
 
             "."
 
@@ -2538,6 +2676,10 @@ function validateScreening(){
 
 }
 
+
+/* =====================================================
+   ERROR
+===================================================== */
 
 function showError(message){
 
@@ -2570,10 +2712,185 @@ function showError(message){
 
 
 /* =====================================================
+   SAVE RAPID RECORD
+===================================================== */
+
+async function saveRapidRecord(
+    record
+){
+
+    /*
+      المسار الرئيسي:
+      SPHP API abstraction
+    */
+
+    if(
+        window.SPHP &&
+        window.SPHP.rapidScreenings &&
+        typeof window.SPHP.rapidScreenings.upsert ===
+        "function"
+    ){
+
+        return await window.SPHP
+        .rapidScreenings
+        .upsert(
+            record
+        );
+
+    }
+
+
+    /*
+      fallback للتطوير المحلي فقط
+    */
+
+    if(
+        !isServerMode()
+    ){
+
+        let records =
+            [];
+
+
+        try{
+
+            records =
+                JSON.parse(
+
+                    localStorage.getItem(
+                        "rapidScreeningRecords"
+                    )
+
+                    ||
+
+                    "[]"
+
+                );
+
+
+            if(
+                !Array.isArray(
+                    records
+                )
+            ){
+
+                records =
+                    [];
+
+            }
+
+        }
+        catch(error){
+
+            records =
+                [];
+
+        }
+
+
+        const index =
+            records.findIndex(
+                function(item){
+
+                    return (
+                        item &&
+                        item.id ===
+                        record.id
+                    );
+
+                }
+            );
+
+
+        if(
+            index >= 0
+        ){
+
+            records[
+                index
+            ] =
+                record;
+
+        }
+        else{
+
+            records.unshift(
+                record
+            );
+
+        }
+
+
+        localStorage.setItem(
+
+            "rapidScreeningRecords",
+
+            JSON.stringify(
+                records
+            )
+
+        );
+
+
+        return record;
+
+    }
+
+
+    throw new Error(
+        "Rapid screening service unavailable."
+    );
+
+}
+
+
+/* =====================================================
+   SESSION TRANSFER
+===================================================== */
+
+function saveLatestRapidForTransfer(
+    record
+){
+
+    try{
+
+        sessionStorage.setItem(
+
+            "latestRapidScreening",
+
+            JSON.stringify(
+                record
+            )
+
+        );
+
+    }
+    catch(error){
+
+        console.warn(
+            "Unable to save rapid screening session transfer:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
    EVALUATE
 ===================================================== */
 
-function evaluateScreening(){
+async function evaluateScreening(){
+
+    if(
+        savingScreening
+    ){
+
+        return;
+
+    }
+
 
     if(
         !validateScreening()
@@ -2582,6 +2899,12 @@ function evaluateScreening(){
         return;
 
     }
+
+
+    const button =
+        document.getElementById(
+            "evaluateButton"
+        );
 
 
     const calculated =
@@ -2602,7 +2925,7 @@ function evaluateScreening(){
         collectSmartData();
 
 
-    currentRecord = {
+    const record = {
 
         id:
             generateRapidId(),
@@ -2650,106 +2973,110 @@ function evaluateScreening(){
             smartData.symptoms,
 
         epi:
-            smartData.epi
+            smartData.epi,
+
+        createdAt:
+            new Date()
+            .toISOString(),
+
+        updatedAt:
+            new Date()
+            .toISOString()
 
     };
 
 
-    saveRapidRecord(
-        currentRecord
-    );
-
-
-    displayResult(
-        currentRecord
-    );
-
-
-    fillCard(
-        currentRecord
-    );
-
-
-    createQr(
-        currentRecord
-    );
-
-}
-
-
-/* =====================================================
-   SAVE
-===================================================== */
-
-function saveRapidRecord(
-    record
-){
-
-    let records =
-        [];
-
-
     try{
 
-        records =
-            JSON.parse(
+        savingScreening =
+            true;
 
-                localStorage.getItem(
-                    "rapidScreeningRecords"
-                )
 
-                ||
+        button.disabled =
+            true;
 
-                "[]"
 
+        button.textContent =
+            "⏳ جاري حفظ نتيجة الفرز...";
+
+
+        const savedRecord =
+            await saveRapidRecord(
+                record
             );
 
 
-        if(
-            !Array.isArray(
-                records
+        currentRecord = {
+
+            ...record,
+
+            ...(
+                savedRecord &&
+                typeof savedRecord ===
+                "object"
+                ?
+                savedRecord
+                :
+                {}
             )
-        ){
 
-            records =
-                [];
+        };
 
-        }
+
+        /*
+          يستخدم فقط لنقل السجل إلى صفحة الفرز الذكي
+          ضمن نفس جلسة المتصفح.
+        */
+
+        saveLatestRapidForTransfer(
+            currentRecord
+        );
+
+
+        displayResult(
+            currentRecord
+        );
+
+
+        fillCard(
+            currentRecord
+        );
+
+
+        createQr(
+            currentRecord
+        );
 
     }
     catch(error){
 
-        records =
-            [];
+        console.error(
+            "Rapid screening save failed:",
+            error
+        );
+
+
+        showError(
+
+            "⚠️ تعذر حفظ نتيجة الفرز. لم يتم اعتماد السجل، يرجى المحاولة مرة أخرى."
+
+        );
 
     }
+    finally{
+
+        savingScreening =
+            false;
 
 
-    records.unshift(
-        record
-    );
+        button.disabled =
+            false;
 
 
-    localStorage.setItem(
+        button.textContent =
+            "📊 إظهار نتيجة الفرز";
 
-        "rapidScreeningRecords",
-
-        JSON.stringify(
-            records
-        )
-
-    );
-
-
-    sessionStorage.setItem(
-
-        "latestRapidScreening",
-
-        JSON.stringify(
-            record
-        )
-
-    );
+    }
 
 }
 
@@ -2976,6 +3303,8 @@ function fillCard(
             "استكمال التقييم الطبي المعتاد.";
 
     }
+
+
     else if(
         record.risk ===
         "medium"
@@ -2989,6 +3318,8 @@ function fillCard(
             "استكمال الفرز الذكي الموسع.";
 
     }
+
+
     else{
 
         riskElement.textContent =
@@ -3022,29 +3353,55 @@ function createQr(
 
 
     /*
-      مهم:
-      لا نضع اسم المريض ولا MRN داخل QR.
+      لا نضع:
+      - اسم المريض
+      - MRN
+      - الهوية
+
+      داخل QR.
     */
 
     const qrData =
 
-        "SPHP|" +
+        "SPHP|"
+
+        +
 
         "ID=" +
-        record.id +
+        record.id
 
-        "|" +
+        +
+
+        "|"
+
+        +
 
         "SCORE=" +
-        record.score +
+        record.score
 
-        "|" +
+        +
+
+        "|"
+
+        +
 
         "RISK=" +
         record.risk;
 
 
     try{
+
+        if(
+            typeof QRCode !==
+            "function"
+        ){
+
+            throw new Error(
+                "QRCode library unavailable."
+            );
+
+        }
+
 
         new QRCode(
             container,
@@ -3066,6 +3423,12 @@ function createQr(
     }
     catch(error){
 
+        console.warn(
+            "QR creation failed:",
+            error
+        );
+
+
         container.innerHTML =
             "<small>QR غير متاح</small>";
 
@@ -3080,7 +3443,9 @@ function createQr(
 
 function printScreeningCard(){
 
-    if(!currentRecord){
+    if(
+        !currentRecord
+    ){
 
         showError(
             "يجب إظهار نتيجة الفرز أولًا."
@@ -3102,11 +3467,23 @@ function printScreeningCard(){
 
 function continueToAdvanced(){
 
-    if(!currentRecord){
+    if(
+        !currentRecord
+    ){
 
         return;
 
     }
+
+
+    /*
+      نحفظ أحدث سجل أيضًا في sessionStorage قبل الانتقال،
+      للتأكد من توفر البيانات في الصفحة التالية.
+    */
+
+    saveLatestRapidForTransfer(
+        currentRecord
+    );
 
 
     const params =
@@ -3139,34 +3516,76 @@ function continueToAdvanced(){
     );
 
 
-    params.set(
-        "patientName",
-        currentRecord.patientName
-    );
+    /*
+      في بيئة التطوير الحالية ما زالت الصفحة التالية
+      تستقبل بعض البيانات عبر الرابط.
 
+      عند بناء Backend المستشفى لاحقًا:
+      الأفضل إرسال rapidId فقط ثم جلب البيانات من السيرفر.
+    */
 
     if(
-        currentRecord.mrn
+        !isServerMode()
     ){
 
         params.set(
-            "mrn",
-            currentRecord.mrn
+            "patientName",
+            currentRecord.patientName
         );
 
+
+        if(
+            currentRecord.mrn
+        ){
+
+            params.set(
+                "mrn",
+                currentRecord.mrn
+            );
+
+        }
+
+
+        params.set(
+            "patientType",
+            currentRecord.patientType
+        );
+
+
+        params.set(
+            "gender",
+            currentRecord.gender
+        );
+
+
+        if(
+            currentRecord.symptoms.length
+        ){
+
+            params.set(
+                "symptoms",
+                currentRecord.symptoms.join(
+                    ","
+                )
+            );
+
+        }
+
+
+        if(
+            currentRecord.epi.length
+        ){
+
+            params.set(
+                "epi",
+                currentRecord.epi.join(
+                    ","
+                )
+            );
+
+        }
+
     }
-
-
-    params.set(
-        "patientType",
-        currentRecord.patientType
-    );
-
-
-    params.set(
-        "gender",
-        currentRecord.gender
-    );
 
 
     if(
@@ -3181,37 +3600,11 @@ function continueToAdvanced(){
     }
 
 
-    if(
-        currentRecord.symptoms.length
-    ){
-
-        params.set(
-            "symptoms",
-            currentRecord.symptoms.join(
-                ","
-            )
-        );
-
-    }
-
-
-    if(
-        currentRecord.epi.length
-    ){
-
-        params.set(
-            "epi",
-            currentRecord.epi.join(
-                ","
-            )
-        );
-
-    }
-
-
     window.location.href =
 
-        "smart-screening.html?" +
+        "smart-screening.html?"
+
+        +
 
         params.toString();
 
@@ -3264,6 +3657,22 @@ function resetScreening(){
 
     currentRecord =
         null;
+
+
+    try{
+
+        sessionStorage.removeItem(
+            "latestRapidScreening"
+        );
+
+    }
+    catch(error){
+
+        console.warn(
+            error
+        );
+
+    }
 
 
     document.getElementById(
@@ -3320,13 +3729,17 @@ document
 
 document.addEventListener(
     "DOMContentLoaded",
-    updateQuestionState
+    function(){
+
+        updateQuestionState();
+
+    }
 );
 
 
 </script>
-<script src="config.js"></script>
-<script src="api.js"></script>
+
 
 </body>
+
 </html>
