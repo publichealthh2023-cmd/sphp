@@ -12,12 +12,67 @@
 
 <style>
 
+*{
+    box-sizing:border-box;
+}
+
 body{
     margin:0;
     background:#f3f6f8;
-    font-family:Arial, sans-serif;
+    font-family:Arial,Tahoma,sans-serif;
     color:#29465f;
 }
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.hero-header{
+    width:100%;
+    overflow:hidden;
+}
+
+.hero-grid{
+    display:grid !important;
+    grid-template-columns:180px 1fr 200px !important;
+    align-items:center !important;
+    gap:20px !important;
+    max-width:1200px !important;
+    margin:0 auto !important;
+    padding:18px 20px !important;
+}
+
+.side-logo{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+}
+
+.left-logo img{
+    width:auto !important;
+    height:auto !important;
+    max-width:155px !important;
+    max-height:90px !important;
+    object-fit:contain !important;
+}
+
+.right-logo img{
+    width:auto !important;
+    height:auto !important;
+    max-width:185px !important;
+    max-height:105px !important;
+    object-fit:contain !important;
+}
+
+.hero-center{
+    text-align:center;
+}
+
+
+/* =====================================================
+   PAGE
+===================================================== */
 
 .page{
     max-width:1100px;
@@ -56,6 +111,11 @@ body{
     padding-bottom:12px;
 }
 
+
+/* =====================================================
+   GRID / FIELDS
+===================================================== */
+
 .grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
@@ -80,13 +140,17 @@ label{
 input,
 select{
     width:100%;
-    box-sizing:border-box;
     padding:12px;
     border:1px solid #ccd9e5;
     border-radius:8px;
     background:#fff;
     font-size:14px;
 }
+
+
+/* =====================================================
+   SIGNATURE
+===================================================== */
 
 .signature-area{
     margin-top:18px;
@@ -112,6 +176,7 @@ select{
 
 .upload-btn{
     display:inline-block;
+    width:auto;
     background:#eaf1f7;
     color:#064c92;
     padding:10px 16px;
@@ -135,6 +200,11 @@ select{
     cursor:pointer;
     font-weight:bold;
 }
+
+
+/* =====================================================
+   ACTIONS
+===================================================== */
 
 .actions{
     display:flex;
@@ -169,6 +239,17 @@ select{
     color:#b3261e;
 }
 
+.save-btn:disabled,
+.clear-btn:disabled{
+    opacity:.55;
+    cursor:not-allowed;
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
 .message{
     display:none;
     margin-top:20px;
@@ -191,6 +272,18 @@ select{
     color:#7d2525;
 }
 
+.message.info{
+    display:block;
+    background:#eef7ff;
+    border-right:5px solid #0759a6;
+    color:#36566f;
+}
+
+
+/* =====================================================
+   SECURITY NOTE
+===================================================== */
+
 .security-note{
     background:#eef7ff;
     border-right:5px solid #0759a6;
@@ -200,6 +293,11 @@ select{
     line-height:1.8;
     color:#36566f;
 }
+
+
+/* =====================================================
+   STATUS
+===================================================== */
 
 .status-box{
     margin-top:15px;
@@ -211,6 +309,7 @@ select{
 .status-row{
     display:flex;
     justify-content:space-between;
+    gap:15px;
     padding:8px 0;
     border-bottom:1px solid #e7edf2;
 }
@@ -229,7 +328,42 @@ select{
     font-weight:bold;
 }
 
+
+/* =====================================================
+   MODE
+===================================================== */
+
+.mode-box{
+    background:#f8fbfd;
+    border:1px solid #dfe8f2;
+    border-radius:10px;
+    padding:12px 15px;
+    margin-top:15px;
+    font-size:13px;
+    color:#607387;
+}
+
+.mode-local{
+    color:#b07800;
+    font-weight:bold;
+}
+
+.mode-server{
+    color:#187b43;
+    font-weight:bold;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
 @media(max-width:750px){
+
+    .hero-grid{
+        grid-template-columns:1fr !important;
+        gap:10px !important;
+    }
 
     .grid{
         grid-template-columns:1fr;
@@ -237,6 +371,11 @@ select{
 
     .group.full{
         grid-column:auto;
+    }
+
+    .status-row{
+        flex-direction:column;
+        gap:5px;
     }
 
 }
@@ -253,9 +392,15 @@ select{
 
 <div class="hero-grid">
 
+
 <div class="side-logo left-logo">
-    <img src="images/cluster-logo.png">
+
+<img
+    src="images/cluster-logo.png"
+    alt="Hafr Al-Batin Health Cluster">
+
 </div>
+
 
 <div class="hero-center">
 
@@ -273,9 +418,15 @@ Report Approval Settings
 
 </div>
 
+
 <div class="side-logo right-logo">
-    <img src="images/hospital-logo.png">
+
+<img
+    src="images/hospital-logo.png"
+    alt="Hospital Logo">
+
 </div>
+
 
 </div>
 
@@ -297,12 +448,21 @@ Report Approval Settings
 في تقارير الصحة العامة.
 </p>
 
+
+<div
+    id="modeBox"
+    class="mode-box">
+
+وضع تخزين البيانات: —
+
+</div>
+
 </section>
 
 
-<!-- ===========================
-     معد التقرير
-=========================== -->
+<!-- =====================================================
+     PREPARED BY
+===================================================== -->
 
 <section class="card">
 
@@ -310,7 +470,9 @@ Report Approval Settings
 ✍️ أولًا: مُعد التقرير
 </h3>
 
+
 <div class="grid">
+
 
 <div class="group">
 
@@ -335,7 +497,7 @@ Report Approval Settings
 <input
     type="text"
     id="preparedByTitle"
-    placeholder="مثال: مدير إدارة الصحة العامة">
+    placeholder="مثال: رئيس قسم الصحة العامة">
 
 </div>
 
@@ -374,6 +536,7 @@ Report Approval Settings
 
 </div>
 
+
 </div>
 
 
@@ -383,19 +546,23 @@ Report Approval Settings
 التوقيع الإلكتروني لمُعد التقرير
 </strong>
 
+
 <div
     id="preparedPlaceholder"
     class="signature-placeholder">
 
-    لم تتم إضافة توقيع.
+لم تتم إضافة توقيع.
 
 </div>
+
 
 <img
     id="preparedSignaturePreview"
     alt="توقيع معد التقرير">
 
+
 <br>
+
 
 <label class="upload-btn">
 
@@ -409,7 +576,9 @@ Report Approval Settings
 
 </label>
 
+
 <button
+    type="button"
     id="preparedRemove"
     class="remove-btn"
     onclick="removeSignature('prepared')">
@@ -418,14 +587,15 @@ Report Approval Settings
 
 </button>
 
+
 </div>
 
 </section>
 
 
-<!-- ===========================
-     اعتماد التقرير
-=========================== -->
+<!-- =====================================================
+     APPROVAL
+===================================================== -->
 
 <section class="card">
 
@@ -433,7 +603,9 @@ Report Approval Settings
 ✅ ثانيًا: اعتماد التقرير
 </h3>
 
+
 <div class="grid">
+
 
 <div class="group">
 
@@ -497,6 +669,7 @@ Report Approval Settings
 
 </div>
 
+
 </div>
 
 
@@ -506,19 +679,23 @@ Report Approval Settings
 التوقيع الإلكتروني للمعتمد
 </strong>
 
+
 <div
     id="approvedPlaceholder"
     class="signature-placeholder">
 
-    لم تتم إضافة توقيع.
+لم تتم إضافة توقيع.
 
 </div>
+
 
 <img
     id="approvedSignaturePreview"
     alt="توقيع معتمد التقرير">
 
+
 <br>
+
 
 <label class="upload-btn">
 
@@ -532,7 +709,9 @@ Report Approval Settings
 
 </label>
 
+
 <button
+    type="button"
     id="approvedRemove"
     class="remove-btn"
     onclick="removeSignature('approved')">
@@ -541,14 +720,15 @@ Report Approval Settings
 
 </button>
 
+
 </div>
 
 </section>
 
 
-<!-- ===========================
-     الحالة
-=========================== -->
+<!-- =====================================================
+     STATUS
+===================================================== -->
 
 <section class="card">
 
@@ -556,7 +736,9 @@ Report Approval Settings
 📋 حالة إعداد التقرير
 </h3>
 
+
 <div class="status-box">
+
 
 <div class="status-row">
 
@@ -612,6 +794,23 @@ Report Approval Settings
 <div class="status-row">
 
 <span>
+توقيع المعتمد
+</span>
+
+<span
+    id="approvedSignStatus"
+    class="status-wait">
+
+غير مضاف
+
+</span>
+
+</div>
+
+
+<div class="status-row">
+
+<span>
 اعتماد التقرير
 </span>
 
@@ -625,14 +824,22 @@ Report Approval Settings
 
 </div>
 
+
 </div>
 
 </section>
 
 
+<!-- =====================================================
+     ACTIONS
+===================================================== -->
+
 <div class="actions">
 
+
 <button
+    type="button"
+    id="saveButton"
     class="save-btn"
     onclick="saveSettings()">
 
@@ -642,6 +849,8 @@ Report Approval Settings
 
 
 <button
+    type="button"
+    id="clearButton"
     class="clear-btn"
     onclick="clearSettings()">
 
@@ -658,6 +867,7 @@ Report Approval Settings
 
 </a>
 
+
 </div>
 
 
@@ -667,18 +877,17 @@ Report Approval Settings
 </div>
 
 
-<div class="security-note">
+<div
+    id="securityNote"
+    class="security-note">
 
 <strong>
 🔐 ملاحظة مهمة:
 </strong>
 
-في النسخة التجريبية الحالية يتم حفظ بيانات الإعدادات
-وصور التوقيع داخل متصفح الجهاز باستخدام Local Storage.
-
-عند نقل النظام إلى بيئة العمل الفعلية يجب تخزين التوقيعات
-والاعتمادات داخل النظام الداخلي المعتمد مع التحكم في
-الصلاحيات وسجل عمليات الاعتماد.
+<span id="securityNoteText">
+—
+</span>
 
 </div>
 
@@ -686,25 +895,169 @@ Report Approval Settings
 </main>
 
 
+<!-- =====================================================
+     CONFIG + API
+===================================================== -->
+
+<script src="config.js"></script>
+<script src="api.js"></script>
+
+
 <script>
 
+
+/* =====================================================
+   STATE
+===================================================== */
 
 let preparedSignatureData = "";
 
 let approvedSignatureData = "";
 
+let savingSettings = false;
 
-/* ===========================
-   قراءة الصورة
-=========================== */
 
-function loadSignature(input,type){
+/* =====================================================
+   ENVIRONMENT
+===================================================== */
+
+function isServerMode(){
+
+    return (
+        window.SPHP_CONFIG &&
+        window.SPHP_CONFIG.dataMode ===
+        "server"
+    );
+
+}
+
+
+function updateEnvironmentInfo(){
+
+    const modeBox =
+        document.getElementById(
+            "modeBox"
+        );
+
+
+    const note =
+        document.getElementById(
+            "securityNoteText"
+        );
+
+
+    if(
+        isServerMode()
+    ){
+
+        modeBox.innerHTML =
+
+            'وضع تخزين البيانات: ' +
+
+            '<span class="mode-server">' +
+
+            'خادم المستشفى الداخلي' +
+
+            '</span>';
+
+
+        note.textContent =
+
+            "يتم إرسال إعدادات التقرير إلى خادم النظام الداخلي. " +
+
+            "يجب أن تكون صلاحيات الاعتماد والتوقيعات وسجل التدقيق " +
+
+            "مطبقة من جهة الخادم قبل الاستخدام الرسمي.";
+
+    }
+    else{
+
+        modeBox.innerHTML =
+
+            'وضع تخزين البيانات: ' +
+
+            '<span class="mode-local">' +
+
+            'نسخة التطوير المحلية' +
+
+            '</span>';
+
+
+        note.textContent =
+
+            "في النسخة التجريبية الحالية تحفظ بيانات الإعدادات " +
+
+            "وصور التوقيع داخل متصفح الجهاز. " +
+
+            "لا تستخدم بيانات أو توقيعات رسمية حقيقية في نسخة GitHub التجريبية.";
+
+    }
+
+}
+
+
+/* =====================================================
+   LOCAL FALLBACK
+===================================================== */
+
+function readLocalSettings(){
+
+    try{
+
+        const data =
+            JSON.parse(
+
+                localStorage.getItem(
+                    "publicHealthReportSettings"
+                )
+
+                ||
+
+                "{}"
+
+            );
+
+
+        return (
+            data &&
+            typeof data === "object" &&
+            !Array.isArray(data)
+        )
+        ? data
+        : {};
+
+    }
+    catch(error){
+
+        console.warn(
+            "Unable to read local report settings:",
+            error
+        );
+
+
+        return {};
+
+    }
+
+}
+
+
+/* =====================================================
+   IMAGE
+===================================================== */
+
+function loadSignature(
+    input,
+    type
+){
 
     if(
         !input.files ||
         !input.files[0]
     ){
+
         return;
+
     }
 
 
@@ -712,16 +1065,29 @@ function loadSignature(input,type){
         input.files[0];
 
 
+    const allowedTypes = [
+
+        "image/png",
+        "image/jpeg",
+        "image/webp"
+
+    ];
+
+
     if(
-        !file.type.startsWith("image/")
+        !allowedTypes.includes(
+            file.type
+        )
     ){
 
         showMessage(
-            "⚠️ يرجى اختيار ملف صورة فقط.",
+            "⚠️ يرجى اختيار صورة بصيغة PNG أو JPEG أو WEBP.",
             true
         );
 
+
         input.value = "";
+
 
         return;
 
@@ -729,8 +1095,9 @@ function loadSignature(input,type){
 
 
     /*
-      نحدد الحجم في النسخة التجريبية
-      حتى لا يمتلئ Local Storage.
+      حد مؤقت للنسخة الحالية.
+      في بيئة المستشفى يفضل حفظ التوقيع
+      كملف آمن على الخادم وليس Base64 داخل السجل.
     */
 
     if(
@@ -739,11 +1106,13 @@ function loadSignature(input,type){
     ){
 
         showMessage(
-            "⚠️ حجم صورة التوقيع كبير. يفضل أن يكون أقل من 1 MB.",
+            "⚠️ حجم صورة التوقيع كبير. يجب أن يكون أقل من 1 MB.",
             true
         );
 
+
         input.value = "";
+
 
         return;
 
@@ -769,7 +1138,18 @@ function loadSignature(input,type){
                 preparedSignatureData =
                     data;
 
-            }else{
+
+                /*
+                  وجود الصورة يعني أن التوقيع موجود.
+                */
+
+                document.getElementById(
+                    "preparedSignatureStatus"
+                ).value =
+                    "signed";
+
+            }
+            else{
 
                 approvedSignatureData =
                     data;
@@ -781,7 +1161,26 @@ function loadSignature(input,type){
                 type
             );
 
+
             updateStatus();
+
+
+            showMessage(
+                "✅ تمت إضافة صورة التوقيع. اضغط حفظ الإعدادات لاعتماد التغيير.",
+                false,
+                false
+            );
+
+        };
+
+
+    reader.onerror =
+        function(){
+
+            showMessage(
+                "⚠️ تعذر قراءة صورة التوقيع.",
+                true
+            );
 
         };
 
@@ -793,11 +1192,13 @@ function loadSignature(input,type){
 }
 
 
-/* ===========================
-   عرض التوقيع
-=========================== */
+/* =====================================================
+   SIGNATURE PREVIEW
+===================================================== */
 
-function updateSignaturePreview(type){
+function updateSignaturePreview(
+    type
+){
 
     let data = "";
 
@@ -816,35 +1217,42 @@ function updateSignaturePreview(type){
         data =
             preparedSignatureData;
 
+
         preview =
             document.getElementById(
                 "preparedSignaturePreview"
             );
+
 
         placeholder =
             document.getElementById(
                 "preparedPlaceholder"
             );
 
+
         removeButton =
             document.getElementById(
                 "preparedRemove"
             );
 
-    }else{
+    }
+    else{
 
         data =
             approvedSignatureData;
+
 
         preview =
             document.getElementById(
                 "approvedSignaturePreview"
             );
 
+
         placeholder =
             document.getElementById(
                 "approvedPlaceholder"
             );
+
 
         removeButton =
             document.getElementById(
@@ -859,26 +1267,33 @@ function updateSignaturePreview(type){
         preview.src =
             data;
 
+
         preview.style.display =
             "block";
+
 
         placeholder.style.display =
             "none";
 
+
         removeButton.style.display =
             "block";
 
-    }else{
+    }
+    else{
 
         preview.removeAttribute(
             "src"
         );
 
+
         preview.style.display =
             "none";
 
+
         placeholder.style.display =
             "block";
+
 
         removeButton.style.display =
             "none";
@@ -888,11 +1303,13 @@ function updateSignaturePreview(type){
 }
 
 
-/* ===========================
-   حذف توقيع
-=========================== */
+/* =====================================================
+   REMOVE SIGNATURE
+===================================================== */
 
-function removeSignature(type){
+function removeSignature(
+    type
+){
 
     if(
         type ===
@@ -902,20 +1319,40 @@ function removeSignature(type){
         preparedSignatureData =
             "";
 
+
         document.getElementById(
             "preparedSignatureFile"
         ).value =
             "";
 
-    }else{
+
+        document.getElementById(
+            "preparedSignatureStatus"
+        ).value =
+            "unsigned";
+
+    }
+    else{
 
         approvedSignatureData =
             "";
+
 
         document.getElementById(
             "approvedSignatureFile"
         ).value =
             "";
+
+
+        /*
+          لا يمكن إبقاء التقرير معتمدًا
+          بدون توقيع المعتمد.
+        */
+
+        document.getElementById(
+            "approvalStatus"
+        ).value =
+            "pending";
 
     }
 
@@ -924,14 +1361,22 @@ function removeSignature(type){
         type
     );
 
+
     updateStatus();
+
+
+    showMessage(
+        "تم حذف التوقيع من النموذج. اضغط حفظ الإعدادات لتثبيت التغيير.",
+        false,
+        false
+    );
 
 }
 
 
-/* ===========================
-   قيمة عنصر
-=========================== */
+/* =====================================================
+   FIELD VALUE
+===================================================== */
 
 function valueOf(id){
 
@@ -941,20 +1386,28 @@ function valueOf(id){
         );
 
 
-    return element
-        ? element.value.trim()
-        : "";
+    if(!element){
+
+        return "";
+
+    }
+
+
+    return String(
+        element.value ||
+        ""
+    ).trim();
 
 }
 
 
-/* ===========================
-   حفظ الإعدادات
-=========================== */
+/* =====================================================
+   BUILD SETTINGS
+===================================================== */
 
-function saveSettings(){
+function buildSettings(){
 
-    const settings = {
+    return {
 
         preparedByName:
             valueOf(
@@ -1005,15 +1458,21 @@ function saveSettings(){
 
 
         updatedAt:
-            new Date().toISOString()
+            new Date()
+            .toISOString()
 
     };
 
+}
 
-    /*
-      لا نسمح بوضع حالة "موقع"
-      بدون وجود توقيع فعلي.
-    */
+
+/* =====================================================
+   VALIDATION
+===================================================== */
+
+function validateSettings(
+    settings
+){
 
     if(
         settings.preparedSignatureStatus ===
@@ -1029,15 +1488,31 @@ function saveSettings(){
             true
         );
 
-        return;
+
+        return false;
 
     }
 
 
-    /*
-      لا نسمح باعتماد التقرير
-      بدون بيانات المعتمد.
-    */
+    if(
+        settings.preparedSignature
+
+        &&
+
+        settings.preparedSignatureStatus !==
+        "signed"
+    ){
+
+        showMessage(
+            "⚠️ توجد صورة توقيع لمُعد التقرير، ولكن حالة التوقيع ليست «موقع إلكترونيًا».",
+            true
+        );
+
+
+        return false;
+
+    }
+
 
     if(
         settings.approvalStatus ===
@@ -1050,11 +1525,12 @@ function saveSettings(){
         ){
 
             showMessage(
-                "⚠️ يرجى إدخال اسم ومسمى معتمد التقرير قبل اختيار حالة معتمد.",
+                "⚠️ يرجى إدخال اسم ومسمى معتمد التقرير قبل اختيار حالة «معتمد».",
                 true
             );
 
-            return;
+
+            return false;
 
         }
 
@@ -1068,24 +1544,120 @@ function saveSettings(){
                 true
             );
 
-            return;
+
+            return false;
 
         }
 
     }
 
 
+    return true;
+
+}
+
+
+/* =====================================================
+   SAVE
+===================================================== */
+
+async function saveSettings(){
+
+    if(
+        savingSettings
+    ){
+
+        return;
+
+    }
+
+
+    const settings =
+        buildSettings();
+
+
+    if(
+        !validateSettings(
+            settings
+        )
+    ){
+
+        return;
+
+    }
+
+
+    savingSettings =
+        true;
+
+
+    setButtonsLoading(
+        true
+    );
+
+
     try{
 
-        localStorage.setItem(
+        let saved;
 
-            "publicHealthReportSettings",
 
-            JSON.stringify(
-                settings
-            )
+        if(
+            window.SPHP &&
+            window.SPHP.settings &&
+            typeof window.SPHP.settings.saveReportSettings ===
+            "function"
+        ){
 
-        );
+            saved =
+                await window.SPHP
+                .settings
+                .saveReportSettings(
+                    settings
+                );
+
+        }
+        else if(
+            !isServerMode()
+        ){
+
+            localStorage.setItem(
+
+                "publicHealthReportSettings",
+
+                JSON.stringify(
+                    settings
+                )
+
+            );
+
+
+            saved =
+                settings;
+
+        }
+        else{
+
+            throw new Error(
+                "Report settings service is unavailable."
+            );
+
+        }
+
+
+        if(
+            saved &&
+            typeof saved ===
+            "object"
+        ){
+
+            applySettingsToForm(
+                saved
+            );
+
+        }
+
+
+        updateStatus();
 
 
         showMessage(
@@ -1093,14 +1665,43 @@ function saveSettings(){
             false
         );
 
+    }
+    catch(error){
 
-        updateStatus();
+        console.error(
+            "Save report settings failed:",
+            error
+        );
 
-    }catch(error){
 
-        showMessage(
-            "⚠️ تعذر حفظ الإعدادات. قد يكون حجم صورة التوقيع كبيرًا.",
-            true
+        if(
+            isServerMode()
+        ){
+
+            showMessage(
+                "⚠️ تعذر حفظ الإعدادات على خادم المستشفى. لم يتم حفظ نسخة محلية بديلة.",
+                true
+            );
+
+        }
+        else{
+
+            showMessage(
+                "⚠️ تعذر حفظ الإعدادات. قد يكون حجم صورة التوقيع كبيرًا أو مساحة المتصفح غير كافية.",
+                true
+            );
+
+        }
+
+    }
+    finally{
+
+        savingSettings =
+            false;
+
+
+        setButtonsLoading(
+            false
         );
 
     }
@@ -1108,29 +1709,136 @@ function saveSettings(){
 }
 
 
-/* ===========================
-   تحميل الإعدادات
-=========================== */
+/* =====================================================
+   LOAD
+===================================================== */
 
-function loadSettings(){
+async function loadSettings(){
+
+    showMessage(
+        "⏳ جاري تحميل إعدادات التقرير...",
+        false,
+        false,
+        true
+    );
+
 
     let settings = {};
 
 
     try{
 
-        settings =
-            JSON.parse(
-                localStorage.getItem(
-                    "publicHealthReportSettings"
-                )
-            ) || {};
+        if(
+            window.SPHP &&
+            window.SPHP.settings &&
+            typeof window.SPHP.settings.getReportSettings ===
+            "function"
+        ){
 
-    }catch(error){
+            settings =
+                await window.SPHP
+                .settings
+                .getReportSettings();
 
-        settings = {};
+        }
+        else if(
+            !isServerMode()
+        ){
+
+            settings =
+                readLocalSettings();
+
+        }
+        else{
+
+            throw new Error(
+                "Report settings service is unavailable."
+            );
+
+        }
+
+
+        if(
+            !settings ||
+            typeof settings !==
+            "object"
+        ){
+
+            settings = {};
+
+        }
+
+
+        applySettingsToForm(
+            settings
+        );
+
+
+        updateStatus();
+
+
+        hideMessage();
 
     }
+    catch(error){
+
+        console.error(
+            "Load report settings failed:",
+            error
+        );
+
+
+        if(
+            isServerMode()
+        ){
+
+            resetFormFields();
+
+
+            showMessage(
+                "⚠️ تعذر تحميل إعدادات التقرير من خادم المستشفى. لم يتم عرض بيانات محلية بديلة.",
+                true
+            );
+
+        }
+        else{
+
+            settings =
+                readLocalSettings();
+
+
+            applySettingsToForm(
+                settings
+            );
+
+
+            updateStatus();
+
+
+            showMessage(
+                "تم تحميل إعدادات التطوير المحلية.",
+                false,
+                false
+            );
+
+        }
+
+    }
+
+}
+
+
+/* =====================================================
+   APPLY SETTINGS
+===================================================== */
+
+function applySettingsToForm(
+    settings
+){
+
+    settings =
+        settings ||
+        {};
 
 
     document.getElementById(
@@ -1154,16 +1862,27 @@ function loadSettings(){
         "الصحة العامة";
 
 
-    document.getElementById(
-        "preparedSignatureStatus"
-    ).value =
-        settings.preparedSignatureStatus ||
-        "unsigned";
-
-
     preparedSignatureData =
         settings.preparedSignature ||
         "";
+
+
+    document.getElementById(
+        "preparedSignatureStatus"
+    ).value =
+
+        preparedSignatureData
+
+        ?
+
+        "signed"
+
+        :
+
+        (
+            settings.preparedSignatureStatus ||
+            "unsigned"
+        );
 
 
     document.getElementById(
@@ -1187,15 +1906,42 @@ function loadSettings(){
         "";
 
 
+    approvedSignatureData =
+        settings.approvedSignature ||
+        "";
+
+
     document.getElementById(
         "approvalStatus"
     ).value =
-        settings.approvalStatus ||
+
+        (
+            settings.approvalStatus ===
+            "approved"
+
+            &&
+
+            approvedSignatureData
+        )
+
+        ?
+
+        "approved"
+
+        :
+
         "pending";
 
 
-    approvedSignatureData =
-        settings.approvedSignature ||
+    document.getElementById(
+        "preparedSignatureFile"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "approvedSignatureFile"
+    ).value =
         "";
 
 
@@ -1208,190 +1954,18 @@ function loadSettings(){
         "approved"
     );
 
-
-    updateStatus();
-
 }
 
 
-/* ===========================
-   تحديث حالة الصفحة
-=========================== */
-
-function setStatus(
-    id,
-    text,
-    ok
-){
-
-    const element =
-        document.getElementById(
-            id
-        );
-
-
-    element.textContent =
-        text;
-
-
-    element.className =
-        ok
-        ? "status-ok"
-        : "status-wait";
-
-}
-
-
-function updateStatus(){
-
-    const preparedComplete =
-
-        valueOf(
-            "preparedByName"
-        )
-
-        &&
-
-        valueOf(
-            "preparedByTitle"
-        );
-
-
-    setStatus(
-
-        "preparedDataStatus",
-
-        preparedComplete
-        ? "مكتملة"
-        : "غير مكتملة",
-
-        !!preparedComplete
-
-    );
-
-
-    setStatus(
-
-        "preparedSignStatus",
-
-        preparedSignatureData
-        ? "تمت إضافة التوقيع"
-        : "غير مضاف",
-
-        !!preparedSignatureData
-
-    );
-
-
-    const approvedComplete =
-
-        valueOf(
-            "approvedByName"
-        )
-
-        &&
-
-        valueOf(
-            "approvedByTitle"
-        );
-
-
-    setStatus(
-
-        "approvedDataStatus",
-
-        approvedComplete
-        ? "مكتملة"
-        : "غير مكتملة",
-
-        !!approvedComplete
-
-    );
-
-
-    const approved =
-
-        valueOf(
-            "approvalStatus"
-        ) ===
-        "approved"
-
-        &&
-
-        approvedSignatureData;
-
-
-    setStatus(
-
-        "approvalDisplayStatus",
-
-        approved
-        ? "معتمد وموقع"
-        : "بانتظار الاعتماد",
-
-        !!approved
-
-    );
-
-}
-
-
-/* ===========================
-   رسالة
-=========================== */
-
-function showMessage(
-    text,
-    error
-){
-
-    const box =
-        document.getElementById(
-            "message"
-        );
-
-
-    box.textContent =
-        text;
-
-
-    box.className =
-        error
-        ? "message error"
-        : "message success";
-
-
-    box.scrollIntoView({
-        behavior:"smooth"
-    });
-
-}
-
-
-/* ===========================
-   مسح
-=========================== */
-
-function clearSettings(){
-
-    const answer =
-        confirm(
-            "هل تريد مسح جميع بيانات إعداد واعتماد التقارير؟"
-        );
-
-
-    if(!answer){
-        return;
-    }
-
-
-    localStorage.removeItem(
-        "publicHealthReportSettings"
-    );
-
+/* =====================================================
+   RESET FORM
+===================================================== */
+
+function resetFormFields(){
 
     preparedSignatureData =
         "";
+
 
     approvedSignatureData =
         "";
@@ -1469,25 +2043,466 @@ function clearSettings(){
 
     updateStatus();
 
+}
 
-    showMessage(
-        "تم مسح إعدادات التقرير.",
-        false
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+function setStatus(
+    id,
+    text,
+    ok
+){
+
+    const element =
+        document.getElementById(
+            id
+        );
+
+
+    if(!element){
+
+        return;
+
+    }
+
+
+    element.textContent =
+        text;
+
+
+    element.className =
+        ok
+        ? "status-ok"
+        : "status-wait";
+
+}
+
+
+function updateStatus(){
+
+    const preparedComplete =
+
+        Boolean(
+            valueOf(
+                "preparedByName"
+            )
+        )
+
+        &&
+
+        Boolean(
+            valueOf(
+                "preparedByTitle"
+            )
+        );
+
+
+    setStatus(
+
+        "preparedDataStatus",
+
+        preparedComplete
+        ? "مكتملة"
+        : "غير مكتملة",
+
+        preparedComplete
+
+    );
+
+
+    const preparedSigned =
+
+        Boolean(
+            preparedSignatureData
+        )
+
+        &&
+
+        valueOf(
+            "preparedSignatureStatus"
+        ) ===
+        "signed";
+
+
+    setStatus(
+
+        "preparedSignStatus",
+
+        preparedSigned
+        ? "موقع إلكترونيًا"
+        : "غير مضاف",
+
+        preparedSigned
+
+    );
+
+
+    const approvedComplete =
+
+        Boolean(
+            valueOf(
+                "approvedByName"
+            )
+        )
+
+        &&
+
+        Boolean(
+            valueOf(
+                "approvedByTitle"
+            )
+        );
+
+
+    setStatus(
+
+        "approvedDataStatus",
+
+        approvedComplete
+        ? "مكتملة"
+        : "غير مكتملة",
+
+        approvedComplete
+
+    );
+
+
+    const approvedSignatureExists =
+        Boolean(
+            approvedSignatureData
+        );
+
+
+    setStatus(
+
+        "approvedSignStatus",
+
+        approvedSignatureExists
+        ? "تمت إضافة التوقيع"
+        : "غير مضاف",
+
+        approvedSignatureExists
+
+    );
+
+
+    const approved =
+
+        valueOf(
+            "approvalStatus"
+        ) ===
+        "approved"
+
+        &&
+
+        approvedComplete
+
+        &&
+
+        approvedSignatureExists;
+
+
+    setStatus(
+
+        "approvalDisplayStatus",
+
+        approved
+        ? "معتمد وموقع"
+        : "بانتظار الاعتماد",
+
+        approved
+
     );
 
 }
 
 
-/* ===========================
-   مراقبة التغييرات
-=========================== */
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+function showMessage(
+    text,
+    error,
+    scroll,
+    info
+){
+
+    const box =
+        document.getElementById(
+            "message"
+        );
+
+
+    box.textContent =
+        text;
+
+
+    if(info){
+
+        box.className =
+            "message info";
+
+    }
+    else{
+
+        box.className =
+            error
+            ? "message error"
+            : "message success";
+
+    }
+
+
+    if(
+        scroll !==
+        false
+    ){
+
+        box.scrollIntoView({
+            behavior:"smooth",
+            block:"nearest"
+        });
+
+    }
+
+}
+
+
+function hideMessage(){
+
+    const box =
+        document.getElementById(
+            "message"
+        );
+
+
+    box.className =
+        "message";
+
+
+    box.textContent =
+        "";
+
+}
+
+
+/* =====================================================
+   BUTTON STATE
+===================================================== */
+
+function setButtonsLoading(
+    active
+){
+
+    const saveButton =
+        document.getElementById(
+            "saveButton"
+        );
+
+
+    const clearButton =
+        document.getElementById(
+            "clearButton"
+        );
+
+
+    saveButton.disabled =
+        active;
+
+
+    clearButton.disabled =
+        active;
+
+
+    saveButton.textContent =
+
+        active
+
+        ?
+
+        "⏳ جاري الحفظ..."
+
+        :
+
+        "💾 حفظ الإعدادات";
+
+}
+
+
+/* =====================================================
+   CLEAR SETTINGS
+===================================================== */
+
+async function clearSettings(){
+
+    const answer =
+        confirm(
+            "هل تريد مسح جميع بيانات إعداد واعتماد التقارير؟"
+        );
+
+
+    if(!answer){
+
+        return;
+
+    }
+
+
+    if(
+        savingSettings
+    ){
+
+        return;
+
+    }
+
+
+    const emptySettings = {
+
+        preparedByName:"",
+        preparedByTitle:"",
+        preparedByDepartment:"الصحة العامة",
+
+        preparedSignatureStatus:
+            "unsigned",
+
+        preparedSignature:"",
+
+        approvedByName:"",
+        approvedByTitle:"",
+        approvedByDepartment:"",
+
+        approvalStatus:
+            "pending",
+
+        approvedSignature:"",
+
+        updatedAt:
+            new Date()
+            .toISOString()
+
+    };
+
+
+    savingSettings =
+        true;
+
+
+    setButtonsLoading(
+        true
+    );
+
+
+    try{
+
+        if(
+            window.SPHP &&
+            window.SPHP.settings &&
+            typeof window.SPHP.settings.saveReportSettings ===
+            "function"
+        ){
+
+            await window.SPHP
+            .settings
+            .saveReportSettings(
+                emptySettings
+            );
+
+        }
+        else if(
+            !isServerMode()
+        ){
+
+            localStorage.setItem(
+
+                "publicHealthReportSettings",
+
+                JSON.stringify(
+                    emptySettings
+                )
+
+            );
+
+        }
+        else{
+
+            throw new Error(
+                "Report settings service is unavailable."
+            );
+
+        }
+
+
+        applySettingsToForm(
+            emptySettings
+        );
+
+
+        updateStatus();
+
+
+        showMessage(
+            "✅ تم مسح إعدادات التقرير.",
+            false
+        );
+
+    }
+    catch(error){
+
+        console.error(
+            "Clear report settings failed:",
+            error
+        );
+
+
+        if(
+            isServerMode()
+        ){
+
+            showMessage(
+                "⚠️ تعذر مسح الإعدادات من خادم المستشفى.",
+                true
+            );
+
+        }
+        else{
+
+            showMessage(
+                "⚠️ تعذر مسح إعدادات التقرير.",
+                true
+            );
+
+        }
+
+    }
+    finally{
+
+        savingSettings =
+            false;
+
+
+        setButtonsLoading(
+            false
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   FIELD EVENTS
+===================================================== */
 
 document
 .querySelectorAll(
     "input, select"
 )
 .forEach(
-
     function(element){
 
         if(
@@ -1500,6 +2515,7 @@ document
                 updateStatus
             );
 
+
             element.addEventListener(
                 "change",
                 updateStatus
@@ -1508,25 +2524,35 @@ document
         }
 
     }
-
 );
 
 
-/* ===========================
-   تشغيل الصفحة
-=========================== */
+/* =====================================================
+   START
+===================================================== */
 
 document.addEventListener(
-
     "DOMContentLoaded",
-
     function(){
 
-        loadSettings();
+        updateEnvironmentInfo();
+
+
+        loadSettings()
+        .catch(
+            function(error){
+
+                console.error(
+                    "Report settings initialization failed:",
+                    error
+                );
+
+            }
+        );
 
     }
-
 );
+
 
 </script>
 

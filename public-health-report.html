@@ -18,16 +18,12 @@
 
 :root{
     --primary:#064c92;
-    --secondary:#0759a6;
     --teal:#0f7c8c;
     --purple:#5f3dc4;
     --green:#187b43;
     --orange:#c87000;
-    --red:#c62828;
     --border:#d8e1e8;
-    --light:#f6f9fb;
     --text:#243b53;
-    --muted:#607387;
 }
 
 body{
@@ -90,7 +86,7 @@ body{
 
 
 /* =====================================================
-   REPORT OPTIONS
+   OPTIONS
 ===================================================== */
 
 .report-options{
@@ -227,6 +223,10 @@ body{
     color:#294b6a;
 }
 
+.approved-meta{
+    color:#187b43;
+}
+
 
 /* =====================================================
    SUMMARY
@@ -262,7 +262,6 @@ body{
     font-size:13px;
     font-weight:bold;
     margin-bottom:10px;
-
     break-after:avoid;
     page-break-after:avoid;
 }
@@ -292,7 +291,6 @@ body{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:9px;
-
     break-inside:avoid;
     page-break-inside:avoid;
 }
@@ -334,10 +332,6 @@ body{
 
 .report-table thead{
     display:table-header-group;
-}
-
-.report-table tfoot{
-    display:table-footer-group;
 }
 
 .report-table th{
@@ -386,7 +380,6 @@ body{
     grid-template-columns:145px 1fr 42px;
     gap:8px;
     align-items:center;
-
     break-inside:avoid;
     page-break-inside:avoid;
 }
@@ -427,7 +420,7 @@ body{
 
 
 /* =====================================================
-   NOTE
+   NOTES
 ===================================================== */
 
 .report-note{
@@ -441,7 +434,7 @@ body{
 
 
 /* =====================================================
-   APPROVAL
+   APPROVAL + SIGNATURES
 ===================================================== */
 
 .approval-section{
@@ -449,7 +442,6 @@ body{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:28px;
-
     break-inside:avoid;
     page-break-inside:avoid;
 }
@@ -458,7 +450,7 @@ body{
     border-top:1px solid #74889a;
     padding-top:8px;
     text-align:center;
-    min-height:65px;
+    min-height:110px;
 }
 
 .signature-title{
@@ -471,6 +463,29 @@ body{
     margin-top:6px;
     font-size:9px;
     color:#607387;
+}
+
+.report-signature-image{
+    display:none;
+    max-width:170px;
+    max-height:58px;
+    object-fit:contain;
+    margin:8px auto 3px;
+}
+
+.report-signature-image.visible{
+    display:block;
+}
+
+.signature-status-text{
+    margin-top:4px;
+    font-size:8px;
+    color:#718293;
+}
+
+.signature-status-text.approved{
+    color:#187b43;
+    font-weight:bold;
 }
 
 
@@ -488,7 +503,6 @@ body{
     font-size:7.5px;
     color:#718293;
     text-align:center;
-
     break-inside:avoid;
     page-break-inside:avoid;
 }
@@ -501,11 +515,6 @@ body{
 .hidden-section{
     display:none !important;
 }
-
-
-/* =====================================================
-   DETAILS
-===================================================== */
 
 .details-page{
     break-before:auto;
@@ -558,38 +567,20 @@ body{
         box-shadow:none;
     }
 
-    /*
-      لا نجبر كل قسم أن يبقى كاملًا في صفحة واحدة.
-      المتصفح يملأ الصفحة ثم يكمل تلقائيًا.
-    */
-
     .report-section{
         break-inside:auto;
         page-break-inside:auto;
-        margin-bottom:12px;
+        margin-bottom:11px;
     }
-
-    /*
-      إلغاء إجبار قسم التفاصيل على صفحة مستقلة.
-    */
 
     .details-page{
         break-before:auto !important;
         page-break-before:auto !important;
     }
 
-    /*
-      إبقاء رأس الجدول مع تكراره عند الانتقال
-      للصفحة التالية.
-    */
-
     .report-table thead{
         display:table-header-group;
     }
-
-    /*
-      منع تقسيم الصف نفسه بين صفحتين.
-    */
 
     .report-table tr,
     .report-table td,
@@ -598,20 +589,11 @@ body{
         page-break-inside:avoid;
     }
 
-    /*
-      منع عنوان القسم من البقاء منفردًا
-      في نهاية الصفحة.
-    */
-
     .section-heading,
     .details-page h4{
         break-after:avoid;
         page-break-after:avoid;
     }
-
-    /*
-      إبقاء بطاقات المؤشرات متماسكة.
-    */
 
     .kpi-grid,
     .approval-section,
@@ -619,10 +601,6 @@ body{
         break-inside:avoid;
         page-break-inside:avoid;
     }
-
-    /*
-      تقليل المسافات عند الطباعة.
-    */
 
     .report-header{
         margin-bottom:10px;
@@ -638,17 +616,14 @@ body{
         padding:9px 12px;
     }
 
-    .report-section{
-        margin-bottom:11px;
-    }
-
     h4{
         margin-top:7px;
         margin-bottom:6px;
     }
 
-    br{
-        line-height:.6;
+    .report-signature-image{
+        max-width:155px;
+        max-height:52px;
     }
 
 }
@@ -714,7 +689,9 @@ body{
 
 <section class="report-options">
 
-<h3>⚙️ تخصيص التقرير</h3>
+<h3>
+⚙️ تخصيص التقرير
+</h3>
 
 <div class="options-grid">
 
@@ -821,47 +798,142 @@ Public Health Report
 
 <section class="report-meta">
 
-<div class="meta-item">
-<span class="meta-label">رقم التقرير</span>
-<span id="metaReportNumber" class="meta-value">—</span>
-</div>
 
 <div class="meta-item">
-<span class="meta-label">نوع التقرير</span>
-<span id="metaReportType" class="meta-value">—</span>
-</div>
 
-<div class="meta-item">
-<span class="meta-label">الفترة</span>
-<span id="metaPeriod" class="meta-value">—</span>
-</div>
-
-<div class="meta-item">
-<span class="meta-label">تاريخ الإنشاء</span>
-<span id="metaCreated" class="meta-value">—</span>
-</div>
-
-<div class="meta-item">
-<span class="meta-label">إعداد</span>
-<span id="metaPreparedBy" class="meta-value">—</span>
-</div>
-
-<div class="meta-item">
-<span class="meta-label">المسمى الوظيفي</span>
-<span id="metaPreparedTitle" class="meta-value">—</span>
-</div>
-
-<div class="meta-item">
-<span class="meta-label">اعتماد</span>
-<span id="metaApprovedBy" class="meta-value">—</span>
-</div>
-
-<div class="meta-item">
-<span class="meta-label">حالة التقرير</span>
-<span id="metaReportStatus" class="meta-value">
-مسودة / للاستخدام الداخلي
+<span class="meta-label">
+رقم التقرير
 </span>
+
+<span
+    id="metaReportNumber"
+    class="meta-value">
+
+—
+
+</span>
+
 </div>
+
+
+<div class="meta-item">
+
+<span class="meta-label">
+نوع التقرير
+</span>
+
+<span
+    id="metaReportType"
+    class="meta-value">
+
+—
+
+</span>
+
+</div>
+
+
+<div class="meta-item">
+
+<span class="meta-label">
+الفترة
+</span>
+
+<span
+    id="metaPeriod"
+    class="meta-value">
+
+—
+
+</span>
+
+</div>
+
+
+<div class="meta-item">
+
+<span class="meta-label">
+تاريخ الإنشاء
+</span>
+
+<span
+    id="metaCreated"
+    class="meta-value">
+
+—
+
+</span>
+
+</div>
+
+
+<div class="meta-item">
+
+<span class="meta-label">
+إعداد
+</span>
+
+<span
+    id="metaPreparedBy"
+    class="meta-value">
+
+—
+
+</span>
+
+</div>
+
+
+<div class="meta-item">
+
+<span class="meta-label">
+المسمى الوظيفي
+</span>
+
+<span
+    id="metaPreparedTitle"
+    class="meta-value">
+
+—
+
+</span>
+
+</div>
+
+
+<div class="meta-item">
+
+<span class="meta-label">
+اعتماد
+</span>
+
+<span
+    id="metaApprovedBy"
+    class="meta-value">
+
+—
+
+</span>
+
+</div>
+
+
+<div class="meta-item">
+
+<span class="meta-label">
+حالة التقرير
+</span>
+
+<span
+    id="metaReportStatus"
+    class="meta-value">
+
+مسودة / للاستخدام الداخلي
+
+</span>
+
+</div>
+
 
 </section>
 
@@ -1192,6 +1264,7 @@ Public Health Report
     id="approvalSection"
     class="approval-section">
 
+
 <div class="signature-box">
 
 <div class="signature-title">
@@ -1201,6 +1274,19 @@ Public Health Report
 <div
     id="preparedSignatureName"
     class="signature-name">
+
+—
+
+</div>
+
+<img
+    id="preparedReportSignature"
+    class="report-signature-image"
+    alt="توقيع معد التقرير">
+
+<div
+    id="preparedSignatureState"
+    class="signature-status-text">
 
 —
 
@@ -1223,7 +1309,21 @@ Public Health Report
 
 </div>
 
+<img
+    id="approvedReportSignature"
+    class="report-signature-image"
+    alt="توقيع معتمد التقرير">
+
+<div
+    id="approvedSignatureState"
+    class="signature-status-text">
+
+—
+
 </div>
+
+</div>
+
 
 </section>
 
@@ -1344,33 +1444,24 @@ async function loadData(){
 
     try{
 
-        if(
+        notifications =
             window.SPHP &&
             window.SPHP.notifications
-        ){
 
-            notifications =
-                await window.SPHP
-                .notifications
-                .getAll();
+            ?
 
-        }
-        else{
+            await window.SPHP
+            .notifications
+            .getAll()
 
-            notifications =
-                readArrayLocal(
-                    "publicHealthNotifications"
-                );
+            :
 
-        }
+            readArrayLocal(
+                "publicHealthNotifications"
+            );
 
     }
     catch(error){
-
-        console.warn(
-            "Notifications load failed:",
-            error
-        );
 
         notifications =
             readArrayLocal(
@@ -1382,25 +1473,21 @@ async function loadData(){
 
     try{
 
-        if(
+        rapidRecords =
             window.SPHP &&
             window.SPHP.rapidScreenings
-        ){
 
-            rapidRecords =
-                await window.SPHP
-                .rapidScreenings
-                .getAll();
+            ?
 
-        }
-        else{
+            await window.SPHP
+            .rapidScreenings
+            .getAll()
 
-            rapidRecords =
-                readArrayLocal(
-                    "rapidScreeningRecords"
-                );
+            :
 
-        }
+            readArrayLocal(
+                "rapidScreeningRecords"
+            );
 
     }
     catch(error){
@@ -1415,25 +1502,21 @@ async function loadData(){
 
     try{
 
-        if(
+        smartRecords =
             window.SPHP &&
             window.SPHP.smartScreenings
-        ){
 
-            smartRecords =
-                await window.SPHP
-                .smartScreenings
-                .getAll();
+            ?
 
-        }
-        else{
+            await window.SPHP
+            .smartScreenings
+            .getAll()
 
-            smartRecords =
-                readArrayLocal(
-                    "smartScreeningRecords"
-                );
+            :
 
-        }
+            readArrayLocal(
+                "smartScreeningRecords"
+            );
 
     }
     catch(error){
@@ -1448,25 +1531,21 @@ async function loadData(){
 
     try{
 
-        if(
+        employeeRecords =
             window.SPHP &&
             window.SPHP.employeeScreenings
-        ){
 
-            employeeRecords =
-                await window.SPHP
-                .employeeScreenings
-                .getAll();
+            ?
 
-        }
-        else{
+            await window.SPHP
+            .employeeScreenings
+            .getAll()
 
-            employeeRecords =
-                readArrayLocal(
-                    "employeeScreeningRecords"
-                );
+            :
 
-        }
+            readArrayLocal(
+                "employeeScreeningRecords"
+            );
 
     }
     catch(error){
@@ -1537,10 +1616,6 @@ function getQuery(){
 }
 
 
-/* =====================================================
-   REPORT TYPE
-===================================================== */
-
 function getNormalizedReportType(){
 
     const type =
@@ -1548,43 +1623,20 @@ function getNormalizedReportType(){
         .reportType;
 
 
-    if(
-        type ===
-        "rapidScreening"
-    ){
-
+    if(type === "rapidScreening"){
         return "rapid";
-
     }
 
-
-    if(
-        type ===
-        "smartScreening"
-    ){
-
+    if(type === "smartScreening"){
         return "smart";
-
     }
 
-
-    if(
-        type ===
-        "screening"
-    ){
-
+    if(type === "screening"){
         return "employee";
-
     }
 
-
-    if(
-        type ===
-        "overview"
-    ){
-
+    if(type === "overview"){
         return "full";
-
     }
 
 
@@ -1615,7 +1667,7 @@ function escapeHTML(value){
 
 
 /* =====================================================
-   DATES
+   DATE HELPERS
 ===================================================== */
 
 function validDate(value){
@@ -1675,9 +1727,7 @@ function smartDate(item){
 
 function employeeDate(item){
 
-    if(
-        item.sampleDate
-    ){
+    if(item.sampleDate){
 
         return validDate(
             item.sampleDate +
@@ -1716,16 +1766,6 @@ function getRange(){
 
     if(
         query.period ===
-        "all"
-    ){
-
-        text =
-            "جميع البيانات";
-
-    }
-
-    else if(
-        query.period ===
         "currentMonth"
     ){
 
@@ -1752,6 +1792,7 @@ function getRange(){
             "الشهر الحالي";
 
     }
+
 
     else if(
         query.period ===
@@ -1782,6 +1823,7 @@ function getRange(){
 
     }
 
+
     else if(
         query.period ===
         "currentYear"
@@ -1807,10 +1849,12 @@ function getRange(){
 
 
         text =
-            "السنة الحالية " +
+            "السنة الحالية "
+            +
             now.getFullYear();
 
     }
+
 
     else if(
         query.period ===
@@ -1818,7 +1862,7 @@ function getRange(){
     ){
 
         const year =
-            now.getFullYear() - 1;
+            now.getFullYear()-1;
 
 
         start =
@@ -1841,19 +1885,19 @@ function getRange(){
 
 
         text =
-            "السنة السابقة " +
+            "السنة السابقة "
+            +
             year;
 
     }
+
 
     else if(
         query.period ===
         "custom"
     ){
 
-        if(
-            query.from
-        ){
+        if(query.from){
 
             start =
                 new Date(
@@ -1864,9 +1908,7 @@ function getRange(){
         }
 
 
-        if(
-            query.to
-        ){
+        if(query.to){
 
             end =
                 new Date(
@@ -1878,17 +1920,11 @@ function getRange(){
 
 
         text =
-            (
-                query.from ||
-                "—"
-            )
+            (query.from || "—")
             +
             " إلى "
             +
-            (
-                query.to ||
-                "—"
-            );
+            (query.to || "—");
 
     }
 
@@ -1941,10 +1977,6 @@ function inRange(
 
 }
 
-
-/* =====================================================
-   FILTER
-===================================================== */
 
 function filterData(){
 
@@ -2035,9 +2067,12 @@ function countBy(
 
             result[value] =
                 (
-                    result[value] ||
+                    result[value]
+                    ||
                     0
-                ) + 1;
+                )
+                +
+                1;
 
         }
     );
@@ -2073,7 +2108,7 @@ function kpiCard(
 
 
 /* =====================================================
-   BARS
+   BAR
 ===================================================== */
 
 function renderBars(
@@ -2128,8 +2163,12 @@ function renderBars(
 
                 const width =
                     max
-                    ? item[1] / max * 100
-                    : 0;
+                    ?
+                    item[1] /
+                    max *
+                    100
+                    :
+                    0;
 
 
                 return `
@@ -2165,7 +2204,7 @@ function renderBars(
 
 
 /* =====================================================
-   EPI LABEL
+   EPI
 ===================================================== */
 
 function epiLabel(value){
@@ -2250,26 +2289,19 @@ function findNotificationForSmart(
     }
 
 
-    if(
-        smart.notificationId
-    ){
+    if(smart.notificationId){
 
-        const byId =
+        const found =
             notifications.find(
-                function(notification){
-
-                    return (
-                        notification &&
-                        notification.id ===
-                        smart.notificationId
-                    );
-
-                }
+                item =>
+                    item &&
+                    item.id ===
+                    smart.notificationId
             );
 
 
-        if(byId){
-            return byId;
+        if(found){
+            return found;
         }
 
     }
@@ -2277,16 +2309,11 @@ function findNotificationForSmart(
 
     return (
         notifications.find(
-            function(notification){
-
-                return (
-                    notification &&
-                    notification.screeningId &&
-                    notification.screeningId ===
-                    smart.id
-                );
-
-            }
+            item =>
+                item &&
+                item.screeningId &&
+                item.screeningId ===
+                smart.id
         )
         ||
         null
@@ -2346,9 +2373,7 @@ function smartHasNotification(
 }
 
 
-function smartHigh(
-    record
-){
+function smartHigh(record){
 
     if(
         record.highSuspicion === true
@@ -2360,9 +2385,7 @@ function smartHigh(
 
 
     return (
-        Array.isArray(
-            record.results
-        )
+        Array.isArray(record.results)
         &&
         record.results.some(
             result =>
@@ -2384,7 +2407,7 @@ function generateReportNumber(){
         getQuery();
 
 
-    const storageKey =
+    const key =
         "currentPublicHealthReportNumber:"
         +
         [
@@ -2398,7 +2421,7 @@ function generateReportNumber(){
 
     const existing =
         sessionStorage.getItem(
-            storageKey
+            key
         );
 
 
@@ -2411,31 +2434,40 @@ function generateReportNumber(){
         new Date();
 
 
-    const y =
-        now.getFullYear();
+    const number =
 
+        "PHR-"
 
-    const m =
+        +
+
+        now.getFullYear()
+
+        +
+
         String(
             now.getMonth()+1
         )
         .padStart(
             2,
             "0"
-        );
+        )
 
+        +
 
-    const d =
         String(
             now.getDate()
         )
         .padStart(
             2,
             "0"
-        );
+        )
 
+        +
 
-    const random =
+        "-"
+
+        +
+
         Math.floor(
             1000 +
             Math.random() *
@@ -2443,22 +2475,8 @@ function generateReportNumber(){
         );
 
 
-    const number =
-        "PHR-"
-        +
-        y
-        +
-        m
-        +
-        d
-        +
-        "-"
-        +
-        random;
-
-
     sessionStorage.setItem(
-        storageKey,
+        key,
         number
     );
 
@@ -2469,14 +2487,10 @@ function generateReportNumber(){
 
 
 /* =====================================================
-   REPORT TITLES
+   TITLES
 ===================================================== */
 
 function reportTypeInfo(){
-
-    const type =
-        getNormalizedReportType();
-
 
     const map = {
 
@@ -2509,7 +2523,9 @@ function reportTypeInfo(){
 
 
     return (
-        map[type]
+        map[
+            getNormalizedReportType()
+        ]
         ||
         map.full
     );
@@ -2518,7 +2534,7 @@ function reportTypeInfo(){
 
 
 /* =====================================================
-   REPORT SETTINGS
+   REPORT SETTINGS + SIGNATURES
 ===================================================== */
 
 async function loadReportSettings(){
@@ -2553,12 +2569,6 @@ async function loadReportSettings(){
     }
     catch(error){
 
-        console.warn(
-            "Report settings API load failed:",
-            error
-        );
-
-
         settings =
             readObjectLocal(
                 "publicHealthReportSettings"
@@ -2572,31 +2582,25 @@ async function loadReportSettings(){
 
 
     const preparedName =
-        settings.preparedByName
-        ||
-        settings.preparedBy
-        ||
+        settings.preparedByName ||
+        settings.preparedBy ||
         "—";
 
 
     const preparedTitle =
-        settings.preparedByTitle
-        ||
+        settings.preparedByTitle ||
         "—";
 
 
     const approvedName =
-        settings.approvedByName
-        ||
-        settings.approvedBy
-        ||
+        settings.approvedByName ||
+        settings.approvedBy ||
         "—";
 
 
     const approvedTitle =
-        settings.approvedByTitle
-        ||
-        "";
+        settings.approvedByTitle ||
+        "—";
 
 
     document.getElementById(
@@ -2620,25 +2624,169 @@ async function loadReportSettings(){
     document.getElementById(
         "preparedSignatureName"
     ).textContent =
-        preparedTitle !== "—"
+
+        preparedTitle !==
+        "—"
+
         ?
+
         preparedName +
         " — " +
         preparedTitle
+
         :
+
         preparedName;
 
 
     document.getElementById(
         "approvedSignatureName"
     ).textContent =
-        approvedTitle
+
+        approvedTitle !==
+        "—"
+
         ?
+
         approvedName +
         " — " +
         approvedTitle
+
         :
+
         approvedName;
+
+
+    renderReportSignature(
+        "preparedReportSignature",
+        "preparedSignatureState",
+        settings.preparedSignature,
+        settings.preparedSignatureStatus ===
+        "signed",
+        "تم التوقيع إلكترونيًا"
+    );
+
+
+    renderReportSignature(
+        "approvedReportSignature",
+        "approvedSignatureState",
+        settings.approvedSignature,
+        settings.approvalStatus ===
+        "approved",
+        "تم الاعتماد والتوقيع إلكترونيًا"
+    );
+
+
+    const reportStatus =
+        document.getElementById(
+            "metaReportStatus"
+        );
+
+
+    if(
+        settings.approvalStatus ===
+        "approved"
+
+        &&
+
+        settings.approvedSignature
+    ){
+
+        reportStatus.textContent =
+            "معتمد إلكترونيًا";
+
+
+        reportStatus.classList.add(
+            "approved-meta"
+        );
+
+    }
+    else{
+
+        reportStatus.textContent =
+            "مسودة / للاستخدام الداخلي";
+
+
+        reportStatus.classList.remove(
+            "approved-meta"
+        );
+
+    }
+
+}
+
+
+function renderReportSignature(
+    imageId,
+    statusId,
+    imageData,
+    approved,
+    approvedText
+){
+
+    const image =
+        document.getElementById(
+            imageId
+        );
+
+
+    const status =
+        document.getElementById(
+            statusId
+        );
+
+
+    if(imageData){
+
+        image.src =
+            imageData;
+
+
+        image.classList.add(
+            "visible"
+        );
+
+
+        status.textContent =
+            approved
+            ?
+            approvedText
+            :
+            "التوقيع محفوظ";
+
+
+        status.className =
+            approved
+
+            ?
+
+            "signature-status-text approved"
+
+            :
+
+            "signature-status-text";
+
+    }
+    else{
+
+        image.removeAttribute(
+            "src"
+        );
+
+
+        image.classList.remove(
+            "visible"
+        );
+
+
+        status.textContent =
+            "لا يوجد توقيع محفوظ";
+
+
+        status.className =
+            "signature-status-text";
+
+    }
 
 }
 
@@ -2737,31 +2885,19 @@ function renderRapid(){
         filteredRapid.length;
 
 
-    const low =
-        filteredRapid.filter(
-            item =>
-                item.risk === "low"
-        ).length;
-
-
-    const medium =
-        filteredRapid.filter(
-            item =>
-                item.risk === "medium"
-        ).length;
-
-
     const high =
         filteredRapid.filter(
             item =>
-                item.risk === "high"
+                item.risk ===
+                "high"
         ).length;
 
 
     const red =
         filteredRapid.filter(
             item =>
-                item.redFlag === true
+                item.redFlag ===
+                true
         ).length;
 
 
@@ -2769,47 +2905,6 @@ function renderRapid(){
         filteredRapid.filter(
             rapidReachedSmart
         ).length;
-
-
-    const validScores =
-        filteredRapid
-        .map(
-            function(item){
-
-                const value =
-                    Number(
-                        item.score
-                    );
-
-
-                return Number.isFinite(value)
-                    ? value
-                    : null;
-
-            }
-        )
-        .filter(
-            value =>
-                value !== null
-        );
-
-
-    const average =
-        validScores.length
-
-        ?
-        Math.round(
-            validScores.reduce(
-                (sum,value) =>
-                    sum + value,
-                0
-            )
-            /
-            validScores.length
-        )
-
-        :
-        0;
 
 
     document.getElementById(
@@ -2841,21 +2936,17 @@ function renderRapid(){
             percent(
                 smart,
                 total
-            )
-            +
-            "%",
+            ) + "%",
             "الانتقال للفرز الذكي"
         );
 
 
     const scoreGroups = {
-
         "0":0,
         "1 - 4":0,
         "5 - 7":0,
         "8 - 14":0,
         "15+":0
-
     };
 
 
@@ -2863,13 +2954,13 @@ function renderRapid(){
         function(item){
 
             const score =
-                Number(
-                    item.score
-                );
+                Number(item.score);
 
 
             if(
-                !Number.isFinite(score)
+                !Number.isFinite(
+                    score
+                )
             ){
 
                 return;
@@ -2878,29 +2969,19 @@ function renderRapid(){
 
 
             if(score === 0){
-
                 scoreGroups["0"]++;
-
             }
             else if(score <= 4){
-
                 scoreGroups["1 - 4"]++;
-
             }
             else if(score <= 7){
-
                 scoreGroups["5 - 7"]++;
-
             }
             else if(score <= 14){
-
                 scoreGroups["8 - 14"]++;
-
             }
             else{
-
                 scoreGroups["15+"]++;
-
             }
 
         }
@@ -2920,28 +3001,21 @@ function renderRapid(){
         function(item){
 
             const list =
-                Array.isArray(
-                    item.epi
-                )
-                ?
-                item.epi
-                :
-                [];
+                Array.isArray(item.epi)
+                ? item.epi
+                : [];
 
 
             list.forEach(
                 function(value){
 
-                    const name =
-                        epiLabel(
-                            value
-                        );
+                    const label =
+                        epiLabel(value);
 
 
-                    epi[name] =
+                    epi[label] =
                         (
-                            epi[name]
-                            ||
+                            epi[label] ||
                             0
                         ) + 1;
 
@@ -2962,23 +3036,14 @@ function renderRapid(){
 
 
     return {
-
         total,
-        low,
-        medium,
         high,
         red,
-        smart,
-        average
-
+        smart
     };
 
 }
 
-
-/* =====================================================
-   RAPID DETAILS
-===================================================== */
 
 function renderRapidDetails(){
 
@@ -2988,9 +3053,7 @@ function renderRapidDetails(){
         );
 
 
-    if(
-        !filteredRapid.length
-    ){
+    if(!filteredRapid.length){
 
         body.innerHTML =
             '<tr><td colspan="6">لا توجد سجلات.</td></tr>';
@@ -3012,23 +3075,12 @@ function renderRapidDetails(){
                     "منخفض";
 
 
-                if(
-                    item.risk === "medium"
-                ){
-
-                    risk =
-                        "متوسط";
-
+                if(item.risk === "medium"){
+                    risk = "متوسط";
                 }
 
-
-                if(
-                    item.risk === "high"
-                ){
-
-                    risk =
-                        "مرتفع";
-
+                if(item.risk === "high"){
+                    risk = "مرتفع";
                 }
 
 
@@ -3059,23 +3111,11 @@ function renderRapidDetails(){
                 </td>
 
                 <td>
-                ${
-                    item.redFlag
-                    ?
-                    "نعم"
-                    :
-                    "لا"
-                }
+                ${item.redFlag ? "نعم" : "لا"}
                 </td>
 
                 <td>
-                ${
-                    rapidReachedSmart(item)
-                    ?
-                    "نعم"
-                    :
-                    "لا"
-                }
+                ${rapidReachedSmart(item) ? "نعم" : "لا"}
                 </td>
 
                 </tr>
@@ -3108,7 +3148,8 @@ function renderSmart(){
     const hidden =
         filteredSmart.filter(
             item =>
-                item.hiddenInfectionFlag === true
+                item.hiddenInfectionFlag ===
+                true
         ).length;
 
 
@@ -3151,8 +3192,7 @@ function renderSmart(){
         +
 
         kpiCard(
-            conversion +
-            "%",
+            conversion + "%",
             "التحويل إلى بلاغ"
         );
 
@@ -3209,15 +3249,13 @@ function renderSmart(){
             factors.forEach(
                 function(value){
 
-                    const name =
-                        epiLabel(
-                            value
-                        );
+                    const label =
+                        epiLabel(value);
 
 
-                    epi[name] =
+                    epi[label] =
                         (
-                            epi[name]
+                            epi[label]
                             ||
                             0
                         ) + 1;
@@ -3245,21 +3283,15 @@ function renderSmart(){
 
 
     return {
-
         total,
         high,
         hidden,
         notificationCount,
         conversion
-
     };
 
 }
 
-
-/* =====================================================
-   SMART DETAILS
-===================================================== */
 
 function renderSmartDetails(){
 
@@ -3269,9 +3301,7 @@ function renderSmartDetails(){
         );
 
 
-    if(
-        !filteredSmart.length
-    ){
+    if(!filteredSmart.length){
 
         body.innerHTML =
             '<tr><td colspan="7">لا توجد سجلات.</td></tr>';
@@ -3351,30 +3381,15 @@ function renderSmartDetails(){
                 </td>
 
                 <td>
-                ${
-                    smartHigh(item)
-                    ?
-                    "نعم"
-                    :
-                    "لا"
-                }
+                ${smartHigh(item) ? "نعم" : "لا"}
                 </td>
 
                 <td>
-                ${
-                    smartHasNotification(item)
-                    ?
-                    "نعم"
-                    :
-                    "لا"
-                }
+                ${smartHasNotification(item) ? "نعم" : "لا"}
                 </td>
 
                 <td class="notification-number">
-                ${escapeHTML(
-                    notificationId ||
-                    "—"
-                )}
+                ${escapeHTML(notificationId || "—")}
                 </td>
 
                 </tr>
@@ -3401,20 +3416,21 @@ function renderNotifications(){
     const urgent =
         filteredNotifications.filter(
             item =>
-                item.priority === "urgent"
+                item.priority ===
+                "urgent"
         ).length;
 
 
     const closed =
         filteredNotifications.filter(
             item =>
-                item.status === "closed"
+                item.status ===
+                "closed"
         ).length;
 
 
     const open =
-        total -
-        closed;
+        total - closed;
 
 
     document.getElementById(
@@ -3470,20 +3486,14 @@ function renderNotifications(){
 
 
     return {
-
         total,
         urgent,
         closed,
         open
-
     };
 
 }
 
-
-/* =====================================================
-   NOTIFICATION DETAILS
-===================================================== */
 
 function renderNotificationDetails(){
 
@@ -3493,9 +3503,7 @@ function renderNotificationDetails(){
         );
 
 
-    if(
-        !filteredNotifications.length
-    ){
+    if(!filteredNotifications.length){
 
         body.innerHTML =
             '<tr><td colspan="7">لا توجد بلاغات.</td></tr>';
@@ -3517,23 +3525,12 @@ function renderNotificationDetails(){
                     "جديد";
 
 
-                if(
-                    item.status === "progress"
-                ){
-
-                    status =
-                        "تحت المتابعة";
-
+                if(item.status === "progress"){
+                    status = "تحت المتابعة";
                 }
 
-
-                if(
-                    item.status === "closed"
-                ){
-
-                    status =
-                        "مغلق";
-
+                if(item.status === "closed"){
+                    status = "مغلق";
                 }
 
 
@@ -3541,23 +3538,12 @@ function renderNotificationDetails(){
                     "لم يتم";
 
 
-                if(
-                    item.hesnStatus === "entered"
-                ){
-
-                    hesn =
-                        "تم الإدخال";
-
+                if(item.hesnStatus === "entered"){
+                    hesn = "تم الإدخال";
                 }
 
-
-                if(
-                    item.hesnStatus === "notRequired"
-                ){
-
-                    hesn =
-                        "لا يتطلب";
-
+                if(item.hesnStatus === "notRequired"){
+                    hesn = "لا يتطلب";
                 }
 
 
@@ -3588,13 +3574,7 @@ function renderNotificationDetails(){
                 </td>
 
                 <td>
-                ${
-                    item.priority === "urgent"
-                    ?
-                    "عاجل"
-                    :
-                    "عادي"
-                }
+                ${item.priority === "urgent" ? "عاجل" : "عادي"}
                 </td>
 
                 <td>
@@ -3629,28 +3609,16 @@ function renderEmployee(){
     const completed =
         filteredEmployee.filter(
             item =>
-                item.screeningStatus === "completed"
+                item.screeningStatus ===
+                "completed"
         ).length;
 
 
     const followUp =
         filteredEmployee.filter(
             item =>
-                item.screeningStatus === "followUp"
-        ).length;
-
-
-    const incomplete =
-        filteredEmployee.filter(
-            function(item){
-
-                return (
-                    item.screeningStatus === "incomplete"
-                    ||
-                    item.screeningStatus === "pending"
-                );
-
-            }
+                item.screeningStatus ===
+                "followUp"
         ).length;
 
 
@@ -3683,9 +3651,7 @@ function renderEmployee(){
             percent(
                 completed,
                 total
-            )
-            +
-            "%",
+            ) + "%",
             "نسبة الاكتمال"
         );
 
@@ -3703,20 +3669,13 @@ function renderEmployee(){
 
 
     return {
-
         total,
         completed,
-        followUp,
-        incomplete
-
+        followUp
     };
 
 }
 
-
-/* =====================================================
-   EMPLOYEE DETAILS
-===================================================== */
 
 function renderEmployeeDetails(){
 
@@ -3726,9 +3685,7 @@ function renderEmployeeDetails(){
         );
 
 
-    if(
-        !filteredEmployee.length
-    ){
+    if(!filteredEmployee.length){
 
         body.innerHTML =
             '<tr><td colspan="6">لا توجد سجلات.</td></tr>';
@@ -3782,7 +3739,7 @@ function renderEmployeeDetails(){
 
 
 /* =====================================================
-   COMPREHENSIVE KPI
+   COMPREHENSIVE
 ===================================================== */
 
 function renderComprehensiveKpi(
@@ -3840,65 +3797,50 @@ function renderExecutiveSummary(
     let text = "";
 
 
-    if(
-        type === "rapid"
-    ){
+    if(type === "rapid"){
 
         text =
             "تم تنفيذ "
             +
             rapid.total
             +
-            " عملية فرز سريع للأمراض المعدية خلال الفترة المحددة. "
-            +
-            "بلغ عدد الحالات المصنفة ذات خطورة مرتفعة "
+            " عملية فرز سريع خلال الفترة المحددة، منها "
             +
             rapid.high
             +
-            " حالة، وظهرت علامات تحذيرية في "
+            " حالات ذات خطورة مرتفعة، و"
             +
             rapid.red
             +
-            " حالة. وانتقلت "
+            " حالات Red Flag، وانتقلت "
             +
             rapid.smart
             +
-            " حالة إلى مسار الفرز الذكي الموسع، بنسبة "
-            +
-            percent(
-                rapid.smart,
-                rapid.total
-            )
-            +
-            "% من إجمالي عمليات الفرز.";
+            " حالة إلى الفرز الذكي.";
 
     }
 
 
-    else if(
-        type === "smart"
-    ){
+    else if(type === "smart"){
 
         text =
             "تم تنفيذ "
             +
             smart.total
             +
-            " عملية فرز ذكي للأمراض المعدية خلال الفترة المحددة. "
-            +
-            "تم تحديد "
+            " عملية فرز ذكي خلال الفترة المحددة، منها "
             +
             smart.high
             +
-            " حالات باشتباه مرتفع، و"
+            " حالات باشتباه مرتفع و"
             +
             smart.hidden
             +
-            " حالات ذات خطر معدٍ خفي. وتم إرسال "
+            " حالات ذات خطر معدٍ خفي، وتم إرسال "
             +
             smart.notificationCount
             +
-            " بلاغات مرتبطة بنتائج الفرز، بنسبة تحويل "
+            " بلاغات مرتبطة بالفرز بنسبة تحويل "
             +
             smart.conversion
             +
@@ -3907,12 +3849,10 @@ function renderExecutiveSummary(
     }
 
 
-    else if(
-        type === "notifications"
-    ){
+    else if(type === "notifications"){
 
         text =
-            "بلغ إجمالي بلاغات الأمراض المعدية خلال الفترة المحددة "
+            "بلغ إجمالي البلاغات "
             +
             notification.total
             +
@@ -3933,16 +3873,14 @@ function renderExecutiveSummary(
     }
 
 
-    else if(
-        type === "employee"
-    ){
+    else if(type === "employee"){
 
         text =
             "بلغ إجمالي سجلات الفحص الدوري للموظفين "
             +
             employee.total
             +
-            " سجلًا خلال الفترة المحددة، منها "
+            " سجلًا، منها "
             +
             employee.completed
             +
@@ -3958,7 +3896,7 @@ function renderExecutiveSummary(
     else{
 
         text =
-            "يعرض هذا التقرير الشامل أداء الصحة العامة خلال الفترة المحددة. "
+            "يعرض هذا التقرير الشامل نشاط الصحة العامة خلال الفترة المحددة. "
             +
             "تم تسجيل "
             +
@@ -3972,7 +3910,7 @@ function renderExecutiveSummary(
             +
             notification.total
             +
-            " بلاغًا للأمراض المعدية، بالإضافة إلى "
+            " بلاغًا للأمراض المعدية، و"
             +
             employee.completed
             +
@@ -4037,9 +3975,7 @@ function hideAllReportSections(){
 }
 
 
-function applyReportSections(
-    type
-){
+function applyReportSections(type){
 
     hideAllReportSections();
 
@@ -4056,9 +3992,7 @@ function applyReportSections(
         );
 
 
-    if(
-        type === "full"
-    ){
+    if(type === "full"){
 
         [
             "kpiSection",
@@ -4110,9 +4044,7 @@ function applyReportSections(
     }
 
 
-    else if(
-        type === "rapid"
-    ){
+    else if(type === "rapid"){
 
         document.getElementById(
             "rapidSection"
@@ -4132,16 +4064,10 @@ function applyReportSections(
         mainOption.style.display =
             "none";
 
-
-        mainCheckbox.checked =
-            false;
-
     }
 
 
-    else if(
-        type === "smart"
-    ){
+    else if(type === "smart"){
 
         document.getElementById(
             "smartSection"
@@ -4161,16 +4087,10 @@ function applyReportSections(
         mainOption.style.display =
             "none";
 
-
-        mainCheckbox.checked =
-            false;
-
     }
 
 
-    else if(
-        type === "notifications"
-    ){
+    else if(type === "notifications"){
 
         document.getElementById(
             "notificationSection"
@@ -4190,16 +4110,10 @@ function applyReportSections(
         mainOption.style.display =
             "none";
 
-
-        mainCheckbox.checked =
-            false;
-
     }
 
 
-    else if(
-        type === "employee"
-    ){
+    else if(type === "employee"){
 
         document.getElementById(
             "employeeSection"
@@ -4219,30 +4133,22 @@ function applyReportSections(
         mainOption.style.display =
             "none";
 
-
-        mainCheckbox.checked =
-            false;
-
     }
 
 }
 
 
 /* =====================================================
-   CUSTOMIZE
+   CUSTOMIZATION
 ===================================================== */
 
 function toggleReportSection(
     checkbox
 ){
 
-    const id =
-        checkbox.dataset.target;
-
-
     const section =
         document.getElementById(
-            id
+            checkbox.dataset.target
         );
 
 

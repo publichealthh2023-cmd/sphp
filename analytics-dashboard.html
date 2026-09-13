@@ -673,10 +673,6 @@ body{
 </section>
 
 
-<!-- =====================================================
-     CONTROLS
-===================================================== -->
-
 <section class="control-panel">
 
 <div class="control-grid">
@@ -687,25 +683,11 @@ body{
 
 <select id="dashboardType" onchange="changeDashboardType()">
 
-<option value="overview">
-📊 الملخص العام
-</option>
-
-<option value="rapid">
-⚡ الفرز السريع
-</option>
-
-<option value="smart">
-🧠 الفرز الذكي
-</option>
-
-<option value="notifications">
-🦠 الأمراض المعدية والبلاغات
-</option>
-
-<option value="employee">
-🧪 الفحص الدوري للموظفين
-</option>
+<option value="overview">📊 الملخص العام</option>
+<option value="rapid">⚡ الفرز السريع</option>
+<option value="smart">🧠 الفرز الذكي</option>
+<option value="notifications">🦠 الأمراض المعدية والبلاغات</option>
+<option value="employee">🧪 الفحص الدوري للموظفين</option>
 
 </select>
 
@@ -797,9 +779,7 @@ body{
 </div>
 
 
-<!-- =====================================================
-     OVERVIEW
-===================================================== -->
+<!-- OVERVIEW -->
 
 <section id="overviewDashboard" class="dashboard-section active">
 
@@ -914,9 +894,7 @@ body{
 </section>
 
 
-<!-- =====================================================
-     RAPID
-===================================================== -->
+<!-- RAPID -->
 
 <section id="rapidDashboard" class="dashboard-section">
 
@@ -1059,9 +1037,7 @@ body{
 </section>
 
 
-<!-- =====================================================
-     SMART
-===================================================== -->
+<!-- SMART -->
 
 <section id="smartDashboard" class="dashboard-section">
 
@@ -1212,9 +1188,7 @@ body{
 </section>
 
 
-<!-- =====================================================
-     NOTIFICATIONS
-===================================================== -->
+<!-- NOTIFICATIONS -->
 
 <section id="notificationsDashboard" class="dashboard-section">
 
@@ -1343,9 +1317,7 @@ body{
 </section>
 
 
-<!-- =====================================================
-     EMPLOYEE
-===================================================== -->
+<!-- EMPLOYEE -->
 
 <section id="employeeDashboard" class="dashboard-section">
 
@@ -1434,9 +1406,7 @@ body{
 </section>
 
 
-<!-- =====================================================
-     SETTINGS
-===================================================== -->
+<!-- SETTINGS -->
 
 <section class="settings-area">
 
@@ -1596,10 +1566,6 @@ body{
 </main>
 
 
-<!-- =====================================================
-     CONFIG / API
-===================================================== -->
-
 <script src="config.js"></script>
 <script src="api.js"></script>
 
@@ -1620,6 +1586,21 @@ let filteredNotifications = [];
 let filteredRapid = [];
 let filteredSmart = [];
 let filteredEmployee = [];
+
+
+/* =====================================================
+   ENVIRONMENT
+===================================================== */
+
+function isServerMode(){
+
+    return (
+        window.SPHP_CONFIG &&
+        window.SPHP_CONFIG.dataMode ===
+        "server"
+    );
+
+}
 
 
 /* =====================================================
@@ -1723,7 +1704,9 @@ async function loadData(){
         );
 
         notifications =
-            readArrayLocal(
+            isServerMode()
+            ? []
+            : readArrayLocal(
                 "publicHealthNotifications"
             );
 
@@ -1756,7 +1739,9 @@ async function loadData(){
     catch(error){
 
         rapidRecords =
-            readArrayLocal(
+            isServerMode()
+            ? []
+            : readArrayLocal(
                 "rapidScreeningRecords"
             );
 
@@ -1789,7 +1774,9 @@ async function loadData(){
     catch(error){
 
         smartRecords =
-            readArrayLocal(
+            isServerMode()
+            ? []
+            : readArrayLocal(
                 "smartScreeningRecords"
             );
 
@@ -1822,7 +1809,9 @@ async function loadData(){
     catch(error){
 
         employeeRecords =
-            readArrayLocal(
+            isServerMode()
+            ? []
+            : readArrayLocal(
                 "employeeScreeningRecords"
             );
 
@@ -2000,10 +1989,7 @@ function getPeriod(){
         "جميع البيانات المسجلة";
 
 
-    if(
-        type ===
-        "currentMonth"
-    ){
+    if(type === "currentMonth"){
 
         start =
             new Date(
@@ -2027,10 +2013,7 @@ function getPeriod(){
 
     }
 
-    else if(
-        type ===
-        "previousMonth"
-    ){
+    else if(type === "previousMonth"){
 
         start =
             new Date(
@@ -2054,10 +2037,7 @@ function getPeriod(){
 
     }
 
-    else if(
-        type ===
-        "currentYear"
-    ){
+    else if(type === "currentYear"){
 
         start =
             new Date(
@@ -2082,10 +2062,7 @@ function getPeriod(){
 
     }
 
-    else if(
-        type ===
-        "previousYear"
-    ){
+    else if(type === "previousYear"){
 
         const year =
             now.getFullYear() - 1;
@@ -2113,10 +2090,7 @@ function getPeriod(){
 
     }
 
-    else if(
-        type ===
-        "custom"
-    ){
+    else if(type === "custom"){
 
         const from =
             document.getElementById(
@@ -2608,17 +2582,6 @@ function smartHasNotification(
     smart
 ){
 
-    /*
-      مهم:
-      الضغط على "بدء البلاغ" فقط لا يعتبر
-      بلاغًا مرسلًا.
-
-      يعتبر البلاغ مرتبطًا بعد:
-      notificationSent = true
-      أو وجود notificationId
-      أو وجود البلاغ فعليًا في صندوق الصحة العامة.
-    */
-
     if(
         smart.notificationSent === true
         ||
@@ -2689,9 +2652,7 @@ function formatDuration(seconds){
         Number(seconds) || 0;
 
 
-    if(
-        seconds <= 0
-    ){
+    if(seconds <= 0){
 
         return "0 ث";
 
@@ -2710,9 +2671,7 @@ function formatDuration(seconds){
         );
 
 
-    if(
-        minutes === 0
-    ){
+    if(minutes === 0){
 
         return (
             remaining +
@@ -3554,11 +3513,6 @@ function renderSmart(){
             smartHasNotification
         ).length;
 
-
-    /*
-      النسبة من إجمالي الفرز الذكي،
-      وليست فقط الاشتباه المرتفع.
-    */
 
     const conversion =
         numberPercent(
@@ -4451,38 +4405,133 @@ function renderEmployeeTable(){
 
 /* =====================================================
    REPORT SETTINGS
+
+   مهم:
+   لا نستبدل الإعدادات القديمة.
+   نقرأها أولًا ثم ندمج التغييرات الجديدة معها
+   حتى لا يتم حذف التوقيعات والاعتماد.
 ===================================================== */
 
-async function saveReportSettings(
-    showMessage = true
-){
-
-    const data = {
-
-        preparedByName:
-            document.getElementById(
-                "preparedByName"
-            ).value.trim(),
-
-        preparedByTitle:
-            document.getElementById(
-                "preparedByTitle"
-            ).value.trim(),
-
-        approvedByName:
-            document.getElementById(
-                "approvedByName"
-            ).value.trim(),
-
-        approvedByTitle:
-            document.getElementById(
-                "approvedByTitle"
-            ).value.trim()
-
-    };
-
+async function getCurrentReportSettings(){
 
     try{
+
+        if(
+            window.SPHP &&
+            window.SPHP.settings &&
+            typeof window.SPHP.settings.getReportSettings ===
+            "function"
+        ){
+
+            const data =
+                await window.SPHP
+                .settings
+                .getReportSettings();
+
+
+            return (
+                data &&
+                typeof data === "object" &&
+                !Array.isArray(data)
+            )
+            ? data
+            : {};
+
+        }
+
+
+        if(
+            !isServerMode()
+        ){
+
+            return readObjectLocal(
+                "publicHealthReportSettings"
+            );
+
+        }
+
+
+        throw new Error(
+            "Report settings service unavailable."
+        );
+
+    }
+    catch(error){
+
+        console.error(
+            "Get current report settings error:",
+            error
+        );
+
+
+        if(
+            !isServerMode()
+        ){
+
+            return readObjectLocal(
+                "publicHealthReportSettings"
+            );
+
+        }
+
+
+        throw error;
+
+    }
+
+}
+
+
+async function saveReportSettings(
+    showAlert = true
+){
+
+    try{
+
+        /*
+          أولًا نقرأ الإعدادات الحالية كاملة.
+          هنا توجد التوقيعات وحالة الاعتماد.
+        */
+
+        const existing =
+            await getCurrentReportSettings();
+
+
+        /*
+          نغير فقط الحقول التي تظهر في لوحة المؤشرات،
+          ونُبقي جميع الحقول الأخرى كما هي.
+        */
+
+        const mergedData = {
+
+            ...existing,
+
+            preparedByName:
+                document.getElementById(
+                    "preparedByName"
+                ).value.trim(),
+
+            preparedByTitle:
+                document.getElementById(
+                    "preparedByTitle"
+                ).value.trim(),
+
+            approvedByName:
+                document.getElementById(
+                    "approvedByName"
+                ).value.trim(),
+
+            approvedByTitle:
+                document.getElementById(
+                    "approvedByTitle"
+                ).value.trim(),
+
+            updatedAt:
+                new Date()
+                .toISOString()
+
+        };
+
 
         if(
             window.SPHP &&
@@ -4494,28 +4543,38 @@ async function saveReportSettings(
             await window.SPHP
             .settings
             .saveReportSettings(
-                data
+                mergedData
+            );
+
+        }
+        else if(
+            !isServerMode()
+        ){
+
+            localStorage.setItem(
+
+                "publicHealthReportSettings",
+
+                JSON.stringify(
+                    mergedData
+                )
+
             );
 
         }
         else{
 
-            localStorage.setItem(
-                "publicHealthReportSettings",
-                JSON.stringify({
-                    ...data,
-                    updatedAt:
-                        new Date().toISOString()
-                })
+            throw new Error(
+                "Report settings service unavailable."
             );
 
         }
 
 
-        if(showMessage){
+        if(showAlert){
 
             alert(
-                "✅ تم حفظ بيانات التقرير."
+                "✅ تم حفظ بيانات التقرير مع الاحتفاظ بالتوقيعات والاعتماد."
             );
 
         }
@@ -4532,10 +4591,10 @@ async function saveReportSettings(
         );
 
 
-        if(showMessage){
+        if(showAlert){
 
             alert(
-                "تعذر حفظ بيانات التقرير."
+                "⚠️ تعذر حفظ بيانات التقرير."
             );
 
         }
@@ -4555,35 +4614,19 @@ async function loadReportSettings(){
 
     try{
 
-        if(
-            window.SPHP &&
-            window.SPHP.settings &&
-            typeof window.SPHP.settings.getReportSettings ===
-            "function"
-        ){
-
-            data =
-                await window.SPHP
-                .settings
-                .getReportSettings();
-
-        }
-        else{
-
-            data =
-                readObjectLocal(
-                    "publicHealthReportSettings"
-                );
-
-        }
+        data =
+            await getCurrentReportSettings();
 
     }
     catch(error){
 
-        data =
-            readObjectLocal(
-                "publicHealthReportSettings"
-            );
+        console.error(
+            "Load report settings error:",
+            error
+        );
+
+
+        data = {};
 
     }
 
@@ -4620,9 +4663,26 @@ async function loadReportSettings(){
 
 async function createOfficialReport(){
 
-    await saveReportSettings(
-        false
-    );
+    /*
+      نحفظ الأسماء مع دمجها مع الإعدادات الحالية،
+      وبالتالي لا نحذف التوقيعات.
+    */
+
+    const saved =
+        await saveReportSettings(
+            false
+        );
+
+
+    if(!saved){
+
+        alert(
+            "⚠️ لم يتم إنشاء التقرير لأن حفظ إعدادات التقرير لم ينجح."
+        );
+
+        return;
+
+    }
 
 
     const dashboard =
@@ -4870,7 +4930,9 @@ async function renderBaseline(){
     catch(error){
 
         data =
-            readObjectLocal(
+            isServerMode()
+            ? {}
+            : readObjectLocal(
                 "smartScreeningBaseline"
             );
 
