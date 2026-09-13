@@ -121,9 +121,42 @@ body{
     opacity:.9;
 }
 
+.refresh-btn:disabled{
+    opacity:.55;
+    cursor:not-allowed;
+}
+
 .last-update{
     color:#607387;
     font-size:13px;
+}
+
+
+/* =====================================================
+   SYSTEM MESSAGE
+===================================================== */
+
+.system-message{
+    display:none;
+    margin-bottom:18px;
+    padding:14px 16px;
+    border-radius:10px;
+    line-height:1.7;
+    font-size:13px;
+}
+
+.system-message.error{
+    display:block;
+    background:#fff0f0;
+    border-right:5px solid #c62828;
+    color:#7d2525;
+}
+
+.system-message.info{
+    display:block;
+    background:#eef7ff;
+    border-right:5px solid #0759a6;
+    color:#31556f;
 }
 
 
@@ -462,6 +495,7 @@ body{
 
 <div class="hero-grid">
 
+
 <div class="side-logo left-logo">
 
 <img
@@ -496,6 +530,7 @@ Public Health Notification Inbox
 
 </div>
 
+
 </div>
 
 </header>
@@ -527,14 +562,21 @@ Public Health Notification Inbox
 </div>
 
 <button
+    id="refreshButton"
     type="button"
     class="refresh-btn"
-    onclick="load()">
+    onclick="loadNotifications()">
 
 🔄 تحديث البلاغات
 
 </button>
 
+</div>
+
+
+<div
+    id="systemMessage"
+    class="system-message">
 </div>
 
 
@@ -891,10 +933,23 @@ HESN+
 </main>
 
 
+<!-- =====================================================
+     CONFIG / API
+===================================================== -->
+
+<script src="config.js"></script>
+<script src="api.js"></script>
+
+
 <script>
 
 
+/* =====================================================
+   STATE
+===================================================== */
+
 let list = [];
+let loading = false;
 
 
 /* =====================================================
@@ -910,6 +965,23 @@ function safeArray(value){
 }
 
 
+function escapeHTML(value){
+
+    return String(
+        value === undefined ||
+        value === null
+        ? ""
+        : value
+    )
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
 function localNowText(){
 
     return new Date()
@@ -920,12 +992,103 @@ function localNowText(){
 }
 
 
+function isLocalMode(){
+
+    return (
+        !window.SPHP_CONFIG
+        ||
+        window.SPHP_CONFIG.dataMode !==
+        "server"
+    );
+
+}
+
+
+function readLocalNotifications(){
+
+    try{
+
+        const data =
+            JSON.parse(
+                localStorage.getItem(
+                    "publicHealthNotifications"
+                )
+                ||
+                "[]"
+            );
+
+
+        return safeArray(
+            data
+        );
+
+    }
+    catch(error){
+
+        console.warn(
+            "Unable to read local notifications:",
+            error
+        );
+
+
+        return [];
+
+    }
+
+}
+
+
+function showSystemMessage(
+    message,
+    type
+){
+
+    const element =
+        document.getElementById(
+            "systemMessage"
+        );
+
+
+    if(
+        !message
+    ){
+
+        element.className =
+            "system-message";
+
+
+        element.textContent =
+            "";
+
+
+        return;
+
+    }
+
+
+    element.className =
+        "system-message "
+        +
+        (
+            type === "error"
+            ? "error"
+            : "info"
+        );
+
+
+    element.textContent =
+        message;
+
+}
+
+
 function parseDate(item){
 
     const candidates = [
 
         item.createdAt,
         item.reportDateTime,
+        item.detectionDateTime,
         item.date
 
     ];
@@ -968,40 +1131,107 @@ function parseDate(item){
 }
 
 
+function getDisplayDate(item){
+
+    const timestamp =
+        parseDate(
+            item
+        );
+
+
+    if(!timestamp){
+
+        return "—";
+
+    }
+
+
+    return new Date(
+        timestamp
+    )
+    .toLocaleString(
+        "ar-SA"
+    );
+
+}
+
+
 /* =====================================================
    LOAD
 ===================================================== */
 
-async function load(){
+async function loadNotifications(){
+
+    if(loading){
+        return;
+    }
+
+
+    loading =
+        true;
+
+
+    const button =
+        document.getElementById(
+            "refreshButton"
+        );
+
+
+    button.disabled =
+        true;
+
+
+    button.textContent =
+        "⏳ جاري التحديث...";
+
+
+    showSystemMessage(
+        "",
+        ""
+    );
+
 
     try{
 
-        let data = [];
+        let data;
 
+
+        /*
+          المصدر الرئيسي دائمًا هو API Layer.
+        */
 
         if(
-            typeof getPublicHealthNotifications ===
+            window.SPHP &&
+            window.SPHP.notifications &&
+            typeof window.SPHP.notifications.getAll ===
             "function"
         ){
 
             data =
-                await getPublicHealthNotifications();
+                await window.SPHP
+                .notifications
+                .getAll();
 
         }
-        else{
+
+        /*
+          fallback محلي للتطوير فقط.
+        */
+
+        else if(
+            isLocalMode()
+        ){
 
             data =
-                JSON.parse(
+                readLocalNotifications();
 
-                    localStorage.getItem(
-                        "publicHealthNotifications"
-                    )
+        }
 
-                    ||
+        else{
 
-                    "[]"
-
-                );
+            throw new Error(
+                "Notification service is unavailable."
+            );
 
         }
 
@@ -1011,69 +1241,118 @@ async function load(){
                 data
             );
 
+
+        /*
+          الأحدث أولًا
+        */
+
+        list.sort(
+            function(a,b){
+
+                return (
+                    parseDate(b) -
+                    parseDate(a)
+                );
+
+            }
+        );
+
+
+        document.getElementById(
+            "lastUpdate"
+        ).textContent =
+            localNowText();
+
+
+        stats();
+
+        render();
+
     }
     catch(error){
 
         console.error(
-            "Inbox API error:",
+            "Inbox load error:",
             error
         );
 
 
-        try{
+        /*
+          في وضع التطوير المحلي فقط
+          نستطيع الرجوع إلى localStorage.
+        */
+
+        if(
+            isLocalMode()
+        ){
 
             list =
-                safeArray(
+                readLocalNotifications();
 
-                    JSON.parse(
 
-                        localStorage.getItem(
-                            "publicHealthNotifications"
-                        )
+            list.sort(
+                function(a,b){
 
-                        ||
+                    return (
+                        parseDate(b) -
+                        parseDate(a)
+                    );
 
-                        "[]"
+                }
+            );
 
-                    )
 
-                );
+            stats();
+
+            render();
+
+
+            showSystemMessage(
+                "تعذر استخدام طبقة البيانات، وتم عرض البيانات المحلية الخاصة ببيئة التطوير.",
+                "info"
+            );
 
         }
-        catch(secondError){
 
-            list = [];
+        /*
+          في وضع المستشفى لا نعرض نسخة محلية قديمة
+          على أنها بيانات رسمية.
+        */
+
+        else{
+
+            showSystemMessage(
+                "تعذر الاتصال بخادم البوابة. لم يتم استبدال البيانات ببيانات محلية. يرجى المحاولة مرة أخرى أو التواصل مع مسؤول النظام.",
+                "error"
+            );
+
+
+            /*
+              نترك البيانات الموجودة على الشاشة كما هي
+              إن كانت محملة سابقًا.
+            */
+
+            stats();
+
+            render();
 
         }
 
     }
+    finally{
+
+        loading =
+            false;
 
 
-    /*
-      الأحدث أولًا
-    */
-
-    list.sort(
-        function(a,b){
-
-            return (
-                parseDate(b) -
-                parseDate(a)
-            );
-
-        }
-    );
+        button.disabled =
+            false;
 
 
-    document.getElementById(
-        "lastUpdate"
-    ).textContent =
-        localNowText();
+        button.textContent =
+            "🔄 تحديث البلاغات";
 
-
-    stats();
-
-    render();
+    }
 
 }
 
@@ -1097,8 +1376,10 @@ function stats(){
             function(item){
 
                 return (
-                    !item.status ||
-                    item.status === "new"
+                    !item.status
+                    ||
+                    item.status ===
+                    "new"
                 );
 
             }
@@ -1178,22 +1459,32 @@ function stats(){
 
 function statusBadge(status){
 
-    if(status === "closed"){
+    if(
+        status ===
+        "closed"
+    ){
 
         return (
-            '<span class="badge closed">' +
-            'مغلق' +
+            '<span class="badge closed">'
+            +
+            'مغلق'
+            +
             '</span>'
         );
 
     }
 
 
-    if(status === "progress"){
+    if(
+        status ===
+        "progress"
+    ){
 
         return (
-            '<span class="badge progress">' +
-            'تحت المتابعة' +
+            '<span class="badge progress">'
+            +
+            'تحت المتابعة'
+            +
             '</span>'
         );
 
@@ -1201,8 +1492,10 @@ function statusBadge(status){
 
 
     return (
-        '<span class="badge new">' +
-        'جديد' +
+        '<span class="badge new">'
+        +
+        'جديد'
+        +
         '</span>'
     );
 
@@ -1211,11 +1504,16 @@ function statusBadge(status){
 
 function priorityBadge(priority){
 
-    if(priority === "urgent"){
+    if(
+        priority ===
+        "urgent"
+    ){
 
         return (
-            '<span class="badge urgent">' +
-            '🚨 عاجل' +
+            '<span class="badge urgent">'
+            +
+            '🚨 عاجل'
+            +
             '</span>'
         );
 
@@ -1223,8 +1521,10 @@ function priorityBadge(priority){
 
 
     return (
-        '<span class="badge normal">' +
-        'عادي' +
+        '<span class="badge normal">'
+        +
+        'عادي'
+        +
         '</span>'
     );
 
@@ -1239,8 +1539,10 @@ function sourceBadge(item){
     ){
 
         return (
-            '<span class="badge foodborne-source">' +
-            '🍽️ فاشية غذائية' +
+            '<span class="badge foodborne-source">'
+            +
+            '🍽️ فاشية غذائية'
+            +
             '</span>'
         );
 
@@ -1253,8 +1555,10 @@ function sourceBadge(item){
     ){
 
         return (
-            '<span class="badge food-individual-source">' +
-            '🥘 تسمم غذائي فردي' +
+            '<span class="badge food-individual-source">'
+            +
+            '🥘 تسمم غذائي فردي'
+            +
             '</span>'
         );
 
@@ -1267,8 +1571,10 @@ function sourceBadge(item){
     ){
 
         return (
-            '<span class="badge smart-source">' +
-            '🧠 الفرز الذكي' +
+            '<span class="badge smart-source">'
+            +
+            '🧠 الفرز الذكي'
+            +
             '</span>'
         );
 
@@ -1276,8 +1582,10 @@ function sourceBadge(item){
 
 
     return (
-        '<span class="badge manual-source">' +
-        'إدخال مباشر' +
+        '<span class="badge manual-source">'
+        +
+        'إدخال مباشر'
+        +
         '</span>'
     );
 
@@ -1292,8 +1600,10 @@ function hesnBadge(status){
     ){
 
         return (
-            '<span class="badge hesn-entered">' +
-            '✅ تم الإدخال' +
+            '<span class="badge hesn-entered">'
+            +
+            '✅ تم الإدخال'
+            +
             '</span>'
         );
 
@@ -1306,8 +1616,10 @@ function hesnBadge(status){
     ){
 
         return (
-            '<span class="badge hesn-not-required">' +
-            'لا يتطلب' +
+            '<span class="badge hesn-not-required">'
+            +
+            'لا يتطلب'
+            +
             '</span>'
         );
 
@@ -1315,8 +1627,10 @@ function hesnBadge(status){
 
 
     return (
-        '<span class="badge hesn-pending">' +
-        '⏳ لم يُدخل' +
+        '<span class="badge hesn-pending">'
+        +
+        '⏳ لم يُدخل'
+        +
         '</span>'
     );
 
@@ -1347,13 +1661,17 @@ function getPatientDisplay(item){
         return {
 
             title:
-                food.sourceName ||
-                food.consumptionPlace ||
-                item.patientName ||
+                food.sourceName
+                ||
+                food.consumptionPlace
+                ||
+                item.patientName
+                ||
                 "فاشية غذائية",
 
             subtitle:
-                food.suspectedFood ||
+                food.suspectedFood
+                ||
                 ""
 
         };
@@ -1364,13 +1682,18 @@ function getPatientDisplay(item){
     return {
 
         title:
-            item.patientName ||
+            item.patientName
+            ||
             "—",
 
         subtitle:
             item.mrn
-            ? "MRN: " + item.mrn
-            : ""
+            ?
+            "MRN: "
+            +
+            item.mrn
+            :
+            ""
 
     };
 
@@ -1380,7 +1703,6 @@ function getPatientDisplay(item){
 function getDepartment(item){
 
     return (
-
         item.reporterDepartment
 
         ||
@@ -1401,30 +1723,6 @@ function getDepartment(item){
         ||
 
         "—"
-
-    );
-
-}
-
-
-function getDisplayDate(item){
-
-    return (
-
-        item.reportDateTime
-
-        ||
-
-        item.date
-
-        ||
-
-        item.createdAt
-
-        ||
-
-        "—"
-
     );
 
 }
@@ -1523,27 +1821,31 @@ function render(){
 
                 const searchText =
                     (
-
-                        (item.id || "") +
-                        " " +
-
-                        (item.disease || "") +
-                        " " +
-
-                        (patient.title || "") +
-                        " " +
-
-                        (patient.subtitle || "") +
-                        " " +
-
-                        (getDepartment(item) || "") +
-                        " " +
-
-                        (food.sourceName || "") +
-                        " " +
-
+                        (item.id || "")
+                        +
+                        " "
+                        +
+                        (item.disease || "")
+                        +
+                        " "
+                        +
+                        (patient.title || "")
+                        +
+                        " "
+                        +
+                        (patient.subtitle || "")
+                        +
+                        " "
+                        +
+                        (getDepartment(item) || "")
+                        +
+                        " "
+                        +
+                        (food.sourceName || "")
+                        +
+                        " "
+                        +
                         (food.suspectedFood || "")
-
                     )
                     .toLowerCase();
 
@@ -1565,9 +1867,9 @@ function render(){
 
 
                 return (
-
                     (
-                        !query ||
+                        !query
+                        ||
                         searchText.includes(
                             query
                         )
@@ -1576,7 +1878,8 @@ function render(){
                     &&
 
                     (
-                        !status ||
+                        !status
+                        ||
                         itemStatus ===
                         status
                     )
@@ -1584,7 +1887,8 @@ function render(){
                     &&
 
                     (
-                        !priority ||
+                        !priority
+                        ||
                         item.priority ===
                         priority
                     )
@@ -1592,7 +1896,8 @@ function render(){
                     &&
 
                     (
-                        !source ||
+                        !source
+                        ||
                         sourceValue ===
                         source
                     )
@@ -1600,21 +1905,24 @@ function render(){
                     &&
 
                     (
-                        !hesn ||
+                        !hesn
+                        ||
                         itemHesn ===
                         hesn
                     )
-
                 );
 
             }
         );
 
 
-    document.getElementById(
-        "body"
-    ).innerHTML =
+    const body =
+        document.getElementById(
+            "body"
+        );
 
+
+    body.innerHTML =
         filtered
         .map(
             function(item){
@@ -1625,11 +1933,13 @@ function render(){
                     );
 
 
-                const rowClasses = [];
+                const rowClasses =
+                    [];
 
 
                 if(
-                    !item.status ||
+                    !item.status
+                    ||
                     item.status ===
                     "new"
                 ){
@@ -1653,48 +1963,81 @@ function render(){
                 }
 
 
+                const safeId =
+                    String(
+                        item.id ||
+                        ""
+                    );
+
+
                 return `
 
                 <tr class="${rowClasses.join(" ")}">
 
                     <td>
+
                         <strong>
-                        ${item.id || "—"}
+                        ${escapeHTML(
+                            item.id ||
+                            "—"
+                        )}
                         </strong>
+
                     </td>
 
                     <td>
-                        ${getDisplayDate(item)}
+                        ${escapeHTML(
+                            getDisplayDate(
+                                item
+                            )
+                        )}
                     </td>
 
                     <td class="patient-cell">
 
                         <strong>
-                        ${patient.title}
+                        ${escapeHTML(
+                            patient.title
+                        )}
                         </strong>
 
                         ${
                             patient.subtitle
-                            ? (
-                                "<small>" +
-                                patient.subtitle +
+                            ?
+                            (
+                                "<small>"
+                                +
+                                escapeHTML(
+                                    patient.subtitle
+                                )
+                                +
                                 "</small>"
                             )
-                            : ""
+                            :
+                            ""
                         }
 
                     </td>
 
                     <td>
-                        ${item.disease || "—"}
+                        ${escapeHTML(
+                            item.disease ||
+                            "—"
+                        )}
                     </td>
 
                     <td>
-                        ${getDepartment(item)}
+                        ${escapeHTML(
+                            getDepartment(
+                                item
+                            )
+                        )}
                     </td>
 
                     <td>
-                        ${sourceBadge(item)}
+                        ${sourceBadge(
+                            item
+                        )}
                     </td>
 
                     <td>
@@ -1717,18 +2060,23 @@ function render(){
 
                     <td>
 
-                        <a
-                            class="open"
-                            href="notification-details.html?id=${
-                                encodeURIComponent(
-                                    item.id ||
-                                    ""
-                                )
-                            }">
+                        ${
+                            safeId
+                            ?
+                            `
 
-                        فتح البلاغ
+                            <a
+                                class="open"
+                                href="notification-details.html?id=${encodeURIComponent(safeId)}">
 
-                        </a>
+                            فتح البلاغ
+
+                            </a>
+
+                            `
+                            :
+                            "—"
+                        }
 
                     </td>
 
@@ -1744,10 +2092,11 @@ function render(){
     document.getElementById(
         "empty"
     ).style.display =
-
         filtered.length
-        ? "none"
-        : "block";
+        ?
+        "none"
+        :
+        "block";
 
 }
 
@@ -1765,7 +2114,7 @@ window.addEventListener(
             "publicHealthNotifications"
         ){
 
-            load();
+            loadNotifications();
 
         }
 
@@ -1774,15 +2123,23 @@ window.addEventListener(
 
 
 /*
-  تحديث تلقائي كل 30 ثانية.
-  عند الانتقال للسيرفر المحلي يمكننا
-  تقليل المدة أو استخدام WebSocket.
+  التحديث كل 30 ثانية مناسب الآن.
+
+  مستقبلًا عند تشغيل النظام على الخادم الداخلي
+  يمكن استخدام تحديث لحظي عبر WebSocket أو SSE.
 */
 
 setInterval(
     function(){
 
-        load();
+        if(
+            document.visibilityState ===
+            "visible"
+        ){
+
+            loadNotifications();
+
+        }
 
     },
     30000
@@ -1795,15 +2152,17 @@ setInterval(
 
 document.addEventListener(
     "DOMContentLoaded",
-    load
+    function(){
+
+        loadNotifications();
+
+    }
 );
 
 
 </script>
 
 
-<script src="config.js"></script>
-<script src="api.js"></script>
-
 </body>
+
 </html>
