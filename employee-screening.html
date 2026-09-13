@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
@@ -128,6 +127,11 @@ textarea{
     color:white;
 }
 
+.save-btn:disabled{
+    opacity:.65;
+    cursor:not-allowed;
+}
+
 .print-btn{
     background:#687984;
     color:white;
@@ -200,7 +204,9 @@ textarea{
 <div class="hero-grid">
 
     <div class="side-logo left-logo">
-        <img src="images/cluster-logo.png">
+        <img
+            src="images/cluster-logo.png"
+            alt="Hafr Al-Batin Health Cluster">
     </div>
 
     <div class="hero-center">
@@ -220,7 +226,9 @@ textarea{
     </div>
 
     <div class="side-logo right-logo">
-        <img src="images/hospital-logo.png">
+        <img
+            src="images/hospital-logo.png"
+            alt="Hospital Logo">
     </div>
 
 </div>
@@ -440,54 +448,60 @@ textarea{
 
     <div class="check-item">
         <label>
-            <input type="checkbox"
-                   name="test"
-                   value="HBsAb">
+            <input
+                type="checkbox"
+                name="test"
+                value="HBsAb">
             Hepatitis B / HBsAb
         </label>
     </div>
 
     <div class="check-item">
         <label>
-            <input type="checkbox"
-                   name="test"
-                   value="MMR">
+            <input
+                type="checkbox"
+                name="test"
+                value="MMR">
             MMR
         </label>
     </div>
 
     <div class="check-item">
         <label>
-            <input type="checkbox"
-                   name="test"
-                   value="Varicella">
+            <input
+                type="checkbox"
+                name="test"
+                value="Varicella">
             Varicella
         </label>
     </div>
 
     <div class="check-item">
         <label>
-            <input type="checkbox"
-                   name="test"
-                   value="TB">
+            <input
+                type="checkbox"
+                name="test"
+                value="TB">
             TB Screening
         </label>
     </div>
 
     <div class="check-item">
         <label>
-            <input type="checkbox"
-                   name="test"
-                   value="Influenza">
+            <input
+                type="checkbox"
+                name="test"
+                value="Influenza">
             Influenza
         </label>
     </div>
 
     <div class="check-item">
         <label>
-            <input type="checkbox"
-                   name="test"
-                   value="Other">
+            <input
+                type="checkbox"
+                name="test"
+                value="Other">
             فحص / مناعة أخرى
         </label>
     </div>
@@ -495,8 +509,9 @@ textarea{
 </div>
 
 
-<div class="form-grid"
-     style="margin-top:15px;">
+<div
+    class="form-grid"
+    style="margin-top:15px;">
 
 
     <div class="form-group">
@@ -657,6 +672,7 @@ textarea{
 
 
 <button
+    type="button"
     class="review-btn"
     onclick="reviewScreening()">
 
@@ -666,6 +682,8 @@ textarea{
 
 
 <button
+    type="button"
+    id="saveButton"
     class="save-btn"
     onclick="saveScreening()">
 
@@ -675,6 +693,7 @@ textarea{
 
 
 <button
+    type="button"
     class="print-btn"
     onclick="window.print()">
 
@@ -703,13 +722,14 @@ textarea{
 
 
 
-<div class="privacy-note">
+<div
+    id="privacyNote"
+    class="privacy-note">
 
-    🔐 في النسخة التجريبية يتم حفظ البيانات داخل المتصفح
-    باستخدام Local Storage.
+    🔐 في النسخة التجريبية يتم حفظ البيانات داخل المتصفح.
 
-    عند التشغيل الفعلي داخل بيئة العمل سيتم نقل البيانات
-    إلى قاعدة بيانات داخلية بصلاحيات محددة.
+    عند التشغيل الفعلي داخل بيئة العمل سيتم حفظ البيانات
+    من خلال قاعدة بيانات داخلية وصلاحيات وصول معتمدة.
 
 </div>
 
@@ -717,21 +737,57 @@ textarea{
 </main>
 
 
+<!-- =====================================================
+     CONFIG / API
+===================================================== -->
+
+<script src="config.js"></script>
+<script src="api.js"></script>
+
 
 <script>
 
 
-function getValue(id){
+/* =====================================================
+   STATE
+===================================================== */
 
-    const el =
-        document.getElementById(id);
+let savingScreening =
+    false;
 
-    return el
-        ? el.value
-        : "";
+
+/* =====================================================
+   ENVIRONMENT
+===================================================== */
+
+function isServerMode(){
+
+    return (
+        window.SPHP_CONFIG &&
+        window.SPHP_CONFIG.dataMode ===
+        "server"
+    );
 
 }
 
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function getValue(id){
+
+    const element =
+        document.getElementById(
+            id
+        );
+
+
+    return element
+        ? element.value
+        : "";
+
+}
 
 
 function getCheckedTests(){
@@ -742,37 +798,42 @@ function getCheckedTests(){
             'input[name="test"]:checked'
         )
 
-    ).map(
-
+    )
+    .map(
         function(item){
 
             return item.value;
 
         }
-
     );
 
 }
 
 
-
-function showResult(message,error){
+function showResult(
+    message,
+    error
+){
 
     const box =
         document.getElementById(
             "resultBox"
         );
 
+
     box.style.display =
         "block";
+
 
     box.classList.toggle(
         "error",
         !!error
     );
 
+
     box.innerHTML =
         message;
+
 
     box.scrollIntoView({
         behavior:"smooth"
@@ -781,15 +842,32 @@ function showResult(message,error){
 }
 
 
+/* =====================================================
+   VALIDATION
+===================================================== */
 
 function validateScreening(){
 
     if(
-        !getValue("employeeName").trim() ||
-        !getValue("employeeId").trim() ||
-        !getValue("department") ||
-        !getValue("sampleDate") ||
-        !getValue("screeningStatus")
+        !getValue(
+            "employeeName"
+        ).trim()
+        ||
+        !getValue(
+            "employeeId"
+        ).trim()
+        ||
+        !getValue(
+            "department"
+        )
+        ||
+        !getValue(
+            "sampleDate"
+        )
+        ||
+        !getValue(
+            "screeningStatus"
+        )
     ){
 
         showResult(
@@ -797,36 +875,72 @@ function validateScreening(){
             true
         );
 
+
         return false;
 
     }
+
 
     return true;
 
 }
 
 
+/* =====================================================
+   REVIEW
+===================================================== */
 
 function reviewScreening(){
 
-    if(!validateScreening()){
+    if(
+        !validateScreening()
+    ){
+
         return false;
+
     }
 
 
     showResult(
 
-        "✅ بيانات الفحص مكتملة وجاهزة للحفظ." +
+        "✅ بيانات الفحص مكتملة وجاهزة للحفظ."
 
-        "<br><strong>الموظف:</strong> " +
-        getValue("employeeName") +
+        +
 
-        "<br><strong>القسم:</strong> " +
-        getValue("department") +
+        "<br><strong>الموظف:</strong> "
 
-        "<br><strong>حالة الفحص:</strong> " +
-        getStatusArabic(
-            getValue("screeningStatus")
+        +
+
+        escapeHTML(
+            getValue(
+                "employeeName"
+            )
+        )
+
+        +
+
+        "<br><strong>القسم:</strong> "
+
+        +
+
+        escapeHTML(
+            getValue(
+                "department"
+            )
+        )
+
+        +
+
+        "<br><strong>حالة الفحص:</strong> "
+
+        +
+
+        escapeHTML(
+            getStatusArabic(
+                getValue(
+                    "screeningStatus"
+                )
+            )
         ),
 
         false
@@ -839,33 +953,50 @@ function reviewScreening(){
 }
 
 
+/* =====================================================
+   ID
+===================================================== */
 
 function generateRecordId(){
 
     const date =
         new Date()
         .toISOString()
-        .slice(0,10)
-        .replaceAll("-","");
+        .slice(
+            0,
+            10
+        )
+        .replaceAll(
+            "-",
+            ""
+        );
 
 
     const number =
         Math.floor(
             1000 +
-            Math.random() * 9000
+            Math.random() *
+            9000
         );
 
 
-    return "OH-" +
-           date +
-           "-" +
-           number;
+    return (
+        "OH-" +
+        date +
+        "-" +
+        number
+    );
 
 }
 
 
+/* =====================================================
+   STATUS
+===================================================== */
 
-function getStatusArabic(status){
+function getStatusArabic(
+    status
+){
 
     const map = {
 
@@ -877,30 +1008,315 @@ function getStatusArabic(status){
     };
 
 
-    return map[status] || status;
+    return (
+        map[
+            status
+        ]
+        ||
+        status
+    );
 
 }
 
 
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
 
-function saveScreening(){
+function escapeHTML(
+    value
+){
 
-    if(!validateScreening()){
-        return;
+    return String(
+        value ??
+        ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+/* =====================================================
+   LOCAL FALLBACK
+===================================================== */
+
+function readEmployeeRecordsLocal(){
+
+    if(
+        isServerMode()
+    ){
+
+        return [];
+
     }
 
 
-    const record = {
+    try{
+
+        const data =
+            JSON.parse(
+
+                localStorage.getItem(
+                    "employeeScreeningRecords"
+                )
+
+                ||
+
+                "[]"
+
+            );
+
+
+        return Array.isArray(
+            data
+        )
+        ?
+        data
+        :
+        [];
+
+    }
+    catch(error){
+
+        console.warn(
+            "Unable to read employee screening records:",
+            error
+        );
+
+
+        return [];
+
+    }
+
+}
+
+
+function writeEmployeeRecordsLocal(
+    records
+){
+
+    if(
+        isServerMode()
+    ){
+
+        throw new Error(
+            "Local employee screening storage is disabled in server mode."
+        );
+
+    }
+
+
+    localStorage.setItem(
+
+        "employeeScreeningRecords",
+
+        JSON.stringify(
+            Array.isArray(
+                records
+            )
+            ?
+            records
+            :
+            []
+        )
+
+    );
+
+}
+
+
+/* =====================================================
+   DATA ACCESS
+===================================================== */
+
+async function getEmployeeRecords(){
+
+    if(
+        window.SPHP &&
+        window.SPHP.employeeScreenings &&
+        typeof window.SPHP.employeeScreenings.getAll ===
+        "function"
+    ){
+
+        try{
+
+            const records =
+                await window.SPHP
+                .employeeScreenings
+                .getAll();
+
+
+            return Array.isArray(
+                records
+            )
+            ?
+            records
+            :
+            [];
+
+        }
+        catch(error){
+
+            console.error(
+                "SPHP employee screening read failed:",
+                error
+            );
+
+
+            if(
+                isServerMode()
+            ){
+
+                throw error;
+
+            }
+
+        }
+
+    }
+
+
+    if(
+        !isServerMode()
+    ){
+
+        return readEmployeeRecordsLocal();
+
+    }
+
+
+    throw new Error(
+        "Employee screening service unavailable."
+    );
+
+}
+
+
+/* =====================================================
+   SAVE RECORD
+===================================================== */
+
+async function saveEmployeeRecord(
+    record
+){
+
+    if(
+        window.SPHP &&
+        window.SPHP.employeeScreenings &&
+        typeof window.SPHP.employeeScreenings.upsert ===
+        "function"
+    ){
+
+        return await window.SPHP
+        .employeeScreenings
+        .upsert(
+            record
+        );
+
+    }
+
+
+    if(
+        !isServerMode()
+    ){
+
+        const records =
+            readEmployeeRecordsLocal();
+
+
+        const index =
+            records.findIndex(
+                function(item){
+
+                    return (
+                        item &&
+                        item.id ===
+                        record.id
+                    );
+
+                }
+            );
+
+
+        if(
+            index >= 0
+        ){
+
+            records[
+                index
+            ] =
+                record;
+
+        }
+        else{
+
+            records.unshift(
+                record
+            );
+
+        }
+
+
+        writeEmployeeRecordsLocal(
+            records
+        );
+
+
+        return record;
+
+    }
+
+
+    throw new Error(
+        "Employee screening save service unavailable."
+    );
+
+}
+
+
+/* =====================================================
+   BUILD RECORD
+===================================================== */
+
+function buildRecord(){
+
+    return {
 
         id:
-            generateRecordId(),
+            "",
 
         createdAt:
-            new Date().toISOString(),
+            new Date()
+            .toISOString(),
+
+        updatedAt:
+            new Date()
+            .toISOString(),
 
         createdDate:
             new Date()
-            .toLocaleString("ar-SA"),
+            .toLocaleString(
+                "ar-SA"
+            ),
 
         employeeName:
             getValue(
@@ -977,122 +1393,318 @@ function saveScreening(){
 
     };
 
+}
 
-    let records = [];
+
+/* =====================================================
+   SAVE SCREENING
+===================================================== */
+
+async function saveScreening(){
+
+    if(
+        savingScreening
+    ){
+
+        return;
+
+    }
+
+
+    if(
+        !validateScreening()
+    ){
+
+        return;
+
+    }
+
+
+    const button =
+        document.getElementById(
+            "saveButton"
+        );
 
 
     try{
 
-        records =
-            JSON.parse(
-                localStorage.getItem(
-                    "employeeScreeningRecords"
+        savingScreening =
+            true;
+
+
+        button.disabled =
+            true;
+
+
+        button.textContent =
+            "⏳ جاري حفظ الفحص...";
+
+
+        const record =
+            buildRecord();
+
+
+        /*
+          منع احتساب نفس الموظف مرتين:
+          نبحث بالرقم الوظيفي ثم نستخدم نفس ID.
+        */
+
+        const records =
+            await getEmployeeRecords();
+
+
+        const existingRecord =
+            records.find(
+                function(item){
+
+                    return (
+                        item &&
+                        String(
+                            item.employeeId ||
+                            ""
+                        ).trim() ===
+                        record.employeeId
+                    );
+
+                }
+            );
+
+
+        if(
+            existingRecord
+        ){
+
+            record.id =
+                existingRecord.id;
+
+
+            record.createdAt =
+                existingRecord.createdAt
+                ||
+                record.createdAt;
+
+
+            record.createdDate =
+                existingRecord.createdDate
+                ||
+                record.createdDate;
+
+        }
+        else{
+
+            record.id =
+                generateRecordId();
+
+        }
+
+
+        const savedRecord =
+            await saveEmployeeRecord(
+                record
+            );
+
+
+        const finalRecord = {
+
+            ...record,
+
+            ...(
+                savedRecord &&
+                typeof savedRecord ===
+                "object"
+                ?
+                savedRecord
+                :
+                {}
+            )
+
+        };
+
+
+        showResult(
+
+            "✅ تم حفظ فحص الموظف بنجاح."
+
+            +
+
+            "<br><br>"
+
+            +
+
+            "<strong>رقم السجل:</strong> "
+
+            +
+
+            escapeHTML(
+                finalRecord.id
+            )
+
+            +
+
+            "<br>"
+
+            +
+
+            "<strong>الموظف:</strong> "
+
+            +
+
+            escapeHTML(
+                finalRecord.employeeName
+            )
+
+            +
+
+            "<br>"
+
+            +
+
+            "<strong>القسم:</strong> "
+
+            +
+
+            escapeHTML(
+                finalRecord.department
+            )
+
+            +
+
+            "<br>"
+
+            +
+
+            "<strong>الحالة:</strong> "
+
+            +
+
+            escapeHTML(
+                getStatusArabic(
+                    finalRecord.screeningStatus
                 )
-            ) || [];
+            )
 
-    }catch(error){
+            +
 
-        records = [];
+            "<br><br>"
 
-    }
+            +
 
+            '<a href="occupational-dashboard.html">'
 
-    /*
-       منع احتساب الموظف مرتين في نفس دورة الفحص:
-       إذا كان نفس الرقم الوظيفي موجودًا، يتم تحديث سجله
-       بدل إنشاء سجل مكرر.
-    */
+            +
 
-    const existingIndex =
-        records.findIndex(
+            "📊 فتح لوحة متابعة الفحص الدوري"
 
-            function(item){
+            +
 
-                return item.employeeId ===
-                    record.employeeId;
+            "</a>",
 
-            }
+            false
 
         );
 
 
-    if(existingIndex >= 0){
-
-        record.id =
-            records[existingIndex].id;
-
-        records[existingIndex] =
-            record;
-
-    }else{
-
-        records.unshift(
-            record
-        );
+        button.textContent =
+            "✅ تم حفظ الفحص";
 
     }
+    catch(error){
+
+        console.error(
+            "Employee screening save failed:",
+            error
+        );
 
 
-    localStorage.setItem(
+        showResult(
 
-        "employeeScreeningRecords",
+            "❌ تعذر حفظ فحص الموظف. لم يتم اعتماد السجل."
 
-        JSON.stringify(
-            records
-        )
+            +
 
-    );
+            (
+                error &&
+                error.message
+                ?
+                "<br>" +
+                escapeHTML(
+                    error.message
+                )
+                :
+                ""
+            ),
+
+            true
+
+        );
 
 
-    showResult(
+        button.disabled =
+            false;
 
-        "✅ تم حفظ فحص الموظف بنجاح." +
 
-        "<br><br>" +
+        button.textContent =
+            "💾 حفظ الفحص";
 
-        "<strong>رقم السجل:</strong> " +
-        record.id +
+    }
+    finally{
 
-        "<br>" +
+        savingScreening =
+            false;
 
-        "<strong>الموظف:</strong> " +
-        record.employeeName +
-
-        "<br>" +
-
-        "<strong>القسم:</strong> " +
-        record.department +
-
-        "<br>" +
-
-        "<strong>الحالة:</strong> " +
-        getStatusArabic(
-            record.screeningStatus
-        ) +
-
-        "<br><br>" +
-
-        '<a href="occupational-dashboard.html">' +
-        "📊 فتح لوحة متابعة الفحص الدوري" +
-        "</a>",
-
-        false
-
-    );
+    }
 
 }
 
 
+/* =====================================================
+   PRIVACY NOTE
+===================================================== */
+
+function updatePrivacyNote(){
+
+    const note =
+        document.getElementById(
+            "privacyNote"
+        );
+
+
+    if(
+        !note
+    ){
+
+        return;
+
+    }
+
+
+    if(
+        isServerMode()
+    ){
+
+        note.textContent =
+            "🔐 يتم التعامل مع بيانات الفحص من خلال خدمة النظام الداخلية. لا يتم استخدام Local Storage كبديل عند تعذر الاتصال بالخادم.";
+
+    }
+    else{
+
+        note.textContent =
+            "🔐 هذه نسخة تطويرية. يتم حفظ البيانات محليًا من خلال طبقة SPHP أثناء مرحلة الاختبار. لا تستخدم بيانات موظفين حقيقية في نسخة GitHub.";
+
+    }
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
 
 document.addEventListener(
     "DOMContentLoaded",
     function(){
 
-        /*
-          إذا لم يوضع موعد الاستحقاق القادم،
-          يمكن للمستخدم إدخاله يدويًا الآن.
-          لاحقًا سنجعل النظام يحسبه آليًا حسب نوع الفحص.
-        */
+        updatePrivacyNote();
 
     }
 );
