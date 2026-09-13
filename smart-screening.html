@@ -516,6 +516,7 @@
     font-weight:bold;
 }
 
+
 @media(max-width:850px){
 
     .rapid-patient-grid{
@@ -523,6 +524,7 @@
     }
 
 }
+
 
 @media(max-width:650px){
 
@@ -1122,6 +1124,21 @@ let screeningDurationSeconds = null;
 
 
 /* =====================================================
+   ENVIRONMENT
+===================================================== */
+
+function isServerMode(){
+
+    return (
+        window.SPHP_CONFIG &&
+        window.SPHP_CONFIG.dataMode ===
+        "server"
+    );
+
+}
+
+
+/* =====================================================
    TIMER
 ===================================================== */
 
@@ -1246,6 +1263,13 @@ function generateScreeningId(){
 
 function readSmartRecordsLocal(){
 
+    if(isServerMode()){
+
+        return [];
+
+    }
+
+
     try{
 
         const value =
@@ -1275,6 +1299,15 @@ function readSmartRecordsLocal(){
 
 
 function writeSmartRecordsLocal(records){
+
+    if(isServerMode()){
+
+        throw new Error(
+            "Local smart screening storage is disabled in server mode."
+        );
+
+    }
+
 
     localStorage.setItem(
         "smartScreeningRecords",
@@ -1315,16 +1348,33 @@ async function readSmartScreeningRecords(){
         }
         catch(error){
 
-            console.warn(
-                "SPHP smart screening read failed, using local fallback:",
+            console.error(
+                "SPHP smart screening read failed:",
                 error
             );
+
+
+            if(isServerMode()){
+
+                throw error;
+
+            }
 
         }
 
     }
 
-    return readSmartRecordsLocal();
+
+    if(!isServerMode()){
+
+        return readSmartRecordsLocal();
+
+    }
+
+
+    throw new Error(
+        "Smart screening service unavailable."
+    );
 
 }
 
@@ -1342,6 +1392,15 @@ async function upsertSmartScreeningRecord(record){
         .smartScreenings
         .upsert(
             record
+        );
+
+    }
+
+
+    if(isServerMode()){
+
+        throw new Error(
+            "Smart screening service unavailable."
         );
 
     }
@@ -1416,6 +1475,15 @@ async function updateSmartScreeningRecordSafe(
     }
 
 
+    if(isServerMode()){
+
+        throw new Error(
+            "Smart screening update service unavailable."
+        );
+
+    }
+
+
     const records =
         readSmartRecordsLocal();
 
@@ -1444,6 +1512,7 @@ async function updateSmartScreeningRecordSafe(
 
         ...records[index],
         ...changes,
+
         id:
             records[index].id,
 
@@ -1720,7 +1789,7 @@ const screeningRules = [
     reason:"أعراض هضمية مع مصدر غذائي أو تجمع حالات.",
     precaution:"التحقق من الحالات المرتبطة.",
     specimen:"راجع دليل العينات.",
-    notification:"بدء مسار البلاغ والتقصي.",
+    notification:"بدء مسار بلاغ التسمم الغذائي.",
     directNotification:true
 },
 
@@ -1972,7 +2041,9 @@ async function saveScreeningAnalytics(
                 );
 
         }
-        else{
+        else if(
+            !isServerMode()
+        ){
 
             const records =
                 await readSmartScreeningRecords();
@@ -2027,10 +2098,6 @@ async function saveScreeningAnalytics(
             "Saving smart screening analytics failed:",
             error
         );
-
-        /*
-          لا نوقف رحلة المستخدم بسبب فشل التحليل.
-        */
 
         return record;
 
@@ -3622,6 +3689,11 @@ async function startNotification(
     };
 
 
+    /*
+       sessionStorage:
+       يستخدم لنقل البيانات للصفحة التالية داخل نفس الجلسة.
+    */
+
     try{
 
         sessionStorage.setItem(
@@ -3642,22 +3714,33 @@ async function startNotification(
     }
 
 
-    try{
+    /*
+       localStorage يستخدم فقط في بيئة التطوير الحالية.
+       لا نخزن بيانات النقل محليًا عند server mode.
+    */
 
-        localStorage.setItem(
-            "notificationTransferData",
-            JSON.stringify(
-                transferData
-            )
-        );
+    if(
+        !isServerMode()
+    ){
 
-    }
-    catch(error){
+        try{
 
-        console.warn(
-            "localStorage transfer error:",
-            error
-        );
+            localStorage.setItem(
+                "notificationTransferData",
+                JSON.stringify(
+                    transferData
+                )
+            );
+
+        }
+        catch(error){
+
+            console.warn(
+                "localStorage transfer error:",
+                error
+            );
+
+        }
 
     }
 
@@ -3886,8 +3969,32 @@ async function startNotification(
     }
 
 
+    /*
+       توجيه نوع البلاغ
+       -----------------
+       التسمم الغذائي له نموذج مستقل.
+       باقي الأمراض تستخدم نموذج الأمراض المعدية العام.
+    */
+
+    let notificationPage =
+        "infectious-notification.html";
+
+
+    if(
+        safeDiseaseKey ===
+        "foodpoisoning"
+    ){
+
+        notificationPage =
+            "food-poisoning.html";
+
+    }
+
+
     const notificationUrl =
-        "infectious-notification.html?"
+        notificationPage
+        +
+        "?"
         +
         params.toString();
 
@@ -3927,16 +4034,24 @@ function openDiseaseGuide(key){
 
 function resetScreening(){
 
-    try{
+    if(
+        !isServerMode()
+    ){
 
-        localStorage.removeItem(
-            "notificationTransferData"
-        );
+        try{
 
-    }
-    catch(error){
+            localStorage.removeItem(
+                "notificationTransferData"
+            );
 
-        console.warn(error);
+        }
+        catch(error){
+
+            console.warn(
+                error
+            );
+
+        }
 
     }
 
@@ -3950,7 +4065,9 @@ function resetScreening(){
     }
     catch(error){
 
-        console.warn(error);
+        console.warn(
+            error
+        );
 
     }
 
