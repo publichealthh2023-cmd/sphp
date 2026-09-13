@@ -248,43 +248,82 @@ th{
 }
 
 
-/* المعتمدون */
+/* =====================================================
+   CENTRAL APPROVERS
+===================================================== */
 
-.approvers-grid{
+.approvers-summary-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
     gap:18px;
 }
 
-.approver-card{
+.approver-summary-card{
     background:#f8fbfd;
     border:1px solid #dfe8f2;
     border-radius:12px;
-    padding:18px;
+    padding:20px;
+    text-align:center;
 }
 
-.approver-card h3{
+.approver-summary-card h3{
     color:#064c92;
+    margin-top:0;
 }
 
-.signature-area{
-    margin-top:12px;
-    border:2px dashed #aebfce;
-    border-radius:10px;
-    padding:8px;
-    background:white;
+.approver-summary-card .role{
+    color:#294b6a;
+    font-weight:bold;
+    margin-bottom:7px;
 }
 
-.signature-canvas{
-    width:100%;
-    height:145px;
-    display:block;
-    background:white;
-    touch-action:none;
+.approver-summary-card .name{
+    color:#172f45;
+    font-size:17px;
+    font-weight:bold;
+    margin-bottom:5px;
+}
+
+.approver-summary-card .department{
+    color:#65798b;
+    font-size:13px;
+}
+
+.saved-signature-preview{
+    margin-top:14px;
+    min-height:95px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.saved-signature-preview img{
+    max-width:220px;
+    max-height:85px;
+    object-fit:contain;
+}
+
+.signature-missing{
+    color:#a06a00;
+    background:#fff5dd;
+    padding:8px 12px;
+    border-radius:8px;
+    font-size:12px;
+}
+
+.central-settings-status{
+    margin-top:16px;
+    padding:12px;
+    border-radius:9px;
+    background:#eef7ff;
+    color:#31556f;
+    line-height:1.8;
 }
 
 
-/* التقرير */
+/* =====================================================
+   REPORT
+===================================================== */
 
 .report-box{
     display:none;
@@ -328,8 +367,17 @@ th{
     line-height:2;
 }
 
+.report-department{
+    margin-top:28px;
+    padding:13px 16px;
+    background:#f8fafc;
+    border-right:4px solid #0759a6;
+    color:#344f67;
+    line-height:1.8;
+}
+
 .report-footer{
-    margin-top:35px;
+    margin-top:30px;
     display:grid;
     grid-template-columns:repeat(2,1fr);
     gap:30px;
@@ -340,11 +388,38 @@ th{
     padding:15px;
 }
 
+.report-signature .report-role{
+    font-weight:bold;
+    color:#294b6a;
+}
+
+.report-signature .report-name{
+    font-weight:bold;
+    margin-top:8px;
+    color:#172f45;
+}
+
+.report-signature .report-dept{
+    margin-top:5px;
+    font-size:12px;
+    color:#65798b;
+}
+
 .report-signature img{
     max-width:210px;
     max-height:85px;
     margin:10px auto;
     display:block;
+    object-fit:contain;
+}
+
+.report-signature-placeholder{
+    height:85px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#8b99a5;
+    font-size:11px;
 }
 
 .non-screened-section{
@@ -356,7 +431,9 @@ th{
 }
 
 
-/* Modal */
+/* =====================================================
+   MODAL
+===================================================== */
 
 .modal{
     display:none;
@@ -431,7 +508,9 @@ th{
 }
 
 
-/* Archive */
+/* =====================================================
+   ARCHIVE
+===================================================== */
 
 .archive-empty{
     padding:25px;
@@ -452,13 +531,15 @@ th{
 }
 
 
-/* print */
+/* =====================================================
+   RESPONSIVE
+===================================================== */
 
 @media(max-width:900px){
 
     .stats-grid,
     .form-grid,
-    .approvers-grid,
+    .approvers-summary-grid,
     .employee-summary,
     .report-footer{
         grid-template-columns:1fr;
@@ -469,6 +550,11 @@ th{
     }
 
 }
+
+
+/* =====================================================
+   PRINT
+===================================================== */
 
 @media print{
 
@@ -510,29 +596,39 @@ th{
 
 <div class="hero-grid">
 
-    <div class="side-logo left-logo">
-        <img src="images/cluster-logo.png">
-    </div>
+<div class="side-logo left-logo">
 
-    <div class="hero-center">
+<img
+    src="images/cluster-logo.png"
+    alt="Hafr Al-Batin Health Cluster">
 
-        <h1>
-            لوحة متابعة الفحص الدوري للموظفين
-        </h1>
+</div>
 
-        <h2>
-            Employee Screening Dashboard
-        </h2>
 
-        <p>
-            الصحة المهنية
-        </p>
+<div class="hero-center">
 
-    </div>
+<h1>
+لوحة متابعة الفحص الدوري للموظفين
+</h1>
 
-    <div class="side-logo right-logo">
-        <img src="images/hospital-logo.png">
-    </div>
+<h2>
+Employee Screening Dashboard
+</h2>
+
+<p>
+الصحة المهنية
+</p>
+
+</div>
+
+
+<div class="side-logo right-logo">
+
+<img
+    src="images/hospital-logo.png"
+    alt="Hospital Logo">
+
+</div>
 
 </div>
 
@@ -545,11 +641,11 @@ th{
 <section class="hero-box">
 
 <h1>
-    مؤشر تحديث الحالة المناعية للموظفين
+مؤشر تحديث الحالة المناعية للموظفين
 </h1>
 
 <h2>
-    Employee Immunity Status Completion Indicator
+Employee Immunity Status Completion Indicator
 </h2>
 
 </section>
@@ -572,36 +668,77 @@ th{
 <section class="stats-grid">
 
 <div class="stat-card">
-    <div id="totalTarget" class="number">0</div>
-    <div class="label">إجمالي المستهدفين</div>
+
+<div
+    id="totalTarget"
+    class="number">
+0
 </div>
 
-<div class="stat-card">
-    <div id="totalScreened" class="number">0</div>
-    <div class="label">تم الفحص</div>
+<div class="label">
+إجمالي المستهدفين
 </div>
 
-<div class="stat-card">
-    <div id="totalNotScreened" class="number">0</div>
-    <div class="label">لم يتم الفحص</div>
 </div>
 
+
 <div class="stat-card">
-    <div id="overallPercent" class="number">0%</div>
-    <div class="label">نسبة الإنجاز</div>
+
+<div
+    id="totalScreened"
+    class="number">
+0
+</div>
+
+<div class="label">
+تم الفحص
+</div>
+
+</div>
+
+
+<div class="stat-card">
+
+<div
+    id="totalNotScreened"
+    class="number">
+0
+</div>
+
+<div class="label">
+لم يتم الفحص
+</div>
+
+</div>
+
+
+<div class="stat-card">
+
+<div
+    id="overallPercent"
+    class="number">
+0%
+</div>
+
+<div class="label">
+نسبة الإنجاز
+</div>
+
 </div>
 
 </section>
 
 
-
-<!-- إعداد التقرير -->
+<!-- =====================================================
+     REPORT SETTINGS
+===================================================== -->
 
 <section class="section-card no-print">
 
 <h2>
-    ⚙️ إعداد التقرير
+⚙️ إعداد التقرير
 </h2>
+
 
 <div class="form-grid">
 
@@ -609,7 +746,7 @@ th{
 <div class="form-group full">
 
 <label>
-    عنوان التقرير
+عنوان التقرير
 </label>
 
 <input
@@ -622,7 +759,7 @@ th{
 <div class="form-group">
 
 <label>
-    نوع الفترة
+نوع الفترة
 </label>
 
 <select
@@ -630,31 +767,31 @@ th{
     onchange="updatePeriodType()">
 
 <option value="custom">
-    فترة مخصصة
+فترة مخصصة
 </option>
 
 <option value="monthly">
-    تقرير شهري
+تقرير شهري
 </option>
 
 <option value="quarter1">
-    الربع الأول
+الربع الأول
 </option>
 
 <option value="quarter2">
-    الربع الثاني
+الربع الثاني
 </option>
 
 <option value="quarter3">
-    الربع الثالث
+الربع الثالث
 </option>
 
 <option value="quarter4">
-    الربع الرابع
+الربع الرابع
 </option>
 
 <option value="annual">
-    تقرير سنوي
+تقرير سنوي
 </option>
 
 </select>
@@ -665,7 +802,7 @@ th{
 <div class="form-group">
 
 <label>
-    السنة
+السنة
 </label>
 
 <input
@@ -678,7 +815,7 @@ th{
 <div class="form-group">
 
 <label>
-    من تاريخ
+من تاريخ
 </label>
 
 <input
@@ -691,7 +828,7 @@ th{
 <div class="form-group">
 
 <label>
-    إلى تاريخ
+إلى تاريخ
 </label>
 
 <input
@@ -704,7 +841,7 @@ th{
 <div class="form-group full">
 
 <label>
-    ملاحظات التقرير
+ملاحظات التقرير
 </label>
 
 <textarea
@@ -736,6 +873,7 @@ th{
 <div class="action-row">
 
 <button
+    type="button"
     class="primary-btn"
     onclick="saveDepartmentTargets()">
 
@@ -743,13 +881,16 @@ th{
 
 </button>
 
+
 <button
+    type="button"
     class="green-btn"
     onclick="generateReport()">
 
 📊 معاينة التقرير
 
 </button>
+
 
 <a
     href="employee-directory.html"
@@ -758,6 +899,7 @@ th{
 👥 دليل الموظفين
 
 </a>
+
 
 <a
     href="employee-screening.html"
@@ -772,13 +914,14 @@ th{
 </section>
 
 
-
-<!-- الأقسام -->
+<!-- =====================================================
+     DEPARTMENTS
+===================================================== -->
 
 <section class="section-card">
 
 <h2>
-    🏢 الأقسام ونسب الإنجاز
+🏢 الأقسام ونسب الإنجاز
 </h2>
 
 <div class="table-wrap">
@@ -788,6 +931,7 @@ th{
 <thead>
 
 <tr>
+
 <th>م</th>
 <th>الإدارة / القسم</th>
 <th>العدد المستهدف</th>
@@ -796,6 +940,7 @@ th{
 <th>النسبة</th>
 <th>مصدر العدد</th>
 <th class="no-print">التفاصيل</th>
+
 </tr>
 
 </thead>
@@ -809,128 +954,140 @@ th{
 </section>
 
 
-
-<!-- المعتمدون -->
+<!-- =====================================================
+     CENTRAL APPROVERS
+===================================================== -->
 
 <section class="section-card no-print">
 
 <h2>
-    ✍️ المعتمدون والتوقيعات
+✍️ المعتمدون والتوقيعات
 </h2>
 
 <p>
-يمكن تعديل الاسم أو المسمى مباشرة قبل اعتماد التقرير.
+يتم سحب بيانات معد التقرير والمعتمد والتوقيعات تلقائيًا من إعدادات تقارير الصحة المهنية.
 </p>
 
 
-<div class="approvers-grid">
+<div class="approvers-summary-grid">
 
 
-<div class="approver-card">
-
-<h3>
-المعتمد الأول
-</h3>
-
-<label>المسمى</label>
-
-<input
-    id="approver1Title"
-    value="منسق الفحص الدوري للموظفين">
-
-<br><br>
-
-<label>الاسم</label>
-
-<input
-    id="approver1Name"
-    value="عوض الحديدي">
-
-
-<div class="signature-area">
-
-<canvas
-    id="signature1"
-    class="signature-canvas">
-</canvas>
-
-</div>
-
-
-<button
-    class="light-btn"
-    onclick="clearSignature('signature1')">
-
-مسح التوقيع
-
-</button>
-
-</div>
-
-
-
-<div class="approver-card">
+<div class="approver-summary-card">
 
 <h3>
-المعتمد الثاني
+معد التقرير
 </h3>
 
-<label>المسمى</label>
+<div
+    id="preparedTitlePreview"
+    class="role">
 
-<input
-    id="approver2Title"
-    value="مدير مكافحة العدوى">
+—
 
-<br><br>
+</div>
 
-<label>الاسم</label>
+<div
+    id="preparedNamePreview"
+    class="name">
 
-<input
-    id="approver2Name"
-    value="فارس فاضل الشمري">
+—
 
+</div>
 
-<div class="signature-area">
+<div
+    id="preparedDepartmentPreview"
+    class="department">
 
-<canvas
-    id="signature2"
-    class="signature-canvas">
-</canvas>
+—
+
+</div>
+
+<div
+    id="preparedSignaturePreview"
+    class="saved-signature-preview">
+
+<span class="signature-missing">
+لا يوجد توقيع محفوظ
+</span>
+
+</div>
 
 </div>
 
 
-<button
-    class="light-btn"
-    onclick="clearSignature('signature2')">
+<div class="approver-summary-card">
 
-مسح التوقيع
+<h3>
+المعتمد
+</h3>
 
-</button>
+<div
+    id="approvedTitlePreview"
+    class="role">
+
+—
 
 </div>
 
+<div
+    id="approvedNamePreview"
+    class="name">
+
+—
+
+</div>
+
+<div
+    id="approvedDepartmentPreview"
+    class="department">
+
+—
+
+</div>
+
+<div
+    id="approvedSignaturePreview"
+    class="saved-signature-preview">
+
+<span class="signature-missing">
+لا يوجد توقيع محفوظ
+</span>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div
+    id="centralSettingsStatus"
+    class="central-settings-status">
+
+جاري تحميل بيانات المعتمدين...
 
 </div>
 
 
 <div class="action-row">
 
-<button
-    class="primary-btn"
-    onclick="saveApprovers()">
+<a
+    href="occupational-report-settings.html"
+    class="link-btn primary-btn">
 
-💾 حفظ بيانات المعتمدين
+⚙️ إدارة المعتمدين والتوقيعات
 
-</button>
+</a>
 
 </div>
 
 </section>
 
 
-
-<!-- التقرير الحالي -->
+<!-- =====================================================
+     CURRENT REPORT
+===================================================== -->
 
 <section
     id="reportBox"
@@ -938,28 +1095,36 @@ th{
 </section>
 
 
-
-<!-- أرشيف -->
+<!-- =====================================================
+     ARCHIVE
+===================================================== -->
 
 <section class="section-card no-print">
 
 <h2>
-    🗂️ أرشيف التقارير المعتمدة
+🗂️ أرشيف التقارير المعتمدة
 </h2>
 
 <p>
-يتم حفظ نسخة من بيانات التقرير والتوقيعات بحيث يمكن فتح التقرير وطباعته لاحقًا.
+يتم حفظ نسخة كاملة من التقرير وبيانات الاعتماد المستخدمة وقت إنشائه، بحيث لا يتغير التقرير القديم عند تعديل بيانات المعتمدين لاحقًا.
 </p>
 
 
-<div
-    id="archiveContainer">
-</div>
+<div id="archiveContainer"></div>
 
 </section>
 
 
 <div class="action-row no-print">
+
+<a
+    href="occupational-report-settings.html"
+    class="link-btn primary-btn">
+
+✍️ إعدادات المعتمدين
+
+</a>
+
 
 <a
     href="occupational-health.html"
@@ -975,8 +1140,9 @@ th{
 </main>
 
 
-
-<!-- نافذة تفاصيل الموظفين -->
+<!-- =====================================================
+     EMPLOYEE MODAL
+===================================================== -->
 
 <div
     id="employeeModal"
@@ -992,6 +1158,7 @@ th{
 </h2>
 
 <button
+    type="button"
     class="gray-btn"
     onclick="closeEmployeeModal()">
 
@@ -1011,6 +1178,7 @@ th{
 <div class="tabs">
 
 <button
+    type="button"
     id="allTab"
     class="tab-btn active"
     onclick="showEmployeeTab('all')">
@@ -1019,7 +1187,9 @@ th{
 
 </button>
 
+
 <button
+    type="button"
     id="screenedTab"
     class="tab-btn"
     onclick="showEmployeeTab('screened')">
@@ -1028,7 +1198,9 @@ th{
 
 </button>
 
+
 <button
+    type="button"
     id="notScreenedTab"
     class="tab-btn"
     onclick="showEmployeeTab('notScreened')">
@@ -1047,6 +1219,7 @@ th{
 <thead>
 
 <tr>
+
 <th>م</th>
 <th>اسم الموظف</th>
 <th>الرقم الوظيفي</th>
@@ -1054,6 +1227,7 @@ th{
 <th>حالة الفحص</th>
 <th>تاريخ الفحص</th>
 <th>الاستحقاق القادم</th>
+
 </tr>
 
 </thead>
@@ -1070,12 +1244,83 @@ th{
 </div>
 
 
+<!-- =====================================================
+     CONFIG / API
+===================================================== -->
+
+<script src="config.js"></script>
+<script src="api.js"></script>
+
 
 <script>
 
 
 /* =====================================================
-   الأقسام
+   CONSTANTS
+===================================================== */
+
+const OCCUPATIONAL_REPORT_SETTINGS_KEY =
+    "occupationalReportSettings";
+
+
+/* =====================================================
+   STATE
+===================================================== */
+
+let currentReportData =
+    null;
+
+
+let occupationalReportSettings =
+    null;
+
+
+let currentDepartment =
+    "";
+
+
+let currentEmployeeTab =
+    "all";
+
+
+/* =====================================================
+   ENVIRONMENT
+===================================================== */
+
+function isServerMode(){
+
+    return (
+        window.SPHP_CONFIG &&
+        window.SPHP_CONFIG.dataMode ===
+        "server"
+    );
+
+}
+
+
+/* =====================================================
+   HTML ESCAPE
+===================================================== */
+
+function escapeHTML(
+    value
+){
+
+    return String(
+        value ??
+        ""
+    )
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   DEPARTMENTS
 ===================================================== */
 
 const departmentGroups = [
@@ -1162,314 +1407,743 @@ departments:[
 ];
 
 
-
 /* =====================================================
-   Storage
+   BASIC STORAGE
 ===================================================== */
 
 function getEmployeeDirectory(){
 
-try{
+    try{
 
-return JSON.parse(
-localStorage.getItem(
-"hospitalEmployeeDirectory"
-)
-) || [];
+        const data =
+            JSON.parse(
 
-}catch(error){
+                localStorage.getItem(
+                    "hospitalEmployeeDirectory"
+                )
 
-return [];
+                ||
 
-}
+                "[]"
+
+            );
+
+
+        return Array.isArray(data)
+            ? data
+            : [];
+
+    }
+    catch(error){
+
+        return [];
+
+    }
 
 }
 
 
 function getScreeningRecords(){
 
-try{
+    try{
 
-return JSON.parse(
-localStorage.getItem(
-"employeeScreeningRecords"
-)
-) || [];
+        const data =
+            JSON.parse(
 
-}catch(error){
+                localStorage.getItem(
+                    "employeeScreeningRecords"
+                )
 
-return [];
+                ||
 
-}
+                "[]"
+
+            );
+
+
+        return Array.isArray(data)
+            ? data
+            : [];
+
+    }
+    catch(error){
+
+        return [];
+
+    }
 
 }
 
 
 function getSavedTargets(){
 
-try{
+    try{
 
-return JSON.parse(
-localStorage.getItem(
-"occupationalDepartmentTargets"
-)
-) || {};
+        const data =
+            JSON.parse(
 
-}catch(error){
+                localStorage.getItem(
+                    "occupationalDepartmentTargets"
+                )
 
-return {};
+                ||
 
-}
+                "{}"
+
+            );
+
+
+        return (
+            data &&
+            typeof data ===
+            "object"
+        )
+        ? data
+        : {};
+
+    }
+    catch(error){
+
+        return {};
+
+    }
 
 }
 
 
 function getReportsArchive(){
 
-try{
+    try{
 
-return JSON.parse(
-localStorage.getItem(
-"occupationalReportsArchive"
-)
-) || [];
+        const data =
+            JSON.parse(
 
-}catch(error){
+                localStorage.getItem(
+                    "occupationalReportsArchive"
+                )
 
-return [];
+                ||
+
+                "[]"
+
+            );
+
+
+        return Array.isArray(data)
+            ? data
+            : [];
+
+    }
+    catch(error){
+
+        return [];
+
+    }
 
 }
-
-}
-
 
 
 /* =====================================================
-   Employees
+   CENTRAL REPORT SETTINGS
 ===================================================== */
 
-function getDepartmentEmployees(department){
+function getDefaultReportSettings(){
 
-return getEmployeeDirectory()
-.filter(
+    return {
 
-function(employee){
+        preparedByName:
+            "",
 
-return (
-employee.department === department &&
-employee.employmentStatus === "active"
-);
+        preparedByTitle:
+            "",
 
-}
+        preparedByDepartment:
+            "",
 
-);
+        preparedSignature:
+            "",
 
-}
+        approvedByName:
+            "",
 
+        approvedByTitle:
+            "",
 
-function getEmployeeScreening(employeeId){
+        approvedByDepartment:
+            "",
 
-const records =
-getScreeningRecords()
-.filter(
+        approvedSignature:
+            "",
 
-function(record){
+        updatedAt:
+            ""
 
-return String(record.employeeId) ===
-String(employeeId);
-
-}
-
-)
-.sort(
-
-function(a,b){
-
-return new Date(
-b.createdAt || 0
-) -
-new Date(
-a.createdAt || 0
-);
-
-}
-
-);
-
-
-return records.length
-? records[0]
-: null;
+    };
 
 }
 
 
-function employeeIsScreened(employeeId){
+function readCentralReportSettingsLocal(){
 
-const record =
-getEmployeeScreening(
-employeeId
-);
+    if(
+        isServerMode()
+    ){
+
+        return null;
+
+    }
 
 
-return !!(
-record &&
-record.screeningStatus === "completed"
-);
+    try{
+
+        const data =
+            JSON.parse(
+
+                localStorage.getItem(
+                    OCCUPATIONAL_REPORT_SETTINGS_KEY
+                )
+
+                ||
+
+                "null"
+
+            );
+
+
+        if(
+            data &&
+            typeof data ===
+            "object"
+        ){
+
+            return {
+
+                ...getDefaultReportSettings(),
+
+                ...data
+
+            };
+
+        }
+
+    }
+    catch(error){
+
+        console.warn(
+            "Unable to read occupational report settings:",
+            error
+        );
+
+    }
+
+
+    return getDefaultReportSettings();
 
 }
 
+
+async function loadCentralReportSettings(){
+
+    if(
+        window.SPHP &&
+        window.SPHP.occupationalReportSettings &&
+        typeof window.SPHP
+        .occupationalReportSettings
+        .get ===
+        "function"
+    ){
+
+        try{
+
+            const data =
+                await window.SPHP
+                .occupationalReportSettings
+                .get();
+
+
+            return {
+
+                ...getDefaultReportSettings(),
+
+                ...(
+                    data &&
+                    typeof data ===
+                    "object"
+                    ?
+                    data
+                    :
+                    {}
+                )
+
+            };
+
+        }
+        catch(error){
+
+            console.error(
+                "Occupational report settings API failed:",
+                error
+            );
+
+
+            if(
+                isServerMode()
+            ){
+
+                throw error;
+
+            }
+
+        }
+
+    }
+
+
+    if(
+        !isServerMode()
+    ){
+
+        return readCentralReportSettingsLocal();
+
+    }
+
+
+    throw new Error(
+        "Occupational report settings service unavailable."
+    );
+
+}
 
 
 /* =====================================================
-   Department stats
+   APPROVER PREVIEW
+===================================================== */
+
+function signaturePreviewHTML(
+    signature
+){
+
+    if(
+        signature &&
+        String(signature).startsWith(
+            "data:image/"
+        )
+    ){
+
+        return `
+
+<img
+    src="${signature}"
+    alt="التوقيع الإلكتروني">
+
+`;
+
+    }
+
+
+    return `
+
+<span class="signature-missing">
+لا يوجد توقيع محفوظ
+</span>
+
+`;
+
+}
+
+
+function renderCentralApprovers(){
+
+    const settings =
+        occupationalReportSettings
+        ||
+        getDefaultReportSettings();
+
+
+    document.getElementById(
+        "preparedTitlePreview"
+    ).textContent =
+        settings.preparedByTitle
+        ||
+        "—";
+
+
+    document.getElementById(
+        "preparedNamePreview"
+    ).textContent =
+        settings.preparedByName
+        ||
+        "—";
+
+
+    document.getElementById(
+        "preparedDepartmentPreview"
+    ).textContent =
+        settings.preparedByDepartment
+        ||
+        "—";
+
+
+    document.getElementById(
+        "preparedSignaturePreview"
+    ).innerHTML =
+        signaturePreviewHTML(
+            settings.preparedSignature
+        );
+
+
+    document.getElementById(
+        "approvedTitlePreview"
+    ).textContent =
+        settings.approvedByTitle
+        ||
+        "—";
+
+
+    document.getElementById(
+        "approvedNamePreview"
+    ).textContent =
+        settings.approvedByName
+        ||
+        "—";
+
+
+    document.getElementById(
+        "approvedDepartmentPreview"
+    ).textContent =
+        settings.approvedByDepartment
+        ||
+        "—";
+
+
+    document.getElementById(
+        "approvedSignaturePreview"
+    ).innerHTML =
+        signaturePreviewHTML(
+            settings.approvedSignature
+        );
+
+
+    const status =
+        document.getElementById(
+            "centralSettingsStatus"
+        );
+
+
+    const hasPrepared =
+        !!settings.preparedByName;
+
+
+    const hasApproved =
+        !!settings.approvedByName;
+
+
+    const hasPreparedSignature =
+        !!settings.preparedSignature;
+
+
+    const hasApprovedSignature =
+        !!settings.approvedSignature;
+
+
+    if(
+        hasPrepared &&
+        hasApproved &&
+        hasPreparedSignature &&
+        hasApprovedSignature
+    ){
+
+        status.innerHTML =
+            "✅ بيانات المعتمدين والتوقيعات الإلكترونية مكتملة وسيتم استخدامها تلقائيًا في التقرير.";
+
+    }
+    else{
+
+        status.innerHTML =
+            "⚠️ توجد بيانات اعتماد غير مكتملة. يمكنك استكمالها من صفحة إعدادات المعتمدين والتوقيعات.";
+
+    }
+
+}
+
+
+/* =====================================================
+   EMPLOYEES
+===================================================== */
+
+function getDepartmentEmployees(
+    department
+){
+
+    return getEmployeeDirectory()
+    .filter(
+        function(employee){
+
+            return (
+                employee.department ===
+                department
+                &&
+                employee.employmentStatus ===
+                "active"
+            );
+
+        }
+    );
+
+}
+
+
+function getEmployeeScreening(
+    employeeId
+){
+
+    const records =
+        getScreeningRecords()
+        .filter(
+            function(record){
+
+                return (
+                    String(
+                        record.employeeId
+                    )
+                    ===
+                    String(
+                        employeeId
+                    )
+                );
+
+            }
+        )
+        .sort(
+            function(a,b){
+
+                return (
+                    new Date(
+                        b.createdAt ||
+                        0
+                    )
+                    -
+                    new Date(
+                        a.createdAt ||
+                        0
+                    )
+                );
+
+            }
+        );
+
+
+    return records.length
+        ? records[0]
+        : null;
+
+}
+
+
+function employeeIsScreened(
+    employeeId
+){
+
+    const record =
+        getEmployeeScreening(
+            employeeId
+        );
+
+
+    return !!(
+        record &&
+        record.screeningStatus ===
+        "completed"
+    );
+
+}
+
+
+/* =====================================================
+   DEPARTMENT STATS
 ===================================================== */
 
 function getDepartmentStats(
-department,
-defaultTarget
+    department,
+    defaultTarget
 ){
 
-const employees =
-getDepartmentEmployees(
-department
-);
+    const employees =
+        getDepartmentEmployees(
+            department
+        );
 
 
-const savedTargets =
-getSavedTargets();
+    const savedTargets =
+        getSavedTargets();
 
 
-let target;
-let source;
+    let target;
+    let source;
 
 
-if(employees.length > 0){
+    if(
+        employees.length > 0
+    ){
 
-target =
-employees.length;
+        target =
+            employees.length;
 
-source =
-"directory";
 
-}else{
+        source =
+            "directory";
 
-target =
-savedTargets[department] !== undefined
-? Number(savedTargets[department])
-: Number(defaultTarget || 0);
+    }
+    else{
 
-source =
-"manual";
+        target =
+            savedTargets[
+                department
+            ] !== undefined
+            ?
+            Number(
+                savedTargets[
+                    department
+                ]
+            )
+            :
+            Number(
+                defaultTarget ||
+                0
+            );
+
+
+        source =
+            "manual";
+
+    }
+
+
+    let screened;
+
+
+    if(
+        employees.length > 0
+    ){
+
+        screened =
+            employees.filter(
+                employee =>
+                employeeIsScreened(
+                    employee.employeeId
+                )
+            )
+            .length;
+
+    }
+    else{
+
+        const ids =
+            new Set();
+
+
+        getScreeningRecords()
+        .forEach(
+            function(record){
+
+                if(
+                    record.department ===
+                    department
+                    &&
+                    record.screeningStatus ===
+                    "completed"
+                ){
+
+                    ids.add(
+                        String(
+                            record.employeeId
+                        )
+                    );
+
+                }
+
+            }
+        );
+
+
+        screened =
+            ids.size;
+
+    }
+
+
+    const notScreened =
+        Math.max(
+            target -
+            screened,
+            0
+        );
+
+
+    const percent =
+        target > 0
+        ?
+        Math.round(
+            screened /
+            target *
+            100
+        )
+        :
+        0;
+
+
+    return {
+
+        target,
+        screened,
+        notScreened,
+        percent,
+        source,
+        employees
+
+    };
 
 }
-
-
-let screened;
-
-
-if(employees.length > 0){
-
-screened =
-employees.filter(
-
-employee =>
-employeeIsScreened(
-employee.employeeId
-)
-
-).length;
-
-}else{
-
-const ids =
-new Set();
-
-
-getScreeningRecords()
-.forEach(
-
-function(record){
-
-if(
-record.department === department &&
-record.screeningStatus === "completed"
-){
-
-ids.add(
-String(record.employeeId)
-);
-
-}
-
-}
-
-);
-
-
-screened =
-ids.size;
-
-}
-
-
-const notScreened =
-Math.max(
-target-screened,
-0
-);
-
-
-const percent =
-target > 0
-? Math.round(
-screened/target*100
-)
-: 0;
-
-
-return{
-target,
-screened,
-notScreened,
-percent,
-source,
-employees
-};
-
-}
-
 
 
 /* =====================================================
-   Main table
+   MAIN TABLE
 ===================================================== */
 
 function renderDepartments(){
 
-const body =
-document.getElementById(
-"departmentsBody"
-);
+    const body =
+        document.getElementById(
+            "departmentsBody"
+        );
 
 
-let html = "";
-let number = 1;
-let totalTarget = 0;
-let totalScreened = 0;
+    let html =
+        "";
 
 
-departmentGroups.forEach(
+    let number =
+        1;
 
-function(group){
+
+    let totalTarget =
+        0;
 
 
-html += `
+    let totalScreened =
+        0;
+
+
+    departmentGroups.forEach(
+        function(group){
+
+
+            html += `
 
 <tr class="group-row">
 
 <td colspan="8">
-${group.group}
+${escapeHTML(group.group)}
 </td>
 
 </tr>
@@ -1477,61 +2151,69 @@ ${group.group}
 `;
 
 
-group.departments.forEach(
+            group.departments.forEach(
+                function(item){
 
-function(item){
-
-const department =
-item[0];
-
-
-const stats =
-getDepartmentStats(
-department,
-item[1]
-);
+                    const department =
+                        item[0];
 
 
-totalTarget +=
-stats.target;
+                    const stats =
+                        getDepartmentStats(
+                            department,
+                            item[1]
+                        );
 
 
-totalScreened +=
-stats.screened;
+                    totalTarget +=
+                        stats.target;
 
 
-let cls =
-"percent-good";
+                    totalScreened +=
+                        stats.screened;
 
 
-if(stats.percent < 90){
-
-cls =
-"percent-bad";
-
-}else if(
-stats.percent < 100
-){
-
-cls =
-"percent-warning";
-
-}
+                    let cls =
+                        "percent-good";
 
 
-const sourceText =
-stats.source === "directory"
-? "دليل الموظفين"
-: "عدد يدوي";
+                    if(
+                        stats.percent < 90
+                    ){
+
+                        cls =
+                            "percent-bad";
+
+                    }
+                    else if(
+                        stats.percent < 100
+                    ){
+
+                        cls =
+                            "percent-warning";
+
+                    }
 
 
-const sourceClass =
-stats.source === "directory"
-? "source-directory"
-: "source-manual";
+                    const sourceText =
+                        stats.source ===
+                        "directory"
+                        ?
+                        "دليل الموظفين"
+                        :
+                        "عدد يدوي";
 
 
-html += `
+                    const sourceClass =
+                        stats.source ===
+                        "directory"
+                        ?
+                        "source-directory"
+                        :
+                        "source-manual";
+
+
+                    html += `
 
 <tr>
 
@@ -1541,32 +2223,28 @@ ${number++}
 
 <td>
 <strong>
-${department}
+${escapeHTML(department)}
 </strong>
 </td>
 
 <td>
 
 <input
-class="target-input"
-data-department="${department}"
-type="number"
-min="0"
-value="${stats.target}"
-${stats.source==="directory"
-?"disabled"
-:""}>
+    class="target-input"
+    data-department="${escapeHTML(department)}"
+    type="number"
+    min="0"
+    value="${stats.target}"
+    ${stats.source === "directory" ? "disabled" : ""}>
 
 </td>
 
 <td>
 
 <button
-class="number-link"
-onclick="openEmployeeModal(
-'${department}',
-'screened'
-)">
+    type="button"
+    class="number-link"
+    onclick="openEmployeeModal('${escapeHTML(department)}','screened')">
 
 ${stats.screened}
 
@@ -1577,11 +2255,9 @@ ${stats.screened}
 <td>
 
 <button
-class="number-link not-screened-link"
-onclick="openEmployeeModal(
-'${department}',
-'notScreened'
-)">
+    type="button"
+    class="number-link not-screened-link"
+    onclick="openEmployeeModal('${escapeHTML(department)}','notScreened')">
 
 ${stats.notScreened}
 
@@ -1595,11 +2271,8 @@ ${stats.percent}%
 
 <td>
 
-<span
-class="source-badge ${sourceClass}">
-
+<span class="source-badge ${sourceClass}">
 ${sourceText}
-
 </span>
 
 </td>
@@ -1607,11 +2280,9 @@ ${sourceText}
 <td class="no-print">
 
 <button
-class="light-btn"
-onclick="openEmployeeModal(
-'${department}',
-'all'
-)">
+    type="button"
+    class="light-btn"
+    onclick="openEmployeeModal('${escapeHTML(department)}','all')">
 
 👥 عرض
 
@@ -1623,366 +2294,460 @@ onclick="openEmployeeModal(
 
 `;
 
+                }
+            );
+
+        }
+    );
+
+
+    body.innerHTML =
+        html;
+
+
+    const totalNot =
+        Math.max(
+            totalTarget -
+            totalScreened,
+            0
+        );
+
+
+    const overall =
+        totalTarget > 0
+        ?
+        Math.round(
+            totalScreened /
+            totalTarget *
+            100
+        )
+        :
+        0;
+
+
+    document.getElementById(
+        "totalTarget"
+    ).textContent =
+        totalTarget;
+
+
+    document.getElementById(
+        "totalScreened"
+    ).textContent =
+        totalScreened;
+
+
+    document.getElementById(
+        "totalNotScreened"
+    ).textContent =
+        totalNot;
+
+
+    document.getElementById(
+        "overallPercent"
+    ).textContent =
+        overall +
+        "%";
+
 }
-
-);
-
-}
-
-);
-
-
-body.innerHTML =
-html;
-
-
-const totalNot =
-Math.max(
-totalTarget-totalScreened,
-0
-);
-
-
-const overall =
-totalTarget>0
-? Math.round(
-totalScreened/totalTarget*100
-)
-:0;
-
-
-document.getElementById(
-"totalTarget"
-).textContent =
-totalTarget;
-
-
-document.getElementById(
-"totalScreened"
-).textContent =
-totalScreened;
-
-
-document.getElementById(
-"totalNotScreened"
-).textContent =
-totalNot;
-
-
-document.getElementById(
-"overallPercent"
-).textContent =
-overall+"%";
-
-}
-
 
 
 /* =====================================================
-   Manual targets
+   MANUAL TARGETS
 ===================================================== */
 
 function saveDepartmentTargets(){
 
-let saved =
-getSavedTargets();
+    const saved =
+        getSavedTargets();
 
 
-document
-.querySelectorAll(
-".target-input"
-)
-.forEach(
+    document
+    .querySelectorAll(
+        ".target-input"
+    )
+    .forEach(
+        function(input){
 
-function(input){
+            if(
+                !input.disabled
+            ){
 
-if(!input.disabled){
+                saved[
+                    input.dataset.department
+                ] =
+                    Number(
+                        input.value ||
+                        0
+                    );
 
-saved[
-input.dataset.department
-] =
-Number(
-input.value || 0
-);
+            }
+
+        }
+    );
+
+
+    localStorage.setItem(
+
+        "occupationalDepartmentTargets",
+
+        JSON.stringify(
+            saved
+        )
+
+    );
+
+
+    renderDepartments();
 
 }
-
-}
-
-);
-
-
-localStorage.setItem(
-
-"occupationalDepartmentTargets",
-
-JSON.stringify(saved)
-
-);
-
-
-renderDepartments();
-
-}
-
 
 
 /* =====================================================
-   Period
+   PERIOD
 ===================================================== */
 
-function formatDateInput(date){
+function formatDateInput(
+    date
+){
 
-return new Date(
-date.getTime() -
-date.getTimezoneOffset()*60000
-)
-.toISOString()
-.slice(0,10);
+    return new Date(
+
+        date.getTime()
+        -
+        date.getTimezoneOffset() *
+        60000
+
+    )
+    .toISOString()
+    .slice(
+        0,
+        10
+    );
 
 }
 
 
 function updatePeriodType(){
 
-const type =
-document.getElementById(
-"periodType"
-).value;
+    const type =
+        document.getElementById(
+            "periodType"
+        ).value;
 
 
-const year =
-Number(
-document.getElementById(
-"reportYear"
-).value
-);
+    const year =
+        Number(
+            document.getElementById(
+                "reportYear"
+            ).value
+        );
 
 
-if(!year){
+    if(
+        !year
+    ){
 
-return;
+        return;
+
+    }
+
+
+    let from;
+    let to;
+
+
+    if(
+        type ===
+        "quarter1"
+    ){
+
+        from =
+            new Date(
+                year,
+                0,
+                1
+            );
+
+
+        to =
+            new Date(
+                year,
+                2,
+                31
+            );
+
+    }
+
+
+    if(
+        type ===
+        "quarter2"
+    ){
+
+        from =
+            new Date(
+                year,
+                3,
+                1
+            );
+
+
+        to =
+            new Date(
+                year,
+                5,
+                30
+            );
+
+    }
+
+
+    if(
+        type ===
+        "quarter3"
+    ){
+
+        from =
+            new Date(
+                year,
+                6,
+                1
+            );
+
+
+        to =
+            new Date(
+                year,
+                8,
+                30
+            );
+
+    }
+
+
+    if(
+        type ===
+        "quarter4"
+    ){
+
+        from =
+            new Date(
+                year,
+                9,
+                1
+            );
+
+
+        to =
+            new Date(
+                year,
+                11,
+                31
+            );
+
+    }
+
+
+    if(
+        type ===
+        "annual"
+    ){
+
+        from =
+            new Date(
+                year,
+                0,
+                1
+            );
+
+
+        to =
+            new Date(
+                year,
+                11,
+                31
+            );
+
+    }
+
+
+    if(
+        from &&
+        to
+    ){
+
+        document.getElementById(
+            "periodFrom"
+        ).value =
+            formatDateInput(
+                from
+            );
+
+
+        document.getElementById(
+            "periodTo"
+        ).value =
+            formatDateInput(
+                to
+            );
+
+    }
 
 }
-
-
-let from;
-let to;
-
-
-if(type==="quarter1"){
-
-from =
-new Date(year,0,1);
-
-to =
-new Date(year,2,31);
-
-}
-
-
-if(type==="quarter2"){
-
-from =
-new Date(year,3,1);
-
-to =
-new Date(year,5,30);
-
-}
-
-
-if(type==="quarter3"){
-
-from =
-new Date(year,6,1);
-
-to =
-new Date(year,8,30);
-
-}
-
-
-if(type==="quarter4"){
-
-from =
-new Date(year,9,1);
-
-to =
-new Date(year,11,31);
-
-}
-
-
-if(type==="annual"){
-
-from =
-new Date(year,0,1);
-
-to =
-new Date(year,11,31);
-
-}
-
-
-if(
-from &&
-to
-){
-
-document.getElementById(
-"periodFrom"
-).value =
-formatDateInput(from);
-
-
-document.getElementById(
-"periodTo"
-).value =
-formatDateInput(to);
-
-}
-
-}
-
 
 
 /* =====================================================
-   Employee modal
+   EMPLOYEE MODAL
 ===================================================== */
 
-let currentDepartment="";
-let currentEmployeeTab="all";
-
-
 function openEmployeeModal(
-department,
-tab
+    department,
+    tab
 ){
 
-currentDepartment =
-department;
-
-currentEmployeeTab =
-tab || "all";
+    currentDepartment =
+        department;
 
 
-document.getElementById(
-"modalDepartmentName"
-).textContent =
-"موظفو قسم: "+department;
+    currentEmployeeTab =
+        tab ||
+        "all";
 
 
-document.getElementById(
-"employeeModal"
-)
-.classList.add(
-"active"
-);
+    document.getElementById(
+        "modalDepartmentName"
+    ).textContent =
+        "موظفو قسم: " +
+        department;
 
 
-showEmployeeTab(
-currentEmployeeTab
-);
+    document.getElementById(
+        "employeeModal"
+    )
+    .classList.add(
+        "active"
+    );
+
+
+    showEmployeeTab(
+        currentEmployeeTab
+    );
 
 }
 
 
 function closeEmployeeModal(){
 
-document.getElementById(
-"employeeModal"
-)
-.classList.remove(
-"active"
-);
+    document.getElementById(
+        "employeeModal"
+    )
+    .classList.remove(
+        "active"
+    );
 
 }
 
 
-function showEmployeeTab(tab){
+function showEmployeeTab(
+    tab
+){
 
-currentEmployeeTab =
-tab;
-
-
-document
-.querySelectorAll(
-".tab-btn"
-)
-.forEach(
-
-button =>
-button.classList.remove(
-"active"
-)
-
-);
+    currentEmployeeTab =
+        tab;
 
 
-if(tab==="all"){
-document.getElementById(
-"allTab"
-).classList.add(
-"active"
-);
-}
-
-if(tab==="screened"){
-document.getElementById(
-"screenedTab"
-).classList.add(
-"active"
-);
-}
-
-if(tab==="notScreened"){
-document.getElementById(
-"notScreenedTab"
-).classList.add(
-"active"
-);
-}
+    document
+    .querySelectorAll(
+        ".tab-btn"
+    )
+    .forEach(
+        button =>
+            button.classList.remove(
+                "active"
+            )
+    );
 
 
-renderDepartmentEmployees();
+    if(
+        tab ===
+        "all"
+    ){
+
+        document.getElementById(
+            "allTab"
+        )
+        .classList.add(
+            "active"
+        );
+
+    }
+
+
+    if(
+        tab ===
+        "screened"
+    ){
+
+        document.getElementById(
+            "screenedTab"
+        )
+        .classList.add(
+            "active"
+        );
+
+    }
+
+
+    if(
+        tab ===
+        "notScreened"
+    ){
+
+        document.getElementById(
+            "notScreenedTab"
+        )
+        .classList.add(
+            "active"
+        );
+
+    }
+
+
+    renderDepartmentEmployees();
 
 }
 
 
 function renderDepartmentEmployees(){
 
-let employees =
-getDepartmentEmployees(
-currentDepartment
-);
+    let employees =
+        getDepartmentEmployees(
+            currentDepartment
+        );
 
 
-const screened =
-employees.filter(
-
-employee =>
-employeeIsScreened(
-employee.employeeId
-)
-
-);
+    const screened =
+        employees.filter(
+            employee =>
+                employeeIsScreened(
+                    employee.employeeId
+                )
+        );
 
 
-const notScreened =
-employees.filter(
-
-employee =>
-!employeeIsScreened(
-employee.employeeId
-)
-
-);
+    const notScreened =
+        employees.filter(
+            employee =>
+                !employeeIsScreened(
+                    employee.employeeId
+                )
+        );
 
 
-document.getElementById(
-"employeeSummary"
-).innerHTML = `
+    document.getElementById(
+        "employeeSummary"
+    ).innerHTML = `
 
 <div class="summary-box">
 
@@ -2017,35 +2782,42 @@ ${notScreened.length}
 `;
 
 
-if(currentEmployeeTab==="screened"){
+    if(
+        currentEmployeeTab ===
+        "screened"
+    ){
 
-employees =
-screened;
+        employees =
+            screened;
 
-}
-
-
-if(currentEmployeeTab==="notScreened"){
-
-employees =
-notScreened;
-
-}
+    }
 
 
-const body =
-document.getElementById(
-"employeeModalBody"
-);
+    if(
+        currentEmployeeTab ===
+        "notScreened"
+    ){
+
+        employees =
+            notScreened;
+
+    }
 
 
-if(
-getDepartmentEmployees(
-currentDepartment
-).length===0
-){
+    const body =
+        document.getElementById(
+            "employeeModalBody"
+        );
 
-body.innerHTML = `
+
+    if(
+        getDepartmentEmployees(
+            currentDepartment
+        ).length ===
+        0
+    ){
+
+        body.innerHTML = `
 
 <tr>
 
@@ -2056,8 +2828,8 @@ body.innerHTML = `
 <br><br>
 
 <a
-href="employee-directory.html"
-class="link-btn primary-btn">
+    href="employee-directory.html"
+    class="link-btn primary-btn">
 
 👥 إضافة الموظفين
 
@@ -2069,14 +2841,18 @@ class="link-btn primary-btn">
 
 `;
 
-return;
 
-}
+        return;
+
+    }
 
 
-if(employees.length===0){
+    if(
+        employees.length ===
+        0
+    ){
 
-body.innerHTML = `
+        body.innerHTML = `
 
 <tr>
 
@@ -2088,643 +2864,412 @@ body.innerHTML = `
 
 `;
 
-return;
 
-}
+        return;
 
-
-body.innerHTML =
-employees.map(
-
-function(employee,index){
-
-const record =
-getEmployeeScreening(
-employee.employeeId
-);
+    }
 
 
-const isScreened =
-record &&
-record.screeningStatus==="completed";
+    body.innerHTML =
+        employees
+        .map(
+            function(employee,index){
+
+                const record =
+                    getEmployeeScreening(
+                        employee.employeeId
+                    );
 
 
-return `
+                const isScreened =
+                    record &&
+                    record.screeningStatus ===
+                    "completed";
+
+
+                return `
 
 <tr>
 
 <td>
-${index+1}
+${index + 1}
 </td>
 
 <td>
-${employee.employeeName}
+${escapeHTML(employee.employeeName)}
 </td>
 
 <td>
-${employee.employeeId}
+${escapeHTML(employee.employeeId)}
 </td>
 
 <td>
-${employee.jobTitle || "—"}
+${escapeHTML(employee.jobTitle || "—")}
 </td>
 
 <td>
-${isScreened
-?"✅ تم الفحص"
-:"❌ لم يتم الفحص"}
+${isScreened ? "✅ تم الفحص" : "❌ لم يتم الفحص"}
 </td>
 
 <td>
-${record
-?record.sampleDate || "—"
-:"—"}
+${escapeHTML(record ? record.sampleDate || "—" : "—")}
 </td>
 
 <td>
-${record
-?record.nextDueDate || "—"
-:"—"}
+${escapeHTML(record ? record.nextDueDate || "—" : "—")}
 </td>
 
 </tr>
 
 `;
 
+            }
+        )
+        .join("");
+
 }
-
-).join("");
-
-}
-
 
 
 /* =====================================================
-   Approvers
+   REPORT SIGNATURE
 ===================================================== */
 
-function getApprovers(){
+function reportSignatureHTML(
+    signature
+){
 
-try{
+    if(
+        signature &&
+        String(signature).startsWith(
+            "data:image/"
+        )
+    ){
 
-return JSON.parse(
-localStorage.getItem(
-"occupationalApprovers"
-)
-) || {};
+        return `
 
-}catch(error){
+<img
+    src="${signature}"
+    alt="التوقيع الإلكتروني">
 
-return {};
+<small>
+التوقيع الإلكتروني
+</small>
 
-}
+`;
 
-}
-
-
-function saveApprovers(){
-
-const data = {
-
-approver1Title:
-document.getElementById(
-"approver1Title"
-).value.trim(),
-
-approver1Name:
-document.getElementById(
-"approver1Name"
-).value.trim(),
-
-approver2Title:
-document.getElementById(
-"approver2Title"
-).value.trim(),
-
-approver2Name:
-document.getElementById(
-"approver2Name"
-).value.trim()
-
-};
+    }
 
 
-localStorage.setItem(
+    return `
 
-"occupationalApprovers",
+<div class="report-signature-placeholder">
+لا يوجد توقيع إلكتروني محفوظ
+</div>
 
-JSON.stringify(data)
-
-);
+`;
 
 }
-
-
-function loadApprovers(){
-
-const saved =
-getApprovers();
-
-
-if(saved.approver1Title){
-
-document.getElementById(
-"approver1Title"
-).value =
-saved.approver1Title;
-
-}
-
-
-if(saved.approver1Name){
-
-document.getElementById(
-"approver1Name"
-).value =
-saved.approver1Name;
-
-}
-
-
-if(saved.approver2Title){
-
-document.getElementById(
-"approver2Title"
-).value =
-saved.approver2Title;
-
-}
-
-
-if(saved.approver2Name){
-
-document.getElementById(
-"approver2Name"
-).value =
-saved.approver2Name;
-
-}
-
-}
-
 
 
 /* =====================================================
-   Signatures
+   BUILD REPORT
 ===================================================== */
-
-function setupSignature(canvasId){
-
-const canvas =
-document.getElementById(
-canvasId
-);
-
-
-const ctx =
-canvas.getContext("2d");
-
-
-const rect =
-canvas.getBoundingClientRect();
-
-
-const ratio =
-window.devicePixelRatio || 1;
-
-
-canvas.width =
-rect.width*ratio;
-
-
-canvas.height =
-145*ratio;
-
-
-ctx.setTransform(
-ratio,0,0,ratio,0,0
-);
-
-
-ctx.lineWidth=2;
-
-ctx.lineCap="round";
-
-ctx.strokeStyle="#172a3a";
-
-
-let drawing=false;
-
-
-function position(event){
-
-const rect =
-canvas.getBoundingClientRect();
-
-
-const point =
-event.touches
-?event.touches[0]
-:event;
-
-
-return{
-
-x:
-point.clientX-
-rect.left,
-
-y:
-point.clientY-
-rect.top
-
-};
-
-}
-
-
-function start(event){
-
-event.preventDefault();
-
-drawing=true;
-
-const p=
-position(event);
-
-ctx.beginPath();
-
-ctx.moveTo(
-p.x,
-p.y
-);
-
-}
-
-
-function move(event){
-
-if(!drawing){
-return;
-}
-
-event.preventDefault();
-
-const p=
-position(event);
-
-ctx.lineTo(
-p.x,
-p.y
-);
-
-ctx.stroke();
-
-}
-
-
-function end(){
-
-drawing=false;
-
-}
-
-
-canvas.addEventListener(
-"mousedown",
-start
-);
-
-canvas.addEventListener(
-"mousemove",
-move
-);
-
-window.addEventListener(
-"mouseup",
-end
-);
-
-canvas.addEventListener(
-"touchstart",
-start,
-{passive:false}
-);
-
-canvas.addEventListener(
-"touchmove",
-move,
-{passive:false}
-);
-
-canvas.addEventListener(
-"touchend",
-end
-);
-
-}
-
-
-function clearSignature(id){
-
-const canvas =
-document.getElementById(id);
-
-
-canvas
-.getContext("2d")
-.clearRect(
-0,
-0,
-canvas.width,
-canvas.height
-);
-
-}
-
-
-
-/* =====================================================
-   Snapshot report
-===================================================== */
-
-let currentReportData=null;
-
 
 function buildReportData(){
 
-saveDepartmentTargets();
-
-saveApprovers();
+    saveDepartmentTargets();
 
 
-let departmentData=[];
-
-let totalTarget=0;
-
-let totalScreened=0;
-
-
-departmentGroups.forEach(
-
-function(group){
-
-group.departments.forEach(
-
-function(item){
-
-const stats =
-getDepartmentStats(
-item[0],
-item[1]
-);
+    const settings =
+        occupationalReportSettings
+        ||
+        getDefaultReportSettings();
 
 
-totalTarget +=
-stats.target;
+    let departmentData =
+        [];
 
 
-totalScreened +=
-stats.screened;
+    let totalTarget =
+        0;
 
 
-departmentData.push({
+    let totalScreened =
+        0;
 
-group:
-group.group,
 
-department:
-item[0],
+    departmentGroups.forEach(
+        function(group){
 
-target:
-stats.target,
+            group.departments.forEach(
+                function(item){
 
-screened:
-stats.screened,
+                    const stats =
+                        getDepartmentStats(
+                            item[0],
+                            item[1]
+                        );
 
-notScreened:
-stats.notScreened,
 
-percent:
-stats.percent
+                    totalTarget +=
+                        stats.target;
 
-});
+
+                    totalScreened +=
+                        stats.screened;
+
+
+                    departmentData.push({
+
+                        group:
+                            group.group,
+
+                        department:
+                            item[0],
+
+                        target:
+                            stats.target,
+
+                        screened:
+                            stats.screened,
+
+                        notScreened:
+                            stats.notScreened,
+
+                        percent:
+                            stats.percent
+
+                    });
+
+                }
+            );
+
+        }
+    );
+
+
+    const totalNot =
+        Math.max(
+            totalTarget -
+            totalScreened,
+            0
+        );
+
+
+    const overall =
+        totalTarget > 0
+        ?
+        Math.round(
+            totalScreened /
+            totalTarget *
+            100
+        )
+        :
+        0;
+
+
+    return {
+
+        id:
+            "OH-RPT-"
+            +
+            new Date()
+            .getFullYear()
+            +
+            "-"
+            +
+            Math.floor(
+                1000 +
+                Math.random() *
+                9000
+            ),
+
+        createdAt:
+            new Date()
+            .toISOString(),
+
+        createdDisplay:
+            new Date()
+            .toLocaleString(
+                "ar-SA"
+            ),
+
+        title:
+            document.getElementById(
+                "reportTitle"
+            )
+            .value
+            .trim(),
+
+        periodType:
+            document.getElementById(
+                "periodType"
+            ).value,
+
+        periodFrom:
+            document.getElementById(
+                "periodFrom"
+            ).value,
+
+        periodTo:
+            document.getElementById(
+                "periodTo"
+            ).value,
+
+        year:
+            document.getElementById(
+                "reportYear"
+            ).value,
+
+        notes:
+            document.getElementById(
+                "reportNotes"
+            )
+            .value
+            .trim(),
+
+        includeNotScreened:
+            document.getElementById(
+                "includeNotScreened"
+            ).checked,
+
+        totalTarget,
+        totalScreened,
+        totalNot,
+        overall,
+
+        departments:
+            departmentData,
+
+        /*
+          Snapshot:
+          يتم حفظ بيانات المعتمدين داخل التقرير وقت إنشائه.
+        */
+
+        approver1:{
+
+            title:
+                settings.preparedByTitle ||
+                "معد التقرير",
+
+            name:
+                settings.preparedByName ||
+                "—",
+
+            department:
+                settings.preparedByDepartment ||
+                "",
+
+            signature:
+                settings.preparedSignature ||
+                ""
+
+        },
+
+        approver2:{
+
+            title:
+                settings.approvedByTitle ||
+                "المعتمد",
+
+            name:
+                settings.approvedByName ||
+                "—",
+
+            department:
+                settings.approvedByDepartment ||
+                "",
+
+            signature:
+                settings.approvedSignature ||
+                ""
+
+        },
+
+        reportSettingsUpdatedAt:
+            settings.updatedAt ||
+            ""
+
+    };
 
 }
-
-);
-
-}
-
-);
-
-
-const totalNot =
-Math.max(
-totalTarget-totalScreened,
-0
-);
-
-
-const overall =
-totalTarget>0
-?Math.round(
-totalScreened/
-totalTarget*100
-)
-:0;
-
-
-const signature1 =
-document.getElementById(
-"signature1"
-)
-.toDataURL(
-"image/png"
-);
-
-
-const signature2 =
-document.getElementById(
-"signature2"
-)
-.toDataURL(
-"image/png"
-);
-
-
-return{
-
-id:
-"OH-RPT-"+
-new Date()
-.getFullYear()+
-"-"+
-Math.floor(
-1000+
-Math.random()*9000
-),
-
-createdAt:
-new Date()
-.toISOString(),
-
-createdDisplay:
-new Date()
-.toLocaleString(
-"ar-SA"
-),
-
-title:
-document.getElementById(
-"reportTitle"
-).value.trim(),
-
-periodType:
-document.getElementById(
-"periodType"
-).value,
-
-periodFrom:
-document.getElementById(
-"periodFrom"
-).value,
-
-periodTo:
-document.getElementById(
-"periodTo"
-).value,
-
-year:
-document.getElementById(
-"reportYear"
-).value,
-
-notes:
-document.getElementById(
-"reportNotes"
-).value.trim(),
-
-includeNotScreened:
-document.getElementById(
-"includeNotScreened"
-).checked,
-
-totalTarget,
-totalScreened,
-totalNot,
-overall,
-
-departments:
-departmentData,
-
-approver1:{
-
-title:
-document.getElementById(
-"approver1Title"
-).value.trim(),
-
-name:
-document.getElementById(
-"approver1Name"
-).value.trim(),
-
-signature:
-signature1
-
-},
-
-approver2:{
-
-title:
-document.getElementById(
-"approver2Title"
-).value.trim(),
-
-name:
-document.getElementById(
-"approver2Name"
-).value.trim(),
-
-signature:
-signature2
-
-}
-
-};
-
-}
-
 
 
 /* =====================================================
-   Render report
+   RENDER REPORT
 ===================================================== */
 
-function renderReport(report){
-
-let rows="";
-
-let lastGroup="";
-
-
-report.departments.forEach(
-
-function(item,index){
-
-if(
-item.group !==
-lastGroup
+function renderReport(
+    report
 ){
 
-rows += `
+    let rows =
+        "";
+
+
+    let lastGroup =
+        "";
+
+
+    report.departments.forEach(
+        function(item,index){
+
+            if(
+                item.group !==
+                lastGroup
+            ){
+
+                rows += `
 
 <tr class="group-row">
 
 <td colspan="6">
-${item.group}
+${escapeHTML(item.group)}
 </td>
 
 </tr>
 
 `;
 
-lastGroup =
-item.group;
 
-}
+                lastGroup =
+                    item.group;
 
-
-let cls =
-"percent-good";
+            }
 
 
-if(item.percent<90){
-
-cls =
-"percent-bad";
-
-}else if(
-item.percent<100
-){
-
-cls =
-"percent-warning";
-
-}
+            let cls =
+                "percent-good";
 
 
-rows += `
+            if(
+                item.percent < 90
+            ){
+
+                cls =
+                    "percent-bad";
+
+            }
+            else if(
+                item.percent < 100
+            ){
+
+                cls =
+                    "percent-warning";
+
+            }
+
+
+            rows += `
 
 <tr>
 
 <td>
-${index+1}
+${index + 1}
 </td>
 
 <td>
-${item.department}
+${escapeHTML(item.department)}
 </td>
 
 <td>
@@ -2747,89 +3292,82 @@ ${item.percent}%
 
 `;
 
-}
-
-);
-
-
-let nonScreenedHtml="";
+        }
+    );
 
 
-if(
-report.includeNotScreened
-){
-
-let employeeRows="";
+    let nonScreenedHtml =
+        "";
 
 
-departmentGroups.forEach(
+    if(
+        report.includeNotScreened
+    ){
 
-function(group){
-
-group.departments.forEach(
-
-function(item){
-
-const department =
-item[0];
+        let employeeRows =
+            "";
 
 
-const employees =
-getDepartmentEmployees(
-department
-)
-.filter(
+        departmentGroups.forEach(
+            function(group){
 
-employee =>
-!employeeIsScreened(
-employee.employeeId
-)
+                group.departments.forEach(
+                    function(item){
 
-);
+                        const department =
+                            item[0];
 
 
-employees.forEach(
+                        const employees =
+                            getDepartmentEmployees(
+                                department
+                            )
+                            .filter(
+                                employee =>
+                                    !employeeIsScreened(
+                                        employee.employeeId
+                                    )
+                            );
 
-function(employee){
 
-employeeRows += `
+                        employees.forEach(
+                            function(employee){
+
+                                employeeRows += `
 
 <tr>
 
 <td>
-${department}
+${escapeHTML(department)}
 </td>
 
 <td>
-${employee.employeeName}
+${escapeHTML(employee.employeeName)}
 </td>
 
 <td>
-${employee.employeeId}
+${escapeHTML(employee.employeeId)}
 </td>
 
 <td>
-${employee.jobTitle || "—"}
+${escapeHTML(employee.jobTitle || "—")}
 </td>
 
 </tr>
 
 `;
 
-}
+                            }
+                        );
 
-);
+                    }
+                );
 
-}
-
-);
-
-}
-
-);
+            }
+        );
 
 
-nonScreenedHtml = `
+        nonScreenedHtml = `
 
 <div class="non-screened-section">
 
@@ -2867,14 +3405,17 @@ nonScreenedHtml = `
 
 <tbody>
 
-${employeeRows ||
-`
-<tr>
-<td colspan="4">
-لا توجد أسماء غير مكتملة في دليل الموظفين.
-</td>
-</tr>
-`}
+${
+    employeeRows
+    ||
+    `
+    <tr>
+        <td colspan="4">
+        لا توجد أسماء غير مكتملة في دليل الموظفين.
+        </td>
+    </tr>
+    `
+}
 
 </tbody>
 
@@ -2886,23 +3427,27 @@ ${employeeRows ||
 
 `;
 
-}
+    }
 
 
-const box =
-document.getElementById(
-"reportBox"
-);
+    const box =
+        document.getElementById(
+            "reportBox"
+        );
 
 
-box.innerHTML = `
+    box.innerHTML = `
 
 
 <div class="report-logos">
 
-<img src="images/cluster-logo.png">
+<img
+    src="images/cluster-logo.png"
+    alt="Hafr Al-Batin Health Cluster">
 
-<img src="images/hospital-logo.png">
+<img
+    src="images/hospital-logo.png"
+    alt="Hospital Logo">
 
 </div>
 
@@ -2910,7 +3455,7 @@ box.innerHTML = `
 <div class="report-header">
 
 <h1>
-${report.title}
+${escapeHTML(report.title)}
 </h1>
 
 <p>
@@ -2923,11 +3468,11 @@ ${report.title}
 الفترة:
 </strong>
 
-${report.periodFrom || "—"}
+${escapeHTML(report.periodFrom || "—")}
 
 إلى
 
-${report.periodTo || "—"}
+${escapeHTML(report.periodTo || "—")}
 
 </p>
 
@@ -2937,7 +3482,7 @@ ${report.periodTo || "—"}
 رقم التقرير:
 </strong>
 
-${report.id}
+${escapeHTML(report.id)}
 
 </p>
 
@@ -3033,17 +3578,19 @@ ${report.totalNot}
 ${report.overall}%
 
 ${
-report.notes
-?`
-<br><br>
+    report.notes
+    ?
+    `
+    <br><br>
 
-<strong>
-الملاحظات:
-</strong>
+    <strong>
+    الملاحظات:
+    </strong>
 
-${report.notes}
-`
-:""
+    ${escapeHTML(report.notes)}
+    `
+    :
+    ""
 }
 
 </div>
@@ -3052,45 +3599,90 @@ ${report.notes}
 ${nonScreenedHtml}
 
 
+<div class="report-department">
+
+<strong>
+القسم:
+</strong>
+
+قسم مكافحة العدوى وعيادة الموظفين
+
+</div>
+
+
 <div class="report-footer">
 
 
 <div class="report-signature">
 
-<strong>
-${report.approver1.title}
-</strong>
+<div class="report-role">
 
-<br><br>
+${escapeHTML(
+    report.approver1?.title ||
+    "معد التقرير"
+)}
 
-${report.approver1.name}
+</div>
 
-<img
-src="${report.approver1.signature}">
+<div class="report-name">
 
-<small>
-التوقيع الإلكتروني
-</small>
+${escapeHTML(
+    report.approver1?.name ||
+    "—"
+)}
+
+</div>
+
+<div class="report-dept">
+
+${escapeHTML(
+    report.approver1?.department ||
+    ""
+)}
+
+</div>
+
+${reportSignatureHTML(
+    report.approver1?.signature ||
+    ""
+)}
 
 </div>
 
 
 <div class="report-signature">
 
-<strong>
-${report.approver2.title}
-</strong>
+<div class="report-role">
 
-<br><br>
+${escapeHTML(
+    report.approver2?.title ||
+    "المعتمد"
+)}
 
-${report.approver2.name}
+</div>
 
-<img
-src="${report.approver2.signature}">
+<div class="report-name">
 
-<small>
-التوقيع الإلكتروني
-</small>
+${escapeHTML(
+    report.approver2?.name ||
+    "—"
+)}
+
+</div>
+
+<div class="report-dept">
+
+${escapeHTML(
+    report.approver2?.department ||
+    ""
+)}
+
+</div>
+
+${reportSignatureHTML(
+    report.approver2?.signature ||
+    ""
+)}
 
 </div>
 
@@ -3099,12 +3691,12 @@ src="${report.approver2.signature}">
 
 
 <div
-style="
-margin-top:25px;
-text-align:center;
-font-size:12px;
-color:#65798b;
-">
+    style="
+        margin-top:25px;
+        text-align:center;
+        font-size:12px;
+        color:#65798b;
+    ">
 
 تم اعتماد هذا التقرير إلكترونيًا
 داخل نظام متابعة الصحة المهنية.
@@ -3113,21 +3705,23 @@ color:#65798b;
 
 تاريخ إنشاء التقرير:
 
-${report.createdDisplay}
+${escapeHTML(report.createdDisplay)}
 
 </div>
 
 
 <div
-class="action-row no-print"
-style="
-justify-content:center;
-margin-top:25px;
-">
+    class="action-row no-print"
+    style="
+        justify-content:center;
+        margin-top:25px;
+    ">
+
 
 <button
-class="green-btn"
-onclick="saveCurrentReportToArchive()">
+    type="button"
+    class="green-btn"
+    onclick="saveCurrentReportToArchive()">
 
 ✅ اعتماد وحفظ التقرير
 
@@ -3135,126 +3729,152 @@ onclick="saveCurrentReportToArchive()">
 
 
 <button
-class="gray-btn"
-onclick="window.print()">
+    type="button"
+    class="gray-btn"
+    onclick="window.print()">
 
 🖨️ طباعة / حفظ PDF
 
 </button>
+
 
 </div>
 
 `;
 
 
-box.classList.add(
-"active"
-);
+    box.classList.add(
+        "active"
+    );
 
 
-box.scrollIntoView({
-behavior:"smooth"
-});
+    box.scrollIntoView({
 
-}
+        behavior:"smooth",
+        block:"start"
 
-
-
-function generateReport(){
-
-currentReportData =
-buildReportData();
-
-
-renderReport(
-currentReportData
-);
+    });
 
 }
-
 
 
 /* =====================================================
-   Save archive
+   GENERATE REPORT
+===================================================== */
+
+function generateReport(){
+
+    if(
+        !occupationalReportSettings
+    ){
+
+        alert(
+            "تعذر تحميل بيانات المعتمدين. أعد تحميل الصفحة ثم حاول مرة أخرى."
+        );
+
+
+        return;
+
+    }
+
+
+    currentReportData =
+        buildReportData();
+
+
+    renderReport(
+        currentReportData
+    );
+
+}
+
+
+/* =====================================================
+   SAVE ARCHIVE
 ===================================================== */
 
 function saveCurrentReportToArchive(){
 
-if(!currentReportData){
+    if(
+        !currentReportData
+    ){
 
-alert(
-"أنشئ التقرير أولًا."
-);
+        alert(
+            "أنشئ التقرير أولًا."
+        );
 
-return;
+
+        return;
+
+    }
+
+
+    const archive =
+        getReportsArchive();
+
+
+    const exists =
+        archive.some(
+            report =>
+                report.id ===
+                currentReportData.id
+        );
+
+
+    if(
+        !exists
+    ){
+
+        archive.unshift(
+            currentReportData
+        );
+
+
+        localStorage.setItem(
+
+            "occupationalReportsArchive",
+
+            JSON.stringify(
+                archive
+            )
+
+        );
+
+    }
+
+
+    alert(
+        "✅ تم اعتماد التقرير وحفظه في الأرشيف."
+    );
+
+
+    renderArchive();
 
 }
-
-
-let archive =
-getReportsArchive();
-
-
-const exists =
-archive.some(
-
-report =>
-report.id ===
-currentReportData.id
-
-);
-
-
-if(!exists){
-
-archive.unshift(
-currentReportData
-);
-
-
-localStorage.setItem(
-
-"occupationalReportsArchive",
-
-JSON.stringify(
-archive
-)
-
-);
-
-}
-
-
-alert(
-"✅ تم اعتماد التقرير وحفظه في الأرشيف."
-);
-
-
-renderArchive();
-
-}
-
 
 
 /* =====================================================
-   Archive
+   ARCHIVE
 ===================================================== */
 
 function renderArchive(){
 
-const archive =
-getReportsArchive();
+    const archive =
+        getReportsArchive();
 
 
-const container =
-document.getElementById(
-"archiveContainer"
-);
+    const container =
+        document.getElementById(
+            "archiveContainer"
+        );
 
 
-if(archive.length===0){
+    if(
+        archive.length ===
+        0
+    ){
 
-container.innerHTML = `
+        container.innerHTML = `
 
 <div class="archive-empty">
 
@@ -3264,12 +3884,13 @@ container.innerHTML = `
 
 `;
 
-return;
 
-}
+        return;
+
+    }
 
 
-container.innerHTML = `
+    container.innerHTML = `
 
 <div class="table-wrap">
 
@@ -3311,24 +3932,32 @@ container.innerHTML = `
 
 </thead>
 
+
 <tbody>
 
-${archive.map(
-
-report => `
+${
+    archive
+    .map(
+        report => `
 
 <tr>
 
 <td>
-${report.id}
+${escapeHTML(report.id)}
 </td>
 
 <td>
-${report.periodFrom || "—"}
+
+${escapeHTML(report.periodFrom || "—")}
+
 <br>
+
 إلى
+
 <br>
-${report.periodTo || "—"}
+
+${escapeHTML(report.periodTo || "—")}
+
 </td>
 
 <td>
@@ -3346,9 +3975,7 @@ ${report.overall}%
 <td>
 
 <span class="status-approved">
-
 معتمد
-
 </span>
 
 </td>
@@ -3356,20 +3983,19 @@ ${report.overall}%
 <td>
 
 <button
-class="primary-btn"
-onclick="openArchivedReport(
-'${report.id}'
-)">
+    type="button"
+    class="primary-btn"
+    onclick="openArchivedReport('${escapeHTML(report.id)}')">
 
 📄 فتح
 
 </button>
 
+
 <button
-class="red-btn"
-onclick="deleteArchivedReport(
-'${report.id}'
-)">
+    type="button"
+    class="red-btn"
+    onclick="deleteArchivedReport('${escapeHTML(report.id)}')">
 
 حذف
 
@@ -3380,8 +4006,9 @@ onclick="deleteArchivedReport(
 </tr>
 
 `
-
-).join("")}
+    )
+    .join("")
+}
 
 </tbody>
 
@@ -3394,145 +4021,163 @@ onclick="deleteArchivedReport(
 }
 
 
-
-function openArchivedReport(id){
-
-const report =
-getReportsArchive()
-.find(
-
-item =>
-item.id === id
-
-);
-
-
-if(!report){
-
-return;
-
-}
-
-
-currentReportData =
-report;
-
-
-renderReport(
-report
-);
-
-}
-
-
-
-function deleteArchivedReport(id){
-
-if(
-!confirm(
-"هل تريد حذف هذا التقرير من الأرشيف؟"
-)
+function openArchivedReport(
+    id
 ){
 
-return;
+    const report =
+        getReportsArchive()
+        .find(
+            item =>
+                item.id ===
+                id
+        );
+
+
+    if(
+        !report
+    ){
+
+        return;
+
+    }
+
+
+    currentReportData =
+        report;
+
+
+    renderReport(
+        report
+    );
 
 }
 
 
-const archive =
-getReportsArchive()
-.filter(
+function deleteArchivedReport(
+    id
+){
 
-report =>
-report.id !== id
+    if(
+        !confirm(
+            "هل تريد حذف هذا التقرير من الأرشيف؟"
+        )
+    ){
 
-);
+        return;
 
-
-localStorage.setItem(
-
-"occupationalReportsArchive",
-
-JSON.stringify(
-archive
-)
-
-);
+    }
 
 
-renderArchive();
+    const archive =
+        getReportsArchive()
+        .filter(
+            report =>
+                report.id !==
+                id
+        );
+
+
+    localStorage.setItem(
+
+        "occupationalReportsArchive",
+
+        JSON.stringify(
+            archive
+        )
+
+    );
+
+
+    renderArchive();
 
 }
-
 
 
 /* =====================================================
-   Startup
+   INIT
 ===================================================== */
 
-document.addEventListener(
+async function init(){
 
-"DOMContentLoaded",
-
-function(){
-
-
-const now =
-new Date();
+    const now =
+        new Date();
 
 
-document.getElementById(
-"reportYear"
-).value =
-now.getFullYear();
+    document.getElementById(
+        "reportYear"
+    ).value =
+        now.getFullYear();
 
 
-document.getElementById(
-"periodFrom"
-).value =
-formatDateInput(
-new Date(
-now.getFullYear(),
-0,
-1
-)
-);
+    document.getElementById(
+        "periodFrom"
+    ).value =
+        formatDateInput(
+
+            new Date(
+                now.getFullYear(),
+                0,
+                1
+            )
+
+        );
 
 
-document.getElementById(
-"periodTo"
-).value =
-formatDateInput(
-now
-);
+    document.getElementById(
+        "periodTo"
+    ).value =
+        formatDateInput(
+            now
+        );
 
 
-loadApprovers();
+    renderDepartments();
 
-renderDepartments();
-
-renderArchive();
+    renderArchive();
 
 
-setTimeout(
+    try{
 
-function(){
+        occupationalReportSettings =
+            await loadCentralReportSettings();
 
-setupSignature(
-"signature1"
-);
 
-setupSignature(
-"signature2"
-);
+        renderCentralApprovers();
 
-},
-100
+    }
+    catch(error){
 
-);
+        console.error(
+            "Unable to load central approver settings:",
+            error
+        );
+
+
+        occupationalReportSettings =
+            getDefaultReportSettings();
+
+
+        renderCentralApprovers();
+
+
+        document.getElementById(
+            "centralSettingsStatus"
+        ).innerHTML =
+            "❌ تعذر تحميل بيانات المعتمدين والتوقيعات.";
+
+    }
 
 }
 
+
+/* =====================================================
+   START
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    init
 );
 
 

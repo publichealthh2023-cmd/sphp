@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>إعدادات تقارير الصحة المهنية</title>
+
+<link rel="stylesheet" href="Style.css">
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+}
+
+.settings-page{
+    max-width:1100px;
+    margin:30px auto;
+    padding:0 20px 70px;
+}
+
+.intro-card,
+.section-card{
+    background:#fff;
+    border:1px solid #dfe8f2;
+    border-radius:15px;
+    padding:24px;
+    margin-bottom:20px;
+    box-shadow:0 4px 14px rgba(0,0,0,.05);
+}
+
+.intro-card{
+    text-align:center;
+}
+
+.intro-card h1{
+    color:#064c92;
+    margin:0 0 8px;
+}
+
+.intro-card p{
+    color:#607387;
+    line-height:1.8;
+    margin:0;
+}
+
+.section-card h2{
+    color:#064c92;
+    margin-top:0;
+    border-bottom:1px solid #e4ebf1;
+    padding-bottom:10px;
+}
+
+.approvers-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.approver-card{
+    background:#f8fbfd;
+    border:1px solid #dce6ee;
+    border-radius:13px;
+    padding:20px;
+}
+
+.approver-card h3{
+    color:#064c92;
+    margin-top:0;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+    margin-bottom:14px;
+}
+
+label{
+    font-weight:bold;
+    color:#294b6a;
+}
+
+input{
+    width:100%;
+    padding:11px;
+    border:1px solid #ccd9e5;
+    border-radius:8px;
+    background:#fff;
+    font-size:14px;
+}
+
+.signature-upload-box{
+    background:#fff;
+    border:2px dashed #aebdca;
+    border-radius:12px;
+    padding:18px;
+    margin-top:10px;
+    text-align:center;
+}
+
+.signature-upload-box p{
+    margin:0 0 12px;
+    color:#607387;
+    line-height:1.7;
+}
+
+.signature-file{
+    display:none;
+}
+
+.upload-btn{
+    display:inline-block;
+    background:#0759a6;
+    color:#fff;
+    padding:10px 16px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.signature-status{
+    margin-top:12px;
+    padding:7px 11px;
+    border-radius:8px;
+    display:inline-block;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.signature-status.empty{
+    background:#fff4d7;
+    color:#806316;
+}
+
+.signature-status.signed{
+    background:#e8f6ec;
+    color:#277438;
+}
+
+.signature-preview{
+    margin-top:16px;
+    display:none;
+}
+
+.signature-preview.active{
+    display:block;
+}
+
+.signature-preview img{
+    max-width:260px;
+    max-height:110px;
+    object-fit:contain;
+    display:block;
+    margin:0 auto 10px;
+    background:#fff;
+    border:1px solid #e1e7ec;
+    border-radius:8px;
+    padding:6px;
+}
+
+.signature-actions{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:10px;
+}
+
+.signature-actions button{
+    border:none;
+    border-radius:8px;
+    padding:9px 13px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.remove-signature-btn{
+    background:#fff0f0;
+    color:#b71c1c;
+}
+
+.replace-signature-btn{
+    background:#eaf1f7;
+    color:#064c92;
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:20px;
+}
+
+.actions button,
+.actions a{
+    border:none;
+    border-radius:9px;
+    padding:12px 18px;
+    font-weight:bold;
+    cursor:pointer;
+    text-decoration:none;
+}
+
+.save-btn{
+    background:#187b43;
+    color:#fff;
+}
+
+.save-btn:disabled{
+    opacity:.65;
+    cursor:not-allowed;
+}
+
+.back-btn{
+    background:#eaf1f7;
+    color:#064c92;
+}
+
+.result-box{
+    display:none;
+    margin-top:18px;
+    padding:15px;
+    border-radius:10px;
+    line-height:1.8;
+}
+
+.result-box.success{
+    display:block;
+    background:#eaf7ee;
+    color:#285b33;
+    border-right:5px solid #187b43;
+}
+
+.result-box.error{
+    display:block;
+    background:#fff0f0;
+    color:#7d2525;
+    border-right:5px solid #c62828;
+}
+
+.note{
+    background:#eef7ff;
+    border-right:5px solid #0759a6;
+    padding:15px;
+    border-radius:10px;
+    line-height:1.8;
+    color:#31556f;
+}
+
+@media(max-width:800px){
+
+    .approvers-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="hero-header">
+
+<div class="hero-grid">
+
+<div class="side-logo left-logo">
+
+<img
+    src="images/cluster-logo.png"
+    alt="Hafr Al-Batin Health Cluster">
+
+</div>
+
+
+<div class="hero-center">
+
+<h1>
+إعدادات تقارير الصحة المهنية
+</h1>
+
+<h2>
+Occupational Health Report Settings
+</h2>
+
+<p>
+إدارة المعتمدين والتوقيعات
+</p>
+
+</div>
+
+
+<div class="side-logo right-logo">
+
+<img
+    src="images/hospital-logo.png"
+    alt="Hospital Logo">
+
+</div>
+
+</div>
+
+</header>
+
+
+<main class="settings-page">
+
+
+<section class="intro-card">
+
+<h1>
+✍️ المعتمدون والتوقيعات الإلكترونية
+</h1>
+
+<p>
+يتم حفظ بيانات المعتمدين وصور التوقيعات مرة واحدة، ثم تستخدم تلقائيًا في تقارير الفحص الدوري والإصابات المهنية وحملات التطعيمات وتقارير الصحة المهنية.
+</p>
+
+</section>
+
+
+<section class="section-card">
+
+<h2>
+بيانات الاعتماد
+</h2>
+
+
+<div class="approvers-grid">
+
+
+<!-- =====================================================
+     PREPARER
+===================================================== -->
+
+<div class="approver-card">
+
+<h3>
+معد التقرير
+</h3>
+
+
+<div class="form-group">
+
+<label for="preparedByTitle">
+المسمى
+</label>
+
+<input
+    id="preparedByTitle"
+    value="منسق الفحص الدوري للموظفين">
+
+</div>
+
+
+<div class="form-group">
+
+<label for="preparedByName">
+الاسم
+</label>
+
+<input
+    id="preparedByName"
+    value="عوض الحديدي">
+
+</div>
+
+
+<div class="form-group">
+
+<label for="preparedByDepartment">
+القسم
+</label>
+
+<input
+    id="preparedByDepartment"
+    value="قسم مكافحة العدوى وعيادة الموظفين">
+
+</div>
+
+
+<div class="signature-upload-box">
+
+<p>
+ارفع صورة التوقيع الإلكتروني من الجهاز.
+<br>
+يفضل PNG بخلفية شفافة.
+</p>
+
+<label
+    for="preparedSignatureFile"
+    class="upload-btn">
+
+📁 اختيار صورة التوقيع
+
+</label>
+
+<input
+    id="preparedSignatureFile"
+    class="signature-file"
+    type="file"
+    accept="image/png,image/jpeg,image/webp"
+    onchange="handleSignatureUpload('prepared', this)">
+
+
+<div
+    id="preparedSignatureStatus"
+    class="signature-status empty">
+
+✍️ لا يوجد توقيع محفوظ
+
+</div>
+
+
+<div
+    id="preparedSignaturePreview"
+    class="signature-preview">
+
+<img
+    id="preparedSignatureImage"
+    alt="توقيع معد التقرير">
+
+
+<div class="signature-actions">
+
+<label
+    for="preparedSignatureFile"
+    class="replace-signature-btn"
+    style="cursor:pointer;">
+
+🔄 استبدال التوقيع
+
+</label>
+
+<button
+    type="button"
+    class="remove-signature-btn"
+    onclick="removeSignature('prepared')">
+
+🗑️ حذف التوقيع
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     APPROVER
+===================================================== -->
+
+<div class="approver-card">
+
+<h3>
+المعتمد
+</h3>
+
+
+<div class="form-group">
+
+<label for="approvedByTitle">
+المسمى
+</label>
+
+<input
+    id="approvedByTitle"
+    value="مدير مكافحة العدوى">
+
+</div>
+
+
+<div class="form-group">
+
+<label for="approvedByName">
+الاسم
+</label>
+
+<input
+    id="approvedByName"
+    value="فارس فاضل الشمري">
+
+</div>
+
+
+<div class="form-group">
+
+<label for="approvedByDepartment">
+القسم
+</label>
+
+<input
+    id="approvedByDepartment"
+    value="قسم مكافحة العدوى">
+
+</div>
+
+
+<div class="signature-upload-box">
+
+<p>
+ارفع صورة التوقيع الإلكتروني من الجهاز.
+<br>
+يفضل PNG بخلفية شفافة.
+</p>
+
+<label
+    for="approvedSignatureFile"
+    class="upload-btn">
+
+📁 اختيار صورة التوقيع
+
+</label>
+
+<input
+    id="approvedSignatureFile"
+    class="signature-file"
+    type="file"
+    accept="image/png,image/jpeg,image/webp"
+    onchange="handleSignatureUpload('approved', this)">
+
+
+<div
+    id="approvedSignatureStatus"
+    class="signature-status empty">
+
+✍️ لا يوجد توقيع محفوظ
+
+</div>
+
+
+<div
+    id="approvedSignaturePreview"
+    class="signature-preview">
+
+<img
+    id="approvedSignatureImage"
+    alt="توقيع المعتمد">
+
+
+<div class="signature-actions">
+
+<label
+    for="approvedSignatureFile"
+    class="replace-signature-btn"
+    style="cursor:pointer;">
+
+🔄 استبدال التوقيع
+
+</label>
+
+<button
+    type="button"
+    class="remove-signature-btn"
+    onclick="removeSignature('approved')">
+
+🗑️ حذف التوقيع
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="actions">
+
+<button
+    type="button"
+    id="saveButton"
+    class="save-btn"
+    onclick="saveSettings()">
+
+💾 حفظ بيانات المعتمدين والتوقيعات
+
+</button>
+
+
+<a
+    href="occupational-health.html"
+    class="back-btn">
+
+← العودة للصحة المهنية
+
+</a>
+
+</div>
+
+
+<div
+    id="resultBox"
+    class="result-box">
+</div>
+
+</section>
+
+
+<section class="note">
+
+<strong>
+ملاحظة:
+</strong>
+
+يتم حفظ صورة التوقيع داخل إعدادات النظام التجريبية. عند الانتقال لاحقًا إلى خادم المستشفى ستكون التوقيعات والبيانات محفوظة داخل قاعدة البيانات الداخلية وليس داخل المتصفح.
+
+</section>
+
+
+</main>
+
+
+<script src="config.js"></script>
+<script src="api.js"></script>
+
+
+<script>
+
+
+/* =====================================================
+   CONSTANTS
+===================================================== */
+
+const OCCUPATIONAL_REPORT_SETTINGS_KEY =
+    "occupationalReportSettings";
+
+
+const MAX_SIGNATURE_SIZE =
+    1024 * 1024;
+
+
+/* =====================================================
+   STATE
+===================================================== */
+
+let preparedSignatureData =
+    "";
+
+
+let approvedSignatureData =
+    "";
+
+
+let saving =
+    false;
+
+
+/* =====================================================
+   ENVIRONMENT
+===================================================== */
+
+function isServerMode(){
+
+    return (
+        window.SPHP_CONFIG &&
+        window.SPHP_CONFIG.dataMode ===
+        "server"
+    );
+
+}
+
+
+/* =====================================================
+   DEFAULT SETTINGS
+===================================================== */
+
+function getDefaultSettings(){
+
+    return {
+
+        preparedByName:
+            "عوض الحديدي",
+
+        preparedByTitle:
+            "منسق الفحص الدوري للموظفين",
+
+        preparedByDepartment:
+            "قسم مكافحة العدوى وعيادة الموظفين",
+
+        preparedSignature:
+            "",
+
+        approvedByName:
+            "فارس فاضل الشمري",
+
+        approvedByTitle:
+            "مدير مكافحة العدوى",
+
+        approvedByDepartment:
+            "قسم مكافحة العدوى",
+
+        approvedSignature:
+            "",
+
+        updatedAt:
+            ""
+
+    };
+
+}
+
+
+/* =====================================================
+   LOCAL DATA
+===================================================== */
+
+function readSettingsLocal(){
+
+    if(
+        isServerMode()
+    ){
+
+        return null;
+
+    }
+
+
+    try{
+
+        const data =
+            JSON.parse(
+
+                localStorage.getItem(
+                    OCCUPATIONAL_REPORT_SETTINGS_KEY
+                )
+
+                ||
+
+                "null"
+
+            );
+
+
+        if(
+            data &&
+            typeof data ===
+            "object"
+        ){
+
+            return {
+
+                ...getDefaultSettings(),
+
+                ...data
+
+            };
+
+        }
+
+    }
+    catch(error){
+
+        console.warn(
+            "Unable to read occupational report settings:",
+            error
+        );
+
+    }
+
+
+    return getDefaultSettings();
+
+}
+
+
+function writeSettingsLocal(
+    data
+){
+
+    if(
+        isServerMode()
+    ){
+
+        throw new Error(
+            "Local occupational report settings are disabled in server mode."
+        );
+
+    }
+
+
+    localStorage.setItem(
+
+        OCCUPATIONAL_REPORT_SETTINGS_KEY,
+
+        JSON.stringify(
+            data
+        )
+
+    );
+
+}
+
+
+/* =====================================================
+   API ACCESS
+===================================================== */
+
+async function loadSettingsData(){
+
+    if(
+        window.SPHP &&
+        window.SPHP.occupationalReportSettings &&
+        typeof window.SPHP
+        .occupationalReportSettings
+        .get ===
+        "function"
+    ){
+
+        try{
+
+            const data =
+                await window.SPHP
+                .occupationalReportSettings
+                .get();
+
+
+            if(
+                data &&
+                typeof data ===
+                "object"
+            ){
+
+                return {
+
+                    ...getDefaultSettings(),
+
+                    ...data
+
+                };
+
+            }
+
+        }
+        catch(error){
+
+            console.error(
+                "Occupational report settings API failed:",
+                error
+            );
+
+
+            if(
+                isServerMode()
+            ){
+
+                throw error;
+
+            }
+
+        }
+
+    }
+
+
+    if(
+        !isServerMode()
+    ){
+
+        return readSettingsLocal();
+
+    }
+
+
+    throw new Error(
+        "Occupational report settings service unavailable."
+    );
+
+}
+
+
+async function saveSettingsData(
+    data
+){
+
+    if(
+        window.SPHP &&
+        window.SPHP.occupationalReportSettings &&
+        typeof window.SPHP
+        .occupationalReportSettings
+        .save ===
+        "function"
+    ){
+
+        return await window.SPHP
+        .occupationalReportSettings
+        .save(
+            data
+        );
+
+    }
+
+
+    if(
+        !isServerMode()
+    ){
+
+        writeSettingsLocal(
+            data
+        );
+
+
+        return data;
+
+    }
+
+
+    throw new Error(
+        "Occupational report settings save service unavailable."
+    );
+
+}
+
+
+/* =====================================================
+   FILE VALIDATION
+===================================================== */
+
+function validateSignatureFile(
+    file
+){
+
+    if(
+        !file
+    ){
+
+        return (
+            "لم يتم اختيار ملف."
+        );
+
+    }
+
+
+    const allowedTypes = [
+
+        "image/png",
+        "image/jpeg",
+        "image/webp"
+
+    ];
+
+
+    if(
+        !allowedTypes.includes(
+            file.type
+        )
+    ){
+
+        return (
+            "نوع الملف غير مدعوم. استخدم PNG أو JPG أو WEBP."
+        );
+
+    }
+
+
+    if(
+        file.size >
+        MAX_SIGNATURE_SIZE
+    ){
+
+        return (
+            "حجم صورة التوقيع أكبر من 1 MB."
+        );
+
+    }
+
+
+    return "";
+
+}
+
+
+/* =====================================================
+   UPLOAD SIGNATURE
+===================================================== */
+
+function handleSignatureUpload(
+    type,
+    input
+){
+
+    const file =
+        input.files &&
+        input.files[0]
+        ?
+        input.files[0]
+        :
+        null;
+
+
+    const validationError =
+        validateSignatureFile(
+            file
+        );
+
+
+    if(
+        validationError
+    ){
+
+        showResult(
+            "⚠️ " +
+            validationError,
+            true
+        );
+
+
+        input.value =
+            "";
+
+
+        return;
+
+    }
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload =
+        function(event){
+
+            const dataUrl =
+                event.target.result;
+
+
+            if(
+                typeof dataUrl !==
+                "string"
+                ||
+                !dataUrl.startsWith(
+                    "data:image/"
+                )
+            ){
+
+                showResult(
+                    "❌ تعذر قراءة صورة التوقيع.",
+                    true
+                );
+
+
+                return;
+
+            }
+
+
+            if(
+                type ===
+                "prepared"
+            ){
+
+                preparedSignatureData =
+                    dataUrl;
+
+            }
+            else{
+
+                approvedSignatureData =
+                    dataUrl;
+
+            }
+
+
+            renderSignature(
+                type
+            );
+
+
+            showResult(
+                "✅ تم تحميل صورة التوقيع. اضغط حفظ لاعتمادها.",
+                false
+            );
+
+        };
+
+
+    reader.onerror =
+        function(){
+
+            showResult(
+                "❌ تعذر قراءة ملف التوقيع.",
+                true
+            );
+
+        };
+
+
+    reader.readAsDataURL(
+        file
+    );
+
+}
+
+
+/* =====================================================
+   REMOVE SIGNATURE
+===================================================== */
+
+function removeSignature(
+    type
+){
+
+    if(
+        type ===
+        "prepared"
+    ){
+
+        preparedSignatureData =
+            "";
+
+
+        document.getElementById(
+            "preparedSignatureFile"
+        ).value =
+            "";
+
+    }
+    else{
+
+        approvedSignatureData =
+            "";
+
+
+        document.getElementById(
+            "approvedSignatureFile"
+        ).value =
+            "";
+
+    }
+
+
+    renderSignature(
+        type
+    );
+
+}
+
+
+/* =====================================================
+   RENDER SIGNATURE
+===================================================== */
+
+function renderSignature(
+    type
+){
+
+    const isPrepared =
+        type ===
+        "prepared";
+
+
+    const data =
+        isPrepared
+        ?
+        preparedSignatureData
+        :
+        approvedSignatureData;
+
+
+    const status =
+        document.getElementById(
+
+            isPrepared
+            ?
+            "preparedSignatureStatus"
+            :
+            "approvedSignatureStatus"
+
+        );
+
+
+    const preview =
+        document.getElementById(
+
+            isPrepared
+            ?
+            "preparedSignaturePreview"
+            :
+            "approvedSignaturePreview"
+
+        );
+
+
+    const image =
+        document.getElementById(
+
+            isPrepared
+            ?
+            "preparedSignatureImage"
+            :
+            "approvedSignatureImage"
+
+        );
+
+
+    if(
+        data
+    ){
+
+        image.src =
+            data;
+
+
+        preview.classList.add(
+            "active"
+        );
+
+
+        status.className =
+            "signature-status signed";
+
+
+        status.textContent =
+            "✅ يوجد توقيع إلكتروني";
+
+    }
+    else{
+
+        image.removeAttribute(
+            "src"
+        );
+
+
+        preview.classList.remove(
+            "active"
+        );
+
+
+        status.className =
+            "signature-status empty";
+
+
+        status.textContent =
+            "✍️ لا يوجد توقيع محفوظ";
+
+    }
+
+}
+
+
+/* =====================================================
+   SHOW RESULT
+===================================================== */
+
+function showResult(
+    message,
+    error
+){
+
+    const box =
+        document.getElementById(
+            "resultBox"
+        );
+
+
+    box.className =
+        error
+        ?
+        "result-box error"
+        :
+        "result-box success";
+
+
+    box.innerHTML =
+        message;
+
+
+    box.style.display =
+        "block";
+
+
+    box.scrollIntoView({
+
+        behavior:"smooth",
+        block:"center"
+
+    });
+
+}
+
+
+/* =====================================================
+   POPULATE
+===================================================== */
+
+function populateSettings(
+    data
+){
+
+    document.getElementById(
+        "preparedByName"
+    ).value =
+        data.preparedByName ||
+        "";
+
+
+    document.getElementById(
+        "preparedByTitle"
+    ).value =
+        data.preparedByTitle ||
+        "";
+
+
+    document.getElementById(
+        "preparedByDepartment"
+    ).value =
+        data.preparedByDepartment ||
+        "";
+
+
+    document.getElementById(
+        "approvedByName"
+    ).value =
+        data.approvedByName ||
+        "";
+
+
+    document.getElementById(
+        "approvedByTitle"
+    ).value =
+        data.approvedByTitle ||
+        "";
+
+
+    document.getElementById(
+        "approvedByDepartment"
+    ).value =
+        data.approvedByDepartment ||
+        "";
+
+
+    preparedSignatureData =
+        data.preparedSignature ||
+        "";
+
+
+    approvedSignatureData =
+        data.approvedSignature ||
+        "";
+
+
+    renderSignature(
+        "prepared"
+    );
+
+
+    renderSignature(
+        "approved"
+    );
+
+}
+
+
+/* =====================================================
+   SAVE
+===================================================== */
+
+async function saveSettings(){
+
+    if(
+        saving
+    ){
+
+        return;
+
+    }
+
+
+    const preparedName =
+        document.getElementById(
+            "preparedByName"
+        )
+        .value
+        .trim();
+
+
+    const approvedName =
+        document.getElementById(
+            "approvedByName"
+        )
+        .value
+        .trim();
+
+
+    if(
+        !preparedName ||
+        !approvedName
+    ){
+
+        showResult(
+            "⚠️ يرجى إدخال أسماء المعتمدين.",
+            true
+        );
+
+
+        return;
+
+    }
+
+
+    const button =
+        document.getElementById(
+            "saveButton"
+        );
+
+
+    try{
+
+        saving =
+            true;
+
+
+        button.disabled =
+            true;
+
+
+        button.textContent =
+            "⏳ جاري الحفظ...";
+
+
+        const data = {
+
+            preparedByName:
+                preparedName,
+
+            preparedByTitle:
+                document.getElementById(
+                    "preparedByTitle"
+                )
+                .value
+                .trim(),
+
+            preparedByDepartment:
+                document.getElementById(
+                    "preparedByDepartment"
+                )
+                .value
+                .trim(),
+
+            preparedSignature:
+                preparedSignatureData,
+
+            approvedByName:
+                approvedName,
+
+            approvedByTitle:
+                document.getElementById(
+                    "approvedByTitle"
+                )
+                .value
+                .trim(),
+
+            approvedByDepartment:
+                document.getElementById(
+                    "approvedByDepartment"
+                )
+                .value
+                .trim(),
+
+            approvedSignature:
+                approvedSignatureData,
+
+            updatedAt:
+                new Date()
+                .toISOString()
+
+        };
+
+
+        const saved =
+            await saveSettingsData(
+                data
+            );
+
+
+        const finalData = {
+
+            ...data,
+
+            ...(
+                saved &&
+                typeof saved ===
+                "object"
+                ?
+                saved
+                :
+                {}
+            )
+
+        };
+
+
+        preparedSignatureData =
+            finalData.preparedSignature ||
+            "";
+
+
+        approvedSignatureData =
+            finalData.approvedSignature ||
+            "";
+
+
+        renderSignature(
+            "prepared"
+        );
+
+
+        renderSignature(
+            "approved"
+        );
+
+
+        document.getElementById(
+            "preparedSignatureFile"
+        ).value =
+            "";
+
+
+        document.getElementById(
+            "approvedSignatureFile"
+        ).value =
+            "";
+
+
+        showResult(
+
+            "✅ <strong>تم حفظ بيانات المعتمدين والتوقيعات الإلكترونية بنجاح.</strong>"
+            +
+            "<br>"
+            +
+            "سيتم استخدام هذه البيانات تلقائيًا في تقارير الصحة المهنية وحملات التطعيمات.",
+
+            false
+
+        );
+
+    }
+    catch(error){
+
+        console.error(
+            "Occupational report settings save failed:",
+            error
+        );
+
+
+        showResult(
+
+            "❌ تعذر حفظ بيانات المعتمدين والتوقيعات."
+            +
+            (
+                error &&
+                error.message
+                ?
+                "<br>" +
+                error.message
+                :
+                ""
+            ),
+
+            true
+
+        );
+
+    }
+    finally{
+
+        saving =
+            false;
+
+
+        button.disabled =
+            false;
+
+
+        button.textContent =
+            "💾 حفظ بيانات المعتمدين والتوقيعات";
+
+    }
+
+}
+
+
+/* =====================================================
+   INIT
+===================================================== */
+
+async function init(){
+
+    try{
+
+        const settings =
+            await loadSettingsData();
+
+
+        populateSettings(
+            settings
+        );
+
+    }
+    catch(error){
+
+        console.error(
+            "Occupational report settings initialization failed:",
+            error
+        );
+
+
+        populateSettings(
+            getDefaultSettings()
+        );
+
+
+        showResult(
+            "⚠️ تعذر تحميل الإعدادات المحفوظة. تم عرض البيانات الافتراضية.",
+            true
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    init
+);
+
+
+</script>
+
+
+</body>
+
+</html>

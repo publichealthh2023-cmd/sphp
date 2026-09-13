@@ -73,6 +73,11 @@
     border-top:5px solid #00897b;
 }
 
+.vaccination-card{
+    border-top:5px solid #0b8f6a;
+    grid-column:1/-1;
+}
+
 .oh-icon{
     font-size:50px;
     margin-bottom:10px;
@@ -129,6 +134,16 @@
 .secondary-screening{
     background:#e6f5f3;
     color:#00695c;
+}
+
+.primary-vaccination{
+    background:#0b8f6a;
+    color:white;
+}
+
+.secondary-vaccination{
+    background:#e6f7f2;
+    color:#087657;
 }
 
 
@@ -231,6 +246,10 @@ html[dir="ltr"] .privacy-note{
     .oh-services,
     .oh-subservices{
         grid-template-columns:1fr;
+    }
+
+    .vaccination-card{
+        grid-column:auto;
     }
 
 }
@@ -338,10 +357,10 @@ Occupational Health
 </h2>
 
 <p
-    data-ar="إدارة الإصابات والتعرضات المهنية ومتابعة الفحوص الدورية وحالة المناعة للموظفين."
-    data-en="Manage occupational injuries and exposures, routine screening, and employee immunity status.">
+    data-ar="إدارة الإصابات والتعرضات المهنية، الفحوص الدورية، حالة المناعة، وحملات التطعيمات ومتابعة المستفيدين."
+    data-en="Manage occupational injuries and exposures, routine screening, immunity status, vaccination campaigns, and beneficiary follow-up.">
 
-إدارة الإصابات والتعرضات المهنية ومتابعة الفحوص الدورية وحالة المناعة للموظفين.
+إدارة الإصابات والتعرضات المهنية، الفحوص الدورية، حالة المناعة، وحملات التطعيمات ومتابعة المستفيدين.
 
 </p>
 
@@ -457,6 +476,65 @@ Routine Employee Screening
     data-en="📊 Screening Dashboard">
 
 📊 متابعة الفحوص
+
+</a>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     Vaccination Campaigns
+========================= -->
+
+<div class="oh-main-card vaccination-card">
+
+<div class="oh-icon">
+💉
+</div>
+
+<h2
+    data-ar="حملات التطعيمات"
+    data-en="Vaccination Campaigns">
+
+حملات التطعيمات
+
+</h2>
+
+<h3>
+Vaccination Campaigns
+</h3>
+
+<p
+    data-ar="تسجيل بيانات المستفيدين من حملات التطعيمات عبر الجوال، ومتابعة حالة إدخال البيانات في منصة الوزارة، وإدارة الحقول المطلوبة لكل حملة."
+    data-en="Register vaccination campaign beneficiaries by mobile, track ministry platform entry status, and manage required fields for each campaign.">
+
+تسجيل بيانات المستفيدين من حملات التطعيمات عبر الجوال، ومتابعة حالة إدخال البيانات في منصة الوزارة، وإدارة الحقول المطلوبة لكل حملة.
+
+</p>
+
+
+<div class="card-actions">
+
+<a
+    href="vaccination-campaigns.html"
+    class="primary-vaccination"
+    data-ar="➕ تسجيل مستفيد"
+    data-en="➕ Register Beneficiary">
+
+➕ تسجيل مستفيد
+
+</a>
+
+
+<a
+    href="vaccination-campaign-dashboard.html"
+    class="secondary-vaccination"
+    data-ar="📊 متابعة الحملة"
+    data-en="📊 Campaign Dashboard">
+
+📊 متابعة الحملة
 
 </a>
 
@@ -604,10 +682,10 @@ Routine Employee Screening
 </strong>
 
 <span
-    data-ar="بيانات الصحة المهنية حساسة. النسخة الحالية تجريبية وتستخدم التخزين المحلي، وعند التشغيل الفعلي يجب أن تكون البيانات داخل النظام الداخلي المعتمد وبصلاحيات وصول محددة."
-    data-en="Occupational health data is sensitive. This prototype currently uses local browser storage. In production, data should be stored only within the approved internal system with controlled access permissions.">
+    data-ar="بيانات الصحة المهنية وبيانات المستفيدين من حملات التطعيمات حساسة. النسخة الحالية تجريبية، وعند التشغيل الفعلي يجب أن تكون البيانات داخل النظام الداخلي المعتمد وبصلاحيات وصول محددة."
+    data-en="Occupational health and vaccination campaign beneficiary data is sensitive. This prototype is for development only. In production, data must be stored within the approved internal system with controlled access permissions.">
 
-بيانات الصحة المهنية حساسة. النسخة الحالية تجريبية وتستخدم التخزين المحلي، وعند التشغيل الفعلي يجب أن تكون البيانات داخل النظام الداخلي المعتمد وبصلاحيات وصول محددة.
+بيانات الصحة المهنية وبيانات المستفيدين من حملات التطعيمات حساسة. النسخة الحالية تجريبية، وعند التشغيل الفعلي يجب أن تكون البيانات داخل النظام الداخلي المعتمد وبصلاحيات وصول محددة.
 
 </span>
 

@@ -1,0 +1,2562 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<title>
+إعدادات حملات التطعيمات
+</title>
+
+<link
+    rel="stylesheet"
+    href="Style.css">
+
+<style>
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+body{
+    margin:0;
+}
+
+.settings-page{
+    max-width:1200px;
+    margin:30px auto;
+    padding:0 20px 70px;
+}
+
+
+/* =====================================================
+   CARDS
+===================================================== */
+
+.section-card{
+    background:white;
+    border:1px solid #dfe8f2;
+    border-radius:15px;
+    padding:23px;
+    margin-bottom:20px;
+    box-shadow:0 4px 13px rgba(0,0,0,.05);
+}
+
+.section-card h2{
+    color:#064c92;
+    margin-top:0;
+    border-bottom:1px solid #e5edf3;
+    padding-bottom:11px;
+}
+
+.section-card p{
+    color:#607387;
+    line-height:1.8;
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+label{
+    font-weight:bold;
+    color:#294b6a;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    box-sizing:border-box;
+    padding:11px;
+    border:1px solid #ccd9e5;
+    border-radius:8px;
+    background:white;
+    font-size:14px;
+}
+
+textarea{
+    min-height:110px;
+    resize:vertical;
+}
+
+
+/* =====================================================
+   BASE FIELDS TABLE
+===================================================== */
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,
+td{
+    border:1px solid #d4dee6;
+    padding:10px;
+    text-align:center;
+}
+
+th{
+    background:#edf3f8;
+    color:#284a68;
+}
+
+.toggle{
+    width:auto;
+    transform:scale(1.2);
+}
+
+
+/* =====================================================
+   EXTRA FIELD CARDS
+===================================================== */
+
+.extra-fields-container{
+    display:grid;
+    gap:12px;
+}
+
+.extra-field-card{
+    border:1px solid #dce6ee;
+    border-radius:12px;
+    background:#f8fbfd;
+    padding:16px;
+}
+
+.extra-field-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-bottom:12px;
+}
+
+.extra-field-header strong{
+    color:#064c92;
+}
+
+.extra-field-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.option-area{
+    grid-column:1/-1;
+}
+
+.field-actions{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:12px;
+}
+
+.delete-btn{
+    border:none;
+    background:#fff0f0;
+    color:#b71c1c;
+    padding:8px 12px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.move-btn{
+    border:none;
+    background:#eaf1f7;
+    color:#064c92;
+    padding:8px 12px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+
+/* =====================================================
+   ADD FIELD
+===================================================== */
+
+.add-field-box{
+    background:#f6fafc;
+    border:1px dashed #b9cbd9;
+    border-radius:12px;
+    padding:18px;
+    margin-top:16px;
+}
+
+.add-field-box h3{
+    color:#064c92;
+    margin-top:0;
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:20px;
+}
+
+.actions button,
+.actions a{
+    border:none;
+    border-radius:9px;
+    padding:12px 18px;
+    font-weight:bold;
+    cursor:pointer;
+    text-decoration:none;
+}
+
+.save-btn{
+    background:#187b43;
+    color:white;
+}
+
+.preview-btn{
+    background:#0759a6;
+    color:white;
+}
+
+.reset-btn{
+    background:#c62828;
+    color:white;
+}
+
+.back-btn{
+    background:#eaf1f7;
+    color:#064c92;
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+.message{
+    display:none;
+    margin-bottom:18px;
+    padding:15px;
+    border-radius:10px;
+    line-height:1.8;
+}
+
+.message.success{
+    display:block;
+    background:#eaf7ee;
+    border-right:5px solid #187b43;
+    color:#285b33;
+}
+
+.message.error{
+    display:block;
+    background:#fff0f0;
+    border-right:5px solid #c62828;
+    color:#7d2525;
+}
+
+
+/* =====================================================
+   NOTE
+===================================================== */
+
+.note{
+    background:#eef7ff;
+    border-right:5px solid #0759a6;
+    padding:15px;
+    border-radius:10px;
+    color:#31556f;
+    line-height:1.8;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:850px){
+
+    .form-grid,
+    .extra-field-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full,
+    .option-area{
+        grid-column:auto;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="hero-header">
+
+<div class="hero-grid">
+
+
+<div class="side-logo left-logo">
+
+<img
+    src="images/cluster-logo.png"
+    alt="Hafr Al-Batin Health Cluster">
+
+</div>
+
+
+<div class="hero-center">
+
+<h1>
+إعدادات حملات التطعيمات
+</h1>
+
+<h2>
+Vaccination Campaign Settings
+</h2>
+
+<p>
+إدارة الصحة المهنية
+</p>
+
+</div>
+
+
+<div class="side-logo right-logo">
+
+<img
+    src="images/hospital-logo.png"
+    alt="Hospital Logo">
+
+</div>
+
+
+</div>
+
+</header>
+
+
+<main class="settings-page">
+
+
+<div
+    id="messageBox"
+    class="message">
+</div>
+
+
+<!-- =====================================================
+     CAMPAIGN SETTINGS
+===================================================== -->
+
+<section class="section-card">
+
+<h2>
+⚙️ إعدادات الحملة
+</h2>
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>
+عنوان الصفحة
+</label>
+
+<input
+    id="campaignTitle"
+    placeholder="مثال: حملة التطعيمات">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+اسم الحملة الحالية
+</label>
+
+<input
+    id="activeCampaignName"
+    placeholder="مثال: حملة الإنفلونزا الموسمية 2026">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+اسم التطعيم الحالي
+</label>
+
+<input
+    id="activeVaccineName"
+    placeholder="مثال: الإنفلونزا الموسمية">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+المستهدف
+</label>
+
+<input
+    id="campaignTarget"
+    type="number"
+    min="0"
+    placeholder="مثال: 200">
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+أنواع الحملات
+</label>
+
+<textarea
+    id="campaignTypes"
+    placeholder="اكتب كل نوع في سطر مستقل"></textarea>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+أنواع التطعيمات
+</label>
+
+<textarea
+    id="vaccineTypes"
+    placeholder="اكتب كل تطعيم في سطر مستقل"></textarea>
+
+</div>
+
+
+</div>
+
+<div class="note">
+
+يمكنك إضافة أو حذف نوع حملة أو تطعيم من القوائم أعلاه.  
+اكتب كل خيار في سطر مستقل، وسيظهر تلقائيًا في صفحة الموظف بعد الحفظ.
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     BASE FIELDS
+===================================================== -->
+
+<section class="section-card">
+
+<h2>
+🧾 الحقول الأساسية
+</h2>
+
+<p>
+يمكن تشغيل أو إخفاء أي حقل، وتحديد هل هو إلزامي أم اختياري.
+</p>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+الحقل
+</th>
+
+<th>
+إظهار
+</th>
+
+<th>
+إلزامي
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+
+<tr>
+
+<td>
+الاسم
+</td>
+
+<td>
+
+<input
+    id="enabled_fullName"
+    class="toggle"
+    type="checkbox">
+
+</td>
+
+<td>
+
+<input
+    id="required_fullName"
+    class="toggle"
+    type="checkbox">
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+رقم الهوية / الإقامة
+</td>
+
+<td>
+
+<input
+    id="enabled_nationalId"
+    class="toggle"
+    type="checkbox">
+
+</td>
+
+<td>
+
+<input
+    id="required_nationalId"
+    class="toggle"
+    type="checkbox">
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+العمر
+</td>
+
+<td>
+
+<input
+    id="enabled_age"
+    class="toggle"
+    type="checkbox">
+
+</td>
+
+<td>
+
+<input
+    id="required_age"
+    class="toggle"
+    type="checkbox">
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+تاريخ الإدخال
+</td>
+
+<td>
+
+<input
+    id="enabled_entryDate"
+    class="toggle"
+    type="checkbox">
+
+</td>
+
+<td>
+
+<input
+    id="required_entryDate"
+    class="toggle"
+    type="checkbox">
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+نوع الحملة
+</td>
+
+<td>
+
+<input
+    id="enabled_campaignType"
+    class="toggle"
+    type="checkbox">
+
+</td>
+
+<td>
+
+<input
+    id="required_campaignType"
+    class="toggle"
+    type="checkbox">
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+نوع التطعيم
+</td>
+
+<td>
+
+<input
+    id="enabled_vaccineType"
+    class="toggle"
+    type="checkbox">
+
+</td>
+
+<td>
+
+<input
+    id="required_vaccineType"
+    class="toggle"
+    type="checkbox">
+
+</td>
+
+</tr>
+
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     EXTRA FIELDS
+===================================================== -->
+
+<section class="section-card">
+
+<h2>
+➕ الحقول الإضافية
+</h2>
+
+<p>
+يمكنك إضافة أي بند جديد يظهر للموظف في صفحة تسجيل المستفيد.
+</p>
+
+
+<div
+    id="extraFieldsContainer"
+    class="extra-fields-container">
+</div>
+
+
+<div class="add-field-box">
+
+<h3>
+إضافة حقل جديد
+</h3>
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>
+اسم الحقل
+</label>
+
+<input
+    id="newFieldLabel"
+    placeholder="مثال: رقم الجوال">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+نوع الحقل
+</label>
+
+<select id="newFieldType">
+
+<option value="text">
+نص
+</option>
+
+<option value="number">
+رقم
+</option>
+
+<option value="date">
+تاريخ
+</option>
+
+<option value="tel">
+رقم جوال
+</option>
+
+<option value="select">
+قائمة منسدلة
+</option>
+
+<option value="textarea">
+ملاحظات طويلة
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+إلزامي؟
+</label>
+
+<select id="newFieldRequired">
+
+<option value="no">
+اختياري
+</option>
+
+<option value="yes">
+إلزامي
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+بعرض كامل؟
+</label>
+
+<select id="newFieldFullWidth">
+
+<option value="no">
+لا
+</option>
+
+<option value="yes">
+نعم
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+خيارات القائمة
+</label>
+
+<textarea
+    id="newFieldOptions"
+    placeholder="يستخدم فقط إذا كان نوع الحقل قائمة منسدلة. اكتب كل خيار في سطر مستقل."></textarea>
+
+</div>
+
+
+</div>
+
+
+<div class="actions">
+
+<button
+    type="button"
+    class="preview-btn"
+    onclick="addExtraField()">
+
+➕ إضافة الحقل
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     ACTIONS
+===================================================== -->
+
+<section class="section-card">
+
+<h2>
+💾 حفظ وإدارة الإعدادات
+</h2>
+
+
+<div class="actions">
+
+
+<button
+    type="button"
+    class="save-btn"
+    onclick="saveSettings()">
+
+💾 حفظ الإعدادات
+
+</button>
+
+
+<a
+    href="vaccination-campaigns.html"
+    class="preview-btn">
+
+📱 معاينة صفحة الموظف
+
+</a>
+
+
+<a
+    href="vaccination-campaign-dashboard.html"
+    class="preview-btn">
+
+📊 لوحة متابعة الحملة
+
+</a>
+
+
+<button
+    type="button"
+    class="reset-btn"
+    onclick="resetSettings()">
+
+♻️ استعادة الإعدادات الافتراضية
+
+</button>
+
+
+<a
+    href="occupational-health.html"
+    class="back-btn">
+
+← العودة للصحة المهنية
+
+</a>
+
+
+</div>
+
+</section>
+
+
+</main>
+
+
+<!-- =====================================================
+     CONFIG / API
+===================================================== -->
+
+<script src="config.js"></script>
+<script src="api.js"></script>
+
+
+<script>
+
+
+/* =====================================================
+   CONSTANTS
+===================================================== */
+
+const SETTINGS_KEY =
+    "vaccinationCampaignSettings";
+
+
+/* =====================================================
+   STATE
+===================================================== */
+
+let settings =
+    null;
+
+
+/* =====================================================
+   ENVIRONMENT
+===================================================== */
+
+function isServerMode(){
+
+    return (
+        window.SPHP_CONFIG &&
+        window.SPHP_CONFIG.dataMode ===
+        "server"
+    );
+
+}
+
+
+/* =====================================================
+   DEFAULT SETTINGS
+===================================================== */
+
+function getDefaultSettings(){
+
+    return {
+
+        campaignTitle:
+            "حملات التطعيمات",
+
+        activeCampaignName:
+            "الحملة الحالية",
+
+        activeVaccineName:
+            "التطعيم",
+
+        target:
+            0,
+
+        campaignTypes:[
+
+            "حملة موسمية",
+            "حملة موظفين",
+            "حملة مجتمعية",
+            "حملة خاصة"
+
+        ],
+
+        vaccineTypes:[
+
+            "الإنفلونزا الموسمية",
+            "التهاب الكبد B",
+            "MMR",
+            "Varicella",
+            "أخرى"
+
+        ],
+
+        baseFields:{
+
+            fullName:{
+                enabled:true,
+                required:true
+            },
+
+            nationalId:{
+                enabled:true,
+                required:true
+            },
+
+            age:{
+                enabled:true,
+                required:true
+            },
+
+            entryDate:{
+                enabled:true,
+                required:true
+            },
+
+            campaignType:{
+                enabled:true,
+                required:true
+            },
+
+            vaccineType:{
+                enabled:true,
+                required:true
+            }
+
+        },
+
+        extraFields:[]
+
+    };
+
+}
+
+
+/* =====================================================
+   MERGE SETTINGS
+===================================================== */
+
+function mergeSettings(
+    incoming
+){
+
+    const defaults =
+        getDefaultSettings();
+
+
+    return {
+
+        ...defaults,
+
+        ...(
+            incoming &&
+            typeof incoming ===
+            "object"
+            ?
+            incoming
+            :
+            {}
+        ),
+
+        baseFields:{
+
+            ...defaults.baseFields,
+
+            ...(
+                incoming &&
+                incoming.baseFields
+                ?
+                incoming.baseFields
+                :
+                {}
+            )
+
+        },
+
+        extraFields:
+            incoming &&
+            Array.isArray(
+                incoming.extraFields
+            )
+            ?
+            incoming.extraFields
+            :
+            []
+
+    };
+
+}
+
+
+/* =====================================================
+   LOCAL SETTINGS
+===================================================== */
+
+function readSettingsLocal(){
+
+    if(
+        isServerMode()
+    ){
+
+        return null;
+
+    }
+
+
+    try{
+
+        const stored =
+            JSON.parse(
+
+                localStorage.getItem(
+                    SETTINGS_KEY
+                )
+
+                ||
+
+                "null"
+
+            );
+
+
+        return mergeSettings(
+            stored
+        );
+
+    }
+    catch(error){
+
+        console.warn(
+            "Unable to read vaccination settings:",
+            error
+        );
+
+
+        return getDefaultSettings();
+
+    }
+
+}
+
+
+function writeSettingsLocal(
+    data
+){
+
+    if(
+        isServerMode()
+    ){
+
+        throw new Error(
+            "Local vaccination settings are disabled in server mode."
+        );
+
+    }
+
+
+    localStorage.setItem(
+
+        SETTINGS_KEY,
+
+        JSON.stringify(
+            data
+        )
+
+    );
+
+}
+
+
+/* =====================================================
+   LOAD SETTINGS
+===================================================== */
+
+async function loadSettings(){
+
+    if(
+        window.SPHP &&
+        window.SPHP.vaccinationSettings &&
+        typeof window.SPHP
+        .vaccinationSettings
+        .get ===
+        "function"
+    ){
+
+        try{
+
+            const data =
+                await window.SPHP
+                .vaccinationSettings
+                .get();
+
+
+            return mergeSettings(
+                data
+            );
+
+        }
+        catch(error){
+
+            console.error(
+                "Vaccination settings service failed:",
+                error
+            );
+
+
+            if(
+                isServerMode()
+            ){
+
+                throw error;
+
+            }
+
+        }
+
+    }
+
+
+    if(
+        !isServerMode()
+    ){
+
+        return readSettingsLocal();
+
+    }
+
+
+    throw new Error(
+        "Vaccination settings service unavailable."
+    );
+
+}
+
+
+/* =====================================================
+   SAVE DATA
+===================================================== */
+
+async function saveSettingsData(
+    data
+){
+
+    if(
+        window.SPHP &&
+        window.SPHP.vaccinationSettings &&
+        typeof window.SPHP
+        .vaccinationSettings
+        .save ===
+        "function"
+    ){
+
+        return await window.SPHP
+        .vaccinationSettings
+        .save(
+            data
+        );
+
+    }
+
+
+    if(
+        !isServerMode()
+    ){
+
+        writeSettingsLocal(
+            data
+        );
+
+
+        return data;
+
+    }
+
+
+    throw new Error(
+        "Vaccination settings save service unavailable."
+    );
+
+}
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function linesToArray(
+    value
+){
+
+    return String(
+        value ||
+        ""
+    )
+    .split(
+        "\n"
+    )
+    .map(
+        function(item){
+
+            return item.trim();
+
+        }
+    )
+    .filter(Boolean);
+
+}
+
+
+function arrayToLines(
+    values
+){
+
+    return (
+        Array.isArray(
+            values
+        )
+        ?
+        values
+        :
+        []
+    )
+    .join(
+        "\n"
+    );
+
+}
+
+
+function generateFieldKey(){
+
+    return (
+
+        "field_"
+
+        +
+
+        Date.now()
+
+        +
+
+        "_"
+
+        +
+
+        Math.floor(
+            100 +
+            Math.random() *
+            900
+        )
+
+    );
+
+}
+
+
+function escapeHTML(
+    value
+){
+
+    return String(
+        value ??
+        ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+function showMessage(
+    message,
+    error
+){
+
+    const box =
+        document.getElementById(
+            "messageBox"
+        );
+
+
+    box.className =
+        error
+        ?
+        "message error"
+        :
+        "message success";
+
+
+    box.innerHTML =
+        message;
+
+
+    box.style.display =
+        "block";
+
+
+    box.scrollIntoView({
+
+        behavior:"smooth",
+        block:"center"
+
+    });
+
+}
+
+
+/* =====================================================
+   LOAD FORM
+===================================================== */
+
+function populateForm(){
+
+    document.getElementById(
+        "campaignTitle"
+    ).value =
+        settings.campaignTitle ||
+        "";
+
+
+    document.getElementById(
+        "activeCampaignName"
+    ).value =
+        settings.activeCampaignName ||
+        "";
+
+
+    document.getElementById(
+        "activeVaccineName"
+    ).value =
+        settings.activeVaccineName ||
+        "";
+
+
+    document.getElementById(
+        "campaignTarget"
+    ).value =
+        Number(
+            settings.target ||
+            0
+        );
+
+
+    document.getElementById(
+        "campaignTypes"
+    ).value =
+        arrayToLines(
+            settings.campaignTypes
+        );
+
+
+    document.getElementById(
+        "vaccineTypes"
+    ).value =
+        arrayToLines(
+            settings.vaccineTypes
+        );
+
+
+    populateBaseFields();
+
+    renderExtraFields();
+
+}
+
+
+/* =====================================================
+   BASE FIELDS
+===================================================== */
+
+function populateBaseFields(){
+
+    const keys = [
+
+        "fullName",
+        "nationalId",
+        "age",
+        "entryDate",
+        "campaignType",
+        "vaccineType"
+
+    ];
+
+
+    keys.forEach(
+        function(key){
+
+            const data =
+                settings.baseFields[
+                    key
+                ]
+                ||
+                {};
+
+
+            const enabled =
+                document.getElementById(
+                    "enabled_" +
+                    key
+                );
+
+
+            const required =
+                document.getElementById(
+                    "required_" +
+                    key
+                );
+
+
+            if(
+                enabled
+            ){
+
+                enabled.checked =
+                    data.enabled !==
+                    false;
+
+            }
+
+
+            if(
+                required
+            ){
+
+                required.checked =
+                    !!data.required;
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   COLLECT BASE FIELDS
+===================================================== */
+
+function collectBaseFields(){
+
+    const keys = [
+
+        "fullName",
+        "nationalId",
+        "age",
+        "entryDate",
+        "campaignType",
+        "vaccineType"
+
+    ];
+
+
+    const result =
+        {};
+
+
+    keys.forEach(
+        function(key){
+
+            const enabled =
+                document.getElementById(
+                    "enabled_" +
+                    key
+                ).checked;
+
+
+            const required =
+                document.getElementById(
+                    "required_" +
+                    key
+                ).checked;
+
+
+            result[
+                key
+            ] = {
+
+                enabled:
+                    enabled,
+
+                required:
+                    enabled
+                    ?
+                    required
+                    :
+                    false
+
+            };
+
+        }
+    );
+
+
+    return result;
+
+}
+
+
+/* =====================================================
+   EXTRA FIELDS
+===================================================== */
+
+function renderExtraFields(){
+
+    const container =
+        document.getElementById(
+            "extraFieldsContainer"
+        );
+
+
+    if(
+        !settings.extraFields.length
+    ){
+
+        container.innerHTML = `
+
+<div class="note">
+
+لا توجد حقول إضافية حتى الآن.
+
+</div>
+
+`;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        settings.extraFields
+        .map(
+            function(field,index){
+
+                const optionsText =
+                    Array.isArray(
+                        field.options
+                    )
+                    ?
+                    field.options.join(
+                        "\n"
+                    )
+                    :
+                    "";
+
+
+                return `
+
+<div
+    class="extra-field-card"
+    data-index="${index}">
+
+
+<div class="extra-field-header">
+
+<strong>
+
+الحقل ${index + 1}
+
+</strong>
+
+<span>
+
+${field.enabled === false
+? "🔴 مخفي"
+: "🟢 ظاهر"}
+
+</span>
+
+</div>
+
+
+<div class="extra-field-grid">
+
+
+<div class="form-group">
+
+<label>
+اسم الحقل
+</label>
+
+<input
+    id="extraLabel_${index}"
+    value="${escapeHTML(field.label || "")}">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+نوع الحقل
+</label>
+
+<select
+    id="extraType_${index}">
+
+<option
+    value="text"
+    ${field.type === "text" ? "selected" : ""}>
+
+نص
+
+</option>
+
+<option
+    value="number"
+    ${field.type === "number" ? "selected" : ""}>
+
+رقم
+
+</option>
+
+<option
+    value="date"
+    ${field.type === "date" ? "selected" : ""}>
+
+تاريخ
+
+</option>
+
+<option
+    value="tel"
+    ${field.type === "tel" ? "selected" : ""}>
+
+رقم جوال
+
+</option>
+
+<option
+    value="select"
+    ${field.type === "select" ? "selected" : ""}>
+
+قائمة منسدلة
+
+</option>
+
+<option
+    value="textarea"
+    ${field.type === "textarea" ? "selected" : ""}>
+
+ملاحظات طويلة
+
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+إظهار الحقل
+</label>
+
+<select
+    id="extraEnabled_${index}">
+
+<option
+    value="yes"
+    ${field.enabled !== false ? "selected" : ""}>
+
+نعم
+
+</option>
+
+<option
+    value="no"
+    ${field.enabled === false ? "selected" : ""}>
+
+لا
+
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+إلزامي
+</label>
+
+<select
+    id="extraRequired_${index}">
+
+<option
+    value="yes"
+    ${field.required ? "selected" : ""}>
+
+نعم
+
+</option>
+
+<option
+    value="no"
+    ${!field.required ? "selected" : ""}>
+
+لا
+
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+عرض كامل
+</label>
+
+<select
+    id="extraFullWidth_${index}">
+
+<option
+    value="yes"
+    ${field.fullWidth ? "selected" : ""}>
+
+نعم
+
+</option>
+
+<option
+    value="no"
+    ${!field.fullWidth ? "selected" : ""}>
+
+لا
+
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+نص توضيحي
+</label>
+
+<input
+    id="extraPlaceholder_${index}"
+    value="${escapeHTML(field.placeholder || "")}">
+
+</div>
+
+
+<div class="form-group option-area">
+
+<label>
+خيارات القائمة
+</label>
+
+<textarea
+    id="extraOptions_${index}"
+    placeholder="كل خيار في سطر مستقل">${escapeHTML(optionsText)}</textarea>
+
+</div>
+
+
+</div>
+
+
+<div class="field-actions">
+
+<button
+    type="button"
+    class="move-btn"
+    onclick="moveFieldUp(${index})">
+
+⬆️ للأعلى
+
+</button>
+
+
+<button
+    type="button"
+    class="move-btn"
+    onclick="moveFieldDown(${index})">
+
+⬇️ للأسفل
+
+</button>
+
+
+<button
+    type="button"
+    class="delete-btn"
+    onclick="deleteExtraField(${index})">
+
+🗑️ حذف الحقل
+
+</button>
+
+</div>
+
+
+</div>
+
+`;
+
+            }
+        )
+        .join("");
+
+}
+
+
+/* =====================================================
+   READ EDITED EXTRA FIELDS
+===================================================== */
+
+function syncExtraFieldsFromForm(){
+
+    settings.extraFields =
+        settings.extraFields
+        .map(
+            function(field,index){
+
+                const labelElement =
+                    document.getElementById(
+                        "extraLabel_" +
+                        index
+                    );
+
+
+                if(
+                    !labelElement
+                ){
+
+                    return field;
+
+                }
+
+
+                return {
+
+                    ...field,
+
+                    label:
+                        labelElement.value
+                        .trim(),
+
+                    type:
+                        document.getElementById(
+                            "extraType_" +
+                            index
+                        ).value,
+
+                    enabled:
+                        document.getElementById(
+                            "extraEnabled_" +
+                            index
+                        ).value ===
+                        "yes",
+
+                    required:
+                        document.getElementById(
+                            "extraRequired_" +
+                            index
+                        ).value ===
+                        "yes",
+
+                    fullWidth:
+                        document.getElementById(
+                            "extraFullWidth_" +
+                            index
+                        ).value ===
+                        "yes",
+
+                    placeholder:
+                        document.getElementById(
+                            "extraPlaceholder_" +
+                            index
+                        ).value
+                        .trim(),
+
+                    options:
+                        linesToArray(
+
+                            document.getElementById(
+                                "extraOptions_" +
+                                index
+                            ).value
+
+                        )
+
+                };
+
+            }
+        );
+
+}
+
+
+/* =====================================================
+   ADD FIELD
+===================================================== */
+
+function addExtraField(){
+
+    syncExtraFieldsFromForm();
+
+
+    const label =
+        document.getElementById(
+            "newFieldLabel"
+        )
+        .value
+        .trim();
+
+
+    if(
+        !label
+    ){
+
+        showMessage(
+            "⚠️ اكتب اسم الحقل أولًا.",
+            true
+        );
+
+
+        return;
+
+    }
+
+
+    const type =
+        document.getElementById(
+            "newFieldType"
+        ).value;
+
+
+    const field = {
+
+        key:
+            generateFieldKey(),
+
+        label:
+            label,
+
+        type:
+            type,
+
+        enabled:
+            true,
+
+        required:
+            document.getElementById(
+                "newFieldRequired"
+            ).value ===
+            "yes",
+
+        fullWidth:
+            document.getElementById(
+                "newFieldFullWidth"
+            ).value ===
+            "yes",
+
+        placeholder:
+            "",
+
+        options:
+            type ===
+            "select"
+            ?
+            linesToArray(
+
+                document.getElementById(
+                    "newFieldOptions"
+                ).value
+
+            )
+            :
+            []
+
+    };
+
+
+    settings.extraFields.push(
+        field
+    );
+
+
+    document.getElementById(
+        "newFieldLabel"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "newFieldOptions"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "newFieldType"
+    ).value =
+        "text";
+
+
+    document.getElementById(
+        "newFieldRequired"
+    ).value =
+        "no";
+
+
+    document.getElementById(
+        "newFieldFullWidth"
+    ).value =
+        "no";
+
+
+    renderExtraFields();
+
+
+    showMessage(
+        "✅ تمت إضافة الحقل. اضغط حفظ الإعدادات لاعتماده.",
+        false
+    );
+
+}
+
+
+/* =====================================================
+   DELETE FIELD
+===================================================== */
+
+function deleteExtraField(
+    index
+){
+
+    if(
+        !confirm(
+            "هل تريد حذف هذا الحقل؟"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    syncExtraFieldsFromForm();
+
+
+    settings.extraFields.splice(
+        index,
+        1
+    );
+
+
+    renderExtraFields();
+
+}
+
+
+/* =====================================================
+   MOVE FIELD
+===================================================== */
+
+function moveFieldUp(
+    index
+){
+
+    if(
+        index <= 0
+    ){
+
+        return;
+
+    }
+
+
+    syncExtraFieldsFromForm();
+
+
+    const field =
+        settings.extraFields[
+            index
+        ];
+
+
+    settings.extraFields[
+        index
+    ] =
+        settings.extraFields[
+            index - 1
+        ];
+
+
+    settings.extraFields[
+        index - 1
+    ] =
+        field;
+
+
+    renderExtraFields();
+
+}
+
+
+function moveFieldDown(
+    index
+){
+
+    if(
+        index >=
+        settings.extraFields.length -
+        1
+    ){
+
+        return;
+
+    }
+
+
+    syncExtraFieldsFromForm();
+
+
+    const field =
+        settings.extraFields[
+            index
+        ];
+
+
+    settings.extraFields[
+        index
+    ] =
+        settings.extraFields[
+            index + 1
+        ];
+
+
+    settings.extraFields[
+        index + 1
+    ] =
+        field;
+
+
+    renderExtraFields();
+
+}
+
+
+/* =====================================================
+   BUILD SETTINGS
+===================================================== */
+
+function buildSettings(){
+
+    syncExtraFieldsFromForm();
+
+
+    const target =
+        Number(
+
+            document.getElementById(
+                "campaignTarget"
+            ).value
+
+            ||
+
+            0
+
+        );
+
+
+    return {
+
+        ...settings,
+
+        campaignTitle:
+            document.getElementById(
+                "campaignTitle"
+            ).value
+            .trim(),
+
+        activeCampaignName:
+            document.getElementById(
+                "activeCampaignName"
+            ).value
+            .trim(),
+
+        activeVaccineName:
+            document.getElementById(
+                "activeVaccineName"
+            ).value
+            .trim(),
+
+        target:
+            Number.isFinite(
+                target
+            )
+            &&
+            target >= 0
+            ?
+            Math.floor(
+                target
+            )
+            :
+            0,
+
+        campaignTypes:
+            linesToArray(
+
+                document.getElementById(
+                    "campaignTypes"
+                ).value
+
+            ),
+
+        vaccineTypes:
+            linesToArray(
+
+                document.getElementById(
+                    "vaccineTypes"
+                ).value
+
+            ),
+
+        baseFields:
+            collectBaseFields(),
+
+        extraFields:
+            settings.extraFields,
+
+        updatedAt:
+            new Date()
+            .toISOString()
+
+    };
+
+}
+
+
+/* =====================================================
+   SAVE
+===================================================== */
+
+async function saveSettings(){
+
+    try{
+
+        const updatedSettings =
+            buildSettings();
+
+
+        const saved =
+            await saveSettingsData(
+                updatedSettings
+            );
+
+
+        settings =
+            mergeSettings(
+
+                saved &&
+                typeof saved ===
+                "object"
+                ?
+                saved
+                :
+                updatedSettings
+
+            );
+
+
+        populateForm();
+
+
+        showMessage(
+
+            "✅ تم حفظ إعدادات الحملة بنجاح."
+            +
+            "<br>"
+            +
+            "ستظهر التعديلات في صفحة تسجيل المستفيد.",
+
+            false
+
+        );
+
+    }
+    catch(error){
+
+        console.error(
+            "Unable to save vaccination settings:",
+            error
+        );
+
+
+        showMessage(
+
+            "❌ تعذر حفظ إعدادات الحملة.",
+
+            true
+
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+async function resetSettings(){
+
+    if(
+        !confirm(
+            "هل تريد استعادة الإعدادات الافتراضية؟ سيتم حذف الحقول الإضافية من إعدادات النموذج."
+        )
+    ){
+
+        return;
+
+    }
+
+
+    try{
+
+        settings =
+            getDefaultSettings();
+
+
+        await saveSettingsData(
+            settings
+        );
+
+
+        populateForm();
+
+
+        showMessage(
+            "✅ تمت استعادة الإعدادات الافتراضية.",
+            false
+        );
+
+    }
+    catch(error){
+
+        console.error(
+            "Unable to reset settings:",
+            error
+        );
+
+
+        showMessage(
+            "❌ تعذر استعادة الإعدادات الافتراضية.",
+            true
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   INIT
+===================================================== */
+
+async function init(){
+
+    try{
+
+        settings =
+            await loadSettings();
+
+
+        populateForm();
+
+    }
+    catch(error){
+
+        console.error(
+            "Vaccination settings initialization failed:",
+            error
+        );
+
+
+        settings =
+            getDefaultSettings();
+
+
+        populateForm();
+
+
+        showMessage(
+            "⚠️ تعذر تحميل الإعدادات المحفوظة. تم عرض الإعدادات الافتراضية.",
+            true
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    init
+);
+
+
+</script>
+
+
+</body>
+
+</html>

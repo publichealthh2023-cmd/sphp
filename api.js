@@ -5,7 +5,7 @@
    Local Mode  -> localStorage
    Server Mode -> Hospital Internal API
 
-   Version: 1.0.1
+   Version: 1.1.0
    ========================================================= */
 
    (function(){
@@ -21,7 +21,7 @@
         window.SPHP_CONFIG || {
 
             version:
-                "1.0.0",
+                "1.1.0",
 
             environment:
                 "development",
@@ -58,6 +58,15 @@
 
                 foodborneOutbreaks:
                     "foodborneOutbreaks",
+
+                vaccinationCampaigns:
+                    "vaccinationCampaignRecords",
+
+                vaccinationSettings:
+                    "vaccinationCampaignSettings",
+
+                occupationalReportSettings:
+                    "occupationalReportSettings",
 
                 reportSettings:
                     "publicHealthReportSettings",
@@ -656,10 +665,6 @@
         details
     ){
 
-        /*
-          احترام Feature Flag.
-        */
-
         if(
             CONFIG.features &&
             CONFIG.features.auditLog ===
@@ -724,11 +729,6 @@
             }
             catch(error){
 
-                /*
-                  فشل سجل التدقيق لا يمنع العملية الأساسية.
-                  في الإنتاج سيتم التعامل معه من الخادم.
-                */
-
                 console.error(
                     "SPHP audit server error:",
                     error
@@ -765,11 +765,6 @@
             record
         );
 
-
-        /*
-          حماية نسخة التطوير من تضخم localStorage.
-          نحتفظ بآخر 5000 سجل فقط.
-        */
 
         if(
             list.length >
@@ -1034,10 +1029,6 @@
                     );
 
 
-                /*
-                  منع تكرار نفس الـ ID محليًا.
-                */
-
                 const exists =
                     list.some(
 
@@ -1130,10 +1121,6 @@
                         changes || {}
                     );
 
-
-                /*
-                  لا نسمح بتغيير ID من خلال changes.
-                */
 
                 if(
                     safeChanges &&
@@ -1484,7 +1471,161 @@
 
 
     /* =========================================================
-       SERVICES
+       GENERIC OBJECT SETTINGS SERVICE
+    ========================================================= */
+
+    function createObjectSettingsService(
+        options
+    ){
+
+        const storageKey =
+            options.storageKey;
+
+
+        const apiPath =
+            options.apiPath;
+
+
+        const entityType =
+            options.entityType;
+
+
+        const entityId =
+            options.entityId;
+
+
+        return {
+
+
+            async get(){
+
+                if(
+                    CONFIG.dataMode ===
+                    "server"
+                ){
+
+                    const result =
+                        await serverRequest(
+                            apiPath
+                        );
+
+
+                    return (
+                        result &&
+                        typeof result ===
+                        "object" &&
+                        !Array.isArray(
+                            result
+                        )
+                    )
+                    ? result
+                    : {};
+
+                }
+
+
+                return cloneData(
+                    localReadObject(
+                        storageKey
+                    )
+                );
+
+            },
+
+
+            async save(data){
+
+                const record = {
+
+                    ...cloneData(
+                        data || {}
+                    ),
+
+                    updatedAt:
+                        nowISO()
+
+                };
+
+
+                if(
+                    CONFIG.dataMode ===
+                    "server"
+                ){
+
+                    const result =
+                        await serverRequest(
+
+                            apiPath,
+
+                            {
+
+                                method:
+                                    "PUT",
+
+                                body:
+                                    record
+
+                            }
+
+                        );
+
+
+                    await writeAudit(
+
+                        "UPDATE",
+
+                        entityType,
+
+                        entityId,
+
+                        {}
+
+                    );
+
+
+                    return (
+                        result ||
+                        record
+                    );
+
+                }
+
+
+                localWriteObject(
+
+                    storageKey,
+
+                    record
+
+                );
+
+
+                await writeAudit(
+
+                    "UPDATE",
+
+                    entityType,
+
+                    entityId,
+
+                    {}
+
+                );
+
+
+                return cloneData(
+                    record
+                );
+
+            }
+
+        };
+
+    }
+
+
+    /* =========================================================
+       COLLECTION SERVICES
     ========================================================= */
 
     const rapidScreenings =
@@ -1580,8 +1721,66 @@
         });
 
 
+    const vaccinationCampaigns =
+        createCollectionService({
+
+            storageKey:
+                CONFIG.storageKeys.vaccinationCampaigns,
+
+            apiPath:
+                "/vaccination-campaigns",
+
+            idPrefix:
+                "VAC",
+
+            entityType:
+                "VaccinationCampaign"
+
+        });
+
+
     /* =========================================================
-       SETTINGS SERVICE
+       OBJECT SETTINGS SERVICES
+    ========================================================= */
+
+    const vaccinationSettings =
+        createObjectSettingsService({
+
+            storageKey:
+                CONFIG.storageKeys.vaccinationSettings,
+
+            apiPath:
+                "/settings/vaccination-campaign",
+
+            entityType:
+                "VaccinationCampaignSettings",
+
+            entityId:
+                "vaccination-campaign-settings"
+
+        });
+
+
+    const occupationalReportSettings =
+        createObjectSettingsService({
+
+            storageKey:
+                CONFIG.storageKeys.occupationalReportSettings,
+
+            apiPath:
+                "/settings/occupational-report",
+
+            entityType:
+                "OccupationalReportSettings",
+
+            entityId:
+                "occupational-report-settings"
+
+        });
+
+
+    /* =========================================================
+       EXISTING SETTINGS SERVICE
     ========================================================= */
 
     const settingsService = {
@@ -1890,7 +2089,6 @@
 
     /* =========================================================
        COMPATIBILITY FUNCTIONS
-       تبقي الصفحات الحالية تعمل أثناء الانتقال.
     ========================================================= */
 
 
@@ -1936,16 +2134,6 @@
 
         };
 
-
-    /*
-      تقبل شكلين:
-
-      updatePublicHealthNotification(record)
-
-      أو
-
-      updatePublicHealthNotification(id, changes)
-    */
 
     window.updatePublicHealthNotification =
         async function(
@@ -2198,6 +2386,65 @@
         };
 
 
+    /* -------------------------
+       VACCINATION CAMPAIGNS
+    ------------------------- */
+
+    window.getVaccinationCampaignRecords =
+        async function(){
+
+            return await vaccinationCampaigns.getAll();
+
+        };
+
+
+    window.getVaccinationCampaignRecordById =
+        async function(id){
+
+            return await vaccinationCampaigns.getById(
+                id
+            );
+
+        };
+
+
+    window.saveVaccinationCampaignRecord =
+        async function(record){
+
+            return await vaccinationCampaigns.upsert(
+                record
+            );
+
+        };
+
+
+    window.updateVaccinationCampaignRecord =
+        async function(
+            id,
+            changes
+        ){
+
+            return await vaccinationCampaigns.update(
+
+                id,
+
+                changes
+
+            );
+
+        };
+
+
+    window.deleteVaccinationCampaignRecord =
+        async function(id){
+
+            return await vaccinationCampaigns.remove(
+                id
+            );
+
+        };
+
+
     /* =========================================================
        PUBLIC API
     ========================================================= */
@@ -2221,6 +2468,15 @@
 
         foodborneOutbreaks:
             foodborneOutbreaks,
+
+        vaccinationCampaigns:
+            vaccinationCampaigns,
+
+        vaccinationSettings:
+            vaccinationSettings,
+
+        occupationalReportSettings:
+            occupationalReportSettings,
 
         settings:
             settingsService,

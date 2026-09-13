@@ -13,7 +13,7 @@
 
     appFullName: "Smart Public Health Portal",
 
-    version: "1.0.0",
+    version: "1.1.0",
 
     environment: "development",
 
@@ -73,6 +73,12 @@
 
         employeeScreening: true,
 
+        vaccinationCampaigns: true,
+
+        vaccinationSettings: true,
+
+        occupationalReportSettings: true,
+
         reports: true,
 
         auditLog: true
@@ -103,6 +109,15 @@
 
         foodborneOutbreaks:
             "foodborneOutbreaks",
+
+        vaccinationCampaigns:
+            "vaccinationCampaignRecords",
+
+        vaccinationSettings:
+            "vaccinationCampaignSettings",
+
+        occupationalReportSettings:
+            "occupationalReportSettings",
 
         reportSettings:
             "publicHealthReportSettings",

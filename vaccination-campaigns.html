@@ -1,0 +1,2710 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<title>
+حملات التطعيمات
+</title>
+
+<link
+    rel="stylesheet"
+    href="Style.css">
+
+
+<style>
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+body{
+    margin:0;
+}
+
+.vaccination-page{
+    max-width:850px;
+    margin:25px auto;
+    padding:0 15px 60px;
+}
+
+
+/* =====================================================
+   HEADER CARD
+===================================================== */
+
+.mobile-header{
+    background:white;
+    border:1px solid #dfe8f2;
+    border-radius:16px;
+    padding:22px;
+    text-align:center;
+    margin-bottom:18px;
+    box-shadow:0 4px 14px rgba(0,0,0,.05);
+}
+
+.mobile-header .icon{
+    font-size:48px;
+}
+
+.mobile-header h1{
+    color:#064c92;
+    margin:8px 0 4px;
+    font-size:25px;
+}
+
+.mobile-header h2{
+    color:#728496;
+    font-size:15px;
+    margin:0;
+}
+
+.campaign-current{
+    margin-top:16px;
+    background:#eaf7f3;
+    border:1px solid #c5e9de;
+    border-radius:10px;
+    padding:12px;
+    color:#176f58;
+    line-height:1.8;
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.form-card{
+    background:white;
+    border:1px solid #dfe8f2;
+    border-radius:16px;
+    padding:22px;
+    box-shadow:0 4px 14px rgba(0,0,0,.05);
+}
+
+.form-card h2{
+    color:#064c92;
+    margin-top:0;
+    padding-bottom:12px;
+    border-bottom:1px solid #e5edf3;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+label{
+    color:#294b6a;
+    font-weight:bold;
+}
+
+.required{
+    color:#c62828;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    box-sizing:border-box;
+    border:1px solid #ccd9e5;
+    border-radius:9px;
+    padding:12px;
+    background:white;
+    font-size:15px;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    outline:none;
+    border-color:#0b8f6a;
+    box-shadow:0 0 0 2px rgba(11,143,106,.10);
+}
+
+textarea{
+    min-height:90px;
+    resize:vertical;
+}
+
+
+/* =====================================================
+   DYNAMIC FIELDS
+===================================================== */
+
+.dynamic-section{
+    margin-top:22px;
+    padding-top:18px;
+    border-top:1px solid #e7edf2;
+}
+
+.dynamic-section h3{
+    color:#064c92;
+    margin:0 0 15px;
+}
+
+.dynamic-empty{
+    display:none;
+    color:#718293;
+    background:#f8fbfd;
+    border:1px dashed #ccd9e5;
+    border-radius:9px;
+    padding:12px;
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.status-note{
+    margin-top:20px;
+    background:#fff4f4;
+    border-right:5px solid #c62828;
+    border-radius:10px;
+    padding:14px;
+    color:#7c2929;
+    line-height:1.8;
+}
+
+.status-badge{
+    display:inline-block;
+    margin-top:5px;
+    padding:5px 11px;
+    border-radius:14px;
+    background:#ffe1e1;
+    color:#b71c1c;
+    font-weight:bold;
+    font-size:12px;
+}
+
+
+/* =====================================================
+   ACTIONS
+===================================================== */
+
+.actions{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin-top:22px;
+}
+
+.actions button,
+.actions a{
+    border:none;
+    border-radius:9px;
+    padding:14px;
+    font-weight:bold;
+    font-size:14px;
+    cursor:pointer;
+    text-align:center;
+    text-decoration:none;
+}
+
+.review-btn{
+    background:#0759a6;
+    color:white;
+}
+
+.save-btn{
+    background:#0b8f6a;
+    color:white;
+}
+
+.save-btn:disabled{
+    opacity:.65;
+    cursor:not-allowed;
+}
+
+.back-btn{
+    background:#eaf1f7;
+    color:#064c92;
+    grid-column:1/-1;
+}
+
+
+/* =====================================================
+   RESULT
+===================================================== */
+
+.result-box{
+    display:none;
+    margin-top:20px;
+    border-radius:11px;
+    padding:17px;
+    line-height:1.9;
+}
+
+.result-box.success{
+    display:block;
+    background:#eaf7ee;
+    color:#285b33;
+    border-right:5px solid #187b43;
+}
+
+.result-box.error{
+    display:block;
+    background:#fff0f0;
+    color:#7d2525;
+    border-right:5px solid #c62828;
+}
+
+
+/* =====================================================
+   PRIVACY
+===================================================== */
+
+.privacy-note{
+    margin-top:18px;
+    background:#eef7ff;
+    border-right:5px solid #0759a6;
+    border-radius:10px;
+    padding:14px;
+    color:#31556f;
+    line-height:1.8;
+    font-size:13px;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:650px){
+
+    .vaccination-page{
+        margin:15px auto;
+        padding:0 10px 40px;
+    }
+
+    .mobile-header,
+    .form-card{
+        padding:17px;
+    }
+
+    .form-grid,
+    .actions{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full,
+    .back-btn{
+        grid-column:auto;
+    }
+
+    input,
+    select,
+    textarea{
+        font-size:16px;
+    }
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<main class="vaccination-page">
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<section class="mobile-header">
+
+<div class="icon">
+💉
+</div>
+
+<h1 id="pageCampaignTitle">
+حملات التطعيمات
+</h1>
+
+<h2>
+Vaccination Campaigns
+</h2>
+
+
+<div class="campaign-current">
+
+<strong>
+الحملة الحالية:
+</strong>
+
+<span id="activeCampaignName">
+حملة التطعيم
+</span>
+
+<br>
+
+<strong>
+التطعيم:
+</strong>
+
+<span id="activeVaccineName">
+حسب إعدادات الحملة
+</span>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     FORM
+===================================================== -->
+
+<section class="form-card">
+
+<h2>
+تسجيل بيانات المستفيد
+</h2>
+
+
+<div class="form-grid">
+
+
+<!-- NAME -->
+
+<div
+    id="fieldWrap_fullName"
+    class="form-group">
+
+<label for="fullName">
+
+الاسم
+
+<span
+    id="required_fullName"
+    class="required">
+
+*
+
+</span>
+
+</label>
+
+<input
+    id="fullName"
+    type="text"
+    autocomplete="name"
+    placeholder="اسم المستفيد">
+
+</div>
+
+
+<!-- NATIONAL ID -->
+
+<div
+    id="fieldWrap_nationalId"
+    class="form-group">
+
+<label for="nationalId">
+
+رقم الهوية / الإقامة
+
+<span
+    id="required_nationalId"
+    class="required">
+
+*
+
+</span>
+
+</label>
+
+<input
+    id="nationalId"
+    type="text"
+    inputmode="numeric"
+    autocomplete="off"
+    placeholder="رقم الهوية أو الإقامة">
+
+</div>
+
+
+<!-- AGE -->
+
+<div
+    id="fieldWrap_age"
+    class="form-group">
+
+<label for="age">
+
+العمر
+
+<span
+    id="required_age"
+    class="required">
+
+*
+
+</span>
+
+</label>
+
+<input
+    id="age"
+    type="number"
+    min="0"
+    max="120"
+    inputmode="numeric"
+    placeholder="العمر">
+
+</div>
+
+
+<!-- ENTRY DATE -->
+
+<div
+    id="fieldWrap_entryDate"
+    class="form-group">
+
+<label for="entryDate">
+
+تاريخ الإدخال
+
+<span
+    id="required_entryDate"
+    class="required">
+
+*
+
+</span>
+
+</label>
+
+<input
+    id="entryDate"
+    type="date">
+
+</div>
+
+
+<!-- CAMPAIGN TYPE -->
+
+<div
+    id="fieldWrap_campaignType"
+    class="form-group">
+
+<label for="campaignType">
+
+نوع الحملة
+
+<span
+    id="required_campaignType"
+    class="required">
+
+*
+
+</span>
+
+</label>
+
+<select id="campaignType">
+
+<option value="">
+اختر نوع الحملة
+</option>
+
+</select>
+
+</div>
+
+
+<!-- VACCINE TYPE -->
+
+<div
+    id="fieldWrap_vaccineType"
+    class="form-group">
+
+<label for="vaccineType">
+
+نوع التطعيم
+
+<span
+    id="required_vaccineType"
+    class="required">
+
+*
+
+</span>
+
+</label>
+
+<select id="vaccineType">
+
+<option value="">
+اختر نوع التطعيم
+</option>
+
+</select>
+
+</div>
+
+
+</div>
+
+
+<!-- =====================================================
+     DYNAMIC FIELDS
+===================================================== -->
+
+<div class="dynamic-section">
+
+<h3>
+بيانات إضافية
+</h3>
+
+<div
+    id="dynamicFieldsContainer"
+    class="form-grid">
+</div>
+
+<div
+    id="dynamicEmpty"
+    class="dynamic-empty">
+
+لا توجد حقول إضافية مطلوبة لهذه الحملة.
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     STATUS
+===================================================== -->
+
+<div class="status-note">
+
+بعد حفظ البيانات ستظهر الحالة تلقائيًا في لوحة المتابعة:
+
+<br>
+
+<span class="status-badge">
+
+🔴 جديد — بانتظار الإدخال في منصة الوزارة
+
+</span>
+
+</div>
+
+
+<!-- =====================================================
+     ACTIONS
+===================================================== -->
+
+<div class="actions">
+
+<button
+    type="button"
+    class="review-btn"
+    onclick="reviewRecord()">
+
+✅ مراجعة البيانات
+
+</button>
+
+
+<button
+    type="button"
+    id="saveButton"
+    class="save-btn"
+    onclick="saveRecord()">
+
+💾 حفظ وإرسال
+
+</button>
+
+
+<a
+    href="occupational-health.html"
+    class="back-btn">
+
+← العودة للصحة المهنية
+
+</a>
+
+</div>
+
+
+<div
+    id="resultBox"
+    class="result-box">
+</div>
+
+
+</section>
+
+
+<div
+    id="privacyNote"
+    class="privacy-note">
+
+🔐 هذه النسخة مخصصة للتطوير والاختبار. لا تستخدم بيانات مستفيدين حقيقية في نسخة GitHub الحالية.
+
+</div>
+
+
+</main>
+
+
+<!-- =====================================================
+     CONFIG / API
+===================================================== -->
+
+<script src="config.js"></script>
+<script src="api.js"></script>
+
+
+<script>
+
+
+/* =====================================================
+   CONSTANTS
+===================================================== */
+
+const VACCINATION_RECORDS_KEY =
+    "vaccinationCampaignRecords";
+
+
+const VACCINATION_SETTINGS_KEY =
+    "vaccinationCampaignSettings";
+
+
+/* =====================================================
+   STATE
+===================================================== */
+
+let savingRecord =
+    false;
+
+
+let currentSettings =
+    null;
+
+
+/* =====================================================
+   ENVIRONMENT
+===================================================== */
+
+function isServerMode(){
+
+    return (
+        window.SPHP_CONFIG &&
+        window.SPHP_CONFIG.dataMode ===
+        "server"
+    );
+
+}
+
+
+/* =====================================================
+   DEFAULT SETTINGS
+===================================================== */
+
+function getDefaultSettings(){
+
+    return {
+
+        campaignTitle:
+            "حملات التطعيمات",
+
+        activeCampaignName:
+            "الحملة الحالية",
+
+        activeVaccineName:
+            "التطعيم",
+
+        campaignTypes:[
+
+            "حملة موسمية",
+            "حملة موظفين",
+            "حملة مجتمعية",
+            "حملة خاصة"
+
+        ],
+
+        vaccineTypes:[
+
+            "الإنفلونزا الموسمية",
+            "التهاب الكبد B",
+            "MMR",
+            "Varicella",
+            "أخرى"
+
+        ],
+
+        baseFields:{
+
+            fullName:{
+                enabled:true,
+                required:true
+            },
+
+            nationalId:{
+                enabled:true,
+                required:true
+            },
+
+            age:{
+                enabled:true,
+                required:true
+            },
+
+            entryDate:{
+                enabled:true,
+                required:true
+            },
+
+            campaignType:{
+                enabled:true,
+                required:true
+            },
+
+            vaccineType:{
+                enabled:true,
+                required:true
+            }
+
+        },
+
+        extraFields:[]
+
+    };
+
+}
+
+
+/* =====================================================
+   SETTINGS
+===================================================== */
+
+function readSettingsLocal(){
+
+    if(
+        isServerMode()
+    ){
+
+        return null;
+
+    }
+
+
+    try{
+
+        const stored =
+            JSON.parse(
+
+                localStorage.getItem(
+                    VACCINATION_SETTINGS_KEY
+                )
+
+                ||
+
+                "null"
+
+            );
+
+
+        if(
+            stored &&
+            typeof stored ===
+            "object"
+        ){
+
+            return {
+
+                ...getDefaultSettings(),
+                ...stored,
+
+                baseFields:{
+
+                    ...getDefaultSettings()
+                    .baseFields,
+
+                    ...(
+                        stored.baseFields ||
+                        {}
+                    )
+
+                }
+
+            };
+
+        }
+
+    }
+    catch(error){
+
+        console.warn(
+            "Unable to read vaccination settings:",
+            error
+        );
+
+    }
+
+
+    return getDefaultSettings();
+
+}
+
+
+async function loadSettings(){
+
+    /*
+      عند إضافة Vaccination Settings إلى SPHP مستقبلاً
+      سيستخدم هذا المسار أولاً.
+    */
+
+    if(
+        window.SPHP &&
+        window.SPHP.vaccinationSettings &&
+        typeof window.SPHP
+        .vaccinationSettings
+        .get ===
+        "function"
+    ){
+
+        try{
+
+            const settings =
+                await window.SPHP
+                .vaccinationSettings
+                .get();
+
+
+            if(
+                settings &&
+                typeof settings ===
+                "object"
+            ){
+
+                return {
+
+                    ...getDefaultSettings(),
+                    ...settings,
+
+                    baseFields:{
+
+                        ...getDefaultSettings()
+                        .baseFields,
+
+                        ...(
+                            settings.baseFields ||
+                            {}
+                        )
+
+                    }
+
+                };
+
+            }
+
+        }
+        catch(error){
+
+            console.error(
+                "Vaccination settings service failed:",
+                error
+            );
+
+
+            if(
+                isServerMode()
+            ){
+
+                throw error;
+
+            }
+
+        }
+
+    }
+
+
+    if(
+        !isServerMode()
+    ){
+
+        return readSettingsLocal();
+
+    }
+
+
+    throw new Error(
+        "Vaccination campaign settings service unavailable."
+    );
+
+}
+
+
+/* =====================================================
+   FIELD HELPERS
+===================================================== */
+
+function getValue(
+    id
+){
+
+    const element =
+        document.getElementById(
+            id
+        );
+
+
+    return element
+        ?
+        String(
+            element.value ||
+            ""
+        ).trim()
+        :
+        "";
+
+}
+
+
+function escapeHTML(
+    value
+){
+
+    return String(
+        value ??
+        ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+/* =====================================================
+   DATE
+===================================================== */
+
+function localToday(){
+
+    const now =
+        new Date();
+
+
+    return new Date(
+
+        now.getTime()
+        -
+        now.getTimezoneOffset() *
+        60000
+
+    )
+    .toISOString()
+    .slice(
+        0,
+        10
+    );
+
+}
+
+
+/* =====================================================
+   ID
+===================================================== */
+
+function generateRecordId(){
+
+    const now =
+        new Date();
+
+
+    const date =
+        now
+        .toISOString()
+        .slice(
+            0,
+            10
+        )
+        .replaceAll(
+            "-",
+            ""
+        );
+
+
+    const time =
+
+        String(
+            now.getHours()
+        )
+        .padStart(
+            2,
+            "0"
+        )
+
+        +
+
+        String(
+            now.getMinutes()
+        )
+        .padStart(
+            2,
+            "0"
+        )
+
+        +
+
+        String(
+            now.getSeconds()
+        )
+        .padStart(
+            2,
+            "0"
+        );
+
+
+    const random =
+        Math.floor(
+            100 +
+            Math.random() *
+            900
+        );
+
+
+    return (
+        "VAC-" +
+        date +
+        "-" +
+        time +
+        "-" +
+        random
+    );
+
+}
+
+
+/* =====================================================
+   RENDER SELECT OPTIONS
+===================================================== */
+
+function renderSelectOptions(
+    selectId,
+    items,
+    placeholder
+){
+
+    const select =
+        document.getElementById(
+            selectId
+        );
+
+
+    if(
+        !select
+    ){
+
+        return;
+
+    }
+
+
+    select.innerHTML =
+        "";
+
+
+    const first =
+        document.createElement(
+            "option"
+        );
+
+
+    first.value =
+        "";
+
+
+    first.textContent =
+        placeholder;
+
+
+    select.appendChild(
+        first
+    );
+
+
+    (
+        Array.isArray(
+            items
+        )
+        ?
+        items
+        :
+        []
+    )
+    .forEach(
+        function(item){
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            if(
+                typeof item ===
+                "string"
+            ){
+
+                option.value =
+                    item;
+
+
+                option.textContent =
+                    item;
+
+            }
+            else if(
+                item &&
+                typeof item ===
+                "object"
+            ){
+
+                option.value =
+                    item.value ||
+                    item.label ||
+                    "";
+
+
+                option.textContent =
+                    item.label ||
+                    item.value ||
+                    "";
+
+            }
+
+
+            select.appendChild(
+                option
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   BASE FIELD SETTINGS
+===================================================== */
+
+function applyBaseFieldSettings(){
+
+    const baseFields =
+        currentSettings.baseFields ||
+        {};
+
+
+    Object.keys(
+        baseFields
+    )
+    .forEach(
+        function(key){
+
+            const config =
+                baseFields[
+                    key
+                ] || {};
+
+
+            const wrapper =
+                document.getElementById(
+                    "fieldWrap_" +
+                    key
+                );
+
+
+            const requiredMark =
+                document.getElementById(
+                    "required_" +
+                    key
+                );
+
+
+            const field =
+                document.getElementById(
+                    key
+                );
+
+
+            if(
+                wrapper
+            ){
+
+                wrapper.style.display =
+                    config.enabled ===
+                    false
+                    ?
+                    "none"
+                    :
+                    "flex";
+
+            }
+
+
+            if(
+                requiredMark
+            ){
+
+                requiredMark.style.display =
+                    config.required
+                    ?
+                    "inline"
+                    :
+                    "none";
+
+            }
+
+
+            if(
+                field
+            ){
+
+                field.dataset.required =
+                    config.required
+                    ?
+                    "1"
+                    :
+                    "0";
+
+
+                field.dataset.enabled =
+                    config.enabled ===
+                    false
+                    ?
+                    "0"
+                    :
+                    "1";
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   DYNAMIC FIELDS
+===================================================== */
+
+function renderDynamicFields(){
+
+    const container =
+        document.getElementById(
+            "dynamicFieldsContainer"
+        );
+
+
+    const empty =
+        document.getElementById(
+            "dynamicEmpty"
+        );
+
+
+    container.innerHTML =
+        "";
+
+
+    const fields =
+        Array.isArray(
+            currentSettings.extraFields
+        )
+        ?
+        currentSettings.extraFields
+        .filter(
+            function(field){
+
+                return (
+                    field &&
+                    field.enabled !==
+                    false
+                );
+
+            }
+        )
+        :
+        [];
+
+
+    if(
+        fields.length ===
+        0
+    ){
+
+        empty.style.display =
+            "block";
+
+
+        return;
+
+    }
+
+
+    empty.style.display =
+        "none";
+
+
+    fields.forEach(
+        function(field){
+
+            const wrapper =
+                document.createElement(
+                    "div"
+                );
+
+
+            wrapper.className =
+                field.fullWidth
+                ?
+                "form-group full"
+                :
+                "form-group";
+
+
+            const label =
+                document.createElement(
+                    "label"
+                );
+
+
+            label.setAttribute(
+                "for",
+                "dynamic_" +
+                field.key
+            );
+
+
+            label.textContent =
+                field.label ||
+                field.key;
+
+
+            if(
+                field.required
+            ){
+
+                const required =
+                    document.createElement(
+                        "span"
+                    );
+
+
+                required.className =
+                    "required";
+
+
+                required.textContent =
+                    " *";
+
+
+                label.appendChild(
+                    required
+                );
+
+            }
+
+
+            wrapper.appendChild(
+                label
+            );
+
+
+            let input;
+
+
+            if(
+                field.type ===
+                "select"
+            ){
+
+                input =
+                    document.createElement(
+                        "select"
+                    );
+
+
+                const emptyOption =
+                    document.createElement(
+                        "option"
+                    );
+
+
+                emptyOption.value =
+                    "";
+
+
+                emptyOption.textContent =
+                    "اختر";
+
+
+                input.appendChild(
+                    emptyOption
+                );
+
+
+                (
+                    Array.isArray(
+                        field.options
+                    )
+                    ?
+                    field.options
+                    :
+                    []
+                )
+                .forEach(
+                    function(optionValue){
+
+                        const option =
+                            document.createElement(
+                                "option"
+                            );
+
+
+                        option.value =
+                            optionValue;
+
+
+                        option.textContent =
+                            optionValue;
+
+
+                        input.appendChild(
+                            option
+                        );
+
+                    }
+                );
+
+            }
+            else if(
+                field.type ===
+                "textarea"
+            ){
+
+                input =
+                    document.createElement(
+                        "textarea"
+                    );
+
+            }
+            else{
+
+                input =
+                    document.createElement(
+                        "input"
+                    );
+
+
+                if(
+                    field.type ===
+                    "number"
+                ){
+
+                    input.type =
+                        "number";
+
+                }
+                else if(
+                    field.type ===
+                    "date"
+                ){
+
+                    input.type =
+                        "date";
+
+                }
+                else if(
+                    field.type ===
+                    "tel"
+                ){
+
+                    input.type =
+                        "tel";
+
+                }
+                else{
+
+                    input.type =
+                        "text";
+
+                }
+
+            }
+
+
+            input.id =
+                "dynamic_" +
+                field.key;
+
+
+            input.dataset.key =
+                field.key;
+
+
+            input.dataset.required =
+                field.required
+                ?
+                "1"
+                :
+                "0";
+
+
+            if(
+                field.placeholder &&
+                "placeholder" in input
+            ){
+
+                input.placeholder =
+                    field.placeholder;
+
+            }
+
+
+            wrapper.appendChild(
+                input
+            );
+
+
+            container.appendChild(
+                wrapper
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   COLLECT DYNAMIC VALUES
+===================================================== */
+
+function collectDynamicValues(){
+
+    const result =
+        {};
+
+
+    const fields =
+        Array.isArray(
+            currentSettings.extraFields
+        )
+        ?
+        currentSettings.extraFields
+        :
+        [];
+
+
+    fields.forEach(
+        function(field){
+
+            if(
+                !field ||
+                field.enabled ===
+                false
+            ){
+
+                return;
+
+            }
+
+
+            const element =
+                document.getElementById(
+                    "dynamic_" +
+                    field.key
+                );
+
+
+            result[
+                field.key
+            ] =
+                element
+                ?
+                String(
+                    element.value ||
+                    ""
+                ).trim()
+                :
+                "";
+
+        }
+    );
+
+
+    return result;
+
+}
+
+
+/* =====================================================
+   VALIDATION
+===================================================== */
+
+function validateRecord(){
+
+    const baseFields =
+        currentSettings.baseFields ||
+        {};
+
+
+    const keys = [
+
+        "fullName",
+        "nationalId",
+        "age",
+        "entryDate",
+        "campaignType",
+        "vaccineType"
+
+    ];
+
+
+    const labels = {
+
+        fullName:
+            "الاسم",
+
+        nationalId:
+            "رقم الهوية / الإقامة",
+
+        age:
+            "العمر",
+
+        entryDate:
+            "تاريخ الإدخال",
+
+        campaignType:
+            "نوع الحملة",
+
+        vaccineType:
+            "نوع التطعيم"
+
+    };
+
+
+    for(
+        const key of keys
+    ){
+
+        const config =
+            baseFields[
+                key
+            ] || {};
+
+
+        if(
+            config.enabled ===
+            false
+        ){
+
+            continue;
+
+        }
+
+
+        if(
+            config.required &&
+            !getValue(
+                key
+            )
+        ){
+
+            return (
+                "يرجى استكمال الحقل: " +
+                labels[
+                    key
+                ]
+            );
+
+        }
+
+    }
+
+
+    const age =
+        getValue(
+            "age"
+        );
+
+
+    if(
+        age !== ""
+        &&
+        (
+            Number(age) < 0
+            ||
+            Number(age) > 120
+        )
+    ){
+
+        return (
+            "يرجى إدخال عمر صحيح."
+        );
+
+    }
+
+
+    const extraFields =
+        Array.isArray(
+            currentSettings.extraFields
+        )
+        ?
+        currentSettings.extraFields
+        :
+        [];
+
+
+    for(
+        const field of extraFields
+    ){
+
+        if(
+            !field ||
+            field.enabled ===
+            false ||
+            !field.required
+        ){
+
+            continue;
+
+        }
+
+
+        const element =
+            document.getElementById(
+                "dynamic_" +
+                field.key
+            );
+
+
+        if(
+            !element ||
+            !String(
+                element.value ||
+                ""
+            ).trim()
+        ){
+
+            return (
+                "يرجى استكمال الحقل: " +
+                (
+                    field.label ||
+                    field.key
+                )
+            );
+
+        }
+
+    }
+
+
+    return "";
+
+}
+
+
+/* =====================================================
+   BUILD RECORD
+===================================================== */
+
+function buildRecord(){
+
+    return {
+
+        id:
+            generateRecordId(),
+
+        createdAt:
+            new Date()
+            .toISOString(),
+
+        updatedAt:
+            new Date()
+            .toISOString(),
+
+        fullName:
+            getValue(
+                "fullName"
+            ),
+
+        nationalId:
+            getValue(
+                "nationalId"
+            ),
+
+        age:
+            getValue(
+                "age"
+            )
+            ?
+            Number(
+                getValue(
+                    "age"
+                )
+            )
+            :
+            "",
+
+        entryDate:
+            getValue(
+                "entryDate"
+            ),
+
+        campaignType:
+            getValue(
+                "campaignType"
+            ),
+
+        vaccineType:
+            getValue(
+                "vaccineType"
+            ),
+
+        campaignTitle:
+            currentSettings.campaignTitle ||
+            "",
+
+        activeCampaignName:
+            currentSettings.activeCampaignName ||
+            "",
+
+        activeVaccineName:
+            currentSettings.activeVaccineName ||
+            "",
+
+        extraFields:
+            collectDynamicValues(),
+
+        status:
+            "new",
+
+        statusLabel:
+            "جديد",
+
+        ministryEntryDate:
+            "",
+
+        ministryReference:
+            "",
+
+        ministryEnteredBy:
+            ""
+
+    };
+
+}
+
+
+/* =====================================================
+   LOCAL STORAGE
+===================================================== */
+
+function readRecordsLocal(){
+
+    if(
+        isServerMode()
+    ){
+
+        return [];
+
+    }
+
+
+    try{
+
+        const records =
+            JSON.parse(
+
+                localStorage.getItem(
+                    VACCINATION_RECORDS_KEY
+                )
+
+                ||
+
+                "[]"
+
+            );
+
+
+        return Array.isArray(
+            records
+        )
+        ?
+        records
+        :
+        [];
+
+    }
+    catch(error){
+
+        console.warn(
+            "Unable to read vaccination records:",
+            error
+        );
+
+
+        return [];
+
+    }
+
+}
+
+
+function writeRecordsLocal(
+    records
+){
+
+    if(
+        isServerMode()
+    ){
+
+        throw new Error(
+            "Local vaccination storage is disabled in server mode."
+        );
+
+    }
+
+
+    localStorage.setItem(
+
+        VACCINATION_RECORDS_KEY,
+
+        JSON.stringify(
+            Array.isArray(
+                records
+            )
+            ?
+            records
+            :
+            []
+        )
+
+    );
+
+}
+
+
+/* =====================================================
+   SAVE DATA
+===================================================== */
+
+async function saveVaccinationRecord(
+    record
+){
+
+    /*
+      هذا المسار يصبح المسار الرئيسي بعد إضافة
+      vaccinationCampaigns إلى api.js لاحقًا.
+    */
+
+    if(
+        window.SPHP &&
+        window.SPHP.vaccinationCampaigns &&
+        typeof window.SPHP
+        .vaccinationCampaigns
+        .upsert ===
+        "function"
+    ){
+
+        return await window.SPHP
+        .vaccinationCampaigns
+        .upsert(
+            record
+        );
+
+    }
+
+
+    /*
+      Local development only.
+    */
+
+    if(
+        !isServerMode()
+    ){
+
+        const records =
+            readRecordsLocal();
+
+
+        records.unshift(
+            record
+        );
+
+
+        writeRecordsLocal(
+            records
+        );
+
+
+        return record;
+
+    }
+
+
+    throw new Error(
+        "Vaccination campaign service unavailable."
+    );
+
+}
+
+
+/* =====================================================
+   RESULT
+===================================================== */
+
+function showResult(
+    message,
+    type
+){
+
+    const box =
+        document.getElementById(
+            "resultBox"
+        );
+
+
+    box.className =
+        "result-box " +
+        type;
+
+
+    box.innerHTML =
+        message;
+
+
+    box.style.display =
+        "block";
+
+
+    box.scrollIntoView({
+
+        behavior:"smooth",
+        block:"center"
+
+    });
+
+}
+
+
+/* =====================================================
+   REVIEW
+===================================================== */
+
+function reviewRecord(){
+
+    const error =
+        validateRecord();
+
+
+    if(
+        error
+    ){
+
+        showResult(
+
+            "⚠️ " +
+            escapeHTML(
+                error
+            ),
+
+            "error"
+
+        );
+
+
+        return;
+
+    }
+
+
+    showResult(
+
+        "✅ البيانات مكتملة وجاهزة للحفظ."
+
+        +
+
+        "<br><br>"
+
+        +
+
+        "<strong>الاسم:</strong> "
+
+        +
+
+        escapeHTML(
+            getValue(
+                "fullName"
+            )
+        )
+
+        +
+
+        "<br>"
+
+        +
+
+        "<strong>رقم الهوية:</strong> "
+
+        +
+
+        escapeHTML(
+            getValue(
+                "nationalId"
+            )
+        )
+
+        +
+
+        "<br>"
+
+        +
+
+        "<strong>نوع الحملة:</strong> "
+
+        +
+
+        escapeHTML(
+            getValue(
+                "campaignType"
+            )
+            ||
+            "—"
+        )
+
+        +
+
+        "<br>"
+
+        +
+
+        "<strong>التطعيم:</strong> "
+
+        +
+
+        escapeHTML(
+            getValue(
+                "vaccineType"
+            )
+            ||
+            "—"
+        )
+
+        +
+
+        "<br><br>"
+
+        +
+
+        "<span style='color:#b71c1c;font-weight:bold;'>"
+
+        +
+
+        "🔴 ستُحفظ الحالة كـ جديد"
+
+        +
+
+        "</span>",
+
+        "success"
+
+    );
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+function resetForm(){
+
+    const ids = [
+
+        "fullName",
+        "nationalId",
+        "age"
+
+    ];
+
+
+    ids.forEach(
+        function(id){
+
+            const element =
+                document.getElementById(
+                    id
+                );
+
+
+            if(
+                element
+            ){
+
+                element.value =
+                    "";
+
+            }
+
+        }
+    );
+
+
+    document.getElementById(
+        "entryDate"
+    ).value =
+        localToday();
+
+
+    document.getElementById(
+        "campaignType"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "vaccineType"
+    ).value =
+        "";
+
+
+    document
+    .querySelectorAll(
+        '[id^="dynamic_"]'
+    )
+    .forEach(
+        function(element){
+
+            element.value =
+                "";
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   SAVE
+===================================================== */
+
+async function saveRecord(){
+
+    if(
+        savingRecord
+    ){
+
+        return;
+
+    }
+
+
+    const validationError =
+        validateRecord();
+
+
+    if(
+        validationError
+    ){
+
+        showResult(
+
+            "⚠️ " +
+            escapeHTML(
+                validationError
+            ),
+
+            "error"
+
+        );
+
+
+        return;
+
+    }
+
+
+    const button =
+        document.getElementById(
+            "saveButton"
+        );
+
+
+    try{
+
+        savingRecord =
+            true;
+
+
+        button.disabled =
+            true;
+
+
+        button.textContent =
+            "⏳ جاري الحفظ...";
+
+
+        const record =
+            buildRecord();
+
+
+        const saved =
+            await saveVaccinationRecord(
+                record
+            );
+
+
+        const finalRecord = {
+
+            ...record,
+
+            ...(
+                saved &&
+                typeof saved ===
+                "object"
+                ?
+                saved
+                :
+                {}
+            )
+
+        };
+
+
+        showResult(
+
+            "✅ <strong>تم حفظ بيانات المستفيد بنجاح.</strong>"
+
+            +
+
+            "<br><br>"
+
+            +
+
+            "<strong>رقم السجل:</strong> "
+
+            +
+
+            escapeHTML(
+                finalRecord.id
+            )
+
+            +
+
+            "<br>"
+
+            +
+
+            "<strong>الاسم:</strong> "
+
+            +
+
+            escapeHTML(
+                finalRecord.fullName
+            )
+
+            +
+
+            "<br>"
+
+            +
+
+            "<strong>الحالة:</strong> "
+
+            +
+
+            "<span style='color:#b71c1c;font-weight:bold;'>"
+
+            +
+
+            "🔴 جديد — بانتظار الإدخال في منصة الوزارة"
+
+            +
+
+            "</span>",
+
+            "success"
+
+        );
+
+
+        resetForm();
+
+
+        button.textContent =
+            "💾 حفظ وإرسال";
+
+
+        button.disabled =
+            false;
+
+
+        savingRecord =
+            false;
+
+    }
+    catch(error){
+
+        console.error(
+            "Vaccination record save failed:",
+            error
+        );
+
+
+        showResult(
+
+            "❌ تعذر حفظ البيانات."
+
+            +
+
+            (
+                error &&
+                error.message
+                ?
+                "<br>" +
+                escapeHTML(
+                    error.message
+                )
+                :
+                ""
+            ),
+
+            "error"
+
+        );
+
+
+        button.disabled =
+            false;
+
+
+        button.textContent =
+            "💾 حفظ وإرسال";
+
+
+        savingRecord =
+            false;
+
+    }
+
+}
+
+
+/* =====================================================
+   PAGE SETTINGS
+===================================================== */
+
+function applyPageSettings(){
+
+    document.getElementById(
+        "pageCampaignTitle"
+    ).textContent =
+        currentSettings.campaignTitle
+        ||
+        "حملات التطعيمات";
+
+
+    document.getElementById(
+        "activeCampaignName"
+    ).textContent =
+        currentSettings.activeCampaignName
+        ||
+        "الحملة الحالية";
+
+
+    document.getElementById(
+        "activeVaccineName"
+    ).textContent =
+        currentSettings.activeVaccineName
+        ||
+        "التطعيم";
+
+
+    renderSelectOptions(
+
+        "campaignType",
+
+        currentSettings.campaignTypes,
+
+        "اختر نوع الحملة"
+
+    );
+
+
+    renderSelectOptions(
+
+        "vaccineType",
+
+        currentSettings.vaccineTypes,
+
+        "اختر نوع التطعيم"
+
+    );
+
+
+    applyBaseFieldSettings();
+
+    renderDynamicFields();
+
+}
+
+
+/* =====================================================
+   PRIVACY
+===================================================== */
+
+function updatePrivacyNote(){
+
+    const note =
+        document.getElementById(
+            "privacyNote"
+        );
+
+
+    if(
+        isServerMode()
+    ){
+
+        note.textContent =
+            "🔐 يتم إرسال بيانات حملة التطعيم من خلال خدمة النظام الداخلية، ولا يتم استخدام التخزين المحلي كبديل عند تعذر الاتصال.";
+
+    }
+    else{
+
+        note.textContent =
+            "🔐 هذه نسخة تطويرية. يتم حفظ البيانات محليًا أثناء الاختبار. لا تستخدم أسماء أو أرقام هويات حقيقية في نسخة GitHub الحالية.";
+
+    }
+
+}
+
+
+/* =====================================================
+   INIT
+===================================================== */
+
+async function init(){
+
+    try{
+
+        currentSettings =
+            await loadSettings();
+
+
+        applyPageSettings();
+
+
+        document.getElementById(
+            "entryDate"
+        ).value =
+            localToday();
+
+
+        updatePrivacyNote();
+
+    }
+    catch(error){
+
+        console.error(
+            "Vaccination form initialization failed:",
+            error
+        );
+
+
+        currentSettings =
+            getDefaultSettings();
+
+
+        applyPageSettings();
+
+
+        document.getElementById(
+            "entryDate"
+        ).value =
+            localToday();
+
+
+        updatePrivacyNote();
+
+
+        showResult(
+
+            "⚠️ تعذر تحميل إعدادات الحملة. تم تحميل الإعدادات الافتراضية.",
+
+            "error"
+
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    init
+);
+
+
+</script>
+
+
+</body>
+
+</html>
