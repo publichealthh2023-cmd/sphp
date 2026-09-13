@@ -87,7 +87,9 @@ body{
 }
 
 
-/* SCREENING SOURCE */
+/* =====================================================
+   SCREENING SOURCE
+===================================================== */
 
 .screening-source{
     display:none;
@@ -139,7 +141,9 @@ body{
 }
 
 
-/* ALERTS */
+/* =====================================================
+   ALERTS
+===================================================== */
 
 .hidden-risk,
 .history-warning,
@@ -181,7 +185,9 @@ body{
 }
 
 
-/* FORM */
+/* =====================================================
+   FORM
+===================================================== */
 
 .grid{
     display:grid;
@@ -254,7 +260,9 @@ textarea{
 }
 
 
-/* SIGNATURE */
+/* =====================================================
+   SIGNATURE
+===================================================== */
 
 .signature-area{
     border:2px dashed #aebdca;
@@ -292,7 +300,9 @@ textarea{
 }
 
 
-/* ACTIONS */
+/* =====================================================
+   ACTIONS
+===================================================== */
 
 .actions{
     display:grid;
@@ -322,6 +332,11 @@ textarea{
     color:#fff;
 }
 
+.send:disabled{
+    opacity:.7;
+    cursor:not-allowed;
+}
+
 .print{
     background:#687984;
     color:#fff;
@@ -348,6 +363,13 @@ textarea{
     border-right-color:#c62828;
 }
 
+.result.warning{
+    background:#fff8e1;
+    color:#755a00;
+    border-right-color:#f9a825;
+}
+
+
 @media(max-width:750px){
 
     .hero-grid,
@@ -373,21 +395,37 @@ textarea{
 <div class="hero-grid">
 
 <div class="side-logo left-logo">
-<img src="images/cluster-logo.png">
+
+<img
+    src="images/cluster-logo.png"
+    alt="Hafr Al-Batin Health Cluster">
+
 </div>
+
 
 <div class="hero-center">
 
-<h1>الإبلاغ الإلكتروني عن الأمراض المعدية</h1>
+<h1>
+الإبلاغ الإلكتروني عن الأمراض المعدية
+</h1>
 
-<h2>Infectious Disease Notification</h2>
+<h2>
+Infectious Disease Notification
+</h2>
 
-<p>الصحة العامة</p>
+<p>
+الصحة العامة
+</p>
 
 </div>
 
+
 <div class="side-logo right-logo">
-<img src="images/hospital-logo.png">
+
+<img
+    src="images/hospital-logo.png"
+    alt="Hospital Logo">
+
 </div>
 
 </div>
@@ -461,17 +499,23 @@ textarea{
 
 
 <div id="historyWarning" class="history-warning">
-<strong>🧠 التاريخ المرضي محدود.</strong>
+<strong>
+🧠 التاريخ المرضي محدود.
+</strong>
 </div>
 
 
 <div id="hiddenRisk" class="hidden-risk">
-<strong>🚩 تم تفعيل تنبيه الخطر المعدي الخفي.</strong>
+<strong>
+🚩 تم تفعيل تنبيه الخطر المعدي الخفي.
+</strong>
 </div>
 
 
 <div id="rapidRedWarning" class="rapid-red-warning">
-<strong>🚨 تم تسجيل Red Flag أثناء الفرز السريع.</strong>
+<strong>
+🚨 تم تسجيل Red Flag أثناء الفرز السريع.
+</strong>
 </div>
 
 
@@ -480,25 +524,46 @@ textarea{
 </div>
 
 
+<!-- =====================================================
+     1 PATIENT
+===================================================== -->
+
 <section class="section">
 
-<h2>1. بيانات المريض</h2>
+<h2>
+1. بيانات المريض
+</h2>
 
 <div class="grid">
 
+
 <div class="group">
-<label>اسم المريض *</label>
+
+<label>
+اسم المريض *
+</label>
+
 <input id="patientName">
+
 </div>
 
+
 <div class="group">
-<label>رقم الملف الطبي *</label>
+
+<label>
+رقم الملف الطبي *
+</label>
+
 <input id="mrn">
+
 </div>
+
 
 <div class="group">
 
-<label>فئة المريض</label>
+<label>
+فئة المريض
+</label>
 
 <select id="patientType">
 
@@ -510,24 +575,47 @@ textarea{
 
 </div>
 
+
 <div class="group">
-<label>رقم الهوية / الإقامة</label>
+
+<label>
+رقم الهوية / الإقامة
+</label>
+
 <input id="nationalId">
+
 </div>
 
+
 <div class="group">
-<label>الجنسية</label>
+
+<label>
+الجنسية
+</label>
+
 <input id="nationality">
+
 </div>
 
-<div class="group">
-<label>تاريخ الميلاد</label>
-<input id="dob" type="date">
-</div>
 
 <div class="group">
 
-<label>الجنس</label>
+<label>
+تاريخ الميلاد
+</label>
+
+<input
+    id="dob"
+    type="date">
+
+</div>
+
+
+<div class="group">
+
+<label>
+الجنس
+</label>
 
 <select id="gender">
 
@@ -539,14 +627,26 @@ textarea{
 
 </div>
 
-<div class="group">
-<label>رقم التواصل</label>
-<input id="patientPhone">
-</div>
 
 <div class="group">
-<label>مكان الإقامة</label>
+
+<label>
+رقم التواصل
+</label>
+
+<input id="patientPhone">
+
+</div>
+
+
+<div class="group">
+
+<label>
+مكان الإقامة
+</label>
+
 <input id="residence">
+
 </div>
 
 </div>
@@ -554,31 +654,78 @@ textarea{
 </section>
 
 
+<!-- =====================================================
+     2 CASE
+===================================================== -->
+
 <section class="section">
 
-<h2>2. بيانات الحالة</h2>
+<h2>
+2. بيانات الحالة
+</h2>
 
 <div class="grid">
 
+
 <div class="group">
 
-<label>المرض المشتبه *</label>
+<label>
+المرض المشتبه *
+</label>
 
 <select id="diseaseSelect">
 
-<option value="">-- اختر --</option>
-<option value="nipah">فيروس نيباه</option>
-<option value="ebola">إيبولا / ماربيرج</option>
-<option value="mers">MERS</option>
-<option value="hantavirus">فيروس هانتا</option>
-<option value="tuberculosis">الدرن</option>
-<option value="rabies">السعار / داء الكلب</option>
-<option value="measles">الحصبة</option>
-<option value="meningitis">التهاب السحايا</option>
-<option value="cholera">الكوليرا</option>
-<option value="pertussis">السعال الديكي</option>
-<option value="mpox">جدري القردة</option>
-<option value="other">أخرى</option>
+<option value="">
+-- اختر --
+</option>
+
+<option value="nipah">
+فيروس نيباه
+</option>
+
+<option value="ebola">
+إيبولا / ماربيرج
+</option>
+
+<option value="mers">
+MERS
+</option>
+
+<option value="hantavirus">
+فيروس هانتا
+</option>
+
+<option value="tuberculosis">
+الدرن
+</option>
+
+<option value="rabies">
+السعار / داء الكلب
+</option>
+
+<option value="measles">
+الحصبة
+</option>
+
+<option value="meningitis">
+التهاب السحايا
+</option>
+
+<option value="cholera">
+الكوليرا
+</option>
+
+<option value="pertussis">
+السعال الديكي
+</option>
+
+<option value="mpox">
+جدري القردة
+</option>
+
+<option value="other">
+أخرى
+</option>
 
 </select>
 
@@ -587,7 +734,9 @@ textarea{
 
 <div class="group">
 
-<label>تصنيف الحالة *</label>
+<label>
+تصنيف الحالة *
+</label>
 
 <select id="classification">
 
@@ -602,23 +751,49 @@ textarea{
 
 
 <div class="group">
-<label>تاريخ بداية الأعراض</label>
-<input id="symptomOnset" type="date">
+
+<label>
+تاريخ بداية الأعراض
+</label>
+
+<input
+    id="symptomOnset"
+    type="date">
+
 </div>
 
-<div class="group">
-<label>تاريخ ووقت اكتشاف الحالة</label>
-<input id="detectionDateTime" type="datetime-local">
-</div>
-
-<div class="group">
-<label>مكان اكتشاف الحالة</label>
-<input id="caseLocation" value="قسم الطوارئ">
-</div>
 
 <div class="group">
 
-<label>حالة المريض الحالية</label>
+<label>
+تاريخ ووقت اكتشاف الحالة
+</label>
+
+<input
+    id="detectionDateTime"
+    type="datetime-local">
+
+</div>
+
+
+<div class="group">
+
+<label>
+مكان اكتشاف الحالة
+</label>
+
+<input
+    id="caseLocation"
+    value="قسم الطوارئ">
+
+</div>
+
+
+<div class="group">
+
+<label>
+حالة المريض الحالية
+</label>
 
 <select id="patientStatus">
 
@@ -638,62 +813,100 @@ textarea{
 </section>
 
 
+<!-- =====================================================
+     3 SYMPTOMS
+===================================================== -->
+
 <section class="section">
 
-<h2>3. الأعراض</h2>
+<h2>
+3. الأعراض
+</h2>
 
 <div class="checkgrid">
 
 <label class="check">
-<input type="checkbox" name="symptom" value="fever">
+<input
+    type="checkbox"
+    name="symptom"
+    value="fever">
 حمى
 </label>
 
 <label class="check">
-<input type="checkbox" name="symptom" value="cough">
+<input
+    type="checkbox"
+    name="symptom"
+    value="cough">
 سعال
 </label>
 
 <label class="check">
-<input type="checkbox" name="symptom" value="dyspnea">
+<input
+    type="checkbox"
+    name="symptom"
+    value="dyspnea">
 ضيق تنفس
 </label>
 
 <label class="check">
-<input type="checkbox" name="symptom" value="headache">
+<input
+    type="checkbox"
+    name="symptom"
+    value="headache">
 صداع
 </label>
 
 <label class="check">
-<input type="checkbox" name="symptom" value="rash">
+<input
+    type="checkbox"
+    name="symptom"
+    value="rash">
 طفح
 </label>
 
 <label class="check">
-<input type="checkbox" name="symptom" value="vomiting">
+<input
+    type="checkbox"
+    name="symptom"
+    value="vomiting">
 قيء
 </label>
 
 <label class="check">
-<input type="checkbox" name="symptom" value="diarrhea">
+<input
+    type="checkbox"
+    name="symptom"
+    value="diarrhea">
 إسهال
 </label>
 
 <label class="check">
-<input type="checkbox" name="symptom" value="bleeding">
+<input
+    type="checkbox"
+    name="symptom"
+    value="bleeding">
 نزف
 </label>
 
 <label class="check">
-<input type="checkbox" name="symptom" value="neuro">
+<input
+    type="checkbox"
+    name="symptom"
+    value="neuro">
 أعراض عصبية
 </label>
 
 </div>
 
-<div class="group full" style="margin-top:14px">
 
-<label>أعراض أخرى</label>
+<div
+    class="group full"
+    style="margin-top:14px">
+
+<label>
+أعراض أخرى
+</label>
 
 <textarea id="otherSymptoms"></textarea>
 
@@ -702,15 +915,24 @@ textarea{
 </section>
 
 
+<!-- =====================================================
+     4 EPI
+===================================================== -->
+
 <section class="section">
 
-<h2>4. التاريخ الوبائي</h2>
+<h2>
+4. التاريخ الوبائي
+</h2>
 
 <div class="grid">
 
+
 <div class="group">
 
-<label>سفر حديث</label>
+<label>
+سفر حديث
+</label>
 
 <select id="recentTravel">
 
@@ -723,14 +945,23 @@ textarea{
 
 </div>
 
+
 <div class="group">
-<label>الدولة / المنطقة</label>
+
+<label>
+الدولة / المنطقة
+</label>
+
 <input id="travelCountry">
+
 </div>
 
+
 <div class="group">
 
-<label>مخالطة حالة</label>
+<label>
+مخالطة حالة
+</label>
 
 <select id="contactCase">
 
@@ -743,9 +974,12 @@ textarea{
 
 </div>
 
+
 <div class="group">
 
-<label>تعرض حيواني / بيئي</label>
+<label>
+تعرض حيواني / بيئي
+</label>
 
 <select id="animalExposure">
 
@@ -758,9 +992,12 @@ textarea{
 
 </div>
 
+
 <div class="group full">
 
-<label>تفاصيل التاريخ الوبائي</label>
+<label>
+تفاصيل التاريخ الوبائي
+</label>
 
 <textarea id="epiHistory"></textarea>
 
@@ -770,9 +1007,9 @@ textarea{
 
 
 <div
-id="autoEpiInfo"
-class="auto-info"
-style="display:none">
+    id="autoEpiInfo"
+    class="auto-info"
+    style="display:none">
 
 <strong>
 🧠 بيانات منقولة تلقائيًا:
@@ -785,50 +1022,79 @@ style="display:none">
 </section>
 
 
+<!-- =====================================================
+     5 ACTIONS
+===================================================== -->
+
 <section class="section">
 
-<h2>5. الإجراءات والعينات</h2>
+<h2>
+5. الإجراءات والعينات
+</h2>
 
 <div class="checkgrid">
 
 <label class="check">
-<input type="checkbox" name="action" value="isolation">
+<input
+    type="checkbox"
+    name="action"
+    value="isolation">
 تم العزل
 </label>
 
 <label class="check">
-<input type="checkbox" name="action" value="ppe">
+<input
+    type="checkbox"
+    name="action"
+    value="ppe">
 تم تطبيق PPE
 </label>
 
 <label class="check">
-<input type="checkbox" name="action" value="infectionControl">
+<input
+    type="checkbox"
+    name="action"
+    value="infectionControl">
 إبلاغ مكافحة العدوى
 </label>
 
 <label class="check">
-<input type="checkbox" name="action" value="publicHealth">
+<input
+    type="checkbox"
+    name="action"
+    value="publicHealth">
 إبلاغ الصحة العامة
 </label>
 
 <label class="check">
-<input type="checkbox" name="action" value="sample">
+<input
+    type="checkbox"
+    name="action"
+    value="sample">
 تم جمع العينة
 </label>
 
 <label class="check">
-<input type="checkbox" name="action" value="contacts">
+<input
+    type="checkbox"
+    name="action"
+    value="contacts">
 بدأ حصر المخالطين
 </label>
 
 </div>
 
 
-<div class="grid" style="margin-top:14px">
+<div
+    class="grid"
+    style="margin-top:14px">
+
 
 <div class="group">
 
-<label>تم أخذ عينة</label>
+<label>
+تم أخذ عينة
+</label>
 
 <select id="sampleTaken">
 
@@ -841,19 +1107,36 @@ style="display:none">
 
 </div>
 
+
 <div class="group">
-<label>نوع العينة</label>
+
+<label>
+نوع العينة
+</label>
+
 <input id="sampleType">
+
 </div>
 
-<div class="group">
-<label>تاريخ / وقت العينة</label>
-<input id="sampleDateTime" type="datetime-local">
-</div>
 
 <div class="group">
 
-<label>حالة النتيجة</label>
+<label>
+تاريخ / وقت العينة
+</label>
+
+<input
+    id="sampleDateTime"
+    type="datetime-local">
+
+</div>
+
+
+<div class="group">
+
+<label>
+حالة النتيجة
+</label>
 
 <select id="labResult">
 
@@ -871,40 +1154,86 @@ style="display:none">
 </section>
 
 
+<!-- =====================================================
+     6 REPORTER
+===================================================== -->
+
 <section class="section">
 
-<h2>6. بيانات المبلّغ</h2>
+<h2>
+6. بيانات المبلّغ
+</h2>
 
 <div class="grid">
 
+
 <div class="group">
-<label>اسم المبلّغ *</label>
+
+<label>
+اسم المبلّغ *
+</label>
+
 <input id="reporterName">
+
 </div>
 
+
 <div class="group">
-<label>الرقم الوظيفي *</label>
+
+<label>
+الرقم الوظيفي *
+</label>
+
 <input id="reporterId">
+
 </div>
 
+
 <div class="group">
-<label>المسمى الوظيفي</label>
+
+<label>
+المسمى الوظيفي
+</label>
+
 <input id="reporterJob">
+
 </div>
 
-<div class="group">
-<label>القسم</label>
-<input id="reporterDepartment" value="قسم الطوارئ">
-</div>
 
 <div class="group">
-<label>رقم التواصل</label>
+
+<label>
+القسم
+</label>
+
+<input
+    id="reporterDepartment"
+    value="قسم الطوارئ">
+
+</div>
+
+
+<div class="group">
+
+<label>
+رقم التواصل
+</label>
+
 <input id="reporterPhone">
+
 </div>
 
+
 <div class="group">
-<label>تاريخ ووقت البلاغ</label>
-<input id="reportDateTime" type="datetime-local">
+
+<label>
+تاريخ ووقت البلاغ
+</label>
+
+<input
+    id="reportDateTime"
+    type="datetime-local">
+
 </div>
 
 </div>
@@ -912,43 +1241,55 @@ style="display:none">
 </section>
 
 
+<!-- =====================================================
+     7 SIGNATURE
+===================================================== -->
+
 <section class="section">
 
-<h2>7. التوقيع الإلكتروني</h2>
+<h2>
+7. التوقيع الإلكتروني
+</h2>
 
 <p style="color:#607387;">
 استخدم الماوس أو القلم أو إصبعك للتوقيع داخل المربع.
 </p>
 
 <div class="signature-area">
+
 <canvas id="signatureCanvas"></canvas>
+
 </div>
 
+
 <div
-id="signatureStatus"
-class="signature-status empty">
+    id="signatureStatus"
+    class="signature-status empty">
 
 ✍️ لم يتم التوقيع بعد
 
 </div>
 
+
 <br>
 
+
 <button
-type="button"
-onclick="clearSignature()"
-style="margin-top:10px">
+    type="button"
+    onclick="clearSignature()"
+    style="margin-top:10px">
 
 مسح التوقيع
 
 </button>
 
+
 <label style="display:block;margin-top:15px">
 
 <input
-id="declaration"
-type="checkbox"
-style="width:auto">
+    id="declaration"
+    type="checkbox"
+    style="width:auto">
 
 أقر بصحة البيانات حسب المعلومات المتاحة وقت الإبلاغ.
 
@@ -957,51 +1298,77 @@ style="width:auto">
 </section>
 
 
+<!-- =====================================================
+     ACTIONS
+===================================================== -->
+
 <section class="actions">
 
 <button
-type="button"
-class="review"
-onclick="reviewNotification()">
+    type="button"
+    class="review"
+    onclick="reviewNotification()">
 
 ✅ مراجعة
 
 </button>
 
+
 <button
-type="button"
-id="sendButton"
-class="send"
-onclick="saveNotification()">
+    type="button"
+    id="sendButton"
+    class="send"
+    onclick="saveNotification()">
 
 📤 إرسال للصحة العامة
 
 </button>
 
+
 <button
-type="button"
-class="print"
-onclick="window.print()">
+    type="button"
+    class="print"
+    onclick="window.print()">
 
 🖨️ طباعة / PDF
 
 </button>
 
-<a class="back" href="infectious-diseases.html">
+
+<a
+    class="back"
+    href="infectious-diseases.html">
+
 ← العودة
+
 </a>
 
 </section>
 
 
-<div id="result" class="result"></div>
+<div
+    id="result"
+    class="result">
+</div>
 
 
 </main>
 
 
+<!-- =====================================================
+     CONFIG / API
+===================================================== -->
+
+<script src="config.js"></script>
+<script src="api.js"></script>
+
+
 <script>
 
+
+/* =====================================================
+   CONSTANTS
+===================================================== */
 
 const names = {
 
@@ -1053,6 +1420,10 @@ const epiLabels = {
 };
 
 
+/* =====================================================
+   STATE
+===================================================== */
+
 let incoming = {
 
     patientName:"",
@@ -1081,6 +1452,25 @@ let incoming = {
 };
 
 
+let notificationSending =
+    false;
+
+
+/* =====================================================
+   ENVIRONMENT
+===================================================== */
+
+function isServerMode(){
+
+    return (
+        window.SPHP_CONFIG &&
+        window.SPHP_CONFIG.dataMode ===
+        "server"
+    );
+
+}
+
+
 /* =====================================================
    TIME
 ===================================================== */
@@ -1093,409 +1483,689 @@ function localNow(){
 
     return new Date(
 
-        now.getTime() -
-
+        now.getTime()
+        -
         now.getTimezoneOffset() *
         60000
 
     )
     .toISOString()
-    .slice(0,16);
+    .slice(
+        0,
+        16
+    );
 
 }
 
 
 /* =====================================================
-   STORAGE
+   LOCAL STORAGE HELPERS
 ===================================================== */
 
-function getSmartScreeningRecords(){
+function readSmartRecordsLocal(){
+
+    if(isServerMode()){
+
+        return [];
+
+    }
+
 
     try{
 
         const data =
             JSON.parse(
+
                 localStorage.getItem(
                     "smartScreeningRecords"
-                ) || "[]"
+                )
+
+                ||
+
+                "[]"
+
             );
 
 
-        return Array.isArray(data)
-            ? data
-            : [];
+        return Array.isArray(
+            data
+        )
+        ? data
+        : [];
 
     }
     catch(error){
 
-        return [];
-
-    }
-
-}
-
-
-function getSavedNotifications(){
-
-    try{
-
-        const data =
-            JSON.parse(
-                localStorage.getItem(
-                    "publicHealthNotifications"
-                ) || "[]"
-            );
-
-
-        return Array.isArray(data)
-            ? data
-            : [];
-
-    }
-    catch(error){
-
-        return [];
-
-    }
-
-}
-
-
-/* =====================================================
-   LOAD ALL SOURCES
-===================================================== */
-
-function loadIncomingData(){
-
-    const params =
-        new URLSearchParams(
-            window.location.search
+        console.warn(
+            "Unable to read local smart screening records:",
+            error
         );
 
 
-    incoming.patientName =
-        params.get("patientName") || "";
+        return [];
 
-    incoming.mrn =
-        params.get("mrn") || "";
+    }
 
-    incoming.patientType =
-        params.get("patientType") || "";
+}
 
-    incoming.gender =
-        params.get("gender") || "";
 
-    incoming.rapidId =
-        params.get("rapidId") || "";
+function writeSmartRecordsLocal(
+    records
+){
 
-    incoming.rapidScore =
-        params.get("rapidScore") || "";
+    if(isServerMode()){
 
-    incoming.rapidRisk =
-        params.get("rapidRisk") || "";
+        throw new Error(
+            "Local smart screening storage is disabled in server mode."
+        );
 
-    incoming.rapidRedFlag =
-        params.get("rapidRedFlag") === "1";
+    }
 
-    incoming.screeningId =
-        params.get("screeningId") || "";
 
-    incoming.diseaseKey =
-        params.get("disease") || "";
+    localStorage.setItem(
 
-    incoming.duration =
-        params.get("duration") || "";
+        "smartScreeningRecords",
 
-    incoming.historyReliability =
-        params.get("historyReliability") || "";
-
-    incoming.vitalStatus =
-        params.get("vitalStatus") || "";
-
-    incoming.hiddenFlag =
-        params.get("hiddenFlag") === "1";
-
-    incoming.onset =
-        params.get("onset") || "";
-
-    incoming.symptoms =
-        (
-            params.get("symptoms") ||
-            ""
+        JSON.stringify(
+            Array.isArray(
+                records
+            )
+            ? records
+            : []
         )
-        .split(",")
-        .filter(Boolean);
 
-    incoming.epi =
-        (
-            params.get("epi") ||
-            ""
+    );
+
+}
+
+
+function readNotificationsLocal(){
+
+    if(isServerMode()){
+
+        return [];
+
+    }
+
+
+    try{
+
+        const data =
+            JSON.parse(
+
+                localStorage.getItem(
+                    "publicHealthNotifications"
+                )
+
+                ||
+
+                "[]"
+
+            );
+
+
+        return Array.isArray(
+            data
         )
-        .split(",")
-        .filter(Boolean);
+        ? data
+        : [];
+
+    }
+    catch(error){
+
+        console.warn(
+            "Unable to read local notifications:",
+            error
+        );
 
 
-    if(incoming.screeningId){
+        return [];
 
-        const record =
-            getSmartScreeningRecords()
-            .find(
+    }
+
+}
+
+
+function writeNotificationsLocal(
+    records
+){
+
+    if(isServerMode()){
+
+        throw new Error(
+            "Local notification storage is disabled in server mode."
+        );
+
+    }
+
+
+    localStorage.setItem(
+
+        "publicHealthNotifications",
+
+        JSON.stringify(
+            Array.isArray(
+                records
+            )
+            ? records
+            : []
+        )
+
+    );
+
+}
+
+
+/* =====================================================
+   GET SMART RECORD
+===================================================== */
+
+async function getSmartRecordByIdSafe(
+    id
+){
+
+    if(!id){
+
+        return null;
+
+    }
+
+
+    if(
+        window.SPHP &&
+        window.SPHP.smartScreenings &&
+        typeof window.SPHP.smartScreenings.getById ===
+        "function"
+    ){
+
+        try{
+
+            return await window.SPHP
+            .smartScreenings
+            .getById(
+                id
+            );
+
+        }
+        catch(error){
+
+            console.error(
+                "SPHP smart record read failed:",
+                error
+            );
+
+
+            if(isServerMode()){
+
+                throw error;
+
+            }
+
+        }
+
+    }
+
+
+    if(
+        !isServerMode()
+    ){
+
+        const records =
+            readSmartRecordsLocal();
+
+
+        return (
+            records.find(
                 function(item){
 
                     return (
+                        item &&
+                        item.id === id
+                    );
+
+                }
+            )
+
+            ||
+
+            null
+        );
+
+    }
+
+
+    throw new Error(
+        "Smart screening service unavailable."
+    );
+
+}
+
+
+/* =====================================================
+   SAVE NOTIFICATION
+===================================================== */
+
+async function saveNotificationRecord(
+    notification
+){
+
+    /*
+      المسار الرئيسي والوحيد عند توفر SPHP.
+    */
+
+    if(
+        window.SPHP &&
+        window.SPHP.notifications &&
+        typeof window.SPHP.notifications.upsert ===
+        "function"
+    ){
+
+        return await window.SPHP
+        .notifications
+        .upsert(
+            notification
+        );
+
+    }
+
+
+    /*
+      توافق مؤقت فقط إذا كانت دالة api.js القديمة موجودة.
+    */
+
+    if(
+        typeof window.savePublicHealthNotification ===
+        "function"
+    ){
+
+        return await window
+        .savePublicHealthNotification(
+            notification
+        );
+
+    }
+
+
+    /*
+      local fallback للتطوير فقط.
+    */
+
+    if(
+        !isServerMode()
+    ){
+
+        const notifications =
+            readNotificationsLocal();
+
+
+        const existingIndex =
+            notifications.findIndex(
+                function(item){
+
+                    return (
+                        item &&
                         item.id ===
-                        incoming.screeningId
+                        notification.id
                     );
 
                 }
             );
 
 
-        if(record){
+        if(
+            existingIndex >= 0
+        ){
 
-            incoming.patientName =
-                incoming.patientName ||
-                record.patientName ||
-                "";
+            notifications[
+                existingIndex
+            ] = {
 
-            incoming.mrn =
-                incoming.mrn ||
-                record.mrn ||
-                "";
+                ...notifications[
+                    existingIndex
+                ],
 
-            incoming.patientType =
-                incoming.patientType ||
-                record.patientType ||
-                "";
+                ...notification
 
-            incoming.gender =
-                incoming.gender ||
-                record.gender ||
-                "";
+            };
 
-            incoming.rapidId =
-                incoming.rapidId ||
-                record.rapidScreeningId ||
-                "";
+        }
+        else{
 
-            if(
-                incoming.rapidScore === ""
-                &&
-                record.rapidScore !== undefined
-                &&
-                record.rapidScore !== null
-            ){
-
-                incoming.rapidScore =
-                    String(
-                        record.rapidScore
-                    );
-
-            }
-
-            incoming.rapidRisk =
-                incoming.rapidRisk ||
-                record.rapidRisk ||
-                "";
-
-            if(record.rapidRedFlag){
-
-                incoming.rapidRedFlag =
-                    true;
-
-            }
-
-            incoming.duration =
-                incoming.duration ||
-                record.duration ||
-                "";
-
-            incoming.historyReliability =
-                incoming.historyReliability ||
-                record.historyReliability ||
-                "";
-
-            incoming.vitalStatus =
-                incoming.vitalStatus ||
-                record.vitalStatus ||
-                "";
-
-            if(record.hiddenInfectionFlag){
-
-                incoming.hiddenFlag =
-                    true;
-
-            }
-
-            incoming.onset =
-                incoming.onset ||
-                record.symptomOnset ||
-                "";
-
-            if(
-                !incoming.symptoms.length &&
-                Array.isArray(
-                    record.symptoms
-                )
-            ){
-
-                incoming.symptoms =
-                    record.symptoms;
-
-            }
-
-            if(
-                !incoming.epi.length &&
-                Array.isArray(
-                    record.epidemiologicalFactors
-                )
-            ){
-
-                incoming.epi =
-                    record.epidemiologicalFactors;
-
-            }
+            notifications.unshift(
+                notification
+            );
 
         }
 
-    }
 
-
-    try{
-
-        const transfer =
-            JSON.parse(
-                sessionStorage.getItem(
-                    "notificationPatientData"
-                ) || "null"
-            );
-
-
-        applyTransferObject(
-            transfer
+        writeNotificationsLocal(
+            notifications
         );
 
-    }
-    catch(error){
 
-        console.warn(
-            "session transfer error",
-            error
-        );
+        return notification;
 
     }
 
 
-    try{
-
-        const transfer =
-            JSON.parse(
-                localStorage.getItem(
-                    "notificationTransferData"
-                ) || "null"
-            );
-
-
-        applyTransferObject(
-            transfer
-        );
-
-    }
-    catch(error){
-
-        console.warn(
-            "local transfer error",
-            error
-        );
-
-    }
-
-
-    try{
-
-        const rapid =
-            JSON.parse(
-                sessionStorage.getItem(
-                    "latestRapidScreening"
-                ) || "null"
-            );
-
-
-        if(rapid){
-
-            incoming.patientName =
-                incoming.patientName ||
-                rapid.patientName ||
-                "";
-
-            incoming.mrn =
-                incoming.mrn ||
-                rapid.mrn ||
-                "";
-
-            incoming.patientType =
-                incoming.patientType ||
-                rapid.patientType ||
-                "";
-
-            incoming.gender =
-                incoming.gender ||
-                rapid.gender ||
-                "";
-
-            incoming.rapidId =
-                incoming.rapidId ||
-                rapid.id ||
-                "";
-
-            if(
-                incoming.rapidScore === ""
-                &&
-                rapid.score !== undefined
-                &&
-                rapid.score !== null
-            ){
-
-                incoming.rapidScore =
-                    String(
-                        rapid.score
-                    );
-
-            }
-
-            incoming.rapidRisk =
-                incoming.rapidRisk ||
-                rapid.risk ||
-                "";
-
-            if(rapid.redFlag){
-
-                incoming.rapidRedFlag =
-                    true;
-
-            }
-
-        }
-
-    }
-    catch(error){
-
-        console.warn(
-            "latest rapid error",
-            error
-        );
-
-    }
+    throw new Error(
+        "Notification service unavailable."
+    );
 
 }
 
+
+/* =====================================================
+   MARK SMART SCREENING AS SENT
+===================================================== */
+
+async function markSmartScreeningNotificationSent(
+    screeningId,
+    notificationId
+){
+
+    if(
+        !screeningId ||
+        !notificationId
+    ){
+
+        return null;
+
+    }
+
+
+    const changes = {
+
+        notificationStarted:
+            true,
+
+        notificationSent:
+            true,
+
+        notificationId:
+            notificationId,
+
+        notificationSentAt:
+            new Date()
+            .toISOString(),
+
+        updatedAt:
+            new Date()
+            .toISOString()
+
+    };
+
+
+    /*
+      نحاول أولًا جلب السجل ثم دمج البيانات كاملة،
+      حتى لا نعتمد على أن update يعمل كـ PATCH.
+    */
+
+    if(
+        window.SPHP &&
+        window.SPHP.smartScreenings
+    ){
+
+        try{
+
+            let existing =
+                null;
+
+
+            if(
+                typeof window.SPHP
+                .smartScreenings
+                .getById ===
+                "function"
+            ){
+
+                existing =
+                    await window.SPHP
+                    .smartScreenings
+                    .getById(
+                        screeningId
+                    );
+
+            }
+
+
+            if(
+                existing &&
+                typeof window.SPHP
+                .smartScreenings
+                .upsert ===
+                "function"
+            ){
+
+                return await window.SPHP
+                .smartScreenings
+                .upsert({
+
+                    ...existing,
+                    ...changes,
+                    id:
+                        existing.id ||
+                        screeningId
+
+                });
+
+            }
+
+
+            if(
+                typeof window.SPHP
+                .smartScreenings
+                .update ===
+                "function"
+            ){
+
+                return await window.SPHP
+                .smartScreenings
+                .update(
+                    screeningId,
+                    changes
+                );
+
+            }
+
+        }
+        catch(error){
+
+            console.error(
+                "SPHP smart screening update failed:",
+                error
+            );
+
+
+            if(isServerMode()){
+
+                throw error;
+
+            }
+
+        }
+
+    }
+
+
+    /*
+      local fallback فقط في التطوير.
+    */
+
+    if(
+        !isServerMode()
+    ){
+
+        const records =
+            readSmartRecordsLocal();
+
+
+        const index =
+            records.findIndex(
+                function(item){
+
+                    return (
+                        item &&
+                        item.id ===
+                        screeningId
+                    );
+
+                }
+            );
+
+
+        if(index < 0){
+
+            return null;
+
+        }
+
+
+        records[
+            index
+        ] = {
+
+            ...records[
+                index
+            ],
+
+            ...changes,
+
+            id:
+                records[
+                    index
+                ].id
+
+        };
+
+
+        writeSmartRecordsLocal(
+            records
+        );
+
+
+        return records[
+            index
+        ];
+
+    }
+
+
+    throw new Error(
+        "Smart screening update service unavailable."
+    );
+
+}
+
+
+/* =====================================================
+   GENERATE NOTIFICATION ID
+===================================================== */
+
+function generateNotificationIdSafe(){
+
+    /*
+      نبقي مولد PH واضحًا ومستقلًا حاليًا.
+      في النظام النهائي يفضل أن يقوم الخادم بإنشاء الرقم.
+    */
+
+    const now =
+        new Date();
+
+
+    const year =
+        now.getFullYear();
+
+
+    const month =
+        String(
+            now.getMonth() + 1
+        )
+        .padStart(
+            2,
+            "0"
+        );
+
+
+    const day =
+        String(
+            now.getDate()
+        )
+        .padStart(
+            2,
+            "0"
+        );
+
+
+    const time =
+
+        String(
+            now.getHours()
+        )
+        .padStart(
+            2,
+            "0"
+        )
+
+        +
+
+        String(
+            now.getMinutes()
+        )
+        .padStart(
+            2,
+            "0"
+        )
+
+        +
+
+        String(
+            now.getSeconds()
+        )
+        .padStart(
+            2,
+            "0"
+        );
+
+
+    const random =
+        Math.floor(
+            100 +
+            Math.random() *
+            900
+        );
+
+
+    return (
+        "PH-" +
+        year +
+        month +
+        day +
+        "-" +
+        time +
+        "-" +
+        random
+    );
+
+}
+
+
+/* =====================================================
+   APPLY TRANSFER OBJECT
+===================================================== */
 
 function applyTransferObject(
     transfer
 ){
 
-    if(!transfer){
+    if(
+        !transfer ||
+        typeof transfer !==
+        "object"
+    ){
+
         return;
+
     }
 
 
@@ -1504,32 +2174,39 @@ function applyTransferObject(
         transfer.patientName ||
         "";
 
+
     incoming.mrn =
         incoming.mrn ||
         transfer.mrn ||
         "";
+
 
     incoming.patientType =
         incoming.patientType ||
         transfer.patientType ||
         "";
 
+
     incoming.gender =
         incoming.gender ||
         transfer.gender ||
         "";
+
 
     incoming.rapidId =
         incoming.rapidId ||
         transfer.rapidId ||
         "";
 
+
     if(
         incoming.rapidScore === ""
         &&
-        transfer.rapidScore !== undefined
+        transfer.rapidScore !==
+        undefined
         &&
-        transfer.rapidScore !== null
+        transfer.rapidScore !==
+        null
     ){
 
         incoming.rapidScore =
@@ -1539,57 +2216,73 @@ function applyTransferObject(
 
     }
 
+
     incoming.rapidRisk =
         incoming.rapidRisk ||
         transfer.rapidRisk ||
         "";
 
-    if(transfer.rapidRedFlag){
+
+    if(
+        transfer.rapidRedFlag
+    ){
 
         incoming.rapidRedFlag =
             true;
 
     }
 
+
     incoming.screeningId =
         incoming.screeningId ||
         transfer.smartScreeningId ||
+        transfer.screeningId ||
         "";
+
 
     incoming.diseaseKey =
         incoming.diseaseKey ||
         transfer.diseaseKey ||
         "";
 
+
     incoming.onset =
         incoming.onset ||
         transfer.onset ||
         "";
+
 
     incoming.duration =
         incoming.duration ||
         transfer.duration ||
         "";
 
+
     incoming.historyReliability =
         incoming.historyReliability ||
         transfer.historyReliability ||
         "";
+
 
     incoming.vitalStatus =
         incoming.vitalStatus ||
         transfer.vitalStatus ||
         "";
 
-    if(transfer.hiddenFlag){
+
+    if(
+        transfer.hiddenFlag
+    ){
 
         incoming.hiddenFlag =
             true;
 
     }
 
+
     if(
-        !incoming.symptoms.length &&
+        !incoming.symptoms.length
+        &&
         Array.isArray(
             transfer.symptoms
         )
@@ -1600,8 +2293,10 @@ function applyTransferObject(
 
     }
 
+
     if(
-        !incoming.epi.length &&
+        !incoming.epi.length
+        &&
         Array.isArray(
             transfer.epi
         )
@@ -1616,16 +2311,471 @@ function applyTransferObject(
 
 
 /* =====================================================
+   LOAD INCOMING DATA
+===================================================== */
+
+async function loadIncomingData(){
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    incoming.patientName =
+        params.get(
+            "patientName"
+        ) || "";
+
+
+    incoming.mrn =
+        params.get(
+            "mrn"
+        ) || "";
+
+
+    incoming.patientType =
+        params.get(
+            "patientType"
+        ) || "";
+
+
+    incoming.gender =
+        params.get(
+            "gender"
+        ) || "";
+
+
+    incoming.rapidId =
+        params.get(
+            "rapidId"
+        ) || "";
+
+
+    incoming.rapidScore =
+        params.get(
+            "rapidScore"
+        ) || "";
+
+
+    incoming.rapidRisk =
+        params.get(
+            "rapidRisk"
+        ) || "";
+
+
+    incoming.rapidRedFlag =
+        params.get(
+            "rapidRedFlag"
+        ) ===
+        "1";
+
+
+    incoming.screeningId =
+        params.get(
+            "screeningId"
+        ) || "";
+
+
+    incoming.diseaseKey =
+        params.get(
+            "disease"
+        ) || "";
+
+
+    incoming.duration =
+        params.get(
+            "duration"
+        ) || "";
+
+
+    incoming.historyReliability =
+        params.get(
+            "historyReliability"
+        ) || "";
+
+
+    incoming.vitalStatus =
+        params.get(
+            "vitalStatus"
+        ) || "";
+
+
+    incoming.hiddenFlag =
+        params.get(
+            "hiddenFlag"
+        ) ===
+        "1";
+
+
+    incoming.onset =
+        params.get(
+            "onset"
+        ) || "";
+
+
+    incoming.symptoms = (
+        params.get(
+            "symptoms"
+        )
+        ||
+        ""
+    )
+    .split(",")
+    .filter(Boolean);
+
+
+    incoming.epi = (
+        params.get(
+            "epi"
+        )
+        ||
+        ""
+    )
+    .split(",")
+    .filter(Boolean);
+
+
+    /*
+      1) Smart Screening record
+    */
+
+    if(
+        incoming.screeningId
+    ){
+
+        try{
+
+            const record =
+                await getSmartRecordByIdSafe(
+                    incoming.screeningId
+                );
+
+
+            if(record){
+
+                incoming.patientName =
+                    incoming.patientName ||
+                    record.patientName ||
+                    "";
+
+
+                incoming.mrn =
+                    incoming.mrn ||
+                    record.mrn ||
+                    "";
+
+
+                incoming.patientType =
+                    incoming.patientType ||
+                    record.patientType ||
+                    "";
+
+
+                incoming.gender =
+                    incoming.gender ||
+                    record.gender ||
+                    "";
+
+
+                incoming.rapidId =
+                    incoming.rapidId ||
+                    record.rapidScreeningId ||
+                    "";
+
+
+                if(
+                    incoming.rapidScore === ""
+                    &&
+                    record.rapidScore !==
+                    undefined
+                    &&
+                    record.rapidScore !==
+                    null
+                ){
+
+                    incoming.rapidScore =
+                        String(
+                            record.rapidScore
+                        );
+
+                }
+
+
+                incoming.rapidRisk =
+                    incoming.rapidRisk ||
+                    record.rapidRisk ||
+                    "";
+
+
+                if(
+                    record.rapidRedFlag
+                ){
+
+                    incoming.rapidRedFlag =
+                        true;
+
+                }
+
+
+                incoming.duration =
+                    incoming.duration ||
+                    record.duration ||
+                    "";
+
+
+                incoming.historyReliability =
+                    incoming.historyReliability ||
+                    record.historyReliability ||
+                    "";
+
+
+                incoming.vitalStatus =
+                    incoming.vitalStatus ||
+                    record.vitalStatus ||
+                    "";
+
+
+                if(
+                    record.hiddenInfectionFlag
+                ){
+
+                    incoming.hiddenFlag =
+                        true;
+
+                }
+
+
+                incoming.onset =
+                    incoming.onset ||
+                    record.symptomOnset ||
+                    "";
+
+
+                if(
+                    !incoming.symptoms.length
+                    &&
+                    Array.isArray(
+                        record.symptoms
+                    )
+                ){
+
+                    incoming.symptoms =
+                        record.symptoms;
+
+                }
+
+
+                if(
+                    !incoming.epi.length
+                    &&
+                    Array.isArray(
+                        record.epidemiologicalFactors
+                    )
+                ){
+
+                    incoming.epi =
+                        record.epidemiologicalFactors;
+
+                }
+
+            }
+
+        }
+        catch(error){
+
+            console.warn(
+                "Unable to load Smart Screening record:",
+                error
+            );
+
+        }
+
+    }
+
+
+    /*
+      2) Session transfer
+    */
+
+    try{
+
+        const transfer =
+            JSON.parse(
+
+                sessionStorage.getItem(
+                    "notificationPatientData"
+                )
+
+                ||
+
+                "null"
+
+            );
+
+
+        applyTransferObject(
+            transfer
+        );
+
+    }
+    catch(error){
+
+        console.warn(
+            "Session transfer error:",
+            error
+        );
+
+    }
+
+
+    /*
+      3) Local transfer fallback
+      يستخدم فقط في بيئة التطوير.
+    */
+
+    if(
+        !isServerMode()
+    ){
+
+        try{
+
+            const transfer =
+                JSON.parse(
+
+                    localStorage.getItem(
+                        "notificationTransferData"
+                    )
+
+                    ||
+
+                    "null"
+
+                );
+
+
+            applyTransferObject(
+                transfer
+            );
+
+        }
+        catch(error){
+
+            console.warn(
+                "Local transfer error:",
+                error
+            );
+
+        }
+
+    }
+
+
+    /*
+      4) Rapid Screening session
+    */
+
+    try{
+
+        const rapid =
+            JSON.parse(
+
+                sessionStorage.getItem(
+                    "latestRapidScreening"
+                )
+
+                ||
+
+                "null"
+
+            );
+
+
+        if(rapid){
+
+            incoming.patientName =
+                incoming.patientName ||
+                rapid.patientName ||
+                "";
+
+
+            incoming.mrn =
+                incoming.mrn ||
+                rapid.mrn ||
+                "";
+
+
+            incoming.patientType =
+                incoming.patientType ||
+                rapid.patientType ||
+                "";
+
+
+            incoming.gender =
+                incoming.gender ||
+                rapid.gender ||
+                "";
+
+
+            incoming.rapidId =
+                incoming.rapidId ||
+                rapid.id ||
+                "";
+
+
+            if(
+                incoming.rapidScore === ""
+                &&
+                rapid.score !==
+                undefined
+                &&
+                rapid.score !==
+                null
+            ){
+
+                incoming.rapidScore =
+                    String(
+                        rapid.score
+                    );
+
+            }
+
+
+            incoming.rapidRisk =
+                incoming.rapidRisk ||
+                rapid.risk ||
+                "";
+
+
+            if(
+                rapid.redFlag
+            ){
+
+                incoming.rapidRedFlag =
+                    true;
+
+            }
+
+        }
+
+    }
+    catch(error){
+
+        console.warn(
+            "Latest rapid screening error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
    INIT
 ===================================================== */
 
-function init(){
-
-    /*
-      التوقيع أولًا.
-      حتى إذا حدث خطأ في بيانات الفرز
-      يبقى التوقيع شغالًا.
-    */
+async function init(){
 
     try{
 
@@ -1644,7 +2794,7 @@ function init(){
 
     try{
 
-        loadIncomingData();
+        await loadIncomingData();
 
 
         const params =
@@ -1654,7 +2804,10 @@ function init(){
 
 
         if(
-            params.get("fromScreening") === "1"
+            params.get(
+                "fromScreening"
+            ) ===
+            "1"
             ||
             incoming.screeningId
         ){
@@ -1663,7 +2816,9 @@ function init(){
                 "screeningSource"
             )
             .classList
-            .add("active");
+            .add(
+                "active"
+            );
 
         }
 
@@ -1673,7 +2828,13 @@ function init(){
         fillSummary();
 
 
-        if(incoming.diseaseKey){
+        if(
+            incoming.diseaseKey
+            &&
+            names[
+                incoming.diseaseKey
+            ]
+        ){
 
             document.getElementById(
                 "diseaseSelect"
@@ -1699,7 +2860,9 @@ function init(){
         }
 
 
-        if(incoming.onset){
+        if(
+            incoming.onset
+        ){
 
             document.getElementById(
                 "symptomOnset"
@@ -1728,29 +2891,39 @@ function init(){
                 "historyWarning"
             )
             .classList
-            .add("active");
+            .add(
+                "active"
+            );
 
         }
 
 
-        if(incoming.hiddenFlag){
+        if(
+            incoming.hiddenFlag
+        ){
 
             document.getElementById(
                 "hiddenRisk"
             )
             .classList
-            .add("active");
+            .add(
+                "active"
+            );
 
         }
 
 
-        if(incoming.rapidRedFlag){
+        if(
+            incoming.rapidRedFlag
+        ){
 
             document.getElementById(
                 "rapidRedWarning"
             )
             .classList
-            .add("active");
+            .add(
+                "active"
+            );
 
         }
 
@@ -1765,31 +2938,19 @@ function init(){
     }
 
 
-    try{
-
-        document.getElementById(
-            "detectionDateTime"
-        ).value =
-            localNow();
+    document.getElementById(
+        "detectionDateTime"
+    ).value =
+        localNow();
 
 
-        document.getElementById(
-            "reportDateTime"
-        ).value =
-            localNow();
+    document.getElementById(
+        "reportDateTime"
+    ).value =
+        localNow();
 
 
-        updateDisease();
-
-    }
-    catch(error){
-
-        console.error(
-            "Final init error:",
-            error
-        );
-
-    }
+    updateDisease();
 
 }
 
@@ -1800,13 +2961,16 @@ function init(){
 
 function fillPatientData(){
 
-    if(incoming.patientName){
+    if(
+        incoming.patientName
+    ){
 
         document.getElementById(
             "patientName"
         ).value =
             incoming.patientName;
 
+
         markPrefilled(
             "patientName"
         );
@@ -1814,13 +2978,16 @@ function fillPatientData(){
     }
 
 
-    if(incoming.mrn){
+    if(
+        incoming.mrn
+    ){
 
         document.getElementById(
             "mrn"
         ).value =
             incoming.mrn;
 
+
         markPrefilled(
             "mrn"
         );
@@ -1828,12 +2995,15 @@ function fillPatientData(){
     }
 
 
-    if(incoming.patientType){
+    if(
+        incoming.patientType
+    ){
 
         document.getElementById(
             "patientType"
         ).value =
             incoming.patientType;
+
 
         markPrefilled(
             "patientType"
@@ -1842,12 +3012,15 @@ function fillPatientData(){
     }
 
 
-    if(incoming.gender){
+    if(
+        incoming.gender
+    ){
 
         document.getElementById(
             "gender"
         ).value =
             incoming.gender;
+
 
         markPrefilled(
             "gender"
@@ -1867,34 +3040,45 @@ function fillSummary(){
     document.getElementById(
         "summaryPatientName"
     ).textContent =
-        incoming.patientName || "—";
+        incoming.patientName ||
+        "—";
+
 
     document.getElementById(
         "summaryMrn"
     ).textContent =
-        incoming.mrn || "—";
+        incoming.mrn ||
+        "—";
+
 
     document.getElementById(
         "summaryRapidScore"
     ).textContent =
-        incoming.rapidScore !== ""
+        incoming.rapidScore !==
+        ""
         ? incoming.rapidScore
         : "—";
+
 
     document.getElementById(
         "summaryRapidId"
     ).textContent =
-        incoming.rapidId || "—";
+        incoming.rapidId ||
+        "—";
+
 
     document.getElementById(
         "summarySmartId"
     ).textContent =
-        incoming.screeningId || "—";
+        incoming.screeningId ||
+        "—";
+
 
     document.getElementById(
         "summaryRapidRisk"
     ).textContent =
-        incoming.rapidRisk || "—";
+        incoming.rapidRisk ||
+        "—";
 
 }
 
@@ -1903,16 +3087,23 @@ function fillSummary(){
    PREFILL
 ===================================================== */
 
-function markPrefilled(id){
+function markPrefilled(
+    id
+){
 
-    const el =
-        document.getElementById(id);
+    const element =
+        document.getElementById(
+            id
+        );
 
-    if(el){
 
-        el
+    if(element){
+
+        element
         .classList
-        .add("prefilled");
+        .add(
+            "prefilled"
+        );
 
     }
 
@@ -1946,32 +3137,45 @@ function applySymptoms(){
         function(item){
 
             const value =
-                map[item];
+                map[
+                    item
+                ];
+
 
             if(!value){
+
                 return;
+
             }
+
 
             const input =
                 document.querySelector(
+
                     'input[name="symptom"][value="' +
                     value +
                     '"]'
+
                 );
+
 
             if(input){
 
                 input.checked =
                     true;
 
+
                 const check =
                     input.closest(
                         ".check"
                     );
 
+
                 if(check){
 
-                    check.classList.add(
+                    check
+                    .classList
+                    .add(
                         "prefilled-check"
                     );
 
@@ -2002,6 +3206,7 @@ function applyEpi(){
         ).value =
             "yes";
 
+
         markPrefilled(
             "recentTravel"
         );
@@ -2019,6 +3224,7 @@ function applyEpi(){
             "contactCase"
         ).value =
             "yes";
+
 
         markPrefilled(
             "contactCase"
@@ -2054,6 +3260,7 @@ function applyEpi(){
         ).value =
             "yes";
 
+
         markPrefilled(
             "animalExposure"
         );
@@ -2066,7 +3273,10 @@ function applyEpi(){
             function(value){
 
                 return (
-                    epiLabels[value] ||
+                    epiLabels[
+                        value
+                    ]
+                    ||
                     value
                 );
 
@@ -2075,7 +3285,8 @@ function applyEpi(){
 
 
     if(
-        incoming.rapidScore !== ""
+        incoming.rapidScore !==
+        ""
     ){
 
         details.push(
@@ -2086,7 +3297,9 @@ function applyEpi(){
     }
 
 
-    if(incoming.duration){
+    if(
+        incoming.duration
+    ){
 
         details.push(
             "مدة الأعراض: " +
@@ -2096,13 +3309,18 @@ function applyEpi(){
     }
 
 
-    if(details.length){
+    if(
+        details.length
+    ){
 
         document.getElementById(
             "epiHistory"
         ).value =
-            "بيانات منقولة من الفرز:\n- " +
-            details.join("\n- ");
+            "بيانات منقولة من الفرز:\n- "
+            +
+            details.join(
+                "\n- "
+            );
 
 
         markPrefilled(
@@ -2116,21 +3334,36 @@ function applyEpi(){
             "block";
 
 
-        document.getElementById(
-            "autoEpiText"
-        ).innerHTML =
-            details
-            .map(
-                function(item){
+        const container =
+            document.getElementById(
+                "autoEpiText"
+            );
 
-                    return (
-                        "• " +
-                        item
+
+        container.textContent =
+            "";
+
+
+        details.forEach(
+            function(item){
+
+                const line =
+                    document.createElement(
+                        "div"
                     );
 
-                }
-            )
-            .join("<br>");
+
+                line.textContent =
+                    "• " +
+                    item;
+
+
+                container.appendChild(
+                    line
+                );
+
+            }
+        );
 
     }
 
@@ -2153,12 +3386,18 @@ function updateDisease(){
         "diseaseLabel"
     ).textContent =
         disease
-        ? "المرض المشتبه: " +
-          (
-              names[disease] ||
-              disease
-          )
-        : "المرض المشتبه: غير محدد";
+        ?
+        "المرض المشتبه: "
+        +
+        (
+            names[
+                disease
+            ]
+            ||
+            disease
+        )
+        :
+        "المرض المشتبه: غير محدد";
 
 
     document.getElementById(
@@ -2167,8 +3406,10 @@ function updateDisease(){
         urgentDiseases.includes(
             disease
         )
-        ? "block"
-        : "none";
+        ?
+        "block"
+        :
+        "none";
 
 }
 
@@ -2188,7 +3429,7 @@ function setupSignature(){
     if(!canvas){
 
         console.error(
-            "Signature canvas not found"
+            "Signature canvas not found."
         );
 
         return;
@@ -2206,10 +3447,31 @@ function setupSignature(){
         false;
 
 
+    function configureContext(){
+
+        context.lineWidth =
+            2.2;
+
+
+        context.lineCap =
+            "round";
+
+
+        context.lineJoin =
+            "round";
+
+
+        context.strokeStyle =
+            "#111";
+
+    }
+
+
     function resizeCanvas(){
 
         const rect =
-            canvas.getBoundingClientRect();
+            canvas
+            .getBoundingClientRect();
 
 
         const ratio =
@@ -2247,20 +3509,7 @@ function setupSignature(){
         );
 
 
-        context.lineWidth =
-            2.2;
-
-
-        context.lineCap =
-            "round";
-
-
-        context.lineJoin =
-            "round";
-
-
-        context.strokeStyle =
-            "#111";
+        configureContext();
 
 
         canvas.dataset.signed =
@@ -2322,11 +3571,6 @@ function setupSignature(){
         );
 
 
-        /*
-          نقطة صغيرة حتى الضغط الفردي
-          يعتبر توقيعًا مرئيًا.
-        */
-
         context.lineTo(
             point.x + 0.1,
             point.y + 0.1
@@ -2345,7 +3589,8 @@ function setupSignature(){
 
         if(
             canvas.setPointerCapture &&
-            event.pointerId !== undefined
+            event.pointerId !==
+            undefined
         ){
 
             try{
@@ -2367,7 +3612,9 @@ function setupSignature(){
     ){
 
         if(!drawing){
+
             return;
+
         }
 
 
@@ -2403,7 +3650,9 @@ function setupSignature(){
     ){
 
         if(!drawing){
+
             return;
+
         }
 
 
@@ -2460,7 +3709,8 @@ function setupSignature(){
         function(event){
 
             if(
-                event.buttons === 0
+                event.buttons ===
+                0
             ){
 
                 stopDrawing(
@@ -2512,20 +3762,7 @@ function setupSignature(){
             );
 
 
-            context.lineWidth =
-                2.2;
-
-
-            context.lineCap =
-                "round";
-
-
-            context.lineJoin =
-                "round";
-
-
-            context.strokeStyle =
-                "#111";
+            configureContext();
 
 
             canvas.dataset.signed =
@@ -2608,17 +3845,23 @@ function updateSignatureStatus(){
 
 
 /* =====================================================
-   HELPERS
+   CHECKED VALUES
 ===================================================== */
 
-function checked(name){
+function checked(
+    name
+){
 
     return Array.from(
+
         document.querySelectorAll(
+
             'input[name="' +
             name +
             '"]:checked'
+
         )
+
     )
     .map(
         function(item){
@@ -2689,45 +3932,31 @@ function valid(){
 
     const signatureValid =
         (
-            typeof signatureIsEmpty ===
+            typeof window.signatureIsEmpty ===
             "function"
         )
         ?
-        !signatureIsEmpty()
+        !window.signatureIsEmpty()
         :
         false;
 
 
-    return (
+    return Boolean(
 
         patientName
-
         &&
-
         mrn
-
         &&
-
         disease
-
         &&
-
         classification
-
         &&
-
         reporterName
-
         &&
-
         reporterId
-
         &&
-
         signatureValid
-
         &&
-
         declaration
 
     );
@@ -2741,7 +3970,8 @@ function valid(){
 
 function show(
     message,
-    error
+    error,
+    warning
 ){
 
     const result =
@@ -2754,17 +3984,36 @@ function show(
         "block";
 
 
-    result.className =
-        "result" +
-        (
-            error
-            ? " error"
-            : ""
-        );
+    if(error){
+
+        result.className =
+            "result error";
+
+    }
+    else if(warning){
+
+        result.className =
+            "result warning";
+
+    }
+    else{
+
+        result.className =
+            "result";
+
+    }
 
 
     result.innerHTML =
         message;
+
+
+    result.scrollIntoView({
+
+        behavior:"smooth",
+        block:"center"
+
+    });
 
 }
 
@@ -2775,12 +4024,18 @@ function show(
 
 function reviewNotification(){
 
-    if(!valid()){
+    if(
+        !valid()
+    ){
 
         show(
+
             "⚠️ يرجى استكمال الحقول الإلزامية والتوقيع والإقرار.",
+
             true
+
         );
+
 
         return;
 
@@ -2788,37 +4043,10 @@ function reviewNotification(){
 
 
     show(
+
         "✅ البلاغ جاهز للإرسال.",
+
         false
-    );
-
-}
-
-
-/* =====================================================
-   ID
-===================================================== */
-
-function generateNotificationId(){
-
-    return (
-
-        "PH-" +
-
-        new Date()
-        .toISOString()
-        .slice(0,10)
-        .replaceAll("-","")
-
-        +
-
-        "-" +
-
-        Math.floor(
-            1000 +
-            Math.random() *
-            9000
-        )
 
     );
 
@@ -2826,22 +4054,10 @@ function generateNotificationId(){
 
 
 /* =====================================================
-   SAVE NOTIFICATION
+   BUILD NOTIFICATION
 ===================================================== */
 
-function saveNotification(){
-
-    if(!valid()){
-
-        show(
-            "⚠️ لا يمكن إرسال البلاغ قبل استكمال البيانات المطلوبة والتوقيع والإقرار.",
-            true
-        );
-
-        return;
-
-    }
-
+function buildNotification(){
 
     const diseaseKey =
         document.getElementById(
@@ -2855,12 +4071,16 @@ function saveNotification(){
         );
 
 
-    const notification = {
+    return {
 
         id:
-            generateNotificationId(),
+            generateNotificationIdSafe(),
 
         createdAt:
+            new Date()
+            .toISOString(),
+
+        updatedAt:
             new Date()
             .toISOString(),
 
@@ -2869,23 +4089,28 @@ function saveNotification(){
 
         source:
             incoming.screeningId
-            ? "smartScreening"
-            : "manual",
+            ?
+            "smartScreening"
+            :
+            "manual",
 
         screeningId:
-            incoming.screeningId,
+            incoming.screeningId ||
+            "",
 
         rapidScreeningId:
-            incoming.rapidId,
+            incoming.rapidId ||
+            "",
 
         rapidScore:
             incoming.rapidScore,
 
         rapidRisk:
-            incoming.rapidRisk,
+            incoming.rapidRisk ||
+            "",
 
         rapidRedFlag:
-            incoming.rapidRedFlag,
+            !!incoming.rapidRedFlag,
 
         patientName:
             document.getElementById(
@@ -2948,7 +4173,10 @@ function saveNotification(){
             diseaseKey,
 
         disease:
-            names[diseaseKey] ||
+            names[
+                diseaseKey
+            ]
+            ||
             diseaseKey,
 
         classification:
@@ -3020,7 +4248,13 @@ function saveNotification(){
             .trim(),
 
         screeningEpiFactors:
-            incoming.epi,
+            Array.isArray(
+                incoming.epi
+            )
+            ?
+            incoming.epi
+            :
+            [],
 
         actions:
             checked(
@@ -3093,14 +4327,28 @@ function saveNotification(){
             urgentDiseases.includes(
                 diseaseKey
             )
-            ? "urgent"
-            : "normal",
+            ?
+            "urgent"
+            :
+            "normal",
 
         status:
             "new",
 
         hesnStatus:
             "pending",
+
+        hesnNumber:
+            "",
+
+        responseStatus:
+            "notStarted",
+
+        followupBy:
+            "",
+
+        nextFollowupDate:
+            "",
 
         publicHealthNotes:
             "",
@@ -3112,163 +4360,82 @@ function saveNotification(){
 
     };
 
-
-    const notifications =
-        getSavedNotifications();
+}
 
 
-    notifications.unshift(
-        notification
-    );
+/* =====================================================
+   CLEAN TRANSFER DATA
+===================================================== */
 
+function clearTransferData(){
 
-    localStorage.setItem(
+    try{
 
-        "publicHealthNotifications",
-
-        JSON.stringify(
-            notifications
-        )
-
-    );
-
-
-    /*
-      تحديث سجل الفرز الذكي
-    */
-
-    if(incoming.screeningId){
-
-        try{
-
-            const records =
-                getSmartScreeningRecords();
-
-
-            const index =
-                records.findIndex(
-                    function(item){
-
-                        return (
-                            item.id ===
-                            incoming.screeningId
-                        );
-
-                    }
-                );
-
-
-            if(index >= 0){
-
-                records[index]
-                .notificationStarted =
-                    true;
-
-
-                records[index]
-                .notificationSent =
-                    true;
-
-
-                records[index]
-                .notificationId =
-                    notification.id;
-
-
-                records[index]
-                .updatedAt =
-                    new Date()
-                    .toISOString();
-
-
-                localStorage.setItem(
-
-                    "smartScreeningRecords",
-
-                    JSON.stringify(
-                        records
-                    )
-
-                );
-
-            }
-
-        }
-        catch(error){
-
-            console.warn(
-                "Unable to update smart screening record:",
-                error
-            );
-
-        }
+        sessionStorage.removeItem(
+            "notificationPatientData"
+        );
 
     }
+    catch(error){}
 
 
     /*
-      Backend abstraction
+      Local transfer key موجود فقط في development mode.
     */
 
     if(
-        typeof savePublicHealthNotification ===
-        "function"
+        !isServerMode()
     ){
 
         try{
 
-            Promise.resolve(
-                savePublicHealthNotification(
-                    notification
-                )
-            )
-            .catch(
-                function(error){
-
-                    console.error(
-                        "API notification save error:",
-                        error
-                    );
-
-                }
+            localStorage.removeItem(
+                "notificationTransferData"
             );
 
         }
-        catch(error){
+        catch(error){}
 
-            console.error(
-                "API notification call error:",
-                error
-            );
+    }
 
-        }
+}
+
+
+/* =====================================================
+   SAVE NOTIFICATION
+===================================================== */
+
+async function saveNotification(){
+
+    if(
+        notificationSending
+    ){
+
+        return;
 
     }
 
 
-    localStorage.removeItem(
-        "notificationTransferData"
-    );
+    if(
+        !valid()
+    ){
+
+        show(
+
+            "⚠️ لا يمكن إرسال البلاغ قبل استكمال البيانات المطلوبة والتوقيع والإقرار.",
+
+            true
+
+        );
 
 
-    sessionStorage.removeItem(
-        "notificationPatientData"
-    );
+        return;
+
+    }
 
 
-    show(
-
-        "✅ <strong>تم إرسال البلاغ للصحة العامة.</strong>" +
-
-        "<br><br>" +
-
-        "رقم البلاغ: " +
-
-        notification.id,
-
-        false
-
-    );
+    notificationSending =
+        true;
 
 
     const button =
@@ -3282,7 +4449,208 @@ function saveNotification(){
 
 
     button.textContent =
-        "✅ تم إرسال البلاغ";
+        "⏳ جاري إرسال البلاغ...";
+
+
+    try{
+
+        const notification =
+            buildNotification();
+
+
+        /*
+          1) حفظ البلاغ أولًا
+        */
+
+        const savedNotification =
+            await saveNotificationRecord(
+                notification
+            );
+
+
+        const finalNotificationId =
+
+            (
+                savedNotification &&
+                savedNotification.id
+            )
+
+            ||
+
+            notification.id;
+
+
+        /*
+          2) تحديث Smart Screening بعد نجاح البلاغ فقط
+        */
+
+        let smartUpdated =
+            true;
+
+
+        if(
+            incoming.screeningId
+        ){
+
+            try{
+
+                const updated =
+                    await markSmartScreeningNotificationSent(
+
+                        incoming.screeningId,
+
+                        finalNotificationId
+
+                    );
+
+
+                if(!updated){
+
+                    smartUpdated =
+                        false;
+
+                }
+
+            }
+            catch(error){
+
+                smartUpdated =
+                    false;
+
+
+                console.warn(
+                    "Smart screening completion update failed:",
+                    error
+                );
+
+            }
+
+        }
+
+
+        /*
+          3) حذف بيانات النقل المؤقتة
+        */
+
+        clearTransferData();
+
+
+        /*
+          4) عرض النتيجة
+        */
+
+        if(
+            smartUpdated
+        ){
+
+            show(
+
+                "✅ <strong>تم إرسال البلاغ للصحة العامة بنجاح.</strong>"
+
+                +
+
+                "<br><br>"
+
+                +
+
+                "رقم البلاغ: "
+
+                +
+
+                finalNotificationId,
+
+                false
+
+            );
+
+        }
+        else{
+
+            show(
+
+                "✅ تم حفظ البلاغ بالصحة العامة."
+
+                +
+
+                "<br><br>"
+
+                +
+
+                "رقم البلاغ: "
+
+                +
+
+                finalNotificationId
+
+                +
+
+                "<br><br>"
+
+                +
+
+                "⚠️ تعذر تحديث مؤشر الفرز الذكي تلقائيًا.",
+
+                false,
+                true
+
+            );
+
+        }
+
+
+        button.textContent =
+            "✅ تم إرسال البلاغ";
+
+
+        /*
+          يمنع الإرسال المكرر.
+        */
+
+        button.disabled =
+            true;
+
+    }
+    catch(error){
+
+        console.error(
+            "Notification save failed:",
+            error
+        );
+
+
+        show(
+
+            "❌ حدث خطأ أثناء حفظ البلاغ. لم يتم تأكيد الإرسال."
+
+            +
+
+            (
+                error &&
+                error.message
+                ?
+                "<br>" +
+                error.message
+                :
+                ""
+            ),
+
+            true
+
+        );
+
+
+        notificationSending =
+            false;
+
+
+        button.disabled =
+            false;
+
+
+        button.textContent =
+            "📤 إرسال للصحة العامة";
+
+    }
 
 }
 
@@ -3310,15 +4678,6 @@ document.addEventListener(
 </script>
 
 
-<!--
-مهم:
-config أولًا
-ثم api
--->
-
-<script src="config.js"></script>
-<script src="api.js"></script>
-
-
 </body>
+
 </html>
