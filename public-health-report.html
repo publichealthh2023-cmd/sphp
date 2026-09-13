@@ -253,8 +253,6 @@ body{
 
 .report-section{
     margin:0 0 18px;
-    page-break-inside:avoid;
-    break-inside:avoid;
 }
 
 .section-heading{
@@ -264,6 +262,9 @@ body{
     font-size:13px;
     font-weight:bold;
     margin-bottom:10px;
+
+    break-after:avoid;
+    page-break-after:avoid;
 }
 
 .section-heading.teal{
@@ -291,6 +292,9 @@ body{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:9px;
+
+    break-inside:avoid;
+    page-break-inside:avoid;
 }
 
 .kpi-card{
@@ -328,6 +332,14 @@ body{
     margin-bottom:12px;
 }
 
+.report-table thead{
+    display:table-header-group;
+}
+
+.report-table tfoot{
+    display:table-footer-group;
+}
+
 .report-table th{
     background:#edf3f7;
     color:#294b6a;
@@ -345,12 +357,17 @@ body{
 }
 
 .report-table tr{
-    page-break-inside:avoid;
     break-inside:avoid;
+    page-break-inside:avoid;
 }
 
 .report-table tr:nth-child(even){
     background:#fafcfd;
+}
+
+.notification-number{
+    font-weight:bold;
+    color:#0759a6;
 }
 
 
@@ -369,6 +386,9 @@ body{
     grid-template-columns:145px 1fr 42px;
     gap:8px;
     align-items:center;
+
+    break-inside:avoid;
+    page-break-inside:avoid;
 }
 
 .report-bar-label{
@@ -429,6 +449,8 @@ body{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:28px;
+
+    break-inside:avoid;
     page-break-inside:avoid;
 }
 
@@ -466,6 +488,9 @@ body{
     font-size:7.5px;
     color:#718293;
     text-align:center;
+
+    break-inside:avoid;
+    page-break-inside:avoid;
 }
 
 
@@ -479,12 +504,22 @@ body{
 
 
 /* =====================================================
-   DETAILS PAGE
+   DETAILS
 ===================================================== */
 
 .details-page{
-    break-before:page;
-    page-break-before:always;
+    break-before:auto;
+    page-break-before:auto;
+}
+
+.details-page > div{
+    margin-bottom:14px;
+}
+
+.details-page h4{
+    margin:8px 0;
+    break-after:avoid;
+    page-break-after:avoid;
 }
 
 
@@ -494,13 +529,19 @@ body{
 
 @page{
     size:A4 portrait;
-    margin:8mm;
+    margin:7mm;
 }
 
 @media print{
 
+    html,
     body{
-        background:#fff;
+        background:#fff !important;
+    }
+
+    body{
+        margin:0;
+        padding:0;
     }
 
     .report-toolbar,
@@ -517,19 +558,97 @@ body{
         box-shadow:none;
     }
 
+    /*
+      لا نجبر كل قسم أن يبقى كاملًا في صفحة واحدة.
+      المتصفح يملأ الصفحة ثم يكمل تلقائيًا.
+    */
+
     .report-section{
-        break-inside:avoid;
-        page-break-inside:avoid;
+        break-inside:auto;
+        page-break-inside:auto;
+        margin-bottom:12px;
     }
+
+    /*
+      إلغاء إجبار قسم التفاصيل على صفحة مستقلة.
+    */
 
     .details-page{
-        break-before:page;
-        page-break-before:always;
+        break-before:auto !important;
+        page-break-before:auto !important;
     }
 
-    .report-table tr{
+    /*
+      إبقاء رأس الجدول مع تكراره عند الانتقال
+      للصفحة التالية.
+    */
+
+    .report-table thead{
+        display:table-header-group;
+    }
+
+    /*
+      منع تقسيم الصف نفسه بين صفحتين.
+    */
+
+    .report-table tr,
+    .report-table td,
+    .report-table th{
         break-inside:avoid;
         page-break-inside:avoid;
+    }
+
+    /*
+      منع عنوان القسم من البقاء منفردًا
+      في نهاية الصفحة.
+    */
+
+    .section-heading,
+    .details-page h4{
+        break-after:avoid;
+        page-break-after:avoid;
+    }
+
+    /*
+      إبقاء بطاقات المؤشرات متماسكة.
+    */
+
+    .kpi-grid,
+    .approval-section,
+    .report-footer{
+        break-inside:avoid;
+        page-break-inside:avoid;
+    }
+
+    /*
+      تقليل المسافات عند الطباعة.
+    */
+
+    .report-header{
+        margin-bottom:10px;
+        padding-bottom:7px;
+    }
+
+    .report-meta{
+        margin-bottom:10px;
+    }
+
+    .executive-summary{
+        margin-bottom:11px;
+        padding:9px 12px;
+    }
+
+    .report-section{
+        margin-bottom:11px;
+    }
+
+    h4{
+        margin-top:7px;
+        margin-bottom:6px;
+    }
+
+    br{
+        line-height:.6;
     }
 
 }
@@ -564,10 +683,6 @@ body{
 <body>
 
 
-<!-- =====================================================
-     TOOLBAR
-===================================================== -->
-
 <section class="report-toolbar">
 
 <div class="toolbar-group">
@@ -590,29 +705,18 @@ body{
 
 </div>
 
-
 <div class="pdf-note">
-
 يتم إنشاء التقرير حسب نوع الإحصائية والفترة المحددة.
-
 </div>
 
 </section>
 
 
-
-<!-- =====================================================
-     CUSTOMIZATION
-===================================================== -->
-
 <section class="report-options">
 
-<h3>
-⚙️ تخصيص التقرير
-</h3>
+<h3>⚙️ تخصيص التقرير</h3>
 
 <div class="options-grid">
-
 
 <label class="option-box">
 
@@ -668,26 +772,15 @@ body{
 
 </label>
 
-
 </div>
 
 </section>
 
 
-
-<!-- =====================================================
-     REPORT
-===================================================== -->
-
 <main class="report-paper">
 
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
 <header class="report-header">
-
 
 <div class="report-logo">
 
@@ -723,161 +816,55 @@ Public Health Report
 
 </div>
 
-
 </header>
 
 
-
-<!-- =====================================================
-     META
-===================================================== -->
-
 <section class="report-meta">
 
-
 <div class="meta-item">
-
-<span class="meta-label">
-رقم التقرير
-</span>
-
-<span
-    id="metaReportNumber"
-    class="meta-value">
-
-—
-
-</span>
-
+<span class="meta-label">رقم التقرير</span>
+<span id="metaReportNumber" class="meta-value">—</span>
 </div>
 
-
 <div class="meta-item">
-
-<span class="meta-label">
-نوع التقرير
-</span>
-
-<span
-    id="metaReportType"
-    class="meta-value">
-
-—
-
-</span>
-
+<span class="meta-label">نوع التقرير</span>
+<span id="metaReportType" class="meta-value">—</span>
 </div>
 
-
 <div class="meta-item">
-
-<span class="meta-label">
-الفترة
-</span>
-
-<span
-    id="metaPeriod"
-    class="meta-value">
-
-—
-
-</span>
-
+<span class="meta-label">الفترة</span>
+<span id="metaPeriod" class="meta-value">—</span>
 </div>
 
-
 <div class="meta-item">
-
-<span class="meta-label">
-تاريخ الإنشاء
-</span>
-
-<span
-    id="metaCreated"
-    class="meta-value">
-
-—
-
-</span>
-
+<span class="meta-label">تاريخ الإنشاء</span>
+<span id="metaCreated" class="meta-value">—</span>
 </div>
 
-
 <div class="meta-item">
-
-<span class="meta-label">
-إعداد
-</span>
-
-<span
-    id="metaPreparedBy"
-    class="meta-value">
-
-—
-
-</span>
-
+<span class="meta-label">إعداد</span>
+<span id="metaPreparedBy" class="meta-value">—</span>
 </div>
 
-
 <div class="meta-item">
-
-<span class="meta-label">
-المسمى الوظيفي
-</span>
-
-<span
-    id="metaPreparedTitle"
-    class="meta-value">
-
-—
-
-</span>
-
+<span class="meta-label">المسمى الوظيفي</span>
+<span id="metaPreparedTitle" class="meta-value">—</span>
 </div>
 
-
 <div class="meta-item">
-
-<span class="meta-label">
-اعتماد
-</span>
-
-<span
-    id="metaApprovedBy"
-    class="meta-value">
-
-—
-
-</span>
-
+<span class="meta-label">اعتماد</span>
+<span id="metaApprovedBy" class="meta-value">—</span>
 </div>
 
-
 <div class="meta-item">
-
-<span class="meta-label">
-حالة التقرير
-</span>
-
-<span
-    id="metaReportStatus"
-    class="meta-value">
-
+<span class="meta-label">حالة التقرير</span>
+<span id="metaReportStatus" class="meta-value">
 مسودة / للاستخدام الداخلي
-
 </span>
-
 </div>
-
 
 </section>
 
-
-
-<!-- =====================================================
-     SUMMARY
-===================================================== -->
 
 <section
     id="summarySection"
@@ -893,11 +880,6 @@ Public Health Report
 
 </section>
 
-
-
-<!-- =====================================================
-     COMPREHENSIVE KPI ONLY
-===================================================== -->
 
 <section
     id="kpiSection"
@@ -915,11 +897,6 @@ Public Health Report
 </section>
 
 
-
-<!-- =====================================================
-     RAPID
-===================================================== -->
-
 <section
     id="rapidSection"
     class="report-section hidden-section">
@@ -933,9 +910,7 @@ Public Health Report
     class="kpi-grid">
 </div>
 
-
 <br>
-
 
 <h4>
 توزيع درجات Rapid Score
@@ -946,9 +921,7 @@ Public Health Report
     class="report-bar-list teal-bars">
 </div>
 
-
 <br>
-
 
 <h4>
 عوامل التعرض الوبائي
@@ -961,11 +934,6 @@ Public Health Report
 
 </section>
 
-
-
-<!-- =====================================================
-     SMART
-===================================================== -->
 
 <section
     id="smartSection"
@@ -980,9 +948,7 @@ Public Health Report
     class="kpi-grid">
 </div>
 
-
 <br>
-
 
 <h4>
 الأمراض / المسارات المكتشفة
@@ -993,9 +959,7 @@ Public Health Report
     class="report-bar-list purple-bars">
 </div>
 
-
 <br>
-
 
 <h4>
 عوامل التعرض الوبائي
@@ -1008,11 +972,6 @@ Public Health Report
 
 </section>
 
-
-
-<!-- =====================================================
-     NOTIFICATIONS
-===================================================== -->
 
 <section
     id="notificationSection"
@@ -1027,9 +986,7 @@ Public Health Report
     class="kpi-grid">
 </div>
 
-
 <br>
-
 
 <h4>
 توزيع البلاغات حسب المرض
@@ -1040,9 +997,7 @@ Public Health Report
     class="report-bar-list">
 </div>
 
-
 <br>
-
 
 <h4>
 توزيع البلاغات حسب القسم
@@ -1055,11 +1010,6 @@ Public Health Report
 
 </section>
 
-
-
-<!-- =====================================================
-     EMPLOYEE
-===================================================== -->
 
 <section
     id="employeeSection"
@@ -1074,9 +1024,7 @@ Public Health Report
     class="kpi-grid">
 </div>
 
-
 <br>
-
 
 <h4>
 الفحوص حسب القسم
@@ -1090,11 +1038,6 @@ Public Health Report
 </section>
 
 
-
-<!-- =====================================================
-     DETAILS
-===================================================== -->
-
 <section
     id="detailsSection"
     class="report-section details-page">
@@ -1103,9 +1046,6 @@ Public Health Report
 الجداول التفصيلية
 </div>
 
-
-
-<!-- RAPID DETAILS -->
 
 <div
     id="rapidDetailsBlock"
@@ -1120,45 +1060,22 @@ Public Health Report
 <thead>
 
 <tr>
-
-<th>
-رقم الفرز
-</th>
-
-<th>
-التاريخ
-</th>
-
-<th>
-Score
-</th>
-
-<th>
-الخطورة
-</th>
-
-<th>
-Red Flag
-</th>
-
-<th>
-انتقل للفرز الذكي
-</th>
-
+<th>رقم الفرز</th>
+<th>التاريخ</th>
+<th>Score</th>
+<th>الخطورة</th>
+<th>Red Flag</th>
+<th>انتقل للفرز الذكي</th>
 </tr>
 
 </thead>
 
-<tbody id="rapidDetailsBody">
-</tbody>
+<tbody id="rapidDetailsBody"></tbody>
 
 </table>
 
 </div>
 
-
-
-<!-- SMART DETAILS -->
 
 <div
     id="smartDetailsBlock"
@@ -1173,45 +1090,23 @@ Red Flag
 <thead>
 
 <tr>
-
-<th>
-رقم الفرز
-</th>
-
-<th>
-التاريخ
-</th>
-
-<th>
-Rapid ID
-</th>
-
-<th>
-النتيجة
-</th>
-
-<th>
-اشتباه مرتفع
-</th>
-
-<th>
-بلاغ مرتبط
-</th>
-
+<th>رقم الفرز</th>
+<th>التاريخ</th>
+<th>Rapid ID</th>
+<th>النتيجة</th>
+<th>اشتباه مرتفع</th>
+<th>بلاغ مرسل</th>
+<th>رقم البلاغ</th>
 </tr>
 
 </thead>
 
-<tbody id="smartDetailsBody">
-</tbody>
+<tbody id="smartDetailsBody"></tbody>
 
 </table>
 
 </div>
 
-
-
-<!-- NOTIFICATION DETAILS -->
 
 <div
     id="notificationDetailsBlock"
@@ -1226,49 +1121,23 @@ Rapid ID
 <thead>
 
 <tr>
-
-<th>
-رقم البلاغ
-</th>
-
-<th>
-التاريخ
-</th>
-
-<th>
-المرض
-</th>
-
-<th>
-القسم
-</th>
-
-<th>
-الأولوية
-</th>
-
-<th>
-الحالة
-</th>
-
-<th>
-HESN+
-</th>
-
+<th>رقم البلاغ</th>
+<th>التاريخ</th>
+<th>المرض</th>
+<th>القسم</th>
+<th>الأولوية</th>
+<th>الحالة</th>
+<th>HESN+</th>
 </tr>
 
 </thead>
 
-<tbody id="notificationDetailsBody">
-</tbody>
+<tbody id="notificationDetailsBody"></tbody>
 
 </table>
 
 </div>
 
-
-
-<!-- EMPLOYEE DETAILS -->
 
 <div
     id="employeeDetailsBlock"
@@ -1283,50 +1152,24 @@ HESN+
 <thead>
 
 <tr>
-
-<th>
-الموظف
-</th>
-
-<th>
-الرقم الوظيفي
-</th>
-
-<th>
-القسم
-</th>
-
-<th>
-التاريخ
-</th>
-
-<th>
-المناعة
-</th>
-
-<th>
-الحالة
-</th>
-
+<th>الموظف</th>
+<th>الرقم الوظيفي</th>
+<th>القسم</th>
+<th>التاريخ</th>
+<th>المناعة</th>
+<th>الحالة</th>
 </tr>
 
 </thead>
 
-<tbody id="employeeDetailsBody">
-</tbody>
+<tbody id="employeeDetailsBody"></tbody>
 
 </table>
 
 </div>
 
-
 </section>
 
-
-
-<!-- =====================================================
-     NOTES
-===================================================== -->
 
 <section class="report-section">
 
@@ -1345,15 +1188,9 @@ HESN+
 </section>
 
 
-
-<!-- =====================================================
-     APPROVAL
-===================================================== -->
-
 <section
     id="approvalSection"
     class="approval-section">
-
 
 <div class="signature-box">
 
@@ -1388,14 +1225,8 @@ HESN+
 
 </div>
 
-
 </section>
 
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
 
 <footer class="report-footer">
 
@@ -1417,6 +1248,9 @@ HESN+
 </main>
 
 
+<script src="config.js"></script>
+<script src="api.js"></script>
+
 
 <script>
 
@@ -1426,28 +1260,21 @@ HESN+
 ===================================================== */
 
 let notifications = [];
-
 let rapidRecords = [];
-
 let smartRecords = [];
-
 let employeeRecords = [];
 
-
 let filteredNotifications = [];
-
 let filteredRapid = [];
-
 let filteredSmart = [];
-
 let filteredEmployee = [];
 
 
 /* =====================================================
-   STORAGE
+   LOCAL FALLBACK
 ===================================================== */
 
-function readArray(key){
+function readArrayLocal(key){
 
     try{
 
@@ -1459,14 +1286,18 @@ function readArray(key){
             );
 
 
-        return Array.isArray(
-            data
-        )
-        ? data
-        : [];
+        return Array.isArray(data)
+            ? data
+            : [];
 
     }
     catch(error){
+
+        console.warn(
+            "Local array read error:",
+            key,
+            error
+        );
 
         return [];
 
@@ -1475,30 +1306,194 @@ function readArray(key){
 }
 
 
-function loadData(){
+function readObjectLocal(key){
 
-    notifications =
-        readArray(
-            "publicHealthNotifications"
+    try{
+
+        const data =
+            JSON.parse(
+                localStorage.getItem(
+                    key
+                ) || "{}"
+            );
+
+
+        return (
+            data &&
+            typeof data === "object" &&
+            !Array.isArray(data)
+        )
+        ? data
+        : {};
+
+    }
+    catch(error){
+
+        return {};
+
+    }
+
+}
+
+
+/* =====================================================
+   LOAD DATA
+===================================================== */
+
+async function loadData(){
+
+    try{
+
+        if(
+            window.SPHP &&
+            window.SPHP.notifications
+        ){
+
+            notifications =
+                await window.SPHP
+                .notifications
+                .getAll();
+
+        }
+        else{
+
+            notifications =
+                readArrayLocal(
+                    "publicHealthNotifications"
+                );
+
+        }
+
+    }
+    catch(error){
+
+        console.warn(
+            "Notifications load failed:",
+            error
         );
 
+        notifications =
+            readArrayLocal(
+                "publicHealthNotifications"
+            );
 
-    rapidRecords =
-        readArray(
-            "rapidScreeningRecords"
-        );
-
-
-    smartRecords =
-        readArray(
-            "smartScreeningRecords"
-        );
+    }
 
 
-    employeeRecords =
-        readArray(
-            "employeeScreeningRecords"
-        );
+    try{
+
+        if(
+            window.SPHP &&
+            window.SPHP.rapidScreenings
+        ){
+
+            rapidRecords =
+                await window.SPHP
+                .rapidScreenings
+                .getAll();
+
+        }
+        else{
+
+            rapidRecords =
+                readArrayLocal(
+                    "rapidScreeningRecords"
+                );
+
+        }
+
+    }
+    catch(error){
+
+        rapidRecords =
+            readArrayLocal(
+                "rapidScreeningRecords"
+            );
+
+    }
+
+
+    try{
+
+        if(
+            window.SPHP &&
+            window.SPHP.smartScreenings
+        ){
+
+            smartRecords =
+                await window.SPHP
+                .smartScreenings
+                .getAll();
+
+        }
+        else{
+
+            smartRecords =
+                readArrayLocal(
+                    "smartScreeningRecords"
+                );
+
+        }
+
+    }
+    catch(error){
+
+        smartRecords =
+            readArrayLocal(
+                "smartScreeningRecords"
+            );
+
+    }
+
+
+    try{
+
+        if(
+            window.SPHP &&
+            window.SPHP.employeeScreenings
+        ){
+
+            employeeRecords =
+                await window.SPHP
+                .employeeScreenings
+                .getAll();
+
+        }
+        else{
+
+            employeeRecords =
+                readArrayLocal(
+                    "employeeScreeningRecords"
+                );
+
+        }
+
+    }
+    catch(error){
+
+        employeeRecords =
+            readArrayLocal(
+                "employeeScreeningRecords"
+            );
+
+    }
+
+
+    if(!Array.isArray(notifications)){
+        notifications = [];
+    }
+
+    if(!Array.isArray(rapidRecords)){
+        rapidRecords = [];
+    }
+
+    if(!Array.isArray(smartRecords)){
+        smartRecords = [];
+    }
+
+    if(!Array.isArray(employeeRecords)){
+        employeeRecords = [];
+    }
 
 }
 
@@ -1626,16 +1621,12 @@ function escapeHTML(value){
 function validDate(value){
 
     if(!value){
-
         return null;
-
     }
 
 
     const date =
-        new Date(
-            value
-        );
+        new Date(value);
 
 
     return isNaN(
@@ -1650,29 +1641,13 @@ function validDate(value){
 function notificationDate(item){
 
     return (
-
-        validDate(
-            item.createdAt
-        )
-
+        validDate(item.createdAt)
         ||
-
-        validDate(
-            item.reportDateTime
-        )
-
+        validDate(item.reportDateTime)
         ||
-
-        validDate(
-            item.detectionDateTime
-        )
-
+        validDate(item.detectionDateTime)
         ||
-
-        validDate(
-            item.date
-        )
-
+        validDate(item.date)
     );
 
 }
@@ -1681,17 +1656,9 @@ function notificationDate(item){
 function rapidDate(item){
 
     return (
-
-        validDate(
-            item.date
-        )
-
+        validDate(item.date)
         ||
-
-        validDate(
-            item.createdAt
-        )
-
+        validDate(item.createdAt)
     );
 
 }
@@ -1741,14 +1708,8 @@ function getRange(){
         new Date();
 
 
-    let start =
-        null;
-
-
-    let end =
-        null;
-
-
+    let start = null;
+    let end = null;
     let text =
         "جميع البيانات";
 
@@ -1762,7 +1723,6 @@ function getRange(){
             "جميع البيانات";
 
     }
-
 
     else if(
         query.period ===
@@ -1793,7 +1753,6 @@ function getRange(){
 
     }
 
-
     else if(
         query.period ===
         "previousMonth"
@@ -1822,7 +1781,6 @@ function getRange(){
             "الشهر السابق";
 
     }
-
 
     else if(
         query.period ===
@@ -1854,14 +1812,13 @@ function getRange(){
 
     }
 
-
     else if(
         query.period ===
         "previousYear"
     ){
 
         const year =
-            now.getFullYear()-1;
+            now.getFullYear() - 1;
 
 
         start =
@@ -1888,7 +1845,6 @@ function getRange(){
             year;
 
     }
-
 
     else if(
         query.period ===
@@ -1922,18 +1878,13 @@ function getRange(){
 
 
         text =
-
             (
                 query.from ||
                 "—"
             )
-
             +
-
             " إلى "
-
             +
-
             (
                 query.to ||
                 "—"
@@ -1943,16 +1894,9 @@ function getRange(){
 
 
     return {
-
-        start:
-            start,
-
-        end:
-            end,
-
-        text:
-            text
-
+        start:start,
+        end:end,
+        text:text
     };
 
 }
@@ -1975,8 +1919,7 @@ function inRange(
 
     if(
         range.start &&
-        date <
-        range.start
+        date < range.start
     ){
 
         return false;
@@ -1986,8 +1929,7 @@ function inRange(
 
     if(
         range.end &&
-        date >
-        range.end
+        date > range.end
     ){
 
         return false;
@@ -2014,9 +1956,7 @@ function filterData(){
         notifications.filter(
             item =>
                 inRange(
-                    notificationDate(
-                        item
-                    ),
+                    notificationDate(item),
                     range
                 )
         );
@@ -2026,9 +1966,7 @@ function filterData(){
         rapidRecords.filter(
             item =>
                 inRange(
-                    rapidDate(
-                        item
-                    ),
+                    rapidDate(item),
                     range
                 )
         );
@@ -2038,9 +1976,7 @@ function filterData(){
         smartRecords.filter(
             item =>
                 inRange(
-                    smartDate(
-                        item
-                    ),
+                    smartDate(item),
                     range
                 )
         );
@@ -2050,9 +1986,7 @@ function filterData(){
         employeeRecords.filter(
             item =>
                 inRange(
-                    employeeDate(
-                        item
-                    ),
+                    employeeDate(item),
                     range
                 )
         );
@@ -2070,18 +2004,14 @@ function percent(
 ){
 
     if(!total){
-
         return 0;
-
     }
 
 
     return Math.round(
-
         value /
         total *
         100
-
     );
 
 }
@@ -2092,8 +2022,7 @@ function countBy(
     field
 ){
 
-    const result =
-        {};
+    const result = {};
 
 
     list.forEach(
@@ -2104,17 +2033,11 @@ function countBy(
                 "غير محدد";
 
 
-            result[
-                value
-            ] =
+            result[value] =
                 (
-                    result[
-                        value
-                    ] ||
+                    result[value] ||
                     0
-                )
-                +
-                1;
+                ) + 1;
 
         }
     );
@@ -2135,11 +2058,11 @@ function kpiCard(
     <div class="kpi-card">
 
         <span class="kpi-number">
-        ${value}
+        ${escapeHTML(value)}
         </span>
 
         <span class="kpi-label">
-        ${label}
+        ${escapeHTML(label)}
         </span>
 
     </div>
@@ -2165,31 +2088,23 @@ function renderBars(
 
 
     if(!container){
-
         return;
-
     }
 
 
     const entries =
-        Object.entries(
-            data
-        )
+        Object.entries(data)
         .filter(
             item =>
-                item[1] >
-                0
+                item[1] > 0
         )
         .sort(
             (a,b) =>
-                b[1] -
-                a[1]
+                b[1] - a[1]
         );
 
 
-    if(
-        !entries.length
-    ){
+    if(!entries.length){
 
         container.innerHTML =
             '<p style="font-size:9px;color:#607387">لا توجد بيانات.</p>';
@@ -2202,21 +2117,19 @@ function renderBars(
     const max =
         Math.max(
             ...entries.map(
-                item =>
-                    item[1]
+                item => item[1]
             )
         );
 
 
     container.innerHTML =
-
         entries.map(
             function(item){
 
                 const width =
-                    item[1] /
-                    max *
-                    100;
+                    max
+                    ? item[1] / max * 100
+                    : 0;
 
 
                 return `
@@ -2224,9 +2137,7 @@ function renderBars(
                 <div class="report-bar-row">
 
                     <div class="report-bar-label">
-
                     ${escapeHTML(item[0])}
-
                     </div>
 
                     <div class="report-bar-track">
@@ -2239,9 +2150,7 @@ function renderBars(
                     </div>
 
                     <div class="report-bar-value">
-
                     ${item[1]}
-
                     </div>
 
                 </div>
@@ -2251,6 +2160,58 @@ function renderBars(
             }
         )
         .join("");
+
+}
+
+
+/* =====================================================
+   EPI LABEL
+===================================================== */
+
+function epiLabel(value){
+
+    const names = {
+
+        travel:
+            "سفر / منطقة تفشٍ",
+
+        contact:
+            "مخالطة حالة",
+
+        cluster:
+            "تجمع حالات",
+
+        healthcareExposure:
+            "تعرض داخل منشأة صحية",
+
+        animalExposure:
+            "تعرض حيواني",
+
+        camelExposure:
+            "تعرض للإبل",
+
+        batExposure:
+            "تعرض للخفافيش",
+
+        rodentExposure:
+            "تعرض للقوارض",
+
+        foodExposure:
+            "مصدر غذائي مشتبه",
+
+        bodyFluidExposure:
+            "تعرض لسوائل الجسم"
+
+    };
+
+
+    return (
+        names[value]
+        ||
+        value
+        ||
+        "غير محدد"
+    );
 
 }
 
@@ -2267,19 +2228,96 @@ function rapidReachedSmart(
         function(smart){
 
             return (
-
                 smart.rapidScreeningId ===
                 rapid.id
-
                 ||
-
                 smart.rapidId ===
                 rapid.id
-
             );
 
         }
     );
+
+}
+
+
+function findNotificationForSmart(
+    smart
+){
+
+    if(!smart){
+        return null;
+    }
+
+
+    if(
+        smart.notificationId
+    ){
+
+        const byId =
+            notifications.find(
+                function(notification){
+
+                    return (
+                        notification &&
+                        notification.id ===
+                        smart.notificationId
+                    );
+
+                }
+            );
+
+
+        if(byId){
+            return byId;
+        }
+
+    }
+
+
+    return (
+        notifications.find(
+            function(notification){
+
+                return (
+                    notification &&
+                    notification.screeningId &&
+                    notification.screeningId ===
+                    smart.id
+                );
+
+            }
+        )
+        ||
+        null
+    );
+
+}
+
+
+function getSmartNotificationId(
+    smart
+){
+
+    if(
+        smart &&
+        smart.notificationId
+    ){
+
+        return smart.notificationId;
+
+    }
+
+
+    const notification =
+        findNotificationForSmart(
+            smart
+        );
+
+
+    return notification
+        ? notification.id || ""
+        : "";
 
 }
 
@@ -2289,16 +2327,8 @@ function smartHasNotification(
 ){
 
     if(
-        smart.notificationSent ===
-        true
-
+        smart.notificationSent === true
         ||
-
-        smart.notificationStarted ===
-        true
-
-        ||
-
         smart.notificationId
     ){
 
@@ -2307,21 +2337,10 @@ function smartHasNotification(
     }
 
 
-    return notifications.some(
-        function(notification){
-
-            return (
-
-                notification.screeningId
-
-                &&
-
-                notification.screeningId ===
-                smart.id
-
-            );
-
-        }
+    return Boolean(
+        findNotificationForSmart(
+            smart
+        )
     );
 
 }
@@ -2332,8 +2351,7 @@ function smartHigh(
 ){
 
     if(
-        record.highSuspicion ===
-        true
+        record.highSuspicion === true
     ){
 
         return true;
@@ -2342,19 +2360,15 @@ function smartHigh(
 
 
     return (
-
         Array.isArray(
             record.results
         )
-
         &&
-
         record.results.some(
             result =>
                 result.level ===
                 "high"
         )
-
     );
 
 }
@@ -2366,16 +2380,30 @@ function smartHigh(
 
 function generateReportNumber(){
 
+    const query =
+        getQuery();
+
+
+    const storageKey =
+        "currentPublicHealthReportNumber:"
+        +
+        [
+            getNormalizedReportType(),
+            query.period,
+            query.from,
+            query.to
+        ]
+        .join(":");
+
+
     const existing =
         sessionStorage.getItem(
-            "currentPublicHealthReportNumber"
+            storageKey
         );
 
 
     if(existing){
-
         return existing;
-
     }
 
 
@@ -2416,17 +2444,21 @@ function generateReportNumber(){
 
 
     const number =
-
-        "PHR-" +
-        y +
-        m +
-        d +
-        "-" +
+        "PHR-"
+        +
+        y
+        +
+        m
+        +
+        d
+        +
+        "-"
+        +
         random;
 
 
     sessionStorage.setItem(
-        "currentPublicHealthReportNumber",
+        storageKey,
         number
     );
 
@@ -2449,52 +2481,35 @@ function reportTypeInfo(){
     const map = {
 
         full:{
-            ar:
-                "تقرير الصحة العامة الشامل",
-
-            en:
-                "Comprehensive Public Health Report"
+            ar:"تقرير الصحة العامة الشامل",
+            en:"Comprehensive Public Health Report"
         },
 
         rapid:{
-            ar:
-                "تقرير الفرز السريع للأمراض المعدية",
-
-            en:
-                "Rapid Infectious Disease Screening Report"
+            ar:"تقرير الفرز السريع للأمراض المعدية",
+            en:"Rapid Infectious Disease Screening Report"
         },
 
         smart:{
-            ar:
-                "تقرير الفرز الذكي للأمراض المعدية",
-
-            en:
-                "Smart Infectious Disease Screening Report"
+            ar:"تقرير الفرز الذكي للأمراض المعدية",
+            en:"Smart Infectious Disease Screening Report"
         },
 
         notifications:{
-            ar:
-                "تقرير بلاغات الأمراض المعدية",
-
-            en:
-                "Infectious Disease Notification Report"
+            ar:"تقرير بلاغات الأمراض المعدية",
+            en:"Infectious Disease Notification Report"
         },
 
         employee:{
-            ar:
-                "تقرير الفحص الدوري للموظفين",
-
-            en:
-                "Employee Periodic Screening Report"
+            ar:"تقرير الفحص الدوري للموظفين",
+            en:"Employee Periodic Screening Report"
         }
 
     };
 
 
     return (
-        map[
-            type
-        ]
+        map[type]
         ||
         map.full
     );
@@ -2506,101 +2521,124 @@ function reportTypeInfo(){
    REPORT SETTINGS
 ===================================================== */
 
-function loadReportSettings(){
+async function loadReportSettings(){
 
-    let settings =
-        {};
+    let settings = {};
 
 
     try{
 
-        settings =
-            JSON.parse(
-                localStorage.getItem(
+        if(
+            window.SPHP &&
+            window.SPHP.settings &&
+            typeof window.SPHP.settings.getReportSettings ===
+            "function"
+        ){
+
+            settings =
+                await window.SPHP
+                .settings
+                .getReportSettings();
+
+        }
+        else{
+
+            settings =
+                readObjectLocal(
                     "publicHealthReportSettings"
-                )
-                ||
-                "{}"
-            );
+                );
+
+        }
 
     }
     catch(error){
 
+        console.warn(
+            "Report settings API load failed:",
+            error
+        );
+
+
         settings =
-            {};
+            readObjectLocal(
+                "publicHealthReportSettings"
+            );
 
     }
+
+
+    settings =
+        settings || {};
+
+
+    const preparedName =
+        settings.preparedByName
+        ||
+        settings.preparedBy
+        ||
+        "—";
+
+
+    const preparedTitle =
+        settings.preparedByTitle
+        ||
+        "—";
+
+
+    const approvedName =
+        settings.approvedByName
+        ||
+        settings.approvedBy
+        ||
+        "—";
+
+
+    const approvedTitle =
+        settings.approvedByTitle
+        ||
+        "";
 
 
     document.getElementById(
         "metaPreparedBy"
     ).textContent =
-
-        settings.preparedByName
-
-        ||
-
-        settings.preparedBy
-
-        ||
-
-        "—";
+        preparedName;
 
 
     document.getElementById(
         "metaPreparedTitle"
     ).textContent =
-
-        settings.preparedByTitle
-
-        ||
-
-        "—";
+        preparedTitle;
 
 
     document.getElementById(
         "metaApprovedBy"
     ).textContent =
-
-        settings.approvedByName
-
-        ||
-
-        settings.approvedBy
-
-        ||
-
-        "—";
+        approvedName;
 
 
     document.getElementById(
         "preparedSignatureName"
     ).textContent =
-
-        settings.preparedByName
-
-        ||
-
-        settings.preparedBy
-
-        ||
-
-        "—";
+        preparedTitle !== "—"
+        ?
+        preparedName +
+        " — " +
+        preparedTitle
+        :
+        preparedName;
 
 
     document.getElementById(
         "approvedSignatureName"
     ).textContent =
-
-        settings.approvedByName
-
-        ||
-
-        settings.approvedBy
-
-        ||
-
-        "—";
+        approvedTitle
+        ?
+        approvedName +
+        " — " +
+        approvedTitle
+        :
+        approvedName;
 
 }
 
@@ -2672,17 +2710,16 @@ function renderHeader(
     document.getElementById(
         "footerReportNumber"
     ).textContent =
-
-        "رقم التقرير: " +
+        "رقم التقرير: "
+        +
         reportNumber;
 
 
     document.getElementById(
         "footerGeneratedDate"
     ).textContent =
-
-        "تاريخ الإنشاء: " +
-
+        "تاريخ الإنشاء: "
+        +
         now.toLocaleDateString(
             "ar-SA"
         );
@@ -2703,32 +2740,28 @@ function renderRapid(){
     const low =
         filteredRapid.filter(
             item =>
-                item.risk ===
-                "low"
+                item.risk === "low"
         ).length;
 
 
     const medium =
         filteredRapid.filter(
             item =>
-                item.risk ===
-                "medium"
+                item.risk === "medium"
         ).length;
 
 
     const high =
         filteredRapid.filter(
             item =>
-                item.risk ===
-                "high"
+                item.risk === "high"
         ).length;
 
 
     const red =
         filteredRapid.filter(
             item =>
-                item.redFlag ===
-                true
+                item.redFlag === true
         ).length;
 
 
@@ -2738,45 +2771,45 @@ function renderRapid(){
         ).length;
 
 
-    let average =
+    const validScores =
+        filteredRapid
+        .map(
+            function(item){
+
+                const value =
+                    Number(
+                        item.score
+                    );
+
+
+                return Number.isFinite(value)
+                    ? value
+                    : null;
+
+            }
+        )
+        .filter(
+            value =>
+                value !== null
+        );
+
+
+    const average =
+        validScores.length
+
+        ?
+        Math.round(
+            validScores.reduce(
+                (sum,value) =>
+                    sum + value,
+                0
+            )
+            /
+            validScores.length
+        )
+
+        :
         0;
-
-
-    if(total){
-
-        average =
-            Math.round(
-
-                filteredRapid.reduce(
-                    function(sum,item){
-
-                        return (
-
-                            sum
-
-                            +
-
-                            (
-                                Number(
-                                    item.score
-                                )
-                                ||
-                                0
-                            )
-
-                        );
-
-                    },
-                    0
-                )
-
-                /
-
-                total
-
-            );
-
-    }
 
 
     document.getElementById(
@@ -2818,13 +2851,9 @@ function renderRapid(){
     const scoreGroups = {
 
         "0":0,
-
         "1 - 4":0,
-
         "5 - 7":0,
-
         "8 - 14":0,
-
         "15+":0
 
     };
@@ -2836,60 +2865,41 @@ function renderRapid(){
             const score =
                 Number(
                     item.score
-                )
-                ||
-                0;
+                );
 
 
             if(
-                score ===
-                0
+                !Number.isFinite(score)
             ){
 
-                scoreGroups[
-                    "0"
-                ]++;
+                return;
 
             }
 
-            else if(
-                score <=
-                4
-            ){
 
-                scoreGroups[
-                    "1 - 4"
-                ]++;
+            if(score === 0){
+
+                scoreGroups["0"]++;
 
             }
+            else if(score <= 4){
 
-            else if(
-                score <=
-                7
-            ){
-
-                scoreGroups[
-                    "5 - 7"
-                ]++;
+                scoreGroups["1 - 4"]++;
 
             }
+            else if(score <= 7){
 
-            else if(
-                score <=
-                14
-            ){
-
-                scoreGroups[
-                    "8 - 14"
-                ]++;
+                scoreGroups["5 - 7"]++;
 
             }
+            else if(score <= 14){
 
+                scoreGroups["8 - 14"]++;
+
+            }
             else{
 
-                scoreGroups[
-                    "15+"
-                ]++;
+                scoreGroups["15+"]++;
 
             }
 
@@ -2903,25 +2913,7 @@ function renderRapid(){
     );
 
 
-    const epi =
-        {};
-
-
-    const epiNames = {
-
-        travel:
-            "سفر / منطقة تفشٍ",
-
-        contact:
-            "مخالطة حالة",
-
-        animalExposure:
-            "تعرض حيواني",
-
-        healthcareExposure:
-            "تعرض صحي"
-
-    };
+    const epi = {};
 
 
     filteredRapid.forEach(
@@ -2941,25 +2933,17 @@ function renderRapid(){
                 function(value){
 
                     const name =
-                        epiNames[
+                        epiLabel(
                             value
-                        ]
-                        ||
-                        value;
+                        );
 
 
-                    epi[
-                        name
-                    ] =
+                    epi[name] =
                         (
-                            epi[
-                                name
-                            ]
+                            epi[name]
                             ||
                             0
-                        )
-                        +
-                        1;
+                        ) + 1;
 
                 }
             );
@@ -3017,14 +3001,11 @@ function renderRapidDetails(){
 
 
     body.innerHTML =
-
         filteredRapid.map(
             function(item){
 
                 const date =
-                    rapidDate(
-                        item
-                    );
+                    rapidDate(item);
 
 
                 let risk =
@@ -3032,8 +3013,7 @@ function renderRapidDetails(){
 
 
                 if(
-                    item.risk ===
-                    "medium"
+                    item.risk === "medium"
                 ){
 
                     risk =
@@ -3043,8 +3023,7 @@ function renderRapidDetails(){
 
 
                 if(
-                    item.risk ===
-                    "high"
+                    item.risk === "high"
                 ){
 
                     risk =
@@ -3076,7 +3055,7 @@ function renderRapidDetails(){
                 </td>
 
                 <td>
-                ${risk}
+                ${escapeHTML(risk)}
                 </td>
 
                 <td>
@@ -3091,9 +3070,7 @@ function renderRapidDetails(){
 
                 <td>
                 ${
-                    rapidReachedSmart(
-                        item
-                    )
+                    rapidReachedSmart(item)
                     ?
                     "نعم"
                     :
@@ -3131,8 +3108,7 @@ function renderSmart(){
     const hidden =
         filteredSmart.filter(
             item =>
-                item.hiddenInfectionFlag ===
-                true
+                item.hiddenInfectionFlag === true
         ).length;
 
 
@@ -3140,6 +3116,13 @@ function renderSmart(){
         filteredSmart.filter(
             smartHasNotification
         ).length;
+
+
+    const conversion =
+        percent(
+            notificationCount,
+            total
+        );
 
 
     document.getElementById(
@@ -3168,57 +3151,14 @@ function renderSmart(){
         +
 
         kpiCard(
-            percent(
-                notificationCount,
-                high
-            )
-            +
+            conversion +
             "%",
             "التحويل إلى بلاغ"
         );
 
 
-    const diseases =
-        {};
-
-
-    const epi =
-        {};
-
-
-    const epiNames = {
-
-        contact:
-            "مخالطة حالة",
-
-        travel:
-            "سفر / منطقة تفشٍ",
-
-        cluster:
-            "تجمع حالات",
-
-        healthcareExposure:
-            "تعرض صحي",
-
-        animalExposure:
-            "تعرض حيواني",
-
-        camelExposure:
-            "مخالطة الإبل",
-
-        batExposure:
-            "تعرض للخفافيش",
-
-        rodentExposure:
-            "تعرض للقوارض",
-
-        foodExposure:
-            "مصدر غذائي مشتبه",
-
-        bodyFluidExposure:
-            "دم / سوائل جسم"
-
-    };
+    const diseases = {};
+    const epi = {};
 
 
     filteredSmart.forEach(
@@ -3238,30 +3178,19 @@ function renderSmart(){
                 function(result){
 
                     const name =
-
                         result.disease
-
                         ||
-
                         result.key
-
                         ||
-
                         "غير محدد";
 
 
-                    diseases[
-                        name
-                    ] =
+                    diseases[name] =
                         (
-                            diseases[
-                                name
-                            ]
+                            diseases[name]
                             ||
                             0
-                        )
-                        +
-                        1;
+                        ) + 1;
 
                 }
             );
@@ -3281,25 +3210,17 @@ function renderSmart(){
                 function(value){
 
                     const name =
-                        epiNames[
+                        epiLabel(
                             value
-                        ]
-                        ||
-                        value;
+                        );
 
 
-                    epi[
-                        name
-                    ] =
+                    epi[name] =
                         (
-                            epi[
-                                name
-                            ]
+                            epi[name]
                             ||
                             0
-                        )
-                        +
-                        1;
+                        ) + 1;
 
                 }
             );
@@ -3328,7 +3249,8 @@ function renderSmart(){
         total,
         high,
         hidden,
-        notificationCount
+        notificationCount,
+        conversion
 
     };
 
@@ -3352,7 +3274,7 @@ function renderSmartDetails(){
     ){
 
         body.innerHTML =
-            '<tr><td colspan="6">لا توجد سجلات.</td></tr>';
+            '<tr><td colspan="7">لا توجد سجلات.</td></tr>';
 
         return;
 
@@ -3360,14 +3282,11 @@ function renderSmartDetails(){
 
 
     body.innerHTML =
-
         filteredSmart.map(
             function(item){
 
                 const date =
-                    smartDate(
-                        item
-                    );
+                    smartDate(item);
 
 
                 const resultText =
@@ -3389,6 +3308,12 @@ function renderSmartDetails(){
                     .join("، ");
 
 
+                const notificationId =
+                    getSmartNotificationId(
+                        item
+                    );
+
+
                 return `
 
                 <tr>
@@ -3408,18 +3333,26 @@ function renderSmartDetails(){
                 </td>
 
                 <td>
-                ${escapeHTML(item.rapidScreeningId || item.rapidId || "—")}
+                ${escapeHTML(
+                    item.rapidScreeningId
+                    ||
+                    item.rapidId
+                    ||
+                    "—"
+                )}
                 </td>
 
                 <td>
-                ${escapeHTML(resultText || "لا توجد مطابقة")}
+                ${escapeHTML(
+                    resultText
+                    ||
+                    "لا توجد مطابقة"
+                )}
                 </td>
 
                 <td>
                 ${
-                    smartHigh(
-                        item
-                    )
+                    smartHigh(item)
                     ?
                     "نعم"
                     :
@@ -3429,14 +3362,19 @@ function renderSmartDetails(){
 
                 <td>
                 ${
-                    smartHasNotification(
-                        item
-                    )
+                    smartHasNotification(item)
                     ?
                     "نعم"
                     :
                     "لا"
                 }
+                </td>
+
+                <td class="notification-number">
+                ${escapeHTML(
+                    notificationId ||
+                    "—"
+                )}
                 </td>
 
                 </tr>
@@ -3463,16 +3401,14 @@ function renderNotifications(){
     const urgent =
         filteredNotifications.filter(
             item =>
-                item.priority ===
-                "urgent"
+                item.priority === "urgent"
         ).length;
 
 
     const closed =
         filteredNotifications.filter(
             item =>
-                item.status ===
-                "closed"
+                item.status === "closed"
         ).length;
 
 
@@ -3513,26 +3449,20 @@ function renderNotifications(){
 
 
     renderBars(
-
         "notificationDiseaseBars",
-
         countBy(
             filteredNotifications,
             "disease"
         )
-
     );
 
 
     renderBars(
-
         "notificationDepartmentBars",
-
         countBy(
             filteredNotifications,
             "reporterDepartment"
         )
-
     );
 
 
@@ -3576,20 +3506,77 @@ function renderNotificationDetails(){
 
 
     body.innerHTML =
-
         filteredNotifications.map(
             function(item){
+
+                const date =
+                    notificationDate(item);
+
+
+                let status =
+                    "جديد";
+
+
+                if(
+                    item.status === "progress"
+                ){
+
+                    status =
+                        "تحت المتابعة";
+
+                }
+
+
+                if(
+                    item.status === "closed"
+                ){
+
+                    status =
+                        "مغلق";
+
+                }
+
+
+                let hesn =
+                    "لم يتم";
+
+
+                if(
+                    item.hesnStatus === "entered"
+                ){
+
+                    hesn =
+                        "تم الإدخال";
+
+                }
+
+
+                if(
+                    item.hesnStatus === "notRequired"
+                ){
+
+                    hesn =
+                        "لا يتطلب";
+
+                }
+
 
                 return `
 
                 <tr>
 
-                <td>
+                <td class="notification-number">
                 ${escapeHTML(item.id || "—")}
                 </td>
 
                 <td>
-                ${escapeHTML(item.date || item.reportDateTime || item.createdAt || "—")}
+                ${
+                    date
+                    ?
+                    date.toLocaleString("ar-SA")
+                    :
+                    "—"
+                }
                 </td>
 
                 <td>
@@ -3602,8 +3589,7 @@ function renderNotificationDetails(){
 
                 <td>
                 ${
-                    item.priority ===
-                    "urgent"
+                    item.priority === "urgent"
                     ?
                     "عاجل"
                     :
@@ -3612,35 +3598,11 @@ function renderNotificationDetails(){
                 </td>
 
                 <td>
-                ${
-                    item.status ===
-                    "closed"
-                    ?
-                    "مغلق"
-                    :
-                    item.status ===
-                    "progress"
-                    ?
-                    "تحت المتابعة"
-                    :
-                    "جديد"
-                }
+                ${escapeHTML(status)}
                 </td>
 
                 <td>
-                ${
-                    item.hesnStatus ===
-                    "entered"
-                    ?
-                    "تم الإدخال"
-                    :
-                    item.hesnStatus ===
-                    "notRequired"
-                    ?
-                    "لا ينطبق"
-                    :
-                    "لم يتم"
-                }
+                ${escapeHTML(hesn)}
                 </td>
 
                 </tr>
@@ -3667,16 +3629,14 @@ function renderEmployee(){
     const completed =
         filteredEmployee.filter(
             item =>
-                item.screeningStatus ===
-                "completed"
+                item.screeningStatus === "completed"
         ).length;
 
 
     const followUp =
         filteredEmployee.filter(
             item =>
-                item.screeningStatus ===
-                "followUp"
+                item.screeningStatus === "followUp"
         ).length;
 
 
@@ -3685,15 +3645,9 @@ function renderEmployee(){
             function(item){
 
                 return (
-
-                    item.screeningStatus ===
-                    "incomplete"
-
+                    item.screeningStatus === "incomplete"
                     ||
-
-                    item.screeningStatus ===
-                    "pending"
-
+                    item.screeningStatus === "pending"
                 );
 
             }
@@ -3737,14 +3691,11 @@ function renderEmployee(){
 
 
     renderBars(
-
         "employeeDepartmentBars",
-
         countBy(
             filteredEmployee,
             "department"
         )
-
     );
 
 
@@ -3788,7 +3739,6 @@ function renderEmployeeDetails(){
 
 
     body.innerHTML =
-
         filteredEmployee.map(
             function(item){
 
@@ -3887,192 +3837,119 @@ function renderExecutiveSummary(
     employee
 ){
 
-    let text =
-        "";
+    let text = "";
 
 
     if(
-        type ===
-        "rapid"
+        type === "rapid"
     ){
 
         text =
-
             "تم تنفيذ "
-
             +
-
             rapid.total
-
             +
-
             " عملية فرز سريع للأمراض المعدية خلال الفترة المحددة. "
-
             +
-
             "بلغ عدد الحالات المصنفة ذات خطورة مرتفعة "
-
             +
-
             rapid.high
-
             +
-
             " حالة، وظهرت علامات تحذيرية في "
-
             +
-
             rapid.red
-
             +
-
             " حالة. وانتقلت "
-
             +
-
             rapid.smart
-
             +
-
             " حالة إلى مسار الفرز الذكي الموسع، بنسبة "
-
             +
-
             percent(
                 rapid.smart,
                 rapid.total
             )
-
             +
-
             "% من إجمالي عمليات الفرز.";
 
     }
 
 
     else if(
-        type ===
-        "smart"
+        type === "smart"
     ){
 
         text =
-
             "تم تنفيذ "
-
             +
-
             smart.total
-
             +
-
             " عملية فرز ذكي للأمراض المعدية خلال الفترة المحددة. "
-
             +
-
             "تم تحديد "
-
             +
-
             smart.high
-
             +
-
             " حالات باشتباه مرتفع، و"
-
             +
-
             smart.hidden
-
             +
-
-            " حالات ذات خطر معدٍ خفي، وارتبط "
-
+            " حالات ذات خطر معدٍ خفي. وتم إرسال "
             +
-
             smart.notificationCount
-
             +
-
-            " منها بمسار البلاغ.";
+            " بلاغات مرتبطة بنتائج الفرز، بنسبة تحويل "
+            +
+            smart.conversion
+            +
+            "%.";
 
     }
 
 
     else if(
-        type ===
-        "notifications"
+        type === "notifications"
     ){
 
         text =
-
             "بلغ إجمالي بلاغات الأمراض المعدية خلال الفترة المحددة "
-
             +
-
             notification.total
-
             +
-
             " بلاغًا، منها "
-
             +
-
             notification.urgent
-
             +
-
             " بلاغات عاجلة، و"
-
             +
-
             notification.open
-
             +
-
             " بلاغات مفتوحة أو تحت المتابعة، و"
-
             +
-
             notification.closed
-
             +
-
             " بلاغات مغلقة.";
 
     }
 
 
     else if(
-        type ===
-        "employee"
+        type === "employee"
     ){
 
         text =
-
             "بلغ إجمالي سجلات الفحص الدوري للموظفين "
-
             +
-
             employee.total
-
             +
-
             " سجلًا خلال الفترة المحددة، منها "
-
             +
-
             employee.completed
-
             +
-
             " فحوص مكتملة، و"
-
             +
-
             employee.followUp
-
             +
-
             " حالات تحتاج متابعة.";
 
     }
@@ -4081,43 +3958,24 @@ function renderExecutiveSummary(
     else{
 
         text =
-
             "يعرض هذا التقرير الشامل أداء الصحة العامة خلال الفترة المحددة. "
-
             +
-
             "تم تسجيل "
-
             +
-
             rapid.total
-
             +
-
             " عملية فرز سريع، و"
-
             +
-
             smart.total
-
             +
-
             " عملية فرز ذكي، و"
-
             +
-
             notification.total
-
             +
-
             " بلاغًا للأمراض المعدية، بالإضافة إلى "
-
             +
-
             employee.completed
-
             +
-
             " فحص موظفين مكتمل.";
 
     }
@@ -4138,20 +3996,20 @@ function renderExecutiveSummary(
 function hideAllReportSections(){
 
     [
-
         "kpiSection",
         "rapidSection",
         "smartSection",
         "notificationSection",
         "employeeSection"
-
     ]
     .forEach(
         function(id){
 
             document.getElementById(
                 id
-            ).classList.add(
+            )
+            .classList
+            .add(
                 "hidden-section"
             );
 
@@ -4160,12 +4018,10 @@ function hideAllReportSections(){
 
 
     [
-
         "rapidDetailsBlock",
         "smartDetailsBlock",
         "notificationDetailsBlock",
         "employeeDetailsBlock"
-
     ]
     .forEach(
         function(id){
@@ -4201,67 +4057,47 @@ function applyReportSections(
 
 
     if(
-        type ===
-        "full"
+        type === "full"
     ){
 
-        document.getElementById(
-            "kpiSection"
-        ).classList.remove(
-            "hidden-section"
-        );
-
-
-        document.getElementById(
-            "rapidSection"
-        ).classList.remove(
-            "hidden-section"
-        );
-
-
-        document.getElementById(
-            "smartSection"
-        ).classList.remove(
-            "hidden-section"
-        );
-
-
-        document.getElementById(
-            "notificationSection"
-        ).classList.remove(
-            "hidden-section"
-        );
-
-
-        document.getElementById(
+        [
+            "kpiSection",
+            "rapidSection",
+            "smartSection",
+            "notificationSection",
             "employeeSection"
-        ).classList.remove(
-            "hidden-section"
+        ]
+        .forEach(
+            function(id){
+
+                document.getElementById(
+                    id
+                )
+                .classList
+                .remove(
+                    "hidden-section"
+                );
+
+            }
         );
 
 
-        document.getElementById(
-            "rapidDetailsBlock"
-        ).style.display =
-            "block";
-
-
-        document.getElementById(
-            "smartDetailsBlock"
-        ).style.display =
-            "block";
-
-
-        document.getElementById(
-            "notificationDetailsBlock"
-        ).style.display =
-            "block";
-
-
-        document.getElementById(
+        [
+            "rapidDetailsBlock",
+            "smartDetailsBlock",
+            "notificationDetailsBlock",
             "employeeDetailsBlock"
-        ).style.display =
-            "block";
+        ]
+        .forEach(
+            function(id){
+
+                document.getElementById(
+                    id
+                ).style.display =
+                    "block";
+
+            }
+        );
 
 
         mainOption.style.display =
@@ -4275,13 +4111,14 @@ function applyReportSections(
 
 
     else if(
-        type ===
-        "rapid"
+        type === "rapid"
     ){
 
         document.getElementById(
             "rapidSection"
-        ).classList.remove(
+        )
+        .classList
+        .remove(
             "hidden-section"
         );
 
@@ -4303,13 +4140,14 @@ function applyReportSections(
 
 
     else if(
-        type ===
-        "smart"
+        type === "smart"
     ){
 
         document.getElementById(
             "smartSection"
-        ).classList.remove(
+        )
+        .classList
+        .remove(
             "hidden-section"
         );
 
@@ -4331,13 +4169,14 @@ function applyReportSections(
 
 
     else if(
-        type ===
-        "notifications"
+        type === "notifications"
     ){
 
         document.getElementById(
             "notificationSection"
-        ).classList.remove(
+        )
+        .classList
+        .remove(
             "hidden-section"
         );
 
@@ -4359,13 +4198,14 @@ function applyReportSections(
 
 
     else if(
-        type ===
-        "employee"
+        type === "employee"
     ){
 
         document.getElementById(
             "employeeSection"
-        ).classList.remove(
+        )
+        .classList
+        .remove(
             "hidden-section"
         );
 
@@ -4407,9 +4247,7 @@ function toggleReportSection(
 
 
     if(!section){
-
         return;
-
     }
 
 
@@ -4425,9 +4263,9 @@ function toggleReportSection(
    INIT
 ===================================================== */
 
-function init(){
+async function init(){
 
-    loadData();
+    await loadData();
 
 
     filterData();
@@ -4446,7 +4284,7 @@ function init(){
     );
 
 
-    loadReportSettings();
+    await loadReportSettings();
 
 
     const rapid =
@@ -4495,13 +4333,26 @@ function init(){
 
 document.addEventListener(
     "DOMContentLoaded",
-    init
+    function(){
+
+        init()
+        .catch(
+            function(error){
+
+                console.error(
+                    "Public Health Report initialization failed:",
+                    error
+                );
+
+            }
+        );
+
+    }
 );
 
 </script>
 
-<script src="config.js"></script>
-<script src="api.js"></script>
 
 </body>
+
 </html>
