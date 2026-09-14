@@ -6,25 +6,43 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>الصحة المهنية</title>
+<title>نظام العيادة المهنية</title>
 
 <link rel="stylesheet" href="Style.css">
 
 <style>
 
-.oh-page{
-    max-width:1200px;
-    margin:30px auto;
-    padding:0 20px 50px;
+*{
+    box-sizing:border-box;
 }
+
+body{
+    margin:0;
+}
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.oh-page{
+    max-width:1250px;
+    margin:30px auto;
+    padding:0 20px 60px;
+}
+
+
+/* =====================================================
+   WELCOME
+===================================================== */
 
 .oh-welcome{
     background:white;
     border:1px solid #dfe8f2;
     border-radius:16px;
-    padding:24px;
+    padding:27px;
     text-align:center;
-    margin-bottom:25px;
+    margin-bottom:22px;
     box-shadow:0 4px 14px rgba(0,0,0,.05);
 }
 
@@ -33,31 +51,61 @@
     margin:0 0 8px;
 }
 
+.oh-welcome h3{
+    color:#6d8092;
+    margin:0 0 12px;
+    font-size:15px;
+}
+
 .oh-welcome p{
     color:#607387;
-    line-height:1.8;
+    line-height:1.9;
     margin:0;
 }
 
 
-/* =========================
-   Main Services
-========================= */
+/* =====================================================
+   INDEPENDENT SYSTEM NOTICE
+===================================================== */
+
+.independent-notice{
+    background:#eef7ff;
+    border:1px solid #cfe4f6;
+    border-right:5px solid #0759a6;
+    border-radius:12px;
+    padding:17px 19px;
+    margin-bottom:25px;
+    line-height:1.9;
+    color:#31556f;
+}
+
+.independent-title{
+    color:#064c92;
+    font-weight:bold;
+    margin-bottom:5px;
+}
+
+
+/* =====================================================
+   MAIN SERVICES
+===================================================== */
 
 .oh-services{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:22px;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
 }
 
 .oh-main-card{
     background:white;
     border:1px solid #dfe8f2;
     border-radius:16px;
-    padding:28px 24px;
+    padding:26px 22px;
     text-align:center;
     box-shadow:0 5px 18px rgba(0,0,0,.07);
     transition:.25s;
+    display:flex;
+    flex-direction:column;
 }
 
 .oh-main-card:hover{
@@ -75,21 +123,21 @@
 
 .vaccination-card{
     border-top:5px solid #0b8f6a;
-    grid-column:1/-1;
 }
 
 .oh-icon{
-    font-size:50px;
+    font-size:46px;
     margin-bottom:10px;
 }
 
 .oh-main-card h2{
     color:#064c92;
     margin:5px 0;
+    font-size:20px;
 }
 
 .oh-main-card h3{
-    font-size:14px;
+    font-size:13px;
     color:#6a7c8e;
     margin:0 0 10px;
 }
@@ -97,7 +145,7 @@
 .oh-main-card p{
     color:#617387;
     line-height:1.8;
-    min-height:90px;
+    flex:1;
 }
 
 .card-actions{
@@ -111,7 +159,7 @@
 .card-actions a{
     text-decoration:none;
     border-radius:9px;
-    padding:11px 18px;
+    padding:11px 16px;
     font-weight:bold;
     font-size:13px;
 }
@@ -147,14 +195,26 @@
 }
 
 
-/* =========================
-   Management Services
-========================= */
+/* =====================================================
+   SECTION TITLE
+===================================================== */
 
 .section-title{
-    margin:30px 0 15px;
+    margin:34px 0 15px;
     color:#064c92;
 }
+
+.section-description{
+    color:#657789;
+    line-height:1.8;
+    margin-top:-7px;
+    margin-bottom:18px;
+}
+
+
+/* =====================================================
+   MANAGEMENT SERVICES
+===================================================== */
 
 .oh-subservices{
     display:grid;
@@ -169,6 +229,8 @@
     padding:20px;
     text-align:center;
     box-shadow:0 3px 10px rgba(0,0,0,.05);
+    display:flex;
+    flex-direction:column;
 }
 
 .oh-subcard h3{
@@ -180,6 +242,7 @@
     font-size:13px;
     line-height:1.7;
     color:#657789;
+    flex:1;
 }
 
 .sub-link{
@@ -195,29 +258,73 @@
 }
 
 
-/* =========================
-   Privacy
-========================= */
+/* =====================================================
+   SYSTEM ARCHITECTURE
+===================================================== */
+
+.architecture-box{
+    margin-top:32px;
+    background:white;
+    border:1px solid #dfe8f2;
+    border-radius:14px;
+    padding:22px;
+    box-shadow:0 3px 10px rgba(0,0,0,.04);
+}
+
+.architecture-box h2{
+    color:#064c92;
+    margin-top:0;
+}
+
+.architecture-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.architecture-item{
+    background:#f8fbfd;
+    border:1px solid #e0e8ef;
+    border-radius:10px;
+    padding:15px;
+}
+
+.architecture-item strong{
+    display:block;
+    color:#294b6a;
+    margin-bottom:6px;
+}
+
+.architecture-item span{
+    color:#657789;
+    line-height:1.7;
+    font-size:13px;
+}
+
+
+/* =====================================================
+   PRIVACY
+===================================================== */
 
 .privacy-note{
     margin-top:28px;
-    background:#eef7ff;
-    border-right:5px solid #0879b2;
+    background:#fff8e8;
+    border-right:5px solid #d89200;
     padding:18px;
     border-radius:10px;
-    color:#36566f;
+    color:#6b561f;
     line-height:1.8;
 }
 
 html[dir="ltr"] .privacy-note{
     border-right:none;
-    border-left:5px solid #0879b2;
+    border-left:5px solid #d89200;
 }
 
 
-/* =========================
-   Footer
-========================= */
+/* =====================================================
+   FOOTER
+===================================================== */
 
 .footer-actions{
     display:flex;
@@ -236,20 +343,42 @@ html[dir="ltr"] .privacy-note{
     font-weight:bold;
 }
 
+.settings-btn{
+    display:inline-block;
+    padding:10px 18px;
+    background:#0759a6;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+    font-weight:bold;
+}
 
-/* =========================
-   Responsive
-========================= */
 
-@media(max-width:800px){
+/* =====================================================
+   RESPONSIVE
+===================================================== */
 
-    .oh-services,
-    .oh-subservices{
+@media(max-width:1000px){
+
+    .oh-services{
         grid-template-columns:1fr;
     }
 
-    .vaccination-card{
-        grid-column:auto;
+    .oh-subservices{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:700px){
+
+    .oh-subservices,
+    .architecture-grid{
+        grid-template-columns:1fr;
+    }
+
+    .oh-page{
+        padding:0 12px 50px;
     }
 
 }
@@ -257,6 +386,7 @@ html[dir="ltr"] .privacy-note{
 </style>
 
 </head>
+
 
 <body>
 
@@ -291,37 +421,39 @@ html[dir="ltr"] .privacy-note{
 <div class="hero-center">
 
 <h1
-    data-ar="الصحة المهنية"
-    data-en="Occupational Health">
+    data-ar="نظام العيادة المهنية"
+    data-en="Occupational Health Clinic System">
 
-الصحة المهنية
+نظام العيادة المهنية
 
 </h1>
 
 
 <h2>
-Occupational Health
+Occupational Health Clinic System
 </h2>
 
 
 <p
-    data-ar="البوابة الذكية للصحة العامة"
-    data-en="Smart Public Health Portal">
+    data-ar="نظام مستقل لإدارة خدمات الصحة المهنية"
+    data-en="Independent Occupational Health Management System">
 
-البوابة الذكية للصحة العامة
+نظام مستقل لإدارة خدمات الصحة المهنية
 
 </p>
 
 
 <div class="public-health-name">
 
-<span>👨‍⚕️</span>
+<span>
+👨‍⚕️
+</span>
 
 <span
-    data-ar="سلامة وصحة الموظفين"
+    data-ar="صحة وسلامة الموظفين"
     data-en="Employee Health & Safety">
 
-سلامة وصحة الموظفين
+صحة وسلامة الموظفين
 
 </span>
 
@@ -338,6 +470,7 @@ Occupational Health
 
 </div>
 
+
 </div>
 
 </header>
@@ -346,33 +479,69 @@ Occupational Health
 <main class="oh-page">
 
 
+<!-- =====================================================
+     WELCOME
+===================================================== -->
+
 <section class="oh-welcome">
 
 <h2
-    data-ar="خدمات الصحة المهنية"
-    data-en="Occupational Health Services">
+    data-ar="العيادة المهنية"
+    data-en="Occupational Health Clinic">
 
-خدمات الصحة المهنية
+العيادة المهنية
 
 </h2>
 
-<p
-    data-ar="إدارة الإصابات والتعرضات المهنية، الفحوص الدورية، حالة المناعة، وحملات التطعيمات ومتابعة المستفيدين."
-    data-en="Manage occupational injuries and exposures, routine screening, immunity status, vaccination campaigns, and beneficiary follow-up.">
+<h3>
+Occupational Health Clinic
+</h3>
 
-إدارة الإصابات والتعرضات المهنية، الفحوص الدورية، حالة المناعة، وحملات التطعيمات ومتابعة المستفيدين.
+<p
+    data-ar="منظومة متخصصة ومستقلة لإدارة الإصابات والتعرضات المهنية، الفحص الدوري للموظفين، متابعة الحالة المناعية، حملات التطعيمات، التقارير والاعتمادات."
+    data-en="A specialized independent system for occupational injuries and exposures, routine employee screening, immunity status, vaccination campaigns, reporting, and approvals.">
+
+منظومة متخصصة ومستقلة لإدارة الإصابات والتعرضات المهنية، الفحص الدوري للموظفين، متابعة الحالة المناعية، حملات التطعيمات، التقارير والاعتمادات.
 
 </p>
 
 </section>
 
 
-<!-- =========================
-     Main services
-========================= -->
+<!-- =====================================================
+     INDEPENDENCE NOTICE
+===================================================== -->
+
+<section class="independent-notice">
+
+<div
+    class="independent-title"
+    data-ar="🔒 وحدة تشغيلية مستقلة"
+    data-en="🔒 Independent Operational Module">
+
+🔒 وحدة تشغيلية مستقلة
+
+</div>
+
+<div
+    data-ar="هذه الوحدة مستقلة عن منظومة الفحص الذكي وبلاغات الصحة العامة والأمراض المعدية. بيانات العيادة المهنية ولوحات التحكم والصلاحيات والتقارير الخاصة بها يتم التعامل معها ضمن نطاق مستقل."
+    data-en="This module is independent from Smart Screening, Public Health notifications, and infectious disease workflows. Occupational health data, dashboards, permissions, and reports operate within a separate scope.">
+
+هذه الوحدة مستقلة عن منظومة الفحص الذكي وبلاغات الصحة العامة والأمراض المعدية. بيانات العيادة المهنية ولوحات التحكم والصلاحيات والتقارير الخاصة بها يتم التعامل معها ضمن نطاق مستقل.
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     MAIN SERVICES
+===================================================== -->
 
 <section class="oh-services">
 
+
+<!-- OCCUPATIONAL EXPOSURES -->
 
 <div class="oh-main-card exposure-card">
 
@@ -393,10 +562,10 @@ Occupational Injuries & Exposures
 </h3>
 
 <p
-    data-ar="تسجيل ومتابعة وخز الإبر، الأدوات الحادة، التعرض للدم أو سوائل الجسم، والتعرض المهني للأمراض المعدية."
-    data-en="Register and follow needle-stick injuries, sharps injuries, blood or body-fluid exposures, and occupational exposure to infectious diseases.">
+    data-ar="تسجيل ومتابعة وخز الإبر والأدوات الحادة والتعرض للدم أو سوائل الجسم والتعرضات المهنية الأخرى، مع متابعة الحالة والإجراءات."
+    data-en="Register and follow needle-stick injuries, sharps injuries, blood or body-fluid exposures, and other occupational exposures with case follow-up.">
 
-تسجيل ومتابعة وخز الإبر، الأدوات الحادة، التعرض للدم أو سوائل الجسم، والتعرض المهني للأمراض المعدية.
+تسجيل ومتابعة وخز الإبر والأدوات الحادة والتعرض للدم أو سوائل الجسم والتعرضات المهنية الأخرى، مع متابعة الحالة والإجراءات.
 
 </p>
 
@@ -429,6 +598,8 @@ Occupational Injuries & Exposures
 </div>
 
 
+<!-- ROUTINE SCREENING -->
+
 <div class="oh-main-card screening-card">
 
 <div class="oh-icon">
@@ -448,10 +619,10 @@ Routine Employee Screening
 </h3>
 
 <p
-    data-ar="تسجيل ومتابعة الفحوص الدورية، حالة المناعة، تاريخ آخر فحص، موعد الاستحقاق القادم والحالات التي تحتاج متابعة."
-    data-en="Register and follow routine screening, immunity status, previous screening dates, next due dates, and cases requiring follow-up.">
+    data-ar="تسجيل ومتابعة الفحوص الدورية للموظفين، حالة المناعة، الاستحقاقات القادمة، نسب الإنجاز والتقارير الدورية."
+    data-en="Register and monitor routine employee screening, immunity status, upcoming due dates, completion indicators, and periodic reports.">
 
-تسجيل ومتابعة الفحوص الدورية، حالة المناعة، تاريخ آخر فحص، موعد الاستحقاق القادم والحالات التي تحتاج متابعة.
+تسجيل ومتابعة الفحوص الدورية للموظفين، حالة المناعة، الاستحقاقات القادمة، نسب الإنجاز والتقارير الدورية.
 
 </p>
 
@@ -472,10 +643,10 @@ Routine Employee Screening
 <a
     href="occupational-dashboard.html"
     class="secondary-screening"
-    data-ar="📊 متابعة الفحوص"
+    data-ar="📊 لوحة المتابعة"
     data-en="📊 Screening Dashboard">
 
-📊 متابعة الفحوص
+📊 لوحة المتابعة
 
 </a>
 
@@ -484,9 +655,7 @@ Routine Employee Screening
 </div>
 
 
-<!-- =========================
-     Vaccination Campaigns
-========================= -->
+<!-- VACCINATION -->
 
 <div class="oh-main-card vaccination-card">
 
@@ -507,10 +676,10 @@ Vaccination Campaigns
 </h3>
 
 <p
-    data-ar="تسجيل بيانات المستفيدين من حملات التطعيمات عبر الجوال، ومتابعة حالة إدخال البيانات في منصة الوزارة، وإدارة الحقول المطلوبة لكل حملة."
-    data-en="Register vaccination campaign beneficiaries by mobile, track ministry platform entry status, and manage required fields for each campaign.">
+    data-ar="تسجيل المستفيدين من حملات التطعيمات، متابعة حالة الإدخال في منصة الوزارة، إدارة المستهدفات، المؤشرات والتقارير حسب الحملة والفترة."
+    data-en="Register vaccination beneficiaries, track ministry platform entry status, manage campaign targets, indicators, and reports by campaign and period.">
 
-تسجيل بيانات المستفيدين من حملات التطعيمات عبر الجوال، ومتابعة حالة إدخال البيانات في منصة الوزارة، وإدارة الحقول المطلوبة لكل حملة.
+تسجيل المستفيدين من حملات التطعيمات، متابعة حالة الإدخال في منصة الوزارة، إدارة المستهدفات، المؤشرات والتقارير حسب الحملة والفترة.
 
 </p>
 
@@ -531,10 +700,10 @@ Vaccination Campaigns
 <a
     href="vaccination-campaign-dashboard.html"
     class="secondary-vaccination"
-    data-ar="📊 متابعة الحملة"
+    data-ar="📊 لوحة الحملة"
     data-en="📊 Campaign Dashboard">
 
-📊 متابعة الحملة
+📊 لوحة الحملة
 
 </a>
 
@@ -546,92 +715,71 @@ Vaccination Campaigns
 </section>
 
 
-<!-- =========================
-     Management tools
-========================= -->
+<!-- =====================================================
+     MANAGEMENT TOOLS
+===================================================== -->
 
 <h2
     class="section-title"
-    data-ar="أدوات المتابعة"
-    data-en="Follow-up Tools">
+    data-ar="الإدارة والمتابعة"
+    data-en="Management & Follow-up">
 
-أدوات المتابعة
+الإدارة والمتابعة
 
 </h2>
+
+
+<p
+    class="section-description"
+    data-ar="الأدوات التالية مخصصة لإدارة بيانات العيادة المهنية فقط ولا ترتبط بلوحات الفحص الذكي أو الصحة العامة."
+    data-en="The following tools are dedicated to Occupational Health Clinic management and are separate from Smart Screening and Public Health dashboards.">
+
+الأدوات التالية مخصصة لإدارة بيانات العيادة المهنية فقط ولا ترتبط بلوحات الفحص الذكي أو الصحة العامة.
+
+</p>
 
 
 <section class="oh-subservices">
 
 
+<!-- EMPLOYEE DIRECTORY -->
+
 <div class="oh-subcard">
 
 <div class="oh-icon">
-💉
+👥
 </div>
 
 <h3
-    data-ar="حالة المناعة"
-    data-en="Immunity Status">
+    data-ar="دليل الموظفين"
+    data-en="Employee Directory">
 
-حالة المناعة
+دليل الموظفين
 
 </h3>
 
 <p
-    data-ar="متابعة حالة المناعة والفحوص المسجلة للموظفين."
-    data-en="Follow employee immunity status and registered screening tests.">
+    data-ar="إدارة قائمة موظفي المستشفى المستخدمة في الفحص الدوري وحساب المستهدفات حسب الأقسام."
+    data-en="Manage the hospital employee directory used for routine screening and departmental targets.">
 
-متابعة حالة المناعة والفحوص المسجلة للموظفين.
+إدارة قائمة موظفي المستشفى المستخدمة في الفحص الدوري وحساب المستهدفات حسب الأقسام.
 
 </p>
 
 <a
-    href="occupational-dashboard.html"
+    href="employee-directory.html"
     class="sub-link"
-    data-ar="فتح المتابعة"
-    data-en="Open Follow-up">
+    data-ar="فتح دليل الموظفين"
+    data-en="Open Employee Directory">
 
-فتح المتابعة
+فتح دليل الموظفين
 
 </a>
 
 </div>
 
 
-<div class="oh-subcard">
-
-<div class="oh-icon">
-📅
-</div>
-
-<h3
-    data-ar="المتابعة السنوية"
-    data-en="Annual Follow-up">
-
-المتابعة السنوية
-
-</h3>
-
-<p
-    data-ar="متابعة الفحوص المستحقة والموظفين الذين يحتاجون إلى متابعة إضافية."
-    data-en="Track due screening and employees who require additional follow-up.">
-
-متابعة الفحوص المستحقة والموظفين الذين يحتاجون إلى متابعة إضافية.
-
-</p>
-
-<a
-    href="occupational-dashboard.html"
-    class="sub-link"
-    data-ar="عرض المستحقات"
-    data-en="View Due Screening">
-
-عرض المستحقات
-
-</a>
-
-</div>
-
+<!-- SCREENING DASHBOARD -->
 
 <div class="oh-subcard">
 
@@ -640,28 +788,176 @@ Vaccination Campaigns
 </div>
 
 <h3
-    data-ar="المؤشرات والتقارير"
-    data-en="Analytics & Reports">
+    data-ar="مؤشرات الفحص الدوري"
+    data-en="Routine Screening Analytics">
 
-المؤشرات والتقارير
+مؤشرات الفحص الدوري
 
 </h3>
 
 <p
-    data-ar="عرض مؤشرات الصحة المهنية وإصدار التقارير الشهرية والسنوية."
-    data-en="View occupational health indicators and generate monthly and annual reports.">
+    data-ar="متابعة المستهدف، المنجز، غير المفحوصين، النسب حسب الأقسام والتقارير المعتمدة."
+    data-en="Track targets, completed screening, pending employees, departmental percentages, and approved reports.">
 
-عرض مؤشرات الصحة المهنية وإصدار التقارير الشهرية والسنوية.
+متابعة المستهدف، المنجز، غير المفحوصين، النسب حسب الأقسام والتقارير المعتمدة.
 
 </p>
 
 <a
-    href="analytics-dashboard.html"
+    href="occupational-dashboard.html"
     class="sub-link"
-    data-ar="فتح المؤشرات"
-    data-en="Open Analytics">
+    data-ar="فتح لوحة الفحص الدوري"
+    data-en="Open Screening Dashboard">
 
-فتح المؤشرات
+فتح لوحة الفحص الدوري
+
+</a>
+
+</div>
+
+
+<!-- VACCINATION DASHBOARD -->
+
+<div class="oh-subcard">
+
+<div class="oh-icon">
+📈
+</div>
+
+<h3
+    data-ar="مؤشرات حملات التطعيمات"
+    data-en="Vaccination Analytics">
+
+مؤشرات حملات التطعيمات
+
+</h3>
+
+<p
+    data-ar="متابعة المستهدف لكل حملة، عدد المسجلين، حالة إدخال البيانات وإصدار تقارير حسب الحملة والفترة."
+    data-en="Track campaign targets, beneficiary counts, entry status, and generate campaign-period reports.">
+
+متابعة المستهدف لكل حملة، عدد المسجلين، حالة إدخال البيانات وإصدار تقارير حسب الحملة والفترة.
+
+</p>
+
+<a
+    href="vaccination-campaign-dashboard.html"
+    class="sub-link"
+    data-ar="فتح لوحة التطعيمات"
+    data-en="Open Vaccination Dashboard">
+
+فتح لوحة التطعيمات
+
+</a>
+
+</div>
+
+
+<!-- VACCINATION SETTINGS -->
+
+<div class="oh-subcard">
+
+<div class="oh-icon">
+⚙️
+</div>
+
+<h3
+    data-ar="إعدادات حملات التطعيمات"
+    data-en="Vaccination Campaign Settings">
+
+إعدادات حملات التطعيمات
+
+</h3>
+
+<p
+    data-ar="إدارة أنواع الحملات والتطعيمات والحقول المطلوبة من الموظفين أثناء تسجيل المستفيدين."
+    data-en="Manage campaign types, vaccine types, and employee data-entry fields for beneficiaries.">
+
+إدارة أنواع الحملات والتطعيمات والحقول المطلوبة من الموظفين أثناء تسجيل المستفيدين.
+
+</p>
+
+<a
+    href="vaccination-campaign-settings.html"
+    class="sub-link"
+    data-ar="إدارة الإعدادات"
+    data-en="Manage Settings">
+
+إدارة الإعدادات
+
+</a>
+
+</div>
+
+
+<!-- APPROVERS -->
+
+<div class="oh-subcard">
+
+<div class="oh-icon">
+✍️
+</div>
+
+<h3
+    data-ar="المعتمدون والتوقيعات"
+    data-en="Approvers & Signatures">
+
+المعتمدون والتوقيعات
+
+</h3>
+
+<p
+    data-ar="إدارة معد التقرير والمعتمد والتوقيعات الإلكترونية المركزية المستخدمة في تقارير العيادة المهنية."
+    data-en="Manage report preparer, approver, and centralized electronic signatures used in Occupational Health reports.">
+
+إدارة معد التقرير والمعتمد والتوقيعات الإلكترونية المركزية المستخدمة في تقارير العيادة المهنية.
+
+</p>
+
+<a
+    href="occupational-report-settings.html"
+    class="sub-link"
+    data-ar="إدارة المعتمدين"
+    data-en="Manage Approvers">
+
+إدارة المعتمدين
+
+</a>
+
+</div>
+
+
+<!-- EXPOSURE REGISTRY -->
+
+<div class="oh-subcard">
+
+<div class="oh-icon">
+📋
+</div>
+
+<h3
+    data-ar="سجل الإصابات المهنية"
+    data-en="Occupational Exposure Registry">
+
+سجل الإصابات المهنية
+
+</h3>
+
+<p
+    data-ar="متابعة بلاغات الإصابات والتعرضات المهنية المسجلة وحالة كل بلاغ وإجراءات المتابعة."
+    data-en="Monitor registered occupational injuries and exposures, case status, and follow-up actions.">
+
+متابعة بلاغات الإصابات والتعرضات المهنية المسجلة وحالة كل بلاغ وإجراءات المتابعة.
+
+</p>
+
+<a
+    href="occupational-exposure-inbox.html"
+    class="sub-link"
+    data-ar="فتح سجل الإصابات"
+    data-en="Open Exposure Registry">
+
+فتح سجل الإصابات
 
 </a>
 
@@ -671,36 +967,152 @@ Vaccination Campaigns
 </section>
 
 
-<section class="privacy-note">
+<!-- =====================================================
+     ARCHITECTURE NOTICE
+===================================================== -->
+
+<section class="architecture-box">
+
+<h2
+    data-ar="هيكل النظام عند النقل الرسمي"
+    data-en="Production Deployment Structure">
+
+هيكل النظام عند النقل الرسمي
+
+</h2>
+
+
+<div class="architecture-grid">
+
+
+<div class="architecture-item">
 
 <strong
-    data-ar="🔐 الخصوصية:"
-    data-en="🔐 Privacy:">
+    data-ar="🏥 نطاق العيادة المهنية"
+    data-en="🏥 Occupational Health Scope">
 
-🔐 الخصوصية:
+🏥 نطاق العيادة المهنية
 
 </strong>
 
 <span
-    data-ar="بيانات الصحة المهنية وبيانات المستفيدين من حملات التطعيمات حساسة. النسخة الحالية تجريبية، وعند التشغيل الفعلي يجب أن تكون البيانات داخل النظام الداخلي المعتمد وبصلاحيات وصول محددة."
-    data-en="Occupational health and vaccination campaign beneficiary data is sensitive. This prototype is for development only. In production, data must be stored within the approved internal system with controlled access permissions.">
+    data-ar="الفحص الدوري، الإصابات المهنية، حملات التطعيمات، دليل الموظفين، التقارير والمعتمدون تعمل ضمن وحدة مستقلة."
+    data-en="Routine screening, occupational exposures, vaccination campaigns, employee directory, reports, and approvers operate within an independent module.">
 
-بيانات الصحة المهنية وبيانات المستفيدين من حملات التطعيمات حساسة. النسخة الحالية تجريبية، وعند التشغيل الفعلي يجب أن تكون البيانات داخل النظام الداخلي المعتمد وبصلاحيات وصول محددة.
+الفحص الدوري، الإصابات المهنية، حملات التطعيمات، دليل الموظفين، التقارير والمعتمدون تعمل ضمن وحدة مستقلة.
+
+</span>
+
+</div>
+
+
+<div class="architecture-item">
+
+<strong
+    data-ar="🧠 نطاق الفحص الذكي والصحة العامة"
+    data-en="🧠 Smart Screening & Public Health Scope">
+
+🧠 نطاق الفحص الذكي والصحة العامة
+
+</strong>
+
+<span
+    data-ar="الفحص الذكي، الأمراض المعدية، البلاغات، التسممات الغذائية ومؤشرات الصحة العامة تبقى في منظومة منفصلة."
+    data-en="Smart Screening, infectious diseases, notifications, foodborne events, and Public Health analytics remain in a separate module.">
+
+الفحص الذكي، الأمراض المعدية، البلاغات، التسممات الغذائية ومؤشرات الصحة العامة تبقى في منظومة منفصلة.
+
+</span>
+
+</div>
+
+
+<div class="architecture-item">
+
+<strong
+    data-ar="🔐 الصلاحيات"
+    data-en="🔐 Permissions">
+
+🔐 الصلاحيات
+
+</strong>
+
+<span
+    data-ar="عند التشغيل الرسمي سيتم تخصيص أدوار وصلاحيات مستقلة لموظفي العيادة المهنية والمشرفين والمعتمدين."
+    data-en="Production deployment will provide separate roles and permissions for Occupational Health staff, supervisors, and approvers.">
+
+عند التشغيل الرسمي سيتم تخصيص أدوار وصلاحيات مستقلة لموظفي العيادة المهنية والمشرفين والمعتمدين.
+
+</span>
+
+</div>
+
+
+<div class="architecture-item">
+
+<strong
+    data-ar="🗄️ البيانات"
+    data-en="🗄️ Data">
+
+🗄️ البيانات
+
+</strong>
+
+<span
+    data-ar="لن تعتمد النسخة الرسمية على التخزين المحلي، وستحفظ بيانات العيادة المهنية في قاعدة البيانات الداخلية المخصصة لها."
+    data-en="The production version will not rely on local browser storage. Occupational Health data will be stored in its dedicated internal database scope.">
+
+لن تعتمد النسخة الرسمية على التخزين المحلي، وستحفظ بيانات العيادة المهنية في قاعدة البيانات الداخلية المخصصة لها.
+
+</span>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     PRIVACY
+===================================================== -->
+
+<section class="privacy-note">
+
+<strong
+    data-ar="🔐 تنبيه الخصوصية:"
+    data-en="🔐 Privacy Notice:">
+
+🔐 تنبيه الخصوصية:
+
+</strong>
+
+<span
+    data-ar="النسخة الحالية نسخة تطوير وتجربة. لا تستخدم بيانات حقيقية للموظفين أو المستفيدين على GitHub Pages. عند التشغيل الرسمي يجب نقل البيانات والخدمات إلى الخادم الداخلي وقاعدة البيانات والصلاحيات المعتمدة بالمستشفى."
+    data-en="The current version is for development and testing. Do not use real employee or beneficiary data on GitHub Pages. Production use requires the internal hospital server, database, authentication, permissions, and approved security controls.">
+
+النسخة الحالية نسخة تطوير وتجربة. لا تستخدم بيانات حقيقية للموظفين أو المستفيدين على GitHub Pages. عند التشغيل الرسمي يجب نقل البيانات والخدمات إلى الخادم الداخلي وقاعدة البيانات والصلاحيات المعتمدة بالمستشفى.
 
 </span>
 
 </section>
 
 
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
 <div class="footer-actions">
 
-<a
-    href="public-health-inbox.html"
-    class="back-btn"
-    data-ar="← العودة إلى إدارة الصحة العامة"
-    data-en="← Back to Public Health Management">
 
-← العودة إلى إدارة الصحة العامة
+<a
+    href="occupational-report-settings.html"
+    class="settings-btn"
+    data-ar="✍️ إعدادات المعتمدين"
+    data-en="✍️ Approver Settings">
+
+✍️ إعدادات المعتمدين
 
 </a>
 
@@ -715,6 +1127,7 @@ Vaccination Campaigns
 
 </a>
 
+
 </div>
 
 
@@ -723,6 +1136,11 @@ Vaccination Campaigns
 
 <script>
 
+
+/* =====================================================
+   LANGUAGE
+===================================================== */
+
 let ohLanguage =
     "ar";
 
@@ -730,9 +1148,12 @@ let ohLanguage =
 function toggleOHLanguage(){
 
     ohLanguage =
-        ohLanguage === "ar"
-        ? "en"
-        : "ar";
+        ohLanguage ===
+        "ar"
+        ?
+        "en"
+        :
+        "ar";
 
 
     document.documentElement.lang =
@@ -740,9 +1161,12 @@ function toggleOHLanguage(){
 
 
     document.documentElement.dir =
-        ohLanguage === "ar"
-        ? "rtl"
-        : "ltr";
+        ohLanguage ===
+        "ar"
+        ?
+        "rtl"
+        :
+        "ltr";
 
 
     document
@@ -755,9 +1179,12 @@ function toggleOHLanguage(){
             element.textContent =
                 element.getAttribute(
 
-                    ohLanguage === "ar"
-                    ? "data-ar"
-                    : "data-en"
+                    ohLanguage ===
+                    "ar"
+                    ?
+                    "data-ar"
+                    :
+                    "data-en"
 
                 );
 
@@ -771,12 +1198,22 @@ function toggleOHLanguage(){
         );
 
 
-    button.textContent =
-        ohLanguage === "ar"
-        ? "🌐 English"
-        : "🌐 العربية";
+    if(
+        button
+    ){
+
+        button.textContent =
+            ohLanguage ===
+            "ar"
+            ?
+            "🌐 English"
+            :
+            "🌐 العربية";
+
+    }
 
 }
+
 
 </script>
 

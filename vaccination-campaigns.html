@@ -10,7 +10,7 @@
     content="width=device-width, initial-scale=1.0">
 
 <title>
-حملات التطعيمات
+تسجيل مستفيد - حملات التطعيمات
 </title>
 
 <link
@@ -25,12 +25,17 @@
    PAGE
 ===================================================== */
 
+*{
+    box-sizing:border-box;
+}
+
 body{
     margin:0;
+    background:#f4f7fa;
 }
 
 .vaccination-page{
-    max-width:850px;
+    max-width:820px;
     margin:25px auto;
     padding:0 15px 60px;
 }
@@ -66,6 +71,17 @@ body{
     margin:0;
 }
 
+.employee-mode{
+    margin-top:10px;
+    display:inline-block;
+    padding:6px 12px;
+    background:#eef7ff;
+    color:#245a7a;
+    border-radius:16px;
+    font-size:12px;
+    font-weight:bold;
+}
+
 .campaign-current{
     margin-top:16px;
     background:#eaf7f3;
@@ -94,6 +110,13 @@ body{
     margin-top:0;
     padding-bottom:12px;
     border-bottom:1px solid #e5edf3;
+}
+
+.form-intro{
+    color:#607387;
+    line-height:1.8;
+    margin-bottom:20px;
+    font-size:14px;
 }
 
 .form-grid{
@@ -178,11 +201,11 @@ textarea{
 
 .status-note{
     margin-top:20px;
-    background:#fff4f4;
-    border-right:5px solid #c62828;
+    background:#f8fbfd;
+    border-right:5px solid #0759a6;
     border-radius:10px;
     padding:14px;
-    color:#7c2929;
+    color:#435d70;
     line-height:1.8;
 }
 
@@ -209,8 +232,7 @@ textarea{
     margin-top:22px;
 }
 
-.actions button,
-.actions a{
+.actions button{
     border:none;
     border-radius:9px;
     padding:14px;
@@ -218,7 +240,6 @@ textarea{
     font-size:14px;
     cursor:pointer;
     text-align:center;
-    text-decoration:none;
 }
 
 .review-btn{
@@ -231,15 +252,10 @@ textarea{
     color:white;
 }
 
-.save-btn:disabled{
+.save-btn:disabled,
+.review-btn:disabled{
     opacity:.65;
     cursor:not-allowed;
-}
-
-.back-btn{
-    background:#eaf1f7;
-    color:#064c92;
-    grid-column:1/-1;
 }
 
 
@@ -271,6 +287,31 @@ textarea{
 
 
 /* =====================================================
+   SUCCESS ACTION
+===================================================== */
+
+.next-entry-box{
+    display:none;
+    margin-top:14px;
+    text-align:center;
+}
+
+.next-entry-box.active{
+    display:block;
+}
+
+.next-entry-btn{
+    border:none;
+    border-radius:9px;
+    background:#0759a6;
+    color:white;
+    padding:12px 18px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+
+/* =====================================================
    PRIVACY
 ===================================================== */
 
@@ -283,6 +324,19 @@ textarea{
     color:#31556f;
     line-height:1.8;
     font-size:13px;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.employee-footer{
+    margin-top:18px;
+    text-align:center;
+    color:#82919e;
+    font-size:12px;
+    line-height:1.7;
 }
 
 
@@ -307,8 +361,7 @@ textarea{
         grid-template-columns:1fr;
     }
 
-    .form-group.full,
-    .back-btn{
+    .form-group.full{
         grid-column:auto;
     }
 
@@ -347,8 +400,12 @@ textarea{
 </h1>
 
 <h2>
-Vaccination Campaigns
+Vaccination Campaign Registration
 </h2>
+
+<div class="employee-mode">
+واجهة تسجيل الموظف
+</div>
 
 
 <div class="campaign-current">
@@ -385,6 +442,13 @@ Vaccination Campaigns
 <h2>
 تسجيل بيانات المستفيد
 </h2>
+
+<div class="form-intro">
+
+يرجى إدخال بيانات المستفيد والتأكد من صحتها قبل الإرسال.
+بعد الحفظ تنتقل البيانات مباشرة إلى لوحة متابعة حملات التطعيمات لدى المسؤول.
+
+</div>
 
 
 <div class="form-grid">
@@ -604,13 +668,13 @@ Vaccination Campaigns
 
 <div class="status-note">
 
-بعد حفظ البيانات ستظهر الحالة تلقائيًا في لوحة المتابعة:
+بعد الإرسال تُرسل البيانات إلى مسؤول الحملة للمراجعة والمتابعة.
 
 <br>
 
 <span class="status-badge">
 
-🔴 جديد — بانتظار الإدخال في منصة الوزارة
+🔴 الحالة الأولية: جديد
 
 </span>
 
@@ -625,6 +689,7 @@ Vaccination Campaigns
 
 <button
     type="button"
+    id="reviewButton"
     class="review-btn"
     onclick="reviewRecord()">
 
@@ -643,21 +708,28 @@ Vaccination Campaigns
 
 </button>
 
-
-<a
-    href="occupational-health.html"
-    class="back-btn">
-
-← العودة للصحة المهنية
-
-</a>
-
 </div>
 
 
 <div
     id="resultBox"
     class="result-box">
+</div>
+
+
+<div
+    id="nextEntryBox"
+    class="next-entry-box">
+
+<button
+    type="button"
+    class="next-entry-btn"
+    onclick="prepareNextEntry()">
+
+➕ تسجيل مستفيد آخر
+
+</button>
+
 </div>
 
 
@@ -669,6 +741,14 @@ Vaccination Campaigns
     class="privacy-note">
 
 🔐 هذه النسخة مخصصة للتطوير والاختبار. لا تستخدم بيانات مستفيدين حقيقية في نسخة GitHub الحالية.
+
+</div>
+
+
+<div class="employee-footer">
+
+واجهة الموظف مخصصة لإدخال البيانات فقط.
+لا تتيح الوصول إلى لوحة المتابعة أو التقارير أو إعدادات الحملة.
 
 </div>
 
@@ -879,11 +959,6 @@ function readSettingsLocal(){
 
 async function loadSettings(){
 
-    /*
-      عند إضافة Vaccination Settings إلى SPHP مستقبلاً
-      سيستخدم هذا المسار أولاً.
-    */
-
     if(
         window.SPHP &&
         window.SPHP.vaccinationSettings &&
@@ -1056,6 +1131,22 @@ function localToday(){
 ===================================================== */
 
 function generateRecordId(){
+
+    if(
+        window.SPHP &&
+        window.SPHP.helpers &&
+        typeof window.SPHP.helpers.generateId ===
+        "function"
+    ){
+
+        return window.SPHP
+        .helpers
+        .generateId(
+            "VAC"
+        );
+
+    }
+
 
     const now =
         new Date();
@@ -2044,11 +2135,6 @@ async function saveVaccinationRecord(
     record
 ){
 
-    /*
-      هذا المسار يصبح المسار الرئيسي بعد إضافة
-      vaccinationCampaigns إلى api.js لاحقًا.
-    */
-
     if(
         window.SPHP &&
         window.SPHP.vaccinationCampaigns &&
@@ -2066,10 +2152,6 @@ async function saveVaccinationRecord(
 
     }
 
-
-    /*
-      Local development only.
-    */
 
     if(
         !isServerMode()
@@ -2172,7 +2254,7 @@ function reviewRecord(){
 
     showResult(
 
-        "✅ البيانات مكتملة وجاهزة للحفظ."
+        "✅ البيانات مكتملة وجاهزة للإرسال."
 
         +
 
@@ -2240,23 +2322,7 @@ function reviewRecord(){
             )
             ||
             "—"
-        )
-
-        +
-
-        "<br><br>"
-
-        +
-
-        "<span style='color:#b71c1c;font-weight:bold;'>"
-
-        +
-
-        "🔴 ستُحفظ الحالة كـ جديد"
-
-        +
-
-        "</span>",
+        ),
 
         "success"
 
@@ -2337,6 +2403,43 @@ function resetForm(){
 
 
 /* =====================================================
+   NEXT ENTRY
+===================================================== */
+
+function prepareNextEntry(){
+
+    resetForm();
+
+
+    document.getElementById(
+        "resultBox"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "nextEntryBox"
+    ).classList.remove(
+        "active"
+    );
+
+
+    document.getElementById(
+        "fullName"
+    )?.focus();
+
+
+    window.scrollTo({
+
+        top:0,
+        behavior:"smooth"
+
+    });
+
+}
+
+
+/* =====================================================
    SAVE
 ===================================================== */
 
@@ -2382,6 +2485,12 @@ async function saveRecord(){
         );
 
 
+    const reviewButton =
+        document.getElementById(
+            "reviewButton"
+        );
+
+
     try{
 
         savingRecord =
@@ -2392,8 +2501,12 @@ async function saveRecord(){
             true;
 
 
+        reviewButton.disabled =
+            true;
+
+
         button.textContent =
-            "⏳ جاري الحفظ...";
+            "⏳ جاري الإرسال...";
 
 
         const record =
@@ -2425,7 +2538,7 @@ async function saveRecord(){
 
         showResult(
 
-            "✅ <strong>تم حفظ بيانات المستفيد بنجاح.</strong>"
+            "✅ <strong>تم إرسال بيانات المستفيد بنجاح.</strong>"
 
             +
 
@@ -2447,20 +2560,6 @@ async function saveRecord(){
 
             +
 
-            "<strong>الاسم:</strong> "
-
-            +
-
-            escapeHTML(
-                finalRecord.fullName
-            )
-
-            +
-
-            "<br>"
-
-            +
-
             "<strong>الحالة:</strong> "
 
             +
@@ -2469,11 +2568,19 @@ async function saveRecord(){
 
             +
 
-            "🔴 جديد — بانتظار الإدخال في منصة الوزارة"
+            "🔴 جديد"
 
             +
 
-            "</span>",
+            "</span>"
+
+            +
+
+            "<br><br>"
+
+            +
+
+            "تم إرسال البيانات إلى مسؤول حملة التطعيمات للمتابعة.",
 
             "success"
 
@@ -2483,16 +2590,11 @@ async function saveRecord(){
         resetForm();
 
 
-        button.textContent =
-            "💾 حفظ وإرسال";
-
-
-        button.disabled =
-            false;
-
-
-        savingRecord =
-            false;
+        document.getElementById(
+            "nextEntryBox"
+        ).classList.add(
+            "active"
+        );
 
     }
     catch(error){
@@ -2505,7 +2607,7 @@ async function saveRecord(){
 
         showResult(
 
-            "❌ تعذر حفظ البيانات."
+            "❌ تعذر إرسال البيانات."
 
             +
 
@@ -2525,17 +2627,23 @@ async function saveRecord(){
 
         );
 
+    }
+    finally{
+
+        savingRecord =
+            false;
+
 
         button.disabled =
             false;
 
 
+        reviewButton.disabled =
+            false;
+
+
         button.textContent =
             "💾 حفظ وإرسال";
-
-
-        savingRecord =
-            false;
 
     }
 
@@ -2618,7 +2726,7 @@ function updatePrivacyNote(){
     ){
 
         note.textContent =
-            "🔐 يتم إرسال بيانات حملة التطعيم من خلال خدمة النظام الداخلية، ولا يتم استخدام التخزين المحلي كبديل عند تعذر الاتصال.";
+            "🔐 يتم إرسال البيانات عبر النظام الداخلي المعتمد. هذه الواجهة مخصصة لموظف الإدخال ولا تتيح الوصول إلى لوحة المتابعة أو التقارير.";
 
     }
     else{
